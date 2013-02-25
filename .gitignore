@@ -1,24 +1,24 @@
-*.o
+# Put any files you don't want to check in here.
+# Common among everyone 
+*.o 
 *.pyc
-*.cxx
-*~
 *.h.gch
 *.so
-/SWIG/*.o
-/SWIG/*.pyc
-/SWIG/*.cxx
-/SWIG/*~
-/SWIG/*.h.gch
-/SWIG/*.so
-/src/*.o
-/src/*.pyc
-/src/*.cxx
-/src/*~
-/src/*.h.gch
-/src/*.so
-/bin/*.o
-/bin/*.pyc
-/bin/*.cxx
-/bin/*~
-/bin/*.h.gch
-/bin/*.so
+Makefile
+*/*.o
+*/*.pyc
+*/*.cxx
+*/*.h.gch
+*/*.so
+*/Makefile
+*~
+*/*~
+
+# Jessica specific:
+
+# Sam specific:
+
+# Lulu specific:
+bin/
+
+# Will specific:
