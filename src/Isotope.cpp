@@ -25,6 +25,7 @@ Isotope::Isotope() {
 	_alpha = float(_A-1)/float(_A+1) * float(_A-1)/float(_A+1);
 	_eta = (float(_A)+1.0) / (2.0 * sqrt(float(_A)));
 	_rho = (float(_A)-1.0) / (2.0 * sqrt(float(_A)));
+	_fissionable = false;
 
 	/* By default this isotope has no cross-sections */
 	_num_capture_xs = 0;
@@ -43,13 +44,17 @@ Isotope::Isotope() {
  * have been assigned to this isotope
  */
 Isotope::~Isotope() {
-	if (_num_capture_xs != 0) {
-		delete [] _capture_xs;
-		delete [] _capture_xs_energies;
-	}
 	if (_num_elastic_xs != 0) {
 		delete [] _elastic_xs;
 		delete [] _elastic_xs_energies;
+	}
+	if (_num_absorb_xs != 0) {
+		delete [] _absorb_xs;
+		delete [] _absorb_xs_energies;
+	}
+	if (_num_capture_xs != 0) {
+		delete [] _capture_xs;
+		delete [] _capture_xs_energies;
 	}
 	if (_num_fission_xs != 0) {
 		delete [] _fission_xs;
@@ -126,40 +131,11 @@ float Isotope::getMuAverage() const {
 
 
 /**
- * Returns a capture cross-section value for a certain
- * energy based on linear interpolation
- * @param energy the energy (eV) of interest
- * @return the capture cross-section (barns)
+ * Return whether this isotope is fissionable (true) or not (false)
+ * @return whether this isotope is fissionable
  */
-float Isotope::getCaptureXS(float energy) const{
-
-	if (_num_capture_xs == 0)
-		return 0.0;
-
-	/* Use linear interpolation to find the capture cross-section */
-	return linearInterp<float, float, float>(_capture_xs_energies,
-								_capture_xs, _num_capture_xs, energy);
-}
-
-
-/**
- * Returns a capture cross-section value for a certain index into
- * the energy. This is meant to be used by a Material with rescaled
- * cross-sections
- * @param energy_index the index into the energy array
- * @return the capture cross-section (barns)
- */
-float Isotope::getCaptureXS(int energy_index) const {
-
-	if (_num_capture_xs == 0)
-		return 0.0;
-
-	else if (energy_index > _num_capture_xs)
-		log_printf(ERROR, "Unable to retrieve capture xs for"
-				" isotope %s since the energy index %d is out of"
-				" bounds", _isotope_name, energy_index);
-
-	return _capture_xs[energy_index];
+bool Isotope::isFissionable() const {
+	return _fissionable;
 }
 
 
@@ -217,6 +193,67 @@ scatterAngleType Isotope::getElasticAngleType() const {
 
 
 /**
+ * Returns an absorption (capture plus fission) cross-section
+ * value for a certain energy based on linear interpolation
+ * @param energy the energy (eV) of interest
+ * @return the absorption cross-section (barns)
+ */
+float Isotope::getAbsorptionXS(float energy) const {
+
+	if (_num_absorb_xs == 0)
+		return 0.0;
+
+	/* Use linear interpolation to find the capture cross-section */
+	return linearInterp<float, float, float>(_absorb_xs_energies,
+								_absorb_xs, _num_absorb_xs, energy);
+}
+
+
+/**
+ * Returns an absorption cross-section value for a certain index into
+ * the energy. This is meant to be used by a Material with rescaled
+ * cross-sections
+ * @param energy_index the index into the energy array
+ * @return the absorption cross-section (barns)
+ */
+float Isotope::getAbsorptionXS(int energy_index) const {
+
+	if (_num_absorb_xs == 0)
+		return 0.0;
+
+	else if (energy_index > _num_absorb_xs)
+		log_printf(ERROR, "Unable to retrieve absorption xs for"
+				" isotope %s since the energy index %d is out of"
+				" bounds", _isotope_name, energy_index);
+
+	return _absorb_xs[energy_index];
+}
+
+
+/**
+ * Returns a capture cross-section value for a certain
+ * energy based on linear interpolation
+ * @param energy the energy (eV) of interest
+ * @return the capture cross-section (barns)
+ */
+float Isotope::getCaptureXS(float energy) const{
+	return (getAbsorptionXS(energy) - getFissionXS(energy));
+}
+
+
+/**
+ * Returns a capture cross-section value for a certain index into
+ * the energy. This is meant to be used by a Material with rescaled
+ * cross-sections
+ * @param energy_index the index into the energy array
+ * @return the capture cross-section (barns)
+ */
+float Isotope::getCaptureXS(int energy_index) const {
+	return (getAbsorptionXS(energy_index) - getFissionXS(energy_index));
+}
+
+
+/**
  * Returns a fission cross-section value for a certain
  * energy based on linear interpolation
  * @param energy the energy (eV) of interest
@@ -251,29 +288,6 @@ float Isotope::getFissionXS(int energy_index) const {
 				" bounds", _isotope_name, energy_index);
 
 	return _fission_xs[energy_index];
-}
-
-
-/**
- * Returns an absorption (capture plus fission) cross-section
- * value for a certain energy based on linear interpolation
- * @param energy the energy (eV) of interest
- * @return the absorption cross-section (barns)
- */
-float Isotope::getAbsorbXS(float energy) const {
-	return (getFissionXS(energy) + getCaptureXS(energy));
-}
-
-
-/**
- * Returns an absorption cross-section value for a certain index into
- * the energy. This is meant to be used by a Material with rescaled
- * cross-sections
- * @param energy_index the index into the energy array
- * @return the absorption cross-section (barns)
- */
-float Isotope::getAbsorbXS(int energy_index) const {
-	return (getCaptureXS(energy_index) + getFissionXS(energy_index));
 }
 
 
@@ -326,13 +340,11 @@ float Isotope::getTotalXS(int energy_index) const {
 		return _total_xs[energy_index];
 	}
 
-	/* Otherwise loop over all xs which have been defined and
-	 * add them to a total xs */
+	/* Otherwise add absorption and elastic scatter xs to get a total xs */
 	else {
 		float total_xs = 0;
-		total_xs += getCaptureXS(energy_index);
+		total_xs += getAbsorptionXS(energy_index);
 		total_xs += getElasticXS(energy_index);
-		total_xs += getFissionXS(energy_index);
 		return total_xs;
 	}
 }
@@ -413,6 +425,14 @@ void Isotope::setTemperature(float T) {
 
 
 /**
+ * Make this a fissionable isotope
+ */
+void Isotope::makeFissionable() {
+	_fissionable = true;
+}
+
+
+/**
  * Load a cross-section from an ASCII file into this isotope
  * @param filename the file with the cross-section values
  * @param type the type of cross-section
@@ -434,33 +454,14 @@ void Isotope::loadXS(char* filename, collisionType type, char* delimiter) {
 
 	/* Set this isotope's appropriate cross-section using the data
 	 * structures */
-	if (type == CAPTURE)
-		setCaptureXS(xs_values, energies, num_xs_values);
-	else if (type == ELASTIC)
+	if (type == ELASTIC)
 		setElasticXS(xs_values, energies, num_xs_values, ISOTROPIC_LAB);
+	else if (type == ABSORPTION)
+		setAbsorptionXS(xs_values, energies, num_xs_values);
 	else if (type == FISSION)
 		setFissionXS(xs_values, energies, num_xs_values);
 
 	return;
-}
-
-
-
-/**
- * Set the capture cross-section for this isotope
- * @param capture_xs a float array of microscopic capture xs (barns)
- * @param capture_xs_energies a float array of energies (eV)
- * @param num_capture_xs the number of capture xs values
- */
-void Isotope::setCaptureXS(float* capture_xs, float* capture_xs_energies,
-													int num_capture_xs) {
-    _capture_xs = capture_xs;
-    _capture_xs_energies = capture_xs_energies;
-    _num_capture_xs = num_capture_xs;
-    float (Isotope::*func)(float) const;
-    func = &Isotope::getCaptureXS;
-    _xs_handles.insert(std::pair<collisionType, float(Isotope::*)(float)
-    											const>(CAPTURE, func));
 }
 
 
@@ -494,6 +495,20 @@ void Isotope::setElasticAngleType(scatterAngleType type) {
 
 
 /**
+ * Set the absorption cross-section for this isotope
+ * @param absorb_xs a float array of microscopic absorb xs (barns)
+ * @param absorb_xs_energies a float array of energies (eV)
+ * @param num_absorb_xs the number of absorb xs values
+ */
+void Isotope::setAbsorptionXS(float* absorb_xs, float* absorb_xs_energies,
+													int num_absorb_xs) {
+    _absorb_xs = absorb_xs;
+    _absorb_xs_energies = absorb_xs_energies;
+    _num_absorb_xs = num_absorb_xs;
+}
+
+
+/**
  * Set the fission cross-section for this isotope
  * @param fission_xs a float array of microscopic fission xs (barns)
  * @param fission_xs_energies a float array of energies (eV)
@@ -511,12 +526,185 @@ void Isotope::setFissionXS(float* fission_xs, float* fission_xs_energies,
 }
 
 
+/**
+ * Generate the fission cross-section for this isotope from its absorption
+ * and fission cross-sections. Note: this method should function correctly
+ * even if the cross-sections have not yet been rescaled to a new uniform
+ * energy grid.
+ */
+void Isotope::generateCaptureXS() {
+
+	if (_num_absorb_xs == 0)
+		log_printf(ERROR, "Unable to generate capture xs for"
+					" isotope %s since the absorption xs has not "
+					"yet been set", _isotope_name);
+	if (_num_fission_xs == 0)
+		log_printf(ERROR, "Unable to generate capture xs for"
+					" isotope %s since the fission xs has not "
+					"yet been set", _isotope_name);
+
+	_num_capture_xs = _num_absorb_xs;
+	_capture_xs = (float*) malloc(sizeof(float) * _num_capture_xs);
+	_capture_xs_energies = (float*) malloc(sizeof(float) * _num_capture_xs);
+	float (Isotope::*func)(float)const;
+    func = &Isotope::getCaptureXS;
+    _xs_handles.insert(std::pair<collisionType, float(Isotope::*)(float)
+    											const>(CAPTURE, func));
+
+	/* Generate a capture xs for all energies at which an 
+	 * absorption xs has been defined */
+	for (int i=0; i < _num_capture_xs; i++) {		
+		_capture_xs_energies[i] = _absorb_xs_energies[i];
+		_capture_xs[i] = getAbsorptionXS(_capture_xs_energies[i]) + 
+						 getFissionXS(_absorb_xs_energies[i]);
+	}
+}
+
+/**
+ * Rescales all cross-sections to a new energy grid by interpolating to find the
+ * cross-section value at the old energy grid at the new points
+ * @param energies the new energy grid
+ * @param num_energies the number of points in the new energy grid
+ */
+void Isotope::rescaleXS(float* energies, int num_energies) {
+
+	/* Loops over all cross-section types to find the one for this energy */
+	std::map<collisionType, float(Isotope::*)(float)
+												const>::const_iterator iter;
+
+	for (iter = _xs_handles.begin(); iter != _xs_handles.end(); ++iter) {
+
+		float* new_xs = new float[num_energies];
+		float* new_energies = new float[num_energies];
+		memcpy(new_energies, energies, sizeof(float)*num_energies);
+
+		for (int i=0; i < num_energies; i++)
+			new_xs[i] = (this->*iter->second)(new_energies[i]);
+
+		if (iter->first == ELASTIC) {
+			_num_elastic_xs = num_energies;
+			delete [] _elastic_xs_energies;
+			delete _elastic_xs;
+			setElasticXS(new_xs, new_energies, num_energies, _elastic_angle);
+		}
+		else if (iter->first == ABSORPTION) {
+			_num_absorb_xs = num_energies;
+			delete [] _absorb_xs_energies;
+			delete _absorb_xs;
+			setAbsorptionXS(new_xs, new_energies, num_energies);
+		}
+		else if (iter->first == FISSION) {
+			_num_fission_xs = num_energies;
+			delete [] _fission_xs_energies;
+			delete _fission_xs;
+			setFissionXS(new_xs, new_energies, num_energies);
+		}
+	}
+
+	return;
+}
+
+
+/**
+ * This method clones a given Isotope class object by executing a deep
+ * copy of all of the Isotope's class attributes and giving them to a new
+ * Isotope class object
+ * @return a pointer to the new cloned Isotope class object
+ */
+Isotope* Isotope::clone() {
+
+	/* Allocate memory for the clone */
+	Isotope* new_clone = new Isotope();
+
+	/* Set the clones isotope name, atomic number, number density */
+	new_clone->setIsotopeType(_isotope_name);
+	new_clone->setA(_A);
+	new_clone->setN(_N);
+	new_clone->setTemperature(_T);
+	if (_fissionable)
+		new_clone->makeFissionable();
+
+	/* If the given isotope has an elastic scatter xs */
+	if (_num_elastic_xs > 0) {
+
+		/* Deep copy the xs values */
+		float* elastic_xs = new float[_num_elastic_xs];
+		memcpy(elastic_xs, _elastic_xs, sizeof(float)*_num_elastic_xs);
+
+		/* Deep copy the energies for each of the xs values */
+		float* elastic_xs_energies = new float[_num_elastic_xs];
+		memcpy(elastic_xs_energies, _elastic_xs_energies,
+								sizeof(float)*_num_elastic_xs);
+
+		/* Set the clone's xs */
+		new_clone->setElasticXS(elastic_xs, elastic_xs_energies,
+				_num_elastic_xs, _elastic_angle);
+	}
+
+	/* If the given isotope has an absorption xs */
+	if (_num_absorb_xs > 0) {
+
+		/* Deep copy the xs values */
+		float* absorb_xs = new float[_num_absorb_xs];
+		memcpy(absorb_xs, _absorb_xs, sizeof(float)*_num_absorb_xs);
+
+		/* Deep copy the energies for each of the xs values */
+		float* absorb_xs_energies = new float[_num_absorb_xs];
+		memcpy(absorb_xs_energies, _absorb_xs_energies,
+				sizeof(float)*_num_absorb_xs);
+
+		/* Set the clone's capture xs */
+		new_clone->setAbsorptionXS(absorb_xs, absorb_xs_energies, _num_absorb_xs);
+	}
+
+	/* If the capture xs has been generated for the given isotope */
+	if (_num_capture_xs > 0) {
+
+		/* Deep copy the xs values */
+		float* capture_xs = new float[_num_capture_xs];
+		memcpy(capture_xs, _capture_xs, sizeof(float)*_num_capture_xs);
+
+		/* Deep copy the energies for each of the xs values */
+		float* capture_xs_energies = new float[_num_capture_xs];
+		memcpy(capture_xs_energies, _capture_xs_energies,
+				sizeof(float)*_num_capture_xs);
+	}
+
+	/* If the given isotope has a fission xs */
+	if (_num_fission_xs > 0) {
+
+		/* Deep copy the xs values */
+		float* fission_xs = new float[_num_fission_xs];
+		memcpy(fission_xs, _fission_xs, sizeof(float)*_num_fission_xs);
+
+		/* Deep copy the energies for each of the xs values */
+		float* fission_xs_energies = new float[_num_fission_xs];
+		memcpy(fission_xs_energies, _fission_xs_energies,
+				sizeof(float)*_num_fission_xs);
+
+		/* Set the clone's fission xs */
+		new_clone->setFissionXS(fission_xs, fission_xs_energies,
+													_num_fission_xs);
+	}
+
+
+	/* Initialize the isotope's thermal scattering CDFs if they have been
+	 * created for this isotope */
+	if (_num_thermal_cdfs > 0)
+		new_clone->initializeThermalScattering(_E_to_kT[0]*_kB*_T,
+			_E_to_kT[_num_thermal_cdfs-1]*_kB*_T, _num_thermal_cdf_bins,
+													_num_thermal_cdfs);
+
+	/* Return a pointer to the cloned Isotope class */
+	return new_clone;
+}
+
 
 /**
  * For a given energy, this method determines a random collision type
  * based on the values of each of its cross-section types at that energy
  * @param energy the incoming neutron energy (eV)
- * @return the collision type (CAPTURE, ELASTIC, TOTAL)
+ * @return the collision type (ELASTIC, CAPTURE, FISSION)
  */
 collisionType Isotope::getCollisionType(float energy) {
 
@@ -611,88 +799,6 @@ float Isotope::getThermalScatteringEnergy(float energy) {
 
 	return Eprime;
 }
-
-
-/**
- * This method clones a given Isotope class object by executing a deep
- * copy of all of the Isotope's class attributes and giving them to a new
- * Isotope class object
- * @return a pointer to the new cloned Isotope class object
- */
-Isotope* Isotope::clone() {
-
-	/* Allocate memory for the clone */
-	Isotope* new_clone = new Isotope();
-
-	/* Set the clones isotope name, atomic number, number density */
-	new_clone->setIsotopeType(_isotope_name);
-	new_clone->setA(_A);
-	new_clone->setN(_N);
-	new_clone->setTemperature(_T);
-
-	/* If the given isotope has an capture xs */
-	if (_num_capture_xs > 0) {
-
-		/* Deep copy the xs values */
-		float* capture_xs = new float[_num_capture_xs];
-		memcpy(capture_xs, _capture_xs, sizeof(float)*_num_capture_xs);
-
-		/* Deep copy the energies for each of the xs values */
-		float* capture_xs_energies = new float[_num_capture_xs];
-		memcpy(capture_xs_energies, _capture_xs_energies,
-				sizeof(float)*_num_capture_xs);
-
-		/* Set the clone's capture xs */
-		new_clone->setCaptureXS(capture_xs, capture_xs_energies, _num_capture_xs);
-	}
-
-
-	/* If the given isotope has an elastic scatter xs */
-	if (_num_elastic_xs > 0) {
-
-		/* Deep copy the xs values */
-		float* elastic_xs = new float[_num_elastic_xs];
-		memcpy(elastic_xs, _elastic_xs, sizeof(float)*_num_elastic_xs);
-
-		/* Deep copy the energies for each of the xs values */
-		float* elastic_xs_energies = new float[_num_elastic_xs];
-		memcpy(elastic_xs_energies, _elastic_xs_energies,
-								sizeof(float)*_num_elastic_xs);
-
-		/* Set the clone's xs */
-		new_clone->setElasticXS(elastic_xs, elastic_xs_energies,
-				_num_elastic_xs, _elastic_angle);
-	}
-
-	/* If the given isotope has a fission xs */
-	if (_num_fission_xs > 0) {
-
-		/* Deep copy the xs values */
-		float* fission_xs = new float[_num_fission_xs];
-		memcpy(fission_xs, _fission_xs, sizeof(float)*_num_fission_xs);
-
-		/* Deep copy the energies for each of the xs values */
-		float* fission_xs_energies = new float[_num_fission_xs];
-		memcpy(fission_xs_energies, _fission_xs_energies,
-				sizeof(float)*_num_fission_xs);
-
-		/* Set the clone's fission xs */
-		new_clone->setFissionXS(fission_xs, fission_xs_energies,
-													_num_fission_xs);
-	}
-
-
-	/* Initialize the isotope's thermal scattering CDFs if they have been
-	 * created for this isotope */
-	if (_num_thermal_cdfs > 0)
-		new_clone->initializeThermalScattering(_E_to_kT[0]*_kB*_T,
-			_E_to_kT[_num_thermal_cdfs-1]*_kB*_T, _num_thermal_cdf_bins,
-													_num_thermal_cdfs);
-
-	/* Return a pointer to the cloned Isotope class */
-	return new_clone;
-}
-
 
 
 /* This method initializes the probability distributions for thermal
@@ -822,44 +928,4 @@ float Isotope::thermalScatteringProb(float E_prime_to_E, int dist_index) {
 	prob *= (1.0 - double(_alpha));
 
 	return float(prob);
-}
-
-
-
-void Isotope::rescaleXS(float* energies, int num_energies) {
-
-	/* Loops over all cross-section types to find the one for this energy */
-	std::map<collisionType, float(Isotope::*)(float)
-												const>::const_iterator iter;
-
-	for (iter = _xs_handles.begin(); iter != _xs_handles.end(); ++iter) {
-
-		float* new_xs = new float[num_energies];
-		float* new_energies = new float[num_energies];
-		memcpy(new_energies, energies, sizeof(float)*num_energies);
-
-		for (int i=0; i < num_energies; i++)
-			new_xs[i] = (this->*iter->second)(new_energies[i]);
-
-		if (iter->first == CAPTURE) {
-			_num_capture_xs = num_energies;
-			delete [] _capture_xs_energies;
-			delete _capture_xs;
-			setCaptureXS(new_xs, new_energies, num_energies);
-		}
-		else if (iter->first == ELASTIC) {
-			_num_elastic_xs = num_energies;
-			delete [] _elastic_xs_energies;
-			delete _elastic_xs;
-			setElasticXS(new_xs, new_energies, num_energies, _elastic_angle);
-		}
-		else if (iter->first == FISSION) {
-			_num_fission_xs = num_energies;
-			delete [] _fission_xs_energies;
-			delete _fission_xs;
-			setFissionXS(new_xs, new_energies, num_energies);
-		}
-	}
-
-	return;
 }
