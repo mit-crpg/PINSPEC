@@ -93,6 +93,7 @@ double integrate(T* x, T* y, int length, integrationScheme scheme) {
 template <typename T, typename U>
 void cumulativeIntegral(T* x, T* y, U* cdf, int length,
 													integrationScheme scheme) {
+
 	/* Calculate cumulative integral */
 	for (int i=1; i < length+1; i++)
 		cdf[i-1] = (U)integrate(x, y, i, scheme);
