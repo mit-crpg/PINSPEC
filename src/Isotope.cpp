@@ -538,7 +538,7 @@ void Isotope::generateCaptureXS() {
 		log_printf(ERROR, "Unable to generate capture xs for"
 					" isotope %s since the absorption xs has not "
 					"yet been set", _isotope_name);
-	if (_num_fission_xs == 0)
+	if (_num_fission_xs == 0 && _fissionable)
 		log_printf(ERROR, "Unable to generate capture xs for"
 					" isotope %s since the fission xs has not "
 					"yet been set", _isotope_name);

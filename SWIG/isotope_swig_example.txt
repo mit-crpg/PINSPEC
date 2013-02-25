@@ -45,7 +45,6 @@ False
 >>> h1.getCollisionType(1E3)
 1
 >>> h1.getCollisionType(1E3)
-3
+3	
 >>> h1.getCollisionType(1E3)
-
 

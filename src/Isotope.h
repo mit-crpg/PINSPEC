@@ -40,8 +40,7 @@ typedef enum scatterAngleTypes {
  * The isotope class represents an isotope and all of its properties
  * which are relevant to neutronics
  */
-class Isotope
-{
+class Isotope {
 
 private:
 	char* _isotope_name;
@@ -96,7 +95,6 @@ public:
 
     float getElasticXS(float energy) const;
     float getElasticXS(int energy_index) const;
-	float* getElasticXS() const;
     scatterAngleType getElasticAngleType() const;
     float getAbsorptionXS(float energy) const;
     float getAbsorptionXS(int energy_index) const;

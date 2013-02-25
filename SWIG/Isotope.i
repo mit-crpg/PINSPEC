@@ -3,7 +3,7 @@
 #include "../src/Isotope.h"
 %}
 
-// Very simple C++ example with Neutron to create Neutron struct for SWIG
+// Very simple C++ example with Neutron to create isotopes using SWIG
 
 %include ../src/Isotope.h
 

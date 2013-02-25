@@ -121,6 +121,46 @@ class Isotope(_object):
 Isotope_swigregister = _isotope.Isotope_swigregister
 Isotope_swigregister(Isotope)
 
+EQUAL = _isotope.EQUAL
+LOGARITHMIC = _isotope.LOGARITHMIC
+OTHER = _isotope.OTHER
+class Material(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Material, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Material, name)
+    __repr__ = _swig_repr
+    def __init__(self): 
+        this = _isotope.new_Material()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _isotope.delete_Material
+    __del__ = lambda self : None;
+    def getMaterialName(self): return _isotope.Material_getMaterialName(self)
+    def getTotalNumberDensity(self): return _isotope.Material_getTotalNumberDensity(self)
+    def getIsotope(self, *args): return _isotope.Material_getIsotope(self, *args)
+    def getIsotopeNumDensity(self, *args): return _isotope.Material_getIsotopeNumDensity(self, *args)
+    def getTotalMacroXS(self, *args): return _isotope.Material_getTotalMacroXS(self, *args)
+    def getTotalMicroXS(self, *args): return _isotope.Material_getTotalMicroXS(self, *args)
+    def getElasticMacroXS(self, *args): return _isotope.Material_getElasticMacroXS(self, *args)
+    def getElasticMicroXS(self, *args): return _isotope.Material_getElasticMicroXS(self, *args)
+    def getAbsorptionMacroXS(self, *args): return _isotope.Material_getAbsorptionMacroXS(self, *args)
+    def getAbsorptionMicroXS(self, *args): return _isotope.Material_getAbsorptionMicroXS(self, *args)
+    def getCaptureMacroXS(self, *args): return _isotope.Material_getCaptureMacroXS(self, *args)
+    def getCaptureMicroXS(self, *args): return _isotope.Material_getCaptureMicroXS(self, *args)
+    def getFissionMacroXS(self, *args): return _isotope.Material_getFissionMacroXS(self, *args)
+    def getFissionMicroXS(self, *args): return _isotope.Material_getFissionMicroXS(self, *args)
+    def getTransportMicroXS(self, *args): return _isotope.Material_getTransportMicroXS(self, *args)
+    def getTransportMacroXS(self, *args): return _isotope.Material_getTransportMacroXS(self, *args)
+    def isRescaled(self): return _isotope.Material_isRescaled(self)
+    def getEnergyGridIndex(self, *args): return _isotope.Material_getEnergyGridIndex(self, *args)
+    def setMaterialName(self, *args): return _isotope.Material_setMaterialName(self, *args)
+    def addIsotope(self, *args): return _isotope.Material_addIsotope(self, *args)
+    def rescaleCrossSections(self, *args): return _isotope.Material_rescaleCrossSections(self, *args)
+    def sampleIsotope(self, *args): return _isotope.Material_sampleIsotope(self, *args)
+Material_swigregister = _isotope.Material_swigregister
+Material_swigregister(Material)
+
 # This file is compatible with both classic and new-style classes.
 
 
