@@ -59,13 +59,19 @@ private:
 	int _num_bins;
 	float* _edges;
 	double* _centers;
-	double* _tallies;
-	int* _num_tallies;
+	double** _tallies;
+	int** _num_tallies;
 	float _bin_delta;
 	binSpacingType _bin_spacing;
 	tallyDomainType _tally_domain;
 	tallyType _tally_type;
-	char* _isotopes;
+
+	int _num_batches;
+	double* _batch_mu;
+	double* _batch_variance;
+	double* _batch_std_dev;
+	double* _batch_rel_err;
+	bool _computed_statistics;
 
 public:
 	Tally();
@@ -79,30 +85,40 @@ public:
 	binSpacingType getBinSpacingType();
 	tallyDomainType getTallyDomainType();
 	tallyType getTallyType();
-	double* getTallies();
-	double getTally(int bin_index);
-	int* getNumTallies();
-	int getNumTallies(int bin_index);
+	double** getTallies();
+	double getTally(int bin_index, int batch_num);
+	int** getNumTallies();
+	int getNumTallies(int batch_num, int bin_index);
 	double getMaxTally();
 	double getMinTally();
 	int getBinIndex(float sample);
-	char* getIsotopes();
+
+	int getNumBatches();
+	double* getBatchMu();
+	double* getBatchVariance();
+	double* getBatchStdDev();
+	double* getBatchRelativeError();
 
 	void setTallyName(char* name);
 	void setTallyDomainType(tallyDomainType type);
 	void setTallyType(tallyType type);
 	void setBinEdges(float* edges, int num_edges);
-	void setIsotopes(char* isotopes);
 
 	void generateBinEdges(float start, float end, int num_bins, 
 											binSpacingType type);
+	void setNumBatches(int num_batches);
+
 	void generateBinCenters();
-	void tally(float* samples, int num_samples);
-	void tally(float sample);
-	void weightedTally(float* samples, float* sample_weights, int num_samples);
-	void weightedTally(float sample, float weight);
+	void tally(float* samples, int num_samples, int batch_num);
+	void tally(float sample, int batch_num);
+	void weightedTally(float* samples, float* sample_weights, 
+								int num_samples, int batch_num);
+	void weightedTally(float sample, float weight, int batch_num);
 	void normalizeTallies();
 	void normalizeTallies(float scale_factor);
+	void computeBatchStatistics();
+	void computeScaledBatchStatistics(float scale_factor);
+	void outputBatchStatistics(const char* filename);
 };
 
 #endif /* BINNER_H_ */

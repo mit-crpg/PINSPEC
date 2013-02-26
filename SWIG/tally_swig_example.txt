@@ -7,6 +7,7 @@ Python 2.7.3 (default, Aug  1 2012, 05:14:39)
 Type "help", "copyright", "credits" or "license" for more information.
 >>> from tally import *
 >>> fiss_rate = Tally()
+>>> fiss_rate.setNumBatches(10)
 >>> fiss_rate.setTallyName('Fission Rate in Fuel')
 >>> fiss_rate.setTallyDomainType(MATERIAL)
 >>> fiss_rate.setTallyType(FISSION)
@@ -43,5 +44,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 2.4000000059604645
 >>> fiss_rate.getTally(0)
 2.4000000059604645
+>>> fiss_rate.computeBatchStatistics()
+>>> fiss_rate.outputBatchStatistics('batch_stat_test.txt')
 >>> del fiss_rate
 >>> quit()
