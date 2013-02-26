@@ -1,0 +1,47 @@
+wboyd > swig -python -c++ Tally.i
+wboyd > g++ -c -fPIC ../src/Tally.cpp Tally_wrap.cxx -I/usr/include/python2.7
+wboyd > g++ -shared Tally.o log.o Tally_wrap.o -o _tally.so
+wboyd > python 
+Python 2.7.3 (default, Aug  1 2012, 05:14:39) 
+[GCC 4.6.3] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from tally import *
+>>> fiss_rate = Tally()
+>>> fiss_rate.setTallyName('Fission Rate in Fuel')
+>>> fiss_rate.setTallyDomainType(MATERIAL)
+>>> fiss_rate.setTallyType(FISSION)
+>>> fiss_rate.generateBinEdges(1E-7, 1E7, 1000, EQUAL)
+>>> fiss_rate.getMaxTally()
+0.0
+>>> fiss_rate.getMinTally()
+0.0
+>>> fiss_rate.generateBinCenters()
+>>> fiss_rate.getBinDelta()
+10000.0
+>>> fiss_rate.getNumBins()
+1000
+>>> fiss_rate.getBinIndex(10001)
+1
+>>> fiss_rate.getBinIndex(100)
+0
+>>> fiss_rate.tally(10)
+>>> fiss_rate.tally(1)
+>>> fiss_rate.getNumTallies(0)
+2
+>>> fiss_rate.getNumTallies(2)
+0
+>>> fiss_rate.getBinIndex(10)
+0
+>>> fiss_rate.getMaxTally()
+2.0
+>>> fiss_rate.getNumBins()
+1000
+>>> fiss_rate.getBinDelta()
+10000.0
+>>> fiss_rate.weightedTally(10, 0.4)
+>>> fiss_rate.getMaxTally()
+2.4000000059604645
+>>> fiss_rate.getTally(0)
+2.4000000059604645
+>>> del fiss_rate
+>>> quit()
