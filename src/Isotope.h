@@ -22,8 +22,9 @@
 
 /* Types of collisions */
 typedef enum collisionTypes{
-	CAPTURE,
 	ELASTIC,
+	ABSORPTION,
+	CAPTURE,
 	FISSION,
 	TOTAL
 } collisionType;
@@ -39,8 +40,8 @@ typedef enum scatterAngleTypes {
  * The isotope class represents an isotope and all of its properties
  * which are relevant to neutronics
  */
-class Isotope
-{
+class Isotope {
+
 private:
 	char* _isotope_name;
 	int _A;
@@ -50,23 +51,24 @@ private:
 	float _N;
 	float _T;
 	float _mu_avg;
-	float* _capture_xs;
-	float* _capture_xs_energies;
-	int _num_capture_xs;
-	float* _scatter_xs;
-	float* _scatter_xs_energies;
-	int _num_scatter_xs;
-	scatterAngleType _scatter_angle;
+	bool _fissionable;
+
+	int _num_elastic_xs;
 	float* _elastic_xs;
 	float* _elastic_xs_energies;
-	int _num_elastic_xs;
 	scatterAngleType _elastic_angle;
+	int _num_absorb_xs;
+	float* _absorb_xs;
+	float* _absorb_xs_energies;
+	int _num_capture_xs;
+	float* _capture_xs;
+	float* _capture_xs_energies;
+	int _num_fission_xs;
 	float* _fission_xs;
 	float* _fission_xs_energies;
-	int _num_fission_xs;
+	int _num_total_xs;
 	float* _total_xs;
 	float* _total_xs_energies;
-	int _num_total_xs;
 
 	/* Map of keys (xs types) with values (getXS functions for xs types) */
 	std::map<collisionType, float(Isotope::*)(float) const> _xs_handles;
@@ -78,6 +80,7 @@ private:
 	float* _E_to_kT;
 	float* _Eprime_to_E;
 	float _kB;
+
 public:
 	Isotope();
     virtual ~Isotope();
@@ -88,15 +91,17 @@ public:
     float getN() const;
     float getTemperature() const;
     float getMuAverage() const;
-    float getCaptureXS(float energy) const;
-    float getCaptureXS(int energy_index) const;
+	bool isFissionable() const;
+
     float getElasticXS(float energy) const;
     float getElasticXS(int energy_index) const;
     scatterAngleType getElasticAngleType() const;
+    float getAbsorptionXS(float energy) const;
+    float getAbsorptionXS(int energy_index) const;
+    float getCaptureXS(float energy) const;
+    float getCaptureXS(int energy_index) const;
     float getFissionXS(float energy) const;
     float getFissionXS(int energy_index) const;
-    float getAbsorbXS(float energy) const;
-    float getAbsorbXS(int energy_index) const;
     float getTotalXS(float energy) const;
     float getTotalXS(int energy_index) const;
     float getTransportXS(int energy_index) const;
@@ -107,22 +112,25 @@ public:
     void setA(int A);
     void setN(float N);
     void setTemperature(float T);
+	void makeFissionable();
+
     void loadXS(char* filename, collisionType type, char* delimiter);
-    void setCaptureXS(float* capture_xs, float* capture_xs_energies,
-    											int num_capture_xs);
     void setElasticXS(float* elastic_xs, float* elastic_xs_energies,
 							int num_elastic_xs, scatterAngleType type);
     void setElasticAngleType(scatterAngleType type);
+    void setAbsorptionXS(float* absorb_xs, float* absorb_xs_energies,
+    											int num_absorb_xs);
     void setFissionXS(float* fission_xs, float* fission_xs_energies,
 												int num_fission_xs);
+	void generateCaptureXS();
+    void rescaleXS(float* new_energies, int num_energies);
+    Isotope* clone();
 
     collisionType getCollisionType(float energy);
     float getThermalScatteringEnergy(float energy);
-    Isotope* clone();
     void initializeThermalScattering(float start_energy, float end_energy,
     								int num_bins, int num_distributions);
     float thermalScatteringProb(float E_prime_to_E, int dist_index);
-    void rescaleXS(float* new_energies, int num_energies);
 };
 
 #endif /* ISOTOPE_H_ */

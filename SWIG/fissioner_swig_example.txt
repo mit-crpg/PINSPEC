@@ -1,0 +1,31 @@
+wboyd > swig -python -c++ Fissioner.i wboyd > g++ -c -fPIC ../src/Fissioner.cpp Fissioner_wrap.cxx -I/usr/include/python2.7
+wboyd > g++ -c -fPIC ../src/integrate.h
+wboyd > g++ -shared Fissioner.o log.o Fissioner_wrap.o -o _fissioner.so
+wboyd > python
+Python 2.7.3 (default, Aug  1 2012, 05:14:39) 
+[GCC 4.6.3] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from fissioner import *
+>>> fiss = Fissioner()
+>>> fiss.setNumBins(10000)
+>>> fiss.setEMax(20)
+>>> fiss.buildCDF()
+>>> fiss.emitNeutronMeV()
+3.3944199085235596
+>>> fiss.emitNeutronMeV()
+1.2513443231582642
+>>> fiss.emitNeutronMeV()
+2.9392406940460205
+>>> fiss.emitNeutronMeV()
+3.0497982501983643
+>>> fiss.emitNeutroneV()
+4245916.5
+>>> fiss.emitNeutroneV()
+683342.8125
+>>> fiss.emitNeutroneV()
+1073898.5
+>>> fiss.emitNeutroneV()
+2838548.5
+>>> del fiss
+>>> quit()
+

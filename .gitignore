@@ -1,0 +1,24 @@
+# Put any files you don't want to check in here.
+# Common among everyone 
+*.o 
+*.pyc
+*.h.gch
+*.so
+Makefile
+*/*.o
+*/*.pyc
+*/*.cxx
+*/*.h.gch
+*/*.so
+*/Makefile
+*~
+*/*~
+
+# Jessica specific:
+
+# Sam specific:
+
+# Lulu specific:
+bin/
+
+# Will specific:
