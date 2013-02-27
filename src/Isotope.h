@@ -71,7 +71,7 @@ private:
 	float* _total_xs_energies;
 
 	/* Map of keys (xs types) with values (getXS functions for xs types) */
-	std::map<collisionType, float(Isotope::*)(float) const> _xs_handles;
+//	std::map<collisionType, float(Isotope::*)(float) const> _xs_handles;
 
 	int _num_thermal_cdfs;
 	int _num_thermal_cdf_bins;

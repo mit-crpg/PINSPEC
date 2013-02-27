@@ -13,12 +13,7 @@
 #include "log.h"
 #include "arraycreator.h"
 #include "Isotope.h"
-
-typedef enum energyGridType {
-	EQUAL,
-	LOGARITHMIC,
-	OTHER
-} energyGridType;
+#include "Tally.h"
 
 
 class Material {
@@ -32,7 +27,7 @@ private:
 
 	/* Values related to rescaled cross-sections on a uniform energy grid */
 	bool _rescaled;
-	energyGridType _scale_type;
+	binSpacingTypes _scale_type;
 	int _num_energies;
 	float _start_energy;
 	float _end_energy;
@@ -83,7 +78,7 @@ public:
     void addIsotope(Isotope *material, float num_density);
 
     void rescaleCrossSections(float start_energy, float end_energy,
-    						int num_energies, energyGridType scale_type);
+    						int num_energies, binSpacingTypes scale_type);
     Isotope* sampleIsotope(float energy);
 };
 
