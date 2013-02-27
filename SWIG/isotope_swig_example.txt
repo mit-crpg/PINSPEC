@@ -7,6 +7,8 @@ wboyd > g++ -c -fPIC ../src/log.h ../src/log.cpp
 wboyd > g++ -c -fPIC ../src/xsreader.h ../src/xsreader.cpp
 wboyd > swig -python -c++ Isotope.i
 wboyd > g++ -c -fPIC ../src/Isotope.cpp Isotope_wrap.cxx -I/usr/include/python2.7
+wboyd > g++ -c -fPIC ../src/Isotope.cpp Isotope_wrap.cxx -I/usr/include/python2.7
+wboyd > g++ -shared Isotope.o ../src/xsreader.o ../src/log.o  Isotope_wrap.o -o _isotope.so
 wboyd > g++ -shared Isotope.o xsreader.o log.o  Isotope_wrap.o -o _isotope.so
 wboyd > python
 Python 2.7.3 (default, Aug  1 2012, 05:14:39) 
