@@ -15,6 +15,7 @@
  */
 Material::Material() {
 	_material_name = (char*)"";
+	_material_density = 0.0;
 	_rescaled = false;
 }
 
@@ -48,8 +49,8 @@ char* Material::getMaterialName() {
  * this material
  * @return the total number density (at/cm^3)
  */
-float Material::getTotalNumberDensity() {
-	return _tot_num_density;
+float Material::getMaterialNumberDensity() {
+	return _material_number_density;
 }
 
 
@@ -589,33 +590,48 @@ int Material::getEnergyGridIndex(float energy) {
 
 /**
  * Sets this Material's name as defined by the user
- * @param name the name of this Material
+ * @param set the name of this Material
  */
 void Material::setMaterialName(char* name) {
 	_material_name = name;
 }
 
+/**
+ * Sets this Material's density as defined by the user
+ * @param set the density of this Material
+ */
+void Material::setDensity(float density, char* unit) {
+	_material_density = density;
+	if (strcmp(unit, "g/cc") != 0)
+	    log_printf(ERROR, "only support unit of g/cc");
+}
 
 /**
  * Adds a new isotope to this Material
  * @param isotope a pointer to a isotope class object
- * @param num_density the number density (at/cm^3) for this isotope
+ * @param atomic_ratio the atomic ratio of the isotope
  */
-void Material::addIsotope(Isotope* isotope, float num_density) {
+void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
+    float num_density;
 
-	/* Creates a pair between the number density and isotope pointer */
-	std::pair<float, Isotope*> new_pair = std::pair<float, Isotope*>
-													(num_density, isotope);
+    /* Computes number density for isotopes */
+    if (_material_density > 0)
+	num_density = atomic_ratio * _material_density;
+    else
+	log_printf(ERROR, "material number density is not set yet!");
 
-	std::pair<char*, std::pair<float, Isotope*> > new_isotope =
-							std::pair<char*, std::pair<float, Isotope*> >
-									(isotope->getIsotopeType(), new_pair);
+    /* Creates a pair between the number density and isotope pointer */
+    std::pair<float, Isotope*> new_pair = std::pair<float, Isotope*>
+	(num_density, isotope);
+    
+    std::pair<char*, std::pair<float, Isotope*> > new_isotope =
+	std::pair<char*, std::pair<float, Isotope*> >
+	(isotope->getIsotopeType(), new_pair);
+    
+    /* Inserts the isotope and increments the total number density */
+    _isotopes.insert(new_isotope);
 
-	/* Inserts the isotope and increments the total number density */
-	_isotopes.insert(new_isotope);
-	_tot_num_density += num_density;
-
-	return;
+    return;
 }
 
 
@@ -688,8 +704,8 @@ Isotope* Material::sampleIsotope(float energy) {
 
 	if (isotope == NULL)
 		log_printf(ERROR, "Unable to find isotope type in material %s"
-				" moveNeutron method, test = %1.20f, new_num_density_ratio "
-				"= %1.20f", _material_name, test, new_sigma_t_ratio);
-
+			   " moveNeutron method, test = %1.20f, new_num_density_ratio "
+			   "= %1.20f", _material_name, test, new_sigma_t_ratio);
+	
 	return isotope;
 }

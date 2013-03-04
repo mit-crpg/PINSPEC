@@ -21,6 +21,7 @@ def main():
     U238.setAO(97.0)
     
     # Define materials
+    # FIXME: when addIsotope, need a second argument of atomic mass ratio.
     moderator = Material()
     moderator.setDensity(1.0, 'g/cc')
     moderator.addIsotope(h1)
@@ -31,6 +32,7 @@ def main():
     fuel.addIsotope(u235)
     fuel.addIsotope(u238)
     
+    # FIXME: loadXS() needs argument. 
     moderator.loadXS()
     fuel.loadXS()
     

@@ -181,7 +181,7 @@ class Material(_object):
     __swig_destroy__ = _region.delete_Material
     __del__ = lambda self : None;
     def getMaterialName(self): return _region.Material_getMaterialName(self)
-    def getTotalNumberDensity(self): return _region.Material_getTotalNumberDensity(self)
+    def getMaterialNumberDensity(self): return _region.Material_getMaterialNumberDensity(self)
     def getIsotope(self, *args): return _region.Material_getIsotope(self, *args)
     def getIsotopeNumDensity(self, *args): return _region.Material_getIsotopeNumDensity(self, *args)
     def getTotalMacroXS(self, *args): return _region.Material_getTotalMacroXS(self, *args)
@@ -199,6 +199,7 @@ class Material(_object):
     def isRescaled(self): return _region.Material_isRescaled(self)
     def getEnergyGridIndex(self, *args): return _region.Material_getEnergyGridIndex(self, *args)
     def setMaterialName(self, *args): return _region.Material_setMaterialName(self, *args)
+    def setDensity(self, *args): return _region.Material_setDensity(self, *args)
     def addIsotope(self, *args): return _region.Material_addIsotope(self, *args)
     def rescaleCrossSections(self, *args): return _region.Material_rescaleCrossSections(self, *args)
     def sampleIsotope(self, *args): return _region.Material_sampleIsotope(self, *args)
