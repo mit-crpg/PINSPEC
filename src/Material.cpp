@@ -621,7 +621,7 @@ void Material::addIsotope(Isotope* isotope, float num_density) {
 
 
 void Material::rescaleCrossSections(float start_energy, float end_energy,
-								int num_energies, energyGridType scale_type) {
+								int num_energies, binSpacingTypes scale_type) {
 
 	float* grid;
 

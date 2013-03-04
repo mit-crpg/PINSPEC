@@ -34,15 +34,15 @@ typedef enum tallyDomainTypes {
 
 /* Type of tallies */
 typedef enum tallyTypes {
-	COLLISION,
 	FLUX,
-	ELASTIC,
-	ABSORPTION,
-	CAPTURE,
-	FISSION,
-	TRANSPORT,
-	DIFFUSION,
-	LEAKAGE
+	COLLISION_RATE,
+	ELASTIC_RATE,
+	ABSORPTION_RATE,
+	CAPTURE_RATE,
+	FISSION_RATE,
+	TRANSPORT_RATE,
+	DIFFUSION_RATE,
+	LEAKAGE_RATE
 } tallyType;
 
 

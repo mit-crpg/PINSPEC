@@ -1,0 +1,45 @@
+wboyd > swig -python -c++ Region.i
+wboyd > g++ -c -fPIC ../src/Material.cpp
+wboyd > g++ -c -fPIC ../src/Isotope.cpp
+wboyd > g++ -c -fPIC ../src/Tally.cpp
+wboyd > g++ -c -fPIC ../src/Neutron.cpp
+wboyd > g++ -c -fPIC ../src/log.cpp
+wboyd > g++ -c -fPIC ../src/xsreader.cpp
+wboyd > g++ -c -fPIC ../src/arraycreator.h
+wboyd > g++ -c -fPIC ../src/interpolate.h
+wboyd > g++ -c -fPIC ../src/integrate.h
+wboyd > g++ -c -fPIC ../src/integrate.h
+wboyd > g++ -c -fPIC ../src/Region.cpp Region_wrap.cxx -I/usr/include/python2.7
+wboyd > g++ -shared Isotope.o xsreader.o log.o Material.o Tally.o Neutron.o Region.o Region_wrap.o -o _region.so
+wboyd > python
+Python 2.7.3 (default, Aug  1 2012, 05:14:39) 
+[GCC 4.6.3] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from region import *
+>>> fuel = Region()
+>>> fuel.setRegionName('U235 Fuel')
+>>> fuel.setRegionType(FUEL)
+>>> fuel.setFuelRadius(1.26)
+>>> fuel.setFuelRadius(0.5)
+>>> fuel.setPitch(1.26)
+>>> fuel.setSpatialType(HOMOGENEOUS)
+>>> fuel.setVolume(2.5)
+>>> fuel.getVolume()
+2.5
+>>> fuel.isModerator()
+False
+>>> fuel.isFuel()
+True
+>>> h2o = Material()
+>>> h1 = Isotope()
+>>> o16 = Isotope()
+>>> h2o.addIsotope(h1, 1E23)
+>>> h2o.addIsotope(o16, 5E22)
+>>> fuel.setMaterial(h2o)
+>>> fission_rate = Tally()
+>>> fuel.addTally(fission_rate)
+>>> del fuel
+>>> del fission_rate
+>>> del h1
+>>> del o16
+>>> quit()
