@@ -30,6 +30,9 @@ int parseCrossSections(const char* file, float* energies, float* xs_values,
 	std::string buff;
 	int count = 0;
 
+	/* Do nothing to the first line, as it contains header info */
+	getline(input_file, buff);
+
 	/* Parse over each line in the file */
 	while(getline(input_file, buff)) {
 		/* Load data into the arrays for this line */
