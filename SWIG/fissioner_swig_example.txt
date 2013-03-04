@@ -1,4 +1,5 @@
-wboyd > swig -python -c++ Fissioner.i wboyd > g++ -c -fPIC ../src/Fissioner.cpp Fissioner_wrap.cxx -I/usr/include/python2.7
+wboyd > swig -python -c++ Fissioner.i 
+wboyd > g++ -c -fPIC ../src/Fissioner.cpp Fissioner_wrap.cxx -I/usr/include/python2.7
 wboyd > g++ -c -fPIC ../src/integrate.h
 wboyd > g++ -shared Fissioner.o log.o Fissioner_wrap.o -o _fissioner.so
 wboyd > python
