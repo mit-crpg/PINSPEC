@@ -22,6 +22,7 @@ private:
 	char* _material_name;
 	float _material_density;
 	float _material_number_density;
+	float _material_atomic_mass;
 
 	/* Map of number density and isotope pointers */
 	std::map<char*, std::pair<float, Isotope*> > _isotopes;
@@ -81,7 +82,9 @@ public:
 	void setMaterialName(char* name);
 	void setDensity(float density, char* unit);
 
+
 	void addIsotope(Isotope *isotope, float atomic_ratio);
+	void complete();
 	
 	void rescaleCrossSections(float start_energy, float end_energy,
 				  int num_energies, binSpacingTypes scale_type);

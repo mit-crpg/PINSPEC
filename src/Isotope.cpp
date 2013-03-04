@@ -588,7 +588,8 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 			_num_elastic_xs = num_energies;
 			delete [] _elastic_xs_energies;
 			delete _elastic_xs;
-			setElasticXS(new_xs, new_energies, num_energies, _elastic_angle);
+			setElasticXS(new_xs, new_energies, num_energies, 
+				     _elastic_angle);
 		}
 		else if (iter->first == ABSORPTION) {
 			_num_absorb_xs = num_energies;

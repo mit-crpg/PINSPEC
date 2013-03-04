@@ -16,6 +16,8 @@
 Material::Material() {
 	_material_name = (char*)"";
 	_material_density = 0.0;
+	_material_number_density = 0.0;
+	_material_atomic_mass = 0.0;
 	_rescaled = false;
 }
 
@@ -614,15 +616,16 @@ void Material::setDensity(float density, char* unit) {
 void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     float num_density;
 
-    /* Computes number density for isotopes */
-    if (_material_density > 0)
-	num_density = atomic_ratio * _material_density;
-    else
+    /* Checks to make sure material density is set already */
+    if (_material_density <= 0)
 	log_printf(ERROR, "material number density is not set yet!");
+
+    /* Increments the material's atomic mass */
+    _material_atomic_mass += atomic_ratio * isotope->getA();
 
     /* Creates a pair between the number density and isotope pointer */
     std::pair<float, Isotope*> new_pair = std::pair<float, Isotope*>
-	(num_density, isotope);
+	(atomic_ratio, isotope);
     
     std::pair<char*, std::pair<float, Isotope*> > new_isotope =
 	std::pair<char*, std::pair<float, Isotope*> >
@@ -635,9 +638,26 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 }
 
 
+/* Update all isotopes' number densities after a material is complete */
+void Material::complete() {
+    std::map<char*, std::pair<float, Isotope*> >::iterator iter;
+    float N_av = 6.023E-1;
+    float base = _material_density * N_av / _material_number_density;
+    
+    /* Loop over all isotopes */
+	for (iter =_isotopes.begin(); iter !=_isotopes.end(); ++iter){
+	    float atomic_ratio = iter->second.first;
+	    /* Computes isotope's number density */
+	    float num_density = atomic_ratio * base;
+	    iter->second.first = num_density;
+	}
+
+	return;
+}
 
 void Material::rescaleCrossSections(float start_energy, float end_energy,
-								int num_energies, binSpacingTypes scale_type) {
+				    int num_energies, 
+				    binSpacingTypes scale_type) {
 
 	float* grid;
 
