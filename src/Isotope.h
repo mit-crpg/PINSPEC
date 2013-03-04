@@ -83,54 +83,54 @@ private:
 
 public:
 	Isotope();
-    virtual ~Isotope();
+	virtual ~Isotope();
 
-    char* getIsotopeType() const;
-    int getA() const;
-    float getAlpha() const;
-    float getN() const;
-    float getTemperature() const;
-    float getMuAverage() const;
+	char* getIsotopeType() const;
+	int getA() const;
+	float getAlpha() const;
+	float getN() const;
+	float getTemperature() const;
+	float getMuAverage() const;
 	bool isFissionable() const;
 
-    float getElasticXS(float energy) const;
-    float getElasticXS(int energy_index) const;
-    scatterAngleType getElasticAngleType() const;
-    float getAbsorptionXS(float energy) const;
-    float getAbsorptionXS(int energy_index) const;
-    float getCaptureXS(float energy) const;
-    float getCaptureXS(int energy_index) const;
-    float getFissionXS(float energy) const;
-    float getFissionXS(int energy_index) const;
-    float getTotalXS(float energy) const;
-    float getTotalXS(int energy_index) const;
-    float getTransportXS(int energy_index) const;
-    float getTransportXS(float energy) const;
-    bool usesThermalScattering();
+	float getElasticXS(float energy) const;
+	float getElasticXS(int energy_index) const;
+	scatterAngleType getElasticAngleType() const;
+	float getAbsorptionXS(float energy) const;
+	float getAbsorptionXS(int energy_index) const;
+	float getCaptureXS(float energy) const;
+	float getCaptureXS(int energy_index) const;
+	float getFissionXS(float energy) const;
+	float getFissionXS(int energy_index) const;
+	float getTotalXS(float energy) const;
+	float getTotalXS(int energy_index) const;
+	float getTransportXS(int energy_index) const;
+	float getTransportXS(float energy) const;
+	bool usesThermalScattering();
 
-    void setIsotopeType(char* isotope);
-    void setA(int A);
-    void setN(float N);
-    void setTemperature(float T);
+	void setIsotopeType(char* isotope);
+	void setA(int A);
+	void setN(float N);
+	void setTemperature(float T);
 	void makeFissionable();
 
-    void loadXS(char* filename, collisionType type, char* delimiter);
-    void setElasticXS(float* elastic_xs, float* elastic_xs_energies,
-							int num_elastic_xs, scatterAngleType type);
-    void setElasticAngleType(scatterAngleType type);
-    void setAbsorptionXS(float* absorb_xs, float* absorb_xs_energies,
-    											int num_absorb_xs);
-    void setFissionXS(float* fission_xs, float* fission_xs_energies,
-												int num_fission_xs);
+	void loadXS(char* filename, collisionType type, char* delimiter);
+	void setElasticXS(float* elastic_xs, float* elastic_xs_energies,
+			  int num_elastic_xs, scatterAngleType type);
+	void setElasticAngleType(scatterAngleType type);
+	void setAbsorptionXS(float* absorb_xs, float* absorb_xs_energies,
+			     int num_absorb_xs);
+	void setFissionXS(float* fission_xs, float* fission_xs_energies,
+			  int num_fission_xs);
 	void generateCaptureXS();
-    void rescaleXS(float* new_energies, int num_energies);
-    Isotope* clone();
+	void rescaleXS(float* new_energies, int num_energies);
+	Isotope* clone();
 
-    collisionType getCollisionType(float energy);
-    float getThermalScatteringEnergy(float energy);
-    void initializeThermalScattering(float start_energy, float end_energy,
-    								int num_bins, int num_distributions);
-    float thermalScatteringProb(float E_prime_to_E, int dist_index);
+	collisionType getCollisionType(float energy);
+	float getThermalScatteringEnergy(float energy);
+	void initializeThermalScattering(float start_energy, float end_energy,
+					 int num_bins, int num_distributions);
+	float thermalScatteringProb(float E_prime_to_E, int dist_index);
 };
 
 #endif /* ISOTOPE_H_ */

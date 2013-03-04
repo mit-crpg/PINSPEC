@@ -8,7 +8,7 @@
  */
 
 #include "xsreader.h"
-
+#include "log.h"
 
 /**
  * This method parses and input file of cross-section data and loads the
@@ -23,7 +23,7 @@
  * @return the number of data points
  */
 int parseCrossSections(const char* file, float* energies, float* xs_values,
-								int num_xs_values, const char* delimiter) {
+		       int num_xs_values, const char* delimiter) {
 
 	/* Instantiate I/O variables */
 	std::ifstream input_file(file, std::ios::in);
@@ -33,13 +33,18 @@ int parseCrossSections(const char* file, float* energies, float* xs_values,
 	/* Parse over each line in the file */
 	while(getline(input_file, buff)) {
 		/* Load data into the arrays for this line */
-		sscanf(buff.c_str(), "%f %f", &energies[count], &xs_values[count]);
+		sscanf(buff.c_str(), "%f %f", &energies[count], 
+		       &xs_values[count]);
 		count++;
 	}
 
+	/* Throw a warning if nothing is parsed */
+	if (count == 0) 
+	    log_printf(WARNING, "xs file may not exist.");
+
 	/* Convert energy values from MeV to eV */
 	for (int i=0; i < num_xs_values; i++)
-		energies[i] *= 1E6;
+	    energies[i] *= 1E6;
 
 	/* Close the file and return the number of data points */
 	input_file.close();

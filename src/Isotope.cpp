@@ -152,7 +152,8 @@ float Isotope::getElasticXS(float energy) const {
 
 	/* Use linear interpolation to find the elastic scatter cross-section */
 	return linearInterp<float, float, float>(_elastic_xs_energies,
-								_elastic_xs, _num_elastic_xs, energy);
+						 _elastic_xs, _num_elastic_xs, 
+						 energy);
 }
 
 
@@ -186,7 +187,8 @@ scatterAngleType Isotope::getElasticAngleType() const {
 
 	if (_num_elastic_xs == 0)
 		log_printf(ERROR, "Cannot return an elastic angle type"
-				"for isotope %s since it has not been set", _isotope_name);
+			   "for isotope %s since it has not been set", 
+			   _isotope_name);
 
 	return _elastic_angle;
 }
@@ -450,7 +452,7 @@ void Isotope::loadXS(char* filename, collisionType type, char* delimiter) {
 
 	/* Parse the file into the data structures */
 	parseCrossSections(filename, energies, xs_values, num_xs_values,
-														delimiter);
+			   delimiter);
 
 	/* Set this isotope's appropriate cross-section using the data
 	 * structures */
@@ -458,9 +460,10 @@ void Isotope::loadXS(char* filename, collisionType type, char* delimiter) {
 		setElasticXS(xs_values, energies, num_xs_values, ISOTROPIC_LAB);
 	else if (type == ABSORPTION)
 		setAbsorptionXS(xs_values, energies, num_xs_values);
-	else if (type == FISSION)
+	else if (type == FISSION) {
 		setFissionXS(xs_values, energies, num_xs_values);
-
+		_fissionable = true;
+	}
 	return;
 }
 
