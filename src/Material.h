@@ -26,6 +26,7 @@ private:
 
 	/* Map of number density and isotope pointers */
 	std::map<char*, std::pair<float, Isotope*> > _isotopes;
+	std::vector<Tally*> _tallies;
 
 	/* Values related to rescaled cross-sections on a uniform energy grid */
 	bool _rescaled;
@@ -89,6 +90,8 @@ public:
 	void rescaleCrossSections(float start_energy, float end_energy,
 				  int num_energies, binSpacingTypes scale_type);
 	Isotope* sampleIsotope(float energy);
+	void addTally(Tally *tally);
+	void clearTallies();
 };
 
 #endif /* MATERIAL_H_ */

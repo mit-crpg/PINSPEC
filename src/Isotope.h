@@ -10,6 +10,7 @@
 #ifndef ISOTOPE_H_
 #define ISOTOPE_H_
 
+#include <vector>
 #include <map>
 #include <math.h>
 #include <stdarg.h>
@@ -19,6 +20,7 @@
 #include "arraycreator.h"
 #include "xsreader.h"
 #include "log.h"
+#include "Tally.h"
 
 /* Types of collisions */
 typedef enum collisionTypes{
@@ -72,6 +74,7 @@ private:
 
 	/* Map of keys (xs types) with values (getXS functions for xs types) */
 	std::map<collisionType, float(Isotope::*)(float) const> _xs_handles;
+	std::vector<Tally*> _tallies;
 
 	int _num_thermal_cdfs;
 	int _num_thermal_cdf_bins;
@@ -131,6 +134,9 @@ public:
 	void initializeThermalScattering(float start_energy, float end_energy,
 					 int num_bins, int num_distributions);
 	float thermalScatteringProb(float E_prime_to_E, int dist_index);
+
+	void addTally(Tally *tally);
+	void clearTallies();
 };
 
 #endif /* ISOTOPE_H_ */

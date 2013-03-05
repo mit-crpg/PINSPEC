@@ -737,7 +737,6 @@ collisionType Isotope::getCollisionType(float energy) {
 	return type;
 }
 
-
 /**
  * For a given neutron energy in eV in a scattering collision, this
  * function returns the outgoing energy in eV, Eprime, for the collision
@@ -816,7 +815,8 @@ float Isotope::getThermalScatteringEnergy(float energy) {
  * @param end_distributions the number of scattering distributions
  */
 void Isotope::initializeThermalScattering(float start_energy,
-					float end_energy, int num_bins, int num_distributions) {
+					float end_energy, int num_bins, 
+					  int num_distributions) {
 
 	/* Number of thermal scattering distributions */
 	_num_thermal_cdfs = num_distributions;
@@ -834,7 +834,8 @@ void Isotope::initializeThermalScattering(float start_energy,
 
 	/* Initialize logarithmically spaced E/kT for each distribution */
 	_E_to_kT = logspace<float, float>(start_energy/(_kB*_T),
-									end_energy/(_kB*_T), _num_thermal_cdfs);
+					  end_energy/(_kB*_T), 
+					  _num_thermal_cdfs);
 
 	/* Find the maximum Eprime / E value that we must extend our distributions
 	 * to before they all fall below some tolerance */
@@ -863,20 +864,20 @@ void Isotope::initializeThermalScattering(float start_energy,
 
 	/* Initialize x-axis of Eprime to E ratios */
 	_Eprime_to_E = logspace<float, float>(1E-5, curr_Eprime_to_E,
-										_num_thermal_cdf_bins);
+					      _num_thermal_cdf_bins);
 
 	/* Loop over each distribution */
 	for (int i=0; i < _num_thermal_cdfs; i++) {
 		for (int j=0; j < _num_thermal_cdf_bins; j++)
 			_thermal_dist[i*_num_thermal_cdf_bins + j] =
-									thermalScatteringProb(_Eprime_to_E[j], i);
+			    thermalScatteringProb(_Eprime_to_E[j], i);
 	}
 
 	/* Create CDFs for each distribution */
 	for (int i=0; i < _num_thermal_cdfs; i++) {
 		cumulativeIntegral(_Eprime_to_E,
-							&_thermal_dist[i*_num_thermal_cdf_bins], cdf,
-										_num_thermal_cdf_bins, TRAPEZOIDAL);
+				   &_thermal_dist[i*_num_thermal_cdf_bins], cdf,
+				   _num_thermal_cdf_bins, TRAPEZOIDAL);
 
 		/* Transfer CDF values to our array */
 		for (int j=0; j < _num_thermal_cdf_bins; j++)
@@ -932,4 +933,19 @@ float Isotope::thermalScatteringProb(float E_prime_to_E, int dist_index) {
 	prob *= (1.0 - double(_alpha));
 
 	return float(prob);
+}
+
+
+void Isotope::addTally(Tally *tally) {
+    tally->setTallyDomainType(ISOTOPE);
+    _tallies.push_back(tally);
+    return;
+}
+
+
+/**
+ * Clear this isotope's vector of Tally class object pointers
+ */
+void Isotope::clearTallies() {
+	_tallies.clear();
 }

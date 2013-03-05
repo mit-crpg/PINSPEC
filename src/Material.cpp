@@ -729,3 +729,19 @@ Isotope* Material::sampleIsotope(float energy) {
 	
 	return isotope;
 }
+
+/**
+ * Add a tally class object to  this material's vector of Tally
+ */
+void Material::addTally(Tally *tally) {
+    tally->setTallyDomainType(MATERIAL);
+    _tallies.push_back(tally);
+    return;
+}
+
+/**
+ * Clear this material's vector of Tally class object pointers
+ */
+void Material::clearTallies() {
+	_tallies.clear();
+}

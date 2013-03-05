@@ -165,6 +165,8 @@ class Isotope(_object):
     def getThermalScatteringEnergy(self, *args): return _region.Isotope_getThermalScatteringEnergy(self, *args)
     def initializeThermalScattering(self, *args): return _region.Isotope_initializeThermalScattering(self, *args)
     def thermalScatteringProb(self, *args): return _region.Isotope_thermalScatteringProb(self, *args)
+    def addTally(self, *args): return _region.Isotope_addTally(self, *args)
+    def clearTallies(self): return _region.Isotope_clearTallies(self)
 Isotope_swigregister = _region.Isotope_swigregister
 Isotope_swigregister(Isotope)
 
@@ -201,8 +203,11 @@ class Material(_object):
     def setMaterialName(self, *args): return _region.Material_setMaterialName(self, *args)
     def setDensity(self, *args): return _region.Material_setDensity(self, *args)
     def addIsotope(self, *args): return _region.Material_addIsotope(self, *args)
+    def complete(self): return _region.Material_complete(self)
     def rescaleCrossSections(self, *args): return _region.Material_rescaleCrossSections(self, *args)
     def sampleIsotope(self, *args): return _region.Material_sampleIsotope(self, *args)
+    def addTally(self, *args): return _region.Material_addTally(self, *args)
+    def clearTallies(self): return _region.Material_clearTallies(self)
 Material_swigregister = _region.Material_swigregister
 Material_swigregister(Material)
 
