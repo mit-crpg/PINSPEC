@@ -745,3 +745,20 @@ void Material::addTally(Tally *tally) {
 void Material::clearTallies() {
 	_tallies.clear();
 }
+
+/**
+ * For a given energy, this method calls sampleIsotope() to sample 
+ * an isotop, then sample a reaction type in that isotope by using
+ * Isotope::collideNeutron(), then tally the event into the appropriate
+ * tally classes for that isotope if any. 
+ * @param energy the incoming neutron energy (eV)
+ * @return the collision type (ELASTIC, CAPTURE, FISSION)
+ */
+collisionType Material::collideNeutron(float energy) {
+    Isotope *isotope;
+    isotope = sampleIsotope(energy);
+    collisionType type = isotope->getCollisionType(energy);
+
+    /* FIXME: tally this event into the appropriate tally classes  */
+    return type;
+}

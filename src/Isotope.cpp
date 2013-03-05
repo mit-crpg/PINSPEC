@@ -949,3 +949,17 @@ void Isotope::addTally(Tally *tally) {
 void Isotope::clearTallies() {
 	_tallies.clear();
 }
+
+/**
+ * For a given energy, this method calls getCollisionType() to sample 
+ * the collision type, and then tally the event into the appropriate
+ * tally classes for that isotope if any. 
+ * @param energy the incoming neutron energy (eV)
+ * @return the collision type (ELASTIC, CAPTURE, FISSION)
+ */
+collisionType Isotope::collideNeutron(float energy) {
+    collisionType type = getCollisionType(energy);
+
+    /* FIXME: tally the event into the appropriate tally classes  */
+    return type;
+}

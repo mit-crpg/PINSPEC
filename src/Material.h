@@ -92,6 +92,8 @@ public:
 	Isotope* sampleIsotope(float energy);
 	void addTally(Tally *tally);
 	void clearTallies();
+
+	collisionType collideNeutron(float energy);
 };
 
 #endif /* MATERIAL_H_ */

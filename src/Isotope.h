@@ -130,6 +130,8 @@ public:
 	Isotope* clone();
 
 	collisionType getCollisionType(float energy);
+	collisionType collideNeutron(float energy);
+
 	float getThermalScatteringEnergy(float energy);
 	void initializeThermalScattering(float start_energy, float end_energy,
 					 int num_bins, int num_distributions);
@@ -137,6 +139,7 @@ public:
 
 	void addTally(Tally *tally);
 	void clearTallies();
+
 };
 
 #endif /* ISOTOPE_H_ */

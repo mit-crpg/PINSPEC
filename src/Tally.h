@@ -112,7 +112,7 @@ public:
 	void tally(float* samples, int num_samples, int batch_num);
 	void tally(float sample, int batch_num);
 	void weightedTally(float* samples, float* sample_weights, 
-								int num_samples, int batch_num);
+			   int num_samples, int batch_num);
 	void weightedTally(float sample, float weight, int batch_num);
 	void normalizeTallies();
 	void normalizeTallies(float scale_factor);
