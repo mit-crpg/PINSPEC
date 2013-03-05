@@ -36,6 +36,9 @@ Isotope::Isotope() {
 	/* By default the thermal scattering cdfs have not been initialized */
 	_num_thermal_cdfs = 0;
 	_num_thermal_cdf_bins = 0;
+
+	/* FIXME: may need to update these defaults later */
+	initializeThermalScattering(1, 8, 20, 4);
 }
 
 
