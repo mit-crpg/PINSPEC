@@ -640,6 +640,13 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Increments the material's atomic mass */
     _material_atomic_mass += atomic_ratio * isotope->getA();
 
+    /* Rescale isotope's cross sections */
+    float* grid;
+    grid = logspace<float, float>(_start_energy, _end_energy, _num_energies);
+    isotope->rescaleXS(grid, _num_energies);
+    delete [] grid;
+    //_rescaled = true;
+
     /* Creates a pair between the number density and isotope pointer */
     std::pair<float, Isotope*> new_pair = std::pair<float, Isotope*>
 	(atomic_ratio, isotope);
