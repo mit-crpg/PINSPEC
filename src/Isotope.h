@@ -28,6 +28,9 @@ typedef enum collisionTypes{
 	ABSORPTION,
 	CAPTURE,
 	FISSION,
+	TRANSPORT,
+	DIFFUSION,
+	LEAKAGE,
 	TOTAL
 } collisionType;
 

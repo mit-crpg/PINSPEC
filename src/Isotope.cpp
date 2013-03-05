@@ -968,6 +968,57 @@ void Isotope::clearTallies() {
 collisionType Isotope::collideNeutron(float energy) {
     collisionType type = getCollisionType(energy);
 
+    float total_xs = getTotalXS(energy);
+    float elastic_xs = getElasticXS(energy);
+    float absorption_xs = getAbsorptionXS(energy);
+    float capture_xs = getCaptureXS(energy);
+    float fission_xs = getFissionXS(energy);
+    float transport_xs = getTransportXS(energy);
+
+    /* FIXME: replace float energy with neutron struct, and update batch_num */
+    int batch_num = 1;
+    float sample = energy;
+
     /* FIXME: tally the event into the appropriate tally classes  */
+    /* Loops over all tallies and add them to the clone */
+    std::vector<Tally*>::iterator iter;
+	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+	    Tally *tally = *iter;
+	    tallyType tally_type = tally->getTallyType();
+	    switch (tally_type) {
+	    case FLUX:
+		tally->weightedTally(sample, 1.0 / total_xs, batch_num);
+	    case COLLISION_RATE:
+		if (type == TOTAL)
+		    tally->weightedTally(sample, 1.0, batch_num);
+	    case ELASTIC_RATE:
+		if (type == ELASTIC)
+		    tally->weightedTally(sample, elastic_xs / total_xs, 
+					 batch_num);
+	    case ABSORPTION_RATE:
+		if (type == ABSORPTION)
+		    tally->weightedTally(sample, absorption_xs / total_xs, 
+					 batch_num);
+	    case CAPTURE_RATE:
+		if (type == CAPTURE)
+		    tally->weightedTally(sample, capture_xs / total_xs, 
+					 batch_num);
+	    case FISSION_RATE:
+		if (type == FISSION)
+		    tally->weightedTally(sample, fission_xs / total_xs, 
+					 batch_num);
+	    case TRANSPORT_RATE:
+		if (type == TRANSPORT)
+		    tally->weightedTally(sample, transport_xs / total_xs, 
+					 batch_num);
+	    case DIFFUSION_RATE: /* FIXME */
+		if (type == DIFFUSION) 
+		    tally->weightedTally(sample, 
+					 1.0 / (3 * transport_xs * total_xs), 
+					 batch_num); 
+	    case LEAKAGE_RATE:; /* FIXME */
+	    }
+	}
+
     return type;
 }
