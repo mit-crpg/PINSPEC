@@ -609,6 +609,23 @@ void Material::setDensity(float density, char* unit) {
 }
 
 /**
+ * Sets this Material's number density computed from user inputs
+ * @param set the number density of this Material
+ */
+void Material::setNumberDensity(float number_density) {
+	_material_number_density = number_density;
+}
+
+/**
+ * Sets this Material's atomic mass computed from user inputs
+ * @param set the atomic mass of this Material
+ */
+void Material::setAtomicMass(float atomic_mass) {
+	_material_atomic_mass = atomic_mass;
+}
+
+
+/**
  * Adds a new isotope to this Material
  * @param isotope a pointer to a isotope class object
  * @param atomic_ratio the atomic ratio of the isotope
@@ -761,4 +778,41 @@ collisionType Material::collideNeutron(float energy) {
 
     /* FIXME: tally this event into the appropriate tally classes  */
     return type;
+}
+
+
+/**
+ * This method clones a given Material class object by executing a deep
+ * copy of all of the Material's class attributes and giving them to a new
+ * Material class object
+ * @return a pointer to the new cloned Material class object
+ */
+Material* Material::clone() {
+
+	/* Allocate memory for the clone */
+	Material* new_clone = new Material();
+
+	/* Loops over all tallies and add them to the clone */
+	for (std::vector<Tally*>::iterator it = _tallies.begin(); 
+	     it != _tallies.end(); it++) {
+	    new_clone->addTally(*it);
+	}
+
+	/* Loops over all isotopes and add them to the clone */
+	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
+	Isotope* curr;
+
+	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter) {
+	    new_clone->addIsotope(iter->second.second, iter->second.first);
+	}
+
+	/* Set the clones isotope name, atomic number, number density */
+	new_clone->setMaterialName(_material_name);
+	new_clone->setDensity(_material_density, "g/cc");
+	new_clone->setNumberDensity(_material_number_density);
+	new_clone->setAtomicMass(_material_atomic_mass);
+
+
+	/* Return a pointer to the cloned Isotope class */
+	return new_clone;
 }

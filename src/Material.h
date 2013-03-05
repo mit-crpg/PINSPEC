@@ -39,6 +39,7 @@ private:
 public:
 	Material();
 	virtual ~Material();
+	Material *clone();
 	
 	/* getters */
 	char* getMaterialName();
@@ -82,7 +83,8 @@ public:
 	/* setters */
 	void setMaterialName(char* name);
 	void setDensity(float density, char* unit);
-
+	void setNumberDensity(float number_density);
+	void setAtomicMass(float atomic_mass);
 
 	void addIsotope(Isotope *isotope, float atomic_ratio);
 	void complete();

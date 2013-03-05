@@ -550,9 +550,9 @@ void Isotope::generateCaptureXS() {
 	_capture_xs = (float*) malloc(sizeof(float) * _num_capture_xs);
 	_capture_xs_energies = (float*) malloc(sizeof(float) * _num_capture_xs);
 	float (Isotope::*func)(float)const;
-    func = &Isotope::getCaptureXS;
-    _xs_handles.insert(std::pair<collisionType, float(Isotope::*)(float)
-    											const>(CAPTURE, func));
+	func = &Isotope::getCaptureXS;
+	_xs_handles.insert(std::pair<collisionType, float(Isotope::*)(float)
+    			   						const>(CAPTURE, func));
 
 	/* Generate a capture xs for all energies at which an 
 	 * absorption xs has been defined */
@@ -570,14 +570,11 @@ void Isotope::generateCaptureXS() {
  * @param num_energies the number of points in the new energy grid
  */
 void Isotope::rescaleXS(float* energies, int num_energies) {
-
-	/* Loops over all cross-section types to find the one for this energy */
-	std::map<collisionType, float(Isotope::*)(float)
-												const>::const_iterator iter;
-
-	for (iter = _xs_handles.begin(); iter != _xs_handles.end(); ++iter) {
-
-		float* new_xs = new float[num_energies];
+    /* Loops over all cross-section types to find the one for this energy */
+    std::map<collisionType, float(Isotope::*)(float)const>::const_iterator iter;
+    for (iter = _xs_handles.begin(); iter != _xs_handles.end(); ++iter) {
+	
+	float* new_xs = new float[num_energies];
 		float* new_energies = new float[num_energies];
 		memcpy(new_energies, energies, sizeof(float)*num_energies);
 
@@ -620,13 +617,19 @@ Isotope* Isotope::clone() {
 	/* Allocate memory for the clone */
 	Isotope* new_clone = new Isotope();
 
+	/* Loops over all tallies and add them to the clone */
+	for (std::vector<Tally*>::iterator it = _tallies.begin(); 
+	     it != _tallies.end(); it++) {
+	    new_clone->addTally(*it);
+	}
+
 	/* Set the clones isotope name, atomic number, number density */
 	new_clone->setIsotopeType(_isotope_name);
 	new_clone->setA(_A);
 	new_clone->setN(_N);
 	new_clone->setTemperature(_T);
 	if (_fissionable)
-		new_clone->makeFissionable();
+	    new_clone->makeFissionable();
 
 	/* If the given isotope has an elastic scatter xs */
 	if (_num_elastic_xs > 0) {
@@ -638,7 +641,7 @@ Isotope* Isotope::clone() {
 		/* Deep copy the energies for each of the xs values */
 		float* elastic_xs_energies = new float[_num_elastic_xs];
 		memcpy(elastic_xs_energies, _elastic_xs_energies,
-								sizeof(float)*_num_elastic_xs);
+		       sizeof(float)*_num_elastic_xs);
 
 		/* Set the clone's xs */
 		new_clone->setElasticXS(elastic_xs, elastic_xs_energies,
@@ -658,7 +661,8 @@ Isotope* Isotope::clone() {
 				sizeof(float)*_num_absorb_xs);
 
 		/* Set the clone's capture xs */
-		new_clone->setAbsorptionXS(absorb_xs, absorb_xs_energies, _num_absorb_xs);
+		new_clone->setAbsorptionXS(absorb_xs, absorb_xs_energies, 
+					   _num_absorb_xs);
 	}
 
 	/* If the capture xs has been generated for the given isotope */
@@ -694,10 +698,11 @@ Isotope* Isotope::clone() {
 
 	/* Initialize the isotope's thermal scattering CDFs if they have been
 	 * created for this isotope */
-	if (_num_thermal_cdfs > 0)
-		new_clone->initializeThermalScattering(_E_to_kT[0]*_kB*_T,
-			_E_to_kT[_num_thermal_cdfs-1]*_kB*_T, _num_thermal_cdf_bins,
-													_num_thermal_cdfs);
+	if (_num_thermal_cdfs > 0) {
+		new_clone->initializeThermalScattering
+		    (_E_to_kT[0]*_kB*_T, _E_to_kT[_num_thermal_cdfs-1]*_kB*_T, 
+		     _num_thermal_cdf_bins, _num_thermal_cdfs);
+	}
 
 	/* Return a pointer to the cloned Isotope class */
 	return new_clone;
