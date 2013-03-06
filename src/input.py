@@ -1,9 +1,5 @@
 import matplotlib.pyplot as plt
-from tally import *
-from material import *
 from isotope import *
-from geometry import *
-from region import *
 
 def main():
     
@@ -21,32 +17,32 @@ def main():
     U238.setAO(97.0)
     
     # Define materials
-    moderator = Material()
-    moderator.setDensity(1.0, 'g/cc')
-    moderator.addIsotope(h1)
-    moderator.addIsotope(o16)
+    #moderator = Material()
+    #moderator.setDensity(1.0, 'g/cc')
+    #moderator.addIsotope(h1)
+    #moderator.addIsotope(o16)
 
-    fuel = Material()
-    fuel.setDensity(10.0, 'g/cc')
-    fuel.addIsotope(u235)
-    fuel.addIsotope(u238)
+    #fuel = Material()
+    #fuel.setDensity(10.0, 'g/cc')
+    #fuel.addIsotope(u235)
+    #fuel.addIsotope(u238)
     
-    moderator.loadXS()
-    fuel.loadXS()
+    #moderator.loadXS()
+    #fuel.loadXS()
     
     # Define regions
-    region_mod = Region()
-    region_mod.addMaterial(moderator)
-    region_mod.setType('moderator')
+    #region_mod = Region()
+    #region_mod.addMaterial(moderator)
+    #region_mod.setType('moderator')
 
-    region_fuel = Region()
-    region_fuel.addMaterial(fuel)
-    region_fuel.setType('fuel')
+    #region_fuel = Region()
+    #region_fuel.addMaterial(fuel)
+    #region_fuel.setType('fuel')
 
     # Define geometry
-    geometry = Geometry()
-    geometry.addRegion(region_mod)
-    geometry.addRegion(region_fuel)
+    #geometry = Geometry()
+    #geometry.addRegion(region_mod)
+    #geometry.addRegion(region_fuel)
     
     # Set energy bins
     
@@ -61,13 +57,3 @@ def main():
 if __name__ == '__main__':
     
     main()
-
-
-
-
-
-
-
-    def __iter__(self):                 # ???
-        for r in self.regions:
-            yield r

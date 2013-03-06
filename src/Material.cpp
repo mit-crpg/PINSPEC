@@ -601,11 +601,11 @@ void Material::setMaterialName(char* name) {
  * @param isotope a pointer to a isotope class object
  * @param num_density the number density (at/cm^3) for this isotope
  */
-void Material::addIsotope(Isotope* isotope, float num_density) {
+void Material::addIsotope(Isotope* isotope) {
 
 	/* Creates a pair between the number density and isotope pointer */
 	std::pair<float, Isotope*> new_pair = std::pair<float, Isotope*>
-													(num_density, isotope);
+													(_density * isotope->getAO(), isotope);
 
 	std::pair<char*, std::pair<float, Isotope*> > new_isotope =
 							std::pair<char*, std::pair<float, Isotope*> >
@@ -613,7 +613,6 @@ void Material::addIsotope(Isotope* isotope, float num_density) {
 
 	/* Inserts the isotope and increments the total number density */
 	_isotopes.insert(new_isotope);
-	_tot_num_density += num_density;
 
 	return;
 }
@@ -693,3 +692,87 @@ Isotope* Material::sampleIsotope(float energy) {
 
 	return isotope;
 }
+
+
+/**
+ * Set the material density
+ */
+void Material::setDensity(float density, char* unit){
+
+	if (strcmp(unit, "g/cc") == 0){
+		_units = GRAMCM3;
+	}
+	else if (strcmp(unit, "n/cc") == 0){
+		_units = NUMCM3;
+	}
+	else{
+		log_printf(ERROR, "Units entered are not valid");
+	}
+
+	_density = density;
+}
+
+
+/**
+ * Get the material density
+ * @return the material density
+ */
+float Material::getDensity(){
+	return _density;
+}
+
+
+/**
+ * Load all xs for material
+ */
+void Material::loadXS(){
+
+	/* loop over isotopes */
+	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
+	Isotope* curr;
+
+	std::string prefix = '../XS_Lib/';
+	std::string isotope;
+	std::string prefix_iso_xs;
+	char* isotope_xs;
+
+	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter) {
+
+		curr = iter->second.second;
+		isotope = curr->getIsotopeType();
+
+		/* get scat */
+		prefix_iso_xs = prefix + isotope + '-scat.txt';
+		isotope_xs = (char*)prefix_iso_xs.c_str();
+		parseCrossSections(isotope_xs, curr->_elastic_xs_energies, curr->_elastic_xs);
+
+		/* get cap */
+		prefix_iso_xs = prefix + isotope + '-cap.txt';
+		isotope_xs = (char*)prefix_iso_xs.c_str();
+		parseCrossSections(isotope_xs, curr->_capture_xs_energies, curr->_capture_xs);
+
+		/* get fis */
+		if (curr->isFissionable()){
+			prefix_iso_xs = prefix + isotope + '-fis.txt';
+			isotope_xs = (char*)prefix_iso_xs.c_str();
+			parseCrossSections(isotope_xs, curr->_fission_xs_energies, curr->_fission_xs);
+		}
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

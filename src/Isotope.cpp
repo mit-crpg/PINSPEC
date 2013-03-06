@@ -13,18 +13,13 @@
 /**
  * Isotope constructor sets default values for some isotope properties
  */
-Isotope::Isotope() {
+Isotope::Isotope(char* isotope_name){
 
 	/* Default atomic number and number densities and temperature */
-	_isotope_name = (char*)"";
-	_A = 1;
-	_N = 1;
+    _isotope_name = isotope_name;
+	parseName();
 	_T = 300;
-	_mu_avg = 2.0 / (3.0 * _A);
 	_kB = 8.617332E-5;             /* boltzmann's constant (ev / K) */
-	_alpha = float(_A-1)/float(_A+1) * float(_A-1)/float(_A+1);
-	_eta = (float(_A)+1.0) / (2.0 * sqrt(float(_A)));
-	_rho = (float(_A)-1.0) / (2.0 * sqrt(float(_A)));
 	_fissionable = false;
 
 	/* By default this isotope has no cross-sections */
@@ -76,6 +71,35 @@ Isotope::~Isotope() {
 
 
 /**
+ * Parse input name and set _A value for isotope
+ */
+void Isotope::parseName(){
+
+	int A = 0;
+
+	int i = 0;
+	while (_isotope_name[i] != '\0'){
+
+		/* if - encountered, get the A value */
+		if (_isotope_name[i] == '-') {
+
+			i++;
+			A = atoi(&_isotope_name[i]);
+			break;
+		}
+
+		i++;
+	}
+
+	/* Set the atomic number of isotope */
+	setA(A);
+
+	log_printf(NORMAL, "A value is: %i", _A);
+}
+
+
+
+/**
  * Returns the name of the of isotope
  * @return character array with name of isotope
  */
@@ -108,6 +132,15 @@ float Isotope::getAlpha() const {
  */
 float Isotope::getN() const {
     return _N;
+}
+
+
+/**
+ * Returns the relative atomic amount
+ * @return the relative atomic amount
+ */
+float Isotope::getAO() const {
+    return _AO;
 }
 
 
@@ -416,6 +449,15 @@ void Isotope::setN(float N) {
 }
 
 
+/**
+ * Set the relative atomic amount
+ * @param AO relative atomic amount
+ */
+void Isotope::setAO(float AO) {
+    _AO = AO;
+}
+
+
 /* Set the temperature (Kelvin)
  * @param T the temperature (Kelvin)
  */
@@ -614,7 +656,7 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 Isotope* Isotope::clone() {
 
 	/* Allocate memory for the clone */
-	Isotope* new_clone = new Isotope();
+	Isotope* new_clone = new Isotope(_isotope_name);
 
 	/* Set the clones isotope name, atomic number, number density */
 	new_clone->setIsotopeType(_isotope_name);
@@ -929,3 +971,6 @@ float Isotope::thermalScatteringProb(float E_prime_to_E, int dist_index) {
 
 	return float(prob);
 }
+
+
+

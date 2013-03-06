@@ -16,8 +16,7 @@
 #include <sstream>
 #include <stdlib.h>
 
-int parseCrossSections(const char* file, float* energies, float* xs_values,
-									int num_xs_values, const char* delimiter);
+int parseCrossSections(const char* file, float* energies, float* xs_values);
 int getNumCrossSectionDataPoints(const char* file);
 
 

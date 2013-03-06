@@ -13,6 +13,7 @@
 #include "log.h"
 #include "arraycreator.h"
 #include "Isotope.h"
+#include <string.h>
 
 typedef enum energyGridType {
 	EQUAL,
@@ -20,6 +21,10 @@ typedef enum energyGridType {
 	OTHER
 } energyGridType;
 
+typedef enum units {
+	GRAMCM3,
+	NUMCM3
+} units;
 
 class Material {
 
@@ -33,10 +38,12 @@ private:
 	/* Values related to rescaled cross-sections on a uniform energy grid */
 	bool _rescaled;
 	energyGridType _scale_type;
+	units _units;
 	int _num_energies;
 	float _start_energy;
 	float _end_energy;
 	float _delta_energy;
+	float _density;
 
 public:
 	Material();
@@ -76,11 +83,15 @@ public:
     float getTransportMacroXS(float energy);
     float getTransportMacroXS(int energy_index);
 
+    void setDensity(float density, char* unit);
+    float getDensity();
+    void loadXS();
+
     bool isRescaled();
     int getEnergyGridIndex(float energy);
 
     void setMaterialName(char* name);
-    void addIsotope(Isotope *material, float num_density);
+    void addIsotope(Isotope *material);
 
     void rescaleCrossSections(float start_energy, float end_energy,
     						int num_energies, energyGridType scale_type);

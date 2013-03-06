@@ -19,6 +19,8 @@
 #include "arraycreator.h"
 #include "xsreader.h"
 #include "log.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /* Types of collisions */
 typedef enum collisionTypes{
@@ -49,6 +51,7 @@ private:
 	float _eta;
 	float _rho;
 	float _N;
+	float _AO;
 	float _T;
 	float _mu_avg;
 	bool _fissionable;
@@ -82,13 +85,16 @@ private:
 	float _kB;
 
 public:
-	Isotope();
+	Isotope(char *_isotope_name);
     virtual ~Isotope();
 
-    char* getIsotopeType() const;
+	void parseName();
+
+	char* getIsotopeType() const;
     int getA() const;
     float getAlpha() const;
     float getN() const;
+    float getAO() const;
     float getTemperature() const;
     float getMuAverage() const;
 	bool isFissionable() const;
@@ -110,7 +116,9 @@ public:
 
     void setIsotopeType(char* isotope);
     void setA(int A);
+    void setAO(float AO);
     void setN(float N);
+
     void setTemperature(float T);
 	void makeFissionable();
 
