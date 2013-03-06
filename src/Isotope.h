@@ -21,6 +21,7 @@
 #include "xsreader.h"
 #include "log.h"
 #include "Tally.h"
+#include "Neutron.h"
 
 /* Types of collisions */
 typedef enum collisionTypes{
@@ -133,7 +134,7 @@ public:
 	Isotope* clone();
 
 	collisionType getCollisionType(float energy);
-	collisionType collideNeutron(float energy);
+	collisionType collideNeutron(neutron* neutron);
 
 	float getThermalScatteringEnergy(float energy);
 	void initializeThermalScattering(float start_energy, float end_energy,
