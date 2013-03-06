@@ -605,7 +605,8 @@ void Material::setMaterialName(char* name) {
 void Material::setDensity(float density, char* unit) {
 	_material_density = density;
 	if (strcmp(unit, "g/cc") != 0)
-	    log_printf(ERROR, "only support unit of g/cc");
+	    log_printf(ERROR, "Cannot set Material %s number density in"
+						"units %s since PINSPEc only support units in" 							"g/cc", _material_name, unit);
 }
 
 /**

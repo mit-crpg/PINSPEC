@@ -12,10 +12,12 @@
 
 /* Structure to represent a neutron */
 struct neutron {
+	int _batch_num;
 	float _x, _y, _z;
 	float _mu, _phi;
 	float _energy;
 	float _weight;
+	bool _alive;
 };
 
 
