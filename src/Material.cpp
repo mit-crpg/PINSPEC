@@ -869,7 +869,7 @@ Material* Material::clone() {
 
 	/* Set the clones isotope name, atomic number, number density */
 	new_clone->setMaterialName(_material_name);
-	new_clone->setDensity(_material_density, "g/cc");
+	new_clone->setDensity(_material_density, (char*)"g/cc");
 	new_clone->setNumberDensity(_material_number_density);
 	new_clone->setAtomicMass(_material_atomic_mass);
 
