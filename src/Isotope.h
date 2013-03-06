@@ -144,6 +144,7 @@ public:
 	void addTally(Tally *tally);
 	void clearTallies();
 
+	float getDistanceTraveled(neutron *neutron);
 };
 
 #endif /* ISOTOPE_H_ */
