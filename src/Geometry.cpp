@@ -37,16 +37,10 @@ Geometry::Geometry() {
 
 
 /**
- * Geometry destructor deletes the Fissioner and all Regions within it
+ * Geometry destructor deletes the Fissioner and lets SWIG delete 
+ * the Regions, Materials, Isotopes and Tallies
  */
 Geometry::~Geometry() {
-
-	if (_infinite_medium != NULL)
-		delete _infinite_medium;
-	if (_fuel != NULL)
-		delete _fuel;
-	if (_moderator != NULL)
-		delete _moderator;
 
 	delete _fissioner;
 }

@@ -22,18 +22,9 @@ Material::Material() {
 
 
 /**
- * Material destructor deletes all isotopes within it
+ * Material destructor does not delete anything since that is left to SWIG
  */
-Material::~Material() {
-
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	Isotope* curr;
-
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter) {
-		curr = iter->second.second;
-		delete curr;
-	}
-}
+Material::~Material() { }
 
 
 /**

@@ -52,20 +52,14 @@ def main():
         
 	# Run Monte Carlo simulation
 #    geometry.runMonteCarloSimulation();
-
-    print 'ran MC'
         
 	# Dump batch statistics to output files to some new directory
 #    geometry.outputBatchStatistics('DirectoryName')
-
-    print 'outputted stats'
         
 	# Plot data
 
 	# Cleanup data - I think you need to do this to avoid a 
 	# segmentation fault, but I'm not sure
-    del geometry
-
 
 if __name__ == '__main__':
     
