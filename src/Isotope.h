@@ -10,6 +10,7 @@
 #ifndef ISOTOPE_H_
 #define ISOTOPE_H_
 
+#include <vector>
 #include <map>
 #include <math.h>
 #include <stdarg.h>
@@ -21,6 +22,7 @@
 #include "log.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "Tally.h"
 
 /* Types of collisions */
 typedef enum collisionTypes{
@@ -28,6 +30,9 @@ typedef enum collisionTypes{
 	ABSORPTION,
 	CAPTURE,
 	FISSION,
+	TRANSPORT,
+	DIFFUSION,
+	LEAKAGE,
 	TOTAL
 } collisionType;
 
@@ -75,6 +80,7 @@ private:
 
 	/* Map of keys (xs types) with values (getXS functions for xs types) */
 	std::map<collisionType, float(Isotope::*)(float) const> _xs_handles;
+	std::vector<Tally*> _tallies;
 
 	int _num_thermal_cdfs;
 	int _num_thermal_cdf_bins;
@@ -89,6 +95,7 @@ public:
     virtual ~Isotope();
 
 	void parseName();
+	void makeFissionable();
 
 	char* getIsotopeType() const;
     int getA() const;
@@ -120,25 +127,32 @@ public:
     void setN(float N);
 
     void setTemperature(float T);
-	void makeFissionable();
 
-    void loadXS(char* filename, collisionType type, char* delimiter);
-    void setElasticXS(float* elastic_xs, float* elastic_xs_energies,
-							int num_elastic_xs, scatterAngleType type);
-    void setElasticAngleType(scatterAngleType type);
-    void setAbsorptionXS(float* absorb_xs, float* absorb_xs_energies,
-    											int num_absorb_xs);
-    void setFissionXS(float* fission_xs, float* fission_xs_energies,
-												int num_fission_xs);
+	void loadXS(char* filename, collisionType type);
+	void setElasticXS(float* elastic_xs, float* elastic_xs_energies,
+			  int num_elastic_xs, scatterAngleType type);
+	void setElasticAngleType(scatterAngleType type);
+	void setAbsorptionXS(float* absorb_xs, float* absorb_xs_energies,
+			     int num_absorb_xs);
+	void setCaptureXS(float* capture_xs, float* capture_xs_energies,
+			     int num_capture_xs);
+	void setFissionXS(float* fission_xs, float* fission_xs_energies,
+			  int num_fission_xs);
 	void generateCaptureXS();
-    void rescaleXS(float* new_energies, int num_energies);
-    Isotope* clone();
+	void rescaleXS(float* new_energies, int num_energies);
+	Isotope* clone();
 
-    collisionType getCollisionType(float energy);
-    float getThermalScatteringEnergy(float energy);
-    void initializeThermalScattering(float start_energy, float end_energy,
-    								int num_bins, int num_distributions);
-    float thermalScatteringProb(float E_prime_to_E, int dist_index);
+	collisionType getCollisionType(float energy);
+	collisionType collideNeutron(float energy);
+
+	float getThermalScatteringEnergy(float energy);
+	void initializeThermalScattering(float start_energy, float end_energy,
+					 int num_bins, int num_distributions);
+	float thermalScatteringProb(float E_prime_to_E, int dist_index);
+
+	void addTally(Tally *tally);
+	void clearTallies();
+
 };
 
 #endif /* ISOTOPE_H_ */

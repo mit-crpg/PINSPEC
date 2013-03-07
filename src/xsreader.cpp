@@ -8,7 +8,7 @@
  */
 
 #include "xsreader.h"
-
+#include "log.h"
 
 /**
  * This method parses and input file of cross-section data and loads the
@@ -38,6 +38,10 @@ int parseCrossSections(const char* file, float* energies, float* xs_values) {
 		sscanf(buff.c_str(), "%f %f", &energies[count], &xs_values[count]);
 		count++;
 	}
+
+	/* Throw a warning if nothing is parsed */
+	if (count == 0) 
+	    log_printf(WARNING, "xs file may not exist.");
 
 	/* Convert energy values from MeV to eV */
 	for (int i=0; i < count; i++)

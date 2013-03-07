@@ -17,6 +17,7 @@ def main():
     U238.setAO(97.0)
     
     # Define materials
+<<<<<<< HEAD
     #moderator = Material()
     #moderator.setDensity(1.0, 'g/cc')
     #moderator.addIsotope(h1)
@@ -29,6 +30,24 @@ def main():
     
     #moderator.loadXS()
     #fuel.loadXS()
+=======
+    moderator = Material()
+    moderator.setDensity(1.0, 'g/cc')
+    moderator.addIsotope(h1, 2.0)
+    moderator.addIsotope(o16, 1.0)
+    moderator.complete
+
+    fuel = Material()
+    fuel.setDensity(10.0, 'g/cc')
+    fuel.addIsotope(u235, 0.02)
+    fuel.addIsotope(u238, 0.98)
+    fuel.addIsotope(o16, 2.0)
+    fuel.complete
+    
+    # FIXME: loadXS() needs argument. 
+    moderator.loadXS()
+    fuel.loadXS()
+>>>>>>> 7a34963eafb8e3257e15a6e0dc2c79e0f4c6c9e6
     
     # Define regions
     #region_mod = Region()

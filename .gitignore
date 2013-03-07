@@ -1,6 +1,6 @@
 # Put any files you don't want to check in here.
 # Common among everyone 
-*.o 
+*.o
 *.pyc
 *.h.gch
 *.so
@@ -20,5 +20,6 @@ Makefile
 
 # Lulu specific:
 bin/
+tutorial/
 
 # Will specific:

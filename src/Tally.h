@@ -34,15 +34,15 @@ typedef enum tallyDomainTypes {
 
 /* Type of tallies */
 typedef enum tallyTypes {
-	COLLISION,
 	FLUX,
-	ELASTIC,
-	ABSORPTION,
-	CAPTURE,
-	FISSION,
-	TRANSPORT,
-	DIFFUSION,
-	LEAKAGE
+	COLLISION_RATE,
+	ELASTIC_RATE,
+	ABSORPTION_RATE,
+	CAPTURE_RATE,
+	FISSION_RATE,
+	TRANSPORT_RATE,
+	DIFFUSION_RATE,
+	LEAKAGE_RATE
 } tallyType;
 
 
@@ -112,7 +112,7 @@ public:
 	void tally(float* samples, int num_samples, int batch_num);
 	void tally(float sample, int batch_num);
 	void weightedTally(float* samples, float* sample_weights, 
-								int num_samples, int batch_num);
+			   int num_samples, int batch_num);
 	void weightedTally(float sample, float weight, int batch_num);
 	void normalizeTallies();
 	void normalizeTallies(float scale_factor);

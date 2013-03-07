@@ -138,7 +138,7 @@ tallyDomainType Tally::getTallyDomainType() {
 }
 
 /**
- * Returns the type of tally for these bins (FLUX, COLLISION, ABSORPTION, etc)
+ * Returns the type of tally for these bins (FLUX, COLLISION_RATE, ABSORPTION_RATE, etc)
  * @return the tally type
  */
 tallyType Tally::getTallyType() {
@@ -393,7 +393,7 @@ void Tally::setTallyDomainType(tallyDomainType type) {
 
 
 /**
- * Set the type of tally for this Tally (FLUX, COLLISION, ABSORPTION)
+ * Set the type of tally for this Tally (FLUX, COLLISION_RATE, ABSORPTION_RATE)
  * @param type the tally type
  */
 void Tally::setTallyType(tallyType type) {
@@ -818,24 +818,24 @@ void Tally::outputBatchStatistics(const char* filename) {
 	/* Print header to output file */
 	fprintf(output_file, "Batch-based tally statistics for PINSPEC\n");
 
-	if (_tally_type == COLLISION)
-		fprintf(output_file, "Tally type: Collision Rate\n");
+	if (_tally_type == COLLISION_RATE)
+		fprintf(output_file, "Tally type: COLLISION_RATE Rate\n");
 	else if (_tally_type == FLUX)
 		fprintf(output_file, "Tally type: Flux\n");
-	else if (_tally_type == ELASTIC)
-		fprintf(output_file, "Tally type: Elastic Scattering Reaction Rate\n");
-	else if (_tally_type == ABSORPTION)
-		fprintf(output_file, "Tally type: Absorption Reaction Rate\n");
-	else if (_tally_type == CAPTURE)
-		fprintf(output_file, "Tally type: Capture Reaction Rate\n");
-	else if (_tally_type == FISSION)
-		fprintf(output_file, "Tally type: Fission Reaction Rate\n");
-	else if (_tally_type == TRANSPORT)
-		fprintf(output_file, "Tally type: Transport Reaction Rate\n");
-	else if (_tally_type == DIFFUSION)
-		fprintf(output_file, "Tally type: Diffusion Reaction Rate\n");
-	else if (_tally_type == LEAKAGE)
-		fprintf(output_file, "Tally type: Leakage Rate\n");
+	else if (_tally_type == ELASTIC_RATE)
+		fprintf(output_file, "Tally type: ELASTIC_RATE Scattering Reaction Rate\n");
+	else if (_tally_type == ABSORPTION_RATE)
+		fprintf(output_file, "Tally type: ABSORPTION_RATE Reaction Rate\n");
+	else if (_tally_type == CAPTURE_RATE)
+		fprintf(output_file, "Tally type: CAPTURE_RATE Reaction Rate\n");
+	else if (_tally_type == FISSION_RATE)
+		fprintf(output_file, "Tally type: FISSION_RATE Reaction Rate\n");
+	else if (_tally_type == TRANSPORT_RATE)
+		fprintf(output_file, "Tally type: TRANSPORT_RATE Reaction Rate\n");
+	else if (_tally_type == DIFFUSION_RATE)
+		fprintf(output_file, "Tally type: DIFFUSION_RATE Reaction Rate\n");
+	else if (_tally_type == LEAKAGE_RATE)
+		fprintf(output_file, "Tally type: LEAKAGE_RATE Rate\n");
 
 	if (_tally_domain == ISOTOPE)
 		fprintf(output_file, "Tally Domain: Isotope\n");

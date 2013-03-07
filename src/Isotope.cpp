@@ -18,9 +18,13 @@ Isotope::Isotope(char* isotope_name){
 	/* Default atomic number and number densities and temperature */
     _isotope_name = isotope_name;
 	parseName();
+
 	_T = 300;
 	_kB = 8.617332E-5;             /* boltzmann's constant (ev / K) */
 	_fissionable = false;
+
+	loadXS(isotope_name, ELASTIC);
+	loadXS(isotope_name, CAPTURE);
 
 	/* By default this isotope has no cross-sections */
 	_num_capture_xs = 0;
@@ -31,6 +35,9 @@ Isotope::Isotope(char* isotope_name){
 	/* By default the thermal scattering cdfs have not been initialized */
 	_num_thermal_cdfs = 0;
 	_num_thermal_cdf_bins = 0;
+
+	/* FIXME: may need to update these defaults later */
+	initializeThermalScattering(1, 8, 20, 4);
 }
 
 
@@ -185,7 +192,8 @@ float Isotope::getElasticXS(float energy) const {
 
 	/* Use linear interpolation to find the elastic scatter cross-section */
 	return linearInterp<float, float, float>(_elastic_xs_energies,
-								_elastic_xs, _num_elastic_xs, energy);
+						 _elastic_xs, _num_elastic_xs, 
+						 energy);
 }
 
 
@@ -219,7 +227,8 @@ scatterAngleType Isotope::getElasticAngleType() const {
 
 	if (_num_elastic_xs == 0)
 		log_printf(ERROR, "Cannot return an elastic angle type"
-				"for isotope %s since it has not been set", _isotope_name);
+			   "for isotope %s since it has not been set", 
+			   _isotope_name);
 
 	return _elastic_angle;
 }
@@ -346,6 +355,7 @@ float Isotope::getTotalXS(float energy) const {
 
 		std::map<collisionType, float(Isotope::*)(float)
 										const>::const_iterator iter;
+
 		for (iter = _xs_handles.begin(); iter!= _xs_handles.end(); ++iter)
 			total_xs += (this->*iter->second)(energy);
 
@@ -481,27 +491,62 @@ void Isotope::makeFissionable() {
  * @param angle_type the type of angle (only used for scattering)
  * @param delimiter the character between data values in file
  */
-void Isotope::loadXS(char* filename, collisionType type, char* delimiter) {
+void Isotope::loadXS(char* isotope_name, collisionType type) {
 
-	/* Find the number of cross-section values in the file */
-	int num_xs_values = getNumCrossSectionDataPoints(filename);
-
-	/* Initialize data structures to store cross-section values */
-	float* energies = new float[num_xs_values];
-	float* xs_values = new float[num_xs_values];
-
-	/* Parse the file into the data structures */
-	parseCrossSections(filename, energies, xs_values, num_xs_values,
-														delimiter);
+	std::string prefix = "../XS_Lib/";
+	std::string isotope = isotope_name;
+	std::string filename;
 
 	/* Set this isotope's appropriate cross-section using the data
 	 * structures */
-	if (type == ELASTIC)
+	if (type == ELASTIC){
+
+		filename = prefix + isotope + "-elastic.txt";
+
+		/* Find the number of cross-section values in the file */
+		int num_xs_values = getNumCrossSectionDataPoints(filename.c_str());
+
+		/* Initialize data structures to store cross-section values */
+		float* energies = new float[num_xs_values];
+		float* xs_values = new float[num_xs_values];
+
+		/* Parse the file into the data structures */
+		parseCrossSections(filename.c_str(), energies, xs_values);
+
 		setElasticXS(xs_values, energies, num_xs_values, ISOTROPIC_LAB);
-	else if (type == ABSORPTION)
-		setAbsorptionXS(xs_values, energies, num_xs_values);
-	else if (type == FISSION)
+	}
+	else if (type == CAPTURE){
+
+		filename = prefix + isotope + "-capture.txt";
+
+		/* Find the number of cross-section values in the file */
+		int num_xs_values = getNumCrossSectionDataPoints(filename.c_str());
+
+		/* Initialize data structures to store cross-section values */
+		float* energies = new float[num_xs_values];
+		float* xs_values = new float[num_xs_values];
+
+		/* Parse the file into the data structures */
+		parseCrossSections(filename.c_str(), energies, xs_values);
+
+		setCaptureXS(xs_values, energies, num_xs_values);
+	}
+	else if (type == FISSION) {
+
+		filename = prefix + isotope + "-fission.txt";
+
+		/* Find the number of cross-section values in the file */
+		int num_xs_values = getNumCrossSectionDataPoints(filename.c_str());
+
+		/* Initialize data structures to store cross-section values */
+		float* energies = new float[num_xs_values];
+		float* xs_values = new float[num_xs_values];
+
+		/* Parse the file into the data structures */
+		parseCrossSections(filename.c_str(), energies, xs_values);
+
 		setFissionXS(xs_values, energies, num_xs_values);
+	}
 
 	return;
 }
@@ -551,6 +596,20 @@ void Isotope::setAbsorptionXS(float* absorb_xs, float* absorb_xs_energies,
 
 
 /**
+ * Set the capture cross-section for this isotope
+ * @param capture_xs a float array of microscopic capture xs (barns)
+ * @param capture_xs_energies a float array of energies (eV)
+ * @param num_capture_xs the number of capture xs values
+ */
+void Isotope::setCaptureXS(float* capture_xs, float* capture_xs_energies,
+													int num_capture_xs) {
+    _capture_xs = capture_xs;
+    _capture_xs_energies = capture_xs_energies;
+    _num_capture_xs = num_capture_xs;
+}
+
+
+/**
  * Set the fission cross-section for this isotope
  * @param fission_xs a float array of microscopic fission xs (barns)
  * @param fission_xs_energies a float array of energies (eV)
@@ -589,9 +648,9 @@ void Isotope::generateCaptureXS() {
 	_capture_xs = (float*) malloc(sizeof(float) * _num_capture_xs);
 	_capture_xs_energies = (float*) malloc(sizeof(float) * _num_capture_xs);
 	float (Isotope::*func)(float)const;
-    func = &Isotope::getCaptureXS;
-    _xs_handles.insert(std::pair<collisionType, float(Isotope::*)(float)
-    											const>(CAPTURE, func));
+	func = &Isotope::getCaptureXS;
+	_xs_handles.insert(std::pair<collisionType, float(Isotope::*)(float)
+    			   						const>(CAPTURE, func));
 
 	/* Generate a capture xs for all energies at which an 
 	 * absorption xs has been defined */
@@ -609,14 +668,11 @@ void Isotope::generateCaptureXS() {
  * @param num_energies the number of points in the new energy grid
  */
 void Isotope::rescaleXS(float* energies, int num_energies) {
-
-	/* Loops over all cross-section types to find the one for this energy */
-	std::map<collisionType, float(Isotope::*)(float)
-												const>::const_iterator iter;
-
-	for (iter = _xs_handles.begin(); iter != _xs_handles.end(); ++iter) {
-
-		float* new_xs = new float[num_energies];
+    /* Loops over all cross-section types to find the one for this energy */
+    std::map<collisionType, float(Isotope::*)(float)const>::const_iterator iter;
+    for (iter = _xs_handles.begin(); iter != _xs_handles.end(); ++iter) {
+	
+	float* new_xs = new float[num_energies];
 		float* new_energies = new float[num_energies];
 		memcpy(new_energies, energies, sizeof(float)*num_energies);
 
@@ -627,7 +683,8 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 			_num_elastic_xs = num_energies;
 			delete [] _elastic_xs_energies;
 			delete _elastic_xs;
-			setElasticXS(new_xs, new_energies, num_energies, _elastic_angle);
+			setElasticXS(new_xs, new_energies, num_energies, 
+				     _elastic_angle);
 		}
 		else if (iter->first == ABSORPTION) {
 			_num_absorb_xs = num_energies;
@@ -658,13 +715,19 @@ Isotope* Isotope::clone() {
 	/* Allocate memory for the clone */
 	Isotope* new_clone = new Isotope(_isotope_name);
 
+	/* Loops over all tallies and add them to the clone */
+	for (std::vector<Tally*>::iterator it = _tallies.begin(); 
+	     it != _tallies.end(); it++) {
+	    new_clone->addTally(*it);
+	}
+
 	/* Set the clones isotope name, atomic number, number density */
 	new_clone->setIsotopeType(_isotope_name);
 	new_clone->setA(_A);
 	new_clone->setN(_N);
 	new_clone->setTemperature(_T);
 	if (_fissionable)
-		new_clone->makeFissionable();
+	    new_clone->makeFissionable();
 
 	/* If the given isotope has an elastic scatter xs */
 	if (_num_elastic_xs > 0) {
@@ -676,7 +739,7 @@ Isotope* Isotope::clone() {
 		/* Deep copy the energies for each of the xs values */
 		float* elastic_xs_energies = new float[_num_elastic_xs];
 		memcpy(elastic_xs_energies, _elastic_xs_energies,
-								sizeof(float)*_num_elastic_xs);
+		       sizeof(float)*_num_elastic_xs);
 
 		/* Set the clone's xs */
 		new_clone->setElasticXS(elastic_xs, elastic_xs_energies,
@@ -696,7 +759,8 @@ Isotope* Isotope::clone() {
 				sizeof(float)*_num_absorb_xs);
 
 		/* Set the clone's capture xs */
-		new_clone->setAbsorptionXS(absorb_xs, absorb_xs_energies, _num_absorb_xs);
+		new_clone->setAbsorptionXS(absorb_xs, absorb_xs_energies, 
+					   _num_absorb_xs);
 	}
 
 	/* If the capture xs has been generated for the given isotope */
@@ -732,10 +796,11 @@ Isotope* Isotope::clone() {
 
 	/* Initialize the isotope's thermal scattering CDFs if they have been
 	 * created for this isotope */
-	if (_num_thermal_cdfs > 0)
-		new_clone->initializeThermalScattering(_E_to_kT[0]*_kB*_T,
-			_E_to_kT[_num_thermal_cdfs-1]*_kB*_T, _num_thermal_cdf_bins,
-													_num_thermal_cdfs);
+	if (_num_thermal_cdfs > 0) {
+		new_clone->initializeThermalScattering
+		    (_E_to_kT[0]*_kB*_T, _E_to_kT[_num_thermal_cdfs-1]*_kB*_T, 
+		     _num_thermal_cdf_bins, _num_thermal_cdfs);
+	}
 
 	/* Return a pointer to the cloned Isotope class */
 	return new_clone;
@@ -774,7 +839,6 @@ collisionType Isotope::getCollisionType(float energy) {
 
 	return type;
 }
-
 
 /**
  * For a given neutron energy in eV in a scattering collision, this
@@ -854,7 +918,8 @@ float Isotope::getThermalScatteringEnergy(float energy) {
  * @param end_distributions the number of scattering distributions
  */
 void Isotope::initializeThermalScattering(float start_energy,
-					float end_energy, int num_bins, int num_distributions) {
+					float end_energy, int num_bins, 
+					  int num_distributions) {
 
 	/* Number of thermal scattering distributions */
 	_num_thermal_cdfs = num_distributions;
@@ -872,7 +937,8 @@ void Isotope::initializeThermalScattering(float start_energy,
 
 	/* Initialize logarithmically spaced E/kT for each distribution */
 	_E_to_kT = logspace<float, float>(start_energy/(_kB*_T),
-									end_energy/(_kB*_T), _num_thermal_cdfs);
+					  end_energy/(_kB*_T), 
+					  _num_thermal_cdfs);
 
 	/* Find the maximum Eprime / E value that we must extend our distributions
 	 * to before they all fall below some tolerance */
@@ -901,20 +967,20 @@ void Isotope::initializeThermalScattering(float start_energy,
 
 	/* Initialize x-axis of Eprime to E ratios */
 	_Eprime_to_E = logspace<float, float>(1E-5, curr_Eprime_to_E,
-										_num_thermal_cdf_bins);
+					      _num_thermal_cdf_bins);
 
 	/* Loop over each distribution */
 	for (int i=0; i < _num_thermal_cdfs; i++) {
 		for (int j=0; j < _num_thermal_cdf_bins; j++)
 			_thermal_dist[i*_num_thermal_cdf_bins + j] =
-									thermalScatteringProb(_Eprime_to_E[j], i);
+			    thermalScatteringProb(_Eprime_to_E[j], i);
 	}
 
 	/* Create CDFs for each distribution */
 	for (int i=0; i < _num_thermal_cdfs; i++) {
 		cumulativeIntegral(_Eprime_to_E,
-							&_thermal_dist[i*_num_thermal_cdf_bins], cdf,
-										_num_thermal_cdf_bins, TRAPEZOIDAL);
+				   &_thermal_dist[i*_num_thermal_cdf_bins], cdf,
+				   _num_thermal_cdf_bins, TRAPEZOIDAL);
 
 		/* Transfer CDF values to our array */
 		for (int j=0; j < _num_thermal_cdf_bins; j++)
@@ -972,5 +1038,82 @@ float Isotope::thermalScatteringProb(float E_prime_to_E, int dist_index) {
 	return float(prob);
 }
 
+void Isotope::addTally(Tally *tally) {
+    tally->setTallyDomainType(ISOTOPE);
+    _tallies.push_back(tally);
+    return;
+}
 
+
+/**
+ * Clear this isotope's vector of Tally class object pointers
+ */
+void Isotope::clearTallies() {
+	_tallies.clear();
+}
+
+/**
+ * For a given energy, this method calls getCollisionType() to sample 
+ * the collision type, and then tally the event into the appropriate
+ * tally classes for that isotope if any. 
+ * @param energy the incoming neutron energy (eV)
+ * @return the collision type (ELASTIC, CAPTURE, FISSION)
+ */
+collisionType Isotope::collideNeutron(float energy) {
+    collisionType type = getCollisionType(energy);
+
+    float total_xs = getTotalXS(energy);
+    float elastic_xs = getElasticXS(energy);
+    float absorption_xs = getAbsorptionXS(energy);
+    float capture_xs = getCaptureXS(energy);
+    float fission_xs = getFissionXS(energy);
+    float transport_xs = getTransportXS(energy);
+
+    /* FIXME: replace float energy with neutron struct, and update batch_num */
+    int batch_num = 1;
+    float sample = energy;
+
+    /* FIXME: tally the event into the appropriate tally classes  */
+    /* Loops over all tallies and add them to the clone */
+    std::vector<Tally*>::iterator iter;
+	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+	    Tally *tally = *iter;
+	    tallyType tally_type = tally->getTallyType();
+	    switch (tally_type) {
+	    case FLUX:
+		tally->weightedTally(sample, 1.0 / total_xs, batch_num);
+	    case COLLISION_RATE:
+		if (type == TOTAL)
+		    tally->weightedTally(sample, 1.0, batch_num);
+	    case ELASTIC_RATE:
+		if (type == ELASTIC)
+		    tally->weightedTally(sample, elastic_xs / total_xs, 
+					 batch_num);
+	    case ABSORPTION_RATE:
+		if (type == ABSORPTION)
+		    tally->weightedTally(sample, absorption_xs / total_xs, 
+					 batch_num);
+	    case CAPTURE_RATE:
+		if (type == CAPTURE)
+		    tally->weightedTally(sample, capture_xs / total_xs, 
+					 batch_num);
+	    case FISSION_RATE:
+		if (type == FISSION)
+		    tally->weightedTally(sample, fission_xs / total_xs, 
+					 batch_num);
+	    case TRANSPORT_RATE:
+		if (type == TRANSPORT)
+		    tally->weightedTally(sample, transport_xs / total_xs, 
+					 batch_num);
+	    case DIFFUSION_RATE: /* FIXME */
+		if (type == DIFFUSION) 
+		    tally->weightedTally(sample, 
+					 1.0 / (3 * transport_xs * total_xs), 
+					 batch_num); 
+	    case LEAKAGE_RATE:; /* FIXME */
+	    }
+	}
+
+    return type;
+}
 

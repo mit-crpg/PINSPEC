@@ -15,6 +15,9 @@
  */
 Material::Material() {
 	_material_name = (char*)"";
+	_material_density = 0.0;
+	_material_number_density = 0.0;
+	_material_atomic_mass = 0.0;
 	_rescaled = false;
 }
 
@@ -48,8 +51,8 @@ char* Material::getMaterialName() {
  * this material
  * @return the total number density (at/cm^3)
  */
-float Material::getTotalNumberDensity() {
-	return _tot_num_density;
+float Material::getMaterialNumberDensity() {
+	return _material_number_density;
 }
 
 
@@ -589,7 +592,7 @@ int Material::getEnergyGridIndex(float energy) {
 
 /**
  * Sets this Material's name as defined by the user
- * @param name the name of this Material
+ * @param set the name of this Material
  */
 void Material::setMaterialName(char* name) {
 	_material_name = name;
@@ -597,30 +600,90 @@ void Material::setMaterialName(char* name) {
 
 
 /**
+ * Sets this Material's density as defined by the user
+ * @param set the density of this Material
+ */
+void Material::setDensity(float density, char* unit) {
+	_material_density = density;
+	if (strcmp(unit, "g/cc") != 0)
+	    log_printf(ERROR, "Cannot set Material %s number density in"
+						"units %s since PINSPEc only support units in" 							"g/cc", _material_name, unit);
+}
+
+/**
+ * Set the number density of this material.
+ */
+void Material::setNumberDensity(float number_density) {
+	_material_number_density = number_density;
+}
+
+
+/**
+ * Sets this Material's atomic mass computed from user inputs
+ * @param set the atomic mass of this Material
+ */
+void Material::setAtomicMass(float atomic_mass) {
+	_material_atomic_mass = atomic_mass;
+}
+
+
+/**
  * Adds a new isotope to this Material
  * @param isotope a pointer to a isotope class object
- * @param num_density the number density (at/cm^3) for this isotope
+ * @param atomic_ratio the atomic ratio of the isotope
  */
-void Material::addIsotope(Isotope* isotope) {
+void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
+    float num_density;
 
-	/* Creates a pair between the number density and isotope pointer */
-	std::pair<float, Isotope*> new_pair = std::pair<float, Isotope*>
-													(_density * isotope->getAO(), isotope);
+    /* Checks to make sure material density is set already */
+    if (_material_density <= 0)
+	log_printf(ERROR, "material number density is not set yet!");
 
-	std::pair<char*, std::pair<float, Isotope*> > new_isotope =
-							std::pair<char*, std::pair<float, Isotope*> >
-									(isotope->getIsotopeType(), new_pair);
+    /* Increments the material's atomic mass */
+    _material_atomic_mass += atomic_ratio * isotope->getA();
 
-	/* Inserts the isotope and increments the total number density */
-	_isotopes.insert(new_isotope);
+    /* Rescale isotope's cross sections */
+    float* grid;
+    grid = logspace<float, float>(_start_energy, _end_energy, _num_energies);
+    isotope->rescaleXS(grid, _num_energies);
+    delete [] grid;
+    //_rescaled = true;
+
+    /* Creates a pair between the number density and isotope pointer */
+    std::pair<float, Isotope*> new_pair = std::pair<float, Isotope*>
+	(atomic_ratio, isotope);
+    
+    std::pair<char*, std::pair<float, Isotope*> > new_isotope =
+	std::pair<char*, std::pair<float, Isotope*> >
+	(isotope->getIsotopeType(), new_pair);
+    
+    /* Inserts the isotope and increments the total number density */
+    _isotopes.insert(new_isotope);
+
+    return;
+}
+
+
+/* Update all isotopes' number densities after a material is complete */
+void Material::complete() {
+    std::map<char*, std::pair<float, Isotope*> >::iterator iter;
+    float N_av = 6.023E-1;
+    float base = _material_density * N_av / _material_number_density;
+    
+    /* Loop over all isotopes */
+	for (iter =_isotopes.begin(); iter !=_isotopes.end(); ++iter){
+	    float atomic_ratio = iter->second.first;
+	    /* Computes isotope's number density */
+	    float num_density = atomic_ratio * base;
+	    iter->second.first = num_density;
+	}
 
 	return;
 }
 
 
-
 void Material::rescaleCrossSections(float start_energy, float end_energy,
-								int num_energies, energyGridType scale_type) {
+				    int num_energies, binSpacingTypes scale_type) {
 
 	float* grid;
 
@@ -687,29 +750,10 @@ Isotope* Material::sampleIsotope(float energy) {
 
 	if (isotope == NULL)
 		log_printf(ERROR, "Unable to find isotope type in material %s"
-				" moveNeutron method, test = %1.20f, new_num_density_ratio "
-				"= %1.20f", _material_name, test, new_sigma_t_ratio);
-
+			   " moveNeutron method, test = %1.20f, new_num_density_ratio "
+			   "= %1.20f", _material_name, test, new_sigma_t_ratio);
+	
 	return isotope;
-}
-
-
-/**
- * Set the material density
- */
-void Material::setDensity(float density, char* unit){
-
-	if (strcmp(unit, "g/cc") == 0){
-		_units = GRAMCM3;
-	}
-	else if (strcmp(unit, "n/cc") == 0){
-		_units = NUMCM3;
-	}
-	else{
-		log_printf(ERROR, "Units entered are not valid");
-	}
-
-	_density = density;
 }
 
 
@@ -718,61 +762,132 @@ void Material::setDensity(float density, char* unit){
  * @return the material density
  */
 float Material::getDensity(){
-	return _density;
+	return _material_density;
+}
+
+
+
+/**
+ * Add a tally class object to  this material's vector of Tally
+ */
+void Material::addTally(Tally *tally) {
+    tally->setTallyDomainType(MATERIAL);
+    _tallies.push_back(tally);
+    return;
+}
+
+/**
+ * Clear this material's vector of Tally class object pointers
+ */
+void Material::clearTallies() {
+	_tallies.clear();
+}
+
+/**
+ * For a given energy, this method calls sampleIsotope() to sample 
+ * an isotop, then sample a reaction type in that isotope by using
+ * Isotope::collideNeutron(), then tally the event into the appropriate
+ * tally classes for that isotope if any. 
+ * @param energy the incoming neutron energy (eV)
+ * @return the collision type (ELASTIC, CAPTURE, FISSION)
+ */
+collisionType Material::collideNeutron(float energy) {
+    Isotope *isotope;
+    isotope = sampleIsotope(energy);
+    collisionType type = isotope->getCollisionType(energy);
+
+    /* Obtains macroscopic cross sections for this material class  */
+    float total_xs = getTotalMacroXS(energy);
+    float elastic_xs = getElasticMacroXS(energy);
+    float absorption_xs = getAbsorptionMacroXS(energy);
+    float capture_xs = getCaptureMacroXS(energy);
+    float fission_xs = getFissionMacroXS(energy);
+    float transport_xs = getTransportMacroXS(energy);
+
+    /* FIXME: replace float energy with neutron struct, and update batch_num */
+    int batch_num = 1;
+    float sample = energy;
+
+    /* Tallies the event into the appropriate tally classes  */
+    /* Loops over all tallies and add them to the clone */
+    std::vector<Tally*>::iterator iter;
+	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+	    Tally *tally = *iter;
+	    tallyType tally_type = tally->getTallyType();
+	    switch (tally_type) {
+	    case FLUX:
+		tally->weightedTally(sample, 1.0 / total_xs, batch_num);
+	    case COLLISION_RATE:
+		if (type == TOTAL)
+		    tally->weightedTally(sample, 1.0, batch_num);
+	    case ELASTIC_RATE:
+		if (type == ELASTIC)
+		    tally->weightedTally(sample, elastic_xs / total_xs, 
+					 batch_num);
+	    case ABSORPTION_RATE:
+		if (type == ABSORPTION)
+		    tally->weightedTally(sample, absorption_xs / total_xs, 
+					 batch_num);
+	    case CAPTURE_RATE:
+		if (type == CAPTURE)
+		    tally->weightedTally(sample, capture_xs / total_xs, 
+					 batch_num);
+	    case FISSION_RATE:
+		if (type == FISSION)
+		    tally->weightedTally(sample, fission_xs / total_xs, 
+					 batch_num);
+	    case TRANSPORT_RATE:
+		if (type == TRANSPORT)
+		    tally->weightedTally(sample, transport_xs / total_xs, 
+					 batch_num);
+	    case DIFFUSION_RATE: /* FIXME */
+		if (type == DIFFUSION) 
+		    tally->weightedTally(sample, 
+					 1.0 / (3 * transport_xs * total_xs), 
+					 batch_num); 
+	    case LEAKAGE_RATE:; /* FIXME */
+	    }
+	}
+
+
+
+    return type;
 }
 
 
 /**
- * Load all xs for material
+ * This method clones a given Material class object by executing a deep
+ * copy of all of the Material's class attributes and giving them to a new
+ * Material class object
+ * @return a pointer to the new cloned Material class object
  */
-void Material::loadXS(){
+Material* Material::clone() {
 
-	/* loop over isotopes */
+	/* Allocate memory for the clone */
+	Material* new_clone = new Material();
+
+	/* Loops over all tallies and add them to the clone */
+	for (std::vector<Tally*>::iterator it = _tallies.begin(); 
+	     it != _tallies.end(); it++) {
+	    new_clone->addTally(*it);
+	}
+
+	/* Loops over all isotopes and add them to the clone */
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 	Isotope* curr;
 
-	std::string prefix = '../XS_Lib/';
-	std::string isotope;
-	std::string prefix_iso_xs;
-	char* isotope_xs;
-
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter) {
-
-		curr = iter->second.second;
-		isotope = curr->getIsotopeType();
-
-		/* get scat */
-		prefix_iso_xs = prefix + isotope + '-scat.txt';
-		isotope_xs = (char*)prefix_iso_xs.c_str();
-		parseCrossSections(isotope_xs, curr->_elastic_xs_energies, curr->_elastic_xs);
-
-		/* get cap */
-		prefix_iso_xs = prefix + isotope + '-cap.txt';
-		isotope_xs = (char*)prefix_iso_xs.c_str();
-		parseCrossSections(isotope_xs, curr->_capture_xs_energies, curr->_capture_xs);
-
-		/* get fis */
-		if (curr->isFissionable()){
-			prefix_iso_xs = prefix + isotope + '-fis.txt';
-			isotope_xs = (char*)prefix_iso_xs.c_str();
-			parseCrossSections(isotope_xs, curr->_fission_xs_energies, curr->_fission_xs);
-		}
-
+	    new_clone->addIsotope(iter->second.second, iter->second.first);
 	}
 
+	/* Set the clones isotope name, atomic number, number density */
+	new_clone->setMaterialName(_material_name);
+	new_clone->setDensity(_material_density, (char*)"g/cc");
+	new_clone->setNumberDensity(_material_number_density);
+	new_clone->setAtomicMass(_material_atomic_mass);
+
+
+	/* Return a pointer to the cloned Isotope class */
+	return new_clone;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
