@@ -17,24 +17,14 @@ Material::Material() {
 	_material_name = (char*)"";
 	_material_density = 0.0;
 	_material_number_density = 0.0;
-	_material_atomic_mass = 0.0;
-	_rescaled = false;
+	_material_atomic_mass = 1.0;
 }
 
 
 /**
- * Material destructor deletes all isotopes within it
+ * Material destructor does not delete anything since that is left to SWIG
  */
-Material::~Material() {
-
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	Isotope* curr;
-
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter) {
-		curr = iter->second.second;
-		delete curr;
-	}
-}
+Material::~Material() { }
 
 
 /**
@@ -90,9 +80,10 @@ float Material::getTotalMacroXS(float energy) {
 
 	/* Increment sigma_t for each isotope */
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
+	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter) {
 		sigma_t += iter->second.second->getTotalXS(energy)
 											* iter->second.first * 1E-24;
+    }
 
 	return sigma_t;
 }
@@ -543,54 +534,6 @@ float Material::getTransportMicroXS(int energy_index) {
 
 
 /**
- * This method returns whether or not the Material's Isotope's
- * cross-sections have been rescaled to a uniform energy grid
- * @return whether or not the cross-sections have been rescaled
- */
-bool Material::isRescaled() {
-	return _rescaled;
-}
-
-
-/**
- * This method returns the index for a certain energy (eV) into
- * the uniform energy grid if this Material's Isotope's
- * cross-sections have been rescaled
- * @param energy the energy (eV) of interest
- * @return the index into the uniform energy grid
- */
-int Material::getEnergyGridIndex(float energy) {
-
-	int index;
-
-	if (!_rescaled)
-	    log_printf(ERROR, "Unable to return an index for material %s "
-		       "since it has not been rescaled", _material_name);
-
-	if (_scale_type == EQUAL) {
-		if (energy > _end_energy)
-			index = _num_energies - 1;
-		else if (energy < _start_energy)
-			index = 0;
-		else
-			index = floor((energy - _start_energy) / _delta_energy);
-	}
-
-	else if (_scale_type == LOGARITHMIC)
-		energy = log10(energy);
-
-		if (energy > _end_energy)
-			index = _num_energies - 1;
-		else if (energy < _start_energy)
-			index = 0;
-		else
-			index = floor((energy - _start_energy) / _delta_energy);
-
-	return index;
-}
-
-
-/**
  * Sets this Material's name as defined by the user
  * @param set the name of this Material
  */
@@ -609,8 +552,9 @@ void Material::setDensity(float density, char* unit) {
 	    log_printf(ERROR, "Cannot set Material %s number density in"
 		       "units %s since PINSPEc only support units in"
 		       "g/cc", _material_name, unit);
-	}
+	}    
 }
+
 
 /**
  * Set the number density of this material.
@@ -642,18 +586,18 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 
     /* Checks to make sure material density is set already */
     if (_material_density <= 0)
-	log_printf(ERROR, "%s: material number density is not set yet!", 
-		   _material_name);
-
-    /* Rescales the isotope's cross sections */
-    grid = logspace<float, float>(_start_energy, _end_energy, _num_energies);
-    isotope->rescaleXS(grid, _num_energies);
-    delete [] grid;
-    //_rescaled = true;
+	log_printf(ERROR, "Unable to add Isotope %s since the number density "
+                       "for Material %s has not yet been set", 
+                        isotope->getIsotopeType(), _material_name);
 
     /* Increments the material's total atomic mass and number density */
     N_av = 6.023E-1;
-    old_atomic_mass = _material_atomic_mass;
+
+    if (_material_atomic_mass == 0.0)
+        old_atomic_mass = 1.0;
+    else
+        old_atomic_mass = _material_atomic_mass;
+
     _material_atomic_mass += atomic_ratio * isotope->getA();
 
     /* Calculates the material's number density */
@@ -663,7 +607,7 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 
     /* Calculates the isotope's number density */
     isotope_number_density = atomic_ratio * _material_number_density;
-
+    
     /* Creates a pair between the number density and isotope pointer */
     std::pair<float, Isotope*> new_pair = std::pair<float, Isotope*>
 	(isotope_number_density, isotope);
@@ -682,42 +626,6 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     }
 
     return;
-}
-
-
-void Material::rescaleCrossSections(float start_energy, float end_energy,
-				    int num_energies, binSpacingTypes scale_type) {
-
-	float* grid;
-
-	if (scale_type == EQUAL) {
-		grid = linspace<float, float>(start_energy, end_energy, num_energies);
-		_start_energy = start_energy;
-		_end_energy = end_energy;
-		_delta_energy = (_end_energy - _start_energy) / num_energies;
-	}
-	else {
-		grid = logspace<float, float>(start_energy, end_energy, num_energies);
-		_start_energy = log10(start_energy);
-		_end_energy = log10(end_energy);
-		_delta_energy = (_end_energy - _start_energy) / num_energies;
-	}
-
-	_num_energies = num_energies;
-	_scale_type = scale_type;
-
-	/* Loop over all isotopes */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	Isotope* isotope;
-
-	for (iter =_isotopes.begin(); iter !=_isotopes.end(); ++iter){
-		isotope = iter->second.second;
-		isotope->rescaleXS(grid, num_energies);
-	}
-
-	_rescaled = true;
-	delete [] grid;
-	return;
 }
 
 
@@ -753,7 +661,7 @@ Isotope* Material::sampleIsotope(float energy) {
 
 	if (isotope == NULL) {
 	    log_printf(ERROR, "Unable to find isotope type in material %s"
-		       " moveNeutron method, test = %1.20f," 
+		       " sampleIsotope method, test = %1.20f," 
 		       " new_num_density = %1.20f", 
 		       _material_name, test, new_sigma_t_ratio);
 	}
@@ -804,7 +712,9 @@ collisionType Material::collideNeutron(neutron* neut) {
 
     Isotope *isotope;
     isotope = sampleIsotope(energy);
-    collisionType type = isotope->getCollisionType(energy);
+    collisionType type = isotope->collideNeutron(neut);
+    log_printf(DEBUG, "Material %s has sampled collision type %d from isotope %s", 
+                                   _material_name, type, isotope->getIsotopeType());
 
     /* Obtains macroscopic cross sections for this material class  */
     float total_xs = getTotalMacroXS(energy);
@@ -872,7 +782,7 @@ Material* Material::clone() {
 	/* Loops over all tallies and add them to the clone */
 	for (std::vector<Tally*>::iterator it = _tallies.begin(); 
 	     it != _tallies.end(); it++) {
-	    new_clone->addTally(*it);
+	    new_clone->addTally((*it)->clone());
 	}
 
 	/* Loops over all isotopes and add them to the clone */
@@ -880,12 +790,17 @@ Material* Material::clone() {
 	Isotope* curr;
 
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter) {
-	    new_clone->addIsotope(iter->second.second, iter->second.first);
+	    new_clone->addIsotope((iter->second.second)->clone(), iter->second.first);
 	}
 
 	/* Set the clones isotope name, atomic number, number density */
 	new_clone->setMaterialName(_material_name);
-	new_clone->setDensity(_material_density, (char*)"g/cc");
+
+    if (_density_unit == GRAM_CM3)
+	    new_clone->setDensity(_material_density, (char*)"g/cc");
+    else if (_density_unit == NUM_CM3)
+	    new_clone->setDensity(_material_density, (char*)"at/cc");
+
 	new_clone->setNumberDensity(_material_number_density);
 	new_clone->setAtomicMass(_material_atomic_mass);
 

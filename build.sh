@@ -27,7 +27,7 @@ fi
 # workaround for SWIG
 cp src/Isotope.h src/Isotope.bak
 sed 's/	std::map<collisionType/\/\/	std::map<collisionType/' src/Isotope.bak > src/Isotope.h
-swig -python -c++ swig/Geometry.i
+swig -python -c++ python/pinspec/Geometry.i
 cp src/Isotope.h src/Isotope.bak
 sed 's/\/\/	std::map<collisionType/	std::map<collisionType/' src/Isotope.bak > src/Isotope.h
 rm src/Isotope.bak
@@ -45,8 +45,8 @@ g++ src/Tally.cpp -c $CFLAGS
 g++ src/Fissioner.cpp -c $CFLAGS
 g++ src/Region.cpp -c $CFLAGS
 g++ src/Geometry.cpp -c $CFLAGS
-g++ swig/Geometry_wrap.cxx -c $CFLAGS
-g++ $LFLAGS Isotope.o xsreader.o log.o Material.o Tally.o Neutron.o Region.o Fissioner.o Geometry.o Geometry_wrap.o -o swig/_pinspec.so
+g++ python/pinspec/Geometry_wrap.cxx -c $CFLAGS
+g++ $LFLAGS Isotope.o xsreader.o log.o Material.o Tally.o Neutron.o Region.o Fissioner.o Geometry.o Geometry_wrap.o -o python/pinspec/_pinspec.so
 
 # Cleanup
 mv *.o objs/

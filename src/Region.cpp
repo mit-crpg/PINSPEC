@@ -31,7 +31,7 @@ Region::Region() {
 
 
 /**
- * Region destructor
+ * Region destructor does not delete anything since that is left to SWIG
  */
 Region::~Region() { }
 

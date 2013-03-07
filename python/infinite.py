@@ -26,16 +26,16 @@ def main():
     mix.addIsotope(u235, 0.03)
     mix.addIsotope(u238, 0.97)
 
-    print 'added isotopes'
-   
+    log_printf(INFO, "Added isotopes")
+    
     # Define regions
     region_mix = Region()
     region_mix.setRegionName('infinite medium fuel/moderator mix')
     region_mix.setRegionType(INFINITE)
     region_mix.setMaterial(mix)
 
-    print 'made region'
-
+    log_printf(INFO, "Made mixture region")
+    
 	# Define tallies - give them to Regions, Materials, or Isotopes
 	# This part is really where we need to know how to pass float
     # arrays to/from SWIG
@@ -48,24 +48,18 @@ def main():
     geometry.setNumBatches(10)
     geometry.setNumThreads(1)
 
-    print 'made geometry'
-        
+    log_printf(INFO, "Made geometry")
+
 	# Run Monte Carlo simulation
 #    geometry.runMonteCarloSimulation();
-
-    print 'ran MC'
         
 	# Dump batch statistics to output files to some new directory
 #    geometry.outputBatchStatistics('DirectoryName')
-
-    print 'outputted stats'
         
 	# Plot data
 
 	# Cleanup data - I think you need to do this to avoid a 
 	# segmentation fault, but I'm not sure
-    del geometry
-
 
 if __name__ == '__main__':
     

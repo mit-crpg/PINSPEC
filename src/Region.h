@@ -11,10 +11,9 @@
 #define REGION_H_
 
 #include <vector>
-#include <math.h>
-#include <algorithm>
-#include <stdarg.h>
-//#include <omp.h>
+//#include <math.h>
+//#include <algorithm>
+//#include <stdarg.h>
 #include "Material.h"
 #include "Neutron.h"
 #include <string.h>
@@ -61,6 +60,10 @@ private:
 	std::vector<float> _fuel_ring_radii;
 	std::vector<float> _moderator_ring_radii;	
 
+    void clearTallies();
+    bool contains(float x, float y);
+    bool onBoundary(float x, float y);
+
 public:
 	Region();
 	virtual ~Region();
@@ -87,10 +90,6 @@ public:
 	void addModeratorRingRadius(float radius);
 
 	void collideNeutron(neutron* neut);
-
-    void clearTallies();
-    bool contains(float x, float y);
-    bool onBoundary(float x, float y);
 };
 
 #endif /* REGION_H_ */

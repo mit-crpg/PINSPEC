@@ -37,16 +37,10 @@ Geometry::Geometry() {
 
 
 /**
- * Geometry destructor deletes the Fissioner and all Regions within it
+ * Geometry destructor deletes the Fissioner and lets SWIG delete 
+ * the Regions, Materials, Isotopes and Tallies
  */
 Geometry::~Geometry() {
-
-	if (_infinite_medium != NULL)
-		delete _infinite_medium;
-	if (_fuel != NULL)
-		delete _fuel;
-	if (_moderator != NULL)
-		delete _moderator;
 
 	delete _fissioner;
 }
@@ -259,7 +253,7 @@ void Geometry::runMonteCarloSimulation() {
 
 	/* Print report to the screen */
 	log_printf(INFO, "Beginning PINSPEC Monte Carlo Simulation...");
-	log_printf(INFO, "# neutrons / batch = %d\t# batches = %d\t# threads = %d",
+	log_printf(INFO, "# neutrons / batch = %d\t\t# batches = %d\t\t# threads = %d",
 						_num_neutrons_per_batch, _num_batches, _num_threads);
 
 
@@ -292,6 +286,7 @@ void Geometry::runMonteCarloSimulation() {
                  */
 				while (curr->_alive == true) {
 					_infinite_medium->collideNeutron(curr);
+                    log_printf(DEBUG, "Updated neutron energy to %f", curr->_energy);
 				}
 			}
 		}
@@ -409,12 +404,11 @@ float Geometry::computeFuelFuelCollisionProb(float energy) {
  * @return the moderator-to-fuel collision probability at that energy
  */
 float Geometry::computeModeratorFuelCollisionProb(float energy) {
-	int energy_index = _fuel->getMaterial()->getEnergyGridIndex(energy);
 	float p_mf;
 	float p_ff = computeFuelFuelCollisionProb(energy);
 	float p_fm = 1.0 - p_ff;
-	float tot_sigma_f = _fuel->getMaterial()->getTotalMacroXS(energy_index);
-	float tot_sigma_mod = _moderator->getMaterial()->getTotalMacroXS(energy_index);
+	float tot_sigma_f = _fuel->getMaterial()->getTotalMacroXS(energy);
+	float tot_sigma_mod = _moderator->getMaterial()->getTotalMacroXS(energy);
 	float v_mod = _moderator->getVolume();
 	p_mf = p_fm*(tot_sigma_f*_fuel->getVolume()) / (tot_sigma_mod*v_mod);
 	return p_mf;

@@ -55,7 +55,7 @@ typedef enum tallyTypes {
 class Tally{
 
 private:
-	char* _name;
+	char* _tally_name;
 	int _num_bins;
 	float* _edges;
 	double* _centers;
@@ -100,6 +100,7 @@ public:
 	double* getBatchRelativeError();
 
 	void setTallyName(char* name);
+    void setBinSpacingType(binSpacingType type);
 	void setTallyDomainType(tallyDomainType type);
 	void setTallyType(tallyType type);
 	void setBinEdges(float* edges, int num_edges);
@@ -107,8 +108,10 @@ public:
 	void generateBinEdges(float start, float end, int num_bins, 
 											binSpacingType type);
 	void setNumBatches(int num_batches);
+	Tally* clone();
 
 	void generateBinCenters();
+
 	void tally(float* samples, int num_samples, int batch_num);
 	void tally(float sample, int batch_num);
 	void weightedTally(float* samples, float* sample_weights, 
