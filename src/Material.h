@@ -41,6 +41,7 @@ public:
 	char* getMaterialName();
 	float getMaterialNumberDensity();
 	Isotope* getIsotope(char* isotope);
+	float getDensity();
 	float getIsotopeNumDensity(char* isotope);
 	
 	float getTotalMacroXS(float energy);
@@ -78,7 +79,7 @@ public:
 	void setDensity(float density, char* unit);
 	void setNumberDensity(float number_density);
 	void setAtomicMass(float atomic_mass);
-	float getDensity();
+    void setNumBatches(int num_batches);
 	void addIsotope(Isotope *isotope, float atomic_ratio);
 
 	Isotope* sampleIsotope(float energy);

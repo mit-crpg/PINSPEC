@@ -573,6 +573,29 @@ void Material::setAtomicMass(float atomic_mass) {
 }
 
 
+
+/**
+ * Sets the number of batches for each of the Tallies inside of this Material
+ * @param num_batches the number of batches
+ */
+void Material::setNumBatches(int num_batches) {
+
+    /* Set the number of batches for each Tally inside of this Material */
+    std::vector<Tally*>::iterator iter1;
+	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); iter1 ++) {
+        (*iter1)->setNumBatches(num_batches);
+    }
+
+    /* Set the number of batches for each of this Material's Tallies */
+	std::map<char*, std::pair<float, Isotope*> >::iterator iter2;
+	for (iter2 = _isotopes.begin(); iter2 != _isotopes.end(); ++iter2) {
+        iter2->second.second->setNumBatches(num_batches);
+    }
+
+    return;
+}
+
+
 /**
  * Adds a new isotope to this Material
  * @param isotope a pointer to a isotope class object

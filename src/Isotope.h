@@ -133,8 +133,8 @@ public:
     void setA(int A);
     void setAO(float AO);
     void setN(float N);
-
     void setTemperature(float T);
+    void setNumBatches(int num_batches);
 
 	void loadXS();
 	void setElasticXS(float* elastic_xs, float* elastic_xs_energies,

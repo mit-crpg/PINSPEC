@@ -86,6 +86,7 @@ public:
 									float alpha1, float alpha2);
 	void setFuelRadius(float radius);
 	void setPitch(float pitch);
+    void setNumBatches(int num_batches);
 	void addFuelRingRadius(float radius);
 	void addModeratorRingRadius(float radius);
 

@@ -230,6 +230,25 @@ void Region::setPitch(float pitch) {
 
 
 /**
+ * Sets the number of batches for each of the Tallies inside of this Region
+ * @param num_batches the number of batches
+ */
+void Region::setNumBatches(int num_batches) {
+
+    /* Set the number of batches for each Tally inside of this Region */
+    std::vector<Tally*>::iterator iter;
+	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+        (*iter)->setNumBatches(num_batches);
+    }
+
+    /* Set the number of batches for each of the Tallies inside the Material */
+    _material->setNumBatches(num_batches);
+
+    return;
+}
+
+
+/**
  * Adds a new fuel ring radius for this Region if it is not INFINITE
  * @param radius a fuel ring radius
  */

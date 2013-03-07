@@ -257,13 +257,16 @@ void Geometry::runMonteCarloSimulation() {
 						_num_neutrons_per_batch, _num_batches, _num_threads);
 
 
-
 	/*************************************************************************/
 	/************************   INFINITE_HOMOGENEOUS *************************/
 	/*************************************************************************/
 
     /* If we are running an infinite medium spectral calculation */
 	if (_spatial_type == INFINITE_HOMOGENEOUS){
+
+        /* Inform Region of the number of batches to run - this is needed to
+         * initialize the Tally classes for this many batches */
+        _infinite_medium->setNumBatches(_num_batches);
 
 		neutron* curr = initializeNewNeutron();
 
@@ -300,6 +303,11 @@ void Geometry::runMonteCarloSimulation() {
 
 	/* If we are running homogeneous equivalence spectral calculation */
 	else if (_spatial_type == HOMOGENEOUS_EQUIVALENCE) {
+
+        /* Inform Regions of the number of batches to run - this is needed to
+         * initialize the Tally classes for this many batches */
+        _fuel->setNumBatches(_num_batches);
+        _moderator->setNumBatches(_num_batches);
 
 		/* Check that all necessary parameters have been set */
 		if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
@@ -374,6 +382,12 @@ void Geometry::runMonteCarloSimulation() {
 
 	/* If we are running homogeneous equivalence spectral calculation */
 	else if (_spatial_type == HETEROGENEOUS) {
+
+        /* Inform Regions of the number of batches to run - this is needed to
+         * initialize the Tally classes for this many batches */
+        _fuel->setNumBatches(_num_batches);
+        _moderator->setNumBatches(_num_batches);
+
 		/* Initialize neutrons from fission spectrum for each thread */
 		/* Loop over batches */
 		/* Loop over neutrons per batch*/

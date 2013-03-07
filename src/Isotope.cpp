@@ -561,6 +561,22 @@ void Isotope::setTemperature(float T) {
 
 
 /**
+ * Sets the number of batches for each of the Tallies inside of this Isotope
+ * @param num_batches the number of batches
+ */
+void Isotope::setNumBatches(int num_batches) {
+
+    /* Set the number of batches for each Tally inside of this Isotope */
+    std::vector<Tally*>::iterator iter;
+	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+        (*iter)->setNumBatches(num_batches);
+    }
+
+    return;
+}
+
+
+/**
  * Make this a fissionable isotope
  */
 void Isotope::makeFissionable() {

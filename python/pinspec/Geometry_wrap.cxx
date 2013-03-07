@@ -4315,6 +4315,36 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Region_setNumBatches(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_setNumBatches",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_setNumBatches" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_setNumBatches" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  (arg1)->setNumBatches(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Region_addFuelRingRadius(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Region *arg1 = (Region *) 0 ;
@@ -5643,6 +5673,36 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Isotope_setNumBatches(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_setNumBatches",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setNumBatches" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_setNumBatches" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  (arg1)->setNumBatches(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Isotope_loadXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Isotope *arg1 = (Isotope *) 0 ;
@@ -6419,6 +6479,28 @@ SWIGINTERN PyObject *_wrap_Material_getIsotope(PyObject *SWIGUNUSEDPARM(self), P
   return resultobj;
 fail:
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_getDensity(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Material_getDensity",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getDensity" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  result = (float)(arg1)->getDensity();
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
   return NULL;
 }
 
@@ -7936,22 +8018,30 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Material_getDensity(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Material_setNumBatches(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Material *arg1 = (Material *) 0 ;
+  int arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
-  float result;
+  PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Material_getDensity",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:Material_setNumBatches",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getDensity" "', argument " "1"" of type '" "Material *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_setNumBatches" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  result = (float)(arg1)->getDensity();
-  resultobj = SWIG_From_float(static_cast< float >(result));
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_setNumBatches" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  (arg1)->setNumBatches(arg2);
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -10583,6 +10673,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Region_setTwoRegionPinCellParams", _wrap_Region_setTwoRegionPinCellParams, METH_VARARGS, NULL},
 	 { (char *)"Region_setFuelRadius", _wrap_Region_setFuelRadius, METH_VARARGS, NULL},
 	 { (char *)"Region_setPitch", _wrap_Region_setPitch, METH_VARARGS, NULL},
+	 { (char *)"Region_setNumBatches", _wrap_Region_setNumBatches, METH_VARARGS, NULL},
 	 { (char *)"Region_addFuelRingRadius", _wrap_Region_addFuelRingRadius, METH_VARARGS, NULL},
 	 { (char *)"Region_addModeratorRingRadius", _wrap_Region_addModeratorRingRadius, METH_VARARGS, NULL},
 	 { (char *)"Region_collideNeutron", _wrap_Region_collideNeutron, METH_VARARGS, NULL},
@@ -10615,6 +10706,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_setAO", _wrap_Isotope_setAO, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setN", _wrap_Isotope_setN, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setTemperature", _wrap_Isotope_setTemperature, METH_VARARGS, NULL},
+	 { (char *)"Isotope_setNumBatches", _wrap_Isotope_setNumBatches, METH_VARARGS, NULL},
 	 { (char *)"Isotope_loadXS", _wrap_Isotope_loadXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setElasticXS", _wrap_Isotope_setElasticXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setElasticAngleType", _wrap_Isotope_setElasticAngleType, METH_VARARGS, NULL},
@@ -10639,6 +10731,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Material_getMaterialName", _wrap_Material_getMaterialName, METH_VARARGS, NULL},
 	 { (char *)"Material_getMaterialNumberDensity", _wrap_Material_getMaterialNumberDensity, METH_VARARGS, NULL},
 	 { (char *)"Material_getIsotope", _wrap_Material_getIsotope, METH_VARARGS, NULL},
+	 { (char *)"Material_getDensity", _wrap_Material_getDensity, METH_VARARGS, NULL},
 	 { (char *)"Material_getIsotopeNumDensity", _wrap_Material_getIsotopeNumDensity, METH_VARARGS, NULL},
 	 { (char *)"Material_getTotalMacroXS", _wrap_Material_getTotalMacroXS, METH_VARARGS, NULL},
 	 { (char *)"Material_getTotalMicroXS", _wrap_Material_getTotalMicroXS, METH_VARARGS, NULL},
@@ -10656,7 +10749,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Material_setDensity", _wrap_Material_setDensity, METH_VARARGS, NULL},
 	 { (char *)"Material_setNumberDensity", _wrap_Material_setNumberDensity, METH_VARARGS, NULL},
 	 { (char *)"Material_setAtomicMass", _wrap_Material_setAtomicMass, METH_VARARGS, NULL},
-	 { (char *)"Material_getDensity", _wrap_Material_getDensity, METH_VARARGS, NULL},
+	 { (char *)"Material_setNumBatches", _wrap_Material_setNumBatches, METH_VARARGS, NULL},
 	 { (char *)"Material_addIsotope", _wrap_Material_addIsotope, METH_VARARGS, NULL},
 	 { (char *)"Material_sampleIsotope", _wrap_Material_sampleIsotope, METH_VARARGS, NULL},
 	 { (char *)"Material_addTally", _wrap_Material_addTally, METH_VARARGS, NULL},
