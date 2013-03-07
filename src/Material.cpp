@@ -645,16 +645,22 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 	log_printf(ERROR, "%s: material number density is not set yet!", 
 		   _material_name);
 
+    log_printf(NORMAL, "2.1");
+
     /* Rescales the isotope's cross sections */
     grid = logspace<float, float>(_start_energy, _end_energy, _num_energies);
     isotope->rescaleXS(grid, _num_energies);
     delete [] grid;
     //_rescaled = true;
 
+    log_printf(NORMAL, "2.2");
+
     /* Increments the material's total atomic mass and number density */
     N_av = 6.023E-1;
     old_atomic_mass = _material_atomic_mass;
     _material_atomic_mass += atomic_ratio * isotope->getA();
+
+    log_printf(NORMAL, "2.3");
 
     /* Calculates the material's number density */
     /* Notice I am using old_atomic_mass because I update all isotopes at
