@@ -3761,6 +3761,27 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Geometry_computeBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Geometry_computeBatchStatistics",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_computeBatchStatistics" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  (arg1)->computeBatchStatistics();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Geometry_outputBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Geometry *arg1 = (Geometry *) 0 ;
@@ -4428,6 +4449,27 @@ SWIGINTERN PyObject *_wrap_Region_collideNeutron(PyObject *SWIGUNUSEDPARM(self),
   }
   arg2 = reinterpret_cast< neutron * >(argp2);
   (arg1)->collideNeutron(arg2);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_computeBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Region_computeBatchStatistics",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_computeBatchStatistics" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  (arg1)->computeBatchStatistics();
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6291,6 +6333,27 @@ SWIGINTERN PyObject *_wrap_Isotope_getDistanceTraveled(PyObject *SWIGUNUSEDPARM(
   arg2 = reinterpret_cast< neutron * >(argp2);
   result = (float)(arg1)->getDistanceTraveled(arg2);
   resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_computeBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Isotope_computeBatchStatistics",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_computeBatchStatistics" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  (arg1)->computeBatchStatistics();
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -8194,6 +8257,27 @@ SWIGINTERN PyObject *_wrap_Material_collideNeutron(PyObject *SWIGUNUSEDPARM(self
   arg2 = reinterpret_cast< neutron * >(argp2);
   result = (collisionType)(arg1)->collideNeutron(arg2);
   resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_computeBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Material_computeBatchStatistics",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_computeBatchStatistics" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  (arg1)->computeBatchStatistics();
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -10652,6 +10736,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Geometry_setTwoRegionPinCellParams", _wrap_Geometry_setTwoRegionPinCellParams, METH_VARARGS, NULL},
 	 { (char *)"Geometry_addRegion", _wrap_Geometry_addRegion, METH_VARARGS, NULL},
 	 { (char *)"Geometry_runMonteCarloSimulation", _wrap_Geometry_runMonteCarloSimulation, METH_VARARGS, NULL},
+	 { (char *)"Geometry_computeBatchStatistics", _wrap_Geometry_computeBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Geometry_outputBatchStatistics", _wrap_Geometry_outputBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Geometry_swigregister", Geometry_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Region", _wrap_new_Region, METH_VARARGS, NULL},
@@ -10677,6 +10762,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Region_addFuelRingRadius", _wrap_Region_addFuelRingRadius, METH_VARARGS, NULL},
 	 { (char *)"Region_addModeratorRingRadius", _wrap_Region_addModeratorRingRadius, METH_VARARGS, NULL},
 	 { (char *)"Region_collideNeutron", _wrap_Region_collideNeutron, METH_VARARGS, NULL},
+	 { (char *)"Region_computeBatchStatistics", _wrap_Region_computeBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Region_outputBatchStatistics", _wrap_Region_outputBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Region_swigregister", Region_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Isotope", _wrap_new_Isotope, METH_VARARGS, NULL},
@@ -10723,6 +10809,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_addTally", _wrap_Isotope_addTally, METH_VARARGS, NULL},
 	 { (char *)"Isotope_clearTallies", _wrap_Isotope_clearTallies, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getDistanceTraveled", _wrap_Isotope_getDistanceTraveled, METH_VARARGS, NULL},
+	 { (char *)"Isotope_computeBatchStatistics", _wrap_Isotope_computeBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Isotope_outputBatchStatistics", _wrap_Isotope_outputBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Isotope_swigregister", Isotope_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Material", _wrap_new_Material, METH_VARARGS, NULL},
@@ -10755,6 +10842,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Material_addTally", _wrap_Material_addTally, METH_VARARGS, NULL},
 	 { (char *)"Material_clearTallies", _wrap_Material_clearTallies, METH_VARARGS, NULL},
 	 { (char *)"Material_collideNeutron", _wrap_Material_collideNeutron, METH_VARARGS, NULL},
+	 { (char *)"Material_computeBatchStatistics", _wrap_Material_computeBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Material_outputBatchStatistics", _wrap_Material_outputBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Material_swigregister", Material_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Tally", _wrap_new_Tally, METH_VARARGS, NULL},

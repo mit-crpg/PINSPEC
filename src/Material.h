@@ -87,6 +87,7 @@ public:
 	void clearTallies();
 
 	collisionType collideNeutron(neutron* neut);
+    void computeBatchStatistics();
     void outputBatchStatistics(char* directory, char* suffix);
 };
 

@@ -1224,6 +1224,21 @@ float Isotope::getDistanceTraveled(neutron* neutron) {
 }
 
 
+/**
+ * Calls each of the Tally class objects in the Isotope to compute
+ * their batch-based statiscs from the tallies
+ */
+void Isotope::computeBatchStatistics() {
+
+    /* Compute statistics for each of this Isotope's Tallies */
+    std::vector<Tally*>::iterator iter;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
+        (*iter)->computeBatchStatistics();
+
+    return;
+}
+
 
 /**
  * Calls each of the Tally class objects in the Isotope to output

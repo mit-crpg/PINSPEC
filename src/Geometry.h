@@ -68,6 +68,7 @@ public:
 
 	/* Monte Carlo kernel */
 	void runMonteCarloSimulation();
+    void computeBatchStatistics();
     void outputBatchStatistics(char* directory,  char* suffix);
 };
 

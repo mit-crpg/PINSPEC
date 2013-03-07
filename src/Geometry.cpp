@@ -392,6 +392,23 @@ void Geometry::runMonteCarloSimulation() {
 		/* Loop over batches */
 		/* Loop over neutrons per batch*/
 	}
+
+
+    /* Compute batch statistics for all Tallies in this simulation */
+    computeBatchStatistics();
+}
+
+
+void Geometry::computeBatchStatistics() {
+
+    if (_spatial_type == INFINITE_HOMOGENEOUS)
+        _infinite_medium->computeBatchStatistics();
+    else {
+        _fuel->computeBatchStatistics();
+        _moderator->computeBatchStatistics();
+    }
+
+    return;
 }
 
 

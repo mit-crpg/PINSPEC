@@ -404,6 +404,25 @@ bool Region::onBoundary(float x, float y) {
 
 
 /**
+ * Calls each of the Tally class objects in the Region to compute
+ * their batch-based statistics from the tallies
+ */
+void Region::computeBatchStatistics() {
+
+    /* Compute statistics for each of this Region's Tallies */
+    std::vector<Tally*>::iterator iter;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
+        (*iter)->computeBatchStatistics();
+
+    /* Compute statistics for the Material's Tallies */
+    _material->computeBatchStatistics();
+
+    return;
+}
+
+
+/**
  * Calls each of the Tally class objects in the Region to output
  * their tallies and statistics to output files.
  * @param directory the directory to write batch statistics files
@@ -423,5 +442,7 @@ void Region::outputBatchStatistics(char* directory, char* suffix) {
 
     /* Output statistics for the Materials Tallies */
     _material->outputBatchStatistics(directory, suffix);
+
+    return;
 }
 

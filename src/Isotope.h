@@ -161,6 +161,7 @@ public:
 	void clearTallies();
 
 	float getDistanceTraveled(neutron *neutron);
+    void computeBatchStatistics();
     void outputBatchStatistics(char* directory, char* suffix);
 };
 

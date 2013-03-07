@@ -91,6 +91,7 @@ public:
 	void addModeratorRingRadius(float radius);
 
 	void collideNeutron(neutron* neut);
+    void computeBatchStatistics();
     void outputBatchStatistics(char* directory, char* suffix);
 };
 
