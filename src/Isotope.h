@@ -76,7 +76,7 @@ private:
 	float* _total_xs_energies;
 
 	/* Map of keys (xs types) with values (getXS functions for xs types) */
-//	std::map<collisionType, float(Isotope::*)(float) const> _xs_handles;
+	std::map<collisionType, float(Isotope::*)(float) const> _xs_handles;
 	std::vector<Tally*> _tallies;
 
 	int _num_thermal_cdfs;
@@ -146,6 +146,8 @@ public:
 
 	void addTally(Tally *tally);
 	void clearTallies();
+
+	void RIEnergies(double *ri_vec, int n);
 
 	float getDistanceTraveled(neutron *neutron);
 };

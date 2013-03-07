@@ -85,7 +85,6 @@ Isotope::~Isotope() {
 void Isotope::parseName(){
 
 	int A = 0;
-
 	int i = 0;
 	while (_isotope_name[i] != '\0'){
 
@@ -178,6 +177,9 @@ float Isotope::getMuAverage() const {
  */
 bool Isotope::isFissionable() const {
 	return _fissionable;
+
+
+
 }
 
 
@@ -689,6 +691,8 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 		_fission_xs_energies = new_energies;
 	}
 
+	log_printf(NORMAL, "generating absorption");
+
 	/* Absorption xs */
 	if (_num_absorb_xs != 0) {
 		float* new_energies = new float[num_energies];
@@ -1149,6 +1153,29 @@ float Isotope::getDistanceTraveled(neutron* neutron) {
 
     return distance;
 }
+
+
+/**
+ * Generates a set of resonance integral bins based off user defined
+ * range of energy bounds
+ * @param array of energy values used to create RI tally bins
+ * @param length of array
+ */
+void RIEnergies(float *ri_energies, int n){
+
+	_ri_energies = new float [n];
+
+	for (int i = 0; i < n; i++){
+		_ri_energies[i] = ri_energies[i];
+	}
+
+	return;
+}
+
+
+
+
+
 
 
 
