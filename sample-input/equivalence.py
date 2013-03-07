@@ -11,7 +11,7 @@ def main():
 	#       then they must figure out the atom ratio using geometric parameters
 	#       and use that when loading the isotope in a material
 
-    log_setlevel('DEBUG')
+    log_setlevel(INFO)
     
     # Define isotopes
     h1 = Isotope('H-1')
@@ -50,16 +50,16 @@ def main():
    
     # Define regions
     region_mod = Region()
+    region_mod.setRegionName('moderator')
     region_mod.setRegionType(MODERATOR)
     region_mod.setMaterial(moderator)
-    region_mod.setRegionName('moderator')
     
     print 'set moderator'
 
     region_fuel = Region()
+    region_fuel.setRegionName('fuel')
     region_fuel.setRegionType(FUEL)
     region_fuel.setMaterial(fuel)
-    region_fuel.setRegionName('fuel')
 
     print 'set fuel'
     
@@ -87,10 +87,10 @@ def main():
     geometry.setNumThreads(1)
 
 	# Run Monte Carlo simulation
-    geometry.runMonteCarloSimulation();
+#    geometry.runMonteCarloSimulation();
 
 	# Dump batch statistics to output files to some new directory
-    geometry.outputBatchStatistics('DirectoryName')
+#    geometry.outputBatchStatistics('DirectoryName')
 
 	# Plot data
 

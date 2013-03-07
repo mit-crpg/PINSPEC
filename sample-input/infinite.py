@@ -9,6 +9,8 @@ def main():
 	#       using geometric parameters and use that 
     #       when loading the isotope in a material
     
+    log_setlevel(INFO)
+
     # Define isotopes
     h1 = Isotope('H-1')
     o16 = Isotope('O-16')
@@ -28,7 +30,8 @@ def main():
    
     # Define regions
     region_mix = Region()
-    region_mix.setRegionType('infinite')
+    region_mix.setRegionName('infinite medium fuel/moderator mix')
+    region_mix.setRegionType(INFINITE)
     region_mix.setMaterial(mix)
 
     print 'made region'
@@ -48,12 +51,12 @@ def main():
     print 'made geometry'
         
 	# Run Monte Carlo simulation
-    geometry.runMonteCarloSimulation();
+#    geometry.runMonteCarloSimulation();
 
     print 'ran MC'
         
 	# Dump batch statistics to output files to some new directory
-    geometry.outputBatchStatistics('DirectoryName')
+#    geometry.outputBatchStatistics('DirectoryName')
 
     print 'outputted stats'
         
