@@ -71,6 +71,9 @@ ELASTIC = _isotope.ELASTIC
 ABSORPTION = _isotope.ABSORPTION
 CAPTURE = _isotope.CAPTURE
 FISSION = _isotope.FISSION
+TRANSPORT = _isotope.TRANSPORT
+DIFFUSION = _isotope.DIFFUSION
+LEAKAGE = _isotope.LEAKAGE
 TOTAL = _isotope.TOTAL
 ISOTROPIC_CM = _isotope.ISOTROPIC_CM
 ISOTROPIC_LAB = _isotope.ISOTROPIC_LAB
@@ -87,6 +90,7 @@ class Isotope(_object):
     __swig_destroy__ = _isotope.delete_Isotope
     __del__ = lambda self : None;
     def parseName(self): return _isotope.Isotope_parseName(self)
+    def makeFissionable(self): return _isotope.Isotope_makeFissionable(self)
     def getIsotopeType(self): return _isotope.Isotope_getIsotopeType(self)
     def getA(self): return _isotope.Isotope_getA(self)
     def getAlpha(self): return _isotope.Isotope_getAlpha(self)
@@ -108,19 +112,22 @@ class Isotope(_object):
     def setAO(self, *args): return _isotope.Isotope_setAO(self, *args)
     def setN(self, *args): return _isotope.Isotope_setN(self, *args)
     def setTemperature(self, *args): return _isotope.Isotope_setTemperature(self, *args)
-    def makeFissionable(self): return _isotope.Isotope_makeFissionable(self)
     def loadXS(self, *args): return _isotope.Isotope_loadXS(self, *args)
     def setElasticXS(self, *args): return _isotope.Isotope_setElasticXS(self, *args)
     def setElasticAngleType(self, *args): return _isotope.Isotope_setElasticAngleType(self, *args)
     def setAbsorptionXS(self, *args): return _isotope.Isotope_setAbsorptionXS(self, *args)
+    def setCaptureXS(self, *args): return _isotope.Isotope_setCaptureXS(self, *args)
     def setFissionXS(self, *args): return _isotope.Isotope_setFissionXS(self, *args)
     def generateCaptureXS(self): return _isotope.Isotope_generateCaptureXS(self)
     def rescaleXS(self, *args): return _isotope.Isotope_rescaleXS(self, *args)
     def clone(self): return _isotope.Isotope_clone(self)
     def getCollisionType(self, *args): return _isotope.Isotope_getCollisionType(self, *args)
+    def collideNeutron(self, *args): return _isotope.Isotope_collideNeutron(self, *args)
     def getThermalScatteringEnergy(self, *args): return _isotope.Isotope_getThermalScatteringEnergy(self, *args)
     def initializeThermalScattering(self, *args): return _isotope.Isotope_initializeThermalScattering(self, *args)
     def thermalScatteringProb(self, *args): return _isotope.Isotope_thermalScatteringProb(self, *args)
+    def addTally(self, *args): return _isotope.Isotope_addTally(self, *args)
+    def clearTallies(self): return _isotope.Isotope_clearTallies(self)
 Isotope_swigregister = _isotope.Isotope_swigregister
 Isotope_swigregister(Isotope)
 

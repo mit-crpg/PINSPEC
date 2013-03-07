@@ -51,7 +51,7 @@ Tally::~Tally() {
 
 
 /**
- * Returns the name of this Tally as specified by the user
+ * Returns the of this Tally as specified by the user
  * @return the Tally's name
  */
 char* Tally::getTallyName() {

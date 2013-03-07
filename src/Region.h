@@ -14,10 +14,10 @@
 #include <math.h>
 #include <algorithm>
 #include <stdarg.h>
-#include <omp.h>
+//#include <omp.h>
 #include "Material.h"
 #include "Isotope.h"
-#include "Neutron.h"
+//#include "Neutron.h"
 #include "Tally.h"
 
 #define _USE_MATH_DEFINES
