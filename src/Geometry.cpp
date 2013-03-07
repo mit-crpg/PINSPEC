@@ -128,6 +128,33 @@ void Geometry::setNumThreads(int num_threads) {
 
 
 /**
+ * Sets the escape cross-section, beta, alpha1 and alpha2 parameters
+ * used for a two region pin cell simulation. The Geometry must have
+ * HOMOGENEOUS_EQUIVALENCE spatial type set for this to work.
+ * @param sigma_e the escape cross-section
+ * @param beta Carlvik's beta parameter
+ * @param alpha1 Carlvik's alpha1 parameter
+ * @param alpha2 Carlvik's alpha2 parameter
+ */
+void setTwoRegionPinCellParams(float sigma_e, float beta, 
+								float alpha1, float alpha2) {
+	if (_spatial_type == INFINITE) {
+		log_printf(ERROR, "Cannot set two region HOMOGENEOUS_EQUIVALENCE"
+						" parameters for an INFINITE Geometry");
+	}
+	if (_spatial_type == HETEROGENEOUS) {
+		log_printf(ERROR, "Cannot set two region HOMOGENEOUS_EQUIVALENCE"
+						" parameters for a HETEROGENEOUS Geometry");
+	}
+
+	_sigma_e = sigma_e;
+	_beta = beta;
+	_alpha1 = alpha1;
+	_alpha2 = alpha2;
+}
+
+
+/**
  * Set the Geometry's spatial type 
  * (INFINITE_HOMOGENEOUS, HOMOGENEOUS_EQUIVALENCE or HETEROGENEOUS)
  * @param spatial_type the spatial type
@@ -278,6 +305,13 @@ void Geometry::runMonteCarloSimulation() {
 
 	/* If we are running homogeneous equivalence spectral calculation */
 	else if (_spatial_type == HOMOGENEOUS_EQUIVALENCE) {
+
+		/* Check that all necessary parameters have been set */
+		if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
+			log_printf(ERROR, "Unable to run a HOMOGENEOUS_EQUIVALENCE type 
+					" simulation since beta, sigma_e, alpha1, or alpha2 for 
+					" have not yet been set for the geometry");
+
 		/* Initialize neutrons from fission spectrum for each thread */
 		/* Loop over batches */
 		/* Loop over neutrons per batch*/		
@@ -295,4 +329,39 @@ void Geometry::runMonteCarloSimulation() {
 		/* Loop over batches */
 		/* Loop over neutrons per batch*/
 	}
+}
+
+
+/**
+ * This function computes the two-region fuel-to-fuel collision probability for
+ * a two-region pin cell simulation. It uses Carlvik's two-term rational model.
+ * @param energy the energy for a neutron in eV
+ * @return the fuel-to-fuel collision probability at that energy
+ */
+float Region1D::computeFuelFuelCollisionProb(float energy) {
+	float p_ff;
+	float sigma_tot_fuel = _fuel->getMaterial()->getTotalMacroXS(energy);
+	p_ff = ((_beta*sigma_tot_fuel) / (_alpha1*_sigma_e + sigma_tot_fuel)) +
+		((1.0 - _beta)*sigma_tot_fuel / (_alpha2*_sigma_e + sigma_tot_fuel));
+	return p_ff;
+}
+
+
+/**
+ * This function computes the two-region moderator-to-fuel collision
+ * probability for a two-region pin cell simulation. It uses Carlvik's
+ * two-term rational model.
+ * @param energy the energy for a neutron in eV
+ * @return the moderator-to-fuel collision probability at that energy
+ */
+float Region1D::computeModeratorFuelCollisionProb(float energy) {
+	int energy_index = _fuel->getEnergyGridIndex(energy);
+	float p_mf;
+	float p_ff = computeFuelFuelCollisionProb(energy);
+	float p_fm = 1.0 - p_ff;
+	float tot_sigma_f = _fuel->getMaterial()->getTotalMacroXS(energy_index);
+	float tot_sigma_mod = _moderator->getMaterial()->getTotalMacroXS(energy_index);
+	float v_mod = _moderator->getVolume();
+	p_mf = p_fm*(tot_sigma_f*_volume) / (tot_sigma_mod*v_mod);
+	return p_mf;
 }

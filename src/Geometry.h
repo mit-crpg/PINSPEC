@@ -37,6 +37,11 @@ private:
 	neutron* _neutrons;
 	Fissioner* _fissioner;
 
+	float _sigma_e;
+	float _beta;
+	float _alpha1;
+	float _alpha2;
+
 public:
 	Geometry();
 	virtual ~Geometry();
@@ -53,12 +58,14 @@ public:
 	void setNumBatches(int num_batches);
 	void setNumThreads(int num_threads);
 	void setSpatialType(spatialType spatial_type);
+	void setTwoRegionPinCellParams(float sigma_e, float beta,
+								float alpha1, float alpha2);
 	void addRegion(Region* region);
 
 	/* Monte Carlo kernel */
 	void runMonteCarloSimulation();
-//    float computeFuelFuelCollisionProb(int energy_index);
-//    float computeModeratorFuelCollisionProb(int energy_index);
+    float computeFuelFuelCollisionProb(float energy);
+    float computeModeratorFuelCollisionProb(float energy);
 };
 
 
