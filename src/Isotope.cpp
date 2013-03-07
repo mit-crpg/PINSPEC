@@ -41,6 +41,7 @@ Isotope::Isotope(char* isotope_name){
 }
 
 
+
 /**
  * Isotope destructor deletes array of cross section values that
  * have been assigned to this isotope
