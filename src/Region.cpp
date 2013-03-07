@@ -18,10 +18,6 @@ Region::Region() {
 	_region_type = INFINITE;
 	_volume = 0.0;
 
-	/* By default the Region is infinite (unbounded) */
-	_region_type = INFINITE;
-	_spatial_type = HOMOGENEOUS;
-
 	/* Default two region pin cell parameters */
 	_sigma_e = 0.0;
 	_beta = 0.0;
@@ -74,15 +70,6 @@ Material* Region::getMaterial() {
  */
 regionType Region::getRegionType() {
 	return _region_type;
-}
-
-
-/**
- * Return the spatial type of Region (HOMOGENEOUS or HETEROGENEOUS)
- * @return the spatial type
- */
-spatialType Region::getSpatialType() {
-	return _spatial_type;
 }
 
 
@@ -186,15 +173,6 @@ void Region::setRegionType(regionType region_type) {
 
 
 /**
- * Set this Region's spatial type (HOMOGENEOUS or HETEROGENEOUS)
- * @param spatial_type the spatial type of region
- */
-void Region::setSpatialType(spatialType spatial_type) {
-	_spatial_type = spatial_type;
-}
-
-
-/**
  * Adds a new Tallies to this region for tallying
  * @param bins a pointer to a Tally class object
  */
@@ -281,90 +259,6 @@ void Region::addModeratorRingRadius(float radius) {
 					" which is a FUEL type region", _name);
 
 	_moderator_ring_radii.push_back(radius);
-}
-
-
-/**
- * This function computes the two-region fuel-to-fuel collision probability for
- * a two-region pin cell simulation. It uses Carlvik's two-term rational model
- * and assumes that the escape cross-section (_sigma_e), _beta, _alpha1 and
- * _alpha2 have all been set or else it throws an error
- * @param energy_index index into the material's energy grid
- * @return the fuel-to-fuel collision probability at that energy
- */
-float Region::computeFuelFuelCollisionProb(int energy_index) {
-
-	float p_ff;
-
-	/* If this is the fuel region, we can compute p_ff directly */
-	if (_region_type == FUEL) {
-
-		/* Check that all necessary parameters to compute p_ff have been set */
-		if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
-			log_printf(ERROR, "Unable to compute a fuel-fuel collision "
-					"probability for region %s since beta, sigma_e, "
-					"alpha1, or alpha2 for this region has not yet been set",
-					_name);
-
-		float sigma_tot_fuel = _material->getTotalMacroXS(energy_index);
-
-		p_ff = ((_beta*sigma_tot_fuel) / (_alpha1*_sigma_e + sigma_tot_fuel)) +
-			((1.0 - _beta)*sigma_tot_fuel / (_alpha2*_sigma_e + sigma_tot_fuel));
-	}
-
-	/* If this is the moderator region, we cannot compute p_ff*/
-	else {
-		log_printf(ERROR, "Unable to compute fuel-fuel collision "
-					"probability for region %s since it is not a "
-					"FUEL region", _name);
-	}
-
-	return p_ff;
-}
-
-
-/**
- * This function computes the two-region moderator-to-fuel collision
- * probability for a two-region pin cell simulation. It uses Carlvik's
- * two-term rational model and assumes that the escape cross-section
- * (_sigma_e), _beta, _alpha1 and _alpha2 have all been set or else it
- * throws an error
- * @param energy_index index into the material's energy grid
- * @return the moderator-to-fuel collision probability at that energy
- */
-float Region::computeModeratorFuelCollisionProb(int energy_index) {
-
-	float p_mf;
-
-	/* If this is the fuel region, we can compute p_mf directly */
-	if (_region_type == FUEL) {
-
-		/* Check that all necessary parameters to compute p_mf have been set */
-		if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
-			log_printf(ERROR, "Unable to compute a moderator-fuel collision "
-					"probability for region %s since beta, sigma_e, alpha1, "
-					"or alpha2 for this region has not yet been set",
-					_name);
-
-		float p_ff = computeFuelFuelCollisionProb(energy_index);
-		float p_fm = 1.0 - p_ff;
-
-		float tot_sigma_f = _material->getTotalMacroXS(energy_index);
-		//NOTE: Need to fix this
-//		float tot_sigma_mod = _other_region->getMaterial()->getTotalMacroXS(energy_index);
-		float v_mod = _pitch * _pitch - M_PI * _fuel_radius * _fuel_radius;
-
-//		p_mf = p_fm*(tot_sigma_f*_volume) / (tot_sigma_mod*v_mod);
-	}
-
-	/* If this is the moderator region, we ask fuel region to compute p_mf */
-	else {
-		log_printf(ERROR, "Unable to compute moderator-fuel collision "
-					"probability for region %s since it is not a FUEL"
-					" region", _name);
-	}
-
-	return p_mf;
 }
 
 

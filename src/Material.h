@@ -10,10 +10,10 @@
 #ifndef MATERIAL_H_
 #define MATERIAL_H_
 
-#include "log.h"
-#include "arraycreator.h"
+//#include "log.h"
+//#include "arraycreator.h"
 #include "Isotope.h"
-#include "Tally.h"
+//#include "Tally.h"
 
 
 class Material {
