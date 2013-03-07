@@ -21,6 +21,6 @@ struct neutron {
 };
 
 
-neutron* initializeNewNeutron(int batch_num);
+neutron* initializeNewNeutron();
 
 #endif /* NEUTRON_H_ */

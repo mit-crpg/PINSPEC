@@ -262,6 +262,68 @@ void Region::addModeratorRingRadius(float radius) {
 }
 
 
+
+/**
+ * This method collides a neutron within some Region. It
+ * tallies the neutron in any Tallies for this Region and 
+ * uses the Region's Material to compute the neutron's 
+ * next energy and collision type.
+ */
+void Region::collideNeutron(neutron* neut) {
+
+	/* If this Region contains any tallies, tally neutron 
+	 * before collision
+	 */
+    int batch_num = neut->_batch_num;
+    float sample = neut->_energy;
+	float total_xs = _material->getTotalMacroXS(sample);
+
+	/* Collide the neutron in the Region's Material */
+    collisionType type = _material->collideNeutron(neut);
+
+    std::vector<Tally*>::iterator iter;
+	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+	    Tally *tally = *iter;
+	    tallyType tally_type = tally->getTallyType();
+	    switch (tally_type) {
+	    case FLUX:
+			tally->weightedTally(sample, 1.0 / total_xs, batch_num);
+	    case COLLISION_RATE:
+		    tally->weightedTally(sample, 1.0, batch_num);
+	    case ELASTIC_RATE:
+		if (type == ELASTIC)
+		    tally->weightedTally(sample, 
+			_material->getElasticMacroXS(sample) / total_xs, batch_num);
+	    case ABSORPTION_RATE:
+		if (type == CAPTURE || type == FISSION)
+		    tally->weightedTally(sample, 
+			_material->getAbsorptionMacroXS(sample) / total_xs, batch_num);
+	    case CAPTURE_RATE:
+		if (type == CAPTURE)
+		    tally->weightedTally(sample, 
+			_material->getCaptureMacroXS(sample) / total_xs, batch_num);
+	    case FISSION_RATE:
+		if (type == FISSION)
+		    tally->weightedTally(sample, 
+			_material->getFissionMacroXS(sample) / total_xs, batch_num);
+	    case TRANSPORT_RATE:
+		if (type == ELASTIC)
+		    tally->weightedTally(sample, 
+			_material->getTransportMacroXS(sample) / total_xs, batch_num);
+	    case DIFFUSION_RATE: /* FIXME */
+		if (type == ELASTIC)
+		    tally->weightedTally(sample, 
+			 1.0 / (3.0 * _material->getTransportMacroXS(sample) * total_xs), 
+																batch_num); 
+	    case LEAKAGE_RATE:; /* FIXME */
+	    }
+	}
+
+	return;
+}
+
+
+
 /**
  * Clear this region's vector of Tally class object pointers
  */

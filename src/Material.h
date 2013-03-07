@@ -10,10 +10,7 @@
 #ifndef MATERIAL_H_
 #define MATERIAL_H_
 
-//#include "log.h"
-//#include "arraycreator.h"
 #include "Isotope.h"
-//#include "Tally.h"
 
 
 class Material {
@@ -94,7 +91,7 @@ public:
 	void addTally(Tally *tally);
 	void clearTallies();
 
-	collisionType collideNeutron(float energy);
+	collisionType collideNeutron(neutron* neut);
 };
 
 #endif /* MATERIAL_H_ */

@@ -231,16 +231,50 @@ void Geometry::runMonteCarloSimulation() {
 						" Geometry does not contain any Regions");
 
 	/* Print report to the screen */
-	log_printf(INFO, "Beginning Monte Carlo Simulation...");
+	log_printf(INFO, "Beginning PINSPEC Monte Carlo Simulation...");
 	log_printf(INFO, "# neutrons / batch = %d\t# batches = %d\t# threads = %d",
 						_num_neutrons_per_batch, _num_batches, _num_threads);
 
+
+
+	/*************************************************************************/
+	/************************   INFINITE_HOMOGENEOUS *************************/
+	/*************************************************************************/
+
     /* If we are running an infinite medium spectral calculation */
 	if (_spatial_type == INFINITE_HOMOGENEOUS){
-		/* Initialize neutrons from fission spectrum for each thread */
-		/* Loop over batches */
-		/* Loop over neutrons per batch*/
+
+		neutron* curr = initializeNewNeutron();
+
+		for (int i=0; i < _num_batches; i++) {
+
+			log_printf(INFO, "Batch #: %d", i);
+
+			curr->_batch_num = i;
+
+			for (int j=0; j < _num_neutrons_per_batch; j++) {
+
+				/* Initialize this neutron's energy [ev] from Watt spectrum */
+				curr->_energy = _fissioner->emitNeutroneV();
+				curr->_alive = true;
+			
+				/* While the neutron is still alive, collide it. All
+                 * tallying and collision physics take place within
+				 * the Region, Material, and Isotope classes filling
+                 * the Geometry
+                 */
+				while (curr->_alive == true) {
+					_infinite_medium->collideNeutron(curr);
+				}
+			}
+		}
 	}
+
+
+
+	/*************************************************************************/
+	/**********************   HOMOGENEOUS_EQUIVALENCE ************************/
+	/*************************************************************************/
 
 	/* If we are running homogeneous equivalence spectral calculation */
 	else if (_spatial_type == HOMOGENEOUS_EQUIVALENCE) {
@@ -248,6 +282,12 @@ void Geometry::runMonteCarloSimulation() {
 		/* Loop over batches */
 		/* Loop over neutrons per batch*/		
     }
+
+
+
+	/*************************************************************************/
+	/***************************   HETEROGENEOUS *****************************/
+	/*************************************************************************/
 
 	/* If we are running homogeneous equivalence spectral calculation */
 	else if (_spatial_type == HETEROGENEOUS) {

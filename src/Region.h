@@ -85,6 +85,8 @@ public:
 	void addFuelRingRadius(float radius);
 	void addModeratorRingRadius(float radius);
 
+	void collideNeutron(neutron* neut);
+
     void clearTallies();
     bool contains(float x, float y);
     bool onBoundary(float x, float y);
