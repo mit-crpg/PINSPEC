@@ -382,3 +382,27 @@ bool Region::onBoundary(float x, float y) {
 			return false;
 	}
 }
+
+
+/**
+ * Calls each of the Tally class objects in the Region to output
+ * their tallies and statistics to output files.
+ * @param directory the directory to write batch statistics files
+ * @param suffix a string to attach to the end of each filename
+ */
+void Region::outputBatchStatistics(char* directory, char* suffix) {
+
+    /* Output statistics for each of this Region's Tallies */
+    std::vector<Tally*>::iterator iter;
+    std::string filename;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
+        filename = std::string(directory) + _name + "_statistics_" 
+                                        + suffix + ".txt";
+        (*iter)->outputBatchStatistics(filename.c_str());
+    }
+
+    /* Output statistics for the Materials Tallies */
+    _material->outputBatchStatistics(directory, suffix);
+}
+

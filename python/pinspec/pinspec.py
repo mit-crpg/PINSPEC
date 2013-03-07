@@ -94,6 +94,7 @@ class Geometry(_object):
     def setTwoRegionPinCellParams(self, *args): return _pinspec.Geometry_setTwoRegionPinCellParams(self, *args)
     def addRegion(self, *args): return _pinspec.Geometry_addRegion(self, *args)
     def runMonteCarloSimulation(self): return _pinspec.Geometry_runMonteCarloSimulation(self)
+    def outputBatchStatistics(self, *args): return _pinspec.Geometry_outputBatchStatistics(self, *args)
 Geometry_swigregister = _pinspec.Geometry_swigregister
 Geometry_swigregister(Geometry)
 
@@ -132,6 +133,7 @@ class Region(_object):
     def addFuelRingRadius(self, *args): return _pinspec.Region_addFuelRingRadius(self, *args)
     def addModeratorRingRadius(self, *args): return _pinspec.Region_addModeratorRingRadius(self, *args)
     def collideNeutron(self, *args): return _pinspec.Region_collideNeutron(self, *args)
+    def outputBatchStatistics(self, *args): return _pinspec.Region_outputBatchStatistics(self, *args)
 Region_swigregister = _pinspec.Region_swigregister
 Region_swigregister(Region)
 
@@ -194,6 +196,7 @@ class Isotope(_object):
     def addTally(self, *args): return _pinspec.Isotope_addTally(self, *args)
     def clearTallies(self): return _pinspec.Isotope_clearTallies(self)
     def getDistanceTraveled(self, *args): return _pinspec.Isotope_getDistanceTraveled(self, *args)
+    def outputBatchStatistics(self, *args): return _pinspec.Isotope_outputBatchStatistics(self, *args)
 Isotope_swigregister = _pinspec.Isotope_swigregister
 Isotope_swigregister(Isotope)
 
@@ -238,6 +241,7 @@ class Material(_object):
     def addTally(self, *args): return _pinspec.Material_addTally(self, *args)
     def clearTallies(self): return _pinspec.Material_clearTallies(self)
     def collideNeutron(self, *args): return _pinspec.Material_collideNeutron(self, *args)
+    def outputBatchStatistics(self, *args): return _pinspec.Material_outputBatchStatistics(self, *args)
 Material_swigregister = _pinspec.Material_swigregister
 Material_swigregister(Material)
 

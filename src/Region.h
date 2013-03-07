@@ -90,6 +90,7 @@ public:
 	void addModeratorRingRadius(float radius);
 
 	void collideNeutron(neutron* neut);
+    void outputBatchStatistics(char* directory, char* suffix);
 };
 
 #endif /* REGION_H_ */

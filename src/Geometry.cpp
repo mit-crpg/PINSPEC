@@ -382,6 +382,34 @@ void Geometry::runMonteCarloSimulation() {
 
 
 /**
+ * Calls each of the Tally class objects in the simulation to output
+ * their tallies and statistics to output files. If a user asks to
+ * output the files to a directory which does not exist, this method
+ * will create the directory.
+ * @param directory the directory to write batch statistics files
+ * @param suffix a string to attach to the end of each filename
+ */
+void Geometry::outputBatchStatistics(char* directory,  char* suffix) {
+
+    /* Check to see if directory exists - if not, create it */
+    struct stat st;
+    if (!stat(directory, &st) == 0) {
+		mkdir(directory, S_IRWXU);
+    }
+
+    /* Call on the Region(s) inside the geometry to output statistics */
+    if (_spatial_type == INFINITE_HOMOGENEOUS)
+        _infinite_medium->outputBatchStatistics(directory, suffix);
+    else {
+        _fuel->outputBatchStatistics(directory, suffix);
+        _moderator->outputBatchStatistics(directory, suffix);
+    }
+
+    return;   
+}
+
+
+/**
  * This function computes the two-region fuel-to-fuel collision probability for
  * a two-region pin cell simulation. It uses Carlvik's two-term rational model.
  * @param energy the energy for a neutron in eV

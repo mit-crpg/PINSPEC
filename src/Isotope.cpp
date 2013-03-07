@@ -583,7 +583,8 @@ void Isotope::loadXS() {
 	 * structures */
 
 
-	/******************************** ELASTIC ********************************/
+	/******************************** ELASTIC ********************************/    void outputBatchStatistics(char* directory, char* suffix);
+
 	/* Check whether an elastic cross-section file exists for isotope */
 
 	filename = prefix + _isotope_name + "-elastic.txt";
@@ -1208,4 +1209,23 @@ float Isotope::getDistanceTraveled(neutron* neutron) {
 
 
 
+/**
+ * Calls each of the Tally class objects in the Isotope to output
+ * their tallies and statistics to output files.
+ * @param directory the directory to write batch statistics files
+ * @param suffix a string to attach to the end of each filename
+ */
+void Isotope::outputBatchStatistics(char* directory, char* suffix) {
 
+    /* Output statistics for each of this Isotope's Tallies */
+    std::vector<Tally*>::iterator iter;
+    std::string filename;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
+        filename = std::string(directory) + _isotope_name + "_statistics" 
+                                                + suffix + ".txt";
+        (*iter)->outputBatchStatistics(filename.c_str());
+    }
+
+    return;
+}

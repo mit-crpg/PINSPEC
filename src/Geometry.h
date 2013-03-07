@@ -10,6 +10,7 @@
 #ifndef GEOMETRY_H_
 #define GEOMETRY_H_
 
+#include <sys/stat.h>
 #include "Region.h"
 #include "Fissioner.h"
 #include "Neutron.h"
@@ -67,6 +68,7 @@ public:
 
 	/* Monte Carlo kernel */
 	void runMonteCarloSimulation();
+    void outputBatchStatistics(char* directory,  char* suffix);
 };
 
 

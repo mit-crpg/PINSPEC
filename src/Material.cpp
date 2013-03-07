@@ -809,3 +809,30 @@ Material* Material::clone() {
 	return new_clone;
 }
 
+
+/**
+ * Calls each of the Tally class objects in the Material to output
+ * their tallies and statistics to output files.
+ * @param directory the directory to write batch statistics files
+ * @param suffix a string to attach to the end of each filename
+ */
+void Material::outputBatchStatistics(char* directory, char* suffix) {
+
+    /* Output statistics for each of this Material's Tallies */
+    std::vector<Tally*>::iterator iter1;
+    std::string filename;
+
+	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); ++iter1) {
+        filename = std::string(directory) + _material_name + "_statistics_" 
+                                    + suffix + ".txt";
+        (*iter1)->outputBatchStatistics(filename.c_str());
+    }
+
+    /* Output statistics for each of this Material's Tallies */
+	std::map<char*, std::pair<float, Isotope*> >::iterator iter2;
+	for (iter2 = _isotopes.begin(); iter2 != _isotopes.end(); ++iter2) {
+        iter2->second.second->outputBatchStatistics(directory, suffix);
+    }
+}
+
+

@@ -3252,51 +3252,6 @@ SWIG_pchar_descriptor(void)
 }
 
 
-SWIGINTERNINLINE PyObject *
-SWIG_FromCharPtrAndSize(const char* carray, size_t size)
-{
-  if (carray) {
-    if (size > INT_MAX) {
-      swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
-      return pchar_descriptor ? 
-	SWIG_InternalNewPointerObj(const_cast< char * >(carray), pchar_descriptor, 0) : SWIG_Py_Void();
-    } else {
-#if PY_VERSION_HEX >= 0x03000000
-      return PyUnicode_FromStringAndSize(carray, static_cast< int >(size));
-#else
-      return PyString_FromStringAndSize(carray, static_cast< int >(size));
-#endif
-    }
-  } else {
-    return SWIG_Py_Void();
-  }
-}
-
-
-SWIGINTERNINLINE PyObject * 
-SWIG_FromCharPtr(const char *cptr)
-{ 
-  return SWIG_FromCharPtrAndSize(cptr, (cptr ? strlen(cptr) : 0));
-}
-
-
-  #define SWIG_From_double   PyFloat_FromDouble 
-
-
-SWIGINTERNINLINE PyObject *
-SWIG_From_float  (float value)
-{    
-  return SWIG_From_double  (value);
-}
-
-
-SWIGINTERNINLINE PyObject*
-  SWIG_From_bool  (bool value)
-{
-  return PyBool_FromLong(value ? 1 : 0);
-}
-
-
 SWIGINTERN int
 SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
 {
@@ -3374,6 +3329,51 @@ SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
 
 
 
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_FromCharPtrAndSize(const char* carray, size_t size)
+{
+  if (carray) {
+    if (size > INT_MAX) {
+      swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
+      return pchar_descriptor ? 
+	SWIG_InternalNewPointerObj(const_cast< char * >(carray), pchar_descriptor, 0) : SWIG_Py_Void();
+    } else {
+#if PY_VERSION_HEX >= 0x03000000
+      return PyUnicode_FromStringAndSize(carray, static_cast< int >(size));
+#else
+      return PyString_FromStringAndSize(carray, static_cast< int >(size));
+#endif
+    }
+  } else {
+    return SWIG_Py_Void();
+  }
+}
+
+
+SWIGINTERNINLINE PyObject * 
+SWIG_FromCharPtr(const char *cptr)
+{ 
+  return SWIG_FromCharPtrAndSize(cptr, (cptr ? strlen(cptr) : 0));
+}
+
+
+  #define SWIG_From_double   PyFloat_FromDouble 
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_float  (float value)
+{    
+  return SWIG_From_double  (value);
+}
+
+
+SWIGINTERNINLINE PyObject*
+  SWIG_From_bool  (bool value)
+{
+  return PyBool_FromLong(value ? 1 : 0);
+}
 
 
 SWIGINTERN int
@@ -3757,6 +3757,51 @@ SWIGINTERN PyObject *_wrap_Geometry_runMonteCarloSimulation(PyObject *SWIGUNUSED
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Geometry_outputBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Geometry_outputBatchStatistics",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_outputBatchStatistics" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Geometry_outputBatchStatistics" "', argument " "2"" of type '" "char *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Geometry_outputBatchStatistics" "', argument " "3"" of type '" "char *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  (arg1)->outputBatchStatistics(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
   return NULL;
 }
 
@@ -4356,6 +4401,51 @@ SWIGINTERN PyObject *_wrap_Region_collideNeutron(PyObject *SWIGUNUSEDPARM(self),
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_outputBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Region_outputBatchStatistics",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_outputBatchStatistics" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Region_outputBatchStatistics" "', argument " "2"" of type '" "char *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Region_outputBatchStatistics" "', argument " "3"" of type '" "char *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  (arg1)->outputBatchStatistics(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
   return NULL;
 }
 
@@ -6143,6 +6233,51 @@ SWIGINTERN PyObject *_wrap_Isotope_getDistanceTraveled(PyObject *SWIGUNUSEDPARM(
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_outputBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_outputBatchStatistics",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_outputBatchStatistics" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_outputBatchStatistics" "', argument " "2"" of type '" "char *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Isotope_outputBatchStatistics" "', argument " "3"" of type '" "char *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  (arg1)->outputBatchStatistics(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
   return NULL;
 }
 
@@ -7971,6 +8106,51 @@ SWIGINTERN PyObject *_wrap_Material_collideNeutron(PyObject *SWIGUNUSEDPARM(self
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_outputBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Material_outputBatchStatistics",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_outputBatchStatistics" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_outputBatchStatistics" "', argument " "2"" of type '" "char *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Material_outputBatchStatistics" "', argument " "3"" of type '" "char *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  (arg1)->outputBatchStatistics(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
   return NULL;
 }
 
@@ -10382,6 +10562,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Geometry_setTwoRegionPinCellParams", _wrap_Geometry_setTwoRegionPinCellParams, METH_VARARGS, NULL},
 	 { (char *)"Geometry_addRegion", _wrap_Geometry_addRegion, METH_VARARGS, NULL},
 	 { (char *)"Geometry_runMonteCarloSimulation", _wrap_Geometry_runMonteCarloSimulation, METH_VARARGS, NULL},
+	 { (char *)"Geometry_outputBatchStatistics", _wrap_Geometry_outputBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Geometry_swigregister", Geometry_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Region", _wrap_new_Region, METH_VARARGS, NULL},
 	 { (char *)"delete_Region", _wrap_delete_Region, METH_VARARGS, NULL},
@@ -10405,6 +10586,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Region_addFuelRingRadius", _wrap_Region_addFuelRingRadius, METH_VARARGS, NULL},
 	 { (char *)"Region_addModeratorRingRadius", _wrap_Region_addModeratorRingRadius, METH_VARARGS, NULL},
 	 { (char *)"Region_collideNeutron", _wrap_Region_collideNeutron, METH_VARARGS, NULL},
+	 { (char *)"Region_outputBatchStatistics", _wrap_Region_outputBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Region_swigregister", Region_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Isotope", _wrap_new_Isotope, METH_VARARGS, NULL},
 	 { (char *)"delete_Isotope", _wrap_delete_Isotope, METH_VARARGS, NULL},
@@ -10449,6 +10631,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_addTally", _wrap_Isotope_addTally, METH_VARARGS, NULL},
 	 { (char *)"Isotope_clearTallies", _wrap_Isotope_clearTallies, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getDistanceTraveled", _wrap_Isotope_getDistanceTraveled, METH_VARARGS, NULL},
+	 { (char *)"Isotope_outputBatchStatistics", _wrap_Isotope_outputBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Isotope_swigregister", Isotope_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Material", _wrap_new_Material, METH_VARARGS, NULL},
 	 { (char *)"delete_Material", _wrap_delete_Material, METH_VARARGS, NULL},
@@ -10479,6 +10662,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Material_addTally", _wrap_Material_addTally, METH_VARARGS, NULL},
 	 { (char *)"Material_clearTallies", _wrap_Material_clearTallies, METH_VARARGS, NULL},
 	 { (char *)"Material_collideNeutron", _wrap_Material_collideNeutron, METH_VARARGS, NULL},
+	 { (char *)"Material_outputBatchStatistics", _wrap_Material_outputBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Material_swigregister", Material_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Tally", _wrap_new_Tally, METH_VARARGS, NULL},
 	 { (char *)"delete_Tally", _wrap_delete_Tally, METH_VARARGS, NULL},
