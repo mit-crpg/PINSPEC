@@ -974,7 +974,7 @@ void Isotope::clearTallies() {
  * For a given energy, this method calls getCollisionType() to sample 
  * the collision type, and then tally the event into the appropriate
  * tally classes for that isotope if any. 
- * @param energy the incoming neutron energy (eV)
+ * @param neutron structure
  * @return the collision type (ELASTIC, CAPTURE, FISSION)
  */
 collisionType Isotope::collideNeutron(neutron* neut) {
@@ -1043,4 +1043,19 @@ collisionType Isotope::collideNeutron(neutron* neut) {
 	neut->_energy = energy * (alpha + (1 - alpha) * random);
 
     return type;
+}
+
+/**
+ * For a given neutron, this method samples a distance for the neutron.
+ * @param neutron structure
+ * @return the distance traveled
+ */
+float Isotope::getDistanceTraveled(neutron* neutron) {
+    double Sigma, random, distance;
+
+    Sigma = getTotalXS(neutron->_energy);
+    random = (float)(rand()) / (float)(RAND_MAX);
+    distance = - log(random)/Sigma;
+
+    return distance;
 }

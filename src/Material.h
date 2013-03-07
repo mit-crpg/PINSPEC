@@ -84,8 +84,7 @@ public:
 	void setAtomicMass(float atomic_mass);
 
 	void addIsotope(Isotope *isotope, float atomic_ratio);
-	void complete();
-	
+
 	void rescaleCrossSections(float start_energy, float end_energy,
 				  int num_energies, binSpacingTypes scale_type);
 	Isotope* sampleIsotope(float energy);
