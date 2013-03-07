@@ -136,9 +136,9 @@ void Geometry::setNumThreads(int num_threads) {
  * @param alpha1 Carlvik's alpha1 parameter
  * @param alpha2 Carlvik's alpha2 parameter
  */
-void setTwoRegionPinCellParams(float sigma_e, float beta, 
+void Geometry::setTwoRegionPinCellParams(float sigma_e, float beta, 
 								float alpha1, float alpha2) {
-	if (_spatial_type == INFINITE) {
+	if (_spatial_type == INFINITE_HOMOGENEOUS) {
 		log_printf(ERROR, "Cannot set two region HOMOGENEOUS_EQUIVALENCE"
 						" parameters for an INFINITE Geometry");
 	}
@@ -308,13 +308,67 @@ void Geometry::runMonteCarloSimulation() {
 
 		/* Check that all necessary parameters have been set */
 		if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
-			log_printf(ERROR, "Unable to run a HOMOGENEOUS_EQUIVALENCE type 
-					" simulation since beta, sigma_e, alpha1, or alpha2 for 
+			log_printf(ERROR, "Unable to run a HOMOGENEOUS_EQUIVALENCE type "
+					" simulation since beta, sigma_e, alpha1, or alpha2 for "
 					" have not yet been set for the geometry");
 
 		/* Initialize neutrons from fission spectrum for each thread */
 		/* Loop over batches */
 		/* Loop over neutrons per batch*/		
+		neutron* curr = initializeNewNeutron();
+		float p_ff;
+		float p_mf;
+		float test;
+
+		for (int i=0; i < _num_batches; i++) {
+
+			log_printf(INFO, "Batch #: %d", i);
+
+			curr->_batch_num = i;
+
+			for (int j=0; j < _num_neutrons_per_batch; j++) {
+
+				/* Initialize this neutron's energy [ev] from Watt spectrum */
+				curr->_energy = _fissioner->emitNeutroneV();
+				curr->_alive = true;
+				curr->_in_fuel = true;
+			
+				/* While the neutron is still alive, collide it. All
+                 * tallying and collision physics take place within
+				 * the Region, Material, and Isotope classes filling
+                 * the Geometry
+                 */
+				while (curr->_alive == true) {
+
+					/* Determine if neutron collided in fuel or moderator */
+					p_ff = computeFuelFuelCollisionProb(curr->_energy);
+					p_mf = computeModeratorFuelCollisionProb(curr->_energy);
+					test = float(rand()) / RAND_MAX;
+
+					/* If the neutron is in the fuel */
+					if (curr->_in_fuel) {
+
+						/* If test is larger than p_ff, move to moderator */
+						if (test > p_ff)
+							curr->_in_fuel = false;
+					}
+
+					/* If the neutron is in the moderator */
+					else {
+
+						/* If test is larger than p_mf, move to fuel */
+						if (test < p_mf)
+							curr->_in_fuel = true;
+					}
+
+					/* Collide the neutron in the fuel or moderator */
+					if (curr->_in_fuel)
+						_fuel->collideNeutron(curr);
+					else
+						_moderator->collideNeutron(curr);
+				}
+			}
+		}
     }
 
 
@@ -338,7 +392,7 @@ void Geometry::runMonteCarloSimulation() {
  * @param energy the energy for a neutron in eV
  * @return the fuel-to-fuel collision probability at that energy
  */
-float Region1D::computeFuelFuelCollisionProb(float energy) {
+float Geometry::computeFuelFuelCollisionProb(float energy) {
 	float p_ff;
 	float sigma_tot_fuel = _fuel->getMaterial()->getTotalMacroXS(energy);
 	p_ff = ((_beta*sigma_tot_fuel) / (_alpha1*_sigma_e + sigma_tot_fuel)) +
@@ -354,14 +408,14 @@ float Region1D::computeFuelFuelCollisionProb(float energy) {
  * @param energy the energy for a neutron in eV
  * @return the moderator-to-fuel collision probability at that energy
  */
-float Region1D::computeModeratorFuelCollisionProb(float energy) {
-	int energy_index = _fuel->getEnergyGridIndex(energy);
+float Geometry::computeModeratorFuelCollisionProb(float energy) {
+	int energy_index = _fuel->getMaterial()->getEnergyGridIndex(energy);
 	float p_mf;
 	float p_ff = computeFuelFuelCollisionProb(energy);
 	float p_fm = 1.0 - p_ff;
 	float tot_sigma_f = _fuel->getMaterial()->getTotalMacroXS(energy_index);
 	float tot_sigma_mod = _moderator->getMaterial()->getTotalMacroXS(energy_index);
 	float v_mod = _moderator->getVolume();
-	p_mf = p_fm*(tot_sigma_f*_volume) / (tot_sigma_mod*v_mod);
+	p_mf = p_fm*(tot_sigma_f*_fuel->getVolume()) / (tot_sigma_mod*v_mod);
 	return p_mf;
 }

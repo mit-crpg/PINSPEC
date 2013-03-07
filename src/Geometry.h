@@ -42,6 +42,9 @@ private:
 	float _alpha1;
 	float _alpha2;
 
+    float computeFuelFuelCollisionProb(float energy);
+    float computeModeratorFuelCollisionProb(float energy);
+
 public:
 	Geometry();
 	virtual ~Geometry();
@@ -64,8 +67,6 @@ public:
 
 	/* Monte Carlo kernel */
 	void runMonteCarloSimulation();
-    float computeFuelFuelCollisionProb(float energy);
-    float computeModeratorFuelCollisionProb(float energy);
 };
 
 
