@@ -18,10 +18,6 @@ Region::Region() {
 	_region_type = INFINITE;
 	_volume = 0.0;
 
-	/* By default the Region is infinite (unbounded) */
-	_region_type = INFINITE;
-	_spatial_type = HOMOGENEOUS;
-
 	/* Default two region pin cell parameters */
 	_sigma_e = 0.0;
 	_beta = 0.0;
@@ -74,15 +70,6 @@ Material* Region::getMaterial() {
  */
 regionType Region::getRegionType() {
 	return _region_type;
-}
-
-
-/**
- * Return the spatial type of Region (HOMOGENEOUS or HETEROGENEOUS)
- * @return the spatial type
- */
-spatialType Region::getSpatialType() {
-	return _spatial_type;
 }
 
 
@@ -186,15 +173,6 @@ void Region::setRegionType(regionType region_type) {
 
 
 /**
- * Set this Region's spatial type (HOMOGENEOUS or HETEROGENEOUS)
- * @param spatial_type the spatial type of region
- */
-void Region::setSpatialType(spatialType spatial_type) {
-	_spatial_type = spatial_type;
-}
-
-
-/**
  * Adds a new Tallies to this region for tallying
  * @param bins a pointer to a Tally class object
  */
@@ -284,88 +262,66 @@ void Region::addModeratorRingRadius(float radius) {
 }
 
 
-/**
- * This function computes the two-region fuel-to-fuel collision probability for
- * a two-region pin cell simulation. It uses Carlvik's two-term rational model
- * and assumes that the escape cross-section (_sigma_e), _beta, _alpha1 and
- * _alpha2 have all been set or else it throws an error
- * @param energy_index index into the material's energy grid
- * @return the fuel-to-fuel collision probability at that energy
- */
-float Region::computeFuelFuelCollisionProb(int energy_index) {
-
-	float p_ff;
-
-	/* If this is the fuel region, we can compute p_ff directly */
-	if (_region_type == FUEL) {
-
-		/* Check that all necessary parameters to compute p_ff have been set */
-		if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
-			log_printf(ERROR, "Unable to compute a fuel-fuel collision "
-					"probability for region %s since beta, sigma_e, "
-					"alpha1, or alpha2 for this region has not yet been set",
-					_name);
-
-		float sigma_tot_fuel = _material->getTotalMacroXS(energy_index);
-
-		p_ff = ((_beta*sigma_tot_fuel) / (_alpha1*_sigma_e + sigma_tot_fuel)) +
-			((1.0 - _beta)*sigma_tot_fuel / (_alpha2*_sigma_e + sigma_tot_fuel));
-	}
-
-	/* If this is the moderator region, we cannot compute p_ff*/
-	else {
-		log_printf(ERROR, "Unable to compute fuel-fuel collision "
-					"probability for region %s since it is not a "
-					"FUEL region", _name);
-	}
-
-	return p_ff;
-}
-
 
 /**
- * This function computes the two-region moderator-to-fuel collision
- * probability for a two-region pin cell simulation. It uses Carlvik's
- * two-term rational model and assumes that the escape cross-section
- * (_sigma_e), _beta, _alpha1 and _alpha2 have all been set or else it
- * throws an error
- * @param energy_index index into the material's energy grid
- * @return the moderator-to-fuel collision probability at that energy
+ * This method collides a neutron within some Region. It
+ * tallies the neutron in any Tallies for this Region and 
+ * uses the Region's Material to compute the neutron's 
+ * next energy and collision type.
  */
-float Region::computeModeratorFuelCollisionProb(int energy_index) {
+void Region::collideNeutron(neutron* neut) {
 
-	float p_mf;
+	/* If this Region contains any tallies, tally neutron 
+	 * before collision
+	 */
+    int batch_num = neut->_batch_num;
+    float sample = neut->_energy;
+	float total_xs = _material->getTotalMacroXS(sample);
 
-	/* If this is the fuel region, we can compute p_mf directly */
-	if (_region_type == FUEL) {
+	/* Collide the neutron in the Region's Material */
+    collisionType type = _material->collideNeutron(neut);
 
-		/* Check that all necessary parameters to compute p_mf have been set */
-		if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
-			log_printf(ERROR, "Unable to compute a moderator-fuel collision "
-					"probability for region %s since beta, sigma_e, alpha1, "
-					"or alpha2 for this region has not yet been set",
-					_name);
-
-		float p_ff = computeFuelFuelCollisionProb(energy_index);
-		float p_fm = 1.0 - p_ff;
-
-		float tot_sigma_f = _material->getTotalMacroXS(energy_index);
-		//NOTE: Need to fix this
-//		float tot_sigma_mod = _other_region->getMaterial()->getTotalMacroXS(energy_index);
-		float v_mod = _pitch * _pitch - M_PI * _fuel_radius * _fuel_radius;
-
-//		p_mf = p_fm*(tot_sigma_f*_volume) / (tot_sigma_mod*v_mod);
+    std::vector<Tally*>::iterator iter;
+	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+	    Tally *tally = *iter;
+	    tallyType tally_type = tally->getTallyType();
+	    switch (tally_type) {
+	    case FLUX:
+			tally->weightedTally(sample, 1.0 / total_xs, batch_num);
+	    case COLLISION_RATE:
+		    tally->weightedTally(sample, 1.0, batch_num);
+	    case ELASTIC_RATE:
+		if (type == ELASTIC)
+		    tally->weightedTally(sample, 
+			_material->getElasticMacroXS(sample) / total_xs, batch_num);
+	    case ABSORPTION_RATE:
+		if (type == CAPTURE || type == FISSION)
+		    tally->weightedTally(sample, 
+			_material->getAbsorptionMacroXS(sample) / total_xs, batch_num);
+	    case CAPTURE_RATE:
+		if (type == CAPTURE)
+		    tally->weightedTally(sample, 
+			_material->getCaptureMacroXS(sample) / total_xs, batch_num);
+	    case FISSION_RATE:
+		if (type == FISSION)
+		    tally->weightedTally(sample, 
+			_material->getFissionMacroXS(sample) / total_xs, batch_num);
+	    case TRANSPORT_RATE:
+		if (type == ELASTIC)
+		    tally->weightedTally(sample, 
+			_material->getTransportMacroXS(sample) / total_xs, batch_num);
+	    case DIFFUSION_RATE: /* FIXME */
+		if (type == ELASTIC)
+		    tally->weightedTally(sample, 
+			 1.0 / (3.0 * _material->getTransportMacroXS(sample) * total_xs), 
+																batch_num); 
+	    case LEAKAGE_RATE:; /* FIXME */
+	    }
 	}
 
-	/* If this is the moderator region, we ask fuel region to compute p_mf */
-	else {
-		log_printf(ERROR, "Unable to compute moderator-fuel collision "
-					"probability for region %s since it is not a FUEL"
-					" region", _name);
-	}
-
-	return p_mf;
+	return;
 }
+
 
 
 /**

@@ -564,8 +564,8 @@ int Material::getEnergyGridIndex(float energy) {
 	int index;
 
 	if (!_rescaled)
-		log_printf(ERROR, "Unable to return an index for material %s "
-				"since it has not been rescaled", _material_name);
+	    log_printf(ERROR, "Unable to return an index for material %s "
+		       "since it has not been rescaled", _material_name);
 
 	if (_scale_type == EQUAL) {
 		if (energy > _end_energy)
@@ -605,9 +605,11 @@ void Material::setMaterialName(char* name) {
  */
 void Material::setDensity(float density, char* unit) {
 	_material_density = density;
-	if (strcmp(unit, "g/cc") != 0)
+	if (strcmp(unit, "g/cc") != 0) {
 	    log_printf(ERROR, "Cannot set Material %s number density in"
-						"units %s since PINSPEc only support units in" 							"g/cc", _material_name, unit);
+		       "units %s since PINSPEc only support units in"
+		       "g/cc", _material_name, unit);
+	}
 }
 
 /**
@@ -633,25 +635,37 @@ void Material::setAtomicMass(float atomic_mass) {
  * @param atomic_ratio the atomic ratio of the isotope
  */
 void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
-    float num_density;
-
+    float isotope_number_density, N_av, old_atomic_mass;
+    float *grid;
+    std::map<char*, std::pair<float, Isotope*> >::iterator iter;
+    
     /* Checks to make sure material density is set already */
     if (_material_density <= 0)
-	log_printf(ERROR, "material number density is not set yet!");
+	log_printf(ERROR, "%s: material number density is not set yet!", 
+		   _material_name);
 
-    /* Increments the material's atomic mass */
-    _material_atomic_mass += atomic_ratio * isotope->getA();
-
-    /* Rescale isotope's cross sections */
-    float* grid;
+    /* Rescales the isotope's cross sections */
     grid = logspace<float, float>(_start_energy, _end_energy, _num_energies);
     isotope->rescaleXS(grid, _num_energies);
     delete [] grid;
     //_rescaled = true;
 
+    /* Increments the material's total atomic mass and number density */
+    N_av = 6.023E-1;
+    old_atomic_mass = _material_atomic_mass;
+    _material_atomic_mass += atomic_ratio * isotope->getA();
+
+    /* Calculates the material's number density */
+    /* Notice I am using old_atomic_mass because I update all isotopes at
+     * the end of this function. */
+    _material_number_density = _material_density * N_av / old_atomic_mass;
+
+    /* Calculates the isotope's number density */
+    isotope_number_density = atomic_ratio * _material_number_density;
+
     /* Creates a pair between the number density and isotope pointer */
     std::pair<float, Isotope*> new_pair = std::pair<float, Isotope*>
-	(atomic_ratio, isotope);
+	(isotope_number_density, isotope);
     
     std::pair<char*, std::pair<float, Isotope*> > new_isotope =
 	std::pair<char*, std::pair<float, Isotope*> >
@@ -660,25 +674,13 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Inserts the isotope and increments the total number density */
     _isotopes.insert(new_isotope);
 
-    return;
-}
-
-
-/* Update all isotopes' number densities after a material is complete */
-void Material::complete() {
-    std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-    float N_av = 6.023E-1;
-    float base = _material_density * N_av / _material_number_density;
+    /* Loop over all isotopes: update all but the last one */
+    for (iter =_isotopes.begin(); iter != _isotopes.end(); ++iter){
+	/* Update isotope's number density */
+	iter->second.first *= _material_atomic_mass / old_atomic_mass;
+    }
     
-    /* Loop over all isotopes */
-	for (iter =_isotopes.begin(); iter !=_isotopes.end(); ++iter){
-	    float atomic_ratio = iter->second.first;
-	    /* Computes isotope's number density */
-	    float num_density = atomic_ratio * base;
-	    iter->second.first = num_density;
-	}
-
-	return;
+    return;
 }
 
 
@@ -748,11 +750,13 @@ Isotope* Material::sampleIsotope(float energy) {
 		sigma_t_ratio = new_sigma_t_ratio;
 	}
 
-	if (isotope == NULL)
-		log_printf(ERROR, "Unable to find isotope type in material %s"
-			   " moveNeutron method, test = %1.20f, new_num_density_ratio "
-			   "= %1.20f", _material_name, test, new_sigma_t_ratio);
-	
+	if (isotope == NULL) {
+	    log_printf(ERROR, "Unable to find isotope type in material %s"
+		       " moveNeutron method, test = %1.20f," 
+		       " new_num_density = %1.20f", 
+		       _material_name, test, new_sigma_t_ratio);
+	}
+
 	return isotope;
 }
 
@@ -791,7 +795,12 @@ void Material::clearTallies() {
  * @param energy the incoming neutron energy (eV)
  * @return the collision type (ELASTIC, CAPTURE, FISSION)
  */
-collisionType Material::collideNeutron(float energy) {
+collisionType Material::collideNeutron(neutron* neut) {
+
+    /* FIXME: replace float energy with neutron struct, and update batch_num */
+    int batch_num = neut->_batch_num;
+    float energy = neut->_energy;
+
     Isotope *isotope;
     isotope = sampleIsotope(energy);
     collisionType type = isotope->getCollisionType(energy);
@@ -804,10 +813,6 @@ collisionType Material::collideNeutron(float energy) {
     float fission_xs = getFissionMacroXS(energy);
     float transport_xs = getTransportMacroXS(energy);
 
-    /* FIXME: replace float energy with neutron struct, and update batch_num */
-    int batch_num = 1;
-    float sample = energy;
-
     /* Tallies the event into the appropriate tally classes  */
     /* Loops over all tallies and add them to the clone */
     std::vector<Tally*>::iterator iter;
@@ -816,40 +821,37 @@ collisionType Material::collideNeutron(float energy) {
 	    tallyType tally_type = tally->getTallyType();
 	    switch (tally_type) {
 	    case FLUX:
-		tally->weightedTally(sample, 1.0 / total_xs, batch_num);
+		tally->weightedTally(energy, 1.0 / total_xs, batch_num);
 	    case COLLISION_RATE:
-		if (type == TOTAL)
-		    tally->weightedTally(sample, 1.0, batch_num);
+		    tally->weightedTally(energy, 1.0, batch_num);
 	    case ELASTIC_RATE:
 		if (type == ELASTIC)
-		    tally->weightedTally(sample, elastic_xs / total_xs, 
+		    tally->weightedTally(energy, elastic_xs / total_xs, 
 					 batch_num);
 	    case ABSORPTION_RATE:
-		if (type == ABSORPTION)
-		    tally->weightedTally(sample, absorption_xs / total_xs, 
+		if (type == CAPTURE || type == FISSION)
+		    tally->weightedTally(energy, absorption_xs / total_xs, 
 					 batch_num);
 	    case CAPTURE_RATE:
 		if (type == CAPTURE)
-		    tally->weightedTally(sample, capture_xs / total_xs, 
+		    tally->weightedTally(energy, capture_xs / total_xs, 
 					 batch_num);
 	    case FISSION_RATE:
 		if (type == FISSION)
-		    tally->weightedTally(sample, fission_xs / total_xs, 
+		    tally->weightedTally(energy, fission_xs / total_xs, 
 					 batch_num);
 	    case TRANSPORT_RATE:
-		if (type == TRANSPORT)
-		    tally->weightedTally(sample, transport_xs / total_xs, 
+		if (type == ELASTIC)
+		    tally->weightedTally(energy, transport_xs / total_xs, 
 					 batch_num);
 	    case DIFFUSION_RATE: /* FIXME */
-		if (type == DIFFUSION) 
-		    tally->weightedTally(sample, 
-					 1.0 / (3 * transport_xs * total_xs), 
+		if (type == ELASTIC)
+		    tally->weightedTally(energy, 
+					 1.0 / (3.0 * transport_xs * total_xs), 
 					 batch_num); 
 	    case LEAKAGE_RATE:; /* FIXME */
-	    }
+		    }
 	}
-
-
 
     return type;
 }

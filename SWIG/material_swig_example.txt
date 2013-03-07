@@ -1,4 +1,3 @@
-// Linux
 wboyd > swig -python -c++ Material.i
 wboyd > g++ -c -fPIC ../src/Isotope.cpp
 wboyd > g++ -c -fPIC ../src/log.cpp
@@ -9,20 +8,6 @@ wboyd > g++ -c -fPIC ../src/integrate.h
 wboyd > g++ -c -fPIC ../src/Material.cpp Material_wrap.cxx -I/usr/include/python2.7
 wboyd > g++ -shared Isotope.o xsreader.o log.o Material.o Material_wrap.o -o _material.so
 wboyd > python
-
-// Mac
->>> swig -python -c++ Material.i
->>> g++ -c -fPIC ../src/Isotope.cpp
->>> g++ -c -fPIC ../src/log.cpp
->>> g++ -c -fPIC ../src/xsreader.cpp
->>> g++ -c -fPIC ../src/arraycreator.h
->>> g++ -c -fPIC ../src/interpolate.h
->>> g++ -c -fPIC ../src/integrate.h
->>> g++ -c -fPIC ../src/Material.cpp Material_wrap.cxx -I/usr/include/python2.7
->>> g++ -bundle `python-config --ldflags` Isotope.o xsreader.o log.o Material.o Material_wrap.o -o _material.so
->>> python
-
-
 Python 2.7.3 (default, Aug  1 2012, 05:14:39) 
 [GCC 4.6.3] on linux2
 Type "help", "copyright", "credits" or "license" for more information.

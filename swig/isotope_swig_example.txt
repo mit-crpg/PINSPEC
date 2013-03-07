@@ -2,7 +2,7 @@
 //      One should comment out line 72 of Isotope.h before the first swig command, then uncomment
 //      line 72 before compiling Isotope.cpp using the c++ compiler (g++)
 
-
+// Linux
 wboyd > g++ -c -fPIC ../src/log.h ../src/log.cpp
 wboyd > g++ -c -fPIC ../src/xsreader.h ../src/xsreader.cpp
 wboyd > swig -python -c++ Isotope.i
@@ -11,6 +11,15 @@ wboyd > g++ -c -fPIC ../src/Isotope.cpp Isotope_wrap.cxx -I/usr/include/python2.
 wboyd > g++ -shared Isotope.o ../src/xsreader.o ../src/log.o  Isotope_wrap.o -o _isotope.so
 wboyd > g++ -shared Isotope.o xsreader.o log.o  Isotope_wrap.o -o _isotope.so
 wboyd > python
+
+// Mac
+>>> g++ -c -fPIC ../src/log.h ../src/log.cpp
+>>> g++ -c -fPIC ../src/xsreader.h ../src/xsreader.cpp
+>>> swig -python -c++ Isotope.i
+>>> g++ -c -fPIC ../src/Isotope.cpp Isotope_wrap.cxx -I/usr/include/python2.7
+>>> g++ -bundle `python-config --ldflags` Isotope.o xsreader.o log.o  Isotope_wrap.o -o _isotope.so
+>>> python
+
 Python 2.7.3 (default, Aug  1 2012, 05:14:39) 
 [GCC 4.6.3] on linux2
 Type "help", "copyright", "credits" or "license" for more information.

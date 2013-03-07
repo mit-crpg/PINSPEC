@@ -10,11 +10,8 @@
 #ifndef MATERIAL_H_
 #define MATERIAL_H_
 
-#include "log.h"
-#include "arraycreator.h"
 #include "Isotope.h"
-#include <string.h>
-#include "Tally.h"
+
 
 typedef enum units {
 	GRAMCM3,
@@ -94,15 +91,14 @@ public:
 	void setAtomicMass(float atomic_mass);
 	float getDensity();
 	void addIsotope(Isotope *isotope, float atomic_ratio);
-	void complete();
-	
+
 	void rescaleCrossSections(float start_energy, float end_energy,
 				  int num_energies, binSpacingTypes scale_type);
 	Isotope* sampleIsotope(float energy);
 	void addTally(Tally *tally);
 	void clearTallies();
 
-	collisionType collideNeutron(float energy);
+	collisionType collideNeutron(neutron* neut);
 };
 
 #endif /* MATERIAL_H_ */
