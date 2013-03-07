@@ -564,8 +564,8 @@ int Material::getEnergyGridIndex(float energy) {
 	int index;
 
 	if (!_rescaled)
-		log_printf(ERROR, "Unable to return an index for material %s "
-				"since it has not been rescaled", _material_name);
+	    log_printf(ERROR, "Unable to return an index for material %s "
+		       "since it has not been rescaled", _material_name);
 
 	if (_scale_type == EQUAL) {
 		if (energy > _end_energy)
@@ -604,10 +604,11 @@ void Material::setMaterialName(char* name) {
  */
 void Material::setDensity(float density, char* unit) {
 	_material_density = density;
-	if (strcmp(unit, "g/cc") != 0)
+	if (strcmp(unit, "g/cc") != 0) {
 	    log_printf(ERROR, "Cannot set Material %s number density in"
-						"units %s since PINSPEc only support units in" 							
-						"g/cc", _material_name, unit);
+		       "units %s since PINSPEc only support units in"
+		       "g/cc", _material_name, unit);
+	}
 }
 
 /**
