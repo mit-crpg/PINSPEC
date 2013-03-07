@@ -635,10 +635,11 @@ void Material::setAtomicMass(float atomic_mass) {
  * @param atomic_ratio the atomic ratio of the isotope
  */
 void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
-    float isotope_number_density, N_av, old_atomic_mass;
+
+	float isotope_number_density, N_av, old_atomic_mass;
     float *grid;
     std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-    
+
     /* Checks to make sure material density is set already */
     if (_material_density <= 0)
 	log_printf(ERROR, "%s: material number density is not set yet!", 
@@ -666,11 +667,11 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Creates a pair between the number density and isotope pointer */
     std::pair<float, Isotope*> new_pair = std::pair<float, Isotope*>
 	(isotope_number_density, isotope);
-    
+
     std::pair<char*, std::pair<float, Isotope*> > new_isotope =
 	std::pair<char*, std::pair<float, Isotope*> >
 	(isotope->getIsotopeType(), new_pair);
-    
+
     /* Inserts the isotope and increments the total number density */
     _isotopes.insert(new_isotope);
 
@@ -679,7 +680,7 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 	/* Update isotope's number density */
 	iter->second.first *= _material_atomic_mass / old_atomic_mass;
     }
-    
+
     return;
 }
 

@@ -44,8 +44,9 @@ int parseCrossSections(const char* file, float* energies, float* xs_values) {
 	    log_printf(WARNING, "xs file may not exist.");
 
 	/* Convert energy values from MeV to eV */
-	for (int i=0; i < count; i++)
+	for (int i=0; i < count; i++){
 		energies[i] *= 1E6;
+	}
 
 	/* Close the file and return the number of data points */
 	input_file.close();

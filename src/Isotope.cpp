@@ -30,6 +30,7 @@ Isotope::Isotope(char* isotope_name){
 	_num_capture_xs = 0;
 	_num_elastic_xs = 0;
 	_num_fission_xs = 0;
+	_num_absorb_xs = 0;
 	_num_total_xs = 0;
 
 	/* By default the thermal scattering cdfs have not been initialized */
@@ -102,7 +103,7 @@ void Isotope::parseName(){
 	/* Set the atomic number of isotope */
 	setA(A);
 
-	log_printf(NORMAL, "A value is: %i", _A);
+	log_printf(DEBUG, "A value is: %i", _A);
 }
 
 
@@ -509,7 +510,7 @@ void Isotope::makeFissionable() {
  */
 void Isotope::loadXS(char* isotope_name, collisionType type) {
 
-	std::string prefix = "../XS_Lib/";
+	std::string prefix = "../xs-lib/";
 	std::string isotope = isotope_name;
 	std::string filename;
 
@@ -518,6 +519,8 @@ void Isotope::loadXS(char* isotope_name, collisionType type) {
 	if (type == ELASTIC){
 
 		filename = prefix + isotope + "-elastic.txt";
+
+		log_printf(INFO, "file name: %s", filename.c_str());
 
 		/* Find the number of cross-section values in the file */
 		int num_xs_values = getNumCrossSectionDataPoints(filename.c_str());
@@ -594,20 +597,6 @@ void Isotope::setElasticXS(float* elastic_xs, float* elastic_xs_energies,
  */
 void Isotope::setElasticAngleType(scatterAngleType type) {
 	_elastic_angle = type;
-}
-
-
-/**
- * Set the absorption cross-section for this isotope
- * @param absorb_xs a float array of microscopic absorb xs (barns)
- * @param absorb_xs_energies a float array of energies (eV)
- * @param num_absorb_xs the number of absorb xs values
- */
-void Isotope::setCaptureXS(float* absorb_xs, float* absorb_xs_energies,
-													int num_absorb_xs) {
-    _absorb_xs = absorb_xs;
-    _absorb_xs_energies = absorb_xs_energies;
-    _num_absorb_xs = num_absorb_xs;
 }
 
 
@@ -714,6 +703,7 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 		delete _absorb_xs;
 		_absorb_xs = new_xs;
 		_absorb_xs_energies = new_energies;
+
 	}
 
 	/* Total xs */

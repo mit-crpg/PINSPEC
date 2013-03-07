@@ -167,7 +167,9 @@ void Region::setMaterial(Material* material) {
  * @param region_type the type of region
  */
 void Region::setRegionType(regionType region_type) {
+
 	_region_type = region_type;
+
 }
 
 

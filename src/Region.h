@@ -17,6 +17,7 @@
 //#include <omp.h>
 #include "Material.h"
 #include "Neutron.h"
+#include <string.h>
 
 #define _USE_MATH_DEFINES
 

@@ -1,57 +1,58 @@
 import matplotlib.pyplot as plt
-from tally import *
-from material import *
-from isotope import *
-from geometry import *
-from region import *
+from pinspec import *
 
 def main():
     
     print 'Starting PIN SPEC...'
 
     # Define isotopes
-    h1 = Isoptope('H-1')
-    h1.setAO(2.0)
+    h1 = Isotope('H-1')
     o16 = Isotope('O-16')
-    o16.setAO(1.0)
-
-    u235 = Isoptope('U-235')
-    U235.setAO(3.0)
+    u235 = Isotope('U-235')
     u238 = Isotope('U-238')
-    U238.setAO(97.0)
+    
+    print 'Made isotopes'
     
     # Define materials
     moderator = Material()
     moderator.setDensity(1.0, 'g/cc')
     moderator.addIsotope(h1, 2.0)
     moderator.addIsotope(o16, 1.0)
-    moderator.complete
-
+    
+    print 'Added isotopes to materials'
+    
     fuel = Material()
     fuel.setDensity(10.0, 'g/cc')
     fuel.addIsotope(u235, 0.02)
     fuel.addIsotope(u238, 0.98)
     fuel.addIsotope(o16, 2.0)
-    fuel.complete
     
-    # FIXME: loadXS() needs argument. 
-    moderator.loadXS()
-    fuel.loadXS()
-    
+    print 'Made materials'
+
     # Define regions
     region_mod = Region()
-    region_mod.addMaterial(moderator)
-    region_mod.setType('moderator')
+    region_mod.setMaterial(moderator)
+    region_mod.setRegionType(MODERATOR)
+    region_mod.setRegionName('moderator')
+    
+    print 'Set region_mod type'
 
     region_fuel = Region()
-    region_fuel.addMaterial(fuel)
-    region_fuel.setType('fuel')
+    region_fuel.setMaterial(fuel)
+    region_fuel.setRegionType(FUEL)
+    region_fuel.setRegionName('fuel')
+    
+    print 'Made regions'
 
     # Define geometry
     geometry = Geometry()
     geometry.addRegion(region_mod)
     geometry.addRegion(region_fuel)
-    
+
+    print 'Made geometry'
+
+    del geometry
+
     # Set energy bins
     
 

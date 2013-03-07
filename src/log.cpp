@@ -90,7 +90,6 @@ void log_setlevel(const char* newlevel) {
 }
 
 
-
 /**
  * Print a formatted message to the console. If logging level is
  * ERROR, this function will end the program
