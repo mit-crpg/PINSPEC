@@ -791,7 +791,7 @@ Material* Material::clone() {
 	/* Loops over all tallies and add them to the clone */
 	for (std::vector<Tally*>::iterator it = _tallies.begin(); 
 	     it != _tallies.end(); it++) {
-	    new_clone->addTally(*it);
+	    new_clone->addTally((*it)->clone());
 	}
 
 	/* Loops over all isotopes and add them to the clone */
@@ -799,12 +799,17 @@ Material* Material::clone() {
 	Isotope* curr;
 
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter) {
-	    new_clone->addIsotope(iter->second.second, iter->second.first);
+	    new_clone->addIsotope((iter->second.second)->clone(), iter->second.first);
 	}
 
 	/* Set the clones isotope name, atomic number, number density */
 	new_clone->setMaterialName(_material_name);
-	new_clone->setDensity(_material_density, (char*)"g/cc");
+
+    if (_density_unit == GRAM_CM3)
+	    new_clone->setDensity(_material_density, (char*)"g/cc");
+    else if (_density_unit == NUM_CM3)
+	    new_clone->setDensity(_material_density, (char*)"at/cc");
+
 	new_clone->setNumberDensity(_material_number_density);
 	new_clone->setAtomicMass(_material_atomic_mass);
 

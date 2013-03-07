@@ -13,10 +13,10 @@
 #include "Isotope.h"
 
 
-typedef enum units {
-	GRAMCM3,
-	NUMCM3
-} units;
+typedef enum densityUnits {
+	GRAM_CM3,
+	NUM_CM3
+} densityUnit;
 
 class Material {
 
@@ -30,7 +30,7 @@ private:
 	std::map<char*, std::pair<float, Isotope*> > _isotopes;
 	std::vector<Tally*> _tallies;
 
-	units _units;
+	densityUnit _density_unit;
 
 public:
 	Material();
