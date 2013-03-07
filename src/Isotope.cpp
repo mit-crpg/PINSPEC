@@ -172,10 +172,11 @@ float Isotope::getElasticXS(int energy_index) const {
 	if (_num_elastic_xs == 0)
 		return 0.0;
 
-	else if (energy_index > _num_elastic_xs)
-		log_printf(ERROR, "Unable to retrieve elastic xs for"
-				" isotope %s since the energy index %d is out of"
-				" bounds", _isotope_name, energy_index);
+	else if (energy_index > _num_elastic_xs) {
+	    log_printf(ERROR, "Unable to retrieve elastic xs for"
+		       " isotope %s since the energy index %d is out of"
+		       " bounds", _isotope_name, energy_index);
+	}
 
 	return _elastic_xs[energy_index];
 }
@@ -188,10 +189,11 @@ float Isotope::getElasticXS(int energy_index) const {
  */
 scatterAngleType Isotope::getElasticAngleType() const {
 
-	if (_num_elastic_xs == 0)
-		log_printf(ERROR, "Cannot return an elastic angle type"
-			   "for isotope %s since it has not been set", 
-			   _isotope_name);
+    if (_num_elastic_xs == 0) {
+	log_printf(ERROR, "Cannot return an elastic angle type"
+		   "for isotope %s since it has not been set", 
+		   _isotope_name);
+    }
 
 	return _elastic_angle;
 }
@@ -226,11 +228,11 @@ float Isotope::getAbsorptionXS(int energy_index) const {
 	if (_num_absorb_xs == 0)
 		return 0.0;
 
-	else if (energy_index > _num_absorb_xs)
-		log_printf(ERROR, "Unable to retrieve absorption xs for"
-				" isotope %s since the energy index %d is out of"
-				" bounds", _isotope_name, energy_index);
-
+	else if (energy_index > _num_absorb_xs) {
+	    log_printf(ERROR, "Unable to retrieve absorption xs for"
+		       " isotope %s since the energy index %d is out of"
+		       " bounds", _isotope_name, energy_index);
+	}
 	return _absorb_xs[energy_index];
 }
 
@@ -287,10 +289,11 @@ float Isotope::getFissionXS(int energy_index) const {
 	if (_num_fission_xs == 0)
 		return 0.0;
 
-	else if (energy_index > _num_fission_xs)
-		log_printf(ERROR, "Unable to retrieve fission xs for"
-				" isotope %s since the energy index %d is out of"
-				" bounds", _isotope_name, energy_index);
+	else if (energy_index > _num_fission_xs) {
+	    log_printf(ERROR, "Unable to retrieve fission xs for"
+		       " isotope %s since the energy index %d is out of"
+		       " bounds", _isotope_name, energy_index);
+	}
 
 	return _fission_xs[energy_index];
 }
@@ -337,10 +340,11 @@ float Isotope::getTotalXS(int energy_index) const {
 	/* If the total xs has been defined explicitly, use it */
 	if (_num_total_xs != 0) {
 
-		if (energy_index > _num_total_xs)
-			log_printf(ERROR, "Unable to retrieve total xs for"
-					" isotope %s since the energy index %d is out of"
-					" bounds", _isotope_name, energy_index);
+	    if (energy_index > _num_total_xs) {
+		log_printf(ERROR, "Unable to retrieve total xs for"
+			   " isotope %s since the energy index %d is out of"
+			   " bounds", _isotope_name, energy_index);
+	    }
 
 		return _total_xs[energy_index];
 	}
@@ -540,14 +544,17 @@ void Isotope::setFissionXS(float* fission_xs, float* fission_xs_energies,
  */
 void Isotope::generateCaptureXS() {
 
-	if (_num_absorb_xs == 0)
-		log_printf(ERROR, "Unable to generate capture xs for"
-					" isotope %s since the absorption xs has not "
-					"yet been set", _isotope_name);
-	if (_num_fission_xs == 0 && _fissionable)
-		log_printf(ERROR, "Unable to generate capture xs for"
-					" isotope %s since the fission xs has not "
-					"yet been set", _isotope_name);
+    if (_num_absorb_xs == 0) {
+	log_printf(ERROR, "Unable to generate capture xs for"
+		   " isotope %s since the absorption xs has not "
+		   "yet been set", _isotope_name);
+    }
+
+    if (_num_fission_xs == 0 && _fissionable) {
+	log_printf(ERROR, "Unable to generate capture xs for"
+		   " isotope %s since the fission xs has not "
+		   "yet been set", _isotope_name);
+    }
 
 	_num_capture_xs = _num_absorb_xs;
 	_capture_xs = (float*) malloc(sizeof(float) * _num_capture_xs);
@@ -755,10 +762,11 @@ collisionType Isotope::getCollisionType(float energy) {
 float Isotope::getThermalScatteringEnergy(float energy) {
 
 	/* First check that the thermal scattering CDFs have been initialized */
-	if (_num_thermal_cdfs == 0)
-		log_printf(ERROR, "Unable to sample the thermal scattering CDFs for"
-				" isotope %s because they have not yet been initialized",
-																_isotope_name);
+    if (_num_thermal_cdfs == 0) {
+	log_printf(ERROR, "Unable to sample the thermal scattering CDFs for"
+		   " isotope %s because they have not yet been initialized",
+		   _isotope_name);
+    }
 
 	/* Convert energies in eV to eV / kT */
 	energy /= (_kB * _T);
