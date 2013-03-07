@@ -17,6 +17,12 @@ then
     CFLAGS="$CFLAGS -DBENCHMARK"
 fi
 
+
+if [ ! -d "objs" ]; then
+	mkdir objs
+fi
+
+
 # Comment and uncomment the std::map container in Isotope as a
 # workaround for SWIG
 cp src/Isotope.h src/Isotope.bak
@@ -43,4 +49,4 @@ g++ swig/Geometry_wrap.cxx -c $CFLAGS
 g++ $LFLAGS Isotope.o xsreader.o log.o Material.o Tally.o Neutron.o Region.o Fissioner.o Geometry.o Geometry_wrap.o -o swig/_pinspec.so
 
 # Cleanup
-mv *.o bin/
+mv *.o objs/

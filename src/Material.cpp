@@ -606,7 +606,8 @@ void Material::setDensity(float density, char* unit) {
 	_material_density = density;
 	if (strcmp(unit, "g/cc") != 0)
 	    log_printf(ERROR, "Cannot set Material %s number density in"
-						"units %s since PINSPEc only support units in" 							"g/cc", _material_name, unit);
+						"units %s since PINSPEc only support units in" 							
+						"g/cc", _material_name, unit);
 }
 
 /**
@@ -779,7 +780,12 @@ void Material::clearTallies() {
  * @param energy the incoming neutron energy (eV)
  * @return the collision type (ELASTIC, CAPTURE, FISSION)
  */
-collisionType Material::collideNeutron(float energy) {
+collisionType Material::collideNeutron(neutron* neut) {
+
+    /* FIXME: replace float energy with neutron struct, and update batch_num */
+    int batch_num = neut->_batch_num;
+    float energy = neut->_energy;
+
     Isotope *isotope;
     isotope = sampleIsotope(energy);
     collisionType type = isotope->getCollisionType(energy);
@@ -792,10 +798,6 @@ collisionType Material::collideNeutron(float energy) {
     float fission_xs = getFissionMacroXS(energy);
     float transport_xs = getTransportMacroXS(energy);
 
-    /* FIXME: replace float energy with neutron struct, and update batch_num */
-    int batch_num = 1;
-    float sample = energy;
-
     /* Tallies the event into the appropriate tally classes  */
     /* Loops over all tallies and add them to the clone */
     std::vector<Tally*>::iterator iter;
@@ -804,40 +806,37 @@ collisionType Material::collideNeutron(float energy) {
 	    tallyType tally_type = tally->getTallyType();
 	    switch (tally_type) {
 	    case FLUX:
-		tally->weightedTally(sample, 1.0 / total_xs, batch_num);
+		tally->weightedTally(energy, 1.0 / total_xs, batch_num);
 	    case COLLISION_RATE:
-		if (type == TOTAL)
-		    tally->weightedTally(sample, 1.0, batch_num);
+		    tally->weightedTally(energy, 1.0, batch_num);
 	    case ELASTIC_RATE:
 		if (type == ELASTIC)
-		    tally->weightedTally(sample, elastic_xs / total_xs, 
+		    tally->weightedTally(energy, elastic_xs / total_xs, 
 					 batch_num);
 	    case ABSORPTION_RATE:
-		if (type == ABSORPTION)
-		    tally->weightedTally(sample, absorption_xs / total_xs, 
+		if (type == CAPTURE || type == FISSION)
+		    tally->weightedTally(energy, absorption_xs / total_xs, 
 					 batch_num);
 	    case CAPTURE_RATE:
 		if (type == CAPTURE)
-		    tally->weightedTally(sample, capture_xs / total_xs, 
+		    tally->weightedTally(energy, capture_xs / total_xs, 
 					 batch_num);
 	    case FISSION_RATE:
 		if (type == FISSION)
-		    tally->weightedTally(sample, fission_xs / total_xs, 
+		    tally->weightedTally(energy, fission_xs / total_xs, 
 					 batch_num);
 	    case TRANSPORT_RATE:
-		if (type == TRANSPORT)
-		    tally->weightedTally(sample, transport_xs / total_xs, 
+		if (type == ELASTIC)
+		    tally->weightedTally(energy, transport_xs / total_xs, 
 					 batch_num);
 	    case DIFFUSION_RATE: /* FIXME */
-		if (type == DIFFUSION) 
-		    tally->weightedTally(sample, 
-					 1.0 / (3 * transport_xs * total_xs), 
+		if (type == ELASTIC)
+		    tally->weightedTally(energy, 
+					 1.0 / (3.0 * transport_xs * total_xs), 
 					 batch_num); 
 	    case LEAKAGE_RATE:; /* FIXME */
-	    }
+		    }
 	}
-
-
 
     return type;
 }

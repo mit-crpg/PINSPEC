@@ -10,11 +10,6 @@
 #ifndef GEOMETRY_H_
 #define GEOMETRY_H_
 
-//#include <vector>
-//#include "log.h"
-//#include "Tally.h"
-//#include "Material.h"
-//#include "Isotope.h"
 #include "Region.h"
 #include "Fissioner.h"
 #include "Neutron.h"

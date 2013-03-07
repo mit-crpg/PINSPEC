@@ -26,13 +26,9 @@
 /* Types of collisions */
 typedef enum collisionTypes{
 	ELASTIC,
-	ABSORPTION,
 	CAPTURE,
 	FISSION,
-	TRANSPORT,
-	DIFFUSION,
 	LEAKAGE,
-	TOTAL
 } collisionType;
 
 /* Types of angular scattering distributions */
@@ -125,11 +121,10 @@ public:
 	void setElasticXS(float* elastic_xs, float* elastic_xs_energies,
 			  int num_elastic_xs, scatterAngleType type);
 	void setElasticAngleType(scatterAngleType type);
-	void setAbsorptionXS(float* absorb_xs, float* absorb_xs_energies,
-			     int num_absorb_xs);
+	void setCaptureXS(float* capture_xs, float* capture_xs_energies,
+			     int num_capture_xs);
 	void setFissionXS(float* fission_xs, float* fission_xs_energies,
 			  int num_fission_xs);
-	void generateCaptureXS();
 	void rescaleXS(float* new_energies, int num_energies);
 	Isotope* clone();
 
