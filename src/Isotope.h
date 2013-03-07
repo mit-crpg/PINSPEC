@@ -15,6 +15,7 @@
 #include <math.h>
 #include <stdarg.h>
 #include <string.h>
+#include <sys/stat.h>
 #include "interpolate.h"
 #include "integrate.h"
 #include "arraycreator.h"
@@ -75,8 +76,16 @@ private:
 	float* _total_xs;
 	float* _total_xs_energies;
 
+	/* Values related to rescaled cross-sections on a uniform energy grid */
+	bool _rescaled;
+	binSpacingTypes _scale_type;
+	int _num_energies;
+	float _start_energy;
+	float _end_energy;
+	float _delta_energy;
+
 	/* Map of keys (xs types) with values (getXS functions for xs types) */
-//	std::map<collisionType, float(Isotope::*)(float) const> _xs_handles;
+	std::map<collisionType, float(Isotope::*)(float) const> _xs_handles;
 	std::vector<Tally*> _tallies;
 
 	int _num_thermal_cdfs;
@@ -117,6 +126,8 @@ public:
     float getTransportXS(int energy_index) const;
     float getTransportXS(float energy) const;
     bool usesThermalScattering();
+	bool isRescaled();
+	int getEnergyGridIndex(float energy);
 
     void setIsotopeType(char* isotope);
     void setA(int A);
@@ -125,7 +136,7 @@ public:
 
     void setTemperature(float T);
 
-	void loadXS(char* filename, collisionType type);
+	void loadXS();
 	void setElasticXS(float* elastic_xs, float* elastic_xs_energies,
 			  int num_elastic_xs, scatterAngleType type);
 	void setElasticAngleType(scatterAngleType type);
@@ -133,6 +144,8 @@ public:
 			     int num_capture_xs);
 	void setFissionXS(float* fission_xs, float* fission_xs_energies,
 			  int num_fission_xs);
+	void rescaleCrossSections(float start_energy, float end_energy,
+								int num_energies, binSpacingTypes scale_type);	
 	void rescaleXS(float* new_energies, int num_energies);
 	Isotope* clone();
 

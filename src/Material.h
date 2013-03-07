@@ -30,15 +30,7 @@ private:
 	std::map<char*, std::pair<float, Isotope*> > _isotopes;
 	std::vector<Tally*> _tallies;
 
-	/* Values related to rescaled cross-sections on a uniform energy grid */
-	bool _rescaled;
-	binSpacingTypes _scale_type;
 	units _units;
-
-	int _num_energies;
-	float _start_energy;
-	float _end_energy;
-	float _delta_energy;
 
 public:
 	Material();
@@ -80,10 +72,7 @@ public:
 	float getTransportMicroXS(int energy_index);
 	float getTransportMacroXS(float energy);
 	float getTransportMacroXS(int energy_index);
-	
-	bool isRescaled();
-	int getEnergyGridIndex(float energy);
-	
+		
 	/* setters */
 	void setMaterialName(char* name);
 	void setDensity(float density, char* unit);
@@ -92,8 +81,6 @@ public:
 	float getDensity();
 	void addIsotope(Isotope *isotope, float atomic_ratio);
 
-	void rescaleCrossSections(float start_energy, float end_energy,
-				  int num_energies, binSpacingTypes scale_type);
 	Isotope* sampleIsotope(float energy);
 	void addTally(Tally *tally);
 	void clearTallies();
