@@ -10,6 +10,7 @@
 #ifndef GEOMETRY_H_
 #define GEOMETRY_H_
 
+#include <sys/stat.h>
 #include "Region.h"
 #include "Fissioner.h"
 #include "Neutron.h"
@@ -22,6 +23,7 @@ typedef enum spatialTypes {
 } spatialType;
 
 
+#ifdef __cplusplus
 class Geometry {
 
 private:
@@ -67,7 +69,10 @@ public:
 
 	/* Monte Carlo kernel */
 	void runMonteCarloSimulation();
+    void computeBatchStatistics();
+    void outputBatchStatistics(char* directory,  char* suffix);
 };
 
+#endif
 
 #endif /* GEOMETRY_H_ */

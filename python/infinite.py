@@ -54,7 +54,7 @@ def main():
 #    geometry.runMonteCarloSimulation();
         
 	# Dump batch statistics to output files to some new directory
-#    geometry.outputBatchStatistics('DirectoryName')
+    geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
         
 	# Plot data
 

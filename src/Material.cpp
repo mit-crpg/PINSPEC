@@ -573,6 +573,29 @@ void Material::setAtomicMass(float atomic_mass) {
 }
 
 
+
+/**
+ * Sets the number of batches for each of the Tallies inside of this Material
+ * @param num_batches the number of batches
+ */
+void Material::setNumBatches(int num_batches) {
+
+    /* Set the number of batches for each Tally inside of this Material */
+    std::vector<Tally*>::iterator iter1;
+	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); iter1 ++) {
+        (*iter1)->setNumBatches(num_batches);
+    }
+
+    /* Set the number of batches for each of this Material's Tallies */
+	std::map<char*, std::pair<float, Isotope*> >::iterator iter2;
+	for (iter2 = _isotopes.begin(); iter2 != _isotopes.end(); ++iter2) {
+        iter2->second.second->setNumBatches(num_batches);
+    }
+
+    return;
+}
+
+
 /**
  * Adds a new isotope to this Material
  * @param isotope a pointer to a isotope class object
@@ -808,4 +831,52 @@ Material* Material::clone() {
 	/* Return a pointer to the cloned Isotope class */
 	return new_clone;
 }
+
+
+/**
+ * Calls each of the Tally class objects in the Material to compute
+ * their batch-based statistics from the tallies
+ */
+void Material::computeBatchStatistics() {
+
+    /* Compute statistics for each of this Material's Tallies */
+    std::vector<Tally*>::iterator iter1;
+
+	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); ++iter1)
+        (*iter1)->computeBatchStatistics();
+
+    /* Output statistics for each of this Material's Tallies */
+	std::map<char*, std::pair<float, Isotope*> >::iterator iter2;
+	for (iter2 = _isotopes.begin(); iter2 != _isotopes.end(); ++iter2)
+        iter2->second.second->computeBatchStatistics();
+
+    return;
+}
+
+/**
+ * Calls each of the Tally class objects in the Material to output
+ * their tallies and statistics to output files.
+ * @param directory the directory to write batch statistics files
+ * @param suffix a string to attach to the end of each filename
+ */
+void Material::outputBatchStatistics(char* directory, char* suffix) {
+
+    /* Output statistics for each of this Material's Tallies */
+    std::vector<Tally*>::iterator iter1;
+    std::string filename;
+
+	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); ++iter1) {
+        filename = std::string(directory) + _material_name + "_statistics_" 
+                                    + suffix + ".txt";
+        (*iter1)->outputBatchStatistics(filename.c_str());
+    }
+
+    /* Output statistics for each of this Material's Tallies */
+	std::map<char*, std::pair<float, Isotope*> >::iterator iter2;
+	for (iter2 = _isotopes.begin(); iter2 != _isotopes.end(); ++iter2)
+        iter2->second.second->outputBatchStatistics(directory, suffix);
+
+    return;
+}
+
 

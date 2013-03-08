@@ -257,13 +257,16 @@ void Geometry::runMonteCarloSimulation() {
 						_num_neutrons_per_batch, _num_batches, _num_threads);
 
 
-
 	/*************************************************************************/
 	/************************   INFINITE_HOMOGENEOUS *************************/
 	/*************************************************************************/
 
     /* If we are running an infinite medium spectral calculation */
 	if (_spatial_type == INFINITE_HOMOGENEOUS){
+
+        /* Inform Region of the number of batches to run - this is needed to
+         * initialize the Tally classes for this many batches */
+        _infinite_medium->setNumBatches(_num_batches);
 
 		neutron* curr = initializeNewNeutron();
 
@@ -300,6 +303,11 @@ void Geometry::runMonteCarloSimulation() {
 
 	/* If we are running homogeneous equivalence spectral calculation */
 	else if (_spatial_type == HOMOGENEOUS_EQUIVALENCE) {
+
+        /* Inform Regions of the number of batches to run - this is needed to
+         * initialize the Tally classes for this many batches */
+        _fuel->setNumBatches(_num_batches);
+        _moderator->setNumBatches(_num_batches);
 
 		/* Check that all necessary parameters have been set */
 		if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
@@ -374,10 +382,61 @@ void Geometry::runMonteCarloSimulation() {
 
 	/* If we are running homogeneous equivalence spectral calculation */
 	else if (_spatial_type == HETEROGENEOUS) {
+
+        /* Inform Regions of the number of batches to run - this is needed to
+         * initialize the Tally classes for this many batches */
+        _fuel->setNumBatches(_num_batches);
+        _moderator->setNumBatches(_num_batches);
+
 		/* Initialize neutrons from fission spectrum for each thread */
 		/* Loop over batches */
 		/* Loop over neutrons per batch*/
 	}
+
+
+    /* Compute batch statistics for all Tallies in this simulation */
+    computeBatchStatistics();
+}
+
+
+void Geometry::computeBatchStatistics() {
+
+    if (_spatial_type == INFINITE_HOMOGENEOUS)
+        _infinite_medium->computeBatchStatistics();
+    else {
+        _fuel->computeBatchStatistics();
+        _moderator->computeBatchStatistics();
+    }
+
+    return;
+}
+
+
+/**
+ * Calls each of the Tally class objects in the simulation to output
+ * their tallies and statistics to output files. If a user asks to
+ * output the files to a directory which does not exist, this method
+ * will create the directory.
+ * @param directory the directory to write batch statistics files
+ * @param suffix a string to attach to the end of each filename
+ */
+void Geometry::outputBatchStatistics(char* directory,  char* suffix) {
+
+    /* Check to see if directory exists - if not, create it */
+    struct stat st;
+    if (!stat(directory, &st) == 0) {
+		mkdir(directory, S_IRWXU);
+    }
+
+    /* Call on the Region(s) inside the geometry to output statistics */
+    if (_spatial_type == INFINITE_HOMOGENEOUS)
+        _infinite_medium->outputBatchStatistics(directory, suffix);
+    else {
+        _fuel->outputBatchStatistics(directory, suffix);
+        _moderator->outputBatchStatistics(directory, suffix);
+    }
+
+    return;   
 }
 
 

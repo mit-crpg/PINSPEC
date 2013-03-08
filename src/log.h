@@ -11,6 +11,7 @@
 #ifndef LOG_H_
 #define LOG_H_
 
+#ifdef __cplusplus
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -34,6 +35,8 @@ void log_printf(logLevel level, const char *format, ...);
 
 #ifndef LOG_C
 	extern logLevel log_level;
+#endif
+
 #endif
 
 

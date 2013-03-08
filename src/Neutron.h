@@ -10,6 +10,8 @@
 #ifndef NEUTRON_H_
 #define NEUTRON_H_
 
+#ifdef __cplusplus
+
 /* Structure to represent a neutron */
 struct neutron {
 	int _batch_num;
@@ -21,7 +23,8 @@ struct neutron {
 	bool _in_fuel;
 };
 
-
 neutron* initializeNewNeutron();
+
+#endif
 
 #endif /* NEUTRON_H_ */

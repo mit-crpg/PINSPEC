@@ -421,6 +421,21 @@ void Tally::setBinEdges(float* edges, int num_bins) {
 	_edges = edges;
 	_bin_spacing = OTHER;
 
+	/* Create an array of the center values between bins */
+	generateBinCenters();
+
+    return;
+}
+
+
+/**
+ * Set the number of batches for this Tally. This method also
+ * allocates memory for the tallies and batch statistics arrays
+ * @param num_batches the number of batches
+ */
+void Tally::setNumBatches(int num_batches) {
+	_num_batches = num_batches;
+
 	/* Set all tallies to zero by default */
 	_tallies = (double**) malloc(sizeof(double*) * _num_batches);
 	_num_tallies = (int**) malloc(sizeof(int*) * _num_batches);
@@ -437,24 +452,11 @@ void Tally::setBinEdges(float* edges, int num_bins) {
 		}
 	}
 
-	/* Create an array of the center values between bins */
-	generateBinCenters();
-
 	/* Allocate memory for batch-based statistical counters */
 	_batch_mu = new double[_num_bins];
 	_batch_variance = new double[_num_bins];
 	_batch_std_dev = new double[_num_bins];
 	_batch_rel_err = new double[_num_bins];
-
-}
-
-
-/**
- * Set the number of batches for this tally
- * @param num_batches the number of batches
- */
-void Tally::setNumBatches(int num_batches) {
-	_num_batches = num_batches;
 }
 
 
@@ -507,23 +509,6 @@ void Tally::generateBinEdges(float start, float end, int num_bins,
 	_num_bins = num_bins;
 	_bin_spacing = type;
 
-	/* Allocate memory for tallies */
-	_tallies = (double**) malloc(sizeof(double*) * _num_batches);
-	_num_tallies = (int**) malloc(sizeof(int*) * _num_batches);
-	for (int i=0; i < _num_batches; i++) {
-		_tallies[i] = new double[_num_bins];
-		_num_tallies[i] = new int[_num_bins];
-	}
-
-
-	/* Set all tallies to zero by default */
-	for (int i=0; i < _num_batches; i++) {
-		for (int j=0; j < _num_bins; j++) {
-			_tallies[i][j] = 0;
-			_num_tallies[i][j] = 0;
-		}
-	}
-
 	/* Equal spacing between bins */
 	if (type == EQUAL) {
 		_bin_delta = float(end - start) / float(_num_bins);
@@ -546,13 +531,6 @@ void Tally::generateBinEdges(float start, float end, int num_bins,
 
 	/* Create an array of the center values between bins */
 	generateBinCenters();
-
-	/* Allocate memory for batch-based statistical counters */
-	_batch_mu = new double[_num_bins];
-	_batch_variance = new double[_num_bins];
-	_batch_std_dev = new double[_num_bins];
-	_batch_rel_err = new double[_num_bins];
-
 
 	return;
 }

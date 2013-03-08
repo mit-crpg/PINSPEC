@@ -94,6 +94,8 @@ class Geometry(_object):
     def setTwoRegionPinCellParams(self, *args): return _pinspec.Geometry_setTwoRegionPinCellParams(self, *args)
     def addRegion(self, *args): return _pinspec.Geometry_addRegion(self, *args)
     def runMonteCarloSimulation(self): return _pinspec.Geometry_runMonteCarloSimulation(self)
+    def computeBatchStatistics(self): return _pinspec.Geometry_computeBatchStatistics(self)
+    def outputBatchStatistics(self, *args): return _pinspec.Geometry_outputBatchStatistics(self, *args)
 Geometry_swigregister = _pinspec.Geometry_swigregister
 Geometry_swigregister(Geometry)
 
@@ -129,9 +131,12 @@ class Region(_object):
     def setTwoRegionPinCellParams(self, *args): return _pinspec.Region_setTwoRegionPinCellParams(self, *args)
     def setFuelRadius(self, *args): return _pinspec.Region_setFuelRadius(self, *args)
     def setPitch(self, *args): return _pinspec.Region_setPitch(self, *args)
+    def setNumBatches(self, *args): return _pinspec.Region_setNumBatches(self, *args)
     def addFuelRingRadius(self, *args): return _pinspec.Region_addFuelRingRadius(self, *args)
     def addModeratorRingRadius(self, *args): return _pinspec.Region_addModeratorRingRadius(self, *args)
     def collideNeutron(self, *args): return _pinspec.Region_collideNeutron(self, *args)
+    def computeBatchStatistics(self): return _pinspec.Region_computeBatchStatistics(self)
+    def outputBatchStatistics(self, *args): return _pinspec.Region_outputBatchStatistics(self, *args)
 Region_swigregister = _pinspec.Region_swigregister
 Region_swigregister(Region)
 
@@ -178,6 +183,7 @@ class Isotope(_object):
     def setAO(self, *args): return _pinspec.Isotope_setAO(self, *args)
     def setN(self, *args): return _pinspec.Isotope_setN(self, *args)
     def setTemperature(self, *args): return _pinspec.Isotope_setTemperature(self, *args)
+    def setNumBatches(self, *args): return _pinspec.Isotope_setNumBatches(self, *args)
     def loadXS(self): return _pinspec.Isotope_loadXS(self)
     def setElasticXS(self, *args): return _pinspec.Isotope_setElasticXS(self, *args)
     def setElasticAngleType(self, *args): return _pinspec.Isotope_setElasticAngleType(self, *args)
@@ -193,9 +199,11 @@ class Isotope(_object):
     def thermalScatteringProb(self, *args): return _pinspec.Isotope_thermalScatteringProb(self, *args)
     def addTally(self, *args): return _pinspec.Isotope_addTally(self, *args)
     def clearTallies(self): return _pinspec.Isotope_clearTallies(self)
-    def exportElasticXS(self, *args): return _pinspec.Isotope_exportElasticXS(self, *args)
-    def exportElasticXSEnergy(self, *args): return _pinspec.Isotope_exportElasticXSEnergy(self, *args)
+    def exportXS(self, *args): return _pinspec.Isotope_exportXS(self, *args)
+    def getNumElastic(self): return _pinspec.Isotope_getNumElastic(self)
     def getDistanceTraveled(self, *args): return _pinspec.Isotope_getDistanceTraveled(self, *args)
+    def computeBatchStatistics(self): return _pinspec.Isotope_computeBatchStatistics(self)
+    def outputBatchStatistics(self, *args): return _pinspec.Isotope_outputBatchStatistics(self, *args)
 Isotope_swigregister = _pinspec.Isotope_swigregister
 Isotope_swigregister(Isotope)
 
@@ -217,6 +225,7 @@ class Material(_object):
     def getMaterialName(self): return _pinspec.Material_getMaterialName(self)
     def getMaterialNumberDensity(self): return _pinspec.Material_getMaterialNumberDensity(self)
     def getIsotope(self, *args): return _pinspec.Material_getIsotope(self, *args)
+    def getDensity(self): return _pinspec.Material_getDensity(self)
     def getIsotopeNumDensity(self, *args): return _pinspec.Material_getIsotopeNumDensity(self, *args)
     def getTotalMacroXS(self, *args): return _pinspec.Material_getTotalMacroXS(self, *args)
     def getTotalMicroXS(self, *args): return _pinspec.Material_getTotalMicroXS(self, *args)
@@ -234,12 +243,14 @@ class Material(_object):
     def setDensity(self, *args): return _pinspec.Material_setDensity(self, *args)
     def setNumberDensity(self, *args): return _pinspec.Material_setNumberDensity(self, *args)
     def setAtomicMass(self, *args): return _pinspec.Material_setAtomicMass(self, *args)
-    def getDensity(self): return _pinspec.Material_getDensity(self)
+    def setNumBatches(self, *args): return _pinspec.Material_setNumBatches(self, *args)
     def addIsotope(self, *args): return _pinspec.Material_addIsotope(self, *args)
     def sampleIsotope(self, *args): return _pinspec.Material_sampleIsotope(self, *args)
     def addTally(self, *args): return _pinspec.Material_addTally(self, *args)
     def clearTallies(self): return _pinspec.Material_clearTallies(self)
     def collideNeutron(self, *args): return _pinspec.Material_collideNeutron(self, *args)
+    def computeBatchStatistics(self): return _pinspec.Material_computeBatchStatistics(self)
+    def outputBatchStatistics(self, *args): return _pinspec.Material_outputBatchStatistics(self, *args)
 Material_swigregister = _pinspec.Material_swigregister
 Material_swigregister(Material)
 

@@ -38,7 +38,7 @@ Isotope::Isotope(char* isotope_name){
 	_start_energy = 1E-7;
 	_end_energy = 2E7;
 	_num_energies = 100000;
-    rescaleCrossSections(_start_energy, _end_energy, 
+    rescaleCrossSections(_start_energy, _end_energy,
 						_num_energies, LOGARITHMIC);
  
 	/* By default the thermal scattering cdfs have not been initialized */
@@ -563,6 +563,22 @@ void Isotope::setTemperature(float T) {
 
 
 /**
+ * Sets the number of batches for each of the Tallies inside of this Isotope
+ * @param num_batches the number of batches
+ */
+void Isotope::setNumBatches(int num_batches) {
+
+    /* Set the number of batches for each Tally inside of this Isotope */
+    std::vector<Tally*>::iterator iter;
+	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+        (*iter)->setNumBatches(num_batches);
+    }
+
+    return;
+}
+
+
+/**
  * Make this a fissionable isotope
  */
 void Isotope::makeFissionable() {
@@ -585,7 +601,8 @@ void Isotope::loadXS() {
 	 * structures */
 
 
-	/******************************** ELASTIC ********************************/
+	/******************************** ELASTIC ********************************/    void outputBatchStatistics(char* directory, char* suffix);
+
 	/* Check whether an elastic cross-section file exists for isotope */
 
 	filename = prefix + _isotope_name + "-elastic.txt";
@@ -1227,50 +1244,102 @@ float Isotope::getDistanceTraveled(neutron* neutron) {
 //}
 
 
-/**
- * export the elastic xs in a numpy array
- * @param numpy array to fill with xs
- * @param length of numpy array
+/** Calls each of the Tally class objects in the Isotope to compute
+ * their batch-based statiscs from the tallies
  */
-void Isotope::exportElasticXS(double *xs, int n){
+void Isotope::computeBatchStatistics() {
 
-	for (int i = 0; i < n; i++){
+    /* Compute statistics for each of this Isotope's Tallies */
+    std::vector<Tally*>::iterator iter;
 
-		xs[i] = _elastic_xs[i];
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
+        (*iter)->computeBatchStatistics();
 
-	}
+    return;
 }
 
 
 /**
- * export the elastic xs energies in numpy array
- * @param numpy array to fill with xs energies
- * @param length of numpy array
+ * export the elastic xs to a txt file
  */
-void Isotope::exportElasticXSEnergy(double *energy, int n){
+void Isotope::exportXS(char* xs_type){
 
-	for (int i = 0; i < n; i++){
+	/* generate variable for xs length and pointer to array */
+	int length;
+	float* xs_array;
+	float* energy_array;
 
-		energy[i] = _elastic_xs_energies[i];
+	/* generate stream to write to file */
+	std::ofstream myfile;
 
+	/* generate file name */
+	std::string filename = "xs-plot/" + std::string(_isotope_name) + "-" + std::string(xs_type) + "-export.txt";
+
+	/* get xs data length */
+	if (std::string(xs_type) == "elastic"){
+		length = _num_elastic_xs;
+		xs_array = _elastic_xs;
+		energy_array = _elastic_xs_energies;
 	}
+	else if (std::string(xs_type) == "fission"){
+		length = _num_fission_xs;
+		xs_array = _fission_xs;
+		energy_array = _fission_xs_energies;
+	}
+	else if (std::string(xs_type) == "absorb"){
+		length = _num_absorb_xs;
+		xs_array = _absorb_xs;
+		energy_array = _absorb_xs_energies;
+	}
+	else if (std::string(xs_type) == "total"){
+		length = _num_total_xs;
+		xs_array = _total_xs;
+		energy_array = _total_xs_energies;
+	}
+	else{
+		log_printf(ERROR, "The xs your are trying to plot does not exist. Check your syntax");
+	}
+
+	/* open file */
+	myfile.open(filename.c_str());
+
+	/* fill with CSV energy and xs data */
+	for (int i = 0; i < length; i++){
+		myfile << energy_array[i] << " " << xs_array[i] << "\n";
+	}
+
+	myfile.close();
+
 }
 
 
+/** Calls each of the Tally class objects in the Isotope to output
+ * their tallies and statistics to output files.
+ * @param directory the directory to write batch statistics files
+ * @param suffix a string to attach to the end of each filename
+ */
+void Isotope::outputBatchStatistics(char* directory, char* suffix) {
+
+    /* Output statistics for each of this Isotope's Tallies */
+    std::vector<Tally*>::iterator iter;
+    std::string filename;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
+        filename = std::string(directory) + _isotope_name + "_statistics" 
+                                                + suffix + ".txt";
+        (*iter)->outputBatchStatistics(filename.c_str());
+    }
+
+    return;
+}
 
 
+int Isotope::getNumElastic(){
 
+	log_printf(NORMAL, "num elastic: %i", _num_elastic_xs);
 
-
-
-
-
-
-
-
-
-
-
+	return _num_elastic_xs;
+}
 
 
 

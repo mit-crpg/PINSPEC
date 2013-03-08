@@ -230,6 +230,25 @@ void Region::setPitch(float pitch) {
 
 
 /**
+ * Sets the number of batches for each of the Tallies inside of this Region
+ * @param num_batches the number of batches
+ */
+void Region::setNumBatches(int num_batches) {
+
+    /* Set the number of batches for each Tally inside of this Region */
+    std::vector<Tally*>::iterator iter;
+	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+        (*iter)->setNumBatches(num_batches);
+    }
+
+    /* Set the number of batches for each of the Tallies inside the Material */
+    _material->setNumBatches(num_batches);
+
+    return;
+}
+
+
+/**
  * Adds a new fuel ring radius for this Region if it is not INFINITE
  * @param radius a fuel ring radius
  */
@@ -382,3 +401,48 @@ bool Region::onBoundary(float x, float y) {
 			return false;
 	}
 }
+
+
+/**
+ * Calls each of the Tally class objects in the Region to compute
+ * their batch-based statistics from the tallies
+ */
+void Region::computeBatchStatistics() {
+
+    /* Compute statistics for each of this Region's Tallies */
+    std::vector<Tally*>::iterator iter;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
+        (*iter)->computeBatchStatistics();
+
+    /* Compute statistics for the Material's Tallies */
+    _material->computeBatchStatistics();
+
+    return;
+}
+
+
+/**
+ * Calls each of the Tally class objects in the Region to output
+ * their tallies and statistics to output files.
+ * @param directory the directory to write batch statistics files
+ * @param suffix a string to attach to the end of each filename
+ */
+void Region::outputBatchStatistics(char* directory, char* suffix) {
+
+    /* Output statistics for each of this Region's Tallies */
+    std::vector<Tally*>::iterator iter;
+    std::string filename;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
+        filename = std::string(directory) + _name + "_statistics_" 
+                                        + suffix + ".txt";
+        (*iter)->outputBatchStatistics(filename.c_str());
+    }
+
+    /* Output statistics for the Materials Tallies */
+    _material->outputBatchStatistics(directory, suffix);
+
+    return;
+}
+

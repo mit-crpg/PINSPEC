@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-CFLAGS="-O3 -march=native -fPIC -I/usr/include/python2.7"
+CFLAGS="-O3 -march=native -fPIC -I/usr/include/python2.7 -I/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/core/include"
 LFLAGS="-bundle `python-config --ldflags`"
 
 if [ "$1" = '--release' ]
@@ -47,6 +47,8 @@ g++ src/Region.cpp -c $CFLAGS
 g++ src/Geometry.cpp -c $CFLAGS
 g++ python/pinspec/Geometry_wrap.cxx -c $CFLAGS
 g++ $LFLAGS Isotope.o xsreader.o log.o Material.o Tally.o Neutron.o Region.o Fissioner.o Geometry.o Geometry_wrap.o -o python/pinspec/_pinspec.so
+
+
 
 # Cleanup
 mv *.o objs/

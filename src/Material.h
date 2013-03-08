@@ -18,6 +18,7 @@ typedef enum densityUnits {
 	NUM_CM3
 } densityUnit;
 
+#ifdef __cplusplus
 class Material {
 
 private:
@@ -41,6 +42,7 @@ public:
 	char* getMaterialName();
 	float getMaterialNumberDensity();
 	Isotope* getIsotope(char* isotope);
+	float getDensity();
 	float getIsotopeNumDensity(char* isotope);
 	
 	float getTotalMacroXS(float energy);
@@ -78,7 +80,7 @@ public:
 	void setDensity(float density, char* unit);
 	void setNumberDensity(float number_density);
 	void setAtomicMass(float atomic_mass);
-	float getDensity();
+    void setNumBatches(int num_batches);
 	void addIsotope(Isotope *isotope, float atomic_ratio);
 
 	Isotope* sampleIsotope(float energy);
@@ -86,6 +88,10 @@ public:
 	void clearTallies();
 
 	collisionType collideNeutron(neutron* neut);
+    void computeBatchStatistics();
+    void outputBatchStatistics(char* directory, char* suffix);
 };
+
+#endif
 
 #endif /* MATERIAL_H_ */
