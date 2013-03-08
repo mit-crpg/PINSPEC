@@ -119,9 +119,6 @@ void Isotope::parseName(){
 
 	/* Set the atomic number of isotope */
 	setA(A);
-
-	log_printf(DEBUG, "Isotope %s has atomic number %i", 
-									_isotope_name, _A);
 }
 
 
@@ -599,7 +596,7 @@ void Isotope::loadXS() {
 	 * structures */
 
 
-	/******************************** ELASTIC ********************************/    void outputBatchStatistics(char* directory, char* suffix);
+	/******************************** ELASTIC ********************************/    
 
 	/* Check whether an elastic cross-section file exists for isotope */
 
@@ -615,7 +612,7 @@ void Isotope::loadXS() {
 
 	/* Find the number of cross-section values in the file */
 	_num_elastic_xs = getNumCrossSectionDataPoints(filename.c_str());
-
+    
 	/* Initialize data structures to store cross-section values */
 	energies = new float[_num_elastic_xs];
 	xs_values = new float[_num_elastic_xs];
@@ -1203,6 +1200,12 @@ collisionType Isotope::collideNeutron(neutron* neut) {
 	float alpha = getAlpha();
 	double random = (float)(rand()) / (float)(RAND_MAX);
 	neut->_energy = energy * (alpha + (1.0 - alpha) * random);
+
+    if (type == FISSION || type == CAPTURE)
+        neut->_alive = false;
+
+    //FIXME: Add in thermal scattering!
+
 
     return type;
 }

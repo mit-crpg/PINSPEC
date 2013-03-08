@@ -72,6 +72,9 @@ int getNumCrossSectionDataPoints(const char* filename) {
 	while(getline(input_file, line))
 	    num_xs_values++;
 
+    /* Must subtract one to account for header at top of file */
+    num_xs_values -= 1.0;
+
 	/* Close the file and return the number of lines */
 	input_file.close();
 	return num_xs_values;

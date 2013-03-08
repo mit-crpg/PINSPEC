@@ -9,7 +9,7 @@ def main():
 	#       using geometric parameters and use that 
     #       when loading the isotope in a material
     
-    log_setlevel(INFO)
+    log_setlevel(DEBUG)
 
     # Define isotopes
     h1 = Isotope('H-1')
