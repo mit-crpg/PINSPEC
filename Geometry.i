@@ -20,8 +20,8 @@
 
 %apply (float* ARGOUT_ARRAY1, int DIM1) {(float* xs, int num_xs)}
 %apply (float* ARGOUT_ARRAY1, int DIM1) {(float* energies, int num_xs)}
-%apply (double* ARGOUT_ARRAY1, int DIM1) {(double* data, int num_bins)}
-%apply (double* IN_ARRAY1, int DIM1) {(double* edges, int num_edges)}
+%apply (float* ARGOUT_ARRAY1, int DIM1) {(float* data, int num_bins)}
+%apply (float* IN_ARRAY1, int DIM1) {(float* edges, int num_bins)}
 
 %include ../../src/Geometry.h
 %include ../../src/Region.h

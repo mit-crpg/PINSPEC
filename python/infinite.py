@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
+import numpy as np
 from pinspec import *
 from numpy import *
-from scipy import *
 #from plotter import *
 
 
@@ -21,7 +21,10 @@ def main():
     u235 = Isotope('U-235')
     u238 = Isotope('U-238')
 
+
+    ############################################################################
     # EXAMPLE: How to retrieve micro xs from C++ and plot them
+    ############################################################################
     # First, retrieve the xs and energies
     u235_num_xs = u235.getNumXSEnergies()
     u235_capture_xs = u235.retrieveXS(u235_num_xs, 'capture')
@@ -32,7 +35,6 @@ def main():
     #Note: after rescaling, all xs types have the same energy grid so only
     #need to retrieve it for one xs type
     u235_xs_energies = u235.retrieveXSEnergies(u235_num_xs)    
-
 
     # Plot all of the xs on the same scale
     fig = plt.figure()
@@ -62,8 +64,9 @@ def main():
     log_printf(INFO, "Added isotopes")
 
 
-
+    ############################################################################
     #EXAMPLE: How to retrieve macro xs from C++ and plot them
+    ############################################################################
     # First, retrieve the xs and energies 
     mix_num_xs = mix.getNumXSEnergies()
     mix_capture_xs = mix.retrieveXS(mix_num_xs, 'capture')
@@ -100,18 +103,22 @@ def main():
 
     log_printf(INFO, "Made mixture region")
     
+
 	# Define tallies - give them to Regions, Materials, or Isotopes
 	# This part is really where we need to know how to pass float
     # arrays to/from SWIG
-    flux = Tally('total flux', REGION, FLUX)
-    flux.generateBinEdges(1E-7, 1E7, 1000, LOGARITHMIC)
-    flux.setNumBatches(10)
-    region_mix.addTally(flux)
+
 
 
     ############################################################################
     #EXAMPLE: How to retrieve tally data. 
     ############################################################################
+    # Create a tally for the flux
+    flux = Tally('total flux', REGION, FLUX)
+    flux.generateBinEdges(1E-7, 1E7, 1000, LOGARITHMIC)
+    flux.setNumBatches(10)
+    region_mix.addTally(flux)
+
     num_bins = flux.getNumBins()
     flux.computeBatchStatistics()
     flux_bin_centers = flux.retrieveTallyCenters(num_bins)
@@ -120,14 +127,45 @@ def main():
     flux_std_dev = flux.retrieveTallyStdDev(num_bins)
     flux_rel_err = flux.retrieveTallyRelErr(num_bins)
 
-    # Plot all of the xs on the same scale
+    # Plot the flux
     fig = plt.figure()
     plt.plot(flux_bin_centers, flux_mu, lw=1)
     plt.xscale('log')
     plt.xlabel('Energy [ev]')
-    plt.ylabel('Flux')
+    if (flux.getTallyType() == FLUX):
+        plt.ylabel('Flux')
     plt.title(flux.getTallyName() + ' average')
     fig.savefig(flux.getTallyName() + '_average.png')
+
+
+    ############################################################################
+    #EXAMPLE: How to set tally bin edges 
+    ############################################################################
+    # Create a tally for the absorption rate
+    abs_rate = Tally('absorption rate', REGION, ABSORPTION_RATE)
+    abs_rate_bin_edges = np.array([0.1, 1., 5., 10., 100., 1000.])
+    abs_rate.setBinEdges(abs_rate_bin_edges)
+    abs_rate.setNumBatches(10)
+    region_mix.addTally(abs_rate)
+
+    # Retrieve tally data into numpy arrays
+    num_bins = abs_rate.getNumBins()
+    abs_rate.computeBatchStatistics()
+    abs_rate_bin_centers = abs_rate.retrieveTallyCenters(num_bins)
+    abs_rate_mu = abs_rate.retrieveTallyMu(num_bins)
+    abs_rate_variance = abs_rate.retrieveTallyVariance(num_bins)
+    abs_rate_std_dev = abs_rate.retrieveTallyStdDev(num_bins)
+    abs_rate_rel_err = abs_rate.retrieveTallyRelErr(num_bins)
+
+    # Plot the absorption rate
+    fig = plt.figure()
+    plt.plot(abs_rate_bin_centers, abs_rate_mu, lw=1)
+    plt.xscale('log')
+    plt.xlabel('Energy [ev]')
+    if (abs_rate.getTallyType() == ABSORPTION_RATE):
+        plt.ylabel('Absorption Rate')
+    plt.title(abs_rate.getTallyName() + ' average')
+    fig.savefig(abs_rate.getTallyName() + '_average.png')
 
 
     # Define geometry

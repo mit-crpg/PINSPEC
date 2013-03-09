@@ -25,6 +25,7 @@ Tally::Tally(char* tally_name, tallyDomainType tally_domain,
 
 	/* Sets the default for batch statistics */
 	_num_batches = 0;
+    _num_bins = 0;
 	_computed_statistics = false;
 
 }
@@ -36,15 +37,13 @@ Tally::Tally(char* tally_name, tallyDomainType tally_domain,
  */
 Tally::~Tally() {
 
-	if (_num_bins != 0) {
+	if (_num_bins != 0)
+        delete [] _edges;
+
+	if (_num_batches != 0) {
 		delete [] _tallies;
 		delete [] _num_tallies;
 		delete [] _centers;
-		if (_bin_spacing != OTHER)
-			delete [] _edges;
-	}
-
-	if (_num_batches != 0) {
 		delete [] _batch_mu;
 		delete [] _batch_variance;
 		delete [] _batch_std_dev;
@@ -75,7 +74,7 @@ int Tally::getNumBins() {
  * Returns a double array of bin edge values
  * @return array of bin edge values
  */
-float* Tally::getBinEdges() {
+double* Tally::getBinEdges() {
 	 if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot return bin edges for Tally %s since "
 				 "the bins have not yet been created", _tally_name);
@@ -102,12 +101,12 @@ double* Tally::getBinCenters() {
  * for EQUAL and LOGARITHMIC bin types
  * @return the spacing between bins
  */
-float Tally::getBinDelta() {
+double Tally::getBinDelta() {
 	return _bin_delta;
 }
 
 
-float Tally::getBinDelta(float sample) {
+double Tally::getBinDelta(double sample) {
 
 	/* If this Tally uses equally spaced bins in linear or logarithmic
 	 * space, return the bin delta */
@@ -266,14 +265,14 @@ double Tally::getMinTally() {
  * @param sample the sample value of interest
  * @return the bin index for the sample
  */
-int Tally::getBinIndex(float sample) {
+int Tally::getBinIndex(double sample) {
 
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot return a bin index for Tally %s since "
 				 "the bins have not yet been created", _tally_name);
 
 	/* Set index to infinity to begin with */
-	int index = std::numeric_limits<float>::infinity();
+	int index = std::numeric_limits<double>::infinity();
 
 	/* if the sample is equal to the last bin edge, return the last bin */
 	if (sample == _edges[_num_bins])
@@ -302,7 +301,7 @@ int Tally::getBinIndex(float sample) {
 
 	/* If this sample was not contained within a bin set index to infinity*/
 	if (index > _num_bins)
-		index = std::numeric_limits<float>::infinity();
+		index = std::numeric_limits<double>::infinity();
 
 	return index;
 }
@@ -377,7 +376,7 @@ double* Tally::getBatchRelativeError() {
 }
 
 
-void Tally::retrieveTallyCenters(float* data, int num_bins){
+void Tally::retrieveTallyCenters(double* data, int num_bins){
 
     if (!_computed_statistics)
         log_printf(ERROR, "Unable to retrieve bin centers for Tally %s since"
@@ -393,7 +392,7 @@ void Tally::retrieveTallyCenters(float* data, int num_bins){
 }
 
 
-void Tally::retrieveTallyMu(float* data, int num_bins) {
+void Tally::retrieveTallyMu(double* data, int num_bins) {
 
     if (!_computed_statistics)
         log_printf(ERROR, "Unable to retrieve tally mu for Tally %s since"
@@ -407,7 +406,7 @@ void Tally::retrieveTallyMu(float* data, int num_bins) {
         data[i] = _batch_mu[i];
 }
 
-void Tally::retrieveTallyVariance(float* data, int num_bins) {
+void Tally::retrieveTallyVariance(double* data, int num_bins) {
 
     if (!_computed_statistics)
         log_printf(ERROR, "Unable to retrieve tally variances for Tally %s since"
@@ -422,7 +421,7 @@ void Tally::retrieveTallyVariance(float* data, int num_bins) {
 }
 
 
-void Tally::retrieveTallyStdDev(float* data, int num_bins) {
+void Tally::retrieveTallyStdDev(double* data, int num_bins) {
 
     if (!_computed_statistics)
         log_printf(ERROR, "Unable to retrieve tally std. dev. for Tally %s since"
@@ -437,7 +436,7 @@ void Tally::retrieveTallyStdDev(float* data, int num_bins) {
 }
 
 
-void Tally::retrieveTallyRelErr(float* data, int num_bins) {
+void Tally::retrieveTallyRelErr(double* data, int num_bins) {
 
     if (!_computed_statistics)
         log_printf(ERROR, "Unable to retrieve tally rel. err. for Tally %s since"
@@ -466,11 +465,14 @@ void Tally::setBinSpacingType(binSpacingType type) {
  * @param edges the array of bin edges
  * @param num_bins the number of bins
  */
-void Tally::setBinEdges(float* edges, int num_bins) {
+void Tally::setBinEdges(double* edges, int num_bins) {
 
 	_num_bins = num_bins;
-	_edges = edges;
 	_bin_spacing = OTHER;
+    _edges = (double*)malloc(sizeof(double)*num_bins);
+
+    for (int i=0; i < num_bins; i++)
+        _edges[i] = edges[i];
 
 	/* Create an array of the center values between bins */
 	generateBinCenters();
@@ -531,8 +533,8 @@ Tally* Tally::clone() {
                                     _num_bins, _bin_spacing);
     /* If the bins are not regularly spaced, deep copy them to the new Tally */
     else {
-        float* edges = new float[_num_bins+1];
-        memcpy(edges, _edges, _num_bins * sizeof(float));
+        double* edges = new double[_num_bins+1];
+        memcpy(edges, _edges, _num_bins * sizeof(double));
         new_clone->setBinEdges(edges, _num_bins);
     }
 
@@ -548,7 +550,7 @@ Tally* Tally::clone() {
  * @param num_bins the number of bins to be created
  * @param type the type of bins (EQUAL or LOGARITHMIC)
  */
-void Tally::generateBinEdges(float start, float end, int num_bins,
+void Tally::generateBinEdges(double start, double end, int num_bins,
 												binSpacingType type) {
 	if (start == end)
 		log_printf(ERROR, "Unable to create bins for Tally %s between"
@@ -559,18 +561,18 @@ void Tally::generateBinEdges(float start, float end, int num_bins,
 
 	/* Equal spacing between bins */
 	if (type == EQUAL) {
-		_bin_delta = float(end - start) / float(_num_bins);
+		_bin_delta = double(end - start) / double(_num_bins);
 
 		/* Generate points from start to end for each bin edge */
-		_edges = linspace<float, float>(start, end, num_bins+1);
+		_edges = linspace<double, double>(start, end, num_bins+1);
 	}
 
 	/* Logarithmically equal spacing between bins */
 	else if (type == LOGARITHMIC) {
-		_bin_delta = float(log10(end) - log10(start)) / float(_num_bins);
+		_bin_delta = double(log10(end) - log10(start)) / double(_num_bins);
 
 		/* Generate points from start to end for each bin edge */
-		_edges = logspace<float, float>(start, end, num_bins+1);
+		_edges = logspace<double, double>(start, end, num_bins+1);
 	}
 
 	else
@@ -610,7 +612,7 @@ void Tally::generateBinCenters() {
  * @param num_samples the number of samples to tally
  * @param batch_num the batch number for this sample
  */
-void Tally::tally(float* samples, int num_samples, int batch_num) {
+void Tally::tally(double* samples, int num_samples, int batch_num) {
 
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot tally samples in Tally %s since the "
@@ -639,7 +641,7 @@ void Tally::tally(float* samples, int num_samples, int batch_num) {
  * @param samples array of samples to tally
  * @param batch_num the batch number for this sample
  */
-void Tally::tally(float sample, int batch_num) {
+void Tally::tally(double sample, int batch_num) {
 
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot tally sample in Tally %s since "
@@ -666,7 +668,7 @@ void Tally::tally(float sample, int batch_num) {
  * @param num_samples the number of samples to tally
  * @param batch_num the batch number for this sample
  */
-void Tally::weightedTally(float* samples, float* sample_weights,
+void Tally::weightedTally(double* samples, double* sample_weights,
 										int num_samples, int batch_num) {
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot tally weighted samples in Tally %s "
@@ -696,7 +698,7 @@ void Tally::weightedTally(float* samples, float* sample_weights,
  * @param weight the weight to increment tally by
  * @param batch_num the batch number for this sample
  */
-void Tally::weightedTally(float sample, float weight, int batch_num) {
+void Tally::weightedTally(double sample, double weight, int batch_num) {
 
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot tally weighted sample in Tally %s since "
@@ -744,7 +746,7 @@ void Tally::normalizeTallies() {
  * Divide each tally by a given scaling factor
  * @param scale_factor factor to normalize tallies by
  */
-void Tally::normalizeTallies(float scale_factor) {
+void Tally::normalizeTallies(double scale_factor) {
 
 	if (_num_bins == 0)
 		log_printf(ERROR, "Cannot normalize tallies for Tally %s since it is"
@@ -818,7 +820,7 @@ void Tally::computeBatchStatistics() {
  * a scaling factor
  * @param scale_factor the factor to scale each bin value by
  */
-void Tally::computeScaledBatchStatistics(float scale_factor) {
+void Tally::computeScaledBatchStatistics(double scale_factor) {
 
 	if (_num_batches == 0)
 		log_printf(ERROR, "Cannot compute batch statistics for BatchBinSet %s "

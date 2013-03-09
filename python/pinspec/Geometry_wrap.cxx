@@ -8682,7 +8682,7 @@ SWIGINTERN PyObject *_wrap_Tally_getBinEdges(PyObject *SWIGUNUSEDPARM(self), PyO
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  float *result = 0 ;
+  double *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:Tally_getBinEdges",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
@@ -8690,8 +8690,8 @@ SWIGINTERN PyObject *_wrap_Tally_getBinEdges(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBinEdges" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (float *)(arg1)->getBinEdges();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_float, 0 |  0 );
+  result = (double *)(arg1)->getBinEdges();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -8726,7 +8726,7 @@ SWIGINTERN PyObject *_wrap_Tally_getBinDelta__SWIG_0(PyObject *SWIGUNUSEDPARM(se
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  float result;
+  double result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:Tally_getBinDelta",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
@@ -8734,8 +8734,8 @@ SWIGINTERN PyObject *_wrap_Tally_getBinDelta__SWIG_0(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBinDelta" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (float)(arg1)->getBinDelta();
-  resultobj = SWIG_From_float(static_cast< float >(result));
+  result = (double)(arg1)->getBinDelta();
+  resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
   return NULL;
@@ -8745,14 +8745,14 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_getBinDelta__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float arg2 ;
+  double arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  float val2 ;
+  double val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  float result;
+  double result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:Tally_getBinDelta",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
@@ -8760,13 +8760,13 @@ SWIGINTERN PyObject *_wrap_Tally_getBinDelta__SWIG_1(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBinDelta" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_getBinDelta" "', argument " "2"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_getBinDelta" "', argument " "2"" of type '" "double""'");
   } 
-  arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getBinDelta(arg2);
-  resultobj = SWIG_From_float(static_cast< float >(result));
+  arg2 = static_cast< double >(val2);
+  result = (double)(arg1)->getBinDelta(arg2);
+  resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
   return NULL;
@@ -8799,7 +8799,7 @@ SWIGINTERN PyObject *_wrap_Tally_getBinDelta(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       {
-        int res = SWIG_AsVal_float(argv[1], NULL);
+        int res = SWIG_AsVal_double(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
@@ -8812,7 +8812,7 @@ fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Tally_getBinDelta'.\n"
     "  Possible C/C++ prototypes are:\n"
     "    Tally::getBinDelta()\n"
-    "    Tally::getBinDelta(float)\n");
+    "    Tally::getBinDelta(double)\n");
   return 0;
 }
 
@@ -9104,10 +9104,10 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_getBinIndex(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float arg2 ;
+  double arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  float val2 ;
+  double val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -9119,11 +9119,11 @@ SWIGINTERN PyObject *_wrap_Tally_getBinIndex(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBinIndex" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_getBinIndex" "', argument " "2"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_getBinIndex" "', argument " "2"" of type '" "double""'");
   } 
-  arg2 = static_cast< float >(val2);
+  arg2 = static_cast< double >(val2);
   result = (int)(arg1)->getBinIndex(arg2);
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
@@ -9135,7 +9135,7 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_retrieveTallyCenters(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float *arg2 = (float *) 0 ;
+  double *arg2 = (double *) 0 ;
   int arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -9161,9 +9161,9 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyCenters(PyObject *SWIGUNUSEDPARM(s
     }
     arg3 = (int) PyInt_AsLong(obj1);
     dims[0] = (npy_intp) arg3;
-    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    array2 = PyArray_SimpleNew(1, dims, NPY_DOUBLE);
     if (!array2) SWIG_fail;
-    arg2 = (float*) array_data(array2);
+    arg2 = (double*) array_data(array2);
   }
   (arg1)->retrieveTallyCenters(arg2,arg3);
   resultobj = SWIG_Py_Void();
@@ -9179,7 +9179,7 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_retrieveTallyMu(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float *arg2 = (float *) 0 ;
+  double *arg2 = (double *) 0 ;
   int arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -9205,9 +9205,9 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyMu(PyObject *SWIGUNUSEDPARM(self),
     }
     arg3 = (int) PyInt_AsLong(obj1);
     dims[0] = (npy_intp) arg3;
-    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    array2 = PyArray_SimpleNew(1, dims, NPY_DOUBLE);
     if (!array2) SWIG_fail;
-    arg2 = (float*) array_data(array2);
+    arg2 = (double*) array_data(array2);
   }
   (arg1)->retrieveTallyMu(arg2,arg3);
   resultobj = SWIG_Py_Void();
@@ -9223,7 +9223,7 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_retrieveTallyVariance(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float *arg2 = (float *) 0 ;
+  double *arg2 = (double *) 0 ;
   int arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -9249,9 +9249,9 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyVariance(PyObject *SWIGUNUSEDPARM(
     }
     arg3 = (int) PyInt_AsLong(obj1);
     dims[0] = (npy_intp) arg3;
-    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    array2 = PyArray_SimpleNew(1, dims, NPY_DOUBLE);
     if (!array2) SWIG_fail;
-    arg2 = (float*) array_data(array2);
+    arg2 = (double*) array_data(array2);
   }
   (arg1)->retrieveTallyVariance(arg2,arg3);
   resultobj = SWIG_Py_Void();
@@ -9267,7 +9267,7 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_retrieveTallyStdDev(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float *arg2 = (float *) 0 ;
+  double *arg2 = (double *) 0 ;
   int arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -9293,9 +9293,9 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyStdDev(PyObject *SWIGUNUSEDPARM(se
     }
     arg3 = (int) PyInt_AsLong(obj1);
     dims[0] = (npy_intp) arg3;
-    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    array2 = PyArray_SimpleNew(1, dims, NPY_DOUBLE);
     if (!array2) SWIG_fail;
-    arg2 = (float*) array_data(array2);
+    arg2 = (double*) array_data(array2);
   }
   (arg1)->retrieveTallyStdDev(arg2,arg3);
   resultobj = SWIG_Py_Void();
@@ -9311,7 +9311,7 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_retrieveTallyRelErr(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float *arg2 = (float *) 0 ;
+  double *arg2 = (double *) 0 ;
   int arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -9337,9 +9337,9 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyRelErr(PyObject *SWIGUNUSEDPARM(se
     }
     arg3 = (int) PyInt_AsLong(obj1);
     dims[0] = (npy_intp) arg3;
-    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    array2 = PyArray_SimpleNew(1, dims, NPY_DOUBLE);
     if (!array2) SWIG_fail;
-    arg2 = (float*) array_data(array2);
+    arg2 = (double*) array_data(array2);
   }
   (arg1)->retrieveTallyRelErr(arg2,arg3);
   resultobj = SWIG_Py_Void();
@@ -9495,38 +9495,48 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_setBinEdges(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float *arg2 = (float *) 0 ;
+  double *arg2 = (double *) 0 ;
   int arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:Tally_setBinEdges",&obj0,&obj1,&obj2)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_setBinEdges",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_setBinEdges" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_float, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally_setBinEdges" "', argument " "2"" of type '" "float *""'"); 
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
   }
-  arg2 = reinterpret_cast< float * >(argp2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_setBinEdges" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
   (arg1)->setBinEdges(arg2,arg3);
   resultobj = SWIG_Py_Void();
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
   return resultobj;
 fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
   return NULL;
 }
 
@@ -9534,15 +9544,15 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_generateBinEdges(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float arg2 ;
-  float arg3 ;
+  double arg2 ;
+  double arg3 ;
   int arg4 ;
   binSpacingType arg5 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  float val2 ;
+  double val2 ;
   int ecode2 = 0 ;
-  float val3 ;
+  double val3 ;
   int ecode3 = 0 ;
   int val4 ;
   int ecode4 = 0 ;
@@ -9560,16 +9570,16 @@ SWIGINTERN PyObject *_wrap_Tally_generateBinEdges(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_generateBinEdges" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_generateBinEdges" "', argument " "2"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_generateBinEdges" "', argument " "2"" of type '" "double""'");
   } 
-  arg2 = static_cast< float >(val2);
-  ecode3 = SWIG_AsVal_float(obj2, &val3);
+  arg2 = static_cast< double >(val2);
+  ecode3 = SWIG_AsVal_double(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_generateBinEdges" "', argument " "3"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_generateBinEdges" "', argument " "3"" of type '" "double""'");
   } 
-  arg3 = static_cast< float >(val3);
+  arg3 = static_cast< double >(val3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Tally_generateBinEdges" "', argument " "4"" of type '" "int""'");
@@ -9664,7 +9674,7 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_tally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float *arg2 = (float *) 0 ;
+  double *arg2 = (double *) 0 ;
   int arg3 ;
   int arg4 ;
   void *argp1 = 0 ;
@@ -9686,11 +9696,11 @@ SWIGINTERN PyObject *_wrap_Tally_tally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_tally" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_float, 0 |  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally_tally" "', argument " "2"" of type '" "float *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally_tally" "', argument " "2"" of type '" "double *""'"); 
   }
-  arg2 = reinterpret_cast< float * >(argp2);
+  arg2 = reinterpret_cast< double * >(argp2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_tally" "', argument " "3"" of type '" "int""'");
@@ -9712,11 +9722,11 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_tally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float arg2 ;
+  double arg2 ;
   int arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  float val2 ;
+  double val2 ;
   int ecode2 = 0 ;
   int val3 ;
   int ecode3 = 0 ;
@@ -9730,11 +9740,11 @@ SWIGINTERN PyObject *_wrap_Tally_tally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_tally" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_tally" "', argument " "2"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_tally" "', argument " "2"" of type '" "double""'");
   } 
-  arg2 = static_cast< float >(val2);
+  arg2 = static_cast< double >(val2);
   ecode3 = SWIG_AsVal_int(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_tally" "', argument " "3"" of type '" "int""'");
@@ -9765,7 +9775,7 @@ SWIGINTERN PyObject *_wrap_Tally_tally(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       {
-        int res = SWIG_AsVal_float(argv[1], NULL);
+        int res = SWIG_AsVal_double(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
@@ -9786,7 +9796,7 @@ SWIGINTERN PyObject *_wrap_Tally_tally(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_float, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
         {
@@ -9809,8 +9819,8 @@ SWIGINTERN PyObject *_wrap_Tally_tally(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Tally_tally'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Tally::tally(float *,int,int)\n"
-    "    Tally::tally(float,int)\n");
+    "    Tally::tally(double *,int,int)\n"
+    "    Tally::tally(double,int)\n");
   return 0;
 }
 
@@ -9818,8 +9828,8 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_weightedTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float *arg2 = (float *) 0 ;
-  float *arg3 = (float *) 0 ;
+  double *arg2 = (double *) 0 ;
+  double *arg3 = (double *) 0 ;
   int arg4 ;
   int arg5 ;
   void *argp1 = 0 ;
@@ -9844,16 +9854,16 @@ SWIGINTERN PyObject *_wrap_Tally_weightedTally__SWIG_0(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_weightedTally" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_float, 0 |  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally_weightedTally" "', argument " "2"" of type '" "float *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally_weightedTally" "', argument " "2"" of type '" "double *""'"); 
   }
-  arg2 = reinterpret_cast< float * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_float, 0 |  0 );
+  arg2 = reinterpret_cast< double * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_double, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Tally_weightedTally" "', argument " "3"" of type '" "float *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Tally_weightedTally" "', argument " "3"" of type '" "double *""'"); 
   }
-  arg3 = reinterpret_cast< float * >(argp3);
+  arg3 = reinterpret_cast< double * >(argp3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Tally_weightedTally" "', argument " "4"" of type '" "int""'");
@@ -9875,14 +9885,14 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_weightedTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float arg2 ;
-  float arg3 ;
+  double arg2 ;
+  double arg3 ;
   int arg4 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  float val2 ;
+  double val2 ;
   int ecode2 = 0 ;
-  float val3 ;
+  double val3 ;
   int ecode3 = 0 ;
   int val4 ;
   int ecode4 = 0 ;
@@ -9897,16 +9907,16 @@ SWIGINTERN PyObject *_wrap_Tally_weightedTally__SWIG_1(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_weightedTally" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_weightedTally" "', argument " "2"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_weightedTally" "', argument " "2"" of type '" "double""'");
   } 
-  arg2 = static_cast< float >(val2);
-  ecode3 = SWIG_AsVal_float(obj2, &val3);
+  arg2 = static_cast< double >(val2);
+  ecode3 = SWIG_AsVal_double(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_weightedTally" "', argument " "3"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_weightedTally" "', argument " "3"" of type '" "double""'");
   } 
-  arg3 = static_cast< float >(val3);
+  arg3 = static_cast< double >(val3);
   ecode4 = SWIG_AsVal_int(obj3, &val4);
   if (!SWIG_IsOK(ecode4)) {
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Tally_weightedTally" "', argument " "4"" of type '" "int""'");
@@ -9937,12 +9947,12 @@ SWIGINTERN PyObject *_wrap_Tally_weightedTally(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       {
-        int res = SWIG_AsVal_float(argv[1], NULL);
+        int res = SWIG_AsVal_double(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
         {
-          int res = SWIG_AsVal_float(argv[2], NULL);
+          int res = SWIG_AsVal_double(argv[2], NULL);
           _v = SWIG_CheckState(res);
         }
         if (_v) {
@@ -9964,11 +9974,11 @@ SWIGINTERN PyObject *_wrap_Tally_weightedTally(PyObject *self, PyObject *args) {
     _v = SWIG_CheckState(res);
     if (_v) {
       void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_float, 0);
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
         void *vptr = 0;
-        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_float, 0);
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_double, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
           {
@@ -9992,8 +10002,8 @@ SWIGINTERN PyObject *_wrap_Tally_weightedTally(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Tally_weightedTally'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Tally::weightedTally(float *,float *,int,int)\n"
-    "    Tally::weightedTally(float,float,int)\n");
+    "    Tally::weightedTally(double *,double *,int,int)\n"
+    "    Tally::weightedTally(double,double,int)\n");
   return 0;
 }
 
@@ -10022,10 +10032,10 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_normalizeTallies__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float arg2 ;
+  double arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  float val2 ;
+  double val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -10036,11 +10046,11 @@ SWIGINTERN PyObject *_wrap_Tally_normalizeTallies__SWIG_1(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_normalizeTallies" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_normalizeTallies" "', argument " "2"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_normalizeTallies" "', argument " "2"" of type '" "double""'");
   } 
-  arg2 = static_cast< float >(val2);
+  arg2 = static_cast< double >(val2);
   (arg1)->normalizeTallies(arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -10075,7 +10085,7 @@ SWIGINTERN PyObject *_wrap_Tally_normalizeTallies(PyObject *self, PyObject *args
     _v = SWIG_CheckState(res);
     if (_v) {
       {
-        int res = SWIG_AsVal_float(argv[1], NULL);
+        int res = SWIG_AsVal_double(argv[1], NULL);
         _v = SWIG_CheckState(res);
       }
       if (_v) {
@@ -10088,7 +10098,7 @@ fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Tally_normalizeTallies'.\n"
     "  Possible C/C++ prototypes are:\n"
     "    Tally::normalizeTallies()\n"
-    "    Tally::normalizeTallies(float)\n");
+    "    Tally::normalizeTallies(double)\n");
   return 0;
 }
 
@@ -10117,10 +10127,10 @@ fail:
 SWIGINTERN PyObject *_wrap_Tally_computeScaledBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
-  float arg2 ;
+  double arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  float val2 ;
+  double val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
@@ -10131,11 +10141,11 @@ SWIGINTERN PyObject *_wrap_Tally_computeScaledBatchStatistics(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_computeScaledBatchStatistics" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_computeScaledBatchStatistics" "', argument " "2"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_computeScaledBatchStatistics" "', argument " "2"" of type '" "double""'");
   } 
-  arg2 = static_cast< float >(val2);
+  arg2 = static_cast< double >(val2);
   (arg1)->computeScaledBatchStatistics(arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;

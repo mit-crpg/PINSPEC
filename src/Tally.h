@@ -60,11 +60,11 @@ class Tally{
 private:
 	char* _tally_name;
 	int _num_bins;
-	float* _edges;
+	double* _edges;
 	double* _centers;
 	double** _tallies;
 	int** _num_tallies;
-	float _bin_delta;
+	double _bin_delta;
 	binSpacingType _bin_spacing;
 	tallyDomainType _tally_domain;
 	tallyType _tally_type;
@@ -81,10 +81,10 @@ public:
 	virtual ~Tally();
 	char* getTallyName();
 	int getNumBins();
-	float* getBinEdges();
+	double* getBinEdges();
 	double* getBinCenters();
-	float getBinDelta();
-	float getBinDelta(float sample);
+	double getBinDelta();
+	double getBinDelta(double sample);
 	binSpacingType getBinSpacingType();
 	tallyDomainType getTallyDomainType();
 	tallyType getTallyType();
@@ -94,16 +94,16 @@ public:
 	int getNumTallies(int batch_num, int bin_index);
 	double getMaxTally();
 	double getMinTally();
-	int getBinIndex(float sample);
+	int getBinIndex(double sample);
 
     /* IMPORTANT: The following five class method prototypes must not be changed
      * without changing Geometry.i to allow for the data arrays to be transformed
      * into numpy arrays */
-    void retrieveTallyCenters(float* data, int num_bins);
-    void retrieveTallyMu(float* data, int num_bins);
-    void retrieveTallyVariance(float* data, int num_bins);
-    void retrieveTallyStdDev(float* data, int num_bins);
-    void retrieveTallyRelErr(float* data, int num_bins);
+    void retrieveTallyCenters(double* data, int num_bins);
+    void retrieveTallyMu(double* data, int num_bins);
+    void retrieveTallyVariance(double* data, int num_bins);
+    void retrieveTallyStdDev(double* data, int num_bins);
+    void retrieveTallyRelErr(double* data, int num_bins);
 
 	int getNumBatches();
 	double* getBatchMu();
@@ -112,24 +112,24 @@ public:
 	double* getBatchRelativeError();
 
     void setBinSpacingType(binSpacingType type);
-	void setBinEdges(float* edges, int num_edges);
+	void setBinEdges(double* edges, int num_edges);
 
-	void generateBinEdges(float start, float end, int num_bins, 
+	void generateBinEdges(double start, double end, int num_bins, 
 											binSpacingType type);
 	void setNumBatches(int num_batches);
 	Tally* clone();
 
 	void generateBinCenters();
 
-	void tally(float* samples, int num_samples, int batch_num);
-	void tally(float sample, int batch_num);
-	void weightedTally(float* samples, float* sample_weights, 
+	void tally(double* samples, int num_samples, int batch_num);
+	void tally(double sample, int batch_num);
+	void weightedTally(double* samples, double* sample_weights, 
 			   int num_samples, int batch_num);
-	void weightedTally(float sample, float weight, int batch_num);
+	void weightedTally(double sample, double weight, int batch_num);
 	void normalizeTallies();
-	void normalizeTallies(float scale_factor);
+	void normalizeTallies(double scale_factor);
 	void computeBatchStatistics();
-	void computeScaledBatchStatistics(float scale_factor);
+	void computeScaledBatchStatistics(double scale_factor);
 	void outputBatchStatistics(const char* filename);
 };
 
