@@ -119,7 +119,7 @@ void Isotope::parseName(){
 	/* Set the atomic number of isotope */
 	setA(A);
 
-	log_printf(DEBUG, "Isotope %s has atomic number %i", 
+	log_printf(DEBUG, "Isotope %s has atomic number %i",
 									_isotope_name, _A);
 }
 
@@ -272,6 +272,7 @@ float Isotope::getAbsorptionXS(float energy) const {
 	/* Use linear interpolation to find the capture cross-section */
 	return linearInterp<float, float, float>(_absorb_xs_energies,
 								_absorb_xs, _num_absorb_xs, energy);
+
 }
 
 
@@ -835,10 +836,12 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 	memcpy(new_energies, energies, sizeof(float)*num_energies);
 	new_xs = new float[num_energies];
 
-	for (int i=0; i < num_energies; i++)
-		new_xs[i] = getAbsorptionXS(new_energies[i]);
-
 	_num_absorb_xs = num_energies;
+
+	for (int i=0; i < num_energies; i++){
+		new_xs[i] = getCaptureXS(new_energies[i]) + getFissionXS(new_energies[i]);
+	}
+
 	_absorb_xs = new_xs;
 	_absorb_xs_energies = new_energies;
 
@@ -849,7 +852,7 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 	new_xs = new float[num_energies];
 
 	for (int i=0; i < num_energies; i++)
-		new_xs[i] = getTotalXS(new_energies[i]);
+		new_xs[i] = getAbsorptionXS(new_energies[i]) + getElasticXS(new_energies[i]);
 
 	_num_total_xs = num_energies;
 	_total_xs = new_xs;
@@ -1273,7 +1276,7 @@ void Isotope::exportXS(char* xs_type){
 	std::ofstream myfile;
 
 	/* generate file name */
-	std::string filename = "xs-plot/" + std::string(_isotope_name) + "-" + std::string(xs_type) + "-export.txt";
+	std::string filename = "xs-data/" + std::string(_isotope_name) + "-" + std::string(xs_type) + "-export.txt";
 
 	/* get xs data length */
 	if (std::string(xs_type) == "elastic"){

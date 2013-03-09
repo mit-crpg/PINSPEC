@@ -10,11 +10,9 @@
 #ifndef INTERPOLATE_H_
 #define INTERPOLATE_H_
 
-#ifdef __cplusplus
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
-#endif
 
 
 /**
@@ -27,7 +25,6 @@
  * @param pt the point of interest
  * @return the index of the first element in x which is greater than pt
  */
-#ifdef __cplusplus
 template <typename T, typename U>
 int findUpperIndex(T* x, int upper_bound, int lower_bound, U pt) {
 
@@ -75,10 +72,8 @@ P linearInterp(T* x, T* y, int length, U pt) {
 	P y_pt = 0;
 
 	/* If the length given is less than zero, exit program */
-	if (length <= 0) {
-		printf("Tried to interpolate on a vector of length 0\n");
+	if (length <= 0)
 		exit(1);
-	}
 
 	/* If the length is exactly 1 then return the only y value */
 	else if (length == 1)
@@ -131,7 +126,5 @@ P splineInterp(T* x, T* y, int length, U pt) {
 	return y_pt;
 }
 
-
-#endif
 
 #endif /* INTERPOLATE_H_ */

@@ -388,9 +388,54 @@ void Geometry::runMonteCarloSimulation() {
         _fuel->setNumBatches(_num_batches);
         _moderator->setNumBatches(_num_batches);
 
+		/* Check that all necessary parameters have been set */
+		if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
+			log_printf(ERROR, "Unable to run a HOMOGENEOUS_EQUIVALENCE type "
+					" simulation since beta, sigma_e, alpha1, or alpha2 for "
+					" have not yet been set for the geometry");
+
 		/* Initialize neutrons from fission spectrum for each thread */
 		/* Loop over batches */
+		/* Loop over neutrons per batch*/		
+		neutron* curr = initializeNewNeutron();
+		float p_ff;
+		float p_mf;
+		float test;
+
+		for (int i=0; i < _num_batches; i++) {
+
+			log_printf(INFO, "Batch #: %d", i);
+
+			curr->_batch_num = i;
+
+			for (int j=0; j < _num_neutrons_per_batch; j++) {
+
+				/* Initialize this neutron's energy [ev] from Watt spectrum */
+				curr->_energy = _fissioner->emitNeutroneV();
+				curr->_alive = true;
+				curr->_in_fuel = true;
+			
+				/* While the neutron is still alive, collide it. All
+                 * tallying and collision physics take place within
+				 * the Region, Material, and Isotope classes filling
+                 * the Geometry
+                 */
+				while (curr->_alive == true) { }
+            }
+        }
+
+        /* Clone each Tally for each fuel ring */
+        /* Clone each Tally for each moderator ring */
+		/* Initialize neutrons from fission spectrum for each thread */
+
+		/* Loop over batches */
 		/* Loop over neutrons per batch*/
+            /* Sample distance traveled in 3D */
+            /* Compute new x, y coordinates */
+            /* If neutron is in fuel, check if it crossed the boundary of the fuel */
+            /* If neutron is in moderator, check if it crossed into the fuel, or one of the cell boundaries */
+            /* If neutron stays in current region, call region collideNeutron method */
+            /* Need to update Region collideNeutron method to do additional tallying for each ring */
 	}
 
 

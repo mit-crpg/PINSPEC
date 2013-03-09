@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from pinspec import *
 from numpy import *
 from scipy import *
+from plotter import *
 
 
 def main():
@@ -13,15 +14,13 @@ def main():
 
     log_setlevel(INFO)
 
-    
-    
     # Define isotopes
     h1 = Isotope('H-1')
     o16 = Isotope('O-16')
     u235 = Isotope('U-235')
     u238 = Isotope('U-238')
     
-    # Define materials
+    # Define moderator material
     moderator = Material()
     moderator.setMaterialName('moderator')
     moderator.setDensity(1.0, 'g/cc')
@@ -29,7 +28,8 @@ def main():
     moderator.addIsotope(o16, 1.0)
 
     log_printf(INFO, "Added isotopes to moderator")
-    
+
+    # Define fuel material
     fuel = Material()
     fuel.setMaterialName('fuel')
     fuel.setDensity(10.0, 'g/cc')
@@ -39,7 +39,7 @@ def main():
     
     log_printf(INFO, "Added isotopes to fuel")
     
-    # Define regions
+    # Define moderator region
     region_mod = Region()
     region_mod.setRegionName('moderator')
     region_mod.setRegionType(MODERATOR)
@@ -47,6 +47,7 @@ def main():
     
     log_printf(INFO, "Made moderator region")
     
+    # Define fuel region
     region_fuel = Region()
     region_fuel.setRegionName('fuel')
     region_fuel.setRegionType(FUEL)
@@ -78,7 +79,7 @@ def main():
     geometry.setNumThreads(1)
 
 	# Run Monte Carlo simulation
-#    geometry.runMonteCarloSimulation();
+    # geometry.runMonteCarloSimulation();
 
 	# Dump batch statistics to output files to some new directory
     geometry.outputBatchStatistics('Equivalence_MC_Statistics', 'test')

@@ -3081,14 +3081,12 @@ namespace swig {
 
 #include "../../src/Geometry.h"
 #include "../../src/Region.h"
-#define SWIG_FILE_WITH_INT
 #include "../../src/Isotope.h"
 #include "../../src/Material.h"
 #include "../../src/Tally.h"
 #include "../../src/Neutron.h"
 #include "../../src/Fissioner.h"
 #include "../../src/log.h"
-#include "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/core/include/numpy/arrayobject.h"
 
 
 SWIGINTERNINLINE PyObject*
@@ -3405,13 +3403,6 @@ SWIG_AsVal_bool (PyObject *obj, bool *val)
   if (val) *val = r ? true : false;
   return SWIG_OK;
 }
-
-
-#ifndef SWIG_FILE_WITH_INIT
-#  define NO_IMPORT_ARRAY
-#endif
-#include "stdio.h"
-#include <numpy/arrayobject.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -11819,9 +11810,6 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "ERROR",SWIG_From_int(static_cast< int >(ERROR)));
   PyDict_SetItemString(md,(char*)"cvar", SWIG_globals());
   SWIG_addvarlink(SWIG_globals(),(char*)"log_level",Swig_var_log_level_get, Swig_var_log_level_set);
-  
-  import_array();
-  
 #if PY_VERSION_HEX >= 0x03000000
   return m;
 #else

@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt
 from pinspec import *
+from numpy import *
+from scipy import *
+from plotter import *
 
 def main():
 
@@ -9,7 +12,7 @@ def main():
 	#       using geometric parameters and use that 
     #       when loading the isotope in a material
     
-    log_setlevel(INFO)
+    log_setlevel(NORMAL)
 
     # Define isotopes
     h1 = Isotope('H-1')
@@ -51,7 +54,7 @@ def main():
     log_printf(INFO, "Made geometry")
 
 	# Run Monte Carlo simulation
-#    geometry.runMonteCarloSimulation();
+    # geometry.runMonteCarloSimulation();
         
 	# Dump batch statistics to output files to some new directory
     geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
