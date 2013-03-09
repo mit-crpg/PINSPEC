@@ -23,6 +23,7 @@
  * E. E. Lewis. This class can then use the cdf to sample neutron
  * emission energies.
  */
+#ifdef __cplusplus
 class Fissioner {
 
 private:
@@ -41,5 +42,7 @@ public:
 	float emitNeutronMeV();
 	float emitNeutroneV();
 };
+
+#endif
 
 #endif /* FISSIONER_H_ */

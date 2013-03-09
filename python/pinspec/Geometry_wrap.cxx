@@ -6836,6 +6836,61 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Isotope_exportXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_exportXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_exportXS" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_exportXS" "', argument " "2"" of type '" "char *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  (arg1)->exportXS(arg2);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_getNumElastic(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Isotope_getNumElastic",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getNumElastic" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  result = (int)(arg1)->getNumElastic();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Isotope_getDistanceTraveled(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Isotope *arg1 = (Isotope *) 0 ;
@@ -11339,6 +11394,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_thermalScatteringProb", _wrap_Isotope_thermalScatteringProb, METH_VARARGS, NULL},
 	 { (char *)"Isotope_addTally", _wrap_Isotope_addTally, METH_VARARGS, NULL},
 	 { (char *)"Isotope_clearTallies", _wrap_Isotope_clearTallies, METH_VARARGS, NULL},
+	 { (char *)"Isotope_exportXS", _wrap_Isotope_exportXS, METH_VARARGS, NULL},
+	 { (char *)"Isotope_getNumElastic", _wrap_Isotope_getNumElastic, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getDistanceTraveled", _wrap_Isotope_getDistanceTraveled, METH_VARARGS, NULL},
 	 { (char *)"Isotope_computeBatchStatistics", _wrap_Isotope_computeBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Isotope_outputBatchStatistics", _wrap_Isotope_outputBatchStatistics, METH_VARARGS, NULL},

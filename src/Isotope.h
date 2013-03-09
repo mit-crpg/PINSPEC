@@ -10,21 +10,27 @@
 #ifndef ISOTOPE_H_
 #define ISOTOPE_H_
 
+#ifdef __cplusplus
 #include <vector>
 #include <map>
 #include <math.h>
 #include <stdarg.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+#include <fstream>
+#include <string>
+#endif
 #include "interpolate.h"
 #include "integrate.h"
 #include "arraycreator.h"
 #include "xsreader.h"
 #include "log.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include "Tally.h"
 #include "Neutron.h"
+
 
 /* Types of collisions */
 typedef enum collisionTypes{
@@ -45,6 +51,7 @@ typedef enum scatterAngleTypes {
  * The isotope class represents an isotope and all of its properties
  * which are relevant to neutronics
  */
+#ifdef __cplusplus
 class Isotope {
 
 private:
@@ -164,9 +171,16 @@ public:
 	void addTally(Tally *tally);
 	void clearTallies();
 
+//	void RIEnergies(double *ri_vec, int n);
+	void exportXS(char* xs_type);
+	int getNumElastic();
+
+
 	float getDistanceTraveled(neutron *neutron);
     void computeBatchStatistics();
     void outputBatchStatistics(char* directory, char* suffix);
 };
+
+#endif
 
 #endif /* ISOTOPE_H_ */

@@ -202,6 +202,8 @@ class Isotope(_object):
     def thermalScatteringProb(self, *args): return _pinspec.Isotope_thermalScatteringProb(self, *args)
     def addTally(self, *args): return _pinspec.Isotope_addTally(self, *args)
     def clearTallies(self): return _pinspec.Isotope_clearTallies(self)
+    def exportXS(self, *args): return _pinspec.Isotope_exportXS(self, *args)
+    def getNumElastic(self): return _pinspec.Isotope_getNumElastic(self)
     def getDistanceTraveled(self, *args): return _pinspec.Isotope_getDistanceTraveled(self, *args)
     def computeBatchStatistics(self): return _pinspec.Isotope_computeBatchStatistics(self)
     def outputBatchStatistics(self, *args): return _pinspec.Isotope_outputBatchStatistics(self, *args)

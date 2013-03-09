@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from pinspec import *
 from numpy import *
 from scipy import *
+from plotter import *
 
 
 def main():
@@ -12,56 +13,47 @@ def main():
 	#       and use that when loading the isotope in a material
 
     log_setlevel(INFO)
-    
+
     # Define isotopes
     h1 = Isotope('H-1')
     o16 = Isotope('O-16')
-
     u235 = Isotope('U-235')
     u238 = Isotope('U-238')
     
-    # Define materials
+    # Define moderator material
     moderator = Material()
-    print 'made material'
     moderator.setMaterialName('moderator')
-    print 'set moderator name'
     moderator.setDensity(1.0, 'g/cc')
-    print 'set moderator density'
     moderator.addIsotope(h1, 2.0)
-    print 'added h1 to moderator'
     moderator.addIsotope(o16, 1.0)
 
-    print 'added isotopes to moderator'
-    
+    log_printf(INFO, "Added isotopes to moderator")
+
+    # Define fuel material
     fuel = Material()
-    print 'made fuel'
     fuel.setMaterialName('fuel')
-    print 'set fuel name'
     fuel.setDensity(10.0, 'g/cc')
-    print 'set fuel density'
     fuel.addIsotope(u235, 0.03)
-    print 'added u235 to fuel'
     fuel.addIsotope(u238, 0.97)
-    print 'added u238 to fuel'
     fuel.addIsotope(o16, 2.0)
-    print 'added 016 to fuel'
     
-    print 'added isotopes to fuel'
-   
-    # Define regions
+    log_printf(INFO, "Added isotopes to fuel")
+    
+    # Define moderator region
     region_mod = Region()
     region_mod.setRegionName('moderator')
     region_mod.setRegionType(MODERATOR)
     region_mod.setMaterial(moderator)
     
-    print 'set moderator'
-
+    log_printf(INFO, "Made moderator region")
+    
+    # Define fuel region
     region_fuel = Region()
     region_fuel.setRegionName('fuel')
     region_fuel.setRegionType(FUEL)
     region_fuel.setMaterial(fuel)
 
-    print 'set fuel'
+    log_printf(INFO, "Made fuel region")
     
 	# Define tallies - give them to Regions, Materials, or Isotopes
 	# This part is really where we need to know how to pass float
@@ -87,7 +79,7 @@ def main():
     geometry.setNumThreads(1)
 
 	# Run Monte Carlo simulation
-#    geometry.runMonteCarloSimulation();
+    # geometry.runMonteCarloSimulation();
 
 	# Dump batch statistics to output files to some new directory
     geometry.outputBatchStatistics('Equivalence_MC_Statistics', 'test')

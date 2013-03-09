@@ -1,5 +1,17 @@
 #!/bin/bash -ex
 
+os_type=`uname -a | grep 'Linux'`;
+
+if [[ $os_type == *Linux* ]]; then
+    echo "Using linux flags"
+    CFLAGS="-O3 -march=native -fPIC `pkg-config python-2.7 --cflags`"
+    LFLAGS="-shared `pkg-config python-2.7 --libs` -fPI"
+elif [[ $os_type == *Darwin* ]]; then
+    echo "Using Mac OSX flags"
+    CFLAGS="-O3 -march=native -fPIC -I/usr/include/python2.7 -I/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/core/include"
+    LFLAGS="-bundle `python-config --ldflags`"    
+fi
+
 CFLAGS="-O3 -march=native -fPIC `pkg-config python-2.7 --cflags`"
 LFLAGS="-shared `pkg-config python-2.7 --libs` -fPI"
 

@@ -10,8 +10,10 @@
 #ifndef TALLY_H_
 #define TALLY_H_
 
+#ifdef __cplusplus
 #include <limits>
 #include <math.h>
+#endif
 #include "log.h"
 #include "arraycreator.h"
 
@@ -52,6 +54,7 @@ typedef enum tallyTypes {
  * holds the edges, the centers between bins. It also allows 
  * for tallies to be made within each bin.
  */
+#ifdef __cplusplus
 class Tally{
 
 private:
@@ -123,5 +126,7 @@ public:
 	void computeScaledBatchStatistics(float scale_factor);
 	void outputBatchStatistics(const char* filename);
 };
+
+#endif
 
 #endif /* BINNER_H_ */

@@ -37,8 +37,8 @@ Isotope::Isotope(char* isotope_name){
     /* Rescales the isotope's cross sections */
 	_start_energy = 1E-7;
 	_end_energy = 2E7;
-	_num_energies = 10000;
-    rescaleCrossSections(_start_energy, _end_energy, 
+	_num_energies = 100000;
+    rescaleCrossSections(_start_energy, _end_energy,
 						_num_energies, LOGARITHMIC);
  
 	/* By default the thermal scattering cdfs have not been initialized */
@@ -102,7 +102,6 @@ Isotope::~Isotope() {
 void Isotope::parseName(){
 
 	int A = 0;
-
 	int i = 0;
 	while (_isotope_name[i] != '\0'){
 
@@ -120,7 +119,7 @@ void Isotope::parseName(){
 	/* Set the atomic number of isotope */
 	setA(A);
 
-	log_printf(DEBUG, "Isotope %s has atomic number %i", 
+	log_printf(DEBUG, "Isotope %s has atomic number %i",
 									_isotope_name, _A);
 }
 
@@ -196,6 +195,9 @@ float Isotope::getMuAverage() const {
  */
 bool Isotope::isFissionable() const {
 	return _fissionable;
+
+
+
 }
 
 
@@ -240,27 +242,32 @@ void Isotope::retrieveXS(float* xs, int num_xs, char* xs_type) const {
     
     std::string type = std::string(xs_type);
 
-    if (type.compare("elastic")) {
+    if (!strcmp(xs_type, "elastic")) {
+        log_printf(NORMAL,"Retrieving elastic xs...");
         for (int i=0; i < num_xs; i++)
             xs[i] = _elastic_xs[i];
     }
 
-    else if (type.compare("capture")) {
+    if (!strcmp(xs_type, "capture")) {
+        log_printf(NORMAL, "Retrieving capture xs...");
         for (int i=0; i < num_xs; i++)
             xs[i] = _capture_xs[i];
     }
 
-    else if (type.compare("fission")) {
+    if (!strcmp(xs_type, "fission")) {
+        log_printf(NORMAL, "Retrieving fission xs...");
         for (int i=0; i < num_xs; i++)
             xs[i] = _fission_xs[i];
     }
 
-    else if (type.compare("absorption")) {
+    if (!strcmp(xs_type, "absorption")) {
+        log_printf(NORMAL, "Retrieving absorption xs...");
         for (int i=0; i < num_xs; i++)
             xs[i] = _absorb_xs[i];
     }
 
-    else if (type.compare("total")) {
+    if (!strcmp(xs_type, "total")) {
+        log_printf(NORMAL, "Retrieving total xs...");
         for (int i=0; i < num_xs; i++)
             xs[i] = _total_xs[i];
     }
@@ -338,6 +345,7 @@ float Isotope::getAbsorptionXS(float energy) const {
 	/* Use linear interpolation to find the capture cross-section */
 	return linearInterp<float, float, float>(_absorb_xs_energies,
 								_absorb_xs, _num_absorb_xs, energy);
+
 }
 
 
@@ -667,7 +675,7 @@ void Isotope::loadXS() {
 	 * structures */
 
 
-	/******************************** ELASTIC ********************************/    void outputBatchStatistics(char* directory, char* suffix);
+	/******************************** ELASTIC ********************************/
 
 	/* Check whether an elastic cross-section file exists for isotope */
 
@@ -901,10 +909,17 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 	memcpy(new_energies, energies, sizeof(float)*num_energies);
 	new_xs = new float[num_energies];
 
-	for (int i=0; i < num_energies; i++)
-		new_xs[i] = getAbsorptionXS(new_energies[i]);
-
 	_num_absorb_xs = num_energies;
+
+    if (_fissionable)
+	    for (int i=0; i < num_energies; i++)
+		    new_xs[i] = getCaptureXS(new_energies[i]) + 
+                                                getFissionXS(new_energies[i]);
+    else
+	    for (int i=0; i < num_energies; i++)
+		    new_xs[i] = getCaptureXS(new_energies[i]);
+
+
 	_absorb_xs = new_xs;
 	_absorb_xs_energies = new_energies;
 
@@ -914,10 +929,12 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 	memcpy(new_energies, energies, sizeof(float)*num_energies);
 	new_xs = new float[num_energies];
 
-	for (int i=0; i < num_energies; i++)
-		new_xs[i] = getTotalXS(new_energies[i]);
-
 	_num_total_xs = num_energies;
+
+	for (int i=0; i < num_energies; i++)
+		new_xs[i] = getAbsorptionXS(new_energies[i]) + 
+                                                getElasticXS(new_energies[i]);
+
 	_total_xs = new_xs;
 	_total_xs_energies = new_energies;
 
@@ -1293,7 +1310,24 @@ float Isotope::getDistanceTraveled(neutron* neutron) {
 
 
 /**
- * Calls each of the Tally class objects in the Isotope to compute
+ * Generates a set of resonance integral bins based off user defined
+ * range of energy bounds
+ * @param array of energy values used to create RI tally bins
+ * @param length of array
+ */
+//void RIEnergies(float *ri_energies, int n){
+//
+//	_ri_energies = new float [n];
+//
+//	for (int i = 0; i < n; i++){
+//		_ri_energies[i] = ri_energies[i];
+//	}
+//
+//	return;
+//}
+
+
+/** Calls each of the Tally class objects in the Isotope to compute
  * their batch-based statiscs from the tallies
  */
 void Isotope::computeBatchStatistics() {
@@ -1309,7 +1343,60 @@ void Isotope::computeBatchStatistics() {
 
 
 /**
- * Calls each of the Tally class objects in the Isotope to output
+ * export the elastic xs to a txt file
+ */
+void Isotope::exportXS(char* xs_type){
+
+	/* generate variable for xs length and pointer to array */
+	int length;
+	float* xs_array;
+	float* energy_array;
+
+	/* generate stream to write to file */
+	std::ofstream myfile;
+
+	/* generate file name */
+	std::string filename = "xs-data/" + std::string(_isotope_name) + "-" + std::string(xs_type) + "-export.txt";
+
+	/* get xs data length */
+	if (std::string(xs_type) == "elastic"){
+		length = _num_elastic_xs;
+		xs_array = _elastic_xs;
+		energy_array = _elastic_xs_energies;
+	}
+	else if (std::string(xs_type) == "fission"){
+		length = _num_fission_xs;
+		xs_array = _fission_xs;
+		energy_array = _fission_xs_energies;
+	}
+	else if (std::string(xs_type) == "absorb"){
+		length = _num_absorb_xs;
+		xs_array = _absorb_xs;
+		energy_array = _absorb_xs_energies;
+	}
+	else if (std::string(xs_type) == "total"){
+		length = _num_total_xs;
+		xs_array = _total_xs;
+		energy_array = _total_xs_energies;
+	}
+	else{
+		log_printf(ERROR, "The xs your are trying to plot does not exist. Check your syntax");
+	}
+
+	/* open file */
+	myfile.open(filename.c_str());
+
+	/* fill with CSV energy and xs data */
+	for (int i = 0; i < length; i++){
+		myfile << energy_array[i] << " " << xs_array[i] << "\n";
+	}
+
+	myfile.close();
+
+}
+
+
+/** Calls each of the Tally class objects in the Isotope to output
  * their tallies and statistics to output files.
  * @param directory the directory to write batch statistics files
  * @param suffix a string to attach to the end of each filename
@@ -1328,3 +1415,15 @@ void Isotope::outputBatchStatistics(char* directory, char* suffix) {
 
     return;
 }
+
+
+int Isotope::getNumElastic(){
+
+	log_printf(NORMAL, "num elastic: %i", _num_elastic_xs);
+
+	return _num_elastic_xs;
+}
+
+
+
+

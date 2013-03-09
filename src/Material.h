@@ -18,6 +18,7 @@ typedef enum densityUnits {
 	NUM_CM3
 } densityUnit;
 
+#ifdef __cplusplus
 class Material {
 
 private:
@@ -90,5 +91,7 @@ public:
     void computeBatchStatistics();
     void outputBatchStatistics(char* directory, char* suffix);
 };
+
+#endif
 
 #endif /* MATERIAL_H_ */

@@ -20,6 +20,7 @@
  * @param num_values the number of values to create
  * @return a pointer to the array of points
  */
+#ifdef __cplusplus
 template <typename T, typename U>
 U* linspace(T start, T end, int num_values) {
 
@@ -57,5 +58,7 @@ U* logspace(T start, T end, int num_values) {
 
 	return values;
 }
+
+#endif
 
 #endif /* ARRAYCREATOR_H_ */

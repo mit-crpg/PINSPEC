@@ -23,6 +23,7 @@ typedef enum spatialTypes {
 } spatialType;
 
 
+#ifdef __cplusplus
 class Geometry {
 
 private:
@@ -72,5 +73,6 @@ public:
     void outputBatchStatistics(char* directory,  char* suffix);
 };
 
+#endif
 
 #endif /* GEOMETRY_H_ */

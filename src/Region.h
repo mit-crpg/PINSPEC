@@ -10,14 +10,15 @@
 #ifndef REGION_H_
 #define REGION_H_
 
+#ifdef __cplusplus
 #include <vector>
-//#include <math.h>
-//#include <algorithm>
-//#include <stdarg.h>
+#include <math.h>
+#include <algorithm>
+#include <stdarg.h>
+#include <string.h>
 #include "Material.h"
 #include "Neutron.h"
-#include <string.h>
-
+#endif
 #define _USE_MATH_DEFINES
 
 
@@ -36,6 +37,8 @@ typedef enum regionTypes {
  * density. The Region class contains all of the physics for moving
  * colliding neutrons
  */
+
+#ifdef __cplusplus
 class Region {
 
 private:
@@ -94,5 +97,7 @@ public:
     void computeBatchStatistics();
     void outputBatchStatistics(char* directory, char* suffix);
 };
+
+#endif
 
 #endif /* REGION_H_ */

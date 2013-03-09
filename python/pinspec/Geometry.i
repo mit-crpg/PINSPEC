@@ -1,4 +1,5 @@
 %module pinspec
+
 %{
     #define SWIG_FILE_WITH_INIT
     #include "../../src/Geometry.h"
@@ -28,4 +29,3 @@
 %include ../../src/Neutron.h
 %include ../../src/Fissioner.h
 %include ../../src/log.h
-
