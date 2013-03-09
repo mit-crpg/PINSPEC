@@ -37,7 +37,7 @@ Isotope::Isotope(char* isotope_name){
     /* Rescales the isotope's cross sections */
 	_start_energy = 1E-7;
 	_end_energy = 2E7;
-	_num_energies = 100000;
+	_num_energies = 10000;
     rescaleCrossSections(_start_energy, _end_energy, 
 						_num_energies, LOGARITHMIC);
  
@@ -196,6 +196,74 @@ float Isotope::getMuAverage() const {
  */
 bool Isotope::isFissionable() const {
 	return _fissionable;
+}
+
+
+int Isotope::getNumXSEnergies() const {
+    return _num_energies;
+}
+
+
+void Isotope::retrieveXSEnergies(float* energies, int num_xs, 
+                                                char* xs_type) const {
+
+    std::string type = std::string(xs_type);
+
+    if (type.compare("elastic")) {
+        for (int i=0; i < num_xs; i++)
+            energies[i] = _elastic_xs_energies[i];
+    }
+
+    else if (type.compare("capture")) {
+        for (int i=0; i < num_xs; i++)
+            energies[i] = _capture_xs_energies[i];
+    }
+
+    else if (type.compare("fission")) {
+        for (int i=0; i < num_xs; i++)
+            energies[i] = _fission_xs_energies[i];
+    }
+
+    else if (type.compare("absorption")) {
+        for (int i=0; i < num_xs; i++)
+            energies[i] = _absorb_xs_energies[i];
+    }
+
+    else if (type.compare("total")) {
+        for (int i=0; i < num_xs; i++)
+            energies[i] = _total_xs_energies[i];
+    }
+}
+
+
+void Isotope::retrieveXS(float* xs, int num_xs, char* xs_type) const {
+    
+    std::string type = std::string(xs_type);
+
+    if (type.compare("elastic")) {
+        for (int i=0; i < num_xs; i++)
+            xs[i] = _elastic_xs[i];
+    }
+
+    else if (type.compare("capture")) {
+        for (int i=0; i < num_xs; i++)
+            xs[i] = _capture_xs[i];
+    }
+
+    else if (type.compare("fission")) {
+        for (int i=0; i < num_xs; i++)
+            xs[i] = _fission_xs[i];
+    }
+
+    else if (type.compare("absorption")) {
+        for (int i=0; i < num_xs; i++)
+            xs[i] = _absorb_xs[i];
+    }
+
+    else if (type.compare("total")) {
+        for (int i=0; i < num_xs; i++)
+            xs[i] = _total_xs[i];
+    }
 }
 
 

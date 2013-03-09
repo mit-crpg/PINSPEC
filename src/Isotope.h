@@ -112,6 +112,10 @@ public:
     float getMuAverage() const;
 	bool isFissionable() const;
 
+    int getNumXSEnergies() const;
+    void retrieveXSEnergies(float* energies, int num_xs, 
+                                           char* xs_type) const;
+    void retrieveXS(float* xs, int num_xs, char* xs_type) const;
     float getElasticXS(float energy) const;
     float getElasticXS(int energy_index) const;
     scatterAngleType getElasticAngleType() const;
