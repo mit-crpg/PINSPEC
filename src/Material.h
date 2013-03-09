@@ -33,6 +33,8 @@ private:
 
 	densityUnit _density_unit;
 
+	void clearTallies();
+
 public:
 	Material();
 	virtual ~Material();
@@ -45,6 +47,10 @@ public:
 	float getDensity();
 	float getIsotopeNumDensity(char* isotope);
 	
+    int getNumXSEnergies() const;
+    void retrieveXSEnergies(float* energies, int num_xs) const;
+    void retrieveXS(float* xs, int num_xs, char* xs_type);
+
 	float getTotalMacroXS(float energy);
 	float getTotalMacroXS(int energy_index);
 	float getTotalMicroXS(float energy);
@@ -85,7 +91,6 @@ public:
 
 	Isotope* sampleIsotope(float energy);
 	void addTally(Tally *tally);
-	void clearTallies();
 
 	collisionType collideNeutron(neutron* neut);
     void computeBatchStatistics();

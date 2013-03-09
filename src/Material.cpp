@@ -68,6 +68,58 @@ float Material::getIsotopeNumDensity(char* isotope) {
 }
 
 
+int Material::getNumXSEnergies() const {
+
+    int num_xs_energies = 0;
+    Isotope* isotope;
+
+    if (_isotopes.size() == 0) 
+        log_printf(ERROR, "Unable to return the number of xs energies for "
+                    " material %s since it has no isotopes", _material_name);
+
+    isotope = _isotopes.begin()->second.second;
+    return isotope->getNumXSEnergies();
+}
+
+
+void Material::retrieveXSEnergies(float* energies, int num_xs) const {
+
+    Isotope* isotope;
+
+    if (_isotopes.size() == 0) 
+        log_printf(ERROR, "Unable to return the xs energies for "
+                    " material %s since it has no isotopes", _material_name);
+
+    isotope = _isotopes.begin()->second.second;
+    isotope->retrieveXSEnergies(energies, num_xs);
+}
+
+
+void Material::retrieveXS(float* xs, int num_xs, char* xs_type) {
+
+    float* tmp_xs = new float[num_xs];
+
+    if (_isotopes.size() == 0) 
+        log_printf(ERROR, "Unable to return a macro %s xs for material %s "
+                        " since it has no isotopes", xs_type, _material_name);
+
+    /* Initialize the macro xs to zero */
+    for (int i=0; i < num_xs; i++)
+        xs[i] = 0.0;
+
+	/* Increment the cross-section type for each isotope */
+	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
+	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter) {
+        /* Load the xs for this isotope into a temporary array */
+       iter->second.second->retrieveXS(tmp_xs, num_xs, xs_type);
+
+        /* Add this into the macro xs for this material */
+        for (int i=0; i < num_xs; i++)
+            xs[i] += tmp_xs[i] * iter->second.first;
+    }
+}
+
+
 /**
  * Returns the total macroscopic cross-section within this Material
  * at some energy

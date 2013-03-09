@@ -103,6 +103,25 @@ private:
 	float* _Eprime_to_E;
 	float _kB;
 
+	void loadXS();
+	void setElasticXS(float* elastic_xs, float* elastic_xs_energies,
+			  int num_elastic_xs, scatterAngleType type);
+	void setElasticAngleType(scatterAngleType type);
+	void setCaptureXS(float* capture_xs, float* capture_xs_energies,
+			     int num_capture_xs);
+	void setFissionXS(float* fission_xs, float* fission_xs_energies,
+			  int num_fission_xs);
+	void rescaleCrossSections(float start_energy, float end_energy,
+								int num_energies, binSpacingTypes scale_type);	
+	void rescaleXS(float* new_energies, int num_energies);
+
+
+	void initializeThermalScattering(float start_energy, float end_energy,
+					 int num_bins, int num_distributions);
+	float thermalScatteringProb(float E_prime_to_E, int dist_index);
+
+	void clearTallies();
+
 public:
 	Isotope(char *_isotope_name);
     virtual ~Isotope();
@@ -120,8 +139,7 @@ public:
 	bool isFissionable() const;
 
     int getNumXSEnergies() const;
-    void retrieveXSEnergies(float* energies, int num_xs, 
-                                           char* xs_type) const;
+    void retrieveXSEnergies(float* energies, int num_xs) const;
     void retrieveXS(float* xs, int num_xs, char* xs_type) const;
     float getElasticXS(float energy) const;
     float getElasticXS(int energy_index) const;
@@ -147,36 +165,18 @@ public:
     void setTemperature(float T);
     void setNumBatches(int num_batches);
 
-	void loadXS();
-	void setElasticXS(float* elastic_xs, float* elastic_xs_energies,
-			  int num_elastic_xs, scatterAngleType type);
-	void setElasticAngleType(scatterAngleType type);
-	void setCaptureXS(float* capture_xs, float* capture_xs_energies,
-			     int num_capture_xs);
-	void setFissionXS(float* fission_xs, float* fission_xs_energies,
-			  int num_fission_xs);
-	void rescaleCrossSections(float start_energy, float end_energy,
-								int num_energies, binSpacingTypes scale_type);	
-	void rescaleXS(float* new_energies, int num_energies);
 	Isotope* clone();
 
 	collisionType getCollisionType(float energy);
 	collisionType collideNeutron(neutron* neutron);
-
+	float getDistanceTraveled(neutron *neutron);
 	float getThermalScatteringEnergy(float energy);
-	void initializeThermalScattering(float start_energy, float end_energy,
-					 int num_bins, int num_distributions);
-	float thermalScatteringProb(float E_prime_to_E, int dist_index);
 
 	void addTally(Tally *tally);
-	void clearTallies();
 
 //	void RIEnergies(double *ri_vec, int n);
 	void exportXS(char* xs_type);
-	int getNumElastic();
 
-
-	float getDistanceTraveled(neutron *neutron);
     void computeBatchStatistics();
     void outputBatchStatistics(char* directory, char* suffix);
 };

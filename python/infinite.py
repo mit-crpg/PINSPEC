@@ -22,7 +22,7 @@ def main():
     u238 = Isotope('U-238')
 
     # EXAMPLE: How to retrieve micro xs from C++ and plot them
-    # First, retrieve the xs and x
+    # First, retrieve the xs and energies
     u235_num_xs = u235.getNumXSEnergies()
     u235_capture_xs = u235.retrieveXS(u235_num_xs, 'capture')
     u235_elastic_xs = u235.retrieveXS(u235_num_xs, 'elastic')
@@ -31,7 +31,8 @@ def main():
     u235_total_xs = u235.retrieveXS(u235_num_xs, 'total')
     #Note: after rescaling, all xs types have the same energy grid so only
     #need to retrieve it for one xs type
-    u235_xs_energies = u235.retrieveXSEnergies(u235_num_xs, 'capture')    
+    u235_xs_energies = u235.retrieveXSEnergies(u235_num_xs)    
+
 
     # Plot all of the xs on the same scale
     fig = plt.figure()
@@ -44,10 +45,9 @@ def main():
     plt.yscale('log')
     plt.xlabel('Energy [ev]')
     plt.ylabel('Micro XS [barns]')
-    plt.title(h1.getIsotopeType() + ' Micro XS')
+    plt.title(u235.getIsotopeType() + ' Micro XS')
     plt.legend(['capture', 'elastic', 'fission', 'absorption', 'total'])
-    fig.show()
-    fig.savefig('h1_capture_xs.png')
+    fig.savefig(u235.getIsotopeType() + '_micro_xs.png')
 
     
     # Define materials
@@ -58,6 +58,37 @@ def main():
     mix.addIsotope(o16, 1.0)
     mix.addIsotope(u235, 0.03)
     mix.addIsotope(u238, 0.97)
+
+
+
+
+    #EXAMPLE: How to retrieve macro xs from C++ and plot them
+    # First, retrieve the xs and energies 
+    mix_num_xs = mix.getNumXSEnergies()
+    mix_capture_xs = mix.retrieveXS(mix_num_xs, 'capture')
+    mix_elastic_xs = mix.retrieveXS(mix_num_xs, 'elastic')
+    mix_fission_xs = mix.retrieveXS(u235_num_xs, 'fission')
+    mix_absorption_xs = mix.retrieveXS(u235_num_xs, 'absorption')
+    mix_total_xs = mix.retrieveXS(u235_num_xs, 'total')
+    #Note: after rescaling, all xs types have the same energy grid so only
+    #need to retrieve it for one xs type
+    mix_xs_energies = mix.retrieveXSEnergies(mix_num_xs)    
+
+    # Plot all of the xs on the same scale
+    fig = plt.figure()
+    plt.plot(mix_xs_energies, mix_capture_xs, lw=1)
+    plt.plot(mix_xs_energies, mix_elastic_xs, lw=1)
+    plt.plot(mix_xs_energies, mix_fission_xs, lw=1)
+    plt.plot(mix_xs_energies, mix_absorption_xs, lw=1)
+    plt.plot(mix_xs_energies, mix_total_xs, lw=1)
+    plt.xscale('log')
+    plt.yscale('log')
+    plt.xlabel('Energy [ev]')
+    plt.ylabel('Macro XS [cm^-1]')
+    plt.title(mix.getMaterialName() + ' Macro XS')
+    plt.legend(['capture', 'elastic', 'fission', 'absorption', 'total'])
+    fig.savefig(mix.getMaterialName() + '_macro_xs.png')
+
 
     log_printf(INFO, "Added isotopes")
     

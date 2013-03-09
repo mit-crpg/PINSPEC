@@ -206,68 +206,36 @@ int Isotope::getNumXSEnergies() const {
 }
 
 
-void Isotope::retrieveXSEnergies(float* energies, int num_xs, 
-                                                char* xs_type) const {
+void Isotope::retrieveXSEnergies(float* energies, int num_xs) const {
 
-    std::string type = std::string(xs_type);
-
-    if (type.compare("elastic")) {
-        for (int i=0; i < num_xs; i++)
-            energies[i] = _elastic_xs_energies[i];
-    }
-
-    else if (type.compare("capture")) {
-        for (int i=0; i < num_xs; i++)
-            energies[i] = _capture_xs_energies[i];
-    }
-
-    else if (type.compare("fission")) {
-        for (int i=0; i < num_xs; i++)
-            energies[i] = _fission_xs_energies[i];
-    }
-
-    else if (type.compare("absorption")) {
-        for (int i=0; i < num_xs; i++)
-            energies[i] = _absorb_xs_energies[i];
-    }
-
-    else if (type.compare("total")) {
-        for (int i=0; i < num_xs; i++)
-            energies[i] = _total_xs_energies[i];
-    }
+    for (int i=0; i < num_xs; i++)
+        energies[i] = _elastic_xs_energies[i];
 }
 
 
 void Isotope::retrieveXS(float* xs, int num_xs, char* xs_type) const {
     
-    std::string type = std::string(xs_type);
-
     if (!strcmp(xs_type, "elastic")) {
-        log_printf(NORMAL,"Retrieving elastic xs...");
         for (int i=0; i < num_xs; i++)
             xs[i] = _elastic_xs[i];
     }
 
     if (!strcmp(xs_type, "capture")) {
-        log_printf(NORMAL, "Retrieving capture xs...");
         for (int i=0; i < num_xs; i++)
             xs[i] = _capture_xs[i];
     }
 
     if (!strcmp(xs_type, "fission")) {
-        log_printf(NORMAL, "Retrieving fission xs...");
         for (int i=0; i < num_xs; i++)
             xs[i] = _fission_xs[i];
     }
 
     if (!strcmp(xs_type, "absorption")) {
-        log_printf(NORMAL, "Retrieving absorption xs...");
         for (int i=0; i < num_xs; i++)
             xs[i] = _absorb_xs[i];
     }
 
     if (!strcmp(xs_type, "total")) {
-        log_printf(NORMAL, "Retrieving total xs...");
         for (int i=0; i < num_xs; i++)
             xs[i] = _total_xs[i];
     }
@@ -733,6 +701,7 @@ void Isotope::loadXS() {
 
 	filename = prefix + _isotope_name + "-fission.txt";
 
+    /* If this isotope is fissionable and it finds it's fission xs */
 	if (!stat(filename.c_str(), &buffer)) {
 
 		log_printf(INFO, "Loading %s for isotope %s", 
@@ -751,6 +720,23 @@ void Isotope::loadXS() {
 		setFissionXS(xs_values, energies, _num_fission_xs);
 		makeFissionable();
 	}
+    
+    /* If this isotope is not fissionable and it does not find a data file,
+     * set the fission cross-section to zero */
+    else {
+
+		/* Initialize data structures to store cross-section values */
+        _num_fission_xs = 2;
+		energies = new float[_num_fission_xs];
+		xs_values = new float[_num_fission_xs];
+
+        energies[0] = 1E-7;
+        energies[1] = 1E7;
+        xs_values[0] = 0.0;
+        xs_values[1] = 1.0;
+
+		setFissionXS(xs_values, energies, _num_fission_xs);
+    }
 
 	return;
 }
@@ -1415,15 +1401,3 @@ void Isotope::outputBatchStatistics(char* directory, char* suffix) {
 
     return;
 }
-
-
-int Isotope::getNumElastic(){
-
-	log_printf(NORMAL, "num elastic: %i", _num_elastic_xs);
-
-	return _num_elastic_xs;
-}
-
-
-
-
