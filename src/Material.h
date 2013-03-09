@@ -48,8 +48,6 @@ public:
 	float getIsotopeNumDensity(char* isotope);
 	
     int getNumXSEnergies() const;
-    void retrieveXSEnergies(float* energies, int num_xs) const;
-    void retrieveXS(float* xs, int num_xs, char* xs_type);
 
 	float getTotalMacroXS(float energy);
 	float getTotalMacroXS(int energy_index);
@@ -80,6 +78,12 @@ public:
 	float getTransportMicroXS(int energy_index);
 	float getTransportMacroXS(float energy);
 	float getTransportMacroXS(int energy_index);
+
+    /* IMPORTANT: The following two class method prototypes must not be changed
+     * without changing Geometry.i to allow for the data arrays to be transformed
+     * into numpy arrays */
+    void retrieveXSEnergies(float* energies, int num_xs) const;
+    void retrieveXS(float* xs, int num_xs, char* xs_type);
 		
 	/* setters */
 	void setMaterialName(char* name);

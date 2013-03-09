@@ -5209,106 +5209,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Isotope_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Isotope *arg1 = (Isotope *) 0 ;
-  float *arg2 = (float *) 0 ;
-  int arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *array2 = NULL ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_retrieveXSEnergies",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_retrieveXSEnergies" "', argument " "1"" of type '" "Isotope const *""'"); 
-  }
-  arg1 = reinterpret_cast< Isotope * >(argp1);
-  {
-    npy_intp dims[1];
-    if (!PyInt_Check(obj1))
-    {
-      const char* typestring = pytype_string(obj1);
-      PyErr_Format(PyExc_TypeError,
-        "Int dimension expected.  '%s' given.",
-        typestring);
-      SWIG_fail;
-    }
-    arg3 = (int) PyInt_AsLong(obj1);
-    dims[0] = (npy_intp) arg3;
-    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
-    if (!array2) SWIG_fail;
-    arg2 = (float*) array_data(array2);
-  }
-  ((Isotope const *)arg1)->retrieveXSEnergies(arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  {
-    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
-  }
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Isotope_retrieveXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Isotope *arg1 = (Isotope *) 0 ;
-  float *arg2 = (float *) 0 ;
-  int arg3 ;
-  char *arg4 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *array2 = NULL ;
-  int res4 ;
-  char *buf4 = 0 ;
-  int alloc4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_retrieveXS",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_retrieveXS" "', argument " "1"" of type '" "Isotope const *""'"); 
-  }
-  arg1 = reinterpret_cast< Isotope * >(argp1);
-  {
-    npy_intp dims[1];
-    if (!PyInt_Check(obj1))
-    {
-      const char* typestring = pytype_string(obj1);
-      PyErr_Format(PyExc_TypeError,
-        "Int dimension expected.  '%s' given.",
-        typestring);
-      SWIG_fail;
-    }
-    arg3 = (int) PyInt_AsLong(obj1);
-    dims[0] = (npy_intp) arg3;
-    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
-    if (!array2) SWIG_fail;
-    arg2 = (float*) array_data(array2);
-  }
-  res4 = SWIG_AsCharPtrAndSize(obj2, &buf4, NULL, &alloc4);
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Isotope_retrieveXS" "', argument " "4"" of type '" "char *""'");
-  }
-  arg4 = reinterpret_cast< char * >(buf4);
-  ((Isotope const *)arg1)->retrieveXS(arg2,arg3,arg4);
-  resultobj = SWIG_Py_Void();
-  {
-    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
-  }
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
-  return resultobj;
-fail:
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Isotope_getElasticXS__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Isotope *arg1 = (Isotope *) 0 ;
@@ -6078,6 +5978,106 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Isotope_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *array2 = NULL ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_retrieveXSEnergies",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_retrieveXSEnergies" "', argument " "1"" of type '" "Isotope const *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    npy_intp dims[1];
+    if (!PyInt_Check(obj1))
+    {
+      const char* typestring = pytype_string(obj1);
+      PyErr_Format(PyExc_TypeError,
+        "Int dimension expected.  '%s' given.",
+        typestring);
+      SWIG_fail;
+    }
+    arg3 = (int) PyInt_AsLong(obj1);
+    dims[0] = (npy_intp) arg3;
+    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    if (!array2) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+  }
+  ((Isotope const *)arg1)->retrieveXSEnergies(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  {
+    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_retrieveXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  char *arg4 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *array2 = NULL ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_retrieveXS",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_retrieveXS" "', argument " "1"" of type '" "Isotope const *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    npy_intp dims[1];
+    if (!PyInt_Check(obj1))
+    {
+      const char* typestring = pytype_string(obj1);
+      PyErr_Format(PyExc_TypeError,
+        "Int dimension expected.  '%s' given.",
+        typestring);
+      SWIG_fail;
+    }
+    arg3 = (int) PyInt_AsLong(obj1);
+    dims[0] = (npy_intp) arg3;
+    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    if (!array2) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+  }
+  res4 = SWIG_AsCharPtrAndSize(obj2, &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Isotope_retrieveXS" "', argument " "4"" of type '" "char *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
+  ((Isotope const *)arg1)->retrieveXS(arg2,arg3,arg4);
+  resultobj = SWIG_Py_Void();
+  {
+    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
+  }
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return resultobj;
+fail:
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Isotope_setIsotopeType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Isotope *arg1 = (Isotope *) 0 ;
@@ -6751,106 +6751,6 @@ SWIGINTERN PyObject *_wrap_Material_getNumXSEnergies(PyObject *SWIGUNUSEDPARM(se
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Material_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Material *arg1 = (Material *) 0 ;
-  float *arg2 = (float *) 0 ;
-  int arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *array2 = NULL ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Material_retrieveXSEnergies",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_retrieveXSEnergies" "', argument " "1"" of type '" "Material const *""'"); 
-  }
-  arg1 = reinterpret_cast< Material * >(argp1);
-  {
-    npy_intp dims[1];
-    if (!PyInt_Check(obj1))
-    {
-      const char* typestring = pytype_string(obj1);
-      PyErr_Format(PyExc_TypeError,
-        "Int dimension expected.  '%s' given.",
-        typestring);
-      SWIG_fail;
-    }
-    arg3 = (int) PyInt_AsLong(obj1);
-    dims[0] = (npy_intp) arg3;
-    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
-    if (!array2) SWIG_fail;
-    arg2 = (float*) array_data(array2);
-  }
-  ((Material const *)arg1)->retrieveXSEnergies(arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  {
-    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
-  }
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Material_retrieveXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Material *arg1 = (Material *) 0 ;
-  float *arg2 = (float *) 0 ;
-  int arg3 ;
-  char *arg4 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *array2 = NULL ;
-  int res4 ;
-  char *buf4 = 0 ;
-  int alloc4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:Material_retrieveXS",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_retrieveXS" "', argument " "1"" of type '" "Material *""'"); 
-  }
-  arg1 = reinterpret_cast< Material * >(argp1);
-  {
-    npy_intp dims[1];
-    if (!PyInt_Check(obj1))
-    {
-      const char* typestring = pytype_string(obj1);
-      PyErr_Format(PyExc_TypeError,
-        "Int dimension expected.  '%s' given.",
-        typestring);
-      SWIG_fail;
-    }
-    arg3 = (int) PyInt_AsLong(obj1);
-    dims[0] = (npy_intp) arg3;
-    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
-    if (!array2) SWIG_fail;
-    arg2 = (float*) array_data(array2);
-  }
-  res4 = SWIG_AsCharPtrAndSize(obj2, &buf4, NULL, &alloc4);
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Material_retrieveXS" "', argument " "4"" of type '" "char *""'");
-  }
-  arg4 = reinterpret_cast< char * >(buf4);
-  (arg1)->retrieveXS(arg2,arg3,arg4);
-  resultobj = SWIG_Py_Void();
-  {
-    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
-  }
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
-  return resultobj;
-fail:
-  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return NULL;
 }
 
@@ -8199,6 +8099,106 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Material_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *array2 = NULL ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Material_retrieveXSEnergies",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_retrieveXSEnergies" "', argument " "1"" of type '" "Material const *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    npy_intp dims[1];
+    if (!PyInt_Check(obj1))
+    {
+      const char* typestring = pytype_string(obj1);
+      PyErr_Format(PyExc_TypeError,
+        "Int dimension expected.  '%s' given.",
+        typestring);
+      SWIG_fail;
+    }
+    arg3 = (int) PyInt_AsLong(obj1);
+    dims[0] = (npy_intp) arg3;
+    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    if (!array2) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+  }
+  ((Material const *)arg1)->retrieveXSEnergies(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  {
+    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_retrieveXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  char *arg4 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *array2 = NULL ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Material_retrieveXS",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_retrieveXS" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    npy_intp dims[1];
+    if (!PyInt_Check(obj1))
+    {
+      const char* typestring = pytype_string(obj1);
+      PyErr_Format(PyExc_TypeError,
+        "Int dimension expected.  '%s' given.",
+        typestring);
+      SWIG_fail;
+    }
+    arg3 = (int) PyInt_AsLong(obj1);
+    dims[0] = (npy_intp) arg3;
+    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    if (!array2) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+  }
+  res4 = SWIG_AsCharPtrAndSize(obj2, &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Material_retrieveXS" "', argument " "4"" of type '" "char *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
+  (arg1)->retrieveXS(arg2,arg3,arg4);
+  resultobj = SWIG_Py_Void();
+  {
+    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
+  }
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return resultobj;
+fail:
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Material_setMaterialName(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Material *arg1 = (Material *) 0 ;
@@ -8570,13 +8570,43 @@ SWIGINTERN PyObject *Material_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObj
 
 SWIGINTERN PyObject *_wrap_new_Tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  tallyDomainType arg2 ;
+  tallyType arg3 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
   Tally *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)":new_Tally")) SWIG_fail;
-  result = (Tally *)new Tally();
+  if (!PyArg_ParseTuple(args,(char *)"OOO:new_Tally",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Tally" "', argument " "1"" of type '" "char *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Tally" "', argument " "2"" of type '" "tallyDomainType""'");
+  } 
+  arg2 = static_cast< tallyDomainType >(val2);
+  ecode3 = SWIG_AsVal_int(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Tally" "', argument " "3"" of type '" "tallyType""'");
+  } 
+  arg3 = static_cast< tallyType >(val3);
+  result = (Tally *)new Tally(arg1,arg2,arg3);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, SWIG_POINTER_NEW |  0 );
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
 fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return NULL;
 }
 
@@ -9102,6 +9132,226 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Tally_retrieveTallyCenters(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *array2 = NULL ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_retrieveTallyCenters",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_retrieveTallyCenters" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp dims[1];
+    if (!PyInt_Check(obj1))
+    {
+      const char* typestring = pytype_string(obj1);
+      PyErr_Format(PyExc_TypeError,
+        "Int dimension expected.  '%s' given.",
+        typestring);
+      SWIG_fail;
+    }
+    arg3 = (int) PyInt_AsLong(obj1);
+    dims[0] = (npy_intp) arg3;
+    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    if (!array2) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+  }
+  (arg1)->retrieveTallyCenters(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  {
+    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_retrieveTallyMu(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *array2 = NULL ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_retrieveTallyMu",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_retrieveTallyMu" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp dims[1];
+    if (!PyInt_Check(obj1))
+    {
+      const char* typestring = pytype_string(obj1);
+      PyErr_Format(PyExc_TypeError,
+        "Int dimension expected.  '%s' given.",
+        typestring);
+      SWIG_fail;
+    }
+    arg3 = (int) PyInt_AsLong(obj1);
+    dims[0] = (npy_intp) arg3;
+    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    if (!array2) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+  }
+  (arg1)->retrieveTallyMu(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  {
+    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_retrieveTallyVariance(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *array2 = NULL ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_retrieveTallyVariance",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_retrieveTallyVariance" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp dims[1];
+    if (!PyInt_Check(obj1))
+    {
+      const char* typestring = pytype_string(obj1);
+      PyErr_Format(PyExc_TypeError,
+        "Int dimension expected.  '%s' given.",
+        typestring);
+      SWIG_fail;
+    }
+    arg3 = (int) PyInt_AsLong(obj1);
+    dims[0] = (npy_intp) arg3;
+    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    if (!array2) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+  }
+  (arg1)->retrieveTallyVariance(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  {
+    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_retrieveTallyStdDev(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *array2 = NULL ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_retrieveTallyStdDev",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_retrieveTallyStdDev" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp dims[1];
+    if (!PyInt_Check(obj1))
+    {
+      const char* typestring = pytype_string(obj1);
+      PyErr_Format(PyExc_TypeError,
+        "Int dimension expected.  '%s' given.",
+        typestring);
+      SWIG_fail;
+    }
+    arg3 = (int) PyInt_AsLong(obj1);
+    dims[0] = (npy_intp) arg3;
+    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    if (!array2) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+  }
+  (arg1)->retrieveTallyStdDev(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  {
+    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_retrieveTallyRelErr(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *array2 = NULL ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_retrieveTallyRelErr",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_retrieveTallyRelErr" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp dims[1];
+    if (!PyInt_Check(obj1))
+    {
+      const char* typestring = pytype_string(obj1);
+      PyErr_Format(PyExc_TypeError,
+        "Int dimension expected.  '%s' given.",
+        typestring);
+      SWIG_fail;
+    }
+    arg3 = (int) PyInt_AsLong(obj1);
+    dims[0] = (npy_intp) arg3;
+    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    if (!array2) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+  }
+  (arg1)->retrieveTallyRelErr(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  {
+    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Tally_getNumBatches(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
@@ -9212,39 +9462,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Tally_setTallyName(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Tally *arg1 = (Tally *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_setTallyName",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_setTallyName" "', argument " "1"" of type '" "Tally *""'"); 
-  }
-  arg1 = reinterpret_cast< Tally * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally_setTallyName" "', argument " "2"" of type '" "char *""'");
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  (arg1)->setTallyName(arg2);
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Tally_setBinSpacingType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
@@ -9268,66 +9485,6 @@ SWIGINTERN PyObject *_wrap_Tally_setBinSpacingType(PyObject *SWIGUNUSEDPARM(self
   } 
   arg2 = static_cast< binSpacingType >(val2);
   (arg1)->setBinSpacingType(arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_setTallyDomainType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Tally *arg1 = (Tally *) 0 ;
-  tallyDomainType arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_setTallyDomainType",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_setTallyDomainType" "', argument " "1"" of type '" "Tally *""'"); 
-  }
-  arg1 = reinterpret_cast< Tally * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_setTallyDomainType" "', argument " "2"" of type '" "tallyDomainType""'");
-  } 
-  arg2 = static_cast< tallyDomainType >(val2);
-  (arg1)->setTallyDomainType(arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_setTallyType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Tally *arg1 = (Tally *) 0 ;
-  tallyType arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_setTallyType",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_setTallyType" "', argument " "1"" of type '" "Tally *""'"); 
-  }
-  arg1 = reinterpret_cast< Tally * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_setTallyType" "', argument " "2"" of type '" "tallyType""'");
-  } 
-  arg2 = static_cast< tallyType >(val2);
-  (arg1)->setTallyType(arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11010,8 +11167,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_getMuAverage", _wrap_Isotope_getMuAverage, METH_VARARGS, NULL},
 	 { (char *)"Isotope_isFissionable", _wrap_Isotope_isFissionable, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getNumXSEnergies", _wrap_Isotope_getNumXSEnergies, METH_VARARGS, NULL},
-	 { (char *)"Isotope_retrieveXSEnergies", _wrap_Isotope_retrieveXSEnergies, METH_VARARGS, NULL},
-	 { (char *)"Isotope_retrieveXS", _wrap_Isotope_retrieveXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getElasticXS", _wrap_Isotope_getElasticXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getElasticAngleType", _wrap_Isotope_getElasticAngleType, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getAbsorptionXS", _wrap_Isotope_getAbsorptionXS, METH_VARARGS, NULL},
@@ -11022,6 +11177,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_usesThermalScattering", _wrap_Isotope_usesThermalScattering, METH_VARARGS, NULL},
 	 { (char *)"Isotope_isRescaled", _wrap_Isotope_isRescaled, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getEnergyGridIndex", _wrap_Isotope_getEnergyGridIndex, METH_VARARGS, NULL},
+	 { (char *)"Isotope_retrieveXSEnergies", _wrap_Isotope_retrieveXSEnergies, METH_VARARGS, NULL},
+	 { (char *)"Isotope_retrieveXS", _wrap_Isotope_retrieveXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setIsotopeType", _wrap_Isotope_setIsotopeType, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setA", _wrap_Isotope_setA, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setAO", _wrap_Isotope_setAO, METH_VARARGS, NULL},
@@ -11047,8 +11204,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Material_getDensity", _wrap_Material_getDensity, METH_VARARGS, NULL},
 	 { (char *)"Material_getIsotopeNumDensity", _wrap_Material_getIsotopeNumDensity, METH_VARARGS, NULL},
 	 { (char *)"Material_getNumXSEnergies", _wrap_Material_getNumXSEnergies, METH_VARARGS, NULL},
-	 { (char *)"Material_retrieveXSEnergies", _wrap_Material_retrieveXSEnergies, METH_VARARGS, NULL},
-	 { (char *)"Material_retrieveXS", _wrap_Material_retrieveXS, METH_VARARGS, NULL},
 	 { (char *)"Material_getTotalMacroXS", _wrap_Material_getTotalMacroXS, METH_VARARGS, NULL},
 	 { (char *)"Material_getTotalMicroXS", _wrap_Material_getTotalMicroXS, METH_VARARGS, NULL},
 	 { (char *)"Material_getElasticMacroXS", _wrap_Material_getElasticMacroXS, METH_VARARGS, NULL},
@@ -11061,6 +11216,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Material_getFissionMicroXS", _wrap_Material_getFissionMicroXS, METH_VARARGS, NULL},
 	 { (char *)"Material_getTransportMicroXS", _wrap_Material_getTransportMicroXS, METH_VARARGS, NULL},
 	 { (char *)"Material_getTransportMacroXS", _wrap_Material_getTransportMacroXS, METH_VARARGS, NULL},
+	 { (char *)"Material_retrieveXSEnergies", _wrap_Material_retrieveXSEnergies, METH_VARARGS, NULL},
+	 { (char *)"Material_retrieveXS", _wrap_Material_retrieveXS, METH_VARARGS, NULL},
 	 { (char *)"Material_setMaterialName", _wrap_Material_setMaterialName, METH_VARARGS, NULL},
 	 { (char *)"Material_setDensity", _wrap_Material_setDensity, METH_VARARGS, NULL},
 	 { (char *)"Material_setNumberDensity", _wrap_Material_setNumberDensity, METH_VARARGS, NULL},
@@ -11089,15 +11246,17 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tally_getMaxTally", _wrap_Tally_getMaxTally, METH_VARARGS, NULL},
 	 { (char *)"Tally_getMinTally", _wrap_Tally_getMinTally, METH_VARARGS, NULL},
 	 { (char *)"Tally_getBinIndex", _wrap_Tally_getBinIndex, METH_VARARGS, NULL},
+	 { (char *)"Tally_retrieveTallyCenters", _wrap_Tally_retrieveTallyCenters, METH_VARARGS, NULL},
+	 { (char *)"Tally_retrieveTallyMu", _wrap_Tally_retrieveTallyMu, METH_VARARGS, NULL},
+	 { (char *)"Tally_retrieveTallyVariance", _wrap_Tally_retrieveTallyVariance, METH_VARARGS, NULL},
+	 { (char *)"Tally_retrieveTallyStdDev", _wrap_Tally_retrieveTallyStdDev, METH_VARARGS, NULL},
+	 { (char *)"Tally_retrieveTallyRelErr", _wrap_Tally_retrieveTallyRelErr, METH_VARARGS, NULL},
 	 { (char *)"Tally_getNumBatches", _wrap_Tally_getNumBatches, METH_VARARGS, NULL},
 	 { (char *)"Tally_getBatchMu", _wrap_Tally_getBatchMu, METH_VARARGS, NULL},
 	 { (char *)"Tally_getBatchVariance", _wrap_Tally_getBatchVariance, METH_VARARGS, NULL},
 	 { (char *)"Tally_getBatchStdDev", _wrap_Tally_getBatchStdDev, METH_VARARGS, NULL},
 	 { (char *)"Tally_getBatchRelativeError", _wrap_Tally_getBatchRelativeError, METH_VARARGS, NULL},
-	 { (char *)"Tally_setTallyName", _wrap_Tally_setTallyName, METH_VARARGS, NULL},
 	 { (char *)"Tally_setBinSpacingType", _wrap_Tally_setBinSpacingType, METH_VARARGS, NULL},
-	 { (char *)"Tally_setTallyDomainType", _wrap_Tally_setTallyDomainType, METH_VARARGS, NULL},
-	 { (char *)"Tally_setTallyType", _wrap_Tally_setTallyType, METH_VARARGS, NULL},
 	 { (char *)"Tally_setBinEdges", _wrap_Tally_setBinEdges, METH_VARARGS, NULL},
 	 { (char *)"Tally_generateBinEdges", _wrap_Tally_generateBinEdges, METH_VARARGS, NULL},
 	 { (char *)"Tally_setNumBatches", _wrap_Tally_setNumBatches, METH_VARARGS, NULL},

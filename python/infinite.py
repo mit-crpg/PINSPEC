@@ -59,6 +59,7 @@ def main():
     mix.addIsotope(u235, 0.03)
     mix.addIsotope(u238, 0.97)
 
+    log_printf(INFO, "Added isotopes")
 
 
 
@@ -90,7 +91,6 @@ def main():
     fig.savefig(mix.getMaterialName() + '_macro_xs.png')
 
 
-    log_printf(INFO, "Added isotopes")
     
     # Define regions
     region_mix = Region()
@@ -103,6 +103,32 @@ def main():
 	# Define tallies - give them to Regions, Materials, or Isotopes
 	# This part is really where we need to know how to pass float
     # arrays to/from SWIG
+    flux = Tally('total flux', REGION, FLUX)
+    flux.generateBinEdges(1E-7, 1E7, 1000, LOGARITHMIC)
+    flux.setNumBatches(10)
+    region_mix.addTally(flux)
+
+
+    ############################################################################
+    #EXAMPLE: How to retrieve tally data. 
+    ############################################################################
+    num_bins = flux.getNumBins()
+    flux.computeBatchStatistics()
+    flux_bin_centers = flux.retrieveTallyCenters(num_bins)
+    flux_mu = flux.retrieveTallyMu(num_bins)
+    flux_variance = flux.retrieveTallyVariance(num_bins)
+    flux_std_dev = flux.retrieveTallyStdDev(num_bins)
+    flux_rel_err = flux.retrieveTallyRelErr(num_bins)
+
+    # Plot all of the xs on the same scale
+    fig = plt.figure()
+    plt.plot(flux_bin_centers, flux_mu, lw=1)
+    plt.xscale('log')
+    plt.xlabel('Energy [ev]')
+    plt.ylabel('Flux')
+    plt.title(flux.getTallyName() + ' average')
+    fig.savefig(flux.getTallyName() + '_average.png')
+
 
     # Define geometry
     geometry = Geometry()
@@ -118,7 +144,7 @@ def main():
     # geometry.runMonteCarloSimulation();
         
 	# Dump batch statistics to output files to some new directory
-    geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
+#    geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
         
 	# Plot data
 

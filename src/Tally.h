@@ -1,5 +1,5 @@
 /*
- * tally.h
+ * Tally.h
  *
  *  Created on: Mar 13, 2012
  *      Author: William Boyd
@@ -77,7 +77,7 @@ private:
 	bool _computed_statistics;
 
 public:
-	Tally();
+	Tally(char* tally_name, tallyDomainType tally_domain, tallyType tally_type);
 	virtual ~Tally();
 	char* getTallyName();
 	int getNumBins();
@@ -96,16 +96,22 @@ public:
 	double getMinTally();
 	int getBinIndex(float sample);
 
+    /* IMPORTANT: The following five class method prototypes must not be changed
+     * without changing Geometry.i to allow for the data arrays to be transformed
+     * into numpy arrays */
+    void retrieveTallyCenters(float* data, int num_bins);
+    void retrieveTallyMu(float* data, int num_bins);
+    void retrieveTallyVariance(float* data, int num_bins);
+    void retrieveTallyStdDev(float* data, int num_bins);
+    void retrieveTallyRelErr(float* data, int num_bins);
+
 	int getNumBatches();
 	double* getBatchMu();
 	double* getBatchVariance();
 	double* getBatchStdDev();
 	double* getBatchRelativeError();
 
-	void setTallyName(char* name);
     void setBinSpacingType(binSpacingType type);
-	void setTallyDomainType(tallyDomainType type);
-	void setTallyType(tallyType type);
 	void setBinEdges(float* edges, int num_edges);
 
 	void generateBinEdges(float start, float end, int num_bins, 

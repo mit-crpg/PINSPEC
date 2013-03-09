@@ -179,6 +179,11 @@ void Region::setRegionType(regionType region_type) {
  * @param bins a pointer to a Tally class object
  */
 void Region::addTally(Tally* tally) {
+
+    if (tally->getTallyDomainType() != REGION)
+        log_printf(ERROR, "Unable to add Tally %s to Region %s since the Tally"
+                        " is not for an REGION tally domain", 
+                                        tally->getTallyName(), _name);
 	_tallies.push_back(tally);
 }
 

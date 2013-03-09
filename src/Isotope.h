@@ -139,8 +139,6 @@ public:
 	bool isFissionable() const;
 
     int getNumXSEnergies() const;
-    void retrieveXSEnergies(float* energies, int num_xs) const;
-    void retrieveXS(float* xs, int num_xs, char* xs_type) const;
     float getElasticXS(float energy) const;
     float getElasticXS(int energy_index) const;
     scatterAngleType getElasticAngleType() const;
@@ -157,6 +155,12 @@ public:
     bool usesThermalScattering();
 	bool isRescaled();
 	int getEnergyGridIndex(float energy);
+
+    /* IMPORTANT: The following two class method prototypes must not be changed
+     * without changing Geometry.i to allow for the data arrays to be transformed
+     * into numpy arrays */
+    void retrieveXSEnergies(float* energies, int num_xs) const;
+    void retrieveXS(float* xs, int num_xs, char* xs_type) const;
 
     void setIsotopeType(char* isotope);
     void setA(int A);

@@ -759,7 +759,11 @@ float Material::getDensity(){
  * Add a tally class object to  this material's vector of Tally
  */
 void Material::addTally(Tally *tally) {
-    tally->setTallyDomainType(MATERIAL);
+
+    if (tally->getTallyDomainType() != MATERIAL)
+        log_printf(ERROR, "Unable to add Tally %s to Material %s since the Tally"
+                        " is not for an MATERIAL tally domain", 
+                                        tally->getTallyName(), _material_name);
     _tallies.push_back(tally);
     return;
 }

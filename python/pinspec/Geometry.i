@@ -20,6 +20,7 @@
 
 %apply (float* ARGOUT_ARRAY1, int DIM1) {(float* xs, int num_xs)}
 %apply (float* ARGOUT_ARRAY1, int DIM1) {(float* energies, int num_xs)}
+%apply (float* ARGOUT_ARRAY1, int DIM1) {(float* data, int num_bins)}
 
 %include ../../src/Geometry.h
 %include ../../src/Region.h

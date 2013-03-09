@@ -1189,7 +1189,12 @@ float Isotope::thermalScatteringProb(float E_prime_to_E, int dist_index) {
 }
 
 void Isotope::addTally(Tally *tally) {
-    tally->setTallyDomainType(ISOTOPE);
+
+    if (tally->getTallyDomainType() != ISOTOPE)
+        log_printf(ERROR, "Unable to add Tally %s to Isotope %s since the Tally"
+                        " is not for an ISOTOPE tally domain", 
+                                        tally->getTallyName(), _isotope_name);
+
     _tallies.push_back(tally);
     return;
 }

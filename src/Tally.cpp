@@ -13,9 +13,12 @@
 /**
  * Default Tally constructor
  */
-Tally::Tally() {
+Tally::Tally(char* tally_name, tallyDomainType tally_domain, 
+                                                    tallyType tally_type) {
 
-	_tally_name = (char*)"";
+	_tally_name = tally_name;
+    _tally_domain = tally_domain;
+    _tally_type = tally_type;
 
 	 /* Sets the default delta between bins to zero */
 	_bin_delta = 0;
@@ -374,12 +377,78 @@ double* Tally::getBatchRelativeError() {
 }
 
 
-/**
- * Sets this Tally's name
- * @param name the name of the Tally
- */
-void Tally::setTallyName(char* name) {
-	_tally_name = name;
+void Tally::retrieveTallyCenters(float* data, int num_bins){
+
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to retrieve bin centers for Tally %s since"
+                      " it has not yet computed batch statistics", _tally_name);
+    if (_num_batches == 0)
+        log_printf(ERROR, "Unable to retrieve bin centers for Tally %s since it"
+              " does not know how many batches it should tally", _tally_name);
+
+    /* Load all tally bin centers into array */
+    for (int i=0; i < _num_bins; i++)
+        data[i] = _centers[i];
+
+}
+
+
+void Tally::retrieveTallyMu(float* data, int num_bins) {
+
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to retrieve tally mu for Tally %s since"
+                      " it has not yet computed batch statistics", _tally_name);
+    if (_num_batches == 0)
+        log_printf(ERROR, "Unable to retrieve tally mu for Tally %s since it"
+              " does not know how many batches it should tally", _tally_name);
+
+    /* Load all tally mu into array */
+    for (int i=0; i < _num_bins; i++)
+        data[i] = _batch_mu[i];
+}
+
+void Tally::retrieveTallyVariance(float* data, int num_bins) {
+
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to retrieve tally variances for Tally %s since"
+                      " it has not yet computed batch statistics", _tally_name);
+    if (_num_batches == 0)
+        log_printf(ERROR, "Unable to retrieve tally variance for Tally %s since it"
+              " does not know how many batches it should tally", _tally_name);
+
+    /* Load all tally variances into array */
+    for (int i=0; i < _num_bins; i++)
+        data[i] = _batch_variance[i];
+}
+
+
+void Tally::retrieveTallyStdDev(float* data, int num_bins) {
+
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to retrieve tally std. dev. for Tally %s since"
+                      " it has not yet computed batch statistics", _tally_name);
+    if (_num_batches == 0)
+        log_printf(ERROR, "Unable to retrieve tally std. dev. for Tally %s since it"
+              " does not know how many batches it should tally", _tally_name);
+
+    /* Load all tally standard deviations into array */
+    for (int i=0; i < _num_bins; i++)
+        data[i] = _batch_std_dev[i];
+}
+
+
+void Tally::retrieveTallyRelErr(float* data, int num_bins) {
+
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to retrieve tally rel. err. for Tally %s since"
+                      " it has not yet computed batch statistics", _tally_name);
+    if (_num_batches == 0)
+        log_printf(ERROR, "Unable to retrieve tally rel. err. for Tally %s since it"
+              " does not know how many batches it should tally", _tally_name);
+
+    /* Load all tally variances into array */
+    for (int i=0; i < _num_bins; i++)
+        data[i] = _batch_rel_err[i];
 }
 
 
@@ -389,24 +458,6 @@ void Tally::setTallyName(char* name) {
  */
 void Tally::setBinSpacingType(binSpacingType type) {
     _bin_spacing = type;
-}
-
-
-/**
- * Set the domain type for this Tally (ISOTOPE, MATERIAL, REGION)
- * @param type the tally type
- */
-void Tally::setTallyDomainType(tallyDomainType type) {
-	_tally_domain = type;
-}
-
-
-/**
- * Set the type of tally for this Tally (FLUX, COLLISION_RATE, ABSORPTION_RATE)
- * @param type the tally type
- */
-void Tally::setTallyType(tallyType type) {
-	_tally_type = type;
 }
 
 
@@ -469,12 +520,9 @@ void Tally::setNumBatches(int num_batches) {
 Tally* Tally::clone() {
 
 	/* Allocate memory for the clone */
-	Tally* new_clone = new Tally();
+	Tally* new_clone = new Tally(_tally_name, _tally_domain, _tally_type);
 
-    new_clone->setTallyName(_tally_name);
     new_clone->setBinSpacingType(_bin_spacing);
-    new_clone->setTallyDomainType(_tally_domain);
-    new_clone->setTallyType(_tally_type);
     new_clone->setNumBatches(_num_batches);
 
     /* If the bins are regularly spaced, re-generate them for the new Tally */
