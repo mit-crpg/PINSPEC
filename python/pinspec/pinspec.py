@@ -95,6 +95,7 @@ class Geometry(_object):
     def addRegion(self, *args): return _pinspec.Geometry_addRegion(self, *args)
     def runMonteCarloSimulation(self): return _pinspec.Geometry_runMonteCarloSimulation(self)
     def computeBatchStatistics(self): return _pinspec.Geometry_computeBatchStatistics(self)
+    def computeScaledBatchStatistics(self): return _pinspec.Geometry_computeScaledBatchStatistics(self)
     def outputBatchStatistics(self, *args): return _pinspec.Geometry_outputBatchStatistics(self, *args)
 Geometry_swigregister = _pinspec.Geometry_swigregister
 Geometry_swigregister(Geometry)
@@ -136,6 +137,7 @@ class Region(_object):
     def addModeratorRingRadius(self, *args): return _pinspec.Region_addModeratorRingRadius(self, *args)
     def collideNeutron(self, *args): return _pinspec.Region_collideNeutron(self, *args)
     def computeBatchStatistics(self): return _pinspec.Region_computeBatchStatistics(self)
+    def computeScaledBatchStatistics(self, *args): return _pinspec.Region_computeScaledBatchStatistics(self, *args)
     def outputBatchStatistics(self, *args): return _pinspec.Region_outputBatchStatistics(self, *args)
 Region_swigregister = _pinspec.Region_swigregister
 Region_swigregister(Region)
@@ -195,6 +197,7 @@ class Isotope(_object):
     def addTally(self, *args): return _pinspec.Isotope_addTally(self, *args)
     def exportXS(self, *args): return _pinspec.Isotope_exportXS(self, *args)
     def computeBatchStatistics(self): return _pinspec.Isotope_computeBatchStatistics(self)
+    def computeScaledBatchStatistics(self, *args): return _pinspec.Isotope_computeScaledBatchStatistics(self, *args)
     def outputBatchStatistics(self, *args): return _pinspec.Isotope_outputBatchStatistics(self, *args)
 Isotope_swigregister = _pinspec.Isotope_swigregister
 Isotope_swigregister(Isotope)
@@ -244,6 +247,7 @@ class Material(_object):
     def addTally(self, *args): return _pinspec.Material_addTally(self, *args)
     def collideNeutron(self, *args): return _pinspec.Material_collideNeutron(self, *args)
     def computeBatchStatistics(self): return _pinspec.Material_computeBatchStatistics(self)
+    def computeScaledBatchStatistics(self, *args): return _pinspec.Material_computeScaledBatchStatistics(self, *args)
     def outputBatchStatistics(self, *args): return _pinspec.Material_outputBatchStatistics(self, *args)
 Material_swigregister = _pinspec.Material_swigregister
 Material_swigregister(Material)

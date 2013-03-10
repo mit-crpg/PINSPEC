@@ -11,6 +11,7 @@
 #define GEOMETRY_H_
 
 #include <sys/stat.h>
+#include <omp.h>
 #include "Region.h"
 #include "Fissioner.h"
 #include "Neutron.h"
@@ -70,6 +71,7 @@ public:
 	/* Monte Carlo kernel */
 	void runMonteCarloSimulation();
     void computeBatchStatistics();
+    void computeScaledBatchStatistics();
     void outputBatchStatistics(char* directory,  char* suffix);
 };
 

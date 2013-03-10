@@ -134,7 +134,7 @@ float Material::getTotalMacroXS(float energy) {
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter) {
 		sigma_t += iter->second.second->getTotalXS(energy)
-											* iter->second.first * 1E-24;
+											* iter->second.first;
     }
 
 	return sigma_t;
@@ -155,7 +155,7 @@ float Material::getTotalMacroXS(int energy_index) {
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
 		sigma_t += iter->second.second->getTotalXS(energy_index)
-										* iter->second.first * 1E-24;
+										* iter->second.first;
 
 	return sigma_t;
 }
@@ -213,7 +213,7 @@ float Material::getElasticMacroXS(float energy) {
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
 		sigma_s += iter->second.second->getElasticXS(energy)
-												* iter->second.first * 1E-24;
+												* iter->second.first;
 
 	return sigma_s;
 }
@@ -233,7 +233,7 @@ float Material::getElasticMacroXS(int energy_index) {
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
 		sigma_e += iter->second.second->getElasticXS(energy_index)
-										* iter->second.first * 1E-24;
+										* iter->second.first;
 
 	return sigma_e;
 }
@@ -290,7 +290,7 @@ float Material::getAbsorptionMacroXS(float energy) {
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
 		sigma_a += iter->second.second->getAbsorptionXS(energy) *
-											iter->second.first * 1E-24;
+											iter->second.first;
 
 	return sigma_a;
 }
@@ -310,7 +310,7 @@ float Material::getAbsorptionMacroXS(int energy_index) {
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
 		sigma_a += iter->second.second->getAbsorptionXS(energy_index)
-										* iter->second.first * 1E-24;
+										* iter->second.first;
 
 	return sigma_a;
 }
@@ -367,7 +367,7 @@ float Material::getCaptureMacroXS(float energy) {
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
 		sigma_c += iter->second.second->getCaptureXS(energy) *
-											iter->second.first * 1E-24;
+											iter->second.first;
 
 	return sigma_c;
 }
@@ -387,7 +387,7 @@ float Material::getCaptureMacroXS(int energy_index) {
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
 		sigma_c += iter->second.second->getCaptureXS(energy_index)
-										* iter->second.first * 1E-24;
+										* iter->second.first;
 
 	return sigma_c;
 }
@@ -445,7 +445,7 @@ float Material::getFissionMacroXS(float energy) {
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
 		sigma_f += iter->second.second->getFissionXS(energy) *
-											iter->second.first * 1E-24;
+											iter->second.first;
 
 	return sigma_f;
 }
@@ -465,7 +465,7 @@ float Material::getFissionMacroXS(int energy_index) {
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
 		sigma_f += iter->second.second->getFissionXS(energy_index)
-										* iter->second.first * 1E-24;
+										* iter->second.first;
 
 	return sigma_f;
 }
@@ -541,7 +541,7 @@ float Material::getTransportMacroXS(int energy_index) {
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
 		sigma_tr += iter->second.second->getTransportXS(energy_index)
-										* iter->second.first * 1E-24;
+										* iter->second.first;
 
 	return sigma_tr;
 }
@@ -560,7 +560,7 @@ float Material::getTransportMacroXS(float energy) {
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
 		sigma_tr += iter->second.second->getTransportXS(energy) *
-										iter->second.first * 1E-24;
+										iter->second.first;
 
 	return sigma_tr;
 }
@@ -724,7 +724,7 @@ Isotope* Material::sampleIsotope(float energy) {
 	for (iter =_isotopes.begin(); iter !=_isotopes.end(); ++iter){
 
 		new_sigma_t_ratio += (iter->second.second->getTotalXS(energy) *
-										iter->second.first * 1E-24) / sigma_t;
+										iter->second.first) / sigma_t;
 
 		if (test >= sigma_t_ratio && ((test <= new_sigma_t_ratio) ||
 							fabs(test - new_sigma_t_ratio) < 1E-5)) {
@@ -908,6 +908,28 @@ void Material::computeBatchStatistics() {
 
     return;
 }
+
+
+/**
+ * Calls each of the Tally class objects in the Material to compute
+ * their batch-based statistics from the tallies
+ */
+void Material::computeScaledBatchStatistics(float scale_factor) {
+
+    /* Compute statistics for each of this Material's Tallies */
+    std::vector<Tally*>::iterator iter1;
+
+	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); ++iter1)
+        (*iter1)->computeScaledBatchStatistics(scale_factor);
+
+    /* Output statistics for each of this Material's Tallies */
+	std::map<char*, std::pair<float, Isotope*> >::iterator iter2;
+	for (iter2 = _isotopes.begin(); iter2 != _isotopes.end(); ++iter2)
+        iter2->second.second->computeScaledBatchStatistics(scale_factor);
+
+    return;
+}
+
 
 /**
  * Calls each of the Tally class objects in the Material to output

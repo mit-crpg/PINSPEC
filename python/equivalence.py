@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
+import numpy as np
+import scipy as sci
 from pinspec import *
-from numpy import *
-from scipy import *
-from plotter import *
+#from plotter import *
 
 
 def main():
@@ -12,7 +12,11 @@ def main():
 	#       then they must figure out the atom ratio using geometric parameters
 	#       and use that when loading the isotope in a material
 
-    log_setlevel(INFO)
+    # Set main simulation params
+    num_batches = 10
+    num_neutrons_per_batch = 100
+    num_threads = 4
+    log_setlevel(DEBUG)
 
     # Define isotopes
     h1 = Isotope('H-1')
@@ -54,6 +58,12 @@ def main():
     region_fuel.setMaterial(fuel)
 
     log_printf(INFO, "Made fuel region")
+
+    # Create a tally for the flux
+    flux = Tally('total flux', REGION, FLUX)
+    flux.generateBinEdges(1E-7, 1E7, 10000, LOGARITHMIC)
+    region_fuel.addTally(flux)
+
     
 	# Define tallies - give them to Regions, Materials, or Isotopes
 	# This part is really where we need to know how to pass float
@@ -64,8 +74,8 @@ def main():
     dancoff = 0.277;
     sigma_e = 1.0 / (2.0*radius_fuel);
     A = (1.0 - dancoff) / dancoff;
-    alpha1 = ((5.0*A + 6.0) - sqrt(A*A + 36.0*A + 36.0)) / (2.0*(A+1.0));
-    alpha2 = ((5.0*A + 6.0) + sqrt(A*A + 36.0*A + 36.0)) / (2.0*(A+1.0));
+    alpha1 = ((5.0*A + 6.0) - sci.sqrt(A*A + 36.0*A + 36.0)) / (2.0*(A+1.0));
+    alpha2 = ((5.0*A + 6.0) + sci.sqrt(A*A + 36.0*A + 36.0)) / (2.0*(A+1.0));
     beta = (((4.0*A + 6.0) / (A + 1.0)) - alpha1) / (alpha2 - alpha1);
 
     # Define geometry
@@ -74,15 +84,38 @@ def main():
     geometry.setTwoRegionPinCellParams(sigma_e, beta, alpha1, alpha2)
     geometry.addRegion(region_mod)
     geometry.addRegion(region_fuel)
-    geometry.setNeutronsPerBatch(10000)
-    geometry.setNumBatches(10)
-    geometry.setNumThreads(1)
+    geometry.setNumBatches(num_batches)
+    geometry.setNeutronsPerBatch(num_neutrons_per_batch)
+    geometry.setNumThreads(num_threads)
 
 	# Run Monte Carlo simulation
-    # geometry.runMonteCarloSimulation();
+    geometry.runMonteCarloSimulation();
+
+
+    ############################################################################
+    #EXAMPLE: How to retrieve tally data. 
+    ############################################################################
+    # Flux
+    num_bins = flux.getNumBins()
+    flux.computeBatchStatistics()
+    flux_bin_centers = flux.retrieveTallyCenters(num_bins)
+    flux_mu = flux.retrieveTallyMu(num_bins)
+    flux_variance = flux.retrieveTallyVariance(num_bins)
+    flux_std_dev = flux.retrieveTallyStdDev(num_bins)
+    flux_rel_err = flux.retrieveTallyRelErr(num_bins)
+
+    # Plot the flux
+    fig = plt.figure()
+    plt.plot(flux_bin_centers, flux_mu, lw=1)
+    plt.xscale('log')
+    plt.xlabel('Energy [ev]')
+    if (flux.getTallyType() == FLUX):
+        plt.ylabel('Flux')
+    plt.title(flux.getTallyName() + ' average')
+    fig.savefig(flux.getTallyName() + '_average.png')
 
 	# Dump batch statistics to output files to some new directory
-    geometry.outputBatchStatistics('Equivalence_MC_Statistics', 'test')
+#    geometry.outputBatchStatistics('Equivalence_MC_Statistics', 'test')
 
 	# Plot data
 

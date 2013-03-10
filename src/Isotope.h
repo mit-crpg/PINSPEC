@@ -182,6 +182,7 @@ public:
 	void exportXS(char* xs_type);
 
     void computeBatchStatistics();
+    void computeScaledBatchStatistics(float scale_factor);
     void outputBatchStatistics(char* directory, char* suffix);
 };
 

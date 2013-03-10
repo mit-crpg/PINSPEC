@@ -98,6 +98,7 @@ public:
 
 	collisionType collideNeutron(neutron* neut);
     void computeBatchStatistics();
+    void computeScaledBatchStatistics(float scale_factor);
     void outputBatchStatistics(char* directory, char* suffix);
 };
 

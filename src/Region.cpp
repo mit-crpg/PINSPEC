@@ -428,6 +428,29 @@ void Region::computeBatchStatistics() {
 
 
 /**
+ * Calls each of the Tally class objects in the Region to compute
+ * their batch-based statistics from the tallies
+ */
+void Region::computeScaledBatchStatistics(float scale_factor) {
+
+    /* Account for the volume of the region if it is not infinite */
+	if (_region_type != INFINITE)
+        scale_factor *= _volume;
+
+    /* Compute statistics for each of this Region's Tallies */
+    std::vector<Tally*>::iterator iter;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
+        (*iter)->computeScaledBatchStatistics(scale_factor);
+
+    /* Compute statistics for the Material's Tallies */
+    _material->computeScaledBatchStatistics(scale_factor);
+
+    return;
+}
+
+
+/**
  * Calls each of the Tally class objects in the Region to output
  * their tallies and statistics to output files.
  * @param directory the directory to write batch statistics files

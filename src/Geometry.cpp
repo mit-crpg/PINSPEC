@@ -257,6 +257,9 @@ void Geometry::runMonteCarloSimulation() {
 						_num_neutrons_per_batch, _num_batches, _num_threads);
 
 
+    
+	omp_set_num_threads(_num_threads);
+
 	/*************************************************************************/
 	/************************   INFINITE_HOMOGENEOUS *************************/
 	/*************************************************************************/
@@ -268,31 +271,38 @@ void Geometry::runMonteCarloSimulation() {
          * initialize the Tally classes for this many batches */
         _infinite_medium->setNumBatches(_num_batches);
 
-		neutron* curr = initializeNewNeutron();
+		neutron* curr;
 
-		for (int i=0; i < _num_batches; i++) {
+        #pragma omp parallel
+        {
+	        #pragma omp for private(curr)
+		    for (int i=0; i < _num_batches; i++) {
 
-			log_printf(INFO, "Batch #: %d", i);
+			    log_printf(INFO, "Thread %d/%d running batch %d", 
+                              omp_get_thread_num()+1, omp_get_num_threads(), i);
 
-			curr->_batch_num = i;
+			    curr = initializeNewNeutron();
+		        curr->_batch_num = i;
 
-			for (int j=0; j < _num_neutrons_per_batch; j++) {
+			    for (int j=0; j < _num_neutrons_per_batch; j++) {
 
-				/* Initialize this neutron's energy [ev] from Watt spectrum */
-				curr->_energy = _fissioner->emitNeutroneV();
-				curr->_alive = true;
+				    /* Initialize neutron's energy [ev] from Watt spectrum */
+				    curr->_energy = _fissioner->emitNeutroneV();
+				    curr->_alive = true;
 			
-				/* While the neutron is still alive, collide it. All
-                 * tallying and collision physics take place within
-				 * the Region, Material, and Isotope classes filling
-                 * the Geometry
-                 */
-				while (curr->_alive == true) {
-					_infinite_medium->collideNeutron(curr);
-                    log_printf(DEBUG, "Updated neutron energy to %f", curr->_energy);
-				}
-			}
-		}
+				    /* While the neutron is still alive, collide it. All
+                     * tallying and collision physics take place within
+				     * the Region, Material, and Isotope classes filling
+                     * the Geometry
+                     */
+				    while (curr->_alive == true) {
+					    _infinite_medium->collideNeutron(curr);
+                        log_printf(DEBUG, "Updated neutron energy to %f", 
+                                                                 curr->_energy);
+				    }
+			    }
+		    }
+        }
 	}
 
 
@@ -318,60 +328,66 @@ void Geometry::runMonteCarloSimulation() {
 		/* Initialize neutrons from fission spectrum for each thread */
 		/* Loop over batches */
 		/* Loop over neutrons per batch*/		
-		neutron* curr = initializeNewNeutron();
+		neutron* curr;
 		float p_ff;
 		float p_mf;
 		float test;
 
-		for (int i=0; i < _num_batches; i++) {
+        #pragma omp parallel
+        {
+           #pragma omp for private(curr, p_ff, p_mf, test)
+		    for (int i=0; i < _num_batches; i++) {
 
-			log_printf(INFO, "Batch #: %d", i);
+		        log_printf(INFO, "Thread %d/%d running batch %d", 
+                              omp_get_thread_num()+1, omp_get_num_threads(), i);
 
-			curr->_batch_num = i;
+	            curr = initializeNewNeutron();
+			    curr->_batch_num = i;
 
-			for (int j=0; j < _num_neutrons_per_batch; j++) {
+			    for (int j=0; j < _num_neutrons_per_batch; j++) {
 
-				/* Initialize this neutron's energy [ev] from Watt spectrum */
-				curr->_energy = _fissioner->emitNeutroneV();
-				curr->_alive = true;
-				curr->_in_fuel = true;
+				    /* Initialize neutron's energy [ev] from Watt spectrum */
+				    curr->_energy = _fissioner->emitNeutroneV();
+				    curr->_alive = true;
+				    curr->_in_fuel = true;
 			
-				/* While the neutron is still alive, collide it. All
-                 * tallying and collision physics take place within
-				 * the Region, Material, and Isotope classes filling
-                 * the Geometry
-                 */
-				while (curr->_alive == true) {
+				    /* While the neutron is still alive, collide it. All
+                     * tallying and collision physics take place within
+				     * the Region, Material, and Isotope classes filling
+                     * the Geometry
+                     */
+				    while (curr->_alive == true) {
 
-					/* Determine if neutron collided in fuel or moderator */
-					p_ff = computeFuelFuelCollisionProb(curr->_energy);
-					p_mf = computeModeratorFuelCollisionProb(curr->_energy);
-					test = float(rand()) / RAND_MAX;
+					    /* Determine if neutron collided in fuel or moderator */
+					    p_ff = computeFuelFuelCollisionProb(curr->_energy);
+					    p_mf = computeModeratorFuelCollisionProb(curr->_energy);
+					    test = float(rand()) / RAND_MAX;
 
-					/* If the neutron is in the fuel */
-					if (curr->_in_fuel) {
+					    /* If the neutron is in the fuel */
+					    if (curr->_in_fuel) {
 
-						/* If test is larger than p_ff, move to moderator */
-						if (test > p_ff)
-							curr->_in_fuel = false;
-					}
+						    /* If test is larger than p_ff, move to moderator */
+						    if (test > p_ff)
+							    curr->_in_fuel = false;
+					    }
 
-					/* If the neutron is in the moderator */
-					else {
+					    /* If the neutron is in the moderator */
+					    else {
 
-						/* If test is larger than p_mf, move to fuel */
-						if (test < p_mf)
-							curr->_in_fuel = true;
-					}
+						    /* If test is larger than p_mf, move to fuel */
+						    if (test > p_mf)
+							    curr->_in_fuel = true;
+					    }
 
-					/* Collide the neutron in the fuel or moderator */
-					if (curr->_in_fuel)
-						_fuel->collideNeutron(curr);
-					else
-						_moderator->collideNeutron(curr);
-				}
-			}
-		}
+					    /* Collide the neutron in the fuel or moderator */
+					    if (curr->_in_fuel)
+						    _fuel->collideNeutron(curr);
+					    else
+						    _moderator->collideNeutron(curr);
+				    }
+			    }
+		    }
+        }
     }
 
 
@@ -404,7 +420,8 @@ void Geometry::runMonteCarloSimulation() {
 
 		for (int i=0; i < _num_batches; i++) {
 
-			log_printf(INFO, "Batch #: %d", i);
+			    log_printf(INFO, "Thread %d/%d running batch %d", 
+                              omp_get_thread_num()+1, omp_get_num_threads(), i);
 
 			curr->_batch_num = i;
 
@@ -440,7 +457,7 @@ void Geometry::runMonteCarloSimulation() {
 
 
     /* Compute batch statistics for all Tallies in this simulation */
-    computeBatchStatistics();
+    computeScaledBatchStatistics();
 }
 
 
@@ -451,6 +468,19 @@ void Geometry::computeBatchStatistics() {
     else {
         _fuel->computeBatchStatistics();
         _moderator->computeBatchStatistics();
+    }
+
+    return;
+}
+
+
+void Geometry::computeScaledBatchStatistics() {
+
+    if (_spatial_type == INFINITE_HOMOGENEOUS)
+        _infinite_medium->computeScaledBatchStatistics(_num_neutrons_per_batch);
+    else {
+        _fuel->computeScaledBatchStatistics(_num_neutrons_per_batch);
+        _moderator->computeScaledBatchStatistics(_num_neutrons_per_batch);
     }
 
     return;
@@ -496,6 +526,7 @@ float Geometry::computeFuelFuelCollisionProb(float energy) {
 	float sigma_tot_fuel = _fuel->getMaterial()->getTotalMacroXS(energy);
 	p_ff = ((_beta*sigma_tot_fuel) / (_alpha1*_sigma_e + sigma_tot_fuel)) +
 		((1.0 - _beta)*sigma_tot_fuel / (_alpha2*_sigma_e + sigma_tot_fuel));
+    log_printf(DEBUG, "sigma_tot_fuel = %f, p_ff = %f", sigma_tot_fuel, p_ff);
 	return p_ff;
 }
 
@@ -515,5 +546,6 @@ float Geometry::computeModeratorFuelCollisionProb(float energy) {
 	float tot_sigma_mod = _moderator->getMaterial()->getTotalMacroXS(energy);
 	float v_mod = _moderator->getVolume();
 	p_mf = p_fm*(tot_sigma_f*_fuel->getVolume()) / (tot_sigma_mod*v_mod);
+    log_printf(DEBUG, "sigma_tot_fuel = %f, p_mf = %f", tot_sigma_f, p_mf);
 	return p_mf;
 }

@@ -1232,7 +1232,6 @@ collisionType Isotope::collideNeutron(neutron* neut) {
     float fission_xs = getFissionXS(energy);
     float transport_xs = getTransportXS(energy);
 
-    /* FIXME: what is sample? */
     float sample = energy;
 
     /* Loops over all tallies and add them to the clone */
@@ -1278,7 +1277,13 @@ collisionType Isotope::collideNeutron(neutron* neut) {
 	/* Sample outgoing energy uniformally between [alpha*E, E] */
 	float alpha = getAlpha();
 	double random = (float)(rand()) / (float)(RAND_MAX);
-	neut->_energy = energy * (alpha + (1.0 - alpha) * random);
+
+    /* Asymptotic elastic scattering above 4 eV */
+    if (energy > 4.0)
+    	neut->_energy *= (alpha + (1.0 - alpha) * random);
+    /* Thermal scattering below 4 eV */
+    else
+        neut->_energy =  getThermalScatteringEnergy(energy);
 
     return type;
 }
@@ -1300,24 +1305,6 @@ float Isotope::getDistanceTraveled(neutron* neutron) {
 }
 
 
-/**
- * Generates a set of resonance integral bins based off user defined
- * range of energy bounds
- * @param array of energy values used to create RI tally bins
- * @param length of array
- */
-//void RIEnergies(float *ri_energies, int n){
-//
-//	_ri_energies = new float [n];
-//
-//	for (int i = 0; i < n; i++){
-//		_ri_energies[i] = ri_energies[i];
-//	}
-//
-//	return;
-//}
-
-
 /** Calls each of the Tally class objects in the Isotope to compute
  * their batch-based statiscs from the tallies
  */
@@ -1328,6 +1315,21 @@ void Isotope::computeBatchStatistics() {
 
 	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
         (*iter)->computeBatchStatistics();
+
+    return;
+}
+
+
+/** Calls each of the Tally class objects in the Isotope to compute
+ * their batch-based statiscs from the tallies
+ */
+void Isotope::computeScaledBatchStatistics(float scale_factor) {
+
+    /* Compute statistics for each of this Isotope's Tallies */
+    std::vector<Tally*>::iterator iter;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
+        (*iter)->computeScaledBatchStatistics(scale_factor);
 
     return;
 }
