@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-os_type=`uname -a | grep 'Darwin'`;
+os_type=`uname`;
 
 if [[ $os_type == *Linux* ]]; then
     echo "Using linux flags"
