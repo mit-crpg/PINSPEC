@@ -9,7 +9,7 @@ if [[ $os_type == *Linux* ]]; then
 elif [[ $os_type == *Darwin* ]]; then
     echo "Using Mac OSX flags"
     CFLAGS="-O3 -march=native -fPIC -I/usr/include/python2.7 -I/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/core/include"
-    LFLAGS="-bundle `python-config --ldflags`"    
+    LFLAGS="-bundle `python-config --ldflags` -fPI -lgomp -L/opt/local/lib/gcc46"    
 fi
 
 if [ "$1" = '--release' ]

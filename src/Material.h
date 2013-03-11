@@ -29,6 +29,7 @@ private:
 
 	/* Map of number density and isotope pointers */
 	std::map<char*, std::pair<float, Isotope*> > _isotopes;
+	std::map<Isotope*, float> _isotopes_AO;
 	std::vector<Tally*> _tallies;
 
 	densityUnit _density_unit;

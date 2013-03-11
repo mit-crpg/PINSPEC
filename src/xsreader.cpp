@@ -66,14 +66,11 @@ int getNumCrossSectionDataPoints(const char* filename) {
 	/* Instantiate I/O variables */
 	std::ifstream input_file(filename, std::ios::in);
 	std::string line;
-	int num_xs_values = 0;
+	int num_xs_values = -1;
 
 	/* Loop over each line and update counter */
 	while(getline(input_file, line))
 	    num_xs_values++;
-
-    /* Must subtract one to account for header at top of file */
-    num_xs_values -= 1.0;
 
 	/* Close the file and return the number of lines */
 	input_file.close();

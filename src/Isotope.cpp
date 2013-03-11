@@ -695,7 +695,6 @@ void Isotope::loadXS() {
 
 	setCaptureXS(xs_values, energies, _num_capture_xs);
 
-
 	/******************************** FISSION ********************************/
 	/* Check whether a fission cross-section file exists for isotope */
 
@@ -878,6 +877,7 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 		new_energies = new float[num_energies];
 		memcpy(new_energies, energies, sizeof(float)*num_energies);
 		new_xs = new float[num_energies];
+
 
 		for (int i=0; i < num_energies; i++)
 			new_xs[i] = getFissionXS(new_energies[i]);
