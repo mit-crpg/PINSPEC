@@ -115,7 +115,7 @@ def main():
 
     # Create a tally for the flux
     flux = Tally('total flux', REGION, FLUX)
-    flux.generateBinEdges(1E-7, 1E7, 10000, LOGARITHMIC)
+    flux.generateBinEdges(1E-7, 1E7, 1000, LOGARITHMIC)
     region_mix.addTally(flux)
 
     ############################################################################
