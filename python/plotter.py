@@ -82,7 +82,7 @@ def plotFlux(flux):
     fig.savefig(flux.getTallyName() + '_average.png')
 
 
-
+    
 
 
 

@@ -1,8 +1,7 @@
 from pinspec import *
 from numpy import *
-from plotter import *
-import matplotlib.pyplot as plt
-
+import plotter as plt
+import process as proc
 
 def main():
 
@@ -26,10 +25,10 @@ def main():
     u238 = Isotope('U-238')
 
     # Plot the microscopic cross sections for each isotope
-    plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
-    plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
-    plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
-    plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
+    plt.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
+    plt.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
+    plt.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
+    plt.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
     
     
     # Define materials
@@ -44,7 +43,7 @@ def main():
     log_printf(INFO, "Added isotopes")
 
     # Plot the mixture macroscopic cross sections
-    plotMacroXS(mix, ['capture', 'elastic', 'fission', 'absorption', 'total'])
+    plt.plotMacroXS(mix, ['capture', 'elastic', 'fission', 'absorption', 'total'])
     
     # Define regions
     region_mix = Region()
@@ -61,7 +60,7 @@ def main():
 
     # Create a tally for the flux
     flux = Tally('total flux', REGION, FLUX)
-    flux.generateBinEdges(1E-7, 1E7, 1000, LOGARITHMIC)
+    flux.generateBinEdges(1E-5, 1E7, 1000, LOGARITHMIC)
     region_mix.addTally(flux)
 
     ############################################################################
@@ -89,7 +88,7 @@ def main():
     log_printf(INFO, "Ran Monte Carlo")
     
     # plot the flux
-    plotFlux(flux)
+    plt.plotFlux(flux)
 
     # Dump batch statistics to output files to some new directory - gives segmentation fault right now
     # geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
