@@ -732,7 +732,7 @@ void Isotope::loadXS() {
         energies[0] = 1E-7;
         energies[1] = 1E7;
         xs_values[0] = 0.0;
-        xs_values[1] = 1.0;
+        xs_values[1] = 0.0;
 
 		setFissionXS(xs_values, energies, _num_fission_xs);
     }
