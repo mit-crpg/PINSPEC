@@ -4,8 +4,8 @@ os_type=`uname -a | grep 'Linux'`;
 
 if [[ $os_type == *Linux* ]]; then
     echo "Using linux flags"
-    CFLAGS="-O3 -march=native -fPIC -fopenmp `pkg-config python-2.7 --cflags`"
-    LFLAGS="-shared `pkg-config python-2.7 --libs` -fPI -lgomp"
+    CFLAGS="-O3 -march=native -fPIC -fopenmp `pkg-config python-2.7 --cflags` -I/usr/lib64/python2.7/site-packages/numpy/core/include/"
+    LFLAGS="-shared `pkg-config python-2.7 --libs` -fPI -lgomp -I/usr/lib64/python2.7/site-packages/numpy/core/include/"
 elif [[ $os_type == *Darwin* ]]; then
     echo "Using Mac OSX flags"
     CFLAGS="-O3 -march=native -fPIC -I/usr/include/python2.7 -I/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/core/include"
