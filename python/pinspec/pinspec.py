@@ -379,12 +379,15 @@ class Fissioner(_object):
         except: self.this = this
     __swig_destroy__ = _pinspec.delete_Fissioner
     __del__ = lambda self : None;
+    def getNumBins(self): return _pinspec.Fissioner_getNumBins(self)
     def setNumBins(self, *args): return _pinspec.Fissioner_setNumBins(self, *args)
     def setEMax(self, *args): return _pinspec.Fissioner_setEMax(self, *args)
     def buildCDF(self): return _pinspec.Fissioner_buildCDF(self)
     def wattSpectrum(self, *args): return _pinspec.Fissioner_wattSpectrum(self, *args)
     def emitNeutronMeV(self): return _pinspec.Fissioner_emitNeutronMeV(self)
     def emitNeutroneV(self): return _pinspec.Fissioner_emitNeutroneV(self)
+    def retrieveCDF(self, *args): return _pinspec.Fissioner_retrieveCDF(self, *args)
+    def retrieveCDFEnergies(self, *args): return _pinspec.Fissioner_retrieveCDFEnergies(self, *args)
 Fissioner_swigregister = _pinspec.Fissioner_swigregister
 Fissioner_swigregister(Fissioner)
 

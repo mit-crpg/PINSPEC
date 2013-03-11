@@ -27,6 +27,10 @@ Fissioner::~Fissioner() {
 }
 
 
+int Fissioner::getNumBins() {
+    return _num_bins;
+}
+
 /**
  * This method sets the number of bins that we wish to use for the CDF
  * @param num_bins the number of CDF bins
@@ -108,4 +112,18 @@ float Fissioner::emitNeutronMeV() {
  */
 float Fissioner::emitNeutroneV() {
 	return emitNeutronMeV() * 1E6;
+}
+
+
+void Fissioner::retrieveCDF(float* cdf, int num_bins) {
+    
+    for (int i=0; i < _num_bins; i++)
+        cdf[i] = _cdf[i];        
+}
+
+
+void Fissioner::retrieveCDFEnergies(float* cdf_energies, int num_bins) {
+    
+    for (int i=0; i < _num_bins; i++)
+       cdf_energies[i] = _cdf_energies[i]; 
 }

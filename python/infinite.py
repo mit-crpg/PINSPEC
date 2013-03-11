@@ -1,7 +1,6 @@
 from pinspec import *
-from numpy import *
-import plotter as plt
-import process as proc
+import numpy as np
+import plotter
 
 def main():
 
@@ -13,8 +12,8 @@ def main():
 
     # Set main simulation params
     num_batches = 10
-    num_neutrons_per_batch = 10000
-    num_threads = 4
+    num_neutrons_per_batch = 1000
+    num_threads = 8
     log_setlevel(INFO)
 
 
@@ -25,11 +24,10 @@ def main():
     u238 = Isotope('U-238')
 
     # Plot the microscopic cross sections for each isotope
-    plt.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
-    plt.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
-    plt.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
-    plt.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
-    
+    plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
+    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
+    plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
+    plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
     
     # Define materials
     mix = Material()
@@ -43,8 +41,8 @@ def main():
     log_printf(INFO, "Added isotopes")
 
     # Plot the mixture macroscopic cross sections
-    plt.plotMacroXS(mix, ['capture', 'elastic', 'fission', 'absorption', 'total'])
-    
+    plotter.plotMacroXS(mix, ['capture', 'elastic', 'fission', 'absorption', 'total'])
+
     # Define regions
     region_mix = Region()
     region_mix.setRegionName('infinite medium fuel/moderator mix')
@@ -52,7 +50,9 @@ def main():
     region_mix.setMaterial(mix)
 
     log_printf(INFO, "Made mixture region")
-    
+        
+    # plot the fission spectrum the CDF
+    plotter.plotFissionSpectrum()
 
 	# Define tallies - give them to Regions, Materials, or Isotopes
 	# This part is really where we need to know how to pass float
@@ -60,7 +60,7 @@ def main():
 
     # Create a tally for the flux
     flux = Tally('total flux', REGION, FLUX)
-    flux.generateBinEdges(1E-5, 1E7, 1000, LOGARITHMIC)
+    flux.generateBinEdges(1E-3, 2E7, 1000, LOGARITHMIC)
     region_mix.addTally(flux)
 
     ############################################################################
@@ -68,7 +68,7 @@ def main():
     ############################################################################
     # Create a tally for the absorption rate
     abs_rate = Tally('absorption rate', MATERIAL, ABSORPTION_RATE)
-    abs_rate_bin_edges = array([0.1, 1., 5., 10., 100., 1000.])
+    abs_rate_bin_edges = np.array([0.1, 1., 5., 10., 100., 1000.])
     abs_rate.setBinEdges(abs_rate_bin_edges)
     mix.addTally(abs_rate)
 
@@ -88,7 +88,7 @@ def main():
     log_printf(INFO, "Ran Monte Carlo")
     
     # plot the flux
-    plt.plotFlux(flux)
+    plotter.plotFlux(flux)
 
     # Dump batch statistics to output files to some new directory - gives segmentation fault right now
     # geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')

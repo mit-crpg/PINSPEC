@@ -10921,6 +10921,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Fissioner_getNumBins(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Fissioner *arg1 = (Fissioner *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Fissioner_getNumBins",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Fissioner, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Fissioner_getNumBins" "', argument " "1"" of type '" "Fissioner *""'"); 
+  }
+  arg1 = reinterpret_cast< Fissioner * >(argp1);
+  result = (int)(arg1)->getNumBins();
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Fissioner_setNumBins(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Fissioner *arg1 = (Fissioner *) 0 ;
@@ -11071,6 +11093,94 @@ SWIGINTERN PyObject *_wrap_Fissioner_emitNeutroneV(PyObject *SWIGUNUSEDPARM(self
   arg1 = reinterpret_cast< Fissioner * >(argp1);
   result = (float)(arg1)->emitNeutroneV();
   resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Fissioner_retrieveCDF(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Fissioner *arg1 = (Fissioner *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *array2 = NULL ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Fissioner_retrieveCDF",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Fissioner, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Fissioner_retrieveCDF" "', argument " "1"" of type '" "Fissioner *""'"); 
+  }
+  arg1 = reinterpret_cast< Fissioner * >(argp1);
+  {
+    npy_intp dims[1];
+    if (!PyInt_Check(obj1))
+    {
+      const char* typestring = pytype_string(obj1);
+      PyErr_Format(PyExc_TypeError,
+        "Int dimension expected.  '%s' given.",
+        typestring);
+      SWIG_fail;
+    }
+    arg3 = (int) PyInt_AsLong(obj1);
+    dims[0] = (npy_intp) arg3;
+    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    if (!array2) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+  }
+  (arg1)->retrieveCDF(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  {
+    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Fissioner_retrieveCDFEnergies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Fissioner *arg1 = (Fissioner *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *array2 = NULL ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Fissioner_retrieveCDFEnergies",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Fissioner, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Fissioner_retrieveCDFEnergies" "', argument " "1"" of type '" "Fissioner *""'"); 
+  }
+  arg1 = reinterpret_cast< Fissioner * >(argp1);
+  {
+    npy_intp dims[1];
+    if (!PyInt_Check(obj1))
+    {
+      const char* typestring = pytype_string(obj1);
+      PyErr_Format(PyExc_TypeError,
+        "Int dimension expected.  '%s' given.",
+        typestring);
+      SWIG_fail;
+    }
+    arg3 = (int) PyInt_AsLong(obj1);
+    dims[0] = (npy_intp) arg3;
+    array2 = PyArray_SimpleNew(1, dims, NPY_FLOAT);
+    if (!array2) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+  }
+  (arg1)->retrieveCDFEnergies(arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  {
+    resultobj = SWIG_Python_AppendOutput(resultobj,array2);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -11428,12 +11538,15 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"initializeNewNeutron", _wrap_initializeNewNeutron, METH_VARARGS, NULL},
 	 { (char *)"new_Fissioner", _wrap_new_Fissioner, METH_VARARGS, NULL},
 	 { (char *)"delete_Fissioner", _wrap_delete_Fissioner, METH_VARARGS, NULL},
+	 { (char *)"Fissioner_getNumBins", _wrap_Fissioner_getNumBins, METH_VARARGS, NULL},
 	 { (char *)"Fissioner_setNumBins", _wrap_Fissioner_setNumBins, METH_VARARGS, NULL},
 	 { (char *)"Fissioner_setEMax", _wrap_Fissioner_setEMax, METH_VARARGS, NULL},
 	 { (char *)"Fissioner_buildCDF", _wrap_Fissioner_buildCDF, METH_VARARGS, NULL},
 	 { (char *)"Fissioner_wattSpectrum", _wrap_Fissioner_wattSpectrum, METH_VARARGS, NULL},
 	 { (char *)"Fissioner_emitNeutronMeV", _wrap_Fissioner_emitNeutronMeV, METH_VARARGS, NULL},
 	 { (char *)"Fissioner_emitNeutroneV", _wrap_Fissioner_emitNeutroneV, METH_VARARGS, NULL},
+	 { (char *)"Fissioner_retrieveCDF", _wrap_Fissioner_retrieveCDF, METH_VARARGS, NULL},
+	 { (char *)"Fissioner_retrieveCDFEnergies", _wrap_Fissioner_retrieveCDFEnergies, METH_VARARGS, NULL},
 	 { (char *)"Fissioner_swigregister", Fissioner_swigregister, METH_VARARGS, NULL},
 	 { (char *)"log_setlevel", _wrap_log_setlevel, METH_VARARGS, NULL},
 	 { (char *)"log_printf", _wrap_log_printf, METH_VARARGS, NULL},
