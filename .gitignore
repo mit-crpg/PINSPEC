@@ -26,5 +26,6 @@ tutorial/
 swig/*.py
 python/pinspec/Geometry_wrap.cxx
 python/pinspec/pinspec.py
+python/*.png
 
 # Will specific:

@@ -1,0 +1,20 @@
+Notes on plotting functions
+
+plotthermalscattering(h1, dir='')
+-users can use the current directory or a specified directory to loop over files in the directory
+
+plotfissionspectrum(dir='')
+-Will is working on it
+-gonna have to sample
+-get an energy 100,000 times
+-then bin it
+-maybe add plotting of the CDFs
+
+Resonanceintegrals
+-maybe create an object for it
+-compute resonance integrals
+-printtoscreen
+-printtofile
+
+>>Do the same with group cross sections
+

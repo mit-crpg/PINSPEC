@@ -3,6 +3,7 @@ import plotter
 import numpy
 import scipy
 from pinspec import *
+from SLBW import *
 
 
 def main():
@@ -20,6 +21,11 @@ def main():
     pitch = 1.26
     dancoff = 0.277;
     log_setlevel(INFO)
+
+    # Call SLBW to create XS
+    nameoffile = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
+    T=300 #Temp in Kelvin of target nucleus
+    SLBWXS(nameoffile,T)
 
     # Define isotopes
     h1 = Isotope('H-1')
