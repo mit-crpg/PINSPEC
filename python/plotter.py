@@ -59,7 +59,7 @@ def plotMacroXS(material, rxns):
     plt.legend(rxns)
     fig.savefig(file)
 
-def plotFlux():
+def plotFlux(flux):
 
     num_bins = flux.getNumBins()
     flux.computeBatchStatistics()
@@ -73,6 +73,7 @@ def plotFlux():
     fig = plt.figure()
     plt.plot(flux_bin_centers, flux_mu, lw=1)
     plt.xscale('log')
+    plt.yscale('log')
     plt.xlabel('Energy [ev]')
     if (flux.getTallyType() == FLUX):
         plt.ylabel('Flux')

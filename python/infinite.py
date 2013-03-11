@@ -84,13 +84,15 @@ def main():
     log_printf(INFO, "Made geometry")
 
 	# Run Monte Carlo simulation
-    #geometry.runMonteCarloSimulation();
+    geometry.runMonteCarloSimulation();
 
+    log_printf(INFO, "Ran Monte Carlo")
+    
     # plot the flux
-    #plotFlux()
+    plotFlux(flux)
 
     # Dump batch statistics to output files to some new directory - gives segmentation fault right now
-    #geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
+    # geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
 
 
 if __name__ == '__main__':

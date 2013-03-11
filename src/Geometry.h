@@ -12,6 +12,7 @@
 
 #include <sys/stat.h>
 #include <omp.h>
+//#include "/Users/samuelshaner/Downloads/gcc-4.6.2/gcc-4.6.2/build/prev-x86_64-apple-darwin11.2.0/i386/libgomp/omp.h"
 #include "Region.h"
 #include "Fissioner.h"
 #include "Neutron.h"

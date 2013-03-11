@@ -678,7 +678,6 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     float total_AO = 0.0;
     for (iter_AO =_isotopes_AO.begin(); iter_AO != _isotopes_AO.end(); ++iter_AO){
     	total_AO += iter_AO->second;
-    	log_printf(INFO, "AO: %f", iter_AO->second);
     }
 
     /* Sum the partial contributions to the material atomic mass */
@@ -691,12 +690,10 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Notice I am using old_atomic_mass because I update all isotopes at
      * the end of this function. */
     _material_number_density = _material_density * N_av / _material_atomic_mass;
-    log_printf(INFO, "material atomic mass: %f", _material_atomic_mass);
 
     /* Calculates the isotope's number density */
     isotope_number_density = atomic_ratio / total_AO * _material_number_density;
-    log_printf(INFO, "isotope density: %f", isotope_number_density);
-    
+
     /* Creates a pair between the number density and isotope pointer */
     std::pair<float, Isotope*> new_pair = std::pair<float, Isotope*>
 	(isotope_number_density, isotope);
@@ -712,7 +709,6 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     for (iter =_isotopes.begin(); iter != _isotopes.end(); ++iter){
     	/* Update isotope's number density */
     	iter->second.first = _isotopes_AO.at(iter->second.second) / total_AO * _material_number_density;
-    	log_printf(INFO, "update isotope density: %f", iter->second.first);
     }
 
     return;
