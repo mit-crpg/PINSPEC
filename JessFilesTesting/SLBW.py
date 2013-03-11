@@ -47,7 +47,7 @@ def parse(string):
 #--------------------------------------------------
 # Get file path
 cur_dir = os.getcwd()
-filepath = cur_dir + "/../XS_Lib/" + nameoffile
+filepath = cur_dir + "/../xs-lib/" + nameoffile
 if os.path.exists(filepath) == True:
 	print "Found resonance parameter file"
 else:
@@ -179,7 +179,7 @@ plt.loglog(E, sigma_g)
 plt.savefig("U238XS.png")
 
 # write output file
-out_name = cur_dir + "/../XS_Lib/U-238-capture.txt"
+out_name = cur_dir + "/../xs-lib/U-238-capture.txt"
 numpy.savetxt(out_name, EXS, newline='\n', delimiter='  ')
 # go back and add header
 f = open(out_name)
