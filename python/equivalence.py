@@ -3,6 +3,7 @@ import numpy as np
 import scipy as sci
 from pinspec import *
 #from plotter import *
+from SLBW import *
 
 
 def main():
@@ -17,6 +18,11 @@ def main():
     num_neutrons_per_batch = 100
     num_threads = 4
     log_setlevel(DEBUG)
+
+    # Call SLBW to create XS
+    nameoffile = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
+    T=300 #Temp in Kelvin of target nucleus
+    SLBWXS(nameoffile,T)
 
     # Define isotopes
     h1 = Isotope('H-1')

@@ -9,6 +9,7 @@
  * ----------------------------------------------------------------------------- */
 
 #define SWIGPYTHON
+#define SWIG_PYTHON_THREADS
 #define SWIG_PYTHON_DIRECTOR_NO_VTABLE
 
 
@@ -3778,7 +3779,11 @@ SWIGINTERN PyObject *_wrap_new_Geometry(PyObject *SWIGUNUSEDPARM(self), PyObject
   Geometry *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":new_Geometry")) SWIG_fail;
-  result = (Geometry *)new Geometry();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (Geometry *)new Geometry();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Geometry, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -3799,7 +3804,11 @@ SWIGINTERN PyObject *_wrap_delete_Geometry(PyObject *SWIGUNUSEDPARM(self), PyObj
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Geometry" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  delete arg1;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    delete arg1;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3821,7 +3830,11 @@ SWIGINTERN PyObject *_wrap_Geometry_getNumNeutronsPerBatch(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getNumNeutronsPerBatch" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  result = (int)(arg1)->getNumNeutronsPerBatch();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)(arg1)->getNumNeutronsPerBatch();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -3843,7 +3856,11 @@ SWIGINTERN PyObject *_wrap_Geometry_getTotalNumNeutrons(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getTotalNumNeutrons" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  result = (int)(arg1)->getTotalNumNeutrons();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)(arg1)->getTotalNumNeutrons();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -3865,7 +3882,11 @@ SWIGINTERN PyObject *_wrap_Geometry_getNumBatches(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getNumBatches" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  result = (int)(arg1)->getNumBatches();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)(arg1)->getNumBatches();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -3887,7 +3908,11 @@ SWIGINTERN PyObject *_wrap_Geometry_getNumThreads(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getNumThreads" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  result = (int)(arg1)->getNumThreads();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)(arg1)->getNumThreads();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -3909,7 +3934,11 @@ SWIGINTERN PyObject *_wrap_Geometry_getSpatialType(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getSpatialType" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  result = (spatialType)(arg1)->getSpatialType();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (spatialType)(arg1)->getSpatialType();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -3939,7 +3968,11 @@ SWIGINTERN PyObject *_wrap_Geometry_setNeutronsPerBatch(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Geometry_setNeutronsPerBatch" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNeutronsPerBatch(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setNeutronsPerBatch(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3969,7 +4002,11 @@ SWIGINTERN PyObject *_wrap_Geometry_setNumBatches(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Geometry_setNumBatches" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNumBatches(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setNumBatches(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3999,7 +4036,11 @@ SWIGINTERN PyObject *_wrap_Geometry_setNumThreads(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Geometry_setNumThreads" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNumThreads(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setNumThreads(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4029,7 +4070,11 @@ SWIGINTERN PyObject *_wrap_Geometry_setSpatialType(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Geometry_setSpatialType" "', argument " "2"" of type '" "spatialType""'");
   } 
   arg2 = static_cast< spatialType >(val2);
-  (arg1)->setSpatialType(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setSpatialType(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4086,7 +4131,11 @@ SWIGINTERN PyObject *_wrap_Geometry_setTwoRegionPinCellParams(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Geometry_setTwoRegionPinCellParams" "', argument " "5"" of type '" "float""'");
   } 
   arg5 = static_cast< float >(val5);
-  (arg1)->setTwoRegionPinCellParams(arg2,arg3,arg4,arg5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setTwoRegionPinCellParams(arg2,arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4116,7 +4165,11 @@ SWIGINTERN PyObject *_wrap_Geometry_addRegion(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Geometry_addRegion" "', argument " "2"" of type '" "Region *""'"); 
   }
   arg2 = reinterpret_cast< Region * >(argp2);
-  (arg1)->addRegion(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->addRegion(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4137,7 +4190,11 @@ SWIGINTERN PyObject *_wrap_Geometry_runMonteCarloSimulation(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_runMonteCarloSimulation" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  (arg1)->runMonteCarloSimulation();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->runMonteCarloSimulation();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4158,7 +4215,11 @@ SWIGINTERN PyObject *_wrap_Geometry_computeBatchStatistics(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_computeBatchStatistics" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  (arg1)->computeBatchStatistics();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->computeBatchStatistics();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4179,7 +4240,11 @@ SWIGINTERN PyObject *_wrap_Geometry_computeScaledBatchStatistics(PyObject *SWIGU
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_computeScaledBatchStatistics" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  (arg1)->computeScaledBatchStatistics();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->computeScaledBatchStatistics();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4220,7 +4285,11 @@ SWIGINTERN PyObject *_wrap_Geometry_outputBatchStatistics(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Geometry_outputBatchStatistics" "', argument " "3"" of type '" "char *""'");
   }
   arg3 = reinterpret_cast< char * >(buf3);
-  (arg1)->outputBatchStatistics(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->outputBatchStatistics(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
@@ -4244,7 +4313,11 @@ SWIGINTERN PyObject *_wrap_new_Region(PyObject *SWIGUNUSEDPARM(self), PyObject *
   Region *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":new_Region")) SWIG_fail;
-  result = (Region *)new Region();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (Region *)new Region();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Region, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -4265,7 +4338,11 @@ SWIGINTERN PyObject *_wrap_delete_Region(PyObject *SWIGUNUSEDPARM(self), PyObjec
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Region" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  delete arg1;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    delete arg1;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4287,7 +4364,11 @@ SWIGINTERN PyObject *_wrap_Region_getRegionName(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getRegionName" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (char *)(arg1)->getRegionName();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)(arg1)->getRegionName();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -4309,7 +4390,11 @@ SWIGINTERN PyObject *_wrap_Region_getVolume(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getVolume" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (float)(arg1)->getVolume();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getVolume();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -4331,7 +4416,11 @@ SWIGINTERN PyObject *_wrap_Region_getMaterial(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getMaterial" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (Material *)(arg1)->getMaterial();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (Material *)(arg1)->getMaterial();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, 0 |  0 );
   return resultobj;
 fail:
@@ -4353,7 +4442,11 @@ SWIGINTERN PyObject *_wrap_Region_getRegionType(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getRegionType" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (regionType)(arg1)->getRegionType();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (regionType)(arg1)->getRegionType();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -4375,7 +4468,11 @@ SWIGINTERN PyObject *_wrap_Region_isFuel(PyObject *SWIGUNUSEDPARM(self), PyObjec
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_isFuel" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (bool)(arg1)->isFuel();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (bool)(arg1)->isFuel();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -4397,7 +4494,11 @@ SWIGINTERN PyObject *_wrap_Region_isModerator(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_isModerator" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (bool)(arg1)->isModerator();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (bool)(arg1)->isModerator();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -4419,7 +4520,11 @@ SWIGINTERN PyObject *_wrap_Region_isInfinite(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_isInfinite" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (bool)(arg1)->isInfinite();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (bool)(arg1)->isInfinite();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -4441,7 +4546,11 @@ SWIGINTERN PyObject *_wrap_Region_getFuelRadius(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getFuelRadius" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (float)(arg1)->getFuelRadius();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getFuelRadius();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -4463,7 +4572,11 @@ SWIGINTERN PyObject *_wrap_Region_getPitch(PyObject *SWIGUNUSEDPARM(self), PyObj
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getPitch" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (float)(arg1)->getPitch();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getPitch();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -4494,7 +4607,11 @@ SWIGINTERN PyObject *_wrap_Region_setRegionName(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Region_setRegionName" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  (arg1)->setRegionName(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setRegionName(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
@@ -4526,7 +4643,11 @@ SWIGINTERN PyObject *_wrap_Region_setVolume(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_setVolume" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setVolume(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setVolume(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4556,7 +4677,11 @@ SWIGINTERN PyObject *_wrap_Region_setMaterial(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Region_setMaterial" "', argument " "2"" of type '" "Material *""'"); 
   }
   arg2 = reinterpret_cast< Material * >(argp2);
-  (arg1)->setMaterial(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setMaterial(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4586,7 +4711,11 @@ SWIGINTERN PyObject *_wrap_Region_setRegionType(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_setRegionType" "', argument " "2"" of type '" "regionType""'");
   } 
   arg2 = static_cast< regionType >(val2);
-  (arg1)->setRegionType(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setRegionType(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4616,7 +4745,11 @@ SWIGINTERN PyObject *_wrap_Region_addTally(PyObject *SWIGUNUSEDPARM(self), PyObj
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Region_addTally" "', argument " "2"" of type '" "Tally *""'"); 
   }
   arg2 = reinterpret_cast< Tally * >(argp2);
-  (arg1)->addTally(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->addTally(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4673,7 +4806,11 @@ SWIGINTERN PyObject *_wrap_Region_setTwoRegionPinCellParams(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Region_setTwoRegionPinCellParams" "', argument " "5"" of type '" "float""'");
   } 
   arg5 = static_cast< float >(val5);
-  (arg1)->setTwoRegionPinCellParams(arg2,arg3,arg4,arg5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setTwoRegionPinCellParams(arg2,arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4703,7 +4840,11 @@ SWIGINTERN PyObject *_wrap_Region_setFuelRadius(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_setFuelRadius" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setFuelRadius(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setFuelRadius(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4733,7 +4874,11 @@ SWIGINTERN PyObject *_wrap_Region_setPitch(PyObject *SWIGUNUSEDPARM(self), PyObj
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_setPitch" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setPitch(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setPitch(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4763,7 +4908,11 @@ SWIGINTERN PyObject *_wrap_Region_setNumBatches(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_setNumBatches" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNumBatches(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setNumBatches(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4793,7 +4942,11 @@ SWIGINTERN PyObject *_wrap_Region_addFuelRingRadius(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_addFuelRingRadius" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->addFuelRingRadius(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->addFuelRingRadius(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4823,7 +4976,11 @@ SWIGINTERN PyObject *_wrap_Region_addModeratorRingRadius(PyObject *SWIGUNUSEDPAR
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_addModeratorRingRadius" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->addModeratorRingRadius(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->addModeratorRingRadius(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4853,7 +5010,11 @@ SWIGINTERN PyObject *_wrap_Region_collideNeutron(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Region_collideNeutron" "', argument " "2"" of type '" "neutron *""'"); 
   }
   arg2 = reinterpret_cast< neutron * >(argp2);
-  (arg1)->collideNeutron(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->collideNeutron(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4874,7 +5035,11 @@ SWIGINTERN PyObject *_wrap_Region_computeBatchStatistics(PyObject *SWIGUNUSEDPAR
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_computeBatchStatistics" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  (arg1)->computeBatchStatistics();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->computeBatchStatistics();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4904,7 +5069,11 @@ SWIGINTERN PyObject *_wrap_Region_computeScaledBatchStatistics(PyObject *SWIGUNU
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_computeScaledBatchStatistics" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->computeScaledBatchStatistics(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->computeScaledBatchStatistics(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4945,7 +5114,11 @@ SWIGINTERN PyObject *_wrap_Region_outputBatchStatistics(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Region_outputBatchStatistics" "', argument " "3"" of type '" "char *""'");
   }
   arg3 = reinterpret_cast< char * >(buf3);
-  (arg1)->outputBatchStatistics(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->outputBatchStatistics(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
@@ -4979,7 +5152,11 @@ SWIGINTERN PyObject *_wrap_new_Isotope(PyObject *SWIGUNUSEDPARM(self), PyObject 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Isotope" "', argument " "1"" of type '" "char *""'");
   }
   arg1 = reinterpret_cast< char * >(buf1);
-  result = (Isotope *)new Isotope(arg1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (Isotope *)new Isotope(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Isotope, SWIG_POINTER_NEW |  0 );
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
@@ -5002,7 +5179,11 @@ SWIGINTERN PyObject *_wrap_delete_Isotope(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Isotope" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  delete arg1;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    delete arg1;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -5023,7 +5204,11 @@ SWIGINTERN PyObject *_wrap_Isotope_parseName(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_parseName" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  (arg1)->parseName();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->parseName();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -5044,7 +5229,11 @@ SWIGINTERN PyObject *_wrap_Isotope_makeFissionable(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_makeFissionable" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  (arg1)->makeFissionable();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->makeFissionable();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -5066,7 +5255,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getIsotopeType(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getIsotopeType" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (char *)((Isotope const *)arg1)->getIsotopeType();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)((Isotope const *)arg1)->getIsotopeType();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -5088,7 +5281,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getA(PyObject *SWIGUNUSEDPARM(self), PyObject
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getA" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (int)((Isotope const *)arg1)->getA();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)((Isotope const *)arg1)->getA();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -5110,7 +5307,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getAlpha(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getAlpha" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (float)((Isotope const *)arg1)->getAlpha();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getAlpha();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5132,7 +5333,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getN(PyObject *SWIGUNUSEDPARM(self), PyObject
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getN" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (float)((Isotope const *)arg1)->getN();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getN();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5154,7 +5359,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getAO(PyObject *SWIGUNUSEDPARM(self), PyObjec
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getAO" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (float)((Isotope const *)arg1)->getAO();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getAO();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5176,7 +5385,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getTemperature(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getTemperature" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (float)((Isotope const *)arg1)->getTemperature();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getTemperature();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5198,7 +5411,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getMuAverage(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getMuAverage" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (float)((Isotope const *)arg1)->getMuAverage();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getMuAverage();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5220,7 +5437,11 @@ SWIGINTERN PyObject *_wrap_Isotope_isFissionable(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_isFissionable" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (bool)((Isotope const *)arg1)->isFissionable();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (bool)((Isotope const *)arg1)->isFissionable();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -5242,7 +5463,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getNumXSEnergies(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getNumXSEnergies" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (int)((Isotope const *)arg1)->getNumXSEnergies();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)((Isotope const *)arg1)->getNumXSEnergies();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -5273,7 +5498,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getElasticXS__SWIG_0(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getElasticXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)((Isotope const *)arg1)->getElasticXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getElasticXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5304,7 +5533,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getElasticXS__SWIG_1(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getElasticXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)((Isotope const *)arg1)->getElasticXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getElasticXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5376,7 +5609,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getElasticAngleType(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getElasticAngleType" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (scatterAngleType)((Isotope const *)arg1)->getElasticAngleType();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (scatterAngleType)((Isotope const *)arg1)->getElasticAngleType();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -5407,7 +5644,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getAbsorptionXS__SWIG_0(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getAbsorptionXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)((Isotope const *)arg1)->getAbsorptionXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getAbsorptionXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5438,7 +5679,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getAbsorptionXS__SWIG_1(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getAbsorptionXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)((Isotope const *)arg1)->getAbsorptionXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getAbsorptionXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5519,7 +5764,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getCaptureXS__SWIG_0(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getCaptureXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)((Isotope const *)arg1)->getCaptureXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getCaptureXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5550,7 +5799,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getCaptureXS__SWIG_1(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getCaptureXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)((Isotope const *)arg1)->getCaptureXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getCaptureXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5631,7 +5884,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getFissionXS__SWIG_0(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getFissionXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)((Isotope const *)arg1)->getFissionXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getFissionXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5662,7 +5919,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getFissionXS__SWIG_1(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getFissionXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)((Isotope const *)arg1)->getFissionXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getFissionXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5743,7 +6004,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getTotalXS__SWIG_0(PyObject *SWIGUNUSEDPARM(s
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getTotalXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)((Isotope const *)arg1)->getTotalXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getTotalXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5774,7 +6039,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getTotalXS__SWIG_1(PyObject *SWIGUNUSEDPARM(s
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getTotalXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)((Isotope const *)arg1)->getTotalXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getTotalXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5855,7 +6124,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getTransportXS__SWIG_0(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getTransportXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)((Isotope const *)arg1)->getTransportXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getTransportXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5886,7 +6159,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getTransportXS__SWIG_1(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getTransportXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)((Isotope const *)arg1)->getTransportXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)((Isotope const *)arg1)->getTransportXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5958,7 +6235,11 @@ SWIGINTERN PyObject *_wrap_Isotope_usesThermalScattering(PyObject *SWIGUNUSEDPAR
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_usesThermalScattering" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (bool)(arg1)->usesThermalScattering();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (bool)(arg1)->usesThermalScattering();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -5980,7 +6261,11 @@ SWIGINTERN PyObject *_wrap_Isotope_isRescaled(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_isRescaled" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (bool)(arg1)->isRescaled();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (bool)(arg1)->isRescaled();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -6011,7 +6296,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getEnergyGridIndex(PyObject *SWIGUNUSEDPARM(s
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getEnergyGridIndex" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (int)(arg1)->getEnergyGridIndex(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)(arg1)->getEnergyGridIndex(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -6052,7 +6341,11 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(s
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  ((Isotope const *)arg1)->retrieveXSEnergies(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    ((Isotope const *)arg1)->retrieveXSEnergies(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -6106,7 +6399,11 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveXS(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Isotope_retrieveXS" "', argument " "4"" of type '" "char *""'");
   }
   arg4 = reinterpret_cast< char * >(buf4);
-  ((Isotope const *)arg1)->retrieveXS(arg2,arg3,arg4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    ((Isotope const *)arg1)->retrieveXS(arg2,arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -6142,7 +6439,11 @@ SWIGINTERN PyObject *_wrap_Isotope_setIsotopeType(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_setIsotopeType" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  (arg1)->setIsotopeType(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setIsotopeType(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
@@ -6174,7 +6475,11 @@ SWIGINTERN PyObject *_wrap_Isotope_setA(PyObject *SWIGUNUSEDPARM(self), PyObject
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_setA" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setA(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setA(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6204,7 +6509,11 @@ SWIGINTERN PyObject *_wrap_Isotope_setAO(PyObject *SWIGUNUSEDPARM(self), PyObjec
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_setAO" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setAO(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setAO(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6234,7 +6543,11 @@ SWIGINTERN PyObject *_wrap_Isotope_setN(PyObject *SWIGUNUSEDPARM(self), PyObject
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_setN" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setN(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setN(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6264,7 +6577,11 @@ SWIGINTERN PyObject *_wrap_Isotope_setTemperature(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_setTemperature" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setTemperature(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setTemperature(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6294,7 +6611,11 @@ SWIGINTERN PyObject *_wrap_Isotope_setNumBatches(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_setNumBatches" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNumBatches(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setNumBatches(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6316,7 +6637,11 @@ SWIGINTERN PyObject *_wrap_Isotope_clone(PyObject *SWIGUNUSEDPARM(self), PyObjec
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_clone" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (Isotope *)(arg1)->clone();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (Isotope *)(arg1)->clone();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Isotope, 0 |  0 );
   return resultobj;
 fail:
@@ -6347,7 +6672,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getCollisionType(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getCollisionType" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (collisionType)(arg1)->getCollisionType(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (collisionType)(arg1)->getCollisionType(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -6378,7 +6707,11 @@ SWIGINTERN PyObject *_wrap_Isotope_collideNeutron(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_collideNeutron" "', argument " "2"" of type '" "neutron *""'"); 
   }
   arg2 = reinterpret_cast< neutron * >(argp2);
-  result = (collisionType)(arg1)->collideNeutron(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (collisionType)(arg1)->collideNeutron(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -6409,7 +6742,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getDistanceTraveled(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_getDistanceTraveled" "', argument " "2"" of type '" "neutron *""'"); 
   }
   arg2 = reinterpret_cast< neutron * >(argp2);
-  result = (float)(arg1)->getDistanceTraveled(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getDistanceTraveled(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -6440,7 +6777,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getThermalScatteringEnergy(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getThermalScatteringEnergy" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getThermalScatteringEnergy(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getThermalScatteringEnergy(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -6462,7 +6803,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getNumThermalCDFs(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getNumThermalCDFs" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (int)(arg1)->getNumThermalCDFs();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)(arg1)->getNumThermalCDFs();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -6484,7 +6829,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getNumThermalCDFBins(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getNumThermalCDFBins" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (int)(arg1)->getNumThermalCDFBins();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)(arg1)->getNumThermalCDFBins();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -6525,7 +6874,11 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveThermalCDFs(PyObject *SWIGUNUSEDPARM(
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  (arg1)->retrieveThermalCDFs(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->retrieveThermalCDFs(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -6569,7 +6922,11 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveThermalDistributions(PyObject *SWIGUN
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  (arg1)->retrieveThermalDistributions(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->retrieveThermalDistributions(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -6613,7 +6970,11 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveEtokT(PyObject *SWIGUNUSEDPARM(self),
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  (arg1)->retrieveEtokT(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->retrieveEtokT(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -6657,7 +7018,11 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveEprimeToE(PyObject *SWIGUNUSEDPARM(se
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  (arg1)->retrieveEprimeToE(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->retrieveEprimeToE(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -6690,7 +7055,11 @@ SWIGINTERN PyObject *_wrap_Isotope_addTally(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_addTally" "', argument " "2"" of type '" "Tally *""'"); 
   }
   arg2 = reinterpret_cast< Tally * >(argp2);
-  (arg1)->addTally(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->addTally(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6711,7 +7080,11 @@ SWIGINTERN PyObject *_wrap_Isotope_computeBatchStatistics(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_computeBatchStatistics" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  (arg1)->computeBatchStatistics();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->computeBatchStatistics();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6741,7 +7114,11 @@ SWIGINTERN PyObject *_wrap_Isotope_computeScaledBatchStatistics(PyObject *SWIGUN
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_computeScaledBatchStatistics" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->computeScaledBatchStatistics(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->computeScaledBatchStatistics(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6782,7 +7159,11 @@ SWIGINTERN PyObject *_wrap_Isotope_outputBatchStatistics(PyObject *SWIGUNUSEDPAR
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Isotope_outputBatchStatistics" "', argument " "3"" of type '" "char *""'");
   }
   arg3 = reinterpret_cast< char * >(buf3);
-  (arg1)->outputBatchStatistics(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->outputBatchStatistics(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
@@ -6806,7 +7187,11 @@ SWIGINTERN PyObject *_wrap_new_Material(PyObject *SWIGUNUSEDPARM(self), PyObject
   Material *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":new_Material")) SWIG_fail;
-  result = (Material *)new Material();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (Material *)new Material();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -6827,7 +7212,11 @@ SWIGINTERN PyObject *_wrap_delete_Material(PyObject *SWIGUNUSEDPARM(self), PyObj
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Material" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  delete arg1;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    delete arg1;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6849,7 +7238,11 @@ SWIGINTERN PyObject *_wrap_Material_clone(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_clone" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  result = (Material *)(arg1)->clone();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (Material *)(arg1)->clone();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, 0 |  0 );
   return resultobj;
 fail:
@@ -6871,7 +7264,11 @@ SWIGINTERN PyObject *_wrap_Material_getMaterialName(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getMaterialName" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  result = (char *)(arg1)->getMaterialName();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)(arg1)->getMaterialName();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -6893,7 +7290,11 @@ SWIGINTERN PyObject *_wrap_Material_getMaterialNumberDensity(PyObject *SWIGUNUSE
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getMaterialNumberDensity" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  result = (float)(arg1)->getMaterialNumberDensity();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getMaterialNumberDensity();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -6925,7 +7326,11 @@ SWIGINTERN PyObject *_wrap_Material_getIsotope(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_getIsotope" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  result = (Isotope *)(arg1)->getIsotope(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (Isotope *)(arg1)->getIsotope(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Isotope, 0 |  0 );
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
@@ -6949,7 +7354,11 @@ SWIGINTERN PyObject *_wrap_Material_getDensity(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getDensity" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  result = (float)(arg1)->getDensity();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getDensity();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -6981,7 +7390,11 @@ SWIGINTERN PyObject *_wrap_Material_getIsotopeNumDensity(PyObject *SWIGUNUSEDPAR
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_getIsotopeNumDensity" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  result = (float)(arg1)->getIsotopeNumDensity(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getIsotopeNumDensity(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
@@ -7005,7 +7418,11 @@ SWIGINTERN PyObject *_wrap_Material_getNumXSEnergies(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getNumXSEnergies" "', argument " "1"" of type '" "Material const *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  result = (int)((Material const *)arg1)->getNumXSEnergies();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)((Material const *)arg1)->getNumXSEnergies();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -7036,7 +7453,11 @@ SWIGINTERN PyObject *_wrap_Material_getTotalMacroXS__SWIG_0(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTotalMacroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getTotalMacroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getTotalMacroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7067,7 +7488,11 @@ SWIGINTERN PyObject *_wrap_Material_getTotalMacroXS__SWIG_1(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTotalMacroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getTotalMacroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getTotalMacroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7148,7 +7573,11 @@ SWIGINTERN PyObject *_wrap_Material_getTotalMicroXS__SWIG_0(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTotalMicroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getTotalMicroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getTotalMicroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7179,7 +7608,11 @@ SWIGINTERN PyObject *_wrap_Material_getTotalMicroXS__SWIG_1(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTotalMicroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getTotalMicroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getTotalMicroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7260,7 +7693,11 @@ SWIGINTERN PyObject *_wrap_Material_getElasticMacroXS__SWIG_0(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getElasticMacroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getElasticMacroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getElasticMacroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7291,7 +7728,11 @@ SWIGINTERN PyObject *_wrap_Material_getElasticMacroXS__SWIG_1(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getElasticMacroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getElasticMacroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getElasticMacroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7372,7 +7813,11 @@ SWIGINTERN PyObject *_wrap_Material_getElasticMicroXS__SWIG_0(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getElasticMicroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getElasticMicroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getElasticMicroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7403,7 +7848,11 @@ SWIGINTERN PyObject *_wrap_Material_getElasticMicroXS__SWIG_1(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getElasticMicroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getElasticMicroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getElasticMicroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7484,7 +7933,11 @@ SWIGINTERN PyObject *_wrap_Material_getAbsorptionMacroXS__SWIG_0(PyObject *SWIGU
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getAbsorptionMacroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getAbsorptionMacroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getAbsorptionMacroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7515,7 +7968,11 @@ SWIGINTERN PyObject *_wrap_Material_getAbsorptionMacroXS__SWIG_1(PyObject *SWIGU
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getAbsorptionMacroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getAbsorptionMacroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getAbsorptionMacroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7596,7 +8053,11 @@ SWIGINTERN PyObject *_wrap_Material_getAbsorptionMicroXS__SWIG_0(PyObject *SWIGU
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getAbsorptionMicroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getAbsorptionMicroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getAbsorptionMicroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7627,7 +8088,11 @@ SWIGINTERN PyObject *_wrap_Material_getAbsorptionMicroXS__SWIG_1(PyObject *SWIGU
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getAbsorptionMicroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getAbsorptionMicroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getAbsorptionMicroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7708,7 +8173,11 @@ SWIGINTERN PyObject *_wrap_Material_getCaptureMacroXS__SWIG_0(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getCaptureMacroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getCaptureMacroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getCaptureMacroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7739,7 +8208,11 @@ SWIGINTERN PyObject *_wrap_Material_getCaptureMacroXS__SWIG_1(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getCaptureMacroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getCaptureMacroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getCaptureMacroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7820,7 +8293,11 @@ SWIGINTERN PyObject *_wrap_Material_getCaptureMicroXS__SWIG_0(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getCaptureMicroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getCaptureMicroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getCaptureMicroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7851,7 +8328,11 @@ SWIGINTERN PyObject *_wrap_Material_getCaptureMicroXS__SWIG_1(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getCaptureMicroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getCaptureMicroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getCaptureMicroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7932,7 +8413,11 @@ SWIGINTERN PyObject *_wrap_Material_getFissionMacroXS__SWIG_0(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getFissionMacroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getFissionMacroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getFissionMacroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7963,7 +8448,11 @@ SWIGINTERN PyObject *_wrap_Material_getFissionMacroXS__SWIG_1(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getFissionMacroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getFissionMacroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getFissionMacroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -8044,7 +8533,11 @@ SWIGINTERN PyObject *_wrap_Material_getFissionMicroXS__SWIG_0(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getFissionMicroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getFissionMicroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getFissionMicroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -8075,7 +8568,11 @@ SWIGINTERN PyObject *_wrap_Material_getFissionMicroXS__SWIG_1(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getFissionMicroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getFissionMicroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getFissionMicroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -8156,7 +8653,11 @@ SWIGINTERN PyObject *_wrap_Material_getTransportMicroXS__SWIG_0(PyObject *SWIGUN
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTransportMicroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getTransportMicroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getTransportMicroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -8187,7 +8688,11 @@ SWIGINTERN PyObject *_wrap_Material_getTransportMicroXS__SWIG_1(PyObject *SWIGUN
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTransportMicroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getTransportMicroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getTransportMicroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -8268,7 +8773,11 @@ SWIGINTERN PyObject *_wrap_Material_getTransportMacroXS__SWIG_0(PyObject *SWIGUN
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTransportMacroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getTransportMacroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getTransportMacroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -8299,7 +8808,11 @@ SWIGINTERN PyObject *_wrap_Material_getTransportMacroXS__SWIG_1(PyObject *SWIGUN
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTransportMacroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getTransportMacroXS(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->getTransportMacroXS(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -8390,7 +8903,11 @@ SWIGINTERN PyObject *_wrap_Material_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  ((Material const *)arg1)->retrieveXSEnergies(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    ((Material const *)arg1)->retrieveXSEnergies(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -8444,7 +8961,11 @@ SWIGINTERN PyObject *_wrap_Material_retrieveXS(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Material_retrieveXS" "', argument " "4"" of type '" "char *""'");
   }
   arg4 = reinterpret_cast< char * >(buf4);
-  (arg1)->retrieveXS(arg2,arg3,arg4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->retrieveXS(arg2,arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -8480,7 +9001,11 @@ SWIGINTERN PyObject *_wrap_Material_setMaterialName(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_setMaterialName" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  (arg1)->setMaterialName(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setMaterialName(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
@@ -8522,7 +9047,11 @@ SWIGINTERN PyObject *_wrap_Material_setDensity(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Material_setDensity" "', argument " "3"" of type '" "char *""'");
   }
   arg3 = reinterpret_cast< char * >(buf3);
-  (arg1)->setDensity(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setDensity(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
   return resultobj;
@@ -8554,7 +9083,11 @@ SWIGINTERN PyObject *_wrap_Material_setNumberDensity(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_setNumberDensity" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setNumberDensity(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setNumberDensity(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8584,7 +9117,11 @@ SWIGINTERN PyObject *_wrap_Material_setAtomicMass(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_setAtomicMass" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setAtomicMass(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setAtomicMass(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8614,7 +9151,11 @@ SWIGINTERN PyObject *_wrap_Material_setNumBatches(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_setNumBatches" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNumBatches(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setNumBatches(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8653,7 +9194,11 @@ SWIGINTERN PyObject *_wrap_Material_addIsotope(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Material_addIsotope" "', argument " "3"" of type '" "float""'");
   } 
   arg3 = static_cast< float >(val3);
-  (arg1)->addIsotope(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->addIsotope(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8684,7 +9229,11 @@ SWIGINTERN PyObject *_wrap_Material_sampleIsotope(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_sampleIsotope" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (Isotope *)(arg1)->sampleIsotope(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (Isotope *)(arg1)->sampleIsotope(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Isotope, 0 |  0 );
   return resultobj;
 fail:
@@ -8714,7 +9263,11 @@ SWIGINTERN PyObject *_wrap_Material_addTally(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_addTally" "', argument " "2"" of type '" "Tally *""'"); 
   }
   arg2 = reinterpret_cast< Tally * >(argp2);
-  (arg1)->addTally(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->addTally(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8745,7 +9298,11 @@ SWIGINTERN PyObject *_wrap_Material_collideNeutron(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_collideNeutron" "', argument " "2"" of type '" "neutron *""'"); 
   }
   arg2 = reinterpret_cast< neutron * >(argp2);
-  result = (collisionType)(arg1)->collideNeutron(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (collisionType)(arg1)->collideNeutron(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -8766,7 +9323,11 @@ SWIGINTERN PyObject *_wrap_Material_computeBatchStatistics(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_computeBatchStatistics" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  (arg1)->computeBatchStatistics();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->computeBatchStatistics();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8796,7 +9357,11 @@ SWIGINTERN PyObject *_wrap_Material_computeScaledBatchStatistics(PyObject *SWIGU
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_computeScaledBatchStatistics" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->computeScaledBatchStatistics(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->computeScaledBatchStatistics(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8837,7 +9402,11 @@ SWIGINTERN PyObject *_wrap_Material_outputBatchStatistics(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Material_outputBatchStatistics" "', argument " "3"" of type '" "char *""'");
   }
   arg3 = reinterpret_cast< char * >(buf3);
-  (arg1)->outputBatchStatistics(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->outputBatchStatistics(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
@@ -8889,7 +9458,11 @@ SWIGINTERN PyObject *_wrap_new_Tally(PyObject *SWIGUNUSEDPARM(self), PyObject *a
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Tally" "', argument " "3"" of type '" "tallyType""'");
   } 
   arg3 = static_cast< tallyType >(val3);
-  result = (Tally *)new Tally(arg1,arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (Tally *)new Tally(arg1,arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, SWIG_POINTER_NEW |  0 );
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
@@ -8912,7 +9485,11 @@ SWIGINTERN PyObject *_wrap_delete_Tally(PyObject *SWIGUNUSEDPARM(self), PyObject
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Tally" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  delete arg1;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    delete arg1;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8934,7 +9511,11 @@ SWIGINTERN PyObject *_wrap_Tally_getTallyName(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getTallyName" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (char *)(arg1)->getTallyName();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (char *)(arg1)->getTallyName();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -8956,7 +9537,11 @@ SWIGINTERN PyObject *_wrap_Tally_getNumBins(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getNumBins" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (int)(arg1)->getNumBins();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)(arg1)->getNumBins();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -8978,7 +9563,11 @@ SWIGINTERN PyObject *_wrap_Tally_getBinEdges(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBinEdges" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double *)(arg1)->getBinEdges();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (double *)(arg1)->getBinEdges();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
   return resultobj;
 fail:
@@ -9000,7 +9589,11 @@ SWIGINTERN PyObject *_wrap_Tally_getBinCenters(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBinCenters" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double *)(arg1)->getBinCenters();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (double *)(arg1)->getBinCenters();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
   return resultobj;
 fail:
@@ -9022,7 +9615,11 @@ SWIGINTERN PyObject *_wrap_Tally_getBinDelta__SWIG_0(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBinDelta" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double)(arg1)->getBinDelta();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (double)(arg1)->getBinDelta();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
@@ -9053,7 +9650,11 @@ SWIGINTERN PyObject *_wrap_Tally_getBinDelta__SWIG_1(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_getBinDelta" "', argument " "2"" of type '" "double""'");
   } 
   arg2 = static_cast< double >(val2);
-  result = (double)(arg1)->getBinDelta(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (double)(arg1)->getBinDelta(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
@@ -9119,7 +9720,11 @@ SWIGINTERN PyObject *_wrap_Tally_getBinSpacingType(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBinSpacingType" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (binSpacingType)(arg1)->getBinSpacingType();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (binSpacingType)(arg1)->getBinSpacingType();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -9141,7 +9746,11 @@ SWIGINTERN PyObject *_wrap_Tally_getTallyDomainType(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getTallyDomainType" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (tallyDomainType)(arg1)->getTallyDomainType();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (tallyDomainType)(arg1)->getTallyDomainType();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -9163,7 +9772,11 @@ SWIGINTERN PyObject *_wrap_Tally_getTallyType(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getTallyType" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (tallyType)(arg1)->getTallyType();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (tallyType)(arg1)->getTallyType();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -9185,7 +9798,11 @@ SWIGINTERN PyObject *_wrap_Tally_getTallies(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getTallies" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double **)(arg1)->getTallies();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (double **)(arg1)->getTallies();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_p_double, 0 |  0 );
   return resultobj;
 fail:
@@ -9225,7 +9842,11 @@ SWIGINTERN PyObject *_wrap_Tally_getTally(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_getTally" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
-  result = (double)(arg1)->getTally(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (double)(arg1)->getTally(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
@@ -9247,7 +9868,11 @@ SWIGINTERN PyObject *_wrap_Tally_getNumTallies__SWIG_0(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getNumTallies" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (int **)(arg1)->getNumTallies();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int **)(arg1)->getNumTallies();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_p_int, 0 |  0 );
   return resultobj;
 fail:
@@ -9287,7 +9912,11 @@ SWIGINTERN PyObject *_wrap_Tally_getNumTallies__SWIG_1(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_getNumTallies" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
-  result = (int)(arg1)->getNumTallies(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)(arg1)->getNumTallies(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -9359,7 +9988,11 @@ SWIGINTERN PyObject *_wrap_Tally_getMaxTally(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getMaxTally" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double)(arg1)->getMaxTally();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (double)(arg1)->getMaxTally();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
@@ -9381,7 +10014,11 @@ SWIGINTERN PyObject *_wrap_Tally_getMinTally(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getMinTally" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double)(arg1)->getMinTally();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (double)(arg1)->getMinTally();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
@@ -9412,7 +10049,11 @@ SWIGINTERN PyObject *_wrap_Tally_getBinIndex(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_getBinIndex" "', argument " "2"" of type '" "double""'");
   } 
   arg2 = static_cast< double >(val2);
-  result = (int)(arg1)->getBinIndex(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)(arg1)->getBinIndex(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -9453,7 +10094,11 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyCenters(PyObject *SWIGUNUSEDPARM(s
     if (!array2) SWIG_fail;
     arg2 = (double*) array_data(array2);
   }
-  (arg1)->retrieveTallyCenters(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->retrieveTallyCenters(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -9497,7 +10142,11 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyMu(PyObject *SWIGUNUSEDPARM(self),
     if (!array2) SWIG_fail;
     arg2 = (double*) array_data(array2);
   }
-  (arg1)->retrieveTallyMu(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->retrieveTallyMu(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -9541,7 +10190,11 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyVariance(PyObject *SWIGUNUSEDPARM(
     if (!array2) SWIG_fail;
     arg2 = (double*) array_data(array2);
   }
-  (arg1)->retrieveTallyVariance(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->retrieveTallyVariance(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -9585,7 +10238,11 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyStdDev(PyObject *SWIGUNUSEDPARM(se
     if (!array2) SWIG_fail;
     arg2 = (double*) array_data(array2);
   }
-  (arg1)->retrieveTallyStdDev(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->retrieveTallyStdDev(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -9629,7 +10286,11 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyRelErr(PyObject *SWIGUNUSEDPARM(se
     if (!array2) SWIG_fail;
     arg2 = (double*) array_data(array2);
   }
-  (arg1)->retrieveTallyRelErr(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->retrieveTallyRelErr(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -9654,7 +10315,11 @@ SWIGINTERN PyObject *_wrap_Tally_getNumBatches(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getNumBatches" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (int)(arg1)->getNumBatches();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)(arg1)->getNumBatches();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -9676,7 +10341,11 @@ SWIGINTERN PyObject *_wrap_Tally_getBatchMu(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBatchMu" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double *)(arg1)->getBatchMu();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (double *)(arg1)->getBatchMu();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
   return resultobj;
 fail:
@@ -9698,7 +10367,11 @@ SWIGINTERN PyObject *_wrap_Tally_getBatchVariance(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBatchVariance" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double *)(arg1)->getBatchVariance();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (double *)(arg1)->getBatchVariance();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
   return resultobj;
 fail:
@@ -9720,7 +10393,11 @@ SWIGINTERN PyObject *_wrap_Tally_getBatchStdDev(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBatchStdDev" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double *)(arg1)->getBatchStdDev();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (double *)(arg1)->getBatchStdDev();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
   return resultobj;
 fail:
@@ -9742,7 +10419,11 @@ SWIGINTERN PyObject *_wrap_Tally_getBatchRelativeError(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBatchRelativeError" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double *)(arg1)->getBatchRelativeError();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (double *)(arg1)->getBatchRelativeError();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
   return resultobj;
 fail:
@@ -9772,7 +10453,11 @@ SWIGINTERN PyObject *_wrap_Tally_setBinSpacingType(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_setBinSpacingType" "', argument " "2"" of type '" "binSpacingType""'");
   } 
   arg2 = static_cast< binSpacingType >(val2);
-  (arg1)->setBinSpacingType(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setBinSpacingType(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -9809,7 +10494,11 @@ SWIGINTERN PyObject *_wrap_Tally_setBinEdges(PyObject *SWIGUNUSEDPARM(self), PyO
     arg2 = (double*) array_data(array2);
     arg3 = (int) array_size(array2,0);
   }
-  (arg1)->setBinEdges(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setBinEdges(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     if (is_new_object2 && array2)
@@ -9878,7 +10567,11 @@ SWIGINTERN PyObject *_wrap_Tally_generateBinEdges(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Tally_generateBinEdges" "', argument " "5"" of type '" "binSpacingType""'");
   } 
   arg5 = static_cast< binSpacingType >(val5);
-  (arg1)->generateBinEdges(arg2,arg3,arg4,arg5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->generateBinEdges(arg2,arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -9908,7 +10601,11 @@ SWIGINTERN PyObject *_wrap_Tally_setNumBatches(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_setNumBatches" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNumBatches(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setNumBatches(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -9930,7 +10627,11 @@ SWIGINTERN PyObject *_wrap_Tally_clone(PyObject *SWIGUNUSEDPARM(self), PyObject 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_clone" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (Tally *)(arg1)->clone();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (Tally *)(arg1)->clone();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, 0 |  0 );
   return resultobj;
 fail:
@@ -9951,7 +10652,11 @@ SWIGINTERN PyObject *_wrap_Tally_generateBinCenters(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_generateBinCenters" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  (arg1)->generateBinCenters();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->generateBinCenters();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -9999,7 +10704,11 @@ SWIGINTERN PyObject *_wrap_Tally_tally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Tally_tally" "', argument " "4"" of type '" "int""'");
   } 
   arg4 = static_cast< int >(val4);
-  (arg1)->tally(arg2,arg3,arg4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->tally(arg2,arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10038,7 +10747,11 @@ SWIGINTERN PyObject *_wrap_Tally_tally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_tally" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
-  (arg1)->tally(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->tally(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10162,7 +10875,11 @@ SWIGINTERN PyObject *_wrap_Tally_weightedTally__SWIG_0(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Tally_weightedTally" "', argument " "5"" of type '" "int""'");
   } 
   arg5 = static_cast< int >(val5);
-  (arg1)->weightedTally(arg2,arg3,arg4,arg5);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->weightedTally(arg2,arg3,arg4,arg5);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10210,7 +10927,11 @@ SWIGINTERN PyObject *_wrap_Tally_weightedTally__SWIG_1(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Tally_weightedTally" "', argument " "4"" of type '" "int""'");
   } 
   arg4 = static_cast< int >(val4);
-  (arg1)->weightedTally(arg2,arg3,arg4);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->weightedTally(arg2,arg3,arg4);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10309,7 +11030,11 @@ SWIGINTERN PyObject *_wrap_Tally_normalizeTallies__SWIG_0(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_normalizeTallies" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  (arg1)->normalizeTallies();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->normalizeTallies();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10339,7 +11064,11 @@ SWIGINTERN PyObject *_wrap_Tally_normalizeTallies__SWIG_1(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_normalizeTallies" "', argument " "2"" of type '" "double""'");
   } 
   arg2 = static_cast< double >(val2);
-  (arg1)->normalizeTallies(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->normalizeTallies(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10404,7 +11133,11 @@ SWIGINTERN PyObject *_wrap_Tally_computeBatchStatistics(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_computeBatchStatistics" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  (arg1)->computeBatchStatistics();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->computeBatchStatistics();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10434,7 +11167,11 @@ SWIGINTERN PyObject *_wrap_Tally_computeScaledBatchStatistics(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_computeScaledBatchStatistics" "', argument " "2"" of type '" "double""'");
   } 
   arg2 = static_cast< double >(val2);
-  (arg1)->computeScaledBatchStatistics(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->computeScaledBatchStatistics(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10465,7 +11202,11 @@ SWIGINTERN PyObject *_wrap_Tally_outputBatchStatistics(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally_outputBatchStatistics" "', argument " "2"" of type '" "char const *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  (arg1)->outputBatchStatistics((char const *)arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->outputBatchStatistics((char const *)arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
@@ -10504,7 +11245,11 @@ SWIGINTERN PyObject *_wrap_neutron__batch_num_set(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__batch_num_set" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  if (arg1) (arg1)->_batch_num = arg2;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if (arg1) (arg1)->_batch_num = arg2;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10526,7 +11271,11 @@ SWIGINTERN PyObject *_wrap_neutron__batch_num_get(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__batch_num_get" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (int) ((arg1)->_batch_num);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int) ((arg1)->_batch_num);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -10556,7 +11305,11 @@ SWIGINTERN PyObject *_wrap_neutron__x_set(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__x_set" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  if (arg1) (arg1)->_x = arg2;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if (arg1) (arg1)->_x = arg2;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10578,7 +11331,11 @@ SWIGINTERN PyObject *_wrap_neutron__x_get(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__x_get" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (float) ((arg1)->_x);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float) ((arg1)->_x);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -10608,7 +11365,11 @@ SWIGINTERN PyObject *_wrap_neutron__y_set(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__y_set" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  if (arg1) (arg1)->_y = arg2;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if (arg1) (arg1)->_y = arg2;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10630,7 +11391,11 @@ SWIGINTERN PyObject *_wrap_neutron__y_get(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__y_get" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (float) ((arg1)->_y);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float) ((arg1)->_y);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -10660,7 +11425,11 @@ SWIGINTERN PyObject *_wrap_neutron__z_set(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__z_set" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  if (arg1) (arg1)->_z = arg2;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if (arg1) (arg1)->_z = arg2;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10682,7 +11451,11 @@ SWIGINTERN PyObject *_wrap_neutron__z_get(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__z_get" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (float) ((arg1)->_z);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float) ((arg1)->_z);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -10712,7 +11485,11 @@ SWIGINTERN PyObject *_wrap_neutron__mu_set(PyObject *SWIGUNUSEDPARM(self), PyObj
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__mu_set" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  if (arg1) (arg1)->_mu = arg2;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if (arg1) (arg1)->_mu = arg2;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10734,7 +11511,11 @@ SWIGINTERN PyObject *_wrap_neutron__mu_get(PyObject *SWIGUNUSEDPARM(self), PyObj
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__mu_get" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (float) ((arg1)->_mu);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float) ((arg1)->_mu);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -10764,7 +11545,11 @@ SWIGINTERN PyObject *_wrap_neutron__phi_set(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__phi_set" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  if (arg1) (arg1)->_phi = arg2;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if (arg1) (arg1)->_phi = arg2;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10786,7 +11571,11 @@ SWIGINTERN PyObject *_wrap_neutron__phi_get(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__phi_get" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (float) ((arg1)->_phi);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float) ((arg1)->_phi);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -10816,7 +11605,11 @@ SWIGINTERN PyObject *_wrap_neutron__energy_set(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__energy_set" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  if (arg1) (arg1)->_energy = arg2;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if (arg1) (arg1)->_energy = arg2;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10838,7 +11631,11 @@ SWIGINTERN PyObject *_wrap_neutron__energy_get(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__energy_get" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (float) ((arg1)->_energy);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float) ((arg1)->_energy);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -10868,7 +11665,11 @@ SWIGINTERN PyObject *_wrap_neutron__weight_set(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__weight_set" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  if (arg1) (arg1)->_weight = arg2;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if (arg1) (arg1)->_weight = arg2;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10890,7 +11691,11 @@ SWIGINTERN PyObject *_wrap_neutron__weight_get(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__weight_get" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (float) ((arg1)->_weight);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float) ((arg1)->_weight);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -10920,7 +11725,11 @@ SWIGINTERN PyObject *_wrap_neutron__alive_set(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__alive_set" "', argument " "2"" of type '" "bool""'");
   } 
   arg2 = static_cast< bool >(val2);
-  if (arg1) (arg1)->_alive = arg2;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if (arg1) (arg1)->_alive = arg2;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10942,7 +11751,11 @@ SWIGINTERN PyObject *_wrap_neutron__alive_get(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__alive_get" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (bool) ((arg1)->_alive);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (bool) ((arg1)->_alive);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -10972,7 +11785,11 @@ SWIGINTERN PyObject *_wrap_neutron__in_fuel_set(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__in_fuel_set" "', argument " "2"" of type '" "bool""'");
   } 
   arg2 = static_cast< bool >(val2);
-  if (arg1) (arg1)->_in_fuel = arg2;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    if (arg1) (arg1)->_in_fuel = arg2;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10994,7 +11811,11 @@ SWIGINTERN PyObject *_wrap_neutron__in_fuel_get(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__in_fuel_get" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (bool) ((arg1)->_in_fuel);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (bool) ((arg1)->_in_fuel);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -11007,7 +11828,11 @@ SWIGINTERN PyObject *_wrap_new_neutron(PyObject *SWIGUNUSEDPARM(self), PyObject 
   neutron *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":new_neutron")) SWIG_fail;
-  result = (neutron *)new neutron();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (neutron *)new neutron();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_neutron, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -11028,7 +11853,11 @@ SWIGINTERN PyObject *_wrap_delete_neutron(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_neutron" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  delete arg1;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    delete arg1;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11048,7 +11877,11 @@ SWIGINTERN PyObject *_wrap_initializeNewNeutron(PyObject *SWIGUNUSEDPARM(self), 
   neutron *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":initializeNewNeutron")) SWIG_fail;
-  result = (neutron *)initializeNewNeutron();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (neutron *)initializeNewNeutron();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_neutron, 0 |  0 );
   return resultobj;
 fail:
@@ -11061,7 +11894,11 @@ SWIGINTERN PyObject *_wrap_new_Fissioner(PyObject *SWIGUNUSEDPARM(self), PyObjec
   Fissioner *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":new_Fissioner")) SWIG_fail;
-  result = (Fissioner *)new Fissioner();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (Fissioner *)new Fissioner();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Fissioner, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -11082,7 +11919,11 @@ SWIGINTERN PyObject *_wrap_delete_Fissioner(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Fissioner" "', argument " "1"" of type '" "Fissioner *""'"); 
   }
   arg1 = reinterpret_cast< Fissioner * >(argp1);
-  delete arg1;
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    delete arg1;
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11104,7 +11945,11 @@ SWIGINTERN PyObject *_wrap_Fissioner_getNumBins(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Fissioner_getNumBins" "', argument " "1"" of type '" "Fissioner *""'"); 
   }
   arg1 = reinterpret_cast< Fissioner * >(argp1);
-  result = (int)(arg1)->getNumBins();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (int)(arg1)->getNumBins();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -11134,7 +11979,11 @@ SWIGINTERN PyObject *_wrap_Fissioner_setNumBins(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Fissioner_setNumBins" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNumBins(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setNumBins(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11164,7 +12013,11 @@ SWIGINTERN PyObject *_wrap_Fissioner_setEMax(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Fissioner_setEMax" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setEMax(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->setEMax(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11185,7 +12038,11 @@ SWIGINTERN PyObject *_wrap_Fissioner_buildCDF(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Fissioner_buildCDF" "', argument " "1"" of type '" "Fissioner *""'"); 
   }
   arg1 = reinterpret_cast< Fissioner * >(argp1);
-  (arg1)->buildCDF();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->buildCDF();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11216,7 +12073,11 @@ SWIGINTERN PyObject *_wrap_Fissioner_wattSpectrum(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Fissioner_wattSpectrum" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->wattSpectrum(arg2);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->wattSpectrum(arg2);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -11238,7 +12099,11 @@ SWIGINTERN PyObject *_wrap_Fissioner_emitNeutronMeV(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Fissioner_emitNeutronMeV" "', argument " "1"" of type '" "Fissioner *""'"); 
   }
   arg1 = reinterpret_cast< Fissioner * >(argp1);
-  result = (float)(arg1)->emitNeutronMeV();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->emitNeutronMeV();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -11260,7 +12125,11 @@ SWIGINTERN PyObject *_wrap_Fissioner_emitNeutroneV(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Fissioner_emitNeutroneV" "', argument " "1"" of type '" "Fissioner *""'"); 
   }
   arg1 = reinterpret_cast< Fissioner * >(argp1);
-  result = (float)(arg1)->emitNeutroneV();
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    result = (float)(arg1)->emitNeutroneV();
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -11301,7 +12170,11 @@ SWIGINTERN PyObject *_wrap_Fissioner_retrieveCDF(PyObject *SWIGUNUSEDPARM(self),
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  (arg1)->retrieveCDF(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->retrieveCDF(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -11345,7 +12218,11 @@ SWIGINTERN PyObject *_wrap_Fissioner_retrieveCDFEnergies(PyObject *SWIGUNUSEDPAR
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  (arg1)->retrieveCDFEnergies(arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    (arg1)->retrieveCDFEnergies(arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -11376,7 +12253,11 @@ SWIGINTERN PyObject *_wrap_log_setlevel__SWIG_0(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "log_setlevel" "', argument " "1"" of type '" "logLevel""'");
   } 
   arg1 = static_cast< logLevel >(val1);
-  log_setlevel(arg1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    log_setlevel(arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11398,7 +12279,11 @@ SWIGINTERN PyObject *_wrap_log_setlevel__SWIG_1(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "log_setlevel" "', argument " "1"" of type '" "char const *""'");
   }
   arg1 = reinterpret_cast< char * >(buf1);
-  log_setlevel((char const *)arg1);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    log_setlevel((char const *)arg1);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
@@ -11470,7 +12355,11 @@ SWIGINTERN PyObject *_wrap_log_printf__varargs__(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "log_printf" "', argument " "2"" of type '" "char const *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  log_printf(arg1,(char const *)arg2,arg3);
+  {
+    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
+    log_printf(arg1,(char const *)arg2,arg3);
+    SWIG_PYTHON_THREAD_END_ALLOW;
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
@@ -12546,6 +13435,9 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "ERROR",SWIG_From_int(static_cast< int >(ERROR)));
   PyDict_SetItemString(md,(char*)"cvar", SWIG_globals());
   SWIG_addvarlink(SWIG_globals(),(char*)"log_level",Swig_var_log_level_get, Swig_var_log_level_set);
+  
+  /* Initialize threading */
+  SWIG_PYTHON_INITIALIZE_THREADS;
 #if PY_VERSION_HEX >= 0x03000000
   return m;
 #else

@@ -2,6 +2,7 @@ from pinspec import *
 import numpy
 import matplotlib.pyplot as matplt    # only need to import this for examples
 import plotter
+from SLBW import *
 
 def main():
 
@@ -17,6 +18,10 @@ def main():
     num_threads = 8
     log_setlevel(INFO)
 
+    # Call SLBW to create XS
+    nameoffile = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
+    T=300 #Temp in Kelvin of target nucleus
+    SLBWXS(nameoffile,T)
 
     # Define isotopes
     h1 = Isotope('H-1')
