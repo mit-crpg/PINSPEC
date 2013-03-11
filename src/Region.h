@@ -10,16 +10,15 @@
 #ifndef REGION_H_
 #define REGION_H_
 
+#ifdef __cplusplus
 #include <vector>
 #include <math.h>
 #include <algorithm>
 #include <stdarg.h>
-#include <omp.h>
+#include <string.h>
 #include "Material.h"
-#include "Isotope.h"
 #include "Neutron.h"
-#include "Tally.h"
-
+#endif
 #define _USE_MATH_DEFINES
 
 
@@ -30,14 +29,7 @@ typedef enum regionTypes {
 } regionType;
 
 
-typedef enum spatialTypes {
-	NONE,
-	HETEROGENEOUS,
-	HOMOGENEOUS
-} spatialType;
-
-
-	/**
+/**
  * The Region class represents a single dimensional region
  * bounded by two planes, or Surface class objects. The region
  * contains a vector of neutrons which live within it and is filled
@@ -45,6 +37,8 @@ typedef enum spatialTypes {
  * density. The Region class contains all of the physics for moving
  * colliding neutrons
  */
+
+#ifdef __cplusplus
 class Region {
 
 private:
@@ -52,7 +46,6 @@ private:
 	float _volume;
 	Material* _material;
 	regionType _region_type;
-	spatialType _spatial_type;
 
 	/* Tallies */
 	std::vector<Tally*> _tallies;
@@ -70,6 +63,10 @@ private:
 	std::vector<float> _fuel_ring_radii;
 	std::vector<float> _moderator_ring_radii;	
 
+    void clearTallies();
+    bool contains(float x, float y);
+    bool onBoundary(float x, float y);
+
 public:
 	Region();
 	virtual ~Region();
@@ -77,7 +74,6 @@ public:
     float getVolume();
     Material* getMaterial();
     regionType getRegionType();
-    spatialType getSpatialType();
     bool isFuel();
     bool isModerator();
 	bool isInfinite();
@@ -88,20 +84,21 @@ public:
     void setVolume(float volume);
     void setMaterial(Material* material);
 	void setRegionType(regionType region_type);
-	void setSpatialType(spatialType spatial_type);
     void addTally(Tally* bins);
     void setTwoRegionPinCellParams(float sigma_e, float beta, 
 									float alpha1, float alpha2);
 	void setFuelRadius(float radius);
 	void setPitch(float pitch);
+    void setNumBatches(int num_batches);
 	void addFuelRingRadius(float radius);
 	void addModeratorRingRadius(float radius);
 
-    float computeFuelFuelCollisionProb(int energy_index);
-    float computeModeratorFuelCollisionProb(int energy_index);
-    void clearTallies();
-    bool contains(float x, float y);
-    bool onBoundary(float x, float y);
+	void collideNeutron(neutron* neut);
+    void computeBatchStatistics();
+    void computeScaledBatchStatistics(float scale_factor);
+    void outputBatchStatistics(char* directory, char* suffix);
 };
+
+#endif
 
 #endif /* REGION_H_ */

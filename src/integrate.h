@@ -8,9 +8,12 @@
  */
 
 #include <stdio.h>
+#ifdef __cplusplus
 #include <string>
+#endif
 #include <stdlib.h>
 #include <math.h>
+
 
 #ifndef INTEGRATE_H_
 #define INTEGRATE_H_
@@ -36,51 +39,6 @@ typedef enum integrationSchemes {
 	ENUM_END,
 } integrationScheme;
 
-
-/**
- * This method performs a 2D numerical integral over arrays of x and y values
- * using a particular integration method
- * @param x the the x values
- * @param y the y values
- * @param length the length of the x and y arrays
- * @param sceheme integration method
- * @return the result of the numerical integral
- */
-template <typename T>
-double integrate(T* x, T* y, int length, integrationScheme scheme) {
-
-	double integral = 0;
-
-	switch(scheme) {
-		case RIEMANN_RIGHT:
-			integral = computeRiemannRight(x, y, length);
-			break;
-		case RIEMANN_LEFT:
-			integral = computeRiemannLeft(x, y, length);
-			break;
-		case RIEMANN_CENTER:
-			integral = computeRiemannCenter(x, y, length);
-			break;
-		case TRAPEZOIDAL:
-			integral = computeTrapezoidal(x, y, length);
-			break;
-		case SIMPSONS:
-			integral = computeSimpsons(x, y, length);
-			break;
-		case SIMPSONS38:
-			integral = computeSimpsons38(x, y, length);
-			break;
-		case BOOLES:
-			integral = computeBooles(x, y, length);
-			break;
-		case ENUM_END:
-			break;
-	}
-
-	return integral;
-}
-
-
 /**
  * This method performs a cumulative numerical integral over arrays of x and
  * y values using a particular integration method
@@ -90,6 +48,7 @@ double integrate(T* x, T* y, int length, integrationScheme scheme) {
  * @param length the length of the x and y arrays
  * @param sceheme integration method
  */
+#ifdef __cplusplus
 template <typename T, typename U>
 void cumulativeIntegral(T* x, T* y, U* cdf, int length,
 													integrationScheme scheme) {
@@ -101,7 +60,7 @@ void cumulativeIntegral(T* x, T* y, U* cdf, int length,
 	return;
 }
 
-
+#endif
 
 /**
  * This method performs a numerical integral using the left-centered Riemann
@@ -110,6 +69,7 @@ void cumulativeIntegral(T* x, T* y, U* cdf, int length,
  * @param y the y values
  * @param length the length of the x and y arrays
  */
+#ifdef __cplusplus
 template <typename T>
 double computeRiemannLeft(T* x, T* y, int length) {
 
@@ -127,7 +87,6 @@ double computeRiemannLeft(T* x, T* y, int length) {
 
 	return integral;
 }
-
 
 /**
  * This method performs a numerical integral using the right-centered Riemann
@@ -267,5 +226,54 @@ double computeBooles(T* x, T* y, int length) {
 
 	return integral;
 }
+
+#endif
+
+
+/**
+ * This method performs a 2D numerical integral over arrays of x and y values
+ * using a particular integration method
+ * @param x the the x values
+ * @param y the y values
+ * @param length the length of the x and y arrays
+ * @param sceheme integration method
+ * @return the result of the numerical integral
+ */
+#ifdef __cplusplus
+template <typename T>
+double integrate(T* x, T* y, int length, integrationScheme scheme) {
+
+	double integral = 0;
+
+	switch(scheme) {
+		case RIEMANN_RIGHT:
+			integral = computeRiemannRight(x, y, length);
+			break;
+		case RIEMANN_LEFT:
+			integral = computeRiemannLeft(x, y, length);
+			break;
+		case RIEMANN_CENTER:
+			integral = computeRiemannCenter(x, y, length);
+			break;
+		case TRAPEZOIDAL:
+			integral = computeTrapezoidal(x, y, length);
+			break;
+		case SIMPSONS:
+			integral = computeSimpsons(x, y, length);
+			break;
+		case SIMPSONS38:
+			integral = computeSimpsons38(x, y, length);
+			break;
+		case BOOLES:
+			integral = computeBooles(x, y, length);
+			break;
+		case ENUM_END:
+			break;
+	}
+
+	return integral;
+}
+
+#endif
 
 #endif

@@ -26,6 +26,7 @@ neutron* initializeNewNeutron() {
 	new_neutron->_phi = 0.0;
 	new_neutron->_mu = 0.0;
 	new_neutron->_weight = 1.0;
+	new_neutron->_alive = true;
 
 	return new_neutron;
 }

@@ -1,9 +1,10 @@
 # Put any files you don't want to check in here.
 # Common among everyone 
-*.o 
+*.o
 *.pyc
 *.h.gch
 *.so
+*.png
 Makefile
 */*.o
 */*.pyc
@@ -13,6 +14,7 @@ Makefile
 */Makefile
 *~
 */*~
+*/*.png
 
 # Jessica specific:
 
@@ -20,5 +22,10 @@ Makefile
 
 # Lulu specific:
 bin/
+tutorial/
+swig/*.py
+python/pinspec/Geometry_wrap.cxx
+python/pinspec/pinspec.py
+python/*.png
 
 # Will specific:

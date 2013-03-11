@@ -18,10 +18,6 @@ Region::Region() {
 	_region_type = INFINITE;
 	_volume = 0.0;
 
-	/* By default the Region is infinite (unbounded) */
-	_region_type = INFINITE;
-	_spatial_type = HOMOGENEOUS;
-
 	/* Default two region pin cell parameters */
 	_sigma_e = 0.0;
 	_beta = 0.0;
@@ -35,7 +31,7 @@ Region::Region() {
 
 
 /**
- * Region destructor
+ * Region destructor does not delete anything since that is left to SWIG
  */
 Region::~Region() { }
 
@@ -74,15 +70,6 @@ Material* Region::getMaterial() {
  */
 regionType Region::getRegionType() {
 	return _region_type;
-}
-
-
-/**
- * Return the spatial type of Region (HOMOGENEOUS or HETEROGENEOUS)
- * @return the spatial type
- */
-spatialType Region::getSpatialType() {
-	return _spatial_type;
 }
 
 
@@ -180,18 +167,11 @@ void Region::setMaterial(Material* material) {
  * @param region_type the type of region
  */
 void Region::setRegionType(regionType region_type) {
+
 	_region_type = region_type;
+
 }
 
-
-
-/**
- * Set this Region's spatial type (HOMOGENEOUS or HETEROGENEOUS)
- * @param spatial_type the spatial type of region
- */
-void Region::setSpatialType(spatialType spatial_type) {
-	_spatial_type = spatial_type;
-}
 
 
 /**
@@ -199,6 +179,11 @@ void Region::setSpatialType(spatialType spatial_type) {
  * @param bins a pointer to a Tally class object
  */
 void Region::addTally(Tally* tally) {
+
+    if (tally->getTallyDomainType() != REGION)
+        log_printf(ERROR, "Unable to add Tally %s to Region %s since the Tally"
+                        " is not for an REGION tally domain", 
+                                        tally->getTallyName(), _name);
 	_tallies.push_back(tally);
 }
 
@@ -250,6 +235,25 @@ void Region::setPitch(float pitch) {
 
 
 /**
+ * Sets the number of batches for each of the Tallies inside of this Region
+ * @param num_batches the number of batches
+ */
+void Region::setNumBatches(int num_batches) {
+
+    /* Set the number of batches for each Tally inside of this Region */
+    std::vector<Tally*>::iterator iter;
+	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+        (*iter)->setNumBatches(num_batches);
+    }
+
+    /* Set the number of batches for each of the Tallies inside the Material */
+    _material->setNumBatches(num_batches);
+
+    return;
+}
+
+
+/**
  * Adds a new fuel ring radius for this Region if it is not INFINITE
  * @param radius a fuel ring radius
  */
@@ -284,88 +288,66 @@ void Region::addModeratorRingRadius(float radius) {
 }
 
 
-/**
- * This function computes the two-region fuel-to-fuel collision probability for
- * a two-region pin cell simulation. It uses Carlvik's two-term rational model
- * and assumes that the escape cross-section (_sigma_e), _beta, _alpha1 and
- * _alpha2 have all been set or else it throws an error
- * @param energy_index index into the material's energy grid
- * @return the fuel-to-fuel collision probability at that energy
- */
-float Region::computeFuelFuelCollisionProb(int energy_index) {
-
-	float p_ff;
-
-	/* If this is the fuel region, we can compute p_ff directly */
-	if (_region_type == FUEL) {
-
-		/* Check that all necessary parameters to compute p_ff have been set */
-		if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
-			log_printf(ERROR, "Unable to compute a fuel-fuel collision "
-					"probability for region %s since beta, sigma_e, "
-					"alpha1, or alpha2 for this region has not yet been set",
-					_name);
-
-		float sigma_tot_fuel = _material->getTotalMacroXS(energy_index);
-
-		p_ff = ((_beta*sigma_tot_fuel) / (_alpha1*_sigma_e + sigma_tot_fuel)) +
-			((1.0 - _beta)*sigma_tot_fuel / (_alpha2*_sigma_e + sigma_tot_fuel));
-	}
-
-	/* If this is the moderator region, we cannot compute p_ff*/
-	else {
-		log_printf(ERROR, "Unable to compute fuel-fuel collision "
-					"probability for region %s since it is not a "
-					"FUEL region", _name);
-	}
-
-	return p_ff;
-}
-
 
 /**
- * This function computes the two-region moderator-to-fuel collision
- * probability for a two-region pin cell simulation. It uses Carlvik's
- * two-term rational model and assumes that the escape cross-section
- * (_sigma_e), _beta, _alpha1 and _alpha2 have all been set or else it
- * throws an error
- * @param energy_index index into the material's energy grid
- * @return the moderator-to-fuel collision probability at that energy
+ * This method collides a neutron within some Region. It
+ * tallies the neutron in any Tallies for this Region and 
+ * uses the Region's Material to compute the neutron's 
+ * next energy and collision type.
  */
-float Region::computeModeratorFuelCollisionProb(int energy_index) {
+void Region::collideNeutron(neutron* neut) {
 
-	float p_mf;
+	/* If this Region contains any tallies, tally neutron 
+	 * before collision
+	 */
+    int batch_num = neut->_batch_num;
+    float sample = neut->_energy;
+	float total_xs = _material->getTotalMacroXS(sample);
 
-	/* If this is the fuel region, we can compute p_mf directly */
-	if (_region_type == FUEL) {
+	/* Collide the neutron in the Region's Material */
+    collisionType type = _material->collideNeutron(neut);
 
-		/* Check that all necessary parameters to compute p_mf have been set */
-		if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
-			log_printf(ERROR, "Unable to compute a moderator-fuel collision "
-					"probability for region %s since beta, sigma_e, alpha1, "
-					"or alpha2 for this region has not yet been set",
-					_name);
-
-		float p_ff = computeFuelFuelCollisionProb(energy_index);
-		float p_fm = 1.0 - p_ff;
-
-		float tot_sigma_f = _material->getTotalMacroXS(energy_index);
-		//NOTE: Need to fix this
-//		float tot_sigma_mod = _other_region->getMaterial()->getTotalMacroXS(energy_index);
-		float v_mod = _pitch * _pitch - M_PI * _fuel_radius * _fuel_radius;
-
-//		p_mf = p_fm*(tot_sigma_f*_volume) / (tot_sigma_mod*v_mod);
+    std::vector<Tally*>::iterator iter;
+	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+	    Tally *tally = *iter;
+	    tallyType tally_type = tally->getTallyType();
+	    switch (tally_type) {
+	    case FLUX:
+			tally->weightedTally(sample, 1.0 / total_xs, batch_num);
+	    case COLLISION_RATE:
+		    tally->weightedTally(sample, 1.0, batch_num);
+	    case ELASTIC_RATE:
+		if (type == ELASTIC)
+		    tally->weightedTally(sample, 
+			_material->getElasticMacroXS(sample) / total_xs, batch_num);
+	    case ABSORPTION_RATE:
+		if (type == CAPTURE || type == FISSION)
+		    tally->weightedTally(sample, 
+			_material->getAbsorptionMacroXS(sample) / total_xs, batch_num);
+	    case CAPTURE_RATE:
+		if (type == CAPTURE)
+		    tally->weightedTally(sample, 
+			_material->getCaptureMacroXS(sample) / total_xs, batch_num);
+	    case FISSION_RATE:
+		if (type == FISSION)
+		    tally->weightedTally(sample, 
+			_material->getFissionMacroXS(sample) / total_xs, batch_num);
+	    case TRANSPORT_RATE:
+		if (type == ELASTIC)
+		    tally->weightedTally(sample, 
+			_material->getTransportMacroXS(sample) / total_xs, batch_num);
+	    case DIFFUSION_RATE: /* FIXME */
+		if (type == ELASTIC)
+		    tally->weightedTally(sample, 
+			 1.0 / (3.0 * _material->getTransportMacroXS(sample) * total_xs), 
+																batch_num); 
+	    case LEAKAGE_RATE:; /* FIXME */
+	    }
 	}
 
-	/* If this is the moderator region, we ask fuel region to compute p_mf */
-	else {
-		log_printf(ERROR, "Unable to compute moderator-fuel collision "
-					"probability for region %s since it is not a FUEL"
-					" region", _name);
-	}
-
-	return p_mf;
+	return;
 }
+
 
 
 /**
@@ -424,3 +406,71 @@ bool Region::onBoundary(float x, float y) {
 			return false;
 	}
 }
+
+
+/**
+ * Calls each of the Tally class objects in the Region to compute
+ * their batch-based statistics from the tallies
+ */
+void Region::computeBatchStatistics() {
+
+    /* Compute statistics for each of this Region's Tallies */
+    std::vector<Tally*>::iterator iter;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
+        (*iter)->computeBatchStatistics();
+
+    /* Compute statistics for the Material's Tallies */
+    _material->computeBatchStatistics();
+
+    return;
+}
+
+
+/**
+ * Calls each of the Tally class objects in the Region to compute
+ * their batch-based statistics from the tallies
+ */
+void Region::computeScaledBatchStatistics(float scale_factor) {
+
+    /* Account for the volume of the region if it is not infinite */
+	if (_region_type != INFINITE)
+        scale_factor *= _volume;
+
+    /* Compute statistics for each of this Region's Tallies */
+    std::vector<Tally*>::iterator iter;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
+        (*iter)->computeScaledBatchStatistics(scale_factor);
+
+    /* Compute statistics for the Material's Tallies */
+    _material->computeScaledBatchStatistics(scale_factor);
+
+    return;
+}
+
+
+/**
+ * Calls each of the Tally class objects in the Region to output
+ * their tallies and statistics to output files.
+ * @param directory the directory to write batch statistics files
+ * @param suffix a string to attach to the end of each filename
+ */
+void Region::outputBatchStatistics(char* directory, char* suffix) {
+
+    /* Output statistics for each of this Region's Tallies */
+    std::vector<Tally*>::iterator iter;
+    std::string filename;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
+        filename = std::string(directory) + _name + "_statistics_" 
+                                        + suffix + ".txt";
+        (*iter)->outputBatchStatistics(filename.c_str());
+    }
+
+    /* Output statistics for the Materials Tallies */
+    _material->outputBatchStatistics(directory, suffix);
+
+    return;
+}
+

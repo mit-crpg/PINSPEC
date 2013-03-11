@@ -23,6 +23,7 @@
  * E. E. Lewis. This class can then use the cdf to sample neutron
  * emission energies.
  */
+#ifdef __cplusplus
 class Fissioner {
 
 private:
@@ -34,12 +35,18 @@ private:
 public:
 	Fissioner();
 	virtual ~Fissioner();
+    int getNumBins();
 	void setNumBins(int num_bins);
 	void setEMax(float E_max);
 	void buildCDF();
 	float wattSpectrum(float energy);
 	float emitNeutronMeV();
 	float emitNeutroneV();
+    
+    void retrieveCDF(float* cdf, int num_bins);
+    void retrieveCDFEnergies(float* cdf_energies, int num_bins);
 };
+
+#endif
 
 #endif /* FISSIONER_H_ */

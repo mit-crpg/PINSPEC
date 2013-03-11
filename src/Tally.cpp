@@ -13,15 +13,19 @@
 /**
  * Default Tally constructor
  */
-Tally::Tally() {
+Tally::Tally(char* tally_name, tallyDomainType tally_domain, 
+                                                    tallyType tally_type) {
 
-	_name = (char*)"";
+	_tally_name = tally_name;
+    _tally_domain = tally_domain;
+    _tally_type = tally_type;
 
 	 /* Sets the default delta between bins to zero */
 	_bin_delta = 0;
 
 	/* Sets the default for batch statistics */
 	_num_batches = 0;
+    _num_bins = 0;
 	_computed_statistics = false;
 
 }
@@ -33,15 +37,13 @@ Tally::Tally() {
  */
 Tally::~Tally() {
 
-	if (_num_bins != 0) {
+	if (_num_bins != 0)
+        delete [] _edges;
+
+	if (_num_batches != 0) {
 		delete [] _tallies;
 		delete [] _num_tallies;
 		delete [] _centers;
-		if (_bin_spacing != OTHER)
-			delete [] _edges;
-	}
-
-	if (_num_batches != 0) {
 		delete [] _batch_mu;
 		delete [] _batch_variance;
 		delete [] _batch_std_dev;
@@ -51,11 +53,11 @@ Tally::~Tally() {
 
 
 /**
- * Returns the name of this Tally as specified by the user
+ * Returns the of this Tally as specified by the user
  * @return the Tally's name
  */
 char* Tally::getTallyName() {
-	return _name;
+	return _tally_name;
 }
 
 
@@ -72,10 +74,10 @@ int Tally::getNumBins() {
  * Returns a double array of bin edge values
  * @return array of bin edge values
  */
-float* Tally::getBinEdges() {
+double* Tally::getBinEdges() {
 	 if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot return bin edges for Tally %s since "
-				 "the bins have not yet been created", _name);
+				 "the bins have not yet been created", _tally_name);
 
 	 return _edges;
 }
@@ -88,7 +90,7 @@ float* Tally::getBinEdges() {
 double* Tally::getBinCenters() {
 	 if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot return bin centers for Tally %s since the "
-				 "bins have not yet been created", _name);
+				 "bins have not yet been created", _tally_name);
 
 	 return _centers;
 }
@@ -99,12 +101,12 @@ double* Tally::getBinCenters() {
  * for EQUAL and LOGARITHMIC bin types
  * @return the spacing between bins
  */
-float Tally::getBinDelta() {
+double Tally::getBinDelta() {
 	return _bin_delta;
 }
 
 
-float Tally::getBinDelta(float sample) {
+double Tally::getBinDelta(double sample) {
 
 	/* If this Tally uses equally spaced bins in linear or logarithmic
 	 * space, return the bin delta */
@@ -153,7 +155,7 @@ tallyType Tally::getTallyType() {
 double** Tally::getTallies() {
 	 if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot return tallies for Tally %s since the "
-				 "bins have not yet been created", _name);
+				 "bins have not yet been created", _tally_name);
 
 	 return _tallies;
 }
@@ -168,11 +170,11 @@ double Tally::getTally(int batch_num, int bin_index) {
 
 	if (bin_index < 0 || bin_index >= _num_bins)
 		log_printf(ERROR, "Tried to get a tally for a bin index for Tally %s"
-				"which does not exist: %d, num_bins = %d", _name, bin_index,
+				"which does not exist: %d, num_bins = %d", _tally_name, bin_index,
 				_num_bins);
 	if (batch_num < 0 || batch_num >= _num_batches)
 		log_printf(ERROR, "Tried to get a tally for a batch for Tally %s"
-				"which does not exist: %d, num_batches = %d", _name, batch_num,
+				"which does not exist: %d, num_batches = %d", _tally_name, batch_num,
 				_num_batches);
 
 	return _tallies[batch_num][bin_index];
@@ -186,7 +188,7 @@ double Tally::getTally(int batch_num, int bin_index) {
 int** Tally::getNumTallies() {
 	 if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot return tally numbers for Tally %s since "
-				 "the bins have not yet been created", _name);
+				 "the bins have not yet been created", _tally_name);
 
 	return _num_tallies;
 }
@@ -201,10 +203,10 @@ int Tally::getNumTallies(int batch_num, int bin_index) {
 
 	if (bin_index < 0 || bin_index >= _num_bins)
 		log_printf(ERROR, "Tried to get a tally number for Tally %s for "
-				"a bin index which does not exist: %d", _name, bin_index);
+				"a bin index which does not exist: %d", _tally_name, bin_index);
 	if (batch_num < 0 || batch_num >= _num_batches)
 		log_printf(ERROR, "Tried to get a tally number for Tally %s for "
-				"a batch which does not exist: %d", _name, batch_num);
+				"a batch which does not exist: %d", _tally_name, batch_num);
 
 	return _num_tallies[batch_num][bin_index];
 }
@@ -218,7 +220,7 @@ double Tally::getMaxTally() {
 
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot return the maximum tally for Tally %s"
-				 "since the bins have not yet been created", _name);
+				 "since the bins have not yet been created", _tally_name);
 
 	double max_tally = 0;
 
@@ -241,7 +243,7 @@ double Tally::getMaxTally() {
 double Tally::getMinTally() {
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot return the minimum tally for Tally %s"
-				 " since the bins have not yet been created", _name);
+				 " since the bins have not yet been created", _tally_name);
 
 	double min_tally = std::numeric_limits<double>::infinity();
 
@@ -263,14 +265,14 @@ double Tally::getMinTally() {
  * @param sample the sample value of interest
  * @return the bin index for the sample
  */
-int Tally::getBinIndex(float sample) {
+int Tally::getBinIndex(double sample) {
 
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot return a bin index for Tally %s since "
-				 "the bins have not yet been created", _name);
+				 "the bins have not yet been created", _tally_name);
 
 	/* Set index to infinity to begin with */
-	int index = std::numeric_limits<float>::infinity();
+	int index = std::numeric_limits<double>::infinity();
 
 	/* if the sample is equal to the last bin edge, return the last bin */
 	if (sample == _edges[_num_bins])
@@ -299,7 +301,7 @@ int Tally::getBinIndex(float sample) {
 
 	/* If this sample was not contained within a bin set index to infinity*/
 	if (index > _num_bins)
-		index = std::numeric_limits<float>::infinity();
+		index = std::numeric_limits<double>::infinity();
 
 	return index;
 }
@@ -323,7 +325,7 @@ double* Tally::getBatchMu() {
 
 	if (!_computed_statistics)
 		log_printf(ERROR, "Statistics have not yet been computed for "
-				"Tally %s so batch mu cannot be returned", _name);
+				"Tally %s so batch mu cannot be returned", _tally_name);
 
 	return _batch_mu;
 }
@@ -338,7 +340,7 @@ double* Tally::getBatchVariance() {
 
 	if (!_computed_statistics)
 		log_printf(ERROR, "Statistics have not yet been computed for "
-				"Tally %s so batch variance cannot be returned", _name);
+				"Tally %s so batch variance cannot be returned", _tally_name);
 
 	return _batch_variance;
 }
@@ -353,7 +355,7 @@ double* Tally::getBatchStdDev() {
 
 	if (!_computed_statistics)
 		log_printf(ERROR, "Statistics have not yet been computed for "
-				"Tally %s so batch std dev cannot be returned", _name);
+				"Tally %s so batch std dev cannot be returned", _tally_name);
 
 	return _batch_std_dev;
 }
@@ -368,36 +370,93 @@ double* Tally::getBatchRelativeError() {
 
 	if (!_computed_statistics)
 		log_printf(ERROR, "Statistics have not yet been computed for "
-		"Tally %s so batch relative error cannot be returned", _name);
+		"Tally %s so batch relative error cannot be returned", _tally_name);
 
 	return _batch_rel_err;
 }
 
 
-/**
- * Sets this Tally's name
- * @param name the name of the Tally
- */
-void Tally::setTallyName(char* name) {
-	_name = name;
+void Tally::retrieveTallyCenters(double* data, int num_bins){
+
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to retrieve bin centers for Tally %s since"
+                      " it has not yet computed batch statistics", _tally_name);
+    if (_num_batches == 0)
+        log_printf(ERROR, "Unable to retrieve bin centers for Tally %s since it"
+              " does not know how many batches it should tally", _tally_name);
+
+    /* Load all tally bin centers into array */
+    for (int i=0; i < _num_bins; i++)
+        data[i] = _centers[i];
+
+}
+
+
+void Tally::retrieveTallyMu(double* data, int num_bins) {
+
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to retrieve tally mu for Tally %s since"
+                      " it has not yet computed batch statistics", _tally_name);
+    if (_num_batches == 0)
+        log_printf(ERROR, "Unable to retrieve tally mu for Tally %s since it"
+              " does not know how many batches it should tally", _tally_name);
+
+    /* Load all tally mu into array */
+    for (int i=0; i < _num_bins; i++)
+        data[i] = _batch_mu[i];
+}
+
+void Tally::retrieveTallyVariance(double* data, int num_bins) {
+
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to retrieve tally variances for Tally %s since"
+                      " it has not yet computed batch statistics", _tally_name);
+    if (_num_batches == 0)
+        log_printf(ERROR, "Unable to retrieve tally variance for Tally %s since it"
+              " does not know how many batches it should tally", _tally_name);
+
+    /* Load all tally variances into array */
+    for (int i=0; i < _num_bins; i++)
+        data[i] = _batch_variance[i];
+}
+
+
+void Tally::retrieveTallyStdDev(double* data, int num_bins) {
+
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to retrieve tally std. dev. for Tally %s since"
+                      " it has not yet computed batch statistics", _tally_name);
+    if (_num_batches == 0)
+        log_printf(ERROR, "Unable to retrieve tally std. dev. for Tally %s since it"
+              " does not know how many batches it should tally", _tally_name);
+
+    /* Load all tally standard deviations into array */
+    for (int i=0; i < _num_bins; i++)
+        data[i] = _batch_std_dev[i];
+}
+
+
+void Tally::retrieveTallyRelErr(double* data, int num_bins) {
+
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to retrieve tally rel. err. for Tally %s since"
+                      " it has not yet computed batch statistics", _tally_name);
+    if (_num_batches == 0)
+        log_printf(ERROR, "Unable to retrieve tally rel. err. for Tally %s since it"
+              " does not know how many batches it should tally", _tally_name);
+
+    /* Load all tally variances into array */
+    for (int i=0; i < _num_bins; i++)
+        data[i] = _batch_rel_err[i];
 }
 
 
 /**
- * Set the domain type for this Tally (ISOTOPE, MATERIAL, REGION)
- * @param type the tally type
+ * Set the bin spacing type for this Tally (EQUAL, LOGARITHMIC, OTHER)
+ * @param type the bin spacing type
  */
-void Tally::setTallyDomainType(tallyDomainType type) {
-	_tally_domain = type;
-}
-
-
-/**
- * Set the type of tally for this Tally (FLUX, COLLISION_RATE, ABSORPTION_RATE)
- * @param type the tally type
- */
-void Tally::setTallyType(tallyType type) {
-	_tally_type = type;
+void Tally::setBinSpacingType(binSpacingType type) {
+    _bin_spacing = type;
 }
 
 
@@ -406,11 +465,29 @@ void Tally::setTallyType(tallyType type) {
  * @param edges the array of bin edges
  * @param num_bins the number of bins
  */
-void Tally::setBinEdges(float* edges, int num_bins) {
+void Tally::setBinEdges(double* edges, int num_bins) {
 
 	_num_bins = num_bins;
-	_edges = edges;
 	_bin_spacing = OTHER;
+    _edges = (double*)malloc(sizeof(double)*num_bins);
+
+    for (int i=0; i < num_bins; i++)
+        _edges[i] = edges[i];
+
+	/* Create an array of the center values between bins */
+	generateBinCenters();
+
+    return;
+}
+
+
+/**
+ * Set the number of batches for this Tally. This method also
+ * allocates memory for the tallies and batch statistics arrays
+ * @param num_batches the number of batches
+ */
+void Tally::setNumBatches(int num_batches) {
+	_num_batches = num_batches;
 
 	/* Set all tallies to zero by default */
 	_tallies = (double**) malloc(sizeof(double*) * _num_batches);
@@ -428,24 +505,41 @@ void Tally::setBinEdges(float* edges, int num_bins) {
 		}
 	}
 
-	/* Create an array of the center values between bins */
-	generateBinCenters();
-
 	/* Allocate memory for batch-based statistical counters */
 	_batch_mu = new double[_num_bins];
 	_batch_variance = new double[_num_bins];
 	_batch_std_dev = new double[_num_bins];
 	_batch_rel_err = new double[_num_bins];
-
 }
 
 
 /**
- * Set the number of batches for this tally
- * @param num_batches the number of batches
+ * This method clones a given Tally class object by executing a deep
+ * copy of all of the Tally's class attributes and giving them to a new
+ * Tally class object
+ * @return a pointer to the new cloned Tally class object
  */
-void Tally::setNumBatches(int num_batches) {
-	_num_batches = num_batches;
+Tally* Tally::clone() {
+
+	/* Allocate memory for the clone */
+	Tally* new_clone = new Tally(_tally_name, _tally_domain, _tally_type);
+
+    new_clone->setBinSpacingType(_bin_spacing);
+    new_clone->setNumBatches(_num_batches);
+
+    /* If the bins are regularly spaced, re-generate them for the new Tally */
+    if (_bin_spacing == EQUAL || _bin_spacing == LOGARITHMIC)
+        new_clone->generateBinEdges(_edges[0], _edges[_num_bins], 
+                                    _num_bins, _bin_spacing);
+    /* If the bins are not regularly spaced, deep copy them to the new Tally */
+    else {
+        double* edges = new double[_num_bins+1];
+        memcpy(edges, _edges, _num_bins * sizeof(double));
+        new_clone->setBinEdges(edges, _num_bins);
+    }
+
+	/* Return a pointer to the cloned Isotope class */
+	return new_clone;
 }
 
 
@@ -456,61 +550,37 @@ void Tally::setNumBatches(int num_batches) {
  * @param num_bins the number of bins to be created
  * @param type the type of bins (EQUAL or LOGARITHMIC)
  */
-void Tally::generateBinEdges(float start, float end, int num_bins,
+void Tally::generateBinEdges(double start, double end, int num_bins,
 												binSpacingType type) {
 	if (start == end)
 		log_printf(ERROR, "Unable to create bins for Tally %s between"
-				"the same start and end points: %f", _name, start);
+				"the same start and end points: %f", _tally_name, start);
 
 	_num_bins = num_bins;
 	_bin_spacing = type;
 
-	/* Allocate memory for tallies */
-	_tallies = (double**) malloc(sizeof(double*) * _num_batches);
-	_num_tallies = (int**) malloc(sizeof(int*) * _num_batches);
-	for (int i=0; i < _num_batches; i++) {
-		_tallies[i] = new double[_num_bins];
-		_num_tallies[i] = new int[_num_bins];
-	}
-
-
-	/* Set all tallies to zero by default */
-	for (int i=0; i < _num_batches; i++) {
-		for (int j=0; j < _num_bins; j++) {
-			_tallies[i][j] = 0;
-			_num_tallies[i][j] = 0;
-		}
-	}
-
 	/* Equal spacing between bins */
 	if (type == EQUAL) {
-		_bin_delta = float(end - start) / float(_num_bins);
+		_bin_delta = double(end - start) / double(_num_bins);
 
 		/* Generate points from start to end for each bin edge */
-		_edges = linspace<float, float>(start, end, num_bins+1);
+		_edges = linspace<double, double>(start, end, num_bins+1);
 	}
 
 	/* Logarithmically equal spacing between bins */
 	else if (type == LOGARITHMIC) {
-		_bin_delta = float(log10(end) - log10(start)) / float(_num_bins);
+		_bin_delta = double(log10(end) - log10(start)) / double(_num_bins);
 
 		/* Generate points from start to end for each bin edge */
-		_edges = logspace<float, float>(start, end, num_bins+1);
+		_edges = logspace<double, double>(start, end, num_bins+1);
 	}
 
 	else
 		log_printf(ERROR, "Bin type %d is not yet implemented for Tally %s",
-															_name, type);
+															_tally_name, type);
 
 	/* Create an array of the center values between bins */
 	generateBinCenters();
-
-	/* Allocate memory for batch-based statistical counters */
-	_batch_mu = new double[_num_bins];
-	_batch_variance = new double[_num_bins];
-	_batch_std_dev = new double[_num_bins];
-	_batch_rel_err = new double[_num_bins];
-
 
 	return;
 }
@@ -523,7 +593,7 @@ void Tally::generateBinCenters() {
 
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot generate bin centers for Tally %s since "
-				 "the bins have not yet been created", _name);
+				 "the bins have not yet been created", _tally_name);
 
 	/* Allocate memory for the bin centers array */
 	_centers = new double[_num_bins];
@@ -542,14 +612,14 @@ void Tally::generateBinCenters() {
  * @param num_samples the number of samples to tally
  * @param batch_num the batch number for this sample
  */
-void Tally::tally(float* samples, int num_samples, int batch_num) {
+void Tally::tally(double* samples, int num_samples, int batch_num) {
 
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot tally samples in Tally %s since the "
-				 "bins have not yet been created", _name);
+				 "bins have not yet been created", _tally_name);
 	if (_num_batches == 0)
 		 log_printf(ERROR, "Cannot tally samples in Tally %s since "
-				 "batches have not yet been created", _name);
+				 "batches have not yet been created", _tally_name);
 
 	int bin_index;
 
@@ -571,14 +641,14 @@ void Tally::tally(float* samples, int num_samples, int batch_num) {
  * @param samples array of samples to tally
  * @param batch_num the batch number for this sample
  */
-void Tally::tally(float sample, int batch_num) {
+void Tally::tally(double sample, int batch_num) {
 
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot tally sample in Tally %s since "
-				 "the bins have not yet been created", _name);
+				 "the bins have not yet been created", _tally_name);
 	if (_num_batches == 0)
 		 log_printf(ERROR, "Cannot tally samples in Tally %s since "
-				 "batches have not yet been created", _name);
+				 "batches have not yet been created", _tally_name);
 
 	int bin_index = getBinIndex(sample);
 
@@ -598,14 +668,14 @@ void Tally::tally(float sample, int batch_num) {
  * @param num_samples the number of samples to tally
  * @param batch_num the batch number for this sample
  */
-void Tally::weightedTally(float* samples, float* sample_weights,
+void Tally::weightedTally(double* samples, double* sample_weights,
 										int num_samples, int batch_num) {
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot tally weighted samples in Tally %s "
-				 "since the bins have not yet been created", _name);
+				 "since the bins have not yet been created", _tally_name);
 	if (_num_batches == 0)
 		 log_printf(ERROR, "Cannot tally samples in Tally %s since "
-				 "batches have not yet been created", _name);
+				 "batches have not yet been created", _tally_name);
 
 	int bin_index;
 
@@ -628,14 +698,14 @@ void Tally::weightedTally(float* samples, float* sample_weights,
  * @param weight the weight to increment tally by
  * @param batch_num the batch number for this sample
  */
-void Tally::weightedTally(float sample, float weight, int batch_num) {
+void Tally::weightedTally(double sample, double weight, int batch_num) {
 
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot tally weighted sample in Tally %s since "
-				 "the bins have not yet been created", _name);
+				 "the bins have not yet been created", _tally_name);
 	if (_num_batches == 0)
 		 log_printf(ERROR, "Cannot tally samples in Tally %s since "
-				 "batches have not yet been created", _name);
+				 "batches have not yet been created", _tally_name);
 
 	int bin_index = getBinIndex(sample);
 
@@ -655,10 +725,10 @@ void Tally::normalizeTallies() {
 
 	if (_num_bins == 0)
 		log_printf(ERROR, "Cannot normalize tallies for Tally %s since it is"
-						"the bins have not yet been created", _name);
+						"the bins have not yet been created", _tally_name);
 	if (_num_batches == 0)
 		 log_printf(ERROR, "Cannot normalize tallies for Tally %s since "
-				 "batches have not yet been created", _name);
+				 "batches have not yet been created", _tally_name);
 
 	double max_tally = getMaxTally();
 
@@ -676,14 +746,14 @@ void Tally::normalizeTallies() {
  * Divide each tally by a given scaling factor
  * @param scale_factor factor to normalize tallies by
  */
-void Tally::normalizeTallies(float scale_factor) {
+void Tally::normalizeTallies(double scale_factor) {
 
 	if (_num_bins == 0)
 		log_printf(ERROR, "Cannot normalize tallies for Tally %s since it is"
-						"the bins have not yet been created", _name);
+						"the bins have not yet been created", _tally_name);
 	if (_num_batches == 0)
 		 log_printf(ERROR, "Cannot normalize tallies for Tally %s since "
-				 "batches have not yet been created", _name);
+				 "batches have not yet been created", _tally_name);
 
 	/* Divide each tally by maximum tally value */
 	for (int i=0; i < _num_batches; i++) {
@@ -703,10 +773,10 @@ void Tally::computeBatchStatistics() {
 
 	if (_num_batches == 0)
 		log_printf(ERROR, "Cannot compute batch statistics for Tally %s"
-				" since it has  have not yet been generated", _name);
+				" since it has  have not yet been generated", _tally_name);
 	if (_num_batches == 0)
 		 log_printf(ERROR, "Cannot compute batch statistics for Tally %s since"
-				 " batches have not yet been created", _name);
+				 " batches have not yet been created", _tally_name);
 
 	/* Loop over each bin */
 	for (int i=0; i < _num_bins; i++) {
@@ -750,14 +820,14 @@ void Tally::computeBatchStatistics() {
  * a scaling factor
  * @param scale_factor the factor to scale each bin value by
  */
-void Tally::computeScaledBatchStatistics(float scale_factor) {
+void Tally::computeScaledBatchStatistics(double scale_factor) {
 
 	if (_num_batches == 0)
 		log_printf(ERROR, "Cannot compute batch statistics for BatchBinSet %s "
-				"since the binners have not yet been generated", _name);
+				"since the binners have not yet been generated", _tally_name);
 	if (_num_batches == 0)
 		 log_printf(ERROR, "Cannot compute batch statistics for Tally %s since"
-				 " batches have not yet been created", _name);
+				 " batches have not yet been created", _tally_name);
 
 	/* Loop over each bin */
 	for (int i=0; i < _num_bins; i++) {
@@ -805,11 +875,11 @@ void Tally::outputBatchStatistics(const char* filename) {
 
 	if (_num_batches == 0)
 		log_printf(ERROR, "Cannot output batch statistics for Tally %s "
-				"since the batches have not yet been generated", _name);
+				"since the batches have not yet been generated", _tally_name);
 
 	if (!_computed_statistics)
 		log_printf(ERROR, "Cannot output batch statistics for Tally %s "
-				"since statistics have not yet been computed", _name);
+				"since statistics have not yet been computed", _tally_name);
 
 	/* Create output file */
 	FILE* output_file;
