@@ -176,10 +176,14 @@ public:
 	float getDistanceTraveled(neutron *neutron);
 	float getThermalScatteringEnergy(float energy);
 
+    int getNumThermalCDFs();
+    int getNumThermalCDFBins();
+    void retrieveThermalCDFs(float* cdfs, int num_values);
+    void retrieveThermalDistributions(float* cdfs, int num_values);
+    void retrieveEtokT(float* E_to_kT, int num_cdfs);
+    void retrieveEprimeToE(float* Eprime_to_E, int num_bins);
+    
 	void addTally(Tally *tally);
-
-//	void RIEnergies(double *ri_vec, int n);
-	void exportXS(char* xs_type);
 
     void computeBatchStatistics();
     void computeScaledBatchStatistics(float scale_factor);

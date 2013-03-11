@@ -25,6 +25,51 @@ def main():
     u235 = Isotope('U-235')
     u238 = Isotope('U-238')
 
+
+
+    ############################################################################
+    #EXAMPLE: How to plot thermal scattering CDFs 
+    ############################################################################
+    num_bins = h1.getNumThermalCDFBins()
+    num_cdfs = h1.getNumThermalCDFs()
+    Eprime_to_E = h1.retrieveEprimeToE(num_bins)
+    E_to_kT = h1.retrieveEtokT(num_cdfs)
+
+    cdfs = h1.retrieveThermalCDFs(num_cdfs*num_bins)
+    cdfs = numpy.reshape(cdfs, [num_cdfs, num_bins])   # reshape 1D array to 2D
+    dist = h1.retrieveThermalDistributions(num_cdfs*num_bins)
+    dist = numpy.reshape(dist, [num_cdfs, num_bins])   # reshape 1D array to 2D
+
+    # Plot the PDFs
+    fig = matplt.figure()
+    legend = []
+    for i in range(num_cdfs):
+        matplt.plot(Eprime_to_E, dist[i][:])
+        legend.append(str(E_to_kT[i]) + ' kT')
+
+    matplt.title(h1.getIsotopeType() + ' Thermal Scattering PDFs')
+    matplt.ylabel('Probability')
+    matplt.xlabel('Eprime / E')
+    matplt.legend(legend)
+    matplt.savefig(h1.getIsotopeType() + '_thermal_scattering_pdfs.png')
+
+
+    # Plot the CDFs
+    fig = matplt.figure()
+    legend = []
+    for i in range(num_cdfs):
+        matplt.plot(Eprime_to_E, cdfs[i][:])
+        legend.append(str(E_to_kT[i]) + ' kT')
+
+    matplt.title(h1.getIsotopeType() + ' Thermal Scattering CDFs')
+    matplt.ylabel('Cumulative Probability')
+    matplt.xlabel('Eprime / E')
+    matplt.legend(legend)
+    matplt.savefig(h1.getIsotopeType() + 'thermal_scattering_cdfs.png')
+
+
+
+
     # Plot the microscopic cross sections for each isotope
     plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
     plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
@@ -92,7 +137,7 @@ def main():
 
     # Create a tally for the flux
     flux = Tally('total flux', REGION, FLUX)
-    flux.generateBinEdges(1E-3, 2E7, 1000, LOGARITHMIC)
+    flux.generateBinEdges(1E-3, 2E7, 2000, LOGARITHMIC)
     region_mix.addTally(flux)
 
     ############################################################################
