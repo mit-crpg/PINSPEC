@@ -49,7 +49,7 @@ plt.ylabel('E [eV]')
 plt.savefig("XS_Comparison_300.png")
 
 #Resonance Integral Boundaries, can be passed in
-RIb=numpy.array([[1e-5,1],[6,10],[1,6],[10,25],[25,50],[50,100],[100,1000]], dtype=float)
+RIb=numpy.array([[0.01,0.1],[0.1,1.0],[6,10],[1,6],[10,25],[25,50],[50,100],[0.5,10000]], dtype=float)
 
 #Make loop for RI calculation for Fake U238
 prod=numpy.zeros_like(barns300)
