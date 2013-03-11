@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from numpy import *
+import numpy as np
 from pinspec import *
 
 # Series of functions use to plot XS data (energy, xs) that is saved
@@ -8,6 +8,8 @@ from pinspec import *
 # and outputs png plots, and deletes the directory
 # used to store the text files.
 
+# Function to plot the microscopic cross section for a
+# given isotope and array of reactions
 def plotMicroXS(isotope, rxns):
     
     # set input and output file names
@@ -33,7 +35,8 @@ def plotMicroXS(isotope, rxns):
     plt.legend(rxns)
     fig.savefig(filename)
 
-
+# function to plot the macroscopic cross section for a
+# given material and arrary of reactions
 def plotMacroXS(material, rxns):
     
     # set input and output file names
@@ -59,6 +62,7 @@ def plotMacroXS(material, rxns):
     plt.legend(rxns)
     fig.savefig(filename)
 
+# Function that plots the flux spectrum
 def plotFlux(flux):
 
     num_bins = flux.getNumBins()
@@ -82,7 +86,40 @@ def plotFlux(flux):
     fig.savefig(flux.getTallyName() + '_average.png')
 
 
+# Function to plot the fission CDF and sample from the
+# fission CDF to generate a fission spectrum
+def plotFissionSpectrum():
+    
+    # Generate fission CDF
+    fissioner = Fissioner()
+    fissioner.setNumBins(10000)
+    fissioner.setEMax(20)
+    fissioner.buildCDF()
+    cdf = fissioner.retrieveCDF(fissioner.getNumBins())
+    cdf_energies = fissioner.retrieveCDFEnergies(fissioner.getNumBins())
 
+    # Plot fission CDF
+    fig = plt.figure()
+    plt.plot(cdf_energies, cdf)
+    plt.xscale('log')
+    plt.xlabel('Energy [ev]')
+    plt.title('Watt Spectrum CDF')
+    plt.savefig('fission_spectrum_cdf.png')
+
+    # Sample from fission CDF to get fission spectrum
+    num_samples = 100000
+    emitted_energies = np.zeros(num_samples)
+    for i in range(num_samples):
+        emitted_energies[i] = fissioner.emitNeutroneV()
+    
+    # Plot fission spectrum
+    fig = plt.figure()
+    plt.hist(emitted_energies, 100)
+    plt.savefig('fission_spectrum.png')
+
+
+
+    
 
 
 

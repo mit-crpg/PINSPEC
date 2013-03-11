@@ -1,8 +1,7 @@
-import matplotlib.pyplot as matplt
-import numpy
 from pinspec import *
+import numpy
+import matplotlib.pyplot as matplt    # only need to import this for examples
 import plotter
-
 
 def main():
 
@@ -76,7 +75,6 @@ def main():
     plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
     plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
     
-    
     # Define materials
     mix = Material()
     mix.setMaterialName('fuel moderator mix')
@@ -89,9 +87,8 @@ def main():
     log_printf(INFO, "Added isotopes")
 
     # Plot the mixture macroscopic cross sections
-    plotter.plotMacroXS(mix, ['capture', 'elastic', 'fission', \
-                                            'absorption', 'total'])
-    
+    plotter.plotMacroXS(mix, ['capture', 'elastic', 'fission', 'absorption', 'total'])
+
     # Define regions
     region_mix = Region()
     region_mix.setRegionName('infinite medium fuel/moderator mix')
@@ -99,37 +96,9 @@ def main():
     region_mix.setMaterial(mix)
 
     log_printf(INFO, "Made mixture region")
-
-    ############################################################################
-    #EXAMPLE: How to plot a fission spectrum CDF 
-    ############################################################################
-    fissioner = Fissioner()
-    fissioner.setNumBins(10000)
-    fissioner.setEMax(20)
-    fissioner.buildCDF()
-    cdf = fissioner.retrieveCDF(fissioner.getNumBins())
-    cdf_energies = fissioner.retrieveCDFEnergies(fissioner.getNumBins())
         
-    fig = matplt.figure()
-    matplt.plot(cdf_energies, cdf)
-    matplt.xscale('log')
-    matplt.xlabel('Energy [ev]')
-    matplt.title('Watt Spectrum CDF')
-    matplt.savefig('fission_spectrum_cdf.png')
-
-    ############################################################################
-    #EXAMPLE: How to plot a fission spectrum - this is just rough and dirty
-    ############################################################################
-    num_samples = 100000
-    emitted_energies = numpy.zeros(num_samples)
-    for i in range(num_samples):
-        emitted_energies[i] = fissioner.emitNeutroneV()
-
-    fig = matplt.figure()
-    matplt.hist(emitted_energies, 100)
-    matplt.savefig('fission_spectrum.png')    
-
-    
+    # plot the fission spectrum the CDF
+    plotter.plotFissionSpectrum()
 
 	# Define tallies - give them to Regions, Materials, or Isotopes
 	# This part is really where we need to know how to pass float
@@ -166,7 +135,6 @@ def main():
     
     # plot the flux
     plotter.plotFlux(flux)
-    
 
     # Dump batch statistics to output files to some new directory - gives segmentation fault right now
     # geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
