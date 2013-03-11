@@ -4104,30 +4104,11 @@ SWIGINTERN PyObject *_wrap_Geometry_setDancoffFactor(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Geometry_setDancoffFactor" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-<<<<<<< HEAD
-  (arg1)->setDancoffFactor(arg2);
-=======
-  ecode3 = SWIG_AsVal_float(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Geometry_setTwoRegionPinCellParams" "', argument " "3"" of type '" "float""'");
-  } 
-  arg3 = static_cast< float >(val3);
-  ecode4 = SWIG_AsVal_float(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Geometry_setTwoRegionPinCellParams" "', argument " "4"" of type '" "float""'");
-  } 
-  arg4 = static_cast< float >(val4);
-  ecode5 = SWIG_AsVal_float(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Geometry_setTwoRegionPinCellParams" "', argument " "5"" of type '" "float""'");
-  } 
-  arg5 = static_cast< float >(val5);
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    (arg1)->setTwoRegionPinCellParams(arg2,arg3,arg4,arg5);
+    (arg1)->setDancoffFactor(arg2);
     SWIG_PYTHON_THREAD_END_ALLOW;
   }
->>>>>>> 7cf67f4757603a599cb5592743cafd59df7c01e0
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4313,7 +4294,6 @@ SWIGINTERN PyObject *_wrap_new_Region(PyObject *SWIGUNUSEDPARM(self), PyObject *
   PyObject * obj1 = 0 ;
   Region *result = 0 ;
   
-<<<<<<< HEAD
   if (!PyArg_ParseTuple(args,(char *)"OO:new_Region",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
   if (!SWIG_IsOK(res1)) {
@@ -4325,15 +4305,11 @@ SWIGINTERN PyObject *_wrap_new_Region(PyObject *SWIGUNUSEDPARM(self), PyObject *
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Region" "', argument " "2"" of type '" "regionType""'");
   } 
   arg2 = static_cast< regionType >(val2);
-  result = (Region *)new Region(arg1,arg2);
-=======
-  if (!PyArg_ParseTuple(args,(char *)":new_Region")) SWIG_fail;
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    result = (Region *)new Region();
+    result = (Region *)new Region(arg1,arg2);
     SWIG_PYTHON_THREAD_END_ALLOW;
   }
->>>>>>> 7cf67f4757603a599cb5592743cafd59df7c01e0
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Region, SWIG_POINTER_NEW |  0 );
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
@@ -4602,46 +4578,6 @@ fail:
 }
 
 
-<<<<<<< HEAD
-=======
-SWIGINTERN PyObject *_wrap_Region_setRegionName(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Region *arg1 = (Region *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Region_setRegionName",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_setRegionName" "', argument " "1"" of type '" "Region *""'"); 
-  }
-  arg1 = reinterpret_cast< Region * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Region_setRegionName" "', argument " "2"" of type '" "char *""'");
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  {
-    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    (arg1)->setRegionName(arg2);
-    SWIG_PYTHON_THREAD_END_ALLOW;
-  }
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return NULL;
-}
-
-
->>>>>>> 7cf67f4757603a599cb5592743cafd59df7c01e0
 SWIGINTERN PyObject *_wrap_Region_setVolume(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Region *arg1 = (Region *) 0 ;
@@ -4710,43 +4646,6 @@ fail:
 }
 
 
-<<<<<<< HEAD
-=======
-SWIGINTERN PyObject *_wrap_Region_setRegionType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Region *arg1 = (Region *) 0 ;
-  regionType arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Region_setRegionType",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_setRegionType" "', argument " "1"" of type '" "Region *""'"); 
-  }
-  arg1 = reinterpret_cast< Region * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_setRegionType" "', argument " "2"" of type '" "regionType""'");
-  } 
-  arg2 = static_cast< regionType >(val2);
-  {
-    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    (arg1)->setRegionType(arg2);
-    SWIG_PYTHON_THREAD_END_ALLOW;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
->>>>>>> 7cf67f4757603a599cb5592743cafd59df7c01e0
 SWIGINTERN PyObject *_wrap_Region_addTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Region *arg1 = (Region *) 0 ;
@@ -4781,70 +4680,6 @@ fail:
 }
 
 
-<<<<<<< HEAD
-=======
-SWIGINTERN PyObject *_wrap_Region_setTwoRegionPinCellParams(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Region *arg1 = (Region *) 0 ;
-  float arg2 ;
-  float arg3 ;
-  float arg4 ;
-  float arg5 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  float val2 ;
-  int ecode2 = 0 ;
-  float val3 ;
-  int ecode3 = 0 ;
-  float val4 ;
-  int ecode4 = 0 ;
-  float val5 ;
-  int ecode5 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOO:Region_setTwoRegionPinCellParams",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_setTwoRegionPinCellParams" "', argument " "1"" of type '" "Region *""'"); 
-  }
-  arg1 = reinterpret_cast< Region * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_setTwoRegionPinCellParams" "', argument " "2"" of type '" "float""'");
-  } 
-  arg2 = static_cast< float >(val2);
-  ecode3 = SWIG_AsVal_float(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Region_setTwoRegionPinCellParams" "', argument " "3"" of type '" "float""'");
-  } 
-  arg3 = static_cast< float >(val3);
-  ecode4 = SWIG_AsVal_float(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Region_setTwoRegionPinCellParams" "', argument " "4"" of type '" "float""'");
-  } 
-  arg4 = static_cast< float >(val4);
-  ecode5 = SWIG_AsVal_float(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Region_setTwoRegionPinCellParams" "', argument " "5"" of type '" "float""'");
-  } 
-  arg5 = static_cast< float >(val5);
-  {
-    SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    (arg1)->setTwoRegionPinCellParams(arg2,arg3,arg4,arg5);
-    SWIG_PYTHON_THREAD_END_ALLOW;
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
->>>>>>> 7cf67f4757603a599cb5592743cafd59df7c01e0
 SWIGINTERN PyObject *_wrap_Region_setFuelRadius(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Region *arg1 = (Region *) 0 ;
@@ -5282,15 +5117,11 @@ SWIGINTERN PyObject *_wrap_Isotope_getIsotopeName(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getIsotopeName" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-<<<<<<< HEAD
-  result = (char *)((Isotope const *)arg1)->getIsotopeName();
-=======
   {
     SWIG_PYTHON_THREAD_BEGIN_ALLOW;
-    result = (char *)((Isotope const *)arg1)->getIsotopeType();
+    result = (char *)((Isotope const *)arg1)->getIsotopeName();
     SWIG_PYTHON_THREAD_END_ALLOW;
   }
->>>>>>> 7cf67f4757603a599cb5592743cafd59df7c01e0
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
