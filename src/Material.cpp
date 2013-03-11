@@ -669,7 +669,7 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     if (_material_density <= 0)
 	log_printf(ERROR, "Unable to add Isotope %s since the number density "
                        "for Material %s has not yet been set", 
-                        isotope->getIsotopeType(), _material_name);
+                        isotope->getIsotopeName(), _material_name);
 
     /* Increments the material's total atomic mass and number density */
     N_av = 6.023E-1;
@@ -700,7 +700,7 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 
     std::pair<char*, std::pair<float, Isotope*> > new_isotope =
 	std::pair<char*, std::pair<float, Isotope*> >
-	(isotope->getIsotopeType(), new_pair);
+	(isotope->getIsotopeName(), new_pair);
 
     /* Inserts the isotope and increments the total number density */
     _isotopes.insert(new_isotope);
@@ -804,7 +804,7 @@ collisionType Material::collideNeutron(neutron* neut) {
     isotope = sampleIsotope(energy);
     collisionType type = isotope->collideNeutron(neut);
     log_printf(DEBUG, "Material %s has sampled collision type %d from isotope %s", 
-                                   _material_name, type, isotope->getIsotopeType());
+                                   _material_name, type, isotope->getIsotopeName());
 
     /* Obtains macroscopic cross sections for this material class  */
     float total_xs = getTotalMacroXS(energy);
@@ -955,8 +955,8 @@ void Material::outputBatchStatistics(char* directory, char* suffix) {
     std::string filename;
 
 	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); ++iter1) {
-        filename = std::string(directory) + _material_name + "_statistics_" 
-                                    + suffix + ".txt";
+        filename = std::string(directory) + "/" + _material_name + "_" + 
+                    (*iter1)->getTallyName() + "_statistics_" + suffix + ".txt";
         (*iter1)->outputBatchStatistics(filename.c_str());
     }
 

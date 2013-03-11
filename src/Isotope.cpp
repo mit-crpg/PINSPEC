@@ -129,7 +129,7 @@ void Isotope::parseName(){
  * Returns the name of the of isotope
  * @return character array with name of isotope
  */
-char* Isotope::getIsotopeType() const {
+char* Isotope::getIsotopeName() const {
 	return _isotope_name;
 }
 
@@ -1391,8 +1391,8 @@ void Isotope::outputBatchStatistics(char* directory, char* suffix) {
     std::string filename;
 
 	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
-        filename = std::string(directory) + _isotope_name + "_statistics" 
-                                                + suffix + ".txt";
+        filename = std::string(directory) + "/" + _isotope_name + "_" + 
+                    (*iter)->getTallyName() + "_statistics" + suffix + ".txt";
         (*iter)->outputBatchStatistics(filename.c_str());
     }
 

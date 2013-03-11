@@ -13,7 +13,7 @@ def main():
 
     # Set main simulation params
     num_batches = 10
-    num_neutrons_per_batch = 1000
+    num_neutrons_per_batch = 10000
     num_threads = 8
     log_setlevel(INFO)
 
@@ -46,11 +46,11 @@ def main():
         matplt.plot(Eprime_to_E, dist[i][:])
         legend.append(str(E_to_kT[i]) + ' kT')
 
-    matplt.title(h1.getIsotopeType() + ' Thermal Scattering PDFs')
+    matplt.title(h1.getIsotopeName() + ' Thermal Scattering PDFs')
     matplt.ylabel('Probability')
     matplt.xlabel('Eprime / E')
     matplt.legend(legend)
-    matplt.savefig(h1.getIsotopeType() + '_thermal_scattering_pdfs.png')
+    matplt.savefig(h1.getIsotopeName() + '_thermal_scattering_pdfs.png')
 
 
     # Plot the CDFs
@@ -60,20 +60,13 @@ def main():
         matplt.plot(Eprime_to_E, cdfs[i][:])
         legend.append(str(E_to_kT[i]) + ' kT')
 
-    matplt.title(h1.getIsotopeType() + ' Thermal Scattering CDFs')
+    matplt.title(h1.getIsotopeName() + ' Thermal Scattering CDFs')
     matplt.ylabel('Cumulative Probability')
     matplt.xlabel('Eprime / E')
     matplt.legend(legend)
-    matplt.savefig(h1.getIsotopeType() + 'thermal_scattering_cdfs.png')
+    matplt.savefig(h1.getIsotopeName() + 'thermal_scattering_cdfs.png')
 
 
-
-
-    # Plot the microscopic cross sections for each isotope
-    plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
-    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
-    plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
-    plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
     
     # Define materials
     mix = Material()
@@ -86,13 +79,9 @@ def main():
     
     log_printf(INFO, "Added isotopes")
 
-    # Plot the mixture macroscopic cross sections
-    plotter.plotMacroXS(mix, ['capture', 'elastic', 'fission', 'absorption', 'total'])
 
     # Define regions
-    region_mix = Region()
-    region_mix.setRegionName('infinite medium fuel/moderator mix')
-    region_mix.setRegionType(INFINITE)
+    region_mix = Region('infinite medium fuel-moderator mix', INFINITE)
     region_mix.setMaterial(mix)
 
     log_printf(INFO, "Made mixture region")
@@ -100,13 +89,10 @@ def main():
     # plot the fission spectrum the CDF
     plotter.plotFissionSpectrum()
 
-	# Define tallies - give them to Regions, Materials, or Isotopes
-	# This part is really where we need to know how to pass float
-    # arrays to/from SWIG
 
     # Create a tally for the flux
     flux = Tally('total flux', REGION, FLUX)
-    flux.generateBinEdges(1E-3, 2E7, 2000, LOGARITHMIC)
+    flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
     region_mix.addTally(flux)
 
     ############################################################################
@@ -131,13 +117,18 @@ def main():
 	# Run Monte Carlo simulation
     geometry.runMonteCarloSimulation();
 
-    log_printf(INFO, "Ran Monte Carlo")
     
-    # plot the flux
-    plotter.plotFlux(flux)
+    # Dump batch statistics to output files to some new directory
+    geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
 
-    # Dump batch statistics to output files to some new directory - gives segmentation fault right now
-    # geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
+    # Plotting
+    plotter.plotFlux(flux)
+    plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
+    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
+    plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
+    plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
+    plotter.plotMacroXS(mix, ['capture', 'elastic', 'fission', \
+                                                    'absorption', 'total'])
 
 
 if __name__ == '__main__':

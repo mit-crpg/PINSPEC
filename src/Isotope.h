@@ -129,7 +129,7 @@ public:
 	void parseName();
 	void makeFissionable();
 
-	char* getIsotopeType() const;
+	char* getIsotopeName() const;
     int getA() const;
     float getAlpha() const;
     float getN() const;

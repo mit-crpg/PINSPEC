@@ -41,6 +41,7 @@ private:
 	neutron* _neutrons;
 	Fissioner* _fissioner;
 
+    float _dancoff;
 	float _sigma_e;
 	float _beta;
 	float _alpha1;
@@ -65,8 +66,7 @@ public:
 	void setNumBatches(int num_batches);
 	void setNumThreads(int num_threads);
 	void setSpatialType(spatialType spatial_type);
-	void setTwoRegionPinCellParams(float sigma_e, float beta,
-								float alpha1, float alpha2);
+    void setDancoffFactor(float dancoff);
 	void addRegion(Region* region);
 
 	/* Monte Carlo kernel */

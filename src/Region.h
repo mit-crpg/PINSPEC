@@ -42,7 +42,7 @@ typedef enum regionTypes {
 class Region {
 
 private:
-	char* _name;
+	char* _region_name;
 	float _volume;
 	Material* _material;
 	regionType _region_type;
@@ -68,7 +68,7 @@ private:
     bool onBoundary(float x, float y);
 
 public:
-	Region();
+	Region(char* region_name, regionType type);
 	virtual ~Region();
     char* getRegionName();
     float getVolume();
@@ -80,13 +80,10 @@ public:
 	float getFuelRadius();
 	float getPitch();
 
-    void setRegionName(char* region_name);
     void setVolume(float volume);
     void setMaterial(Material* material);
-	void setRegionType(regionType region_type);
     void addTally(Tally* bins);
-    void setTwoRegionPinCellParams(float sigma_e, float beta, 
-									float alpha1, float alpha2);
+
 	void setFuelRadius(float radius);
 	void setPitch(float pitch);
     void setNumBatches(int num_batches);

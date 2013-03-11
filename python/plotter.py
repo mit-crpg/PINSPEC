@@ -13,7 +13,7 @@ from pinspec import *
 def plotMicroXS(isotope, rxns):
     
     # set input and output file names
-    filename = isotope.getIsotopeType() + '-micro-xs.png'
+    filename = isotope.getIsotopeName() + '-micro-xs.png'
     
 	# retrieve xs energies
     num_energies = isotope.getNumXSEnergies()
@@ -31,9 +31,11 @@ def plotMicroXS(isotope, rxns):
     plt.yscale('log')
     plt.xlabel('Energy [ev]')
     plt.ylabel('Micro XS [barns]')
-    plt.title(isotope.getIsotopeType() + ' Micro XS')
+    plt.title(isotope.getIsotopeName() + ' Microscopic XS')
     plt.legend(rxns)
+    plt.grid()
     fig.savefig(filename)
+
 
 # function to plot the macroscopic cross section for a
 # given material and arrary of reactions
@@ -58,32 +60,58 @@ def plotMacroXS(material, rxns):
     plt.yscale('log')
     plt.xlabel('Energy [ev]')
     plt.ylabel('Macro XS [cm^-1]')
-    plt.title(material.getMaterialName() + ' Macro XS')
+    plt.title(material.getMaterialName() + ' Macroscopic XS')
     plt.legend(rxns)
+    plt.grid()
     fig.savefig(filename)
 
 # Function that plots the flux spectrum
 def plotFlux(flux):
 
+    fig = plt.figure()
+
     num_bins = flux.getNumBins()
-    flux.computeBatchStatistics()
     flux_bin_centers = flux.retrieveTallyCenters(num_bins)
     flux_mu = flux.retrieveTallyMu(num_bins)
-    flux_variance = flux.retrieveTallyVariance(num_bins)
-    flux_std_dev = flux.retrieveTallyStdDev(num_bins)
-    flux_rel_err = flux.retrieveTallyRelErr(num_bins)
-        
+
     # Plot the flux
-    fig = plt.figure()
     plt.plot(flux_bin_centers, flux_mu, lw=1)
+    
     plt.xscale('log')
     plt.yscale('log')
     plt.xlabel('Energy [ev]')
-    if (flux.getTallyType() == FLUX):
-        plt.ylabel('Flux')
+    plt.ylabel('Flux')
+    plt.title('Batch-Averaged Flux')
+    plt.grid()
+    fig.savefig(flux.getTallyName() + '_flux.png')
 
-    plt.title(flux.getTallyName() + ' average')
-    fig.savefig(flux.getTallyName() + '_average.png')
+
+# Function that plots the flux spectrum for several tallies
+def plotFluxes(fluxes):
+
+    fig = plt.figure()
+    legend = []
+    filename = ''
+
+    for flux in fluxes:
+        num_bins = flux.getNumBins()
+        flux_bin_centers = flux.retrieveTallyCenters(num_bins)
+        flux_mu = flux.retrieveTallyMu(num_bins)
+
+        # Plot the flux
+        plt.plot(flux_bin_centers, flux_mu, lw=1)
+        legend.append(flux.getTallyName())
+        filename += flux.getTallyName() + '_'
+
+    
+    plt.xscale('log')
+    plt.yscale('log')
+    plt.xlabel('Energy [ev]')
+    plt.ylabel('Flux')
+    plt.title('Batch-Avergaged Flux')
+    plt.legend(legend)
+    plt.grid()
+    fig.savefig(filename + 'flux.png')
 
 
 # Function to plot the fission CDF and sample from the
@@ -102,29 +130,29 @@ def plotFissionSpectrum():
     fig = plt.figure()
     plt.plot(cdf_energies, cdf)
     plt.xscale('log')
-    plt.xlabel('Energy [ev]')
+    plt.xlabel('Energy [Mev]')
+    plt.ylabel('Cumulative Probability')
     plt.title('Watt Spectrum CDF')
+    plt.grid()
     plt.savefig('fission_spectrum_cdf.png')
 
     # Sample from fission CDF to get fission spectrum
-    num_samples = 100000
+    num_samples = 10000000
     emitted_energies = np.zeros(num_samples)
     for i in range(num_samples):
-        emitted_energies[i] = fissioner.emitNeutroneV()
-    
+        emitted_energies[i] = fissioner.emitNeutronMeV()
+
+    # Bin the samples    
+    binned_samples, bin_edges = np.histogram(emitted_energies, bins=1000, density=True)
+    bin_centers = np.zeros(bin_edges.size-1)
+    for i in range(bin_edges.size-1):
+        bin_centers[i] = (bin_edges[i] + bin_edges[i+1]) / 2.0
+
     # Plot fission spectrum
     fig = plt.figure()
-    plt.hist(emitted_energies, 100)
-    plt.savefig('fission_spectrum.png')
-
-
-
-    
-
-
-
-
-
-
-
-
+    plt.plot(bin_centers, binned_samples)
+    plt.xlabel('Energy [Mev]')
+    plt.ylabel('Probability')
+    plt.title('Watt Spectrum PDF')
+    plt.grid()
+    plt.savefig('fission_spectrum_pdf.png')
