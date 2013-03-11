@@ -136,8 +136,8 @@ def plotThermalScatteringPDF(isotope):
 
     plt.title(isotope.getIsotopeName() + ' Thermal Scattering PDFs')
     plt.ylabel('Probability')
-    plt.xlabel('Eprime / E')
-    plt.legend(legend)
+    plt.xlabel('E'+"'"+' / E')
+    plt.legend(legend, ncol=2, loc='upper right', prop={'size':14})
     plt.savefig(isotope.getIsotopeName() + '_thermal_scattering_pdfs.png')
 
     # Plot the CDFs
@@ -149,8 +149,8 @@ def plotThermalScatteringPDF(isotope):
 
     plt.title(isotope.getIsotopeName() + ' Thermal Scattering CDFs')
     plt.ylabel('Cumulative Probability')
-    plt.xlabel('Eprime / E')
-    plt.legend(legend)
+    plt.xlabel('E'+"'"+' / E')
+    plt.legend(legend, ncol=2, loc='lower right', prop={'size':12})
     plt.savefig(isotope.getIsotopeName() + 'thermal_scattering_cdfs.png')
 
 
