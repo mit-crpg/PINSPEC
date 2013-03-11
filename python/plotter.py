@@ -32,7 +32,7 @@ def plotMicroXS(isotope, rxns):
     plt.xlabel('Energy [ev]')
     plt.ylabel('Micro XS [barns]')
     plt.title(isotope.getIsotopeName() + ' Microscopic XS')
-    plt.legend(rxns)
+    plt.legend(rxns, loc="lower left")
     plt.grid()
     fig.savefig(filename)
 
@@ -61,7 +61,7 @@ def plotMacroXS(material, rxns):
     plt.xlabel('Energy [ev]')
     plt.ylabel('Macro XS [cm^-1]')
     plt.title(material.getMaterialName() + ' Macroscopic XS')
-    plt.legend(rxns)
+    plt.legend(rxns, loc="lower left")
     plt.grid()
     fig.savefig(filename)
 
