@@ -11,7 +11,7 @@ from pinspec import *
 def plotMicroXS(isotope, rxns):
     
     # set input and output file names
-    file = isotope.getIsotopeType() + '-micro-xs.png'
+    filename = isotope.getIsotopeType() + '-micro-xs.png'
     
 	# retrieve xs energies
     num_energies = isotope.getNumXSEnergies()
@@ -31,13 +31,13 @@ def plotMicroXS(isotope, rxns):
     plt.ylabel('Micro XS [barns]')
     plt.title(isotope.getIsotopeType() + ' Micro XS')
     plt.legend(rxns)
-    fig.savefig(file)
+    fig.savefig(filename)
 
 
 def plotMacroXS(material, rxns):
     
     # set input and output file names
-    file = material.getMaterialName() + '-macro-xs.png'
+    filename = material.getMaterialName() + '-macro-xs.png'
     
 	# retrieve xs energies
     num_energies = material.getNumXSEnergies()
@@ -57,7 +57,7 @@ def plotMacroXS(material, rxns):
     plt.ylabel('Macro XS [cm^-1]')
     plt.title(material.getMaterialName() + ' Macro XS')
     plt.legend(rxns)
-    fig.savefig(file)
+    fig.savefig(filename)
 
 def plotFlux(flux):
 

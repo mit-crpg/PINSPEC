@@ -1,7 +1,7 @@
+import matplotlib.pyplot as matplt
+import numpy
 from pinspec import *
-from numpy import *
-from plotter import *
-import matplotlib.pyplot as plt
+import plotter
 
 
 def main():
@@ -14,8 +14,8 @@ def main():
 
     # Set main simulation params
     num_batches = 10
-    num_neutrons_per_batch = 10000
-    num_threads = 4
+    num_neutrons_per_batch = 1000
+    num_threads = 8
     log_setlevel(INFO)
 
 
@@ -26,10 +26,10 @@ def main():
     u238 = Isotope('U-238')
 
     # Plot the microscopic cross sections for each isotope
-    plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
-    plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
-    plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
-    plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
+    plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
+    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
+    plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
+    plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
     
     
     # Define materials
@@ -44,7 +44,8 @@ def main():
     log_printf(INFO, "Added isotopes")
 
     # Plot the mixture macroscopic cross sections
-    plotMacroXS(mix, ['capture', 'elastic', 'fission', 'absorption', 'total'])
+    plotter.plotMacroXS(mix, ['capture', 'elastic', 'fission', \
+                                            'absorption', 'total'])
     
     # Define regions
     region_mix = Region()
@@ -53,6 +54,36 @@ def main():
     region_mix.setMaterial(mix)
 
     log_printf(INFO, "Made mixture region")
+
+    ############################################################################
+    #EXAMPLE: How to plot a fission spectrum CDF 
+    ############################################################################
+    fissioner = Fissioner()
+    fissioner.setNumBins(10000)
+    fissioner.setEMax(20)
+    fissioner.buildCDF()
+    cdf = fissioner.retrieveCDF(fissioner.getNumBins())
+    cdf_energies = fissioner.retrieveCDFEnergies(fissioner.getNumBins())
+        
+    fig = matplt.figure()
+    matplt.plot(cdf_energies, cdf)
+    matplt.xscale('log')
+    matplt.xlabel('Energy [ev]')
+    matplt.title('Watt Spectrum CDF')
+    matplt.savefig('fission_spectrum_cdf.png')
+
+    ############################################################################
+    #EXAMPLE: How to plot a fission spectrum - this is just rough and dirty
+    ############################################################################
+    num_samples = 100000
+    emitted_energies = numpy.zeros(num_samples)
+    for i in range(num_samples):
+        emitted_energies[i] = fissioner.emitNeutroneV()
+
+    fig = matplt.figure()
+    matplt.hist(emitted_energies, 100)
+    matplt.savefig('fission_spectrum.png')    
+
     
 
 	# Define tallies - give them to Regions, Materials, or Isotopes
@@ -61,7 +92,7 @@ def main():
 
     # Create a tally for the flux
     flux = Tally('total flux', REGION, FLUX)
-    flux.generateBinEdges(1E-7, 1E7, 1000, LOGARITHMIC)
+    flux.generateBinEdges(1E-3, 2E7, 1000, LOGARITHMIC)
     region_mix.addTally(flux)
 
     ############################################################################
@@ -69,7 +100,7 @@ def main():
     ############################################################################
     # Create a tally for the absorption rate
     abs_rate = Tally('absorption rate', MATERIAL, ABSORPTION_RATE)
-    abs_rate_bin_edges = array([0.1, 1., 5., 10., 100., 1000.])
+    abs_rate_bin_edges = numpy.array([0.1, 1., 5., 10., 100., 1000.])
     abs_rate.setBinEdges(abs_rate_bin_edges)
     mix.addTally(abs_rate)
 
@@ -89,7 +120,8 @@ def main():
     log_printf(INFO, "Ran Monte Carlo")
     
     # plot the flux
-    plotFlux(flux)
+    plotter.plotFlux(flux)
+    
 
     # Dump batch statistics to output files to some new directory - gives segmentation fault right now
     # geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
