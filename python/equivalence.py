@@ -14,7 +14,7 @@ def main():
 	#       and use that when loading the isotope in a material
 
     # Set main simulation params
-    num_batches = 100
+    num_batches = 25
     num_neutrons_per_batch = 100000
     num_threads = 8
     radius_fuel = 0.4096;
@@ -23,9 +23,9 @@ def main():
     log_setlevel(INFO)
 
     # Call SLBW to create XS
-    filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
-    T=300 #Temp in Kelvin of target nucleus
-    SLBWXS(filename,T)
+#    filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
+#    T=300 #Temp in Kelvin of target nucleus
+#    SLBWXS(filename,T)
 
     # Define isotopes
     h1 = Isotope('H-1')
@@ -33,12 +33,6 @@ def main():
     u235 = Isotope('U-235')
     u238 = Isotope('U-238')
     
-    # Plot the microscopic cross sections for each isotope
-    plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
-    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
-    plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
-    plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
-
     # Define moderator material
     moderator = Material()
     moderator.setMaterialName('moderator')
@@ -78,9 +72,9 @@ def main():
     total_flux = Tally('total flux', REGION, FLUX)
     moderator_flux = Tally('moderator flux', REGION, FLUX)
     fuel_flux = Tally('fuel flux', REGION, FLUX)
-    total_flux.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
-    moderator_flux.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
-    fuel_flux.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
+    total_flux.generateBinEdges(1E-2, 1.2E7, 5000, LOGARITHMIC)
+    moderator_flux.generateBinEdges(1E-2, 1.2E7, 5000, LOGARITHMIC)
+    fuel_flux.generateBinEdges(1E-2, 1.2E7, 5000, LOGARITHMIC)
     region_mod.addTally(moderator_flux)
     region_fuel.addTally(fuel_flux)
     region_mod.addTally(total_flux)
@@ -102,12 +96,20 @@ def main():
 	# Dump batch statistics to output files to some new directory
     geometry.outputBatchStatistics('Equivalence_MC_Statistics', 'test')
 
-    # Plotting xs, flux
+    # Plotting xs, flux, thermal scattering
     plotter.plotFluxes([total_flux, moderator_flux, fuel_flux])
+    plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
+    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
+    plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
+    plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
     plotter.plotMacroXS(fuel, ['capture', 'elastic', 'fission', \
                                             'absorption', 'total'])
     plotter.plotMacroXS(moderator, ['capture', 'elastic', 'fission', \
                                                 'absorption', 'total'])
+    plotter.plotThermalScatteringPDF(h1)
+    plotter.plotThermalScatteringPDF(u238)
+    plotter.plotThermalScatteringPDF(u235)
+    plotter.plotThermalScatteringPDF(o16)
 
 
 if __name__ == '__main__':

@@ -177,7 +177,6 @@ void Geometry::setSpatialType(spatialType spatial_type) {
  */
 void Geometry::addRegion(Region* region) {
 
-    log_printf(NORMAL, "tying to add region %s with type %d to geometry", region->getRegionName(), region->getRegionType());
 	if (region->getRegionType() == INFINITE) {
 		if (_fuel != NULL)
 			log_printf(ERROR, "Unable to add an INFINITE type region %s"

@@ -109,7 +109,7 @@ def plotFluxes(fluxes):
     plt.xlabel('Energy [ev]')
     plt.ylabel('Flux')
     plt.title('Batch-Avergaged Flux')
-    plt.legend(legend)
+    plt.legend(legend, loc='lower right', prop={'size':12})
     plt.grid()
     fig.savefig(filename + 'flux.png')
 
@@ -138,6 +138,7 @@ def plotThermalScatteringPDF(isotope):
     plt.ylabel('Probability')
     plt.xlabel('E'+"'"+' / E')
     plt.legend(legend, ncol=2, loc='upper right', prop={'size':14})
+    plt.grid()
     plt.savefig(isotope.getIsotopeName() + '_thermal_scattering_pdfs.png')
 
     # Plot the CDFs
@@ -151,6 +152,7 @@ def plotThermalScatteringPDF(isotope):
     plt.ylabel('Cumulative Probability')
     plt.xlabel('E'+"'"+' / E')
     plt.legend(legend, ncol=2, loc='lower right', prop={'size':12})
+    plt.grid()
     plt.savefig(isotope.getIsotopeName() + 'thermal_scattering_cdfs.png')
 
 

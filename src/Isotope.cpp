@@ -782,6 +782,10 @@ void Isotope::setCaptureXS(float* capture_xs, float* capture_xs_energies,
     _capture_xs = capture_xs;
     _capture_xs_energies = capture_xs_energies;
     _num_capture_xs = num_capture_xs;
+    float (Isotope::*func)(float) const;
+    func = &Isotope::getCaptureXS;
+    _xs_handles.insert(std::pair<collisionType, float(Isotope::*)(float)
+    											const>(CAPTURE, func));
 }
 
 
@@ -855,7 +859,9 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 		_num_capture_xs = num_energies;
 		delete [] _capture_xs_energies;
 		delete _capture_xs;
-		setCaptureXS(new_xs, new_energies, num_energies);
+//		setCaptureXS(new_xs, new_energies, num_energies);
+		_capture_xs = new_xs;
+		_capture_xs_energies = new_energies;
 	}
 
 	/* Elastic xs */
@@ -870,7 +876,9 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 		_num_elastic_xs = num_energies;
 		delete [] _elastic_xs_energies;
 		delete _elastic_xs;
-		setElasticXS(new_xs, new_energies, num_energies, ISOTROPIC_CM);
+//		setElasticXS(new_xs, new_energies, num_energies, ISOTROPIC_CM);
+		_elastic_xs = new_xs;
+		_elastic_xs_energies = new_energies;
 	}
 
 	/* Fission xs */
@@ -886,7 +894,7 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 		_num_fission_xs = num_energies;
 		delete [] _fission_xs_energies;
 		delete _fission_xs;
-		setFissionXS(new_xs, new_energies, num_energies);
+//		setFissionXS(new_xs, new_energies, num_energies);
 		_fission_xs = new_xs;
 		_fission_xs_energies = new_energies;
 	}
@@ -1325,7 +1333,6 @@ collisionType Isotope::collideNeutron(neutron* neut) {
     /* Asymptotic elastic scattering above 4 eV */
     if (energy > 4.0)
     	neut->_energy *= (alpha + (1.0 - alpha) * random);
-    /* Thermal scattering below 4 eV */
     else
         neut->_energy =  getThermalScatteringEnergy(energy);
 
