@@ -14,18 +14,18 @@ def main():
 	#       and use that when loading the isotope in a material
 
     # Set main simulation params
-    num_batches = 10
-    num_neutrons_per_batch = 10000
-    num_threads = 4
+    num_batches = 100
+    num_neutrons_per_batch = 100000
+    num_threads = 8
     radius_fuel = 0.4096;
     pitch = 1.26
     dancoff = 0.277;
     log_setlevel(INFO)
 
     # Call SLBW to create XS
-    nameoffile = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
+    filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
     T=300 #Temp in Kelvin of target nucleus
-    SLBWXS(nameoffile,T)
+    SLBWXS(filename,T)
 
     # Define isotopes
     h1 = Isotope('H-1')

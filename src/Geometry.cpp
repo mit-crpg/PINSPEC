@@ -246,7 +246,7 @@ void Geometry::runMonteCarloSimulation() {
 
 	/* Print report to the screen */
 	log_printf(INFO, "Beginning PINSPEC Monte Carlo Simulation...");
-	log_printf(INFO, "# neutrons / batch = %d\t\t# batches = %d\t\t# threads = %d",
+	log_printf(INFO, "# neutrons / batch = %d\t# batches = %d\t# threads = %d",
 						_num_neutrons_per_batch, _num_batches, _num_threads);
 
 
