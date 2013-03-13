@@ -17,7 +17,7 @@ For a standard build and installation as a standalone Python package accessible 
    
 If you would rather install this as a standalone Python package only accessible to your username:
 
-   > sudo python setup.py install --user
+   > python setup.py install --user
 
 To run a sample infinite medium input file, do: 
 
