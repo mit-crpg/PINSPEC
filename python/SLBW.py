@@ -172,12 +172,14 @@ def SLBWXS(nameoffile,T):
 	# Frankenstein arrays together
 	sigma_g = numpy.append(sigma_g, sigma_g2)
 	E = numpy.append(E, E2)
+	#convert eV to MeV
+	E=E/10e6
 	EXS = (E, sigma_g)
 	EXS = numpy.transpose(EXS)
 
 	#plot fictitious XS
-	plt.loglog(E, sigma_g)
-	plt.savefig("U238XS.png")
+	#plt.loglog(E, sigma_g)
+	#plt.savefig("U238XS.png")
 
 	# write output file
 	out_name = cur_dir + "/../xs-lib/"+El+"-"+str(int(A))+"-capture.txt"
