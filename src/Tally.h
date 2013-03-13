@@ -99,6 +99,7 @@ public:
     /* IMPORTANT: The following five class method prototypes must not be changed
      * without changing Geometry.i to allow for the data arrays to be transformed
      * into numpy arrays */
+    void retrieveTallyEdges(double* data, int num_bins);
     void retrieveTallyCenters(double* data, int num_bins);
     void retrieveTallyMu(double* data, int num_bins);
     void retrieveTallyVariance(double* data, int num_bins);

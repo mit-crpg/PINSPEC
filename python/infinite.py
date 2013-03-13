@@ -1,27 +1,20 @@
-from pinspec import *
 import numpy
-import matplotlib.pyplot as matplt    # only need to import this for examples
+from pinspec import *
 import plotter
-from SLBW import *
+import SLBW
 
 def main():
 
-
-    # NOTE: If a user is going to homogenize materials
-	#       then they must figure out the atom ratios 
-	#       using geometric parameters and use that 
-    #       when loading the isotope in a material
-
     # Set main simulation params
     num_batches = 10
-    num_neutrons_per_batch = 100000
+    num_neutrons_per_batch = 10000
     num_threads = 8
     log_setlevel(INFO)
 
     # Call SLBW to create XS
-#    filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
-#    T=300 #Temp in Kelvin of target nucleus
-#    SLBWXS(filename,T)
+    filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
+    T=300 #Temp in Kelvin of target nucleus
+    SLBW.SLBWXS(filename,T)
 
     # Define isotopes
     h1 = Isotope('H-1')
@@ -87,7 +80,8 @@ def main():
     # Plotting
     plotter.plotFlux(flux)
     plotter.plotMicroXS(u235, ['capture', 'absorption'])
-    plotter.plotMicroXS(u238, ['capture', 'absorption'])
+    plotter.plotMicroXS(u238, ['capture', 'fission', 'elastic', \
+                                        'total', 'absorption'])
     plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
     plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
     plotter.plotMacroXS(mix, ['capture', 'elastic', 'fission', \
