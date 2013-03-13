@@ -295,6 +295,7 @@ class Tally(_object):
     def getMaxTally(self): return _pinspec.Tally_getMaxTally(self)
     def getMinTally(self): return _pinspec.Tally_getMinTally(self)
     def getBinIndex(self, *args): return _pinspec.Tally_getBinIndex(self, *args)
+    def retrieveTallyEdges(self, *args): return _pinspec.Tally_retrieveTallyEdges(self, *args)
     def retrieveTallyCenters(self, *args): return _pinspec.Tally_retrieveTallyCenters(self, *args)
     def retrieveTallyMu(self, *args): return _pinspec.Tally_retrieveTallyMu(self, *args)
     def retrieveTallyVariance(self, *args): return _pinspec.Tally_retrieveTallyVariance(self, *args)
