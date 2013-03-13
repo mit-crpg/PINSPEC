@@ -3,32 +3,30 @@ PINSPEC
 
 A Monte Carlo code for simple spectral calculations in nuclear reactor applications.
 
-For a standard build, do: 
+For a standard build and installation as a standalone Python package:
 
-   > sh build.sh
+   > cd PINSPEC
 
-   of 
+   > sudo python setup.py install
 
-   > ./build.sh
+To run a sample infinite medium input file, do: 
 
-   Advanced options: --release, --debug, --profile, --benchmark 
+   > cd sample-input
 
-To use the infinite geometry class, do 
+   > python infinite.py
 
-   > cd python
+To run a sample homogeneouse equivalence input file, do: 
 
-   > python2 infinite.py
+   > cd sample-input
 
+   > python equivalence.py
 
 To access the C++ classes in Python, do
 
-   > cd swig
-
    > python
 
-   > from region import *
+   > from pinspec import *
 
    > fuel = Region()
 
    > ...
-
