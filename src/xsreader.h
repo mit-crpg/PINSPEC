@@ -16,8 +16,15 @@
 #include <fstream>
 #include <sstream>
 #include <stdlib.h>
+#include <string>
 #endif
 
+#include "log.h"
+
+static char* _xs_directory = (char*)"../xs-lib/";
+
+void setXSLibDirectory(char* xs_directory);
+char* getXSLibDirectory();
 int parseCrossSections(const char* file, float* energies, float* xs_values);
 int getNumCrossSectionDataPoints(const char* file);
 

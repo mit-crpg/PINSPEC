@@ -1,32 +1,32 @@
 # Put any files you don't want to check in here.
 # Common among everyone 
 *.o
-*.pyc
+*.cxx
 *.h.gch
 *.so
-*.png
 Makefile
 */*.o
-*/*.pyc
 */*.cxx
 */*.h.gch
 */*.so
 */Makefile
 *~
 */*~
-*/*.png
-xs-lib/U-238-capture.txt
 
 # Jessica specific:
 
 # Sam specific:
 
 # Lulu specific:
-bin/
 tutorial/
-swig/*.py
-python/pinspec/Geometry_wrap.cxx
-python/pinspec/pinspec.py
-python/*.png
 
 # Will specific:
+*.png
+*.pyc
+*/*.png
+*/*.pyc
+build/
+objs/
+pinspec/Geometry_wrap.cxx
+pinspec/pinspec.py*
+
