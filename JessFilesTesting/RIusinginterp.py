@@ -53,35 +53,43 @@ RIb=numpy.array([[0.01,0.1],[0.1,1.0],[6,10],[1,6],[10,25],[25,50],[50,100],[0.5
 
 #Make loop for RI calculation for Fake U238
 prod=numpy.zeros_like(barns300)
-prodr=numpy.zeros_like(barnsEndF300)
-RIfake=numpy.zeros(len(RIb), dtype=float)
-RIreal=numpy.zeros(len(RIb), dtype=float)
+RI=numpy.zeros(len(RIb), dtype=float)
 
+# Create an numpy interpolator object for the xs
+#RI_interp_xs_object = interp1D(En300, barns300)
+leg=[]
+fig=plt.figure()
 for i in range(len(RIb-1)):
+
 	#Retrieve bounds
 	Elow=RIb[i,0]
 	Eupp=RIb[i,1]
 	
+	# Create array of energies between bounds
+	#num_energies = 10
+	#RI_energies = numpy.linspace(Elow, Eupp, num_energies)
+	#RI_interp_xs = numpy.interp(RI_energies, En300, barns300)
+	#plt.loglog(RI_energies,RI_interp_xs)
+	#leg.append(str(i))
+	#plt.loglog(En300, barns300)
+	#RI[i]=numpy.trapz(RI_interp_xs, RI_energies)
+	#if i==1:
+		#print str(RI_energies)
+		#print str(RI_interp_xs)
+		#print str(Elow)
+		#print str(Eupp)
 	#Find index matching boundary in Energy vectors
 	indlow=numpy.flatnonzero(En300>=Elow) 
 	indlo=numpy.array([indlow[0]], dtype=int)
 	indupp=numpy.flatnonzero(En300>=Eupp)
 	indup=numpy.array([indupp[0]], dtype=int)
-	indlowr=numpy.flatnonzero(EndfE300>=Elow) 
-	indlor=numpy.array([indlowr[0]], dtype=int)
-	induppr=numpy.flatnonzero(EndfE300>=Eupp)
-	indupr=numpy.array([induppr[0]], dtype=int)
-
 	#create vector to integrate, in	tegrate
 	prod=(barns300*invEn300)
-	prodr=(barnsEndF300*invEndfE300)
 	#en vector=En300
-	RIfake[i]=numpy.trapz(prod[indlo:indup],En300[indlo:indup])
-	RIreal[i]=numpy.trapz(prodr[indlor:indupr],EndfE300[indlor:indupr])
-print "Resonance Integral Bounds:"
-print RIb
-print "Fake U238 Resonance Integrals"
-print str(RIfake)
-print "Real U238 Resonance Integrals integrated from ENDF7 XS"
-print str(RIreal)
+	RI[i]=numpy.trapz(prod[indlo:indup],En300[indlo:indup])
+	#RI[i]=prod[indlo:indup].sum()
+	#RIt=binprod[:].sum()
+print str(RI)
+plt.legend(leg)
+#plt.show()
 	

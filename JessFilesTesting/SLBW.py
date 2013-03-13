@@ -172,6 +172,8 @@ def SLBWXS(nameoffile,T):
 	# Frankenstein arrays together
 	sigma_g = numpy.append(sigma_g, sigma_g2)
 	E = numpy.append(E, E2)
+	#Convert to MeV from eV
+	E=E/(1e6)
 	EXS = (E, sigma_g)
 	EXS = numpy.transpose(EXS)
 
