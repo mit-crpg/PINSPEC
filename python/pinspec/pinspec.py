@@ -91,7 +91,7 @@ class Geometry(_object):
     def setNumBatches(self, *args): return _pinspec.Geometry_setNumBatches(self, *args)
     def setNumThreads(self, *args): return _pinspec.Geometry_setNumThreads(self, *args)
     def setSpatialType(self, *args): return _pinspec.Geometry_setSpatialType(self, *args)
-    def setTwoRegionPinCellParams(self, *args): return _pinspec.Geometry_setTwoRegionPinCellParams(self, *args)
+    def setDancoffFactor(self, *args): return _pinspec.Geometry_setDancoffFactor(self, *args)
     def addRegion(self, *args): return _pinspec.Geometry_addRegion(self, *args)
     def runMonteCarloSimulation(self): return _pinspec.Geometry_runMonteCarloSimulation(self)
     def computeBatchStatistics(self): return _pinspec.Geometry_computeBatchStatistics(self)
@@ -109,8 +109,8 @@ class Region(_object):
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, Region, name)
     __repr__ = _swig_repr
-    def __init__(self): 
-        this = _pinspec.new_Region()
+    def __init__(self, *args): 
+        this = _pinspec.new_Region(*args)
         try: self.this.append(this)
         except: self.this = this
     __swig_destroy__ = _pinspec.delete_Region
@@ -124,12 +124,9 @@ class Region(_object):
     def isInfinite(self): return _pinspec.Region_isInfinite(self)
     def getFuelRadius(self): return _pinspec.Region_getFuelRadius(self)
     def getPitch(self): return _pinspec.Region_getPitch(self)
-    def setRegionName(self, *args): return _pinspec.Region_setRegionName(self, *args)
     def setVolume(self, *args): return _pinspec.Region_setVolume(self, *args)
     def setMaterial(self, *args): return _pinspec.Region_setMaterial(self, *args)
-    def setRegionType(self, *args): return _pinspec.Region_setRegionType(self, *args)
     def addTally(self, *args): return _pinspec.Region_addTally(self, *args)
-    def setTwoRegionPinCellParams(self, *args): return _pinspec.Region_setTwoRegionPinCellParams(self, *args)
     def setFuelRadius(self, *args): return _pinspec.Region_setFuelRadius(self, *args)
     def setPitch(self, *args): return _pinspec.Region_setPitch(self, *args)
     def setNumBatches(self, *args): return _pinspec.Region_setNumBatches(self, *args)
@@ -162,7 +159,7 @@ class Isotope(_object):
     __del__ = lambda self : None;
     def parseName(self): return _pinspec.Isotope_parseName(self)
     def makeFissionable(self): return _pinspec.Isotope_makeFissionable(self)
-    def getIsotopeType(self): return _pinspec.Isotope_getIsotopeType(self)
+    def getIsotopeName(self): return _pinspec.Isotope_getIsotopeName(self)
     def getA(self): return _pinspec.Isotope_getA(self)
     def getAlpha(self): return _pinspec.Isotope_getAlpha(self)
     def getN(self): return _pinspec.Isotope_getN(self)
@@ -194,8 +191,13 @@ class Isotope(_object):
     def collideNeutron(self, *args): return _pinspec.Isotope_collideNeutron(self, *args)
     def getDistanceTraveled(self, *args): return _pinspec.Isotope_getDistanceTraveled(self, *args)
     def getThermalScatteringEnergy(self, *args): return _pinspec.Isotope_getThermalScatteringEnergy(self, *args)
+    def getNumThermalCDFs(self): return _pinspec.Isotope_getNumThermalCDFs(self)
+    def getNumThermalCDFBins(self): return _pinspec.Isotope_getNumThermalCDFBins(self)
+    def retrieveThermalCDFs(self, *args): return _pinspec.Isotope_retrieveThermalCDFs(self, *args)
+    def retrieveThermalDistributions(self, *args): return _pinspec.Isotope_retrieveThermalDistributions(self, *args)
+    def retrieveEtokT(self, *args): return _pinspec.Isotope_retrieveEtokT(self, *args)
+    def retrieveEprimeToE(self, *args): return _pinspec.Isotope_retrieveEprimeToE(self, *args)
     def addTally(self, *args): return _pinspec.Isotope_addTally(self, *args)
-    def exportXS(self, *args): return _pinspec.Isotope_exportXS(self, *args)
     def computeBatchStatistics(self): return _pinspec.Isotope_computeBatchStatistics(self)
     def computeScaledBatchStatistics(self, *args): return _pinspec.Isotope_computeScaledBatchStatistics(self, *args)
     def outputBatchStatistics(self, *args): return _pinspec.Isotope_outputBatchStatistics(self, *args)

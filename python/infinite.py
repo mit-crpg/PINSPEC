@@ -1,7 +1,9 @@
 from pinspec import *
-import numpy as np
+import numpy
+import matplotlib.pyplot as matplt    # only need to import this for examples
 import plotter
 import process
+from SLBW import *
 
 def main():
 
@@ -11,11 +13,15 @@ def main():
     #       when loading the isotope in a material
 
     # Set main simulation params
-    num_batches = 4
+    num_batches = 10
     num_neutrons_per_batch = 1000
     num_threads = 8
     log_setlevel(INFO)
 
+    # Call SLBW to create XS
+#    filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
+#    T=300 #Temp in Kelvin of target nucleus
+#    SLBWXS(filename,T)
 
     # Define isotopes
     h1 = Isotope('H-1')
@@ -24,11 +30,11 @@ def main():
     u238 = Isotope('U-238')
 
     # Plot the microscopic cross sections for each isotope
-    plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
+    #plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
     #plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
     #plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
     #plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
-    
+
     # Define materials
     mix = Material()
     mix.setMaterialName('fuel moderator mix')
@@ -40,27 +46,21 @@ def main():
     
     log_printf(INFO, "Added isotopes")
 
-    # Plot the mixture macroscopic cross sections
-    plotter.plotMacroXS(mix, ['capture', 'elastic', 'fission', 'absorption', 'total'])
-
     # Define regions
-    region_mix = Region()
-    region_mix.setRegionName('infinite medium fuel/moderator mix')
-    region_mix.setRegionType(INFINITE)
+    region_mix = Region('infinite medium fuel-moderator mix', INFINITE)
     region_mix.setMaterial(mix)
 
     log_printf(INFO, "Made mixture region")
         
     # plot the fission spectrum the CDF
-    plotter.plotFissionSpectrum()
+    #plotter.plotFissionSpectrum()
 
-	# Define tallies - give them to Regions, Materials, or Isotopes
-	# This part is really where we need to know how to pass float
-    # arrays to/from SWIG
+    #Plot the thermal scattering kernel PDFs and CDFs
+    #plotter.plotThermalScatteringPDF(h1)
 
     # Create a tally for the flux
     flux = Tally('total flux', REGION, FLUX)
-    flux.generateBinEdges(1E-3, 2E7, 1000, LOGARITHMIC)
+    flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
     region_mix.addTally(flux)
 
     ############################################################################
@@ -68,7 +68,7 @@ def main():
     ############################################################################
     # Create a tally for the absorption rate
     abs_rate = Tally('absorption rate', MATERIAL, ABSORPTION_RATE)
-    abs_rate_bin_edges = np.array([0.1, 1., 5., 10., 100., 1000.])
+    abs_rate_bin_edges = numpy.array([0.1, 1., 5., 10., 100., 1000.])
     abs_rate.setBinEdges(abs_rate_bin_edges)
     mix.addTally(abs_rate)
 
@@ -85,27 +85,16 @@ def main():
 	# Run Monte Carlo simulation
     geometry.runMonteCarloSimulation();
 
-    log_printf(INFO, "Ran Monte Carlo")
-    
-    # plot the flux
-    plotter.plotFlux(flux)
+    # Dump batch statistics to output files to some new directory
+    geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
 
     # Compute the resonance integrals
     RI = process.RI(abs_rate_bin_edges, flux, abs_rate)
-    log_printf(INFO, "generated RIs")
     RI.printRI()
-    RI.saveRI()
-    RI.plotRI()
-    log_printf(INFO, "printed RI items")
     
     # Compute the group cross sections
     groupXS = process.groupXS(abs_rate_bin_edges, flux, abs_rate)
-    log_printf(INFO, "generated group xs")
-    
     groupXS.printGroupXS()
-    groupXS.saveGroupXS()
-    groupXS.plotGroupXS()
-    log_printf(INFO, "printed group xs items")
 
 
     # Dump batch statistics to output files to some new directory - gives segmentation fault right now
@@ -114,4 +103,4 @@ def main():
 
 if __name__ == '__main__':
     
-    main()
+    main()  

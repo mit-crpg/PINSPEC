@@ -46,7 +46,7 @@ Isotope::Isotope(char* isotope_name){
 	_num_thermal_cdf_bins = 0;
 
 	/* FIXME: may need to update these defaults later */
-	initializeThermalScattering(1, 8, 20, 4);
+	initializeThermalScattering(1E-6, 15, 1000, 15);
 }
 
 
@@ -129,7 +129,7 @@ void Isotope::parseName(){
  * Returns the name of the of isotope
  * @return character array with name of isotope
  */
-char* Isotope::getIsotopeType() const {
+char* Isotope::getIsotopeName() const {
 	return _isotope_name;
 }
 
@@ -163,7 +163,8 @@ float Isotope::getN() const {
 
 /**
  * Returns the relative atomic amount
- * @return the relative atomic amount
+ * @return the relative atomic amount    void retrieveThermalDistributions(float* cdfs, int num_values);
+
  */
 float Isotope::getAO() const {
     return _AO;
@@ -781,6 +782,10 @@ void Isotope::setCaptureXS(float* capture_xs, float* capture_xs_energies,
     _capture_xs = capture_xs;
     _capture_xs_energies = capture_xs_energies;
     _num_capture_xs = num_capture_xs;
+    float (Isotope::*func)(float) const;
+    func = &Isotope::getCaptureXS;
+    _xs_handles.insert(std::pair<collisionType, float(Isotope::*)(float)
+    											const>(CAPTURE, func));
 }
 
 
@@ -854,7 +859,9 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 		_num_capture_xs = num_energies;
 		delete [] _capture_xs_energies;
 		delete _capture_xs;
-		setCaptureXS(new_xs, new_energies, num_energies);
+//		setCaptureXS(new_xs, new_energies, num_energies);
+		_capture_xs = new_xs;
+		_capture_xs_energies = new_energies;
 	}
 
 	/* Elastic xs */
@@ -869,7 +876,9 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 		_num_elastic_xs = num_energies;
 		delete [] _elastic_xs_energies;
 		delete _elastic_xs;
-		setElasticXS(new_xs, new_energies, num_energies, ISOTROPIC_CM);
+//		setElasticXS(new_xs, new_energies, num_energies, ISOTROPIC_CM);
+		_elastic_xs = new_xs;
+		_elastic_xs_energies = new_energies;
 	}
 
 	/* Fission xs */
@@ -885,7 +894,7 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 		_num_fission_xs = num_energies;
 		delete [] _fission_xs_energies;
 		delete _fission_xs;
-		setFissionXS(new_xs, new_energies, num_energies);
+//		setFissionXS(new_xs, new_energies, num_energies);
 		_fission_xs = new_xs;
 		_fission_xs_energies = new_energies;
 	}
@@ -1135,7 +1144,7 @@ void Isotope::initializeThermalScattering(float start_energy,
 		/* Transfer CDF values to our array */
 		for (int j=0; j < _num_thermal_cdf_bins; j++)
 			_thermal_cdfs[i][j] = cdf[j];
-	}    void rescaleXS(float* new_energies, int num_energies);
+	}
 
 
 	delete [] cdf;
@@ -1187,6 +1196,49 @@ float Isotope::thermalScatteringProb(float E_prime_to_E, int dist_index) {
 
 	return float(prob);
 }
+
+
+int Isotope::getNumThermalCDFs() {
+    return _num_thermal_cdfs;
+}
+
+
+int Isotope::getNumThermalCDFBins() {
+    return _num_thermal_cdf_bins;
+}
+
+
+void Isotope::retrieveThermalCDFs(float* cdfs, int num_values) {
+  
+    for (int i=0; i < _num_thermal_cdfs; i++) {
+        for (int j=0; j < _num_thermal_cdf_bins; j++)
+            cdfs[i*_num_thermal_cdf_bins + j] = _thermal_cdfs[i][j];
+    }  
+}
+
+void Isotope::retrieveThermalDistributions(float* dist, int num_values) {
+
+    for (int i=0; i < _num_thermal_cdfs; i++) {
+        for (int j=0; j < _num_thermal_cdf_bins; j++)
+            dist[i*_num_thermal_cdf_bins + j] = _thermal_dist[i*_num_thermal_cdf_bins + j];
+    }  
+}
+
+
+
+void Isotope::retrieveEtokT(float* E_to_kT, int num_cdfs) {
+    
+    for (int i=0; i < _num_thermal_cdfs; i++)
+        E_to_kT[i] = _E_to_kT[i];
+}
+
+
+void Isotope::retrieveEprimeToE(float* Eprime_to_E, int num_bins) {
+
+    for (int i=0; i < _num_thermal_cdf_bins; i++)
+        Eprime_to_E[i] = _Eprime_to_E[i];
+}
+
 
 void Isotope::addTally(Tally *tally) {
 
@@ -1281,7 +1333,6 @@ collisionType Isotope::collideNeutron(neutron* neut) {
     /* Asymptotic elastic scattering above 4 eV */
     if (energy > 4.0)
     	neut->_energy *= (alpha + (1.0 - alpha) * random);
-    /* Thermal scattering below 4 eV */
     else
         neut->_energy =  getThermalScatteringEnergy(energy);
 
@@ -1335,60 +1386,6 @@ void Isotope::computeScaledBatchStatistics(float scale_factor) {
 }
 
 
-/**
- * export the elastic xs to a txt file
- */
-void Isotope::exportXS(char* xs_type){
-
-	/* generate variable for xs length and pointer to array */
-	int length;
-	float* xs_array;
-	float* energy_array;
-
-	/* generate stream to write to file */
-	std::ofstream myfile;
-
-	/* generate file name */
-	std::string filename = "xs-data/" + std::string(_isotope_name) + "-" + std::string(xs_type) + "-export.txt";
-
-	/* get xs data length */
-	if (std::string(xs_type) == "elastic"){
-		length = _num_elastic_xs;
-		xs_array = _elastic_xs;
-		energy_array = _elastic_xs_energies;
-	}
-	else if (std::string(xs_type) == "fission"){
-		length = _num_fission_xs;
-		xs_array = _fission_xs;
-		energy_array = _fission_xs_energies;
-	}
-	else if (std::string(xs_type) == "absorb"){
-		length = _num_absorb_xs;
-		xs_array = _absorb_xs;
-		energy_array = _absorb_xs_energies;
-	}
-	else if (std::string(xs_type) == "total"){
-		length = _num_total_xs;
-		xs_array = _total_xs;
-		energy_array = _total_xs_energies;
-	}
-	else{
-		log_printf(ERROR, "The xs your are trying to plot does not exist. Check your syntax");
-	}
-
-	/* open file */
-	myfile.open(filename.c_str());
-
-	/* fill with CSV energy and xs data */
-	for (int i = 0; i < length; i++){
-		myfile << energy_array[i] << " " << xs_array[i] << "\n";
-	}
-
-	myfile.close();
-
-}
-
-
 /** Calls each of the Tally class objects in the Isotope to output
  * their tallies and statistics to output files.
  * @param directory the directory to write batch statistics files
@@ -1401,8 +1398,8 @@ void Isotope::outputBatchStatistics(char* directory, char* suffix) {
     std::string filename;
 
 	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
-        filename = std::string(directory) + _isotope_name + "_statistics" 
-                                                + suffix + ".txt";
+        filename = std::string(directory) + "/" + _isotope_name + "_" + 
+                    (*iter)->getTallyName() + "_statistics" + suffix + ".txt";
         (*iter)->outputBatchStatistics(filename.c_str());
     }
 

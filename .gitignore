@@ -15,6 +15,7 @@ Makefile
 *~
 */*~
 */*.png
+xs-lib/U-238-capture.txt
 
 # Jessica specific:
 
@@ -24,6 +25,8 @@ Makefile
 bin/
 tutorial/
 swig/*.py
-
+python/pinspec/Geometry_wrap.cxx
+python/pinspec/pinspec.py
+python/*.png
 
 # Will specific:

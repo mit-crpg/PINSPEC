@@ -13,20 +13,22 @@
 /**
  * Region constructor sets default values
  */
-Region::Region() {
+Region::Region(char* region_name, regionType type) {
 
-	_region_type = INFINITE;
-	_volume = 0.0;
+    _region_name = region_name;
+    _region_type = type;
 
 	/* Default two region pin cell parameters */
+	_volume = 0.0;
+	_fuel_radius = 0.0;
+	_pitch = 0.0;
+	_half_width = 0.0;
+
 	_sigma_e = 0.0;
 	_beta = 0.0;
 	_alpha1 = 0.0;
 	_alpha2 = 0.0;
 
-	_fuel_radius = 0.0;
-	_pitch = 0.0;
-	_half_width = 0.0;
 }
 
 
@@ -42,7 +44,7 @@ Region::~Region() { }
  * @return a character array representing this region's name
  */
 char* Region::getRegionName() {
-	return _name;
+	return _region_name;
 }
 
 
@@ -117,7 +119,7 @@ float Region::getFuelRadius() {
 
 	if (_region_type == INFINITE)
 		log_printf(ERROR, "Cannot return a fuel pin radius for region %s"
-					" which is INFINITE", _name);
+					" which is INFINITE", _region_name);
 	return _fuel_radius;
 }
 
@@ -130,17 +132,9 @@ float Region::getPitch() {
 
 	if (_region_type == INFINITE)
 		log_printf(ERROR, "Cannot return a pin cell pitch for region %s"
-					" which is INFINITE", _name);
+					" which is INFINITE", _region_name);
 
 	return _pitch;
-}
-
-/**
- * Sets this Region's name as specified by a user
- * @param region_name the name of this Region
- */
-void Region::setRegionName(char* region_name) {
-	_name = region_name;
 }
 
 
@@ -162,17 +156,6 @@ void Region::setMaterial(Material* material) {
 }
 
 
-/**
- * Set this Region's type (FUEL, MODERATOR, or INFINITE)
- * @param region_type the type of region
- */
-void Region::setRegionType(regionType region_type) {
-
-	_region_type = region_type;
-
-}
-
-
 
 /**
  * Adds a new Tallies to this region for tallying
@@ -183,25 +166,8 @@ void Region::addTally(Tally* tally) {
     if (tally->getTallyDomainType() != REGION)
         log_printf(ERROR, "Unable to add Tally %s to Region %s since the Tally"
                         " is not for an REGION tally domain", 
-                                        tally->getTallyName(), _name);
+                                        tally->getTallyName(), _region_name);
 	_tallies.push_back(tally);
-}
-
-
-/**
- * Sets the escape cross-section, beta, alpha1 and alpha2 parameters
- * used for the two region pin cell simulation
- * @param sigma_e the escape cross-section
- * @param beta Carlvik's beta parameter
- * @param alpha1 Carlvik's alpha1 parameter
- * @param alpha2 Carlvik's alpha2 parameter
- */
-void Region::setTwoRegionPinCellParams(float sigma_e, float beta,
-											float alpha1, float alpha2) {
-	_sigma_e = sigma_e;
-	_beta = beta;
-	_alpha1 = alpha1;
-	_alpha2 = alpha2;
 }
 
 
@@ -211,11 +177,14 @@ void Region::setTwoRegionPinCellParams(float sigma_e, float beta,
  */
 void Region::setFuelRadius(float radius) {
 
-	if (_region_type == INFINITE)
-		log_printf(ERROR, "Cannot set a fuel pin radius for region %s"
-					" which is INFINITE", _name);
-
 	_fuel_radius = radius;
+
+    if (_fuel_radius != 0.0) {
+        if (_region_type == MODERATOR)
+            _volume = _pitch * _pitch - M_PI * _fuel_radius * _fuel_radius;
+        else
+            _volume = M_PI * _fuel_radius * _fuel_radius;
+    }
 }
 
 
@@ -225,12 +194,15 @@ void Region::setFuelRadius(float radius) {
  */
 void Region::setPitch(float pitch) {
 
-	if (_region_type == INFINITE)
-		log_printf(ERROR, "Cannot set a pin cell pitch for region %s"
-					" which is INFINITE", _name);
-
-	_fuel_radius = pitch;
+	_pitch = pitch;
 	_half_width = pitch / 2.0;
+
+    if (_fuel_radius != 0.0) {
+        if (_region_type == MODERATOR)
+            _volume = _pitch * _pitch - M_PI * _fuel_radius * _fuel_radius;
+        else
+            _volume = M_PI * _fuel_radius * _fuel_radius;
+    }
 }
 
 
@@ -261,10 +233,10 @@ void Region::addFuelRingRadius(float radius) {
 
 	if (_region_type == INFINITE)
 		log_printf(ERROR, "Cannot add a fuel pin ring radius for region %s"
-					" which is INFINITE", _name);
+					" which is INFINITE", _region_name);
 	else if (_region_type == MODERATOR)
 		log_printf(ERROR, "Cannot add a fuel ring radius for region %s"
-					" which is a MODERATOR type region", _name);
+					" which is a MODERATOR type region", _region_name);
 
 	_fuel_ring_radii.push_back(radius);
 }
@@ -279,10 +251,10 @@ void Region::addModeratorRingRadius(float radius) {
 
 	if (_region_type == INFINITE)
 		log_printf(ERROR, "Cannot add a moderator ring radius for region %s"
-					" which is INFINITE", _name);
+					" which is INFINITE", _region_name);
 	else if (_region_type == FUEL)
 		log_printf(ERROR, "Cannot add a moderator ring radius for region %s"
-					" which is a FUEL type region", _name);
+					" which is a FUEL type region", _region_name);
 
 	_moderator_ring_radii.push_back(radius);
 }
@@ -391,7 +363,7 @@ bool Region::onBoundary(float x, float y) {
 
 	if (_region_type == INFINITE) {
 		log_printf(WARNING, "Unable to compute onBoundary method"
-					" for region %s since it is INIFINITE", _name); 
+					" for region %s since it is INIFINITE", _region_name); 
 		return false;
 	}
 	else {
@@ -463,8 +435,8 @@ void Region::outputBatchStatistics(char* directory, char* suffix) {
     std::string filename;
 
 	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
-        filename = std::string(directory) + _name + "_statistics_" 
-                                        + suffix + ".txt";
+        filename = std::string(directory) + "/" + _region_name + "_" + 
+                    (*iter)->getTallyName() + "_statistics_" + suffix + ".txt";
         (*iter)->outputBatchStatistics(filename.c_str());
     }
 

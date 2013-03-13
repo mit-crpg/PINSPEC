@@ -122,29 +122,21 @@ void Geometry::setNumThreads(int num_threads) {
 
 
 /**
- * Sets the escape cross-section, beta, alpha1 and alpha2 parameters
- * used for a two region pin cell simulation. The Geometry must have
- * HOMOGENEOUS_EQUIVALENCE spatial type set for this to work.
- * @param sigma_e the escape cross-section
- * @param beta Carlvik's beta parameter
- * @param alpha1 Carlvik's alpha1 parameter
- * @param alpha2 Carlvik's alpha2 parameter
+ * Sets the dancoff factor and computes the escape cross-section, 
+ * beta, alpha1 and alpha2 parameters used for a two region pin 
+ * cell simulation.
+ * @param dancoff the dancoff factor
  */
-void Geometry::setTwoRegionPinCellParams(float sigma_e, float beta, 
-								float alpha1, float alpha2) {
-	if (_spatial_type == INFINITE_HOMOGENEOUS) {
-		log_printf(ERROR, "Cannot set two region HOMOGENEOUS_EQUIVALENCE"
-						" parameters for an INFINITE Geometry");
-	}
-	if (_spatial_type == HETEROGENEOUS) {
-		log_printf(ERROR, "Cannot set two region HOMOGENEOUS_EQUIVALENCE"
-						" parameters for a HETEROGENEOUS Geometry");
-	}
+void Geometry::setDancoffFactor(float dancoff) {
 
-	_sigma_e = sigma_e;
-	_beta = beta;
-	_alpha1 = alpha1;
-	_alpha2 = alpha2;
+    _dancoff = dancoff;
+
+	/* Two region homogeneous equivalence parameters */
+    float A = (1.0 - dancoff) / dancoff;
+    _sigma_e = 1.0 / (2.0 * _fuel->getFuelRadius());
+    _alpha1 = ((5.0*A + 6.0) - sqrt(A*A + 36.0*A + 36.0)) / (2.0*(A+1.0));
+    _alpha2 = ((5.0*A + 6.0) + sqrt(A*A + 36.0*A + 36.0)) / (2.0*(A+1.0));
+    _beta = (((4.0*A + 6.0) / (A + 1.0)) - _alpha1) / (_alpha2 - _alpha1);
 }
 
 
@@ -253,7 +245,7 @@ void Geometry::runMonteCarloSimulation() {
 
 	/* Print report to the screen */
 	log_printf(INFO, "Beginning PINSPEC Monte Carlo Simulation...");
-	log_printf(INFO, "# neutrons / batch = %d\t\t# batches = %d\t\t# threads = %d",
+	log_printf(INFO, "# neutrons / batch = %d\t# batches = %d\t# threads = %d",
 						_num_neutrons_per_batch, _num_batches, _num_threads);
 
 
@@ -324,6 +316,19 @@ void Geometry::runMonteCarloSimulation() {
 			log_printf(ERROR, "Unable to run a HOMOGENEOUS_EQUIVALENCE type "
 					" simulation since beta, sigma_e, alpha1, or alpha2 for "
 					" have not yet been set for the geometry");
+
+        else if (_fuel->getFuelRadius() == 0)
+            log_printf(ERROR, "Unable to run simulation since region %s "
+                " does not know the fuel radius", _fuel->getRegionName());
+        else if (_moderator->getFuelRadius() == 0)
+            log_printf(ERROR, "Unable to run simulation since region %s "
+                " does not know the fuel radius", _moderator->getRegionName());
+        else if (_fuel->getPitch() == 0)
+            log_printf(ERROR, "Unable to run simulation since region %s "
+                    " does not know the pin pitch", _fuel->getRegionName());
+        else if (_fuel->getPitch() == 0)
+            log_printf(ERROR, "Unable to run simulation since region %s "
+                    " does not know the pin pitch", _moderator->getRegionName());
 
 		/* Initialize neutrons from fission spectrum for each thread */
 		/* Loop over batches */
@@ -409,6 +414,19 @@ void Geometry::runMonteCarloSimulation() {
 			log_printf(ERROR, "Unable to run a HOMOGENEOUS_EQUIVALENCE type "
 					" simulation since beta, sigma_e, alpha1, or alpha2 for "
 					" have not yet been set for the geometry");
+
+        else if (_fuel->getFuelRadius() == 0)
+            log_printf(ERROR, "Unable to run simulation since region %s "
+                " does not know the fuel radius", _fuel->getRegionName());
+        else if (_moderator->getFuelRadius() == 0)
+            log_printf(ERROR, "Unable to run simulation since region %s "
+                " does not know the fuel radius", _moderator->getRegionName());
+        else if (_fuel->getPitch() == 0)
+            log_printf(ERROR, "Unable to run simulation since region %s "
+                    " does not know the pin pitch", _fuel->getRegionName());
+        else if (_fuel->getPitch() == 0)
+            log_printf(ERROR, "Unable to run simulation since region %s "
+                    " does not know the pin pitch", _moderator->getRegionName());
 
 		/* Initialize neutrons from fission spectrum for each thread */
 		/* Loop over batches */
@@ -545,6 +563,7 @@ float Geometry::computeModeratorFuelCollisionProb(float energy) {
 	float tot_sigma_f = _fuel->getMaterial()->getTotalMacroXS(energy);
 	float tot_sigma_mod = _moderator->getMaterial()->getTotalMacroXS(energy);
 	float v_mod = _moderator->getVolume();
+    log_printf(DEBUG, "tot_sigma_mod = %f, v_mod = %f", tot_sigma_mod, v_mod);
 	p_mf = p_fm*(tot_sigma_f*_fuel->getVolume()) / (tot_sigma_mod*v_mod);
     log_printf(DEBUG, "sigma_tot_fuel = %f, p_mf = %f", tot_sigma_f, p_mf);
 	return p_mf;

@@ -24,6 +24,11 @@
 %apply (double* IN_ARRAY1, int DIM1) {(double* edges, int num_edges)}
 %apply (float* ARGOUT_ARRAY1, int DIM1) {(float* cdf, int num_bins)}
 %apply (float* ARGOUT_ARRAY1, int DIM1) {(float* cdf_energies, int num_bins)}
+%apply (float* ARGOUT_ARRAY1, int DIM1) {(float* cdfs, int num_values)}
+%apply (float* ARGOUT_ARRAY1, int DIM1) {(float* Eprime_to_E, int num_bins)}
+%apply (float* ARGOUT_ARRAY1, int DIM1) {(float* E_to_kT, int num_cdfs)}
+%apply (float* ARGOUT_ARRAY1, int DIM1) {(float* dist, int num_values)}
+
 
 %include ../../src/Geometry.h
 %include ../../src/Region.h
