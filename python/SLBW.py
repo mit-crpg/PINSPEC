@@ -173,7 +173,7 @@ def SLBWXS(nameoffile,T):
 	sigma_g = numpy.append(sigma_g, sigma_g2)
 	E = numpy.append(E, E2)
 	#convert eV to MeV
-	E=E/10e6
+	E=E/1e6
 	EXS = (E, sigma_g)
 	EXS = numpy.transpose(EXS)
 
