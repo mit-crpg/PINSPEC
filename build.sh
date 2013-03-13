@@ -32,14 +32,7 @@ mkdir objs
 fi
 
 
-# Comment and uncomment the std::map container in Isotope as a
-# workaround for SWIG
-cp src/Isotope.h src/Isotope.bak
-sed 's/	std::map<collisionType/\/\/	std::map<collisionType/' src/Isotope.bak > src/Isotope.h
 swig -python -c++ -threads python/pinspec/Geometry.i
-cp src/Isotope.h src/Isotope.bak
-sed 's/\/\/	std::map<collisionType/	std::map<collisionType/' src/Isotope.bak > src/Isotope.h
-rm src/Isotope.bak
 
 # Compile and link code
 g++ src/arraycreator.h -c $CFLAGS

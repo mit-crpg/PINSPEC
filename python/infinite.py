@@ -1,9 +1,8 @@
-from pinspec import *
 import numpy
-import matplotlib.pyplot as matplt    # only need to import this for examples
+from pinspec import *
 import plotter
 import process
-from SLBW import *
+import SLBW
 
 def main():
 
@@ -14,14 +13,14 @@ def main():
 
     # Set main simulation params
     num_batches = 10
-    num_neutrons_per_batch = 1000
+    num_neutrons_per_batch = 10000
     num_threads = 8
     log_setlevel(INFO)
 
     # Call SLBW to create XS
-#    filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
-#    T=300 #Temp in Kelvin of target nucleus
-#    SLBWXS(filename,T)
+    filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
+    T=300 #Temp in Kelvin of target nucleus
+    SLBW.SLBWXS(filename,T)
 
     # Define isotopes
     h1 = Isotope('H-1')
@@ -56,7 +55,7 @@ def main():
     #plotter.plotFissionSpectrum()
 
     #Plot the thermal scattering kernel PDFs and CDFs
-    #plotter.plotThermalScatteringPDF(h1)
+    #plotter.plotThermalScattering(h1)
 
     # Create a tally for the flux
     flux = Tally('total flux', REGION, FLUX)
@@ -66,11 +65,14 @@ def main():
     ############################################################################
     #EXAMPLE: How to set tally bin edges 
     ############################################################################
-    # Create a tally for the absorption rate
+    # Create a tally for the RI
     abs_rate = Tally('absorption rate', MATERIAL, ABSORPTION_RATE)
-    abs_rate_bin_edges = numpy.array([0.1, 1., 5., 10., 100., 1000.])
+    flux_RI = Tally('flux RI', MATERIAL, FLUX)
+    abs_rate_bin_edges = numpy.array([0.1, 1., 6., 10., 25., 50., 100.])
     abs_rate.setBinEdges(abs_rate_bin_edges)
+    flux_RI.setBinEdges(abs_rate_bin_edges)
     mix.addTally(abs_rate)
+    mix.addTally(flux_RI)
 
     # Define geometry
     geometry = Geometry()
@@ -88,12 +90,15 @@ def main():
     # Dump batch statistics to output files to some new directory
     geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
 
+    # Plot fluxes
+    plotter.plotFluxes([flux])
+    
     # Compute the resonance integrals
-    RI = process.RI(abs_rate_bin_edges, flux, abs_rate)
+    RI = process.RI(flux_RI, abs_rate)
     RI.printRI()
     
     # Compute the group cross sections
-    groupXS = process.groupXS(abs_rate_bin_edges, flux, abs_rate)
+    groupXS = process.groupXS(flux_RI, abs_rate)
     groupXS.printGroupXS()
 
 

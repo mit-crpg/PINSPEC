@@ -176,8 +176,8 @@ def SLBWXS(nameoffile,T):
 	EXS = numpy.transpose(EXS)
 
 	#plot fictitious XS
-	#plt.loglog(E, sigma_g)
-	#plt.savefig("U238XS.png")
+	plt.loglog(E, sigma_g)
+	plt.savefig("U238XS.png")
 
 	# write output file
 	out_name = cur_dir + "/../xs-lib/"+El+"-"+str(int(A))+"-capture.txt"

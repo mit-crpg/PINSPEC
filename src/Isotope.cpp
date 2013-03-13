@@ -755,10 +755,6 @@ void Isotope::setElasticXS(float* elastic_xs, float* elastic_xs_energies,
     _elastic_xs_energies = elastic_xs_energies;
     _num_elastic_xs = num_elastic_xs;
     _elastic_angle = type;
-    float (Isotope::*func)(float) const;
-    func = &Isotope::getElasticXS;
-    _xs_handles.insert(std::pair<collisionType, float(Isotope::*)(float)
-    												const>(ELASTIC, func));
 }
 
 
@@ -782,10 +778,6 @@ void Isotope::setCaptureXS(float* capture_xs, float* capture_xs_energies,
     _capture_xs = capture_xs;
     _capture_xs_energies = capture_xs_energies;
     _num_capture_xs = num_capture_xs;
-    float (Isotope::*func)(float) const;
-    func = &Isotope::getCaptureXS;
-    _xs_handles.insert(std::pair<collisionType, float(Isotope::*)(float)
-    											const>(CAPTURE, func));
 }
 
 
@@ -800,10 +792,6 @@ void Isotope::setFissionXS(float* fission_xs, float* fission_xs_energies,
     _fission_xs = fission_xs;
     _fission_xs_energies = fission_xs_energies;
     _num_fission_xs = num_fission_xs;
-    float (Isotope::*func)(float) const;
-    func = &Isotope::getFissionXS;
-    _xs_handles.insert(std::pair<collisionType, float(Isotope::*)(float)
-    											const>(FISSION, func));
 }
 
 
@@ -859,7 +847,6 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 		_num_capture_xs = num_energies;
 		delete [] _capture_xs_energies;
 		delete _capture_xs;
-//		setCaptureXS(new_xs, new_energies, num_energies);
 		_capture_xs = new_xs;
 		_capture_xs_energies = new_energies;
 	}
@@ -876,7 +863,6 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 		_num_elastic_xs = num_energies;
 		delete [] _elastic_xs_energies;
 		delete _elastic_xs;
-//		setElasticXS(new_xs, new_energies, num_energies, ISOTROPIC_CM);
 		_elastic_xs = new_xs;
 		_elastic_xs_energies = new_energies;
 	}
@@ -894,7 +880,6 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 		_num_fission_xs = num_energies;
 		delete [] _fission_xs_energies;
 		delete _fission_xs;
-//		setFissionXS(new_xs, new_energies, num_energies);
 		_fission_xs = new_xs;
 		_fission_xs_energies = new_energies;
 	}
@@ -975,27 +960,29 @@ collisionType Isotope::getCollisionType(float energy) {
 
 	float test = float(rand()) / RAND_MAX;
 	float collision_xs = 0.0;
-	float next_collision_xs = 0.0;
+	float prev_collision_xs = 0.0;
 	float total_xs = getTotalXS(energy);
-	collisionType type;
 
-	/* Loops over all cross-section types to find the one for this energy */
-	std::map<collisionType, float(Isotope::*)(float)
-												const>::const_iterator iter;
+    /* Capture collision */
+    collision_xs += getCaptureXS(energy) / total_xs;
+    
+    if (test >= prev_collision_xs && test <= collision_xs)
+        return CAPTURE;
 
-	for (iter = _xs_handles.begin(); iter != _xs_handles.end(); ++iter) {
-		next_collision_xs += (this->*iter->second)(energy) / total_xs;
+    /* Elastic scatter collision */
+    prev_collision_xs = collision_xs;
+    collision_xs += getElasticXS(energy) / total_xs;
 
-		if (test >= collision_xs && test <= next_collision_xs) {
-			type = iter->first;
-			break;
-		}
+    if (test >= prev_collision_xs && test <= collision_xs)
+        return ELASTIC;
 
-		/* Update the next collision xs */
-		collision_xs = next_collision_xs;
-	}
+    /* Fission collision */
+    prev_collision_xs = collision_xs;
+    collision_xs += getFissionXS(energy) / total_xs;
 
-	return type;
+    if (test >= prev_collision_xs && test <= collision_xs)
+        return FISSION;
+
 }
 
 /**

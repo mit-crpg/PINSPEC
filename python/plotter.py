@@ -116,7 +116,7 @@ def plotFluxes(fluxes, dir = '.'):
 
 
 # Function to plot the thermal scattering PDFs and CDFs
-def plotThermalScatteringPDF(isotope, dir = '.'):
+def plotThermalScattering(isotope, dir = '.'):
    
     num_bins = isotope.getNumThermalCDFBins()
     num_cdfs = isotope.getNumThermalCDFs()

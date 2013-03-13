@@ -376,14 +376,20 @@ double* Tally::getBatchRelativeError() {
 }
 
 
+void Tally::retrieveTallyEdges(double* data, int num_bins) {
+
+    /* Load all tally bin centers into array */
+    for (int i=0; i < _num_bins; i++)
+        data[i] = _edges[i];
+
+}
+
+
 void Tally::retrieveTallyCenters(double* data, int num_bins){
 
     if (!_computed_statistics)
         log_printf(ERROR, "Unable to retrieve bin centers for Tally %s since"
                       " it has not yet computed batch statistics", _tally_name);
-    if (_num_batches == 0)
-        log_printf(ERROR, "Unable to retrieve bin centers for Tally %s since it"
-              " does not know how many batches it should tally", _tally_name);
 
     /* Load all tally bin centers into array */
     for (int i=0; i < _num_bins; i++)
