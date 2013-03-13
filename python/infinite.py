@@ -1,9 +1,9 @@
 from pinspec import *
 import numpy as np
 import plotter
+import process
 
 def main():
-
 
     # NOTE: If a user is going to homogenize materials
 	#       then they must figure out the atom ratios 
@@ -11,7 +11,7 @@ def main():
     #       when loading the isotope in a material
 
     # Set main simulation params
-    num_batches = 10
+    num_batches = 4
     num_neutrons_per_batch = 1000
     num_threads = 8
     log_setlevel(INFO)
@@ -25,9 +25,9 @@ def main():
 
     # Plot the microscopic cross sections for each isotope
     plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
-    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
-    plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
-    plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
+    #plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
+    #plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
+    #plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
     
     # Define materials
     mix = Material()
@@ -89,6 +89,24 @@ def main():
     
     # plot the flux
     plotter.plotFlux(flux)
+
+    # Compute the resonance integrals
+    RI = process.RI(abs_rate_bin_edges, flux, abs_rate)
+    log_printf(INFO, "generated RIs")
+    RI.printRI()
+    RI.saveRI()
+    RI.plotRI()
+    log_printf(INFO, "printed RI items")
+    
+    # Compute the group cross sections
+    groupXS = process.groupXS(abs_rate_bin_edges, flux, abs_rate)
+    log_printf(INFO, "generated group xs")
+    
+    groupXS.printGroupXS()
+    groupXS.saveGroupXS()
+    groupXS.plotGroupXS()
+    log_printf(INFO, "printed group xs items")
+
 
     # Dump batch statistics to output files to some new directory - gives segmentation fault right now
     # geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
