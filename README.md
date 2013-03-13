@@ -1,13 +1,23 @@
 PINSPEC
 =======
 
-A Monte Carlo code for simple spectral calculations in nuclear reactor applications.
+A Monte Carlo code for simple spectral calculations in nuclear reactor applications. To download the code, open
+a terminal window and 'cd' into the directory where you would like to install PINSPEC. From here, download the code
+as follows:
 
-For a standard build and installation as a standalone Python package:
+   > git clone https://github.com/wbinventor/PINSPEC.git PINSPEC
+   
+Now that you have downloaded the PINSPEC source code, it is time to install it. Enter the PINSPE directory:
 
    > cd PINSPEC
 
+For a standard build and installation as a standalone Python package accessible to all users of your machine:
+
    > sudo python setup.py install
+   
+If you would rather install this as a standalone Python package only accessible to your username:
+
+   > sudo python setup.py install --user
 
 To run a sample infinite medium input file, do: 
 
