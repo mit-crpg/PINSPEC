@@ -102,36 +102,44 @@ void log_printf(logLevel level, const char *format, ...) {
 
     	/* Append the log level to the message */
     	switch (level) {
-	case (DEBUG):
-	    printf("[  DEBUG  ]  ");
-	    break;
-	case (INFO):
-	    printf("[  INFO   ]  ");
-	    break;
-	case (NORMAL):
-	    printf("[  NORMAL ]  ");
-	    break;
-	case (WARNING):
-	    printf("[ WARNING ]  ");
-	    break;
-	case (CRITICAL):
-	    printf("[ CRITICAL]  ");
-	    break;
-	case (RESULT):
-	    printf("[  RESULT ]  ");
-	    break;
-	case (ERROR):
-	    printf("[  ERROR  ]  ");
-	    break;
-    	}
+	        case (DEBUG):
+	            printf("[  DEBUG  ]  ");
+	            break;
+	        case (INFO):
+	            printf("[  INFO   ]  ");
+	            break;
+	        case (NORMAL):
+	            printf("[  NORMAL ]  ");
+	            break;
+	        case (WARNING):
+	            printf("[ WARNING ]  ");
+	            break;
+	        case (CRITICAL):
+	            printf("[ CRITICAL]  ");
+	            break;
+	        case (RESULT):
+	            printf("[  RESULT ]  ");
+	            break;
+	        case (ERROR):
+                printf("Inside logger ERROR msg\n");
+                char msg[512];
+	            va_start(args, format);
+	            vsprintf(msg, format, args);
+ 	            va_end(args);
+                set_err(msg);
+                throw std::runtime_error(msg);
+	            break;
+          }
 
-	va_start(args, format);
-	vprintf(format, args);
-	va_end(args);
-	printf("\n");
+        if (level != ERROR) {
+	        va_start(args, format);
+	        vprintf(format, args);
+	        va_end(args);
+	        printf("\n");
+        }
     }
-    if (level == ERROR) {
-    	printf("[  EXIT   ]  Exiting program...\n");
-    	abort();
-    }
+//    if (level == ERROR) {
+//    	printf("[  EXIT   ]  Exiting program...\n");
+//    	abort();
+//    }
 }

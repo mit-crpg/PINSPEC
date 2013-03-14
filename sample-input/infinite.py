@@ -80,7 +80,7 @@ def main():
     # Dump batch statistics to output files to some new directory
     geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
 
-    # Plotting
+    # Plotting  
     plotter.plotFlux(flux)
     plotter.plotMicroXS(u235, ['capture', 'absorption'])
     plotter.plotMicroXS(u238, ['capture', 'fission', 'elastic', \
@@ -92,5 +92,6 @@ def main():
 
 
 if __name__ == '__main__':
-    
+
     main()  
+

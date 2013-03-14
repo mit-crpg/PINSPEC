@@ -17,6 +17,9 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string.h>
+#include <stdexcept>
+
+extern void set_err(const char *msg);
 
 typedef enum logLevels {
 	DEBUG,
