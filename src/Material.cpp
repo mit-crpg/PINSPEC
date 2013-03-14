@@ -796,61 +796,54 @@ collisionType Material::collideNeutron(neutron* neut) {
 
     /* FIXME: replace float energy with neutron struct, and update batch_num */
     int batch_num = neut->_batch_num;
-    float energy = neut->_energy;
+    float sample = neut->_energy;
+	float total_xs = getTotalMacroXS(sample);
 
     Isotope *isotope;
-    isotope = sampleIsotope(energy);
+    isotope = sampleIsotope(sample);
     collisionType type = isotope->collideNeutron(neut);
     log_printf(DEBUG, "Material %s has sampled collision type %d from isotope %s", 
                                    _material_name, type, isotope->getIsotopeName());
 
-    /* Obtains macroscopic cross sections for this material class  */
-    float total_xs = getTotalMacroXS(energy);
-    float elastic_xs = getElasticMacroXS(energy);
-    float absorption_xs = getAbsorptionMacroXS(energy);
-    float capture_xs = getCaptureMacroXS(energy);
-    float fission_xs = getFissionMacroXS(energy);
-    float transport_xs = getTransportMacroXS(energy);
-
     /* Tallies the event into the appropriate tally classes  */
     /* Loops over all tallies and add them to the clone */
-    std::vector<Tally*>::iterator iter;
+     std::vector<Tally*>::iterator iter;
 	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
 	    Tally *tally = *iter;
 	    tallyType tally_type = tally->getTallyType();
 	    switch (tally_type) {
 	    case FLUX:
-		tally->weightedTally(energy, 1.0 / total_xs, batch_num);
+			tally->weightedTally(sample, 1.0 / total_xs, batch_num);
 	    case COLLISION_RATE:
-		    tally->weightedTally(energy, 1.0, batch_num);
+		    tally->weightedTally(sample, 1.0, batch_num);
 	    case ELASTIC_RATE:
 		if (type == ELASTIC)
-		    tally->weightedTally(energy, elastic_xs / total_xs, 
-					 batch_num);
+		    tally->weightedTally(sample, 
+			getElasticMacroXS(sample) / total_xs, batch_num);
 	    case ABSORPTION_RATE:
 		if (type == CAPTURE || type == FISSION)
-		    tally->weightedTally(energy, absorption_xs / total_xs, 
-					 batch_num);
+		    tally->weightedTally(sample, 
+			getAbsorptionMacroXS(sample) / total_xs, batch_num);
 	    case CAPTURE_RATE:
 		if (type == CAPTURE)
-		    tally->weightedTally(energy, capture_xs / total_xs, 
-					 batch_num);
+		    tally->weightedTally(sample, 
+            getCaptureMacroXS(sample) / total_xs, batch_num);
 	    case FISSION_RATE:
 		if (type == FISSION)
-		    tally->weightedTally(energy, fission_xs / total_xs, 
-					 batch_num);
+		    tally->weightedTally(sample, 
+			getFissionMacroXS(sample) / total_xs, batch_num);
 	    case TRANSPORT_RATE:
 		if (type == ELASTIC)
-		    tally->weightedTally(energy, transport_xs / total_xs, 
-					 batch_num);
+		    tally->weightedTally(sample, 
+			getTransportMacroXS(sample) / total_xs, batch_num);
 	    case DIFFUSION_RATE: /* FIXME */
 		if (type == ELASTIC)
-		    tally->weightedTally(energy, 
-					 1.0 / (3.0 * transport_xs * total_xs), 
-					 batch_num); 
+		    tally->weightedTally(sample, 
+			 1.0 / (3.0 * getTransportMacroXS(sample) * total_xs), batch_num); 
 	    case LEAKAGE_RATE:; /* FIXME */
-		    }
+	    }
 	}
+
 
     return type;
 }
@@ -952,9 +945,9 @@ void Material::outputBatchStatistics(char* directory, char* suffix) {
     std::string filename;
 
 	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); ++iter1) {
-        filename = std::string(directory) + "/" + _material_name + "_" + 
-                    (*iter1)->getTallyName() + "_statistics_" + suffix + ".txt";
-        (*iter1)->outputBatchStatistics(filename.c_str());
+       filename = std::string(directory) + "/" + (*iter1)->getTallyName()
+                                                        + suffix + ".txt";
+         (*iter1)->outputBatchStatistics(filename.c_str());
     }
 
     /* Output statistics for each of this Material's Tallies */

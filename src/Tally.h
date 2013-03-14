@@ -30,7 +30,8 @@ typedef enum binSpacingTypes {
 typedef enum tallyDomainTypes {
 	MATERIAL,
 	ISOTOPE,
-	REGION
+	REGION,
+    GEOMETRY
 } tallyDomainType;
 
 

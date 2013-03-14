@@ -50,9 +50,8 @@ def main():
     plotter.plotThermalScatteringPDF(h1)
 
     # Create a tally for the flux
-    flux = Tally('total flux', REGION, FLUX)
+    flux = Tally('total flux', GEOMETRY, FLUX)
     flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
-    region_mix.addTally(flux)
 
     ############################################################################
     #EXAMPLE: How to set tally bin edges 
@@ -67,6 +66,7 @@ def main():
     geometry = Geometry()
     geometry.setSpatialType(INFINITE_HOMOGENEOUS)
     geometry.addRegion(region_mix)
+    geometry.addTally(flux)
     geometry.setNumBatches(num_batches)
     geometry.setNeutronsPerBatch(num_neutrons_per_batch)
     geometry.setNumThreads(num_threads)
