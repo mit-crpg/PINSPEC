@@ -27,6 +27,6 @@ tutorial/
 */*.pyc
 build/
 objs/
-pinspec/Geometry_wrap.cxx
+pinspec/Geometry_wrap.cpp
 pinspec/pinspec.py*
 
