@@ -395,9 +395,9 @@ void Tally::setBinEdges(double* edges, int num_edges) {
 
 	_num_bins = num_edges-1;
 	_bin_spacing = OTHER;
-    _edges = (double*)malloc(sizeof(double)*num_bins);
+    _edges = (double*)malloc(sizeof(double)*num_edges);
 
-    for (int i=0; i < num_bins; i++)
+    for (int i=0; i < num_edges; i++)
         _edges[i] = edges[i];
 
 	/* Create an array of the center values between bins */
