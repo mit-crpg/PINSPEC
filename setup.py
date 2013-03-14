@@ -25,12 +25,12 @@ os.environ['OPT'] = ' '.join(
 pinspec = Extension('_pinspec',
                    include_dirs=[numpy_include],
                    sources=['pinspec/Geometry.i',
-                            'src/log.cpp', 'src/xsreader.cpp', \
-                            'src/Isotope.cpp', 'src/Material.cpp', \
-                            'src/Neutron.cpp', 'src/Tally.cpp', \
-                            'src/Fissioner.cpp', 'src/Region.cpp', \
+                            'src/log.cpp', 'src/xsreader.cpp', 
+                            'src/Isotope.cpp', 'src/Material.cpp', 
+                            'src/Neutron.cpp', 'src/Tally.cpp', 
+                            'src/Fissioner.cpp', 'src/Region.cpp', 
                             'src/Geometry.cpp'],
-                   extra_compile_args=['-o', '-std=c99', '-fopenmp', \
+                   extra_compile_args=['-O3', '-fopenmp',
                                     '-march=native', '-ffast-math'],
                    extra_link_args=['-lstdc++', '-fopenmp', '-lgomp', '-fPI'],
                    language='c++',
