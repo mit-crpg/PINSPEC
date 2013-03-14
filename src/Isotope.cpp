@@ -29,6 +29,7 @@ Isotope::Isotope(char* isotope_name){
 	_num_fission_xs = 0;
 	_num_absorb_xs = 0;
 	_num_total_xs = 0;
+    _rescaled = false;
 
 	/* Attempt to load xs for this isotope - if the data 
 	 * exists in the cross-section library */
@@ -253,11 +254,11 @@ float Isotope::getElasticXS(float energy) const {
 
 	if (_num_elastic_xs == 0)
 		return 0.0;
-
-	/* Use linear interpolation to find the elastic scatter cross-section */
-	return linearInterp<float, float, float>(_elastic_xs_energies,
-						 _elastic_xs, _num_elastic_xs, 
-						 energy);
+    else if (_rescaled)
+        return getElasticXS(getEnergyGridIndex(energy));
+    else
+	    return linearInterp<float, float, float>(_elastic_xs_energies,
+						     _elastic_xs, _num_elastic_xs, energy);
 }
 
 
@@ -310,11 +311,11 @@ float Isotope::getAbsorptionXS(float energy) const {
 
 	if (_num_absorb_xs == 0)
 		return 0.0;
-
-	/* Use linear interpolation to find the capture cross-section */
-	return linearInterp<float, float, float>(_absorb_xs_energies,
-								_absorb_xs, _num_absorb_xs, energy);
-
+    else if (_rescaled)
+        return getAbsorptionXS(getEnergyGridIndex(energy));
+    else
+	    return linearInterp<float, float, float>(_absorb_xs_energies,
+								    _absorb_xs, _num_absorb_xs, energy);
 }
 
 
@@ -349,9 +350,10 @@ float Isotope::getCaptureXS(float energy) const{
 
 	if (_num_capture_xs == 0)
 		return 0.0;
-
-	/* Use linear interpolation to find the capture cross-section */
-	return linearInterp<float, float, float>(_capture_xs_energies,
+    else if (_rescaled)
+        return getCaptureXS(getEnergyGridIndex(energy));
+    else
+    	return linearInterp<float, float, float>(_capture_xs_energies,
 								_capture_xs, _num_capture_xs, energy);
 }
 
@@ -387,9 +389,10 @@ float Isotope::getFissionXS(float energy) const{
 
 	if (_num_fission_xs == 0)
 		return 0.0;
-
-	/* Use linear interpolation to find the fission cross-section */
-	return linearInterp<float, float, float>(_fission_xs_energies,
+    else if (_rescaled)
+        return getFissionXS(getEnergyGridIndex(energy));
+    else
+    	return linearInterp<float, float, float>(_fission_xs_energies,
 							_fission_xs, _num_fission_xs, energy);
 }
 
@@ -426,16 +429,19 @@ float Isotope::getTotalXS(float energy) const {
 
 	/* If the total xs has been defined explicitly, use it to
 	 * linearly interpolate to find the total cross-section */
-	if (_num_total_xs != 0)
-		return linearInterp<float, float, float>(_total_xs_energies,
+	if (_num_total_xs != 0) {
+        if (_rescaled)
+            return getTotalXS(getEnergyGridIndex(energy));
+        else
+    		return linearInterp<float, float, float>(_total_xs_energies,
 									_total_xs, _num_total_xs, energy);
-
+    }
+        
 	/* Otherwise loop over all xs which have been defined and
 	 * add them to a total xs */
 	else {
 
 		float total_xs = 0;
-
 		total_xs += getAbsorptionXS(energy);
 		total_xs += getElasticXS(energy);
 		return total_xs;
@@ -513,47 +519,8 @@ bool Isotope::usesThermalScattering() {
  * cross-sections have been rescaled to a uniform energy grid
  * @return whether or not the cross-sections have been rescaled
  */
-bool Isotope::isRescaled() {
+bool Isotope::isRescaled() const {
 	return _rescaled;
-}
-
-
-/**
- * This method returns the index for a certain energy (eV) into
- * the uniform energy grid if this Isotope's
- * cross-sections have been rescaled
- * @param energy the energy (eV) of interest
- * @return the index into the uniform energy grid
- */
-int Isotope::getEnergyGridIndex(float energy) {
-
-	int index;
-
-	if (!_rescaled)
-	    log_printf(ERROR, "Unable to return an index for isotope %s "
-		       			"since its cross-sections have not been"
-						" rescaled", _isotope_name);
-
-	if (_scale_type == EQUAL) {
-		if (energy > _end_energy)
-			index = _num_energies - 1;
-		else if (energy < _start_energy)
-			index = 0;
-		else
-			index = floor((energy - _start_energy) / _delta_energy);
-	}
-
-	else if (_scale_type == LOGARITHMIC)
-		energy = log10(energy);
-
-		if (energy > _end_energy)
-			index = _num_energies - 1;
-		else if (energy < _start_energy)
-			index = 0;
-		else
-			index = floor((energy - _start_energy) / _delta_energy);
-
-	return index;
 }
 
 
@@ -1378,7 +1345,7 @@ void Isotope::outputBatchStatistics(char* directory, char* suffix) {
 
 	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
        filename = std::string(directory) + "/" + (*iter)->getTallyName()
-                                                        + suffix + ".txt";
+                                                 + "_" + suffix + ".txt";
          (*iter)->outputBatchStatistics(filename.c_str());
     }
 

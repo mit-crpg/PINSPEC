@@ -553,7 +553,7 @@ void Region::outputBatchStatistics(char* directory, char* suffix) {
 
 	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
         filename = std::string(directory) + "/" + (*iter)->getTallyName()
-                                                        + suffix + ".txt";
+                                                  + "_" + suffix + ".txt";
         (*iter)->outputBatchStatistics(filename.c_str());
     }
 

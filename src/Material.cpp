@@ -946,7 +946,7 @@ void Material::outputBatchStatistics(char* directory, char* suffix) {
 
 	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); ++iter1) {
        filename = std::string(directory) + "/" + (*iter1)->getTallyName()
-                                                        + suffix + ".txt";
+                                                  + "_" + suffix + ".txt";
          (*iter1)->outputBatchStatistics(filename.c_str());
     }
 

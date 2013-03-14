@@ -151,8 +151,8 @@ public:
     float getTransportXS(int energy_index) const;
     float getTransportXS(float energy) const;
     bool usesThermalScattering();
-	bool isRescaled();
-	int getEnergyGridIndex(float energy);
+	bool isRescaled() const;
+	int getEnergyGridIndex(float energy) const;
 
     /* IMPORTANT: The following two class method prototypes must not be changed
      * without changing Geometry.i to allow for the data arrays to be transformed
@@ -187,6 +187,46 @@ public:
     void computeScaledBatchStatistics(float scale_factor);
     void outputBatchStatistics(char* directory, char* suffix);
 };
+
+
+/**
+ * This method returns the index for a certain energy (eV) into
+ * the uniform energy grid if this Isotope's
+ * cross-sections have been rescaled
+ * @param energy the energy (eV) of interest
+ * @return the index into the uniform energy grid
+ */
+inline int Isotope::getEnergyGridIndex(float energy) const {
+
+	int index;
+
+	if (!_rescaled)
+	    log_printf(ERROR, "Unable to return an index for isotope %s "
+		       			"since its cross-sections have not been"
+						" rescaled", _isotope_name);
+
+	if (_scale_type == EQUAL) {
+		if (energy > _end_energy)
+			index = _num_energies - 1;
+		else if (energy < _start_energy)
+			index = 0;
+		else
+			index = floor((energy - _start_energy) / _delta_energy);
+	}
+
+	else if (_scale_type == LOGARITHMIC)
+		energy = log10(energy);
+
+		if (energy > _end_energy)
+			index = _num_energies - 1;
+		else if (energy < _start_energy)
+			index = 0;
+		else
+			index = floor((energy - _start_energy) / _delta_energy);
+
+	return index;
+}
+
 
 #endif
 

@@ -2967,14 +2967,13 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_logLevels swig_types[12]
 #define SWIGTYPE_p_neutron swig_types[13]
 #define SWIGTYPE_p_p_double swig_types[14]
-#define SWIGTYPE_p_p_int swig_types[15]
-#define SWIGTYPE_p_regionTypes swig_types[16]
-#define SWIGTYPE_p_scatterAngleTypes swig_types[17]
-#define SWIGTYPE_p_spatialTypes swig_types[18]
-#define SWIGTYPE_p_tallyDomainTypes swig_types[19]
-#define SWIGTYPE_p_tallyTypes swig_types[20]
-static swig_type_info *swig_types[22];
-static swig_module_info swig_module = {swig_types, 21, 0, 0, 0, 0};
+#define SWIGTYPE_p_regionTypes swig_types[15]
+#define SWIGTYPE_p_scatterAngleTypes swig_types[16]
+#define SWIGTYPE_p_spatialTypes swig_types[17]
+#define SWIGTYPE_p_tallyDomainTypes swig_types[18]
+#define SWIGTYPE_p_tallyTypes swig_types[19]
+static swig_type_info *swig_types[21];
+static swig_module_info swig_module = {swig_types, 20, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -7237,10 +7236,10 @@ SWIGINTERN PyObject *_wrap_Isotope_isRescaled(PyObject *SWIGUNUSEDPARM(self), Py
   if (!PyArg_ParseTuple(args,(char *)"O:Isotope_isRescaled",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_isRescaled" "', argument " "1"" of type '" "Isotope *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_isRescaled" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (bool)(arg1)->isRescaled();
+  result = (bool)((Isotope const *)arg1)->isRescaled();
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -7263,7 +7262,7 @@ SWIGINTERN PyObject *_wrap_Isotope_getEnergyGridIndex(PyObject *SWIGUNUSEDPARM(s
   if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_getEnergyGridIndex",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getEnergyGridIndex" "', argument " "1"" of type '" "Isotope *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getEnergyGridIndex" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
   ecode2 = SWIG_AsVal_float(obj1, &val2);
@@ -7271,7 +7270,7 @@ SWIGINTERN PyObject *_wrap_Isotope_getEnergyGridIndex(PyObject *SWIGUNUSEDPARM(s
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getEnergyGridIndex" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (int)(arg1)->getEnergyGridIndex(arg2);
+  result = (int)((Isotope const *)arg1)->getEnergyGridIndex(arg2);
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -10493,118 +10492,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Tally_getNumTallies__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Tally *arg1 = (Tally *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  int **result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Tally_getNumTallies",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getNumTallies" "', argument " "1"" of type '" "Tally *""'"); 
-  }
-  arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (int **)(arg1)->getNumTallies();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_p_int, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_getNumTallies__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Tally *arg1 = (Tally *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:Tally_getNumTallies",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getNumTallies" "', argument " "1"" of type '" "Tally *""'"); 
-  }
-  arg1 = reinterpret_cast< Tally * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_getNumTallies" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_getNumTallies" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  result = (int)(arg1)->getNumTallies(arg2,arg3);
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_getNumTallies(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[4];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
-  for (ii = 0; (ii < 3) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_Tally_getNumTallies__SWIG_0(self, args);
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_Tally_getNumTallies__SWIG_1(self, args);
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Tally_getNumTallies'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    Tally::getNumTallies()\n"
-    "    Tally::getNumTallies(int,int)\n");
-  return 0;
-}
-
-
 SWIGINTERN PyObject *_wrap_Tally_getMaxTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
@@ -13054,7 +12941,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tally_getTallyType", _wrap_Tally_getTallyType, METH_VARARGS, NULL},
 	 { (char *)"Tally_getTallies", _wrap_Tally_getTallies, METH_VARARGS, NULL},
 	 { (char *)"Tally_getTally", _wrap_Tally_getTally, METH_VARARGS, NULL},
-	 { (char *)"Tally_getNumTallies", _wrap_Tally_getNumTallies, METH_VARARGS, NULL},
 	 { (char *)"Tally_getMaxTally", _wrap_Tally_getMaxTally, METH_VARARGS, NULL},
 	 { (char *)"Tally_getMinTally", _wrap_Tally_getMinTally, METH_VARARGS, NULL},
 	 { (char *)"Tally_getBinIndex", _wrap_Tally_getBinIndex, METH_VARARGS, NULL},
@@ -13143,7 +13029,6 @@ static swig_type_info _swigt__p_float = {"_p_float", "float *", 0, 0, (void*)0, 
 static swig_type_info _swigt__p_logLevels = {"_p_logLevels", "enum logLevels *|logLevel *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_neutron = {"_p_neutron", "neutron *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_double = {"_p_p_double", "double **", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_p_int = {"_p_p_int", "int **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_regionTypes = {"_p_regionTypes", "regionType *|enum regionTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_scatterAngleTypes = {"_p_scatterAngleTypes", "scatterAngleType *|enum scatterAngleTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_spatialTypes = {"_p_spatialTypes", "spatialType *|enum spatialTypes *", 0, 0, (void*)0, 0};
@@ -13166,7 +13051,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_logLevels,
   &_swigt__p_neutron,
   &_swigt__p_p_double,
-  &_swigt__p_p_int,
   &_swigt__p_regionTypes,
   &_swigt__p_scatterAngleTypes,
   &_swigt__p_spatialTypes,
@@ -13189,7 +13073,6 @@ static swig_cast_info _swigc__p_float[] = {  {&_swigt__p_float, 0, 0, 0},{0, 0, 
 static swig_cast_info _swigc__p_logLevels[] = {  {&_swigt__p_logLevels, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_neutron[] = {  {&_swigt__p_neutron, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_double[] = {  {&_swigt__p_p_double, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_p_int[] = {  {&_swigt__p_p_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_regionTypes[] = {  {&_swigt__p_regionTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_scatterAngleTypes[] = {  {&_swigt__p_scatterAngleTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_spatialTypes[] = {  {&_swigt__p_spatialTypes, 0, 0, 0},{0, 0, 0, 0}};
@@ -13212,7 +13095,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_logLevels,
   _swigc__p_neutron,
   _swigc__p_p_double,
-  _swigc__p_p_int,
   _swigc__p_regionTypes,
   _swigc__p_scatterAngleTypes,
   _swigc__p_spatialTypes,
