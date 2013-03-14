@@ -121,7 +121,6 @@ void log_printf(logLevel level, const char *format, ...) {
 	            printf("[  RESULT ]  ");
 	            break;
 	        case (ERROR):
-                printf("Inside logger ERROR msg\n");
                 char msg[512];
 	            va_start(args, format);
 	            vsprintf(msg, format, args);
@@ -138,8 +137,4 @@ void log_printf(logLevel level, const char *format, ...) {
 	        printf("\n");
         }
     }
-//    if (level == ERROR) {
-//    	printf("[  EXIT   ]  Exiting program...\n");
-//    	abort();
-//    }
-}
+

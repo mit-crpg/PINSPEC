@@ -92,6 +92,125 @@ spatialType Geometry::getSpatialType() {
 }
 
 
+float Geometry::getTotalMacroXS(float energy, Region* region) {
+    return region->getTotalMacroXS(energy);
+}
+
+
+float Geometry::getTotalMacroXS(int energy_index, Region* region) {
+    return region->getTotalMacroXS(energy_index);
+}
+
+
+float Geometry::getTotalMicroXS(float energy, Region* region) {
+    return region->getTotalMicroXS(energy);
+}
+
+
+float Geometry::getTotalMicroXS(int energy_index, Region* region) {
+    return region->getTotalMicroXS(energy_index);
+}
+
+
+float Geometry::getElasticMacroXS(float energy, Region* region) {
+    return region->getTotalMacroXS(energy);
+}
+
+
+float Geometry::getElasticMacroXS(int energy_index, Region* region) {
+    return region->getTotalMacroXS(energy_index);
+}
+
+
+float Geometry::getElasticMicroXS(float energy, Region* region) {
+    return region->getTotalMicroXS(energy);
+}
+
+
+float Geometry::getElasticMicroXS(int energy_index, Region* region) {
+    return region->getTotalMicroXS(energy_index);
+}
+
+
+float Geometry::getAbsorptionMacroXS(float energy, Region* region) {
+    return region->getTotalMacroXS(energy);
+}
+
+
+float Geometry::getAbsorptionMacroXS(int energy_index, Region* region) {
+    return region->getTotalMacroXS(energy_index);
+}
+
+
+float Geometry::getAbsorptionMicroXS(float energy, Region* region) {
+    return region->getTotalMicroXS(energy);
+}
+
+
+float Geometry::getAbsorptionMicroXS(int energy_index, Region* region) {
+    return region->getTotalMicroXS(energy_index);
+}
+
+
+float Geometry::getCaptureMacroXS(float energy, Region* region) {
+    return region->getTotalMacroXS(energy);
+}
+
+
+float Geometry::getCaptureMacroXS(int energy_index, Region* region) {
+    return region->getTotalMacroXS(energy_index);
+}
+
+
+float Geometry::getCaptureMicroXS(float energy, Region* region) {
+    return region->getTotalMicroXS(energy);
+}
+
+
+float Geometry::getCaptureMicroXS(int energy_index, Region* region) {
+    return region->getTotalMicroXS(energy_index);
+}
+
+
+float Geometry::getFissionMacroXS(float energy, Region* region) {
+    return region->getTotalMacroXS(energy);
+}
+
+
+float Geometry::getFissionMacroXS(int energy_index, Region* region) {
+    return region->getTotalMacroXS(energy_index);
+}
+
+
+float Geometry::getFissionMicroXS(float energy, Region* region) {
+    return region->getTotalMicroXS(energy);
+}
+
+
+float Geometry::getFissionMicroXS(int energy_index, Region* region) {
+    return region->getTotalMicroXS(energy_index);
+}
+
+
+float Geometry::getTransportMacroXS(float energy, Region* region) {
+    return region->getTotalMacroXS(energy);
+}
+
+
+float Geometry::getTransportMacroXS(int energy_index, Region* region) {
+    return region->getTotalMacroXS(energy_index);
+}
+
+
+float Geometry::getTransportMicroXS(float energy, Region* region) {
+    return region->getTotalMicroXS(energy);
+}
+
+
+float Geometry::getTransportMicroXS(int energy_index, Region* region) {
+    return region->getTotalMicroXS(energy_index);
+}
+
 
 /**
  * Sets the number of neutrons per batch for this simulation
@@ -237,6 +356,22 @@ void Geometry::addRegion(Region* region) {
 }
 
 
+
+/**
+ * Add a tally class object to  this Geometry's vector of Tallies
+ * @param tally a pointer to a Tally object
+ */
+void Geometry::addTally(Tally *tally) {
+
+    if (tally->getTallyDomainType() != GEOMETRY)
+        log_printf(ERROR, "Unable to add Tally %s to Geometry since the Tally"
+                        " is not for an GEOMETRY tally domain", 
+                                        tally->getTallyName());
+    _tallies.push_back(tally);
+    return;
+}
+
+
 void Geometry::runMonteCarloSimulation() {
 
 	if (_infinite_medium == NULL && _fuel == NULL && _moderator == NULL)
@@ -249,8 +384,12 @@ void Geometry::runMonteCarloSimulation() {
 						_num_neutrons_per_batch, _num_batches, _num_threads);
 
 
+    neutron* curr;
+    float sample;
+    collisionType type;
     
 	omp_set_num_threads(_num_threads);
+    initializeBatchTallies();
 
 	/*************************************************************************/
 	/************************   INFINITE_HOMOGENEOUS *************************/
@@ -259,15 +398,9 @@ void Geometry::runMonteCarloSimulation() {
     /* If we are running an infinite medium spectral calculation */
 	if (_spatial_type == INFINITE_HOMOGENEOUS){
 
-        /* Inform Region of the number of batches to run - this is needed to
-         * initialize the Tally classes for this many batches */
-        _infinite_medium->setNumBatches(_num_batches);
-
-		neutron* curr;
-
         #pragma omp parallel
         {
-	        #pragma omp for private(curr)
+	        #pragma omp for private(curr, sample, type)
 		    for (int i=0; i < _num_batches; i++) {
 
 			    log_printf(INFO, "Thread %d/%d running batch %d", 
@@ -288,9 +421,9 @@ void Geometry::runMonteCarloSimulation() {
                      * the Geometry
                      */
 				    while (curr->_alive == true) {
-					    _infinite_medium->collideNeutron(curr);
-                        log_printf(DEBUG, "Updated neutron energy to %f", 
-                                                                 curr->_energy);
+                        sample = curr->_energy;
+					    type = _infinite_medium->collideNeutron(curr);
+                        tally(sample, curr->_batch_num, _infinite_medium, type);
 				    }
 			    }
 		    }
@@ -305,11 +438,6 @@ void Geometry::runMonteCarloSimulation() {
 
 	/* If we are running homogeneous equivalence spectral calculation */
 	else if (_spatial_type == HOMOGENEOUS_EQUIVALENCE) {
-
-        /* Inform Regions of the number of batches to run - this is needed to
-         * initialize the Tally classes for this many batches */
-        _fuel->setNumBatches(_num_batches);
-        _moderator->setNumBatches(_num_batches);
 
 		/* Check that all necessary parameters have been set */
 		if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
@@ -333,14 +461,13 @@ void Geometry::runMonteCarloSimulation() {
 		/* Initialize neutrons from fission spectrum for each thread */
 		/* Loop over batches */
 		/* Loop over neutrons per batch*/		
-		neutron* curr;
 		float p_ff;
 		float p_mf;
 		float test;
 
         #pragma omp parallel
         {
-           #pragma omp for private(curr, p_ff, p_mf, test)
+           #pragma omp for private(curr, p_ff, p_mf, test, sample, type)
 		    for (int i=0; i < _num_batches; i++) {
 
 		        log_printf(INFO, "Thread %d/%d running batch %d", 
@@ -385,10 +512,16 @@ void Geometry::runMonteCarloSimulation() {
 					    }
 
 					    /* Collide the neutron in the fuel or moderator */
-					    if (curr->_in_fuel)
-						    _fuel->collideNeutron(curr);
-					    else
-						    _moderator->collideNeutron(curr);
+					    if (curr->_in_fuel) {
+                            sample = curr->_energy;
+						    type = _fuel->collideNeutron(curr);
+                            tally(sample, curr->_batch_num, _fuel, type);
+                        }
+					    else {
+                            sample = curr->_energy;
+						    type = _moderator->collideNeutron(curr);
+                            tally(sample, curr->_batch_num, _moderator, type);
+                        }
 				    }
 			    }
 		    }
@@ -403,11 +536,6 @@ void Geometry::runMonteCarloSimulation() {
 
 	/* If we are running homogeneous equivalence spectral calculation */
 	else if (_spatial_type == HETEROGENEOUS) {
-
-        /* Inform Regions of the number of batches to run - this is needed to
-         * initialize the Tally classes for this many batches */
-        _fuel->setNumBatches(_num_batches);
-        _moderator->setNumBatches(_num_batches);
 
 		/* Check that all necessary parameters have been set */
 		if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
@@ -455,7 +583,19 @@ void Geometry::runMonteCarloSimulation() {
 				 * the Region, Material, and Isotope classes filling
                  * the Geometry
                  */
-				while (curr->_alive == true) { }
+				while (curr->_alive == true) { 
+				    /* Collide the neutron in the fuel or moderator */
+				    if (curr->_in_fuel) {
+                        sample = curr->_energy;
+					    type = _fuel->collideNeutron(curr);
+                        tally(sample, curr->_batch_num, _fuel, type);
+                    }
+				    else {
+                        sample = curr->_energy;
+					    type = _moderator->collideNeutron(curr);
+                        tally(sample, curr->_batch_num, _moderator, type);
+                    }
+                }
             }
         }
 
@@ -481,6 +621,13 @@ void Geometry::runMonteCarloSimulation() {
 
 void Geometry::computeBatchStatistics() {
 
+    /* Compute statistics for each of this Geometry's Tallies */
+    std::vector<Tally*>::iterator iter;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
+        (*iter)->computeBatchStatistics();
+
+    /* Compute statistics for Tallies inside the Region's inside the Geometry */
     if (_spatial_type == INFINITE_HOMOGENEOUS)
         _infinite_medium->computeBatchStatistics();
     else {
@@ -494,6 +641,13 @@ void Geometry::computeBatchStatistics() {
 
 void Geometry::computeScaledBatchStatistics() {
 
+    /* Compute statistics for each of this Geometry's Tallies */
+    std::vector<Tally*>::iterator iter;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
+        (*iter)->computeScaledBatchStatistics(_num_neutrons_per_batch);
+
+    /* Compute statistics for Tallies inside the Region's inside the Geometry */
     if (_spatial_type == INFINITE_HOMOGENEOUS)
         _infinite_medium->computeScaledBatchStatistics(_num_neutrons_per_batch);
     else {
@@ -521,6 +675,18 @@ void Geometry::outputBatchStatistics(char* directory,  char* suffix) {
 		mkdir(directory, S_IRWXU);
     }
 
+    /* Compute statistics for each of this Geometry's Tallies */
+    std::vector<Tally*>::iterator iter;
+    std::string filename;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
+        filename = std::string(directory) + "/" + (*iter)->getTallyName()
+                                               + "_" + suffix + ".txt";
+        (*iter)->outputBatchStatistics(filename.c_str());
+    }
+
+    /* Compute statistics for Tallies inside the Region's inside the Geometry */
+
     /* Call on the Region(s) inside the geometry to output statistics */
     if (_spatial_type == INFINITE_HOMOGENEOUS)
         _infinite_medium->outputBatchStatistics(directory, suffix);
@@ -532,6 +698,70 @@ void Geometry::outputBatchStatistics(char* directory,  char* suffix) {
     return;   
 }
 
+
+void Geometry::tally(float sample, int batch_num, 
+                                        Region* region, collisionType type) {
+
+	float total_xs = getTotalMacroXS(sample, region);
+    std::vector<Tally*>::iterator iter;
+
+    /* Tallies the event into the appropriate tally classes  */
+    for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+        Tally *tally = *iter;
+        tallyType tally_type = tally->getTallyType();
+        switch (tally_type) {
+        case FLUX:
+		    tally->weightedTally(sample, 1.0 / total_xs, batch_num);
+        case COLLISION_RATE:
+	        tally->weightedTally(sample, 1.0, batch_num);
+        case ELASTIC_RATE:
+	    if (type == ELASTIC)
+	        tally->weightedTally(sample, 
+		    getElasticMacroXS(sample, region) / total_xs, batch_num);
+        case ABSORPTION_RATE:
+	    if (type == CAPTURE || type == FISSION)
+	        tally->weightedTally(sample, 
+		    getAbsorptionMacroXS(sample, region) / total_xs, batch_num);
+        case CAPTURE_RATE:
+	    if (type == CAPTURE)
+	        tally->weightedTally(sample, 
+            getCaptureMacroXS(sample, region) / total_xs, batch_num);
+        case FISSION_RATE:
+	    if (type == FISSION)
+	        tally->weightedTally(sample, 
+		    getFissionMacroXS(sample, region) / total_xs, batch_num);
+        case TRANSPORT_RATE:
+	    if (type == ELASTIC)
+	        tally->weightedTally(sample, 
+		    getTransportMacroXS(sample, region) / total_xs, batch_num);
+        case DIFFUSION_RATE: /* FIXME */
+	    if (type == ELASTIC)
+	        tally->weightedTally(sample, 
+		     1.0 / (3.0 * getTransportMacroXS(sample, region) * total_xs), batch_num); 
+        case LEAKAGE_RATE:; /* FIXME */
+        }
+    }
+}
+
+
+void Geometry::initializeBatchTallies() {
+
+    std::vector<Tally*>::iterator iter;
+
+    /* Set the number of batches for all of this Geometry's Tallies */
+    for (iter = _tallies.begin(); iter != _tallies.end(); iter ++)
+        (*iter)->setNumBatches(_num_batches);
+
+    /* Inform Region of the number of batches to run - this is needed to
+     * initialize the Tally classes for this many batches */
+    if (_spatial_type == INFINITE_HOMOGENEOUS)
+        _infinite_medium->setNumBatches(_num_batches);
+    else {
+        _fuel->setNumBatches(_num_batches);
+        _moderator->setNumBatches(_num_batches);
+    }
+
+}
 
 /**
  * This function computes the two-region fuel-to-fuel collision probability for

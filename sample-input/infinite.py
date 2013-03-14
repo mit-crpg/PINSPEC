@@ -9,7 +9,7 @@ def main():
     # Set main simulation params
     num_batches = 10
     num_neutrons_per_batch = 10000
-    num_threads = 8
+    num_threads = 4
     log_setlevel(INFO)
 
     setXSLibDirectory('../xs-lib/')   # This is also a default, but set it as example
@@ -32,13 +32,12 @@ def main():
     mix.addIsotope(h1, 1.0)
     mix.addIsotope(o16, 1.0)
     mix.addIsotope(u238, 0.50)
-    mix.addIsotope(u235, .025)
+    mix.addIsotope(u235, .005)
     
     log_printf(INFO, 'Added isotopes')
 
-
     # Define regions
-    region_mix = Region('infinite medium fuel-moderator mix', INFINITE)
+    region_mix = Region('infinite medium', INFINITE)
     region_mix.setMaterial(mix)
 
     log_printf(INFO, 'Made mixture region')
@@ -50,9 +49,8 @@ def main():
     plotter.plotThermalScatteringPDF(h1)
 
     # Create a tally for the flux
-    flux = Tally('total flux', REGION, FLUX)
+    flux = Tally('total flux', GEOMETRY, FLUX)
     flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
-    region_mix.addTally(flux)
 
     ############################################################################
     #EXAMPLE: How to set tally bin edges 
@@ -67,6 +65,7 @@ def main():
     geometry = Geometry()
     geometry.setSpatialType(INFINITE_HOMOGENEOUS)
     geometry.addRegion(region_mix)
+    geometry.addTally(flux)
     geometry.setNumBatches(num_batches)
     geometry.setNeutronsPerBatch(num_neutrons_per_batch)
     geometry.setNumThreads(num_threads)
