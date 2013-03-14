@@ -137,4 +137,5 @@ void log_printf(logLevel level, const char *format, ...) {
 	        printf("\n");
         }
     }
+}
 
