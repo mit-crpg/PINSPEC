@@ -30,7 +30,7 @@ def plotMicroXS(isotope, rxns):
     plt.xscale('log')
     plt.yscale('log')
     plt.xlabel('Energy [eV]')
-    plt.ylabel('Micro XS [b]')
+    plt.ylabel('$\sigma$' +' [b]')
     plt.title(isotope.getIsotopeName() + ' Microscopic XS')
     plt.legend(rxns, loc='lower left')
     plt.grid()
@@ -55,11 +55,11 @@ def plotMacroXS(material, rxns):
     for rxn in rxns:
         xs = material.retrieveXS(num_energies, rxn)
         plt.plot(energies, xs, lw=1)
-    
+ 
     plt.xscale('log')
     plt.yscale('log')
     plt.xlabel('Energy [eV]')
-    plt.ylabel('Macro XS ['+'cm$^{-1}$'+']')
+    plt.ylabel('$\Sigma$'+' ['+'cm$^{-1}$'+']')
     plt.title(material.getMaterialName() + ' Macroscopic XS')
     plt.legend(rxns, loc='lower left')
     plt.grid()
