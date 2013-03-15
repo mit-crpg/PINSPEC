@@ -1,0 +1,22 @@
+#!/bin/sh
+#######################################
+# Specify nodes, processors per node
+# and maximum running time
+#######################################
+
+#PBS -l nodes=1:ppn=12
+#PBS -l walltime=00:10:00
+
+######################################
+# Enter directory and set PATH
+######################################
+
+cd $PBS_O_WORKDIR
+PATH=$PBS_O_PATH
+
+######################################
+# Run PINSPEC - MAKE YOUR CHANGES HERE
+######################################
+
+python infinite.py
+python equivalence.py
