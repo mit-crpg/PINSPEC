@@ -27,7 +27,7 @@ def main():
     
     # Define materials
     mix = Material()
-    mix.setMaterialName('fuel moderator mix')
+    mix.setMaterialName('Fuel Moderator Mix')
     mix.setDensity(5., 'g/cc')
     mix.addIsotope(h1, 1.0)
     mix.addIsotope(o16, 1.0)
