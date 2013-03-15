@@ -132,7 +132,7 @@ def plotThermalScatteringPDF(isotope):
     legend = []
     for i in range(num_cdfs):
         plt.plot(Eprime_to_E, dist[i][:])
-        legend.append(str(E_to_kT[i]) + ' kT')
+        legend.append("%.2e" % E_to_kT[i] + ' kT')
 
     plt.title(isotope.getIsotopeName() + ' Thermal Scattering PDFs')
     plt.ylabel('Probability')
@@ -146,8 +146,7 @@ def plotThermalScatteringPDF(isotope):
     legend = []
     for i in range(num_cdfs):
         plt.plot(Eprime_to_E, cdfs[i][:])
-        legend.append(str(E_to_kT[i]) + ' kT')
-
+        legend.append("%.2e" % E_to_kT[i] + ' kT')
     plt.title(isotope.getIsotopeName() + ' Thermal Scattering CDFs')
     plt.ylabel('Cumulative Probability')
     plt.xlabel('E'+"'"+' / E')
