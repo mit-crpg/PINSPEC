@@ -2958,22 +2958,24 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_Material swig_types[3]
 #define SWIGTYPE_p_Region swig_types[4]
 #define SWIGTYPE_p_Tally swig_types[5]
-#define SWIGTYPE_p_binSpacingTypes swig_types[6]
-#define SWIGTYPE_p_char swig_types[7]
-#define SWIGTYPE_p_collisionTypes swig_types[8]
-#define SWIGTYPE_p_densityUnits swig_types[9]
-#define SWIGTYPE_p_double swig_types[10]
-#define SWIGTYPE_p_float swig_types[11]
-#define SWIGTYPE_p_logLevels swig_types[12]
-#define SWIGTYPE_p_neutron swig_types[13]
-#define SWIGTYPE_p_p_double swig_types[14]
-#define SWIGTYPE_p_regionTypes swig_types[15]
-#define SWIGTYPE_p_scatterAngleTypes swig_types[16]
-#define SWIGTYPE_p_spatialTypes swig_types[17]
-#define SWIGTYPE_p_tallyDomainTypes swig_types[18]
-#define SWIGTYPE_p_tallyTypes swig_types[19]
-static swig_type_info *swig_types[21];
-static swig_module_info swig_module = {swig_types, 20, 0, 0, 0, 0};
+#define SWIGTYPE_p_Timer swig_types[6]
+#define SWIGTYPE_p_binSpacingTypes swig_types[7]
+#define SWIGTYPE_p_char swig_types[8]
+#define SWIGTYPE_p_collisionTypes swig_types[9]
+#define SWIGTYPE_p_densityUnits swig_types[10]
+#define SWIGTYPE_p_double swig_types[11]
+#define SWIGTYPE_p_float swig_types[12]
+#define SWIGTYPE_p_logLevels swig_types[13]
+#define SWIGTYPE_p_neutron swig_types[14]
+#define SWIGTYPE_p_p_double swig_types[15]
+#define SWIGTYPE_p_regionTypes swig_types[16]
+#define SWIGTYPE_p_scatterAngleTypes swig_types[17]
+#define SWIGTYPE_p_spatialTypes swig_types[18]
+#define SWIGTYPE_p_tallyDomainTypes swig_types[19]
+#define SWIGTYPE_p_tallyTypes swig_types[20]
+#define SWIGTYPE_p_timespec swig_types[21]
+static swig_type_info *swig_types[23];
+static swig_module_info swig_module = {swig_types, 22, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3080,6 +3082,7 @@ namespace swig {
     #include "../src/Fissioner.h"
     #include "../src/log.h"
     #include "../src/xsreader.h"
+    #include "../src/Timer.h"
 
 
 #ifndef SWIG_FILE_WITH_INIT
@@ -12789,6 +12792,263 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_new_Timer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_Timer")) SWIG_fail;
+  result = (Timer *)new Timer();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Timer, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_Timer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_Timer",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Timer" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_start(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Timer_start",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_start" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  (arg1)->start();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_stop(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Timer_stop",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_stop" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  (arg1)->stop();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_restart(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Timer_restart",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_restart" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  (arg1)->restart();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_reset(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Timer_reset",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_reset" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  (arg1)->reset();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_recordSplit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Timer_recordSplit",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_recordSplit" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Timer_recordSplit" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  (arg1)->recordSplit((char const *)arg2);
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_getTime(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Timer_getTime",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_getTime" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  result = (double)(arg1)->getTime();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_diff(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  timespec arg2 ;
+  timespec arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  void *argp3 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Timer_diff",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_diff" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  {
+    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_timespec,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Timer_diff" "', argument " "2"" of type '" "timespec""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Timer_diff" "', argument " "2"" of type '" "timespec""'");
+    } else {
+      timespec * temp = reinterpret_cast< timespec * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  {
+    res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_timespec,  0  | 0);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Timer_diff" "', argument " "3"" of type '" "timespec""'"); 
+    }  
+    if (!argp3) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Timer_diff" "', argument " "3"" of type '" "timespec""'");
+    } else {
+      timespec * temp = reinterpret_cast< timespec * >(argp3);
+      arg3 = *temp;
+      if (SWIG_IsNewObj(res3)) delete temp;
+    }
+  }
+  result = (double)(arg1)->diff(arg2,arg3);
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_printSplits(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Timer_printSplits",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_printSplits" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  (arg1)->printSplits();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Timer_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Timer, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"SWIG_PyInstanceMethod_New", (PyCFunction)SWIG_PyInstanceMethod_New, METH_O, NULL},
 	 { (char *)"new_Geometry", _wrap_new_Geometry, METH_VARARGS, NULL},
@@ -13008,6 +13268,17 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"getXSLibDirectory", _wrap_getXSLibDirectory, METH_VARARGS, NULL},
 	 { (char *)"parseCrossSections", _wrap_parseCrossSections, METH_VARARGS, NULL},
 	 { (char *)"getNumCrossSectionDataPoints", _wrap_getNumCrossSectionDataPoints, METH_VARARGS, NULL},
+	 { (char *)"new_Timer", _wrap_new_Timer, METH_VARARGS, NULL},
+	 { (char *)"delete_Timer", _wrap_delete_Timer, METH_VARARGS, NULL},
+	 { (char *)"Timer_start", _wrap_Timer_start, METH_VARARGS, NULL},
+	 { (char *)"Timer_stop", _wrap_Timer_stop, METH_VARARGS, NULL},
+	 { (char *)"Timer_restart", _wrap_Timer_restart, METH_VARARGS, NULL},
+	 { (char *)"Timer_reset", _wrap_Timer_reset, METH_VARARGS, NULL},
+	 { (char *)"Timer_recordSplit", _wrap_Timer_recordSplit, METH_VARARGS, NULL},
+	 { (char *)"Timer_getTime", _wrap_Timer_getTime, METH_VARARGS, NULL},
+	 { (char *)"Timer_diff", _wrap_Timer_diff, METH_VARARGS, NULL},
+	 { (char *)"Timer_printSplits", _wrap_Timer_printSplits, METH_VARARGS, NULL},
+	 { (char *)"Timer_swigregister", Timer_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -13020,6 +13291,7 @@ static swig_type_info _swigt__p_Isotope = {"_p_Isotope", "Isotope *", 0, 0, (voi
 static swig_type_info _swigt__p_Material = {"_p_Material", "Material *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Region = {"_p_Region", "Region *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Tally = {"_p_Tally", "Tally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Timer = {"_p_Timer", "Timer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_binSpacingTypes = {"_p_binSpacingTypes", "binSpacingType *|enum binSpacingTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_collisionTypes = {"_p_collisionTypes", "collisionType *|enum collisionTypes *", 0, 0, (void*)0, 0};
@@ -13034,6 +13306,7 @@ static swig_type_info _swigt__p_scatterAngleTypes = {"_p_scatterAngleTypes", "sc
 static swig_type_info _swigt__p_spatialTypes = {"_p_spatialTypes", "spatialType *|enum spatialTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_tallyDomainTypes = {"_p_tallyDomainTypes", "tallyDomainType *|enum tallyDomainTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_tallyTypes = {"_p_tallyTypes", "tallyType *|enum tallyTypes *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_timespec = {"_p_timespec", "timespec *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Fissioner,
@@ -13042,6 +13315,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Material,
   &_swigt__p_Region,
   &_swigt__p_Tally,
+  &_swigt__p_Timer,
   &_swigt__p_binSpacingTypes,
   &_swigt__p_char,
   &_swigt__p_collisionTypes,
@@ -13056,6 +13330,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_spatialTypes,
   &_swigt__p_tallyDomainTypes,
   &_swigt__p_tallyTypes,
+  &_swigt__p_timespec,
 };
 
 static swig_cast_info _swigc__p_Fissioner[] = {  {&_swigt__p_Fissioner, 0, 0, 0},{0, 0, 0, 0}};
@@ -13064,6 +13339,7 @@ static swig_cast_info _swigc__p_Isotope[] = {  {&_swigt__p_Isotope, 0, 0, 0},{0,
 static swig_cast_info _swigc__p_Material[] = {  {&_swigt__p_Material, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Region[] = {  {&_swigt__p_Region, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Tally[] = {  {&_swigt__p_Tally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Timer[] = {  {&_swigt__p_Timer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_binSpacingTypes[] = {  {&_swigt__p_binSpacingTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_collisionTypes[] = {  {&_swigt__p_collisionTypes, 0, 0, 0},{0, 0, 0, 0}};
@@ -13078,6 +13354,7 @@ static swig_cast_info _swigc__p_scatterAngleTypes[] = {  {&_swigt__p_scatterAngl
 static swig_cast_info _swigc__p_spatialTypes[] = {  {&_swigt__p_spatialTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_tallyDomainTypes[] = {  {&_swigt__p_tallyDomainTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_tallyTypes[] = {  {&_swigt__p_tallyTypes, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_timespec[] = {  {&_swigt__p_timespec, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Fissioner,
@@ -13086,6 +13363,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Material,
   _swigc__p_Region,
   _swigc__p_Tally,
+  _swigc__p_Timer,
   _swigc__p_binSpacingTypes,
   _swigc__p_char,
   _swigc__p_collisionTypes,
@@ -13100,6 +13378,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_spatialTypes,
   _swigc__p_tallyDomainTypes,
   _swigc__p_tallyTypes,
+  _swigc__p_timespec,
 };
 
 

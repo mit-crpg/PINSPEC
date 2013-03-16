@@ -378,15 +378,18 @@ void Geometry::runMonteCarloSimulation() {
 		log_printf(ERROR, "Unable to run Monte Carlo simulation since the"
 						" Geometry does not contain any Regions");
 
-	/* Print report to the screen */
-	log_printf(INFO, "Beginning PINSPEC Monte Carlo Simulation...");
-	log_printf(INFO, "# neutrons / batch = %d\t# batches = %d\t# threads = %d",
-						_num_neutrons_per_batch, _num_batches, _num_threads);
-
-
     neutron* curr;
     float sample;
     collisionType type;
+    Timer timer;
+    timer.start();
+
+	/* Print report to the screen */
+	log_printf(NORMAL, "Beginning PINSPEC Monte Carlo Simulation...");
+	log_printf(NORMAL, "# neutrons / batch = %d     # batches = %d     "
+                      "# threads = %d", _num_neutrons_per_batch, 
+                        _num_batches, _num_threads);
+
     
 	omp_set_num_threads(_num_threads);
     initializeBatchTallies();
@@ -403,7 +406,7 @@ void Geometry::runMonteCarloSimulation() {
 	        #pragma omp for private(curr, sample, type)
 		    for (int i=0; i < _num_batches; i++) {
 
-			    log_printf(INFO, "Thread %d/%d running batch %d", 
+			    log_printf(NORMAL, "Thread %d/%d running batch %d", 
                               omp_get_thread_num()+1, omp_get_num_threads(), i);
 
 			    curr = initializeNewNeutron();
@@ -470,7 +473,7 @@ void Geometry::runMonteCarloSimulation() {
            #pragma omp for private(curr, p_ff, p_mf, test, sample, type)
 		    for (int i=0; i < _num_batches; i++) {
 
-		        log_printf(INFO, "Thread %d/%d running batch %d", 
+		        log_printf(NORMAL, "Thread %d/%d running batch %d", 
                               omp_get_thread_num()+1, omp_get_num_threads(), i);
 
 	            curr = initializeNewNeutron();
@@ -566,7 +569,7 @@ void Geometry::runMonteCarloSimulation() {
 
 		for (int i=0; i < _num_batches; i++) {
 
-			    log_printf(INFO, "Thread %d/%d running batch %d", 
+			    log_printf(NORMAL, "Thread %d/%d running batch %d", 
                               omp_get_thread_num()+1, omp_get_num_threads(), i);
 
 			curr->_batch_num = i;
@@ -616,6 +619,10 @@ void Geometry::runMonteCarloSimulation() {
 
     /* Compute batch statistics for all Tallies in this simulation */
     computeScaledBatchStatistics();
+    timer.stop();
+    log_printf(NORMAL, "PINSPEC simulated %.0f neutrons / sec in %f sec", 
+                _num_neutrons_per_batch * _num_batches / timer.getTime(),
+                timer.getTime());
 }
 
 
