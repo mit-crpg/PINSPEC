@@ -17,6 +17,7 @@ PATH=$PBS_O_PATH
 ######################################
 # Run PINSPEC - MAKE YOUR CHANGES HERE
 ######################################
-
+ 
+#PBS -k eo
 python infinite.py
 python equivalence.py
