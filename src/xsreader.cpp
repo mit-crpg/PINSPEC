@@ -48,14 +48,14 @@ int parseCrossSections(const char* file, float* energies, float* xs_values) {
 	/* Parse over each line in the file */
 	while(getline(input_file, buff)) {
 		/* Load data into the arrays for this line */
-		sscanf(buff.c_str(), "%f %f", &energies[count], &xs_values[count]);
+		sscanf(buff.c_str(), "%f,%f", &energies[count], &xs_values[count]);
 		count++;
 	}
 
 	/* Convert energy values from MeV to eV */
-	for (int i=0; i < count; i++){
-		energies[i] *= 1E6;
-	}
+	/*for (int i=0; i < count; i++){
+	/*	energies[i] *= 1E6;
+	/*}
 
 	/* Close the file and return the number of data points */
 	input_file.close();

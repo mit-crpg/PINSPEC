@@ -85,15 +85,6 @@ Isotope::~Isotope() {
 		delete [] _E_to_kT;
 		delete [] _Eprime_to_E;
 	}
-
-    /* Delete all Tallies */
-	std::vector<Tally*>::iterator iter;
-	Tally* curr;
-
-	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
-		curr = *iter;
-		delete curr;
-	}
 }
 
 

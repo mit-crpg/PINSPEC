@@ -9,7 +9,7 @@ def main():
     # Set main simulation params
     num_batches = 10
     num_neutrons_per_batch = 10000
-    num_threads = 8
+    num_threads = 4
     log_setlevel(INFO)
 
     setXSLibDirectory('../xs-lib/')   # This is also a default, but set it as example
@@ -27,18 +27,17 @@ def main():
     
     # Define materials
     mix = Material()
-    mix.setMaterialName('fuel moderator mix')
+    mix.setMaterialName('Fuel Moderator Mix')
     mix.setDensity(5., 'g/cc')
     mix.addIsotope(h1, 1.0)
     mix.addIsotope(o16, 1.0)
     mix.addIsotope(u238, 0.50)
-    mix.addIsotope(u235, .025)
+    mix.addIsotope(u235, .005)
     
     log_printf(INFO, 'Added isotopes')
 
-
     # Define regions
-    region_mix = Region('infinite medium fuel-moderator mix', INFINITE)
+    region_mix = Region('infinite medium', INFINITE)
     region_mix.setMaterial(mix)
 
     log_printf(INFO, 'Made mixture region')
@@ -80,7 +79,7 @@ def main():
     # Dump batch statistics to output files to some new directory
     geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
 
-    # Plotting
+    # Plotting  
     plotter.plotFlux(flux)
     plotter.plotMicroXS(u235, ['capture', 'absorption'])
     plotter.plotMicroXS(u238, ['capture', 'fission', 'elastic', \
@@ -92,5 +91,6 @@ def main():
 
 
 if __name__ == '__main__':
-    
+
     main()  
+
