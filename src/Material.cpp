@@ -647,6 +647,24 @@ void Material::setNumBatches(int num_batches) {
 }
 
 
+void Material::incrementNumBatches(int num_batches) {
+
+    /* Set the number of batches for each Tally inside of this Material */
+    std::vector<Tally*>::iterator iter1;
+	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); iter1 ++) {
+        (*iter1)->incrementNumBatches(num_batches);
+    }
+
+    /* Set the number of batches for each of this Material's Tallies */
+	std::map<char*, std::pair<float, Isotope*> >::iterator iter2;
+	for (iter2 = _isotopes.begin(); iter2 != _isotopes.end(); ++iter2) {
+        iter2->second.second->incrementNumBatches(num_batches);
+    }
+
+    return;
+
+}
+
 /**
  * Adds a new isotope to this Material
  * @param isotope a pointer to a isotope class object
@@ -889,6 +907,26 @@ Material* Material::clone() {
 	return new_clone;
 }
 
+
+bool Material::isPrecisionTriggered() {
+
+    /* Check if this Material has any Tallies with precision triggers */
+    std::vector<Tally*>::iterator iter1;
+
+	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); ++iter1) {
+        if ((*iter1)->isPrecisionTriggered())
+            return true;
+    }
+
+    /* Output statistics for each of this Material's Tallies */
+	std::map<char*, std::pair<float, Isotope*> >::iterator iter2;
+	for (iter2 = _isotopes.begin(); iter2 != _isotopes.end(); ++iter2) {
+        if (iter2->second.second->isPrecisionTriggered())
+            return true;
+    }
+
+    return false;
+}
 
 /**
  * Calls each of the Tally class objects in the Material to compute

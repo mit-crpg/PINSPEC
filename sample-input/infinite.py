@@ -61,6 +61,10 @@ def main():
     abs_rate.setBinEdges(abs_rate_bin_edges)
     mix.addTally(abs_rate)
 
+    # Set a precision trigger: tells simulation to run until maximum relative
+    # error is less than the trigger value (4E-3)
+    abs_rate.setPrecisionTrigger(RELATIVE_ERROR, 3E-3)
+
     # Define geometry
     geometry = Geometry()
     geometry.setSpatialType(INFINITE_HOMOGENEOUS)

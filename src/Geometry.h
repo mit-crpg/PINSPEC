@@ -83,6 +83,8 @@ private:
 
     void tally(float sample, int batch_num, Region* region, collisionType type);
     void initializeBatchTallies();
+    bool isPrecisionTriggered();
+    void incrementNumBatches(int num_batches);
     float computeFuelFuelCollisionProb(float energy);
     float computeModeratorFuelCollisionProb(float energy);
 
