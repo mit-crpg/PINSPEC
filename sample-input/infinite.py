@@ -7,9 +7,9 @@ import pinspec.plotter as plotter
 def main():
 
     # Set main simulation params
-    num_batches = 10
-    num_neutrons_per_batch = 10000
-    num_threads = 4
+    num_batches = 50
+    num_neutrons_per_batch = 200000
+    num_threads = 1
     log_setlevel(INFO)
 
     setXSLibDirectory('../xs-lib/')   # This is also a default, but set it as example
@@ -24,16 +24,18 @@ def main():
     o16 = Isotope('O-16')
     u235 = Isotope('U-235')
     u238 = Isotope('U-238')
-    
+    zr90 = Isotope('Zr-90')
+ 
     # Define materials
     mix = Material()
     mix.setMaterialName('Fuel Moderator Mix')
     mix.setDensity(5., 'g/cc')
     mix.addIsotope(h1, 1.0)
     mix.addIsotope(o16, 1.0)
-    mix.addIsotope(u238, 0.50)
-    mix.addIsotope(u235, .005)
-    
+    mix.addIsotope(u238, 0.40)
+    mix.addIsotope(u235, .02)
+    mix.addIsotope(zr90, 0.16)    
+
     log_printf(INFO, 'Added isotopes')
 
     # Define regions
@@ -50,7 +52,7 @@ def main():
 
     # Create a tally for the flux
     flux = Tally('total flux', GEOMETRY, FLUX)
-    flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
+    flux.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC)
 
     ############################################################################
     #EXAMPLE: How to set tally bin edges 
