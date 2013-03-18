@@ -26,9 +26,10 @@ def main():
     # Call SLBW to create XS
     filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
     T=300 #Temp in Kelvin of target nucleus
-    SLBW.SLBWXS(filename,T,'capture')
-    #SLBW.SLBWXS(filename,T,'scatter')
-    SLBW.generatePotentialScattering(filename)
+    SLBW.replaceXS() #To clean previous changes to XS files
+    SLBW.SLBWXS(filename,T,'capture') #To generate Doppler Broadened Res Cap
+    #SLBW.SLBWXS(filename,T,'scatter') #To generate Doppler Broadened Res Scat
+    #SLBW.generatePotentialScattering(filename) #To generate flat Res Scat XS
 
     # Define isotopes
     h1 = Isotope('H-1')
@@ -54,7 +55,7 @@ def main():
     mix.addIsotope(u238, 0.40)
     mix.addIsotope(u235, .02)
     mix.addIsotope(zr90, 0.16)    
-    py_printf('INFO', 'Added isotopes')
+    #py_printf('INFO', 'Added isotopes')
 
     plotter.plotMacroXS(mix, ['total', 'capture', 'elastic', 'absorption'])
     

@@ -275,8 +275,18 @@ def generatePotentialScattering(nameoffile,Emin = 1e-5,finalEcut=20E6):
 	g.write(texts)
 	g.close()
 	#-----------------
-#def replaceResXS():
+def replaceXS():
 #---------------------------------------------------------------------------
 #Function that cleans up library by replacing XS files with ENDFBVII files
 #---------------------------------------------------------------------------
-	
+	XS_backup_path=str(pinspec.getXSLibDirectory())+'/BackupXS'
+	src_files = os.listdir(XS_backup_path)
+	for file_name in src_files:
+    		full_file_name = os.path.join(XS_backup_path, file_name)
+    		if (os.path.isfile(full_file_name)):
+        		shutil.copy(full_file_name, pinspec.getXSLibDirectory())
+
+
+
+
+
