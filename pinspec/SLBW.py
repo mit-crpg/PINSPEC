@@ -279,4 +279,4 @@ def generatePotentialScattering(nameoffile,Emin = 1e-5,finalEcut=20E6):
 #---------------------------------------------------------------------------
 #Function that cleans up library by replacing XS files with ENDFBVII files
 #---------------------------------------------------------------------------
-
+	
