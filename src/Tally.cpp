@@ -805,12 +805,15 @@ void Tally::computeBatchStatistics() {
 	if (_num_batches == 0)
 		log_printf(ERROR, "Cannot compute batch statistics for Tally %s"
 				" since it has  have not yet been generated", _tally_name);
-	if (_num_batches == 0)
-		 log_printf(ERROR, "Cannot compute batch statistics for Tally %s since"
-				 " batches have not yet been created", _tally_name);
+
+	double s1 = 0.0;
+	double s2 = 0.0;
 
 	/* Loop over each bin */
 	for (int i=0; i < _num_bins; i++) {
+
+		s1 = 0.0;
+		s2 = 0.0;
 
 		/* Initialize statistics to zero */
 		_batch_mu[i] = 0.0;
@@ -818,24 +821,20 @@ void Tally::computeBatchStatistics() {
 		_batch_std_dev[i] = 0.0;
 		_batch_rel_err[i] = 0.0;
 
-		/* Accumulate flux from each batch */
-		for (int j=0; j < _num_batches; j++)
-			_batch_mu[i] += _tallies[j][i];
-
-		/* Compute average flux for this bin */
-		_batch_mu[i] /= double(_num_batches);
-
-		/* Compute the variance for this bin */
+		/* Accumulate in s1, s2 counters */
 		for (int j=0; j < _num_batches; j++) {
-			_batch_variance[i] += (_tallies[j][i] - _batch_mu[i])
-					* (_tallies[j][i] - _batch_mu[i]);
+			s1 += _tallies[j][i];
+			s2 += _tallies[j][i] * _tallies[j][i];
 		}
-		_batch_variance[i] /= double(_num_batches);
 
-		/* Compute the standard deviation for this bin */
+		/* Compute batch average */
+		_batch_mu[i] = s1 / _num_batches;
+
+		/* Compute batch variance */
+		_batch_variance[i] = (1.0 / (double(_num_batches) - 1.0)) *
+				(s2 / double(_num_batches) - (_batch_mu[i]*_batch_mu[i]));
+
 		_batch_std_dev[i] = sqrt(_batch_variance[i]);
-
-		/* Compute the relative error for this bin */
 		_batch_rel_err[i] = _batch_std_dev[i] / _batch_mu[i];
 	}
 

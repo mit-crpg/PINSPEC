@@ -7,9 +7,9 @@ import pinspec.plotter as plotter
 def main():
 
     # Set main simulation params
-    num_batches = 50
-    num_neutrons_per_batch = 200000
-    num_threads = 1
+    num_batches = 10
+    num_neutrons_per_batch = 10000
+    num_threads = 4
     log_setlevel(INFO)
 
     setXSLibDirectory('../xs-lib/')   # This is also a default, but set it as example
