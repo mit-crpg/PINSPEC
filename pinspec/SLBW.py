@@ -173,8 +173,6 @@ def SLBWXS(nameoffile,T):
 	# Frankenstein arrays together
 	sigma_g = numpy.append(sigma_g, sigma_g2)
 	E = numpy.append(E, E2)
-	#convert eV to MeV
-	E=E/1e6
 	EXS = (E, sigma_g)
 	EXS = numpy.transpose(EXS)
 
@@ -184,7 +182,7 @@ def SLBWXS(nameoffile,T):
 
 	# write output file
 	out_name = pinspec.getXSLibDirectory()+El+'-'+str(int(A))+'-capture.txt'
-	numpy.savetxt(out_name, EXS, newline='\n', delimiter='  ')
+	numpy.savetxt(out_name, EXS, newline='\n', delimiter=',')
 	# go back and add header
 	f = open(out_name)
 	text = f.read()

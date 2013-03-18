@@ -22,10 +22,9 @@ neutron* initializeNewNeutron() {
 	new_neutron->_x = 0.0;
 	new_neutron->_y = 0.0;
 	new_neutron->_z = 0.0;
-	new_neutron->_energy = 0.0;
 	new_neutron->_phi = 0.0;
 	new_neutron->_mu = 0.0;
-	new_neutron->_weight = 1.0;
+	new_neutron->_energy = 0.0;
 	new_neutron->_alive = true;
 
 	return new_neutron;

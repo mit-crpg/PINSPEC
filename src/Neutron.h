@@ -18,7 +18,6 @@ struct neutron {
 	float _x, _y, _z;
 	float _mu, _phi;
 	float _energy;
-	float _weight;
 	bool _alive;
 	bool _in_fuel;
 };

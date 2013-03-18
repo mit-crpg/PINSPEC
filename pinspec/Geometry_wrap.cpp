@@ -2958,6 +2958,9 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 
 
 
+  #define SWIG_exception(code, msg) do { SWIG_Error(code, msg); SWIG_fail;; } while(0) 
+
+
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_Fissioner swig_types[0]
@@ -2966,23 +2969,25 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_Material swig_types[3]
 #define SWIGTYPE_p_Region swig_types[4]
 #define SWIGTYPE_p_Tally swig_types[5]
-#define SWIGTYPE_p_binSpacingTypes swig_types[6]
-#define SWIGTYPE_p_char swig_types[7]
-#define SWIGTYPE_p_collisionTypes swig_types[8]
-#define SWIGTYPE_p_densityUnits swig_types[9]
-#define SWIGTYPE_p_double swig_types[10]
-#define SWIGTYPE_p_float swig_types[11]
-#define SWIGTYPE_p_logLevels swig_types[12]
-#define SWIGTYPE_p_neutron swig_types[13]
-#define SWIGTYPE_p_p_double swig_types[14]
-#define SWIGTYPE_p_p_int swig_types[15]
+#define SWIGTYPE_p_Timer swig_types[6]
+#define SWIGTYPE_p_binSpacingTypes swig_types[7]
+#define SWIGTYPE_p_char swig_types[8]
+#define SWIGTYPE_p_collisionTypes swig_types[9]
+#define SWIGTYPE_p_densityUnits swig_types[10]
+#define SWIGTYPE_p_double swig_types[11]
+#define SWIGTYPE_p_float swig_types[12]
+#define SWIGTYPE_p_logLevels swig_types[13]
+#define SWIGTYPE_p_neutron swig_types[14]
+#define SWIGTYPE_p_p_double swig_types[15]
 #define SWIGTYPE_p_regionTypes swig_types[16]
 #define SWIGTYPE_p_scatterAngleTypes swig_types[17]
 #define SWIGTYPE_p_spatialTypes swig_types[18]
 #define SWIGTYPE_p_tallyDomainTypes swig_types[19]
 #define SWIGTYPE_p_tallyTypes swig_types[20]
-static swig_type_info *swig_types[22];
-static swig_module_info swig_module = {swig_types, 21, 0, 0, 0, 0};
+#define SWIGTYPE_p_timespec swig_types[21]
+#define SWIGTYPE_p_triggerTypes swig_types[22]
+static swig_type_info *swig_types[24];
+static swig_module_info swig_module = {swig_types, 23, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3089,6 +3094,24 @@ namespace swig {
     #include "../src/Fissioner.h"
     #include "../src/log.h"
     #include "../src/xsreader.h"
+    #include "../src/Timer.h"
+
+    /* Exception helpers */
+    static int swig_c_error_num = 0;
+    static char swig_c_err_msg[512];
+
+    const char* err_occurred(void) {
+      if (swig_c_error_num) {
+          swig_c_error_num = 0;
+          return (const char*)swig_c_err_msg;
+      }
+      return NULL;
+    }
+
+    void set_err(const char *msg) {
+      swig_c_error_num = 1;
+      strncpy(swig_c_err_msg, msg, 256);
+    }
 
 
 #ifndef SWIG_FILE_WITH_INIT
@@ -3797,7 +3820,16 @@ SWIGINTERN PyObject *_wrap_new_Geometry(PyObject *SWIGUNUSEDPARM(self), PyObject
   Geometry *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":new_Geometry")) SWIG_fail;
-  result = (Geometry *)new Geometry();
+  {
+    try {
+      result = (Geometry *)new Geometry();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Geometry, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -3818,7 +3850,16 @@ SWIGINTERN PyObject *_wrap_delete_Geometry(PyObject *SWIGUNUSEDPARM(self), PyObj
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Geometry" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  delete arg1;
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3840,7 +3881,16 @@ SWIGINTERN PyObject *_wrap_Geometry_getNumNeutronsPerBatch(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getNumNeutronsPerBatch" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  result = (int)(arg1)->getNumNeutronsPerBatch();
+  {
+    try {
+      result = (int)(arg1)->getNumNeutronsPerBatch();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -3862,7 +3912,16 @@ SWIGINTERN PyObject *_wrap_Geometry_getTotalNumNeutrons(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getTotalNumNeutrons" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  result = (int)(arg1)->getTotalNumNeutrons();
+  {
+    try {
+      result = (int)(arg1)->getTotalNumNeutrons();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -3884,7 +3943,16 @@ SWIGINTERN PyObject *_wrap_Geometry_getNumBatches(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getNumBatches" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  result = (int)(arg1)->getNumBatches();
+  {
+    try {
+      result = (int)(arg1)->getNumBatches();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -3906,7 +3974,16 @@ SWIGINTERN PyObject *_wrap_Geometry_getNumThreads(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getNumThreads" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  result = (int)(arg1)->getNumThreads();
+  {
+    try {
+      result = (int)(arg1)->getNumThreads();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -3928,7 +4005,16 @@ SWIGINTERN PyObject *_wrap_Geometry_getSpatialType(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getSpatialType" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  result = (spatialType)(arg1)->getSpatialType();
+  {
+    try {
+      result = (spatialType)(arg1)->getSpatialType();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -3958,7 +4044,16 @@ SWIGINTERN PyObject *_wrap_Geometry_setNeutronsPerBatch(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Geometry_setNeutronsPerBatch" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNeutronsPerBatch(arg2);
+  {
+    try {
+      (arg1)->setNeutronsPerBatch(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -3988,7 +4083,16 @@ SWIGINTERN PyObject *_wrap_Geometry_setNumBatches(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Geometry_setNumBatches" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNumBatches(arg2);
+  {
+    try {
+      (arg1)->setNumBatches(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4018,7 +4122,16 @@ SWIGINTERN PyObject *_wrap_Geometry_setNumThreads(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Geometry_setNumThreads" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNumThreads(arg2);
+  {
+    try {
+      (arg1)->setNumThreads(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4048,7 +4161,16 @@ SWIGINTERN PyObject *_wrap_Geometry_setSpatialType(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Geometry_setSpatialType" "', argument " "2"" of type '" "spatialType""'");
   } 
   arg2 = static_cast< spatialType >(val2);
-  (arg1)->setSpatialType(arg2);
+  {
+    try {
+      (arg1)->setSpatialType(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4078,7 +4200,16 @@ SWIGINTERN PyObject *_wrap_Geometry_setDancoffFactor(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Geometry_setDancoffFactor" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setDancoffFactor(arg2);
+  {
+    try {
+      (arg1)->setDancoffFactor(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4108,7 +4239,55 @@ SWIGINTERN PyObject *_wrap_Geometry_addRegion(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Geometry_addRegion" "', argument " "2"" of type '" "Region *""'"); 
   }
   arg2 = reinterpret_cast< Region * >(argp2);
-  (arg1)->addRegion(arg2);
+  {
+    try {
+      (arg1)->addRegion(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Geometry_addTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  Tally *arg2 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Geometry_addTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_addTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Geometry_addTally" "', argument " "2"" of type '" "Tally *""'"); 
+  }
+  arg2 = reinterpret_cast< Tally * >(argp2);
+  {
+    try {
+      (arg1)->addTally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4129,7 +4308,16 @@ SWIGINTERN PyObject *_wrap_Geometry_runMonteCarloSimulation(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_runMonteCarloSimulation" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  (arg1)->runMonteCarloSimulation();
+  {
+    try {
+      (arg1)->runMonteCarloSimulation();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4150,7 +4338,16 @@ SWIGINTERN PyObject *_wrap_Geometry_computeBatchStatistics(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_computeBatchStatistics" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  (arg1)->computeBatchStatistics();
+  {
+    try {
+      (arg1)->computeBatchStatistics();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4171,7 +4368,16 @@ SWIGINTERN PyObject *_wrap_Geometry_computeScaledBatchStatistics(PyObject *SWIGU
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_computeScaledBatchStatistics" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
-  (arg1)->computeScaledBatchStatistics();
+  {
+    try {
+      (arg1)->computeScaledBatchStatistics();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4212,7 +4418,16 @@ SWIGINTERN PyObject *_wrap_Geometry_outputBatchStatistics(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Geometry_outputBatchStatistics" "', argument " "3"" of type '" "char *""'");
   }
   arg3 = reinterpret_cast< char * >(buf3);
-  (arg1)->outputBatchStatistics(arg2,arg3);
+  {
+    try {
+      (arg1)->outputBatchStatistics(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
@@ -4255,7 +4470,16 @@ SWIGINTERN PyObject *_wrap_new_Region(PyObject *SWIGUNUSEDPARM(self), PyObject *
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Region" "', argument " "2"" of type '" "regionType""'");
   } 
   arg2 = static_cast< regionType >(val2);
-  result = (Region *)new Region(arg1,arg2);
+  {
+    try {
+      result = (Region *)new Region(arg1,arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Region, SWIG_POINTER_NEW |  0 );
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
@@ -4278,7 +4502,16 @@ SWIGINTERN PyObject *_wrap_delete_Region(PyObject *SWIGUNUSEDPARM(self), PyObjec
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Region" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  delete arg1;
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4300,7 +4533,16 @@ SWIGINTERN PyObject *_wrap_Region_getRegionName(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getRegionName" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (char *)(arg1)->getRegionName();
+  {
+    try {
+      result = (char *)(arg1)->getRegionName();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -4322,7 +4564,16 @@ SWIGINTERN PyObject *_wrap_Region_getVolume(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getVolume" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (float)(arg1)->getVolume();
+  {
+    try {
+      result = (float)(arg1)->getVolume();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -4344,7 +4595,16 @@ SWIGINTERN PyObject *_wrap_Region_getMaterial(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getMaterial" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (Material *)(arg1)->getMaterial();
+  {
+    try {
+      result = (Material *)(arg1)->getMaterial();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, 0 |  0 );
   return resultobj;
 fail:
@@ -4366,7 +4626,16 @@ SWIGINTERN PyObject *_wrap_Region_getRegionType(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getRegionType" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (regionType)(arg1)->getRegionType();
+  {
+    try {
+      result = (regionType)(arg1)->getRegionType();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -4388,7 +4657,16 @@ SWIGINTERN PyObject *_wrap_Region_isFuel(PyObject *SWIGUNUSEDPARM(self), PyObjec
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_isFuel" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (bool)(arg1)->isFuel();
+  {
+    try {
+      result = (bool)(arg1)->isFuel();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -4410,7 +4688,16 @@ SWIGINTERN PyObject *_wrap_Region_isModerator(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_isModerator" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (bool)(arg1)->isModerator();
+  {
+    try {
+      result = (bool)(arg1)->isModerator();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -4432,7 +4719,16 @@ SWIGINTERN PyObject *_wrap_Region_isInfinite(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_isInfinite" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (bool)(arg1)->isInfinite();
+  {
+    try {
+      result = (bool)(arg1)->isInfinite();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -4454,7 +4750,16 @@ SWIGINTERN PyObject *_wrap_Region_getFuelRadius(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getFuelRadius" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (float)(arg1)->getFuelRadius();
+  {
+    try {
+      result = (float)(arg1)->getFuelRadius();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -4476,11 +4781,1580 @@ SWIGINTERN PyObject *_wrap_Region_getPitch(PyObject *SWIGUNUSEDPARM(self), PyObj
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getPitch" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  result = (float)(arg1)->getPitch();
+  {
+    try {
+      result = (float)(arg1)->getPitch();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
   return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getTotalMacroXS__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getTotalMacroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getTotalMacroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getTotalMacroXS" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (float)(arg1)->getTotalMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getTotalMacroXS__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getTotalMacroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getTotalMacroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getTotalMacroXS" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (float)(arg1)->getTotalMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getTotalMacroXS(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getTotalMacroXS__SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getTotalMacroXS__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Region_getTotalMacroXS'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Region::getTotalMacroXS(float)\n"
+    "    Region::getTotalMacroXS(int)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getTotalMicroXS__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getTotalMicroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getTotalMicroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getTotalMicroXS" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (float)(arg1)->getTotalMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getTotalMicroXS__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getTotalMicroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getTotalMicroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getTotalMicroXS" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (float)(arg1)->getTotalMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getTotalMicroXS(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getTotalMicroXS__SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getTotalMicroXS__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Region_getTotalMicroXS'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Region::getTotalMicroXS(float)\n"
+    "    Region::getTotalMicroXS(int)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getElasticMacroXS__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getElasticMacroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getElasticMacroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getElasticMacroXS" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (float)(arg1)->getElasticMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getElasticMacroXS__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getElasticMacroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getElasticMacroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getElasticMacroXS" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (float)(arg1)->getElasticMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getElasticMacroXS(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getElasticMacroXS__SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getElasticMacroXS__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Region_getElasticMacroXS'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Region::getElasticMacroXS(float)\n"
+    "    Region::getElasticMacroXS(int)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getElasticMicroXS__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getElasticMicroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getElasticMicroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getElasticMicroXS" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (float)(arg1)->getElasticMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getElasticMicroXS__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getElasticMicroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getElasticMicroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getElasticMicroXS" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (float)(arg1)->getElasticMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getElasticMicroXS(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getElasticMicroXS__SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getElasticMicroXS__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Region_getElasticMicroXS'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Region::getElasticMicroXS(float)\n"
+    "    Region::getElasticMicroXS(int)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getAbsorptionMacroXS__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getAbsorptionMacroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getAbsorptionMacroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getAbsorptionMacroXS" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (float)(arg1)->getAbsorptionMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getAbsorptionMacroXS__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getAbsorptionMacroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getAbsorptionMacroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getAbsorptionMacroXS" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (float)(arg1)->getAbsorptionMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getAbsorptionMacroXS(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getAbsorptionMacroXS__SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getAbsorptionMacroXS__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Region_getAbsorptionMacroXS'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Region::getAbsorptionMacroXS(float)\n"
+    "    Region::getAbsorptionMacroXS(int)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getAbsorptionMicroXS__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getAbsorptionMicroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getAbsorptionMicroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getAbsorptionMicroXS" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (float)(arg1)->getAbsorptionMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getAbsorptionMicroXS__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getAbsorptionMicroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getAbsorptionMicroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getAbsorptionMicroXS" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (float)(arg1)->getAbsorptionMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getAbsorptionMicroXS(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getAbsorptionMicroXS__SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getAbsorptionMicroXS__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Region_getAbsorptionMicroXS'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Region::getAbsorptionMicroXS(float)\n"
+    "    Region::getAbsorptionMicroXS(int)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getCaptureMacroXS__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getCaptureMacroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getCaptureMacroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getCaptureMacroXS" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (float)(arg1)->getCaptureMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getCaptureMacroXS__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getCaptureMacroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getCaptureMacroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getCaptureMacroXS" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (float)(arg1)->getCaptureMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getCaptureMacroXS(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getCaptureMacroXS__SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getCaptureMacroXS__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Region_getCaptureMacroXS'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Region::getCaptureMacroXS(float)\n"
+    "    Region::getCaptureMacroXS(int)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getCaptureMicroXS__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getCaptureMicroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getCaptureMicroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getCaptureMicroXS" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (float)(arg1)->getCaptureMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getCaptureMicroXS__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getCaptureMicroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getCaptureMicroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getCaptureMicroXS" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (float)(arg1)->getCaptureMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getCaptureMicroXS(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getCaptureMicroXS__SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getCaptureMicroXS__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Region_getCaptureMicroXS'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Region::getCaptureMicroXS(float)\n"
+    "    Region::getCaptureMicroXS(int)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getFissionMacroXS__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getFissionMacroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getFissionMacroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getFissionMacroXS" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (float)(arg1)->getFissionMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getFissionMacroXS__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getFissionMacroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getFissionMacroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getFissionMacroXS" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (float)(arg1)->getFissionMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getFissionMacroXS(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getFissionMacroXS__SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getFissionMacroXS__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Region_getFissionMacroXS'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Region::getFissionMacroXS(float)\n"
+    "    Region::getFissionMacroXS(int)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getFissionMicroXS__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getFissionMicroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getFissionMicroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getFissionMicroXS" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (float)(arg1)->getFissionMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getFissionMicroXS__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getFissionMicroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getFissionMicroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getFissionMicroXS" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (float)(arg1)->getFissionMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getFissionMicroXS(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getFissionMicroXS__SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getFissionMicroXS__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Region_getFissionMicroXS'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Region::getFissionMicroXS(float)\n"
+    "    Region::getFissionMicroXS(int)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getTransportMicroXS__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getTransportMicroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getTransportMicroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getTransportMicroXS" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (float)(arg1)->getTransportMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getTransportMicroXS__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getTransportMicroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getTransportMicroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getTransportMicroXS" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (float)(arg1)->getTransportMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getTransportMicroXS(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getTransportMicroXS__SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getTransportMicroXS__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Region_getTransportMicroXS'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Region::getTransportMicroXS(float)\n"
+    "    Region::getTransportMicroXS(int)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getTransportMacroXS__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getTransportMacroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getTransportMacroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getTransportMacroXS" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (float)(arg1)->getTransportMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getTransportMacroXS__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_getTransportMacroXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getTransportMacroXS" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_getTransportMacroXS" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (float)(arg1)->getTransportMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getTransportMacroXS(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getTransportMacroXS__SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Region_getTransportMacroXS__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Region_getTransportMacroXS'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Region::getTransportMacroXS(float)\n"
+    "    Region::getTransportMacroXS(int)\n");
+  return 0;
 }
 
 
@@ -4506,7 +6380,16 @@ SWIGINTERN PyObject *_wrap_Region_setVolume(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_setVolume" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setVolume(arg2);
+  {
+    try {
+      (arg1)->setVolume(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4536,7 +6419,16 @@ SWIGINTERN PyObject *_wrap_Region_setMaterial(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Region_setMaterial" "', argument " "2"" of type '" "Material *""'"); 
   }
   arg2 = reinterpret_cast< Material * >(argp2);
-  (arg1)->setMaterial(arg2);
+  {
+    try {
+      (arg1)->setMaterial(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4566,7 +6458,16 @@ SWIGINTERN PyObject *_wrap_Region_addTally(PyObject *SWIGUNUSEDPARM(self), PyObj
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Region_addTally" "', argument " "2"" of type '" "Tally *""'"); 
   }
   arg2 = reinterpret_cast< Tally * >(argp2);
-  (arg1)->addTally(arg2);
+  {
+    try {
+      (arg1)->addTally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4596,7 +6497,16 @@ SWIGINTERN PyObject *_wrap_Region_setFuelRadius(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_setFuelRadius" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setFuelRadius(arg2);
+  {
+    try {
+      (arg1)->setFuelRadius(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4626,7 +6536,16 @@ SWIGINTERN PyObject *_wrap_Region_setPitch(PyObject *SWIGUNUSEDPARM(self), PyObj
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_setPitch" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setPitch(arg2);
+  {
+    try {
+      (arg1)->setPitch(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4656,7 +6575,16 @@ SWIGINTERN PyObject *_wrap_Region_setNumBatches(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_setNumBatches" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNumBatches(arg2);
+  {
+    try {
+      (arg1)->setNumBatches(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4686,7 +6614,16 @@ SWIGINTERN PyObject *_wrap_Region_addFuelRingRadius(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_addFuelRingRadius" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->addFuelRingRadius(arg2);
+  {
+    try {
+      (arg1)->addFuelRingRadius(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4716,7 +6653,16 @@ SWIGINTERN PyObject *_wrap_Region_addModeratorRingRadius(PyObject *SWIGUNUSEDPAR
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_addModeratorRingRadius" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->addModeratorRingRadius(arg2);
+  {
+    try {
+      (arg1)->addModeratorRingRadius(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4734,6 +6680,7 @@ SWIGINTERN PyObject *_wrap_Region_collideNeutron(PyObject *SWIGUNUSEDPARM(self),
   int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
+  collisionType result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:Region_collideNeutron",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
@@ -4746,7 +6693,86 @@ SWIGINTERN PyObject *_wrap_Region_collideNeutron(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Region_collideNeutron" "', argument " "2"" of type '" "neutron *""'"); 
   }
   arg2 = reinterpret_cast< neutron * >(argp2);
-  (arg1)->collideNeutron(arg2);
+  {
+    try {
+      result = (collisionType)(arg1)->collideNeutron(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_isPrecisionTriggered(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Region_isPrecisionTriggered",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_isPrecisionTriggered" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  {
+    try {
+      result = (bool)(arg1)->isPrecisionTriggered();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_incrementNumBatches(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_incrementNumBatches",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_incrementNumBatches" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_incrementNumBatches" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      (arg1)->incrementNumBatches(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4767,7 +6793,16 @@ SWIGINTERN PyObject *_wrap_Region_computeBatchStatistics(PyObject *SWIGUNUSEDPAR
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_computeBatchStatistics" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
-  (arg1)->computeBatchStatistics();
+  {
+    try {
+      (arg1)->computeBatchStatistics();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4797,7 +6832,16 @@ SWIGINTERN PyObject *_wrap_Region_computeScaledBatchStatistics(PyObject *SWIGUNU
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_computeScaledBatchStatistics" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->computeScaledBatchStatistics(arg2);
+  {
+    try {
+      (arg1)->computeScaledBatchStatistics(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4838,7 +6882,16 @@ SWIGINTERN PyObject *_wrap_Region_outputBatchStatistics(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Region_outputBatchStatistics" "', argument " "3"" of type '" "char *""'");
   }
   arg3 = reinterpret_cast< char * >(buf3);
-  (arg1)->outputBatchStatistics(arg2,arg3);
+  {
+    try {
+      (arg1)->outputBatchStatistics(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
@@ -4872,7 +6925,16 @@ SWIGINTERN PyObject *_wrap_new_Isotope(PyObject *SWIGUNUSEDPARM(self), PyObject 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Isotope" "', argument " "1"" of type '" "char *""'");
   }
   arg1 = reinterpret_cast< char * >(buf1);
-  result = (Isotope *)new Isotope(arg1);
+  {
+    try {
+      result = (Isotope *)new Isotope(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Isotope, SWIG_POINTER_NEW |  0 );
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
@@ -4895,7 +6957,16 @@ SWIGINTERN PyObject *_wrap_delete_Isotope(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Isotope" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  delete arg1;
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4916,7 +6987,16 @@ SWIGINTERN PyObject *_wrap_Isotope_parseName(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_parseName" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  (arg1)->parseName();
+  {
+    try {
+      (arg1)->parseName();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4937,7 +7017,16 @@ SWIGINTERN PyObject *_wrap_Isotope_makeFissionable(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_makeFissionable" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  (arg1)->makeFissionable();
+  {
+    try {
+      (arg1)->makeFissionable();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -4959,7 +7048,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getIsotopeName(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getIsotopeName" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (char *)((Isotope const *)arg1)->getIsotopeName();
+  {
+    try {
+      result = (char *)((Isotope const *)arg1)->getIsotopeName();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -4981,7 +7079,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getA(PyObject *SWIGUNUSEDPARM(self), PyObject
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getA" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (int)((Isotope const *)arg1)->getA();
+  {
+    try {
+      result = (int)((Isotope const *)arg1)->getA();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -5003,7 +7110,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getAlpha(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getAlpha" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (float)((Isotope const *)arg1)->getAlpha();
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getAlpha();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5025,7 +7141,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getN(PyObject *SWIGUNUSEDPARM(self), PyObject
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getN" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (float)((Isotope const *)arg1)->getN();
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getN();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5047,7 +7172,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getAO(PyObject *SWIGUNUSEDPARM(self), PyObjec
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getAO" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (float)((Isotope const *)arg1)->getAO();
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getAO();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5069,7 +7203,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getTemperature(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getTemperature" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (float)((Isotope const *)arg1)->getTemperature();
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getTemperature();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5091,7 +7234,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getMuAverage(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getMuAverage" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (float)((Isotope const *)arg1)->getMuAverage();
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getMuAverage();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5113,7 +7265,16 @@ SWIGINTERN PyObject *_wrap_Isotope_isFissionable(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_isFissionable" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (bool)((Isotope const *)arg1)->isFissionable();
+  {
+    try {
+      result = (bool)((Isotope const *)arg1)->isFissionable();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -5135,7 +7296,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getNumXSEnergies(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getNumXSEnergies" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (int)((Isotope const *)arg1)->getNumXSEnergies();
+  {
+    try {
+      result = (int)((Isotope const *)arg1)->getNumXSEnergies();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -5166,7 +7336,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getElasticXS__SWIG_0(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getElasticXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)((Isotope const *)arg1)->getElasticXS(arg2);
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getElasticXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5197,7 +7376,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getElasticXS__SWIG_1(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getElasticXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)((Isotope const *)arg1)->getElasticXS(arg2);
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getElasticXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5269,7 +7457,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getElasticAngleType(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getElasticAngleType" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (scatterAngleType)((Isotope const *)arg1)->getElasticAngleType();
+  {
+    try {
+      result = (scatterAngleType)((Isotope const *)arg1)->getElasticAngleType();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -5300,7 +7497,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getAbsorptionXS__SWIG_0(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getAbsorptionXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)((Isotope const *)arg1)->getAbsorptionXS(arg2);
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getAbsorptionXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5331,7 +7537,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getAbsorptionXS__SWIG_1(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getAbsorptionXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)((Isotope const *)arg1)->getAbsorptionXS(arg2);
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getAbsorptionXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5412,7 +7627,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getCaptureXS__SWIG_0(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getCaptureXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)((Isotope const *)arg1)->getCaptureXS(arg2);
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getCaptureXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5443,7 +7667,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getCaptureXS__SWIG_1(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getCaptureXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)((Isotope const *)arg1)->getCaptureXS(arg2);
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getCaptureXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5524,7 +7757,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getFissionXS__SWIG_0(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getFissionXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)((Isotope const *)arg1)->getFissionXS(arg2);
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getFissionXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5555,7 +7797,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getFissionXS__SWIG_1(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getFissionXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)((Isotope const *)arg1)->getFissionXS(arg2);
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getFissionXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5636,7 +7887,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getTotalXS__SWIG_0(PyObject *SWIGUNUSEDPARM(s
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getTotalXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)((Isotope const *)arg1)->getTotalXS(arg2);
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getTotalXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5667,7 +7927,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getTotalXS__SWIG_1(PyObject *SWIGUNUSEDPARM(s
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getTotalXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)((Isotope const *)arg1)->getTotalXS(arg2);
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getTotalXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5748,7 +8017,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getTransportXS__SWIG_0(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getTransportXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)((Isotope const *)arg1)->getTransportXS(arg2);
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getTransportXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5779,7 +8057,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getTransportXS__SWIG_1(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getTransportXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)((Isotope const *)arg1)->getTransportXS(arg2);
+  {
+    try {
+      result = (float)((Isotope const *)arg1)->getTransportXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -5851,7 +8138,16 @@ SWIGINTERN PyObject *_wrap_Isotope_usesThermalScattering(PyObject *SWIGUNUSEDPAR
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_usesThermalScattering" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (bool)(arg1)->usesThermalScattering();
+  {
+    try {
+      result = (bool)(arg1)->usesThermalScattering();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -5870,10 +8166,19 @@ SWIGINTERN PyObject *_wrap_Isotope_isRescaled(PyObject *SWIGUNUSEDPARM(self), Py
   if (!PyArg_ParseTuple(args,(char *)"O:Isotope_isRescaled",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_isRescaled" "', argument " "1"" of type '" "Isotope *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_isRescaled" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (bool)(arg1)->isRescaled();
+  {
+    try {
+      result = (bool)((Isotope const *)arg1)->isRescaled();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -5896,7 +8201,7 @@ SWIGINTERN PyObject *_wrap_Isotope_getEnergyGridIndex(PyObject *SWIGUNUSEDPARM(s
   if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_getEnergyGridIndex",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getEnergyGridIndex" "', argument " "1"" of type '" "Isotope *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getEnergyGridIndex" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
   ecode2 = SWIG_AsVal_float(obj1, &val2);
@@ -5904,7 +8209,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getEnergyGridIndex(PyObject *SWIGUNUSEDPARM(s
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getEnergyGridIndex" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (int)(arg1)->getEnergyGridIndex(arg2);
+  {
+    try {
+      result = (int)((Isotope const *)arg1)->getEnergyGridIndex(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -5945,7 +8259,16 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(s
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  ((Isotope const *)arg1)->retrieveXSEnergies(arg2,arg3);
+  {
+    try {
+      ((Isotope const *)arg1)->retrieveXSEnergies(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -5999,7 +8322,16 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveXS(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Isotope_retrieveXS" "', argument " "4"" of type '" "char *""'");
   }
   arg4 = reinterpret_cast< char * >(buf4);
-  ((Isotope const *)arg1)->retrieveXS(arg2,arg3,arg4);
+  {
+    try {
+      ((Isotope const *)arg1)->retrieveXS(arg2,arg3,arg4);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -6035,7 +8367,16 @@ SWIGINTERN PyObject *_wrap_Isotope_setIsotopeType(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_setIsotopeType" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  (arg1)->setIsotopeType(arg2);
+  {
+    try {
+      (arg1)->setIsotopeType(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
@@ -6067,7 +8408,16 @@ SWIGINTERN PyObject *_wrap_Isotope_setA(PyObject *SWIGUNUSEDPARM(self), PyObject
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_setA" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setA(arg2);
+  {
+    try {
+      (arg1)->setA(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6097,7 +8447,16 @@ SWIGINTERN PyObject *_wrap_Isotope_setAO(PyObject *SWIGUNUSEDPARM(self), PyObjec
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_setAO" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setAO(arg2);
+  {
+    try {
+      (arg1)->setAO(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6127,7 +8486,16 @@ SWIGINTERN PyObject *_wrap_Isotope_setN(PyObject *SWIGUNUSEDPARM(self), PyObject
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_setN" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setN(arg2);
+  {
+    try {
+      (arg1)->setN(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6157,7 +8525,16 @@ SWIGINTERN PyObject *_wrap_Isotope_setTemperature(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_setTemperature" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setTemperature(arg2);
+  {
+    try {
+      (arg1)->setTemperature(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6187,7 +8564,16 @@ SWIGINTERN PyObject *_wrap_Isotope_setNumBatches(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_setNumBatches" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNumBatches(arg2);
+  {
+    try {
+      (arg1)->setNumBatches(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6209,7 +8595,16 @@ SWIGINTERN PyObject *_wrap_Isotope_clone(PyObject *SWIGUNUSEDPARM(self), PyObjec
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_clone" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (Isotope *)(arg1)->clone();
+  {
+    try {
+      result = (Isotope *)(arg1)->clone();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Isotope, 0 |  0 );
   return resultobj;
 fail:
@@ -6240,7 +8635,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getCollisionType(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getCollisionType" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (collisionType)(arg1)->getCollisionType(arg2);
+  {
+    try {
+      result = (collisionType)(arg1)->getCollisionType(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -6271,7 +8675,16 @@ SWIGINTERN PyObject *_wrap_Isotope_collideNeutron(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_collideNeutron" "', argument " "2"" of type '" "neutron *""'"); 
   }
   arg2 = reinterpret_cast< neutron * >(argp2);
-  result = (collisionType)(arg1)->collideNeutron(arg2);
+  {
+    try {
+      result = (collisionType)(arg1)->collideNeutron(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -6302,7 +8715,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getDistanceTraveled(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_getDistanceTraveled" "', argument " "2"" of type '" "neutron *""'"); 
   }
   arg2 = reinterpret_cast< neutron * >(argp2);
-  result = (float)(arg1)->getDistanceTraveled(arg2);
+  {
+    try {
+      result = (float)(arg1)->getDistanceTraveled(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -6333,7 +8755,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getThermalScatteringEnergy(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getThermalScatteringEnergy" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getThermalScatteringEnergy(arg2);
+  {
+    try {
+      result = (float)(arg1)->getThermalScatteringEnergy(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -6355,7 +8786,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getNumThermalCDFs(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getNumThermalCDFs" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (int)(arg1)->getNumThermalCDFs();
+  {
+    try {
+      result = (int)(arg1)->getNumThermalCDFs();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -6377,7 +8817,16 @@ SWIGINTERN PyObject *_wrap_Isotope_getNumThermalCDFBins(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getNumThermalCDFBins" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  result = (int)(arg1)->getNumThermalCDFBins();
+  {
+    try {
+      result = (int)(arg1)->getNumThermalCDFBins();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -6418,7 +8867,16 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveThermalCDFs(PyObject *SWIGUNUSEDPARM(
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  (arg1)->retrieveThermalCDFs(arg2,arg3);
+  {
+    try {
+      (arg1)->retrieveThermalCDFs(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -6462,7 +8920,16 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveThermalDistributions(PyObject *SWIGUN
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  (arg1)->retrieveThermalDistributions(arg2,arg3);
+  {
+    try {
+      (arg1)->retrieveThermalDistributions(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -6506,7 +8973,16 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveEtokT(PyObject *SWIGUNUSEDPARM(self),
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  (arg1)->retrieveEtokT(arg2,arg3);
+  {
+    try {
+      (arg1)->retrieveEtokT(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -6550,7 +9026,16 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveEprimeToE(PyObject *SWIGUNUSEDPARM(se
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  (arg1)->retrieveEprimeToE(arg2,arg3);
+  {
+    try {
+      (arg1)->retrieveEprimeToE(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -6583,7 +9068,86 @@ SWIGINTERN PyObject *_wrap_Isotope_addTally(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_addTally" "', argument " "2"" of type '" "Tally *""'"); 
   }
   arg2 = reinterpret_cast< Tally * >(argp2);
-  (arg1)->addTally(arg2);
+  {
+    try {
+      (arg1)->addTally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_isPrecisionTriggered(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Isotope_isPrecisionTriggered",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_isPrecisionTriggered" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    try {
+      result = (bool)(arg1)->isPrecisionTriggered();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_incrementNumBatches(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_incrementNumBatches",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_incrementNumBatches" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_incrementNumBatches" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      (arg1)->incrementNumBatches(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6604,7 +9168,16 @@ SWIGINTERN PyObject *_wrap_Isotope_computeBatchStatistics(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_computeBatchStatistics" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  (arg1)->computeBatchStatistics();
+  {
+    try {
+      (arg1)->computeBatchStatistics();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6634,7 +9207,16 @@ SWIGINTERN PyObject *_wrap_Isotope_computeScaledBatchStatistics(PyObject *SWIGUN
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_computeScaledBatchStatistics" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->computeScaledBatchStatistics(arg2);
+  {
+    try {
+      (arg1)->computeScaledBatchStatistics(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6675,7 +9257,16 @@ SWIGINTERN PyObject *_wrap_Isotope_outputBatchStatistics(PyObject *SWIGUNUSEDPAR
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Isotope_outputBatchStatistics" "', argument " "3"" of type '" "char *""'");
   }
   arg3 = reinterpret_cast< char * >(buf3);
-  (arg1)->outputBatchStatistics(arg2,arg3);
+  {
+    try {
+      (arg1)->outputBatchStatistics(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
@@ -6699,7 +9290,16 @@ SWIGINTERN PyObject *_wrap_new_Material(PyObject *SWIGUNUSEDPARM(self), PyObject
   Material *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":new_Material")) SWIG_fail;
-  result = (Material *)new Material();
+  {
+    try {
+      result = (Material *)new Material();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -6720,7 +9320,16 @@ SWIGINTERN PyObject *_wrap_delete_Material(PyObject *SWIGUNUSEDPARM(self), PyObj
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Material" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  delete arg1;
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -6742,7 +9351,16 @@ SWIGINTERN PyObject *_wrap_Material_clone(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_clone" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  result = (Material *)(arg1)->clone();
+  {
+    try {
+      result = (Material *)(arg1)->clone();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, 0 |  0 );
   return resultobj;
 fail:
@@ -6764,7 +9382,16 @@ SWIGINTERN PyObject *_wrap_Material_getMaterialName(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getMaterialName" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  result = (char *)(arg1)->getMaterialName();
+  {
+    try {
+      result = (char *)(arg1)->getMaterialName();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -6786,7 +9413,16 @@ SWIGINTERN PyObject *_wrap_Material_getMaterialNumberDensity(PyObject *SWIGUNUSE
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getMaterialNumberDensity" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  result = (float)(arg1)->getMaterialNumberDensity();
+  {
+    try {
+      result = (float)(arg1)->getMaterialNumberDensity();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -6818,7 +9454,16 @@ SWIGINTERN PyObject *_wrap_Material_getIsotope(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_getIsotope" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  result = (Isotope *)(arg1)->getIsotope(arg2);
+  {
+    try {
+      result = (Isotope *)(arg1)->getIsotope(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Isotope, 0 |  0 );
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
@@ -6842,7 +9487,16 @@ SWIGINTERN PyObject *_wrap_Material_getDensity(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getDensity" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  result = (float)(arg1)->getDensity();
+  {
+    try {
+      result = (float)(arg1)->getDensity();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -6874,7 +9528,16 @@ SWIGINTERN PyObject *_wrap_Material_getIsotopeNumDensity(PyObject *SWIGUNUSEDPAR
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_getIsotopeNumDensity" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  result = (float)(arg1)->getIsotopeNumDensity(arg2);
+  {
+    try {
+      result = (float)(arg1)->getIsotopeNumDensity(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
@@ -6898,7 +9561,16 @@ SWIGINTERN PyObject *_wrap_Material_getNumXSEnergies(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getNumXSEnergies" "', argument " "1"" of type '" "Material const *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  result = (int)((Material const *)arg1)->getNumXSEnergies();
+  {
+    try {
+      result = (int)((Material const *)arg1)->getNumXSEnergies();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -6929,7 +9601,16 @@ SWIGINTERN PyObject *_wrap_Material_getTotalMacroXS__SWIG_0(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTotalMacroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getTotalMacroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getTotalMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -6960,7 +9641,16 @@ SWIGINTERN PyObject *_wrap_Material_getTotalMacroXS__SWIG_1(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTotalMacroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getTotalMacroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getTotalMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7041,7 +9731,16 @@ SWIGINTERN PyObject *_wrap_Material_getTotalMicroXS__SWIG_0(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTotalMicroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getTotalMicroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getTotalMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7072,7 +9771,16 @@ SWIGINTERN PyObject *_wrap_Material_getTotalMicroXS__SWIG_1(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTotalMicroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getTotalMicroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getTotalMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7153,7 +9861,16 @@ SWIGINTERN PyObject *_wrap_Material_getElasticMacroXS__SWIG_0(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getElasticMacroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getElasticMacroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getElasticMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7184,7 +9901,16 @@ SWIGINTERN PyObject *_wrap_Material_getElasticMacroXS__SWIG_1(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getElasticMacroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getElasticMacroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getElasticMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7265,7 +9991,16 @@ SWIGINTERN PyObject *_wrap_Material_getElasticMicroXS__SWIG_0(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getElasticMicroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getElasticMicroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getElasticMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7296,7 +10031,16 @@ SWIGINTERN PyObject *_wrap_Material_getElasticMicroXS__SWIG_1(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getElasticMicroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getElasticMicroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getElasticMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7377,7 +10121,16 @@ SWIGINTERN PyObject *_wrap_Material_getAbsorptionMacroXS__SWIG_0(PyObject *SWIGU
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getAbsorptionMacroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getAbsorptionMacroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getAbsorptionMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7408,7 +10161,16 @@ SWIGINTERN PyObject *_wrap_Material_getAbsorptionMacroXS__SWIG_1(PyObject *SWIGU
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getAbsorptionMacroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getAbsorptionMacroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getAbsorptionMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7489,7 +10251,16 @@ SWIGINTERN PyObject *_wrap_Material_getAbsorptionMicroXS__SWIG_0(PyObject *SWIGU
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getAbsorptionMicroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getAbsorptionMicroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getAbsorptionMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7520,7 +10291,16 @@ SWIGINTERN PyObject *_wrap_Material_getAbsorptionMicroXS__SWIG_1(PyObject *SWIGU
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getAbsorptionMicroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getAbsorptionMicroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getAbsorptionMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7601,7 +10381,16 @@ SWIGINTERN PyObject *_wrap_Material_getCaptureMacroXS__SWIG_0(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getCaptureMacroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getCaptureMacroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getCaptureMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7632,7 +10421,16 @@ SWIGINTERN PyObject *_wrap_Material_getCaptureMacroXS__SWIG_1(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getCaptureMacroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getCaptureMacroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getCaptureMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7713,7 +10511,16 @@ SWIGINTERN PyObject *_wrap_Material_getCaptureMicroXS__SWIG_0(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getCaptureMicroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getCaptureMicroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getCaptureMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7744,7 +10551,16 @@ SWIGINTERN PyObject *_wrap_Material_getCaptureMicroXS__SWIG_1(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getCaptureMicroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getCaptureMicroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getCaptureMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7825,7 +10641,16 @@ SWIGINTERN PyObject *_wrap_Material_getFissionMacroXS__SWIG_0(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getFissionMacroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getFissionMacroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getFissionMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7856,7 +10681,16 @@ SWIGINTERN PyObject *_wrap_Material_getFissionMacroXS__SWIG_1(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getFissionMacroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getFissionMacroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getFissionMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7937,7 +10771,16 @@ SWIGINTERN PyObject *_wrap_Material_getFissionMicroXS__SWIG_0(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getFissionMicroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getFissionMicroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getFissionMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -7968,7 +10811,16 @@ SWIGINTERN PyObject *_wrap_Material_getFissionMicroXS__SWIG_1(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getFissionMicroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getFissionMicroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getFissionMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -8049,7 +10901,16 @@ SWIGINTERN PyObject *_wrap_Material_getTransportMicroXS__SWIG_0(PyObject *SWIGUN
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTransportMicroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getTransportMicroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getTransportMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -8080,7 +10941,16 @@ SWIGINTERN PyObject *_wrap_Material_getTransportMicroXS__SWIG_1(PyObject *SWIGUN
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTransportMicroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getTransportMicroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getTransportMicroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -8161,7 +11031,16 @@ SWIGINTERN PyObject *_wrap_Material_getTransportMacroXS__SWIG_0(PyObject *SWIGUN
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTransportMacroXS" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->getTransportMacroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getTransportMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -8192,7 +11071,16 @@ SWIGINTERN PyObject *_wrap_Material_getTransportMacroXS__SWIG_1(PyObject *SWIGUN
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_getTransportMacroXS" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  result = (float)(arg1)->getTransportMacroXS(arg2);
+  {
+    try {
+      result = (float)(arg1)->getTransportMacroXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -8283,7 +11171,16 @@ SWIGINTERN PyObject *_wrap_Material_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  ((Material const *)arg1)->retrieveXSEnergies(arg2,arg3);
+  {
+    try {
+      ((Material const *)arg1)->retrieveXSEnergies(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -8337,7 +11234,16 @@ SWIGINTERN PyObject *_wrap_Material_retrieveXS(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Material_retrieveXS" "', argument " "4"" of type '" "char *""'");
   }
   arg4 = reinterpret_cast< char * >(buf4);
-  (arg1)->retrieveXS(arg2,arg3,arg4);
+  {
+    try {
+      (arg1)->retrieveXS(arg2,arg3,arg4);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -8373,7 +11279,16 @@ SWIGINTERN PyObject *_wrap_Material_setMaterialName(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_setMaterialName" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  (arg1)->setMaterialName(arg2);
+  {
+    try {
+      (arg1)->setMaterialName(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
@@ -8415,7 +11330,16 @@ SWIGINTERN PyObject *_wrap_Material_setDensity(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Material_setDensity" "', argument " "3"" of type '" "char *""'");
   }
   arg3 = reinterpret_cast< char * >(buf3);
-  (arg1)->setDensity(arg2,arg3);
+  {
+    try {
+      (arg1)->setDensity(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
   return resultobj;
@@ -8447,7 +11371,16 @@ SWIGINTERN PyObject *_wrap_Material_setNumberDensity(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_setNumberDensity" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setNumberDensity(arg2);
+  {
+    try {
+      (arg1)->setNumberDensity(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8477,7 +11410,16 @@ SWIGINTERN PyObject *_wrap_Material_setAtomicMass(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_setAtomicMass" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setAtomicMass(arg2);
+  {
+    try {
+      (arg1)->setAtomicMass(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8507,7 +11449,16 @@ SWIGINTERN PyObject *_wrap_Material_setNumBatches(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_setNumBatches" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNumBatches(arg2);
+  {
+    try {
+      (arg1)->setNumBatches(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8546,7 +11497,16 @@ SWIGINTERN PyObject *_wrap_Material_addIsotope(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Material_addIsotope" "', argument " "3"" of type '" "float""'");
   } 
   arg3 = static_cast< float >(val3);
-  (arg1)->addIsotope(arg2,arg3);
+  {
+    try {
+      (arg1)->addIsotope(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8577,7 +11537,16 @@ SWIGINTERN PyObject *_wrap_Material_sampleIsotope(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_sampleIsotope" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (Isotope *)(arg1)->sampleIsotope(arg2);
+  {
+    try {
+      result = (Isotope *)(arg1)->sampleIsotope(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Isotope, 0 |  0 );
   return resultobj;
 fail:
@@ -8607,7 +11576,16 @@ SWIGINTERN PyObject *_wrap_Material_addTally(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_addTally" "', argument " "2"" of type '" "Tally *""'"); 
   }
   arg2 = reinterpret_cast< Tally * >(argp2);
-  (arg1)->addTally(arg2);
+  {
+    try {
+      (arg1)->addTally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8638,8 +11616,87 @@ SWIGINTERN PyObject *_wrap_Material_collideNeutron(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_collideNeutron" "', argument " "2"" of type '" "neutron *""'"); 
   }
   arg2 = reinterpret_cast< neutron * >(argp2);
-  result = (collisionType)(arg1)->collideNeutron(arg2);
+  {
+    try {
+      result = (collisionType)(arg1)->collideNeutron(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_isPrecisionTriggered(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Material_isPrecisionTriggered",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_isPrecisionTriggered" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (bool)(arg1)->isPrecisionTriggered();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_incrementNumBatches(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Material_incrementNumBatches",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_incrementNumBatches" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_incrementNumBatches" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      (arg1)->incrementNumBatches(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -8659,7 +11716,16 @@ SWIGINTERN PyObject *_wrap_Material_computeBatchStatistics(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_computeBatchStatistics" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  (arg1)->computeBatchStatistics();
+  {
+    try {
+      (arg1)->computeBatchStatistics();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8689,7 +11755,16 @@ SWIGINTERN PyObject *_wrap_Material_computeScaledBatchStatistics(PyObject *SWIGU
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_computeScaledBatchStatistics" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->computeScaledBatchStatistics(arg2);
+  {
+    try {
+      (arg1)->computeScaledBatchStatistics(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8730,7 +11805,16 @@ SWIGINTERN PyObject *_wrap_Material_outputBatchStatistics(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Material_outputBatchStatistics" "', argument " "3"" of type '" "char *""'");
   }
   arg3 = reinterpret_cast< char * >(buf3);
-  (arg1)->outputBatchStatistics(arg2,arg3);
+  {
+    try {
+      (arg1)->outputBatchStatistics(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
@@ -8782,7 +11866,16 @@ SWIGINTERN PyObject *_wrap_new_Tally(PyObject *SWIGUNUSEDPARM(self), PyObject *a
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Tally" "', argument " "3"" of type '" "tallyType""'");
   } 
   arg3 = static_cast< tallyType >(val3);
-  result = (Tally *)new Tally(arg1,arg2,arg3);
+  {
+    try {
+      result = (Tally *)new Tally(arg1,arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, SWIG_POINTER_NEW |  0 );
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
@@ -8805,7 +11898,16 @@ SWIGINTERN PyObject *_wrap_delete_Tally(PyObject *SWIGUNUSEDPARM(self), PyObject
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Tally" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  delete arg1;
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -8827,7 +11929,16 @@ SWIGINTERN PyObject *_wrap_Tally_getTallyName(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getTallyName" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (char *)(arg1)->getTallyName();
+  {
+    try {
+      result = (char *)(arg1)->getTallyName();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -8849,7 +11960,16 @@ SWIGINTERN PyObject *_wrap_Tally_getNumBins(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getNumBins" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (int)(arg1)->getNumBins();
+  {
+    try {
+      result = (int)(arg1)->getNumBins();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -8871,7 +11991,16 @@ SWIGINTERN PyObject *_wrap_Tally_getBinEdges(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBinEdges" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double *)(arg1)->getBinEdges();
+  {
+    try {
+      result = (double *)(arg1)->getBinEdges();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
   return resultobj;
 fail:
@@ -8893,7 +12022,16 @@ SWIGINTERN PyObject *_wrap_Tally_getBinCenters(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBinCenters" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double *)(arg1)->getBinCenters();
+  {
+    try {
+      result = (double *)(arg1)->getBinCenters();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
   return resultobj;
 fail:
@@ -8915,7 +12053,16 @@ SWIGINTERN PyObject *_wrap_Tally_getBinDelta__SWIG_0(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBinDelta" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double)(arg1)->getBinDelta();
+  {
+    try {
+      result = (double)(arg1)->getBinDelta();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
@@ -8946,7 +12093,16 @@ SWIGINTERN PyObject *_wrap_Tally_getBinDelta__SWIG_1(PyObject *SWIGUNUSEDPARM(se
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_getBinDelta" "', argument " "2"" of type '" "double""'");
   } 
   arg2 = static_cast< double >(val2);
-  result = (double)(arg1)->getBinDelta(arg2);
+  {
+    try {
+      result = (double)(arg1)->getBinDelta(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
@@ -9012,7 +12168,16 @@ SWIGINTERN PyObject *_wrap_Tally_getBinSpacingType(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBinSpacingType" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (binSpacingType)(arg1)->getBinSpacingType();
+  {
+    try {
+      result = (binSpacingType)(arg1)->getBinSpacingType();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -9034,7 +12199,16 @@ SWIGINTERN PyObject *_wrap_Tally_getTallyDomainType(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getTallyDomainType" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (tallyDomainType)(arg1)->getTallyDomainType();
+  {
+    try {
+      result = (tallyDomainType)(arg1)->getTallyDomainType();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -9056,7 +12230,16 @@ SWIGINTERN PyObject *_wrap_Tally_getTallyType(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getTallyType" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (tallyType)(arg1)->getTallyType();
+  {
+    try {
+      result = (tallyType)(arg1)->getTallyType();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -9078,7 +12261,16 @@ SWIGINTERN PyObject *_wrap_Tally_getTallies(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getTallies" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double **)(arg1)->getTallies();
+  {
+    try {
+      result = (double **)(arg1)->getTallies();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_p_double, 0 |  0 );
   return resultobj;
 fail:
@@ -9118,123 +12310,20 @@ SWIGINTERN PyObject *_wrap_Tally_getTally(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_getTally" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
-  result = (double)(arg1)->getTally(arg2,arg3);
+  {
+    try {
+      result = (double)(arg1)->getTally(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
   return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_getNumTallies__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Tally *arg1 = (Tally *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  int **result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Tally_getNumTallies",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getNumTallies" "', argument " "1"" of type '" "Tally *""'"); 
-  }
-  arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (int **)(arg1)->getNumTallies();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_p_int, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_getNumTallies__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Tally *arg1 = (Tally *) 0 ;
-  int arg2 ;
-  int arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:Tally_getNumTallies",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getNumTallies" "', argument " "1"" of type '" "Tally *""'"); 
-  }
-  arg1 = reinterpret_cast< Tally * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_getNumTallies" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_getNumTallies" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  result = (int)(arg1)->getNumTallies(arg2,arg3);
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_getNumTallies(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[4];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
-  for (ii = 0; (ii < 3) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_Tally_getNumTallies__SWIG_0(self, args);
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_Tally_getNumTallies__SWIG_1(self, args);
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Tally_getNumTallies'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    Tally::getNumTallies()\n"
-    "    Tally::getNumTallies(int,int)\n");
-  return 0;
 }
 
 
@@ -9252,7 +12341,16 @@ SWIGINTERN PyObject *_wrap_Tally_getMaxTally(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getMaxTally" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double)(arg1)->getMaxTally();
+  {
+    try {
+      result = (double)(arg1)->getMaxTally();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
@@ -9274,7 +12372,16 @@ SWIGINTERN PyObject *_wrap_Tally_getMinTally(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getMinTally" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double)(arg1)->getMinTally();
+  {
+    try {
+      result = (double)(arg1)->getMinTally();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
@@ -9305,7 +12412,16 @@ SWIGINTERN PyObject *_wrap_Tally_getBinIndex(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_getBinIndex" "', argument " "2"" of type '" "double""'");
   } 
   arg2 = static_cast< double >(val2);
-  result = (int)(arg1)->getBinIndex(arg2);
+  {
+    try {
+      result = (int)(arg1)->getBinIndex(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -9346,7 +12462,16 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyEdges(PyObject *SWIGUNUSEDPARM(sel
     if (!array2) SWIG_fail;
     arg2 = (double*) array_data(array2);
   }
-  (arg1)->retrieveTallyEdges(arg2,arg3);
+  {
+    try {
+      (arg1)->retrieveTallyEdges(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -9390,7 +12515,16 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyCenters(PyObject *SWIGUNUSEDPARM(s
     if (!array2) SWIG_fail;
     arg2 = (double*) array_data(array2);
   }
-  (arg1)->retrieveTallyCenters(arg2,arg3);
+  {
+    try {
+      (arg1)->retrieveTallyCenters(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -9434,7 +12568,16 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyMu(PyObject *SWIGUNUSEDPARM(self),
     if (!array2) SWIG_fail;
     arg2 = (double*) array_data(array2);
   }
-  (arg1)->retrieveTallyMu(arg2,arg3);
+  {
+    try {
+      (arg1)->retrieveTallyMu(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -9478,7 +12621,16 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyVariance(PyObject *SWIGUNUSEDPARM(
     if (!array2) SWIG_fail;
     arg2 = (double*) array_data(array2);
   }
-  (arg1)->retrieveTallyVariance(arg2,arg3);
+  {
+    try {
+      (arg1)->retrieveTallyVariance(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -9522,7 +12674,16 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyStdDev(PyObject *SWIGUNUSEDPARM(se
     if (!array2) SWIG_fail;
     arg2 = (double*) array_data(array2);
   }
-  (arg1)->retrieveTallyStdDev(arg2,arg3);
+  {
+    try {
+      (arg1)->retrieveTallyStdDev(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -9566,7 +12727,16 @@ SWIGINTERN PyObject *_wrap_Tally_retrieveTallyRelErr(PyObject *SWIGUNUSEDPARM(se
     if (!array2) SWIG_fail;
     arg2 = (double*) array_data(array2);
   }
-  (arg1)->retrieveTallyRelErr(arg2,arg3);
+  {
+    try {
+      (arg1)->retrieveTallyRelErr(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -9591,7 +12761,16 @@ SWIGINTERN PyObject *_wrap_Tally_getNumBatches(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getNumBatches" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (int)(arg1)->getNumBatches();
+  {
+    try {
+      result = (int)(arg1)->getNumBatches();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -9613,7 +12792,16 @@ SWIGINTERN PyObject *_wrap_Tally_getBatchMu(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBatchMu" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double *)(arg1)->getBatchMu();
+  {
+    try {
+      result = (double *)(arg1)->getBatchMu();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
   return resultobj;
 fail:
@@ -9635,7 +12823,16 @@ SWIGINTERN PyObject *_wrap_Tally_getBatchVariance(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBatchVariance" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double *)(arg1)->getBatchVariance();
+  {
+    try {
+      result = (double *)(arg1)->getBatchVariance();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
   return resultobj;
 fail:
@@ -9657,7 +12854,16 @@ SWIGINTERN PyObject *_wrap_Tally_getBatchStdDev(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBatchStdDev" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double *)(arg1)->getBatchStdDev();
+  {
+    try {
+      result = (double *)(arg1)->getBatchStdDev();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
   return resultobj;
 fail:
@@ -9679,7 +12885,16 @@ SWIGINTERN PyObject *_wrap_Tally_getBatchRelativeError(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getBatchRelativeError" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (double *)(arg1)->getBatchRelativeError();
+  {
+    try {
+      result = (double *)(arg1)->getBatchRelativeError();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
   return resultobj;
 fail:
@@ -9709,7 +12924,16 @@ SWIGINTERN PyObject *_wrap_Tally_setBinSpacingType(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_setBinSpacingType" "', argument " "2"" of type '" "binSpacingType""'");
   } 
   arg2 = static_cast< binSpacingType >(val2);
-  (arg1)->setBinSpacingType(arg2);
+  {
+    try {
+      (arg1)->setBinSpacingType(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -9746,7 +12970,16 @@ SWIGINTERN PyObject *_wrap_Tally_setBinEdges(PyObject *SWIGUNUSEDPARM(self), PyO
     arg2 = (double*) array_data(array2);
     arg3 = (int) array_size(array2,0);
   }
-  (arg1)->setBinEdges(arg2,arg3);
+  {
+    try {
+      (arg1)->setBinEdges(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     if (is_new_object2 && array2)
@@ -9762,6 +12995,54 @@ fail:
       Py_DECREF(array2); 
     }
   }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_setPrecisionTrigger(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  triggerType arg2 ;
+  float arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  float val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Tally_setPrecisionTrigger",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_setPrecisionTrigger" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_setPrecisionTrigger" "', argument " "2"" of type '" "triggerType""'");
+  } 
+  arg2 = static_cast< triggerType >(val2);
+  ecode3 = SWIG_AsVal_float(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_setPrecisionTrigger" "', argument " "3"" of type '" "float""'");
+  } 
+  arg3 = static_cast< float >(val3);
+  {
+    try {
+      (arg1)->setPrecisionTrigger(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
   return NULL;
 }
 
@@ -9815,7 +13096,16 @@ SWIGINTERN PyObject *_wrap_Tally_generateBinEdges(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Tally_generateBinEdges" "', argument " "5"" of type '" "binSpacingType""'");
   } 
   arg5 = static_cast< binSpacingType >(val5);
-  (arg1)->generateBinEdges(arg2,arg3,arg4,arg5);
+  {
+    try {
+      (arg1)->generateBinEdges(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -9845,8 +13135,87 @@ SWIGINTERN PyObject *_wrap_Tally_setNumBatches(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_setNumBatches" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNumBatches(arg2);
+  {
+    try {
+      (arg1)->setNumBatches(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_incrementNumBatches(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_incrementNumBatches",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_incrementNumBatches" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_incrementNumBatches" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      (arg1)->incrementNumBatches(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_isPrecisionTriggered(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_isPrecisionTriggered",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_isPrecisionTriggered" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      result = (bool)(arg1)->isPrecisionTriggered();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
   return NULL;
@@ -9867,7 +13236,16 @@ SWIGINTERN PyObject *_wrap_Tally_clone(PyObject *SWIGUNUSEDPARM(self), PyObject 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_clone" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  result = (Tally *)(arg1)->clone();
+  {
+    try {
+      result = (Tally *)(arg1)->clone();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, 0 |  0 );
   return resultobj;
 fail:
@@ -9888,7 +13266,16 @@ SWIGINTERN PyObject *_wrap_Tally_generateBinCenters(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_generateBinCenters" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  (arg1)->generateBinCenters();
+  {
+    try {
+      (arg1)->generateBinCenters();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -9936,7 +13323,16 @@ SWIGINTERN PyObject *_wrap_Tally_tally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Tally_tally" "', argument " "4"" of type '" "int""'");
   } 
   arg4 = static_cast< int >(val4);
-  (arg1)->tally(arg2,arg3,arg4);
+  {
+    try {
+      (arg1)->tally(arg2,arg3,arg4);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -9975,7 +13371,16 @@ SWIGINTERN PyObject *_wrap_Tally_tally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_tally" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
-  (arg1)->tally(arg2,arg3);
+  {
+    try {
+      (arg1)->tally(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10099,7 +13504,16 @@ SWIGINTERN PyObject *_wrap_Tally_weightedTally__SWIG_0(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Tally_weightedTally" "', argument " "5"" of type '" "int""'");
   } 
   arg5 = static_cast< int >(val5);
-  (arg1)->weightedTally(arg2,arg3,arg4,arg5);
+  {
+    try {
+      (arg1)->weightedTally(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10147,7 +13561,16 @@ SWIGINTERN PyObject *_wrap_Tally_weightedTally__SWIG_1(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Tally_weightedTally" "', argument " "4"" of type '" "int""'");
   } 
   arg4 = static_cast< int >(val4);
-  (arg1)->weightedTally(arg2,arg3,arg4);
+  {
+    try {
+      (arg1)->weightedTally(arg2,arg3,arg4);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10246,7 +13669,16 @@ SWIGINTERN PyObject *_wrap_Tally_normalizeTallies__SWIG_0(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_normalizeTallies" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  (arg1)->normalizeTallies();
+  {
+    try {
+      (arg1)->normalizeTallies();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10276,7 +13708,16 @@ SWIGINTERN PyObject *_wrap_Tally_normalizeTallies__SWIG_1(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_normalizeTallies" "', argument " "2"" of type '" "double""'");
   } 
   arg2 = static_cast< double >(val2);
-  (arg1)->normalizeTallies(arg2);
+  {
+    try {
+      (arg1)->normalizeTallies(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10341,7 +13782,16 @@ SWIGINTERN PyObject *_wrap_Tally_computeBatchStatistics(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_computeBatchStatistics" "', argument " "1"" of type '" "Tally *""'"); 
   }
   arg1 = reinterpret_cast< Tally * >(argp1);
-  (arg1)->computeBatchStatistics();
+  {
+    try {
+      (arg1)->computeBatchStatistics();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10371,7 +13821,16 @@ SWIGINTERN PyObject *_wrap_Tally_computeScaledBatchStatistics(PyObject *SWIGUNUS
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_computeScaledBatchStatistics" "', argument " "2"" of type '" "double""'");
   } 
   arg2 = static_cast< double >(val2);
-  (arg1)->computeScaledBatchStatistics(arg2);
+  {
+    try {
+      (arg1)->computeScaledBatchStatistics(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10402,7 +13861,16 @@ SWIGINTERN PyObject *_wrap_Tally_outputBatchStatistics(PyObject *SWIGUNUSEDPARM(
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally_outputBatchStatistics" "', argument " "2"" of type '" "char const *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  (arg1)->outputBatchStatistics((char const *)arg2);
+  {
+    try {
+      (arg1)->outputBatchStatistics((char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
@@ -10783,58 +14251,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_neutron__weight_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  neutron *arg1 = (neutron *) 0 ;
-  float arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  float val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__weight_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__weight_set" "', argument " "1"" of type '" "neutron *""'"); 
-  }
-  arg1 = reinterpret_cast< neutron * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__weight_set" "', argument " "2"" of type '" "float""'");
-  } 
-  arg2 = static_cast< float >(val2);
-  if (arg1) (arg1)->_weight = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_neutron__weight_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  neutron *arg1 = (neutron *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  float result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:neutron__weight_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__weight_get" "', argument " "1"" of type '" "neutron *""'"); 
-  }
-  arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (float) ((arg1)->_weight);
-  resultobj = SWIG_From_float(static_cast< float >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_neutron__alive_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   neutron *arg1 = (neutron *) 0 ;
@@ -10944,7 +14360,16 @@ SWIGINTERN PyObject *_wrap_new_neutron(PyObject *SWIGUNUSEDPARM(self), PyObject 
   neutron *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":new_neutron")) SWIG_fail;
-  result = (neutron *)new neutron();
+  {
+    try {
+      result = (neutron *)new neutron();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_neutron, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -10965,7 +14390,16 @@ SWIGINTERN PyObject *_wrap_delete_neutron(PyObject *SWIGUNUSEDPARM(self), PyObje
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_neutron" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  delete arg1;
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10985,7 +14419,16 @@ SWIGINTERN PyObject *_wrap_initializeNewNeutron(PyObject *SWIGUNUSEDPARM(self), 
   neutron *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":initializeNewNeutron")) SWIG_fail;
-  result = (neutron *)initializeNewNeutron();
+  {
+    try {
+      result = (neutron *)initializeNewNeutron();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_neutron, 0 |  0 );
   return resultobj;
 fail:
@@ -10998,7 +14441,16 @@ SWIGINTERN PyObject *_wrap_new_Fissioner(PyObject *SWIGUNUSEDPARM(self), PyObjec
   Fissioner *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":new_Fissioner")) SWIG_fail;
-  result = (Fissioner *)new Fissioner();
+  {
+    try {
+      result = (Fissioner *)new Fissioner();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Fissioner, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -11019,7 +14471,16 @@ SWIGINTERN PyObject *_wrap_delete_Fissioner(PyObject *SWIGUNUSEDPARM(self), PyOb
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Fissioner" "', argument " "1"" of type '" "Fissioner *""'"); 
   }
   arg1 = reinterpret_cast< Fissioner * >(argp1);
-  delete arg1;
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11041,7 +14502,16 @@ SWIGINTERN PyObject *_wrap_Fissioner_getNumBins(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Fissioner_getNumBins" "', argument " "1"" of type '" "Fissioner *""'"); 
   }
   arg1 = reinterpret_cast< Fissioner * >(argp1);
-  result = (int)(arg1)->getNumBins();
+  {
+    try {
+      result = (int)(arg1)->getNumBins();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -11071,7 +14541,16 @@ SWIGINTERN PyObject *_wrap_Fissioner_setNumBins(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Fissioner_setNumBins" "', argument " "2"" of type '" "int""'");
   } 
   arg2 = static_cast< int >(val2);
-  (arg1)->setNumBins(arg2);
+  {
+    try {
+      (arg1)->setNumBins(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11101,7 +14580,16 @@ SWIGINTERN PyObject *_wrap_Fissioner_setEMax(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Fissioner_setEMax" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  (arg1)->setEMax(arg2);
+  {
+    try {
+      (arg1)->setEMax(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11122,7 +14610,16 @@ SWIGINTERN PyObject *_wrap_Fissioner_buildCDF(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Fissioner_buildCDF" "', argument " "1"" of type '" "Fissioner *""'"); 
   }
   arg1 = reinterpret_cast< Fissioner * >(argp1);
-  (arg1)->buildCDF();
+  {
+    try {
+      (arg1)->buildCDF();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11153,7 +14650,16 @@ SWIGINTERN PyObject *_wrap_Fissioner_wattSpectrum(PyObject *SWIGUNUSEDPARM(self)
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Fissioner_wattSpectrum" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
-  result = (float)(arg1)->wattSpectrum(arg2);
+  {
+    try {
+      result = (float)(arg1)->wattSpectrum(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -11175,7 +14681,16 @@ SWIGINTERN PyObject *_wrap_Fissioner_emitNeutronMeV(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Fissioner_emitNeutronMeV" "', argument " "1"" of type '" "Fissioner *""'"); 
   }
   arg1 = reinterpret_cast< Fissioner * >(argp1);
-  result = (float)(arg1)->emitNeutronMeV();
+  {
+    try {
+      result = (float)(arg1)->emitNeutronMeV();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -11197,7 +14712,16 @@ SWIGINTERN PyObject *_wrap_Fissioner_emitNeutroneV(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Fissioner_emitNeutroneV" "', argument " "1"" of type '" "Fissioner *""'"); 
   }
   arg1 = reinterpret_cast< Fissioner * >(argp1);
-  result = (float)(arg1)->emitNeutroneV();
+  {
+    try {
+      result = (float)(arg1)->emitNeutroneV();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
@@ -11238,7 +14762,16 @@ SWIGINTERN PyObject *_wrap_Fissioner_retrieveCDF(PyObject *SWIGUNUSEDPARM(self),
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  (arg1)->retrieveCDF(arg2,arg3);
+  {
+    try {
+      (arg1)->retrieveCDF(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -11282,7 +14815,16 @@ SWIGINTERN PyObject *_wrap_Fissioner_retrieveCDFEnergies(PyObject *SWIGUNUSEDPAR
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
-  (arg1)->retrieveCDFEnergies(arg2,arg3);
+  {
+    try {
+      (arg1)->retrieveCDFEnergies(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
@@ -11300,6 +14842,39 @@ SWIGINTERN PyObject *Fissioner_swigregister(PyObject *SWIGUNUSEDPARM(self), PyOb
   return SWIG_Py_Void();
 }
 
+SWIGINTERN PyObject *_wrap_set_err(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:set_err",&obj0)) SWIG_fail;
+  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "set_err" "', argument " "1"" of type '" "char const *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  {
+    try {
+      set_err((char const *)arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_log_setlevel__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   logLevel arg1 ;
@@ -11313,7 +14888,16 @@ SWIGINTERN PyObject *_wrap_log_setlevel__SWIG_0(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "log_setlevel" "', argument " "1"" of type '" "logLevel""'");
   } 
   arg1 = static_cast< logLevel >(val1);
-  log_setlevel(arg1);
+  {
+    try {
+      log_setlevel(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -11335,7 +14919,16 @@ SWIGINTERN PyObject *_wrap_log_setlevel__SWIG_1(PyObject *SWIGUNUSEDPARM(self), 
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "log_setlevel" "', argument " "1"" of type '" "char const *""'");
   }
   arg1 = reinterpret_cast< char * >(buf1);
-  log_setlevel((char const *)arg1);
+  {
+    try {
+      log_setlevel((char const *)arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
@@ -11388,7 +14981,16 @@ SWIGINTERN PyObject *_wrap_get_loglevel(PyObject *SWIGUNUSEDPARM(self), PyObject
   int result;
   
   if (!PyArg_ParseTuple(args,(char *)":get_loglevel")) SWIG_fail;
-  result = (int)get_loglevel();
+  {
+    try {
+      result = (int)get_loglevel();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
@@ -11420,7 +15022,16 @@ SWIGINTERN PyObject *_wrap_log_printf__varargs__(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "log_printf" "', argument " "2"" of type '" "char const *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
-  log_printf(arg1,(char const *)arg2,arg3);
+  {
+    try {
+      log_printf(arg1,(char const *)arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
@@ -11509,7 +15120,16 @@ SWIGINTERN PyObject *_wrap_setXSLibDirectory(PyObject *SWIGUNUSEDPARM(self), PyO
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "setXSLibDirectory" "', argument " "1"" of type '" "char *""'");
   }
   arg1 = reinterpret_cast< char * >(buf1);
-  setXSLibDirectory(arg1);
+  {
+    try {
+      setXSLibDirectory(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_Py_Void();
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
@@ -11524,7 +15144,16 @@ SWIGINTERN PyObject *_wrap_getXSLibDirectory(PyObject *SWIGUNUSEDPARM(self), PyO
   char *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)":getXSLibDirectory")) SWIG_fail;
-  result = (char *)getXSLibDirectory();
+  {
+    try {
+      result = (char *)getXSLibDirectory();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_FromCharPtr((const char *)result);
   return resultobj;
 fail:
@@ -11565,7 +15194,16 @@ SWIGINTERN PyObject *_wrap_parseCrossSections(PyObject *SWIGUNUSEDPARM(self), Py
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "parseCrossSections" "', argument " "3"" of type '" "float *""'"); 
   }
   arg3 = reinterpret_cast< float * >(argp3);
-  result = (int)parseCrossSections((char const *)arg1,arg2,arg3);
+  {
+    try {
+      result = (int)parseCrossSections((char const *)arg1,arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
@@ -11590,7 +15228,16 @@ SWIGINTERN PyObject *_wrap_getNumCrossSectionDataPoints(PyObject *SWIGUNUSEDPARM
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "getNumCrossSectionDataPoints" "', argument " "1"" of type '" "char const *""'");
   }
   arg1 = reinterpret_cast< char * >(buf1);
-  result = (int)getNumCrossSectionDataPoints((char const *)arg1);
+  {
+    try {
+      result = (int)getNumCrossSectionDataPoints((char const *)arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
   resultobj = SWIG_From_int(static_cast< int >(result));
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
@@ -11599,6 +15246,353 @@ fail:
   return NULL;
 }
 
+
+SWIGINTERN PyObject *_wrap_new_Timer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_Timer")) SWIG_fail;
+  {
+    try {
+      result = (Timer *)new Timer();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Timer, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_Timer(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_Timer",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_Timer" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_start(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Timer_start",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_start" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  {
+    try {
+      (arg1)->start();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_stop(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Timer_stop",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_stop" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  {
+    try {
+      (arg1)->stop();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_restart(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Timer_restart",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_restart" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  {
+    try {
+      (arg1)->restart();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_reset(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Timer_reset",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_reset" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  {
+    try {
+      (arg1)->reset();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_recordSplit(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Timer_recordSplit",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_recordSplit" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Timer_recordSplit" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      (arg1)->recordSplit((char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_getTime(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Timer_getTime",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_getTime" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  {
+    try {
+      result = (double)(arg1)->getTime();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_diff(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  timespec arg2 ;
+  timespec arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  void *argp3 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Timer_diff",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_diff" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  {
+    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_timespec,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Timer_diff" "', argument " "2"" of type '" "timespec""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Timer_diff" "', argument " "2"" of type '" "timespec""'");
+    } else {
+      timespec * temp = reinterpret_cast< timespec * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  {
+    res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_timespec,  0  | 0);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Timer_diff" "', argument " "3"" of type '" "timespec""'"); 
+    }  
+    if (!argp3) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Timer_diff" "', argument " "3"" of type '" "timespec""'");
+    } else {
+      timespec * temp = reinterpret_cast< timespec * >(argp3);
+      arg3 = *temp;
+      if (SWIG_IsNewObj(res3)) delete temp;
+    }
+  }
+  {
+    try {
+      result = (double)(arg1)->diff(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Timer_printSplits(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Timer *arg1 = (Timer *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Timer_printSplits",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Timer, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Timer_printSplits" "', argument " "1"" of type '" "Timer *""'"); 
+  }
+  arg1 = reinterpret_cast< Timer * >(argp1);
+  {
+    try {
+      (arg1)->printSplits();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *Timer_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_Timer, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
 
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"SWIG_PyInstanceMethod_New", (PyCFunction)SWIG_PyInstanceMethod_New, METH_O, NULL},
@@ -11615,6 +15609,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Geometry_setSpatialType", _wrap_Geometry_setSpatialType, METH_VARARGS, NULL},
 	 { (char *)"Geometry_setDancoffFactor", _wrap_Geometry_setDancoffFactor, METH_VARARGS, NULL},
 	 { (char *)"Geometry_addRegion", _wrap_Geometry_addRegion, METH_VARARGS, NULL},
+	 { (char *)"Geometry_addTally", _wrap_Geometry_addTally, METH_VARARGS, NULL},
 	 { (char *)"Geometry_runMonteCarloSimulation", _wrap_Geometry_runMonteCarloSimulation, METH_VARARGS, NULL},
 	 { (char *)"Geometry_computeBatchStatistics", _wrap_Geometry_computeBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Geometry_computeScaledBatchStatistics", _wrap_Geometry_computeScaledBatchStatistics, METH_VARARGS, NULL},
@@ -11631,6 +15626,18 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Region_isInfinite", _wrap_Region_isInfinite, METH_VARARGS, NULL},
 	 { (char *)"Region_getFuelRadius", _wrap_Region_getFuelRadius, METH_VARARGS, NULL},
 	 { (char *)"Region_getPitch", _wrap_Region_getPitch, METH_VARARGS, NULL},
+	 { (char *)"Region_getTotalMacroXS", _wrap_Region_getTotalMacroXS, METH_VARARGS, NULL},
+	 { (char *)"Region_getTotalMicroXS", _wrap_Region_getTotalMicroXS, METH_VARARGS, NULL},
+	 { (char *)"Region_getElasticMacroXS", _wrap_Region_getElasticMacroXS, METH_VARARGS, NULL},
+	 { (char *)"Region_getElasticMicroXS", _wrap_Region_getElasticMicroXS, METH_VARARGS, NULL},
+	 { (char *)"Region_getAbsorptionMacroXS", _wrap_Region_getAbsorptionMacroXS, METH_VARARGS, NULL},
+	 { (char *)"Region_getAbsorptionMicroXS", _wrap_Region_getAbsorptionMicroXS, METH_VARARGS, NULL},
+	 { (char *)"Region_getCaptureMacroXS", _wrap_Region_getCaptureMacroXS, METH_VARARGS, NULL},
+	 { (char *)"Region_getCaptureMicroXS", _wrap_Region_getCaptureMicroXS, METH_VARARGS, NULL},
+	 { (char *)"Region_getFissionMacroXS", _wrap_Region_getFissionMacroXS, METH_VARARGS, NULL},
+	 { (char *)"Region_getFissionMicroXS", _wrap_Region_getFissionMicroXS, METH_VARARGS, NULL},
+	 { (char *)"Region_getTransportMicroXS", _wrap_Region_getTransportMicroXS, METH_VARARGS, NULL},
+	 { (char *)"Region_getTransportMacroXS", _wrap_Region_getTransportMacroXS, METH_VARARGS, NULL},
 	 { (char *)"Region_setVolume", _wrap_Region_setVolume, METH_VARARGS, NULL},
 	 { (char *)"Region_setMaterial", _wrap_Region_setMaterial, METH_VARARGS, NULL},
 	 { (char *)"Region_addTally", _wrap_Region_addTally, METH_VARARGS, NULL},
@@ -11640,6 +15647,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Region_addFuelRingRadius", _wrap_Region_addFuelRingRadius, METH_VARARGS, NULL},
 	 { (char *)"Region_addModeratorRingRadius", _wrap_Region_addModeratorRingRadius, METH_VARARGS, NULL},
 	 { (char *)"Region_collideNeutron", _wrap_Region_collideNeutron, METH_VARARGS, NULL},
+	 { (char *)"Region_isPrecisionTriggered", _wrap_Region_isPrecisionTriggered, METH_VARARGS, NULL},
+	 { (char *)"Region_incrementNumBatches", _wrap_Region_incrementNumBatches, METH_VARARGS, NULL},
 	 { (char *)"Region_computeBatchStatistics", _wrap_Region_computeBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Region_computeScaledBatchStatistics", _wrap_Region_computeScaledBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Region_outputBatchStatistics", _wrap_Region_outputBatchStatistics, METH_VARARGS, NULL},
@@ -11687,6 +15696,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_retrieveEtokT", _wrap_Isotope_retrieveEtokT, METH_VARARGS, NULL},
 	 { (char *)"Isotope_retrieveEprimeToE", _wrap_Isotope_retrieveEprimeToE, METH_VARARGS, NULL},
 	 { (char *)"Isotope_addTally", _wrap_Isotope_addTally, METH_VARARGS, NULL},
+	 { (char *)"Isotope_isPrecisionTriggered", _wrap_Isotope_isPrecisionTriggered, METH_VARARGS, NULL},
+	 { (char *)"Isotope_incrementNumBatches", _wrap_Isotope_incrementNumBatches, METH_VARARGS, NULL},
 	 { (char *)"Isotope_computeBatchStatistics", _wrap_Isotope_computeBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Isotope_computeScaledBatchStatistics", _wrap_Isotope_computeScaledBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Isotope_outputBatchStatistics", _wrap_Isotope_outputBatchStatistics, METH_VARARGS, NULL},
@@ -11723,6 +15734,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Material_sampleIsotope", _wrap_Material_sampleIsotope, METH_VARARGS, NULL},
 	 { (char *)"Material_addTally", _wrap_Material_addTally, METH_VARARGS, NULL},
 	 { (char *)"Material_collideNeutron", _wrap_Material_collideNeutron, METH_VARARGS, NULL},
+	 { (char *)"Material_isPrecisionTriggered", _wrap_Material_isPrecisionTriggered, METH_VARARGS, NULL},
+	 { (char *)"Material_incrementNumBatches", _wrap_Material_incrementNumBatches, METH_VARARGS, NULL},
 	 { (char *)"Material_computeBatchStatistics", _wrap_Material_computeBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Material_computeScaledBatchStatistics", _wrap_Material_computeScaledBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Material_outputBatchStatistics", _wrap_Material_outputBatchStatistics, METH_VARARGS, NULL},
@@ -11739,7 +15752,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tally_getTallyType", _wrap_Tally_getTallyType, METH_VARARGS, NULL},
 	 { (char *)"Tally_getTallies", _wrap_Tally_getTallies, METH_VARARGS, NULL},
 	 { (char *)"Tally_getTally", _wrap_Tally_getTally, METH_VARARGS, NULL},
-	 { (char *)"Tally_getNumTallies", _wrap_Tally_getNumTallies, METH_VARARGS, NULL},
 	 { (char *)"Tally_getMaxTally", _wrap_Tally_getMaxTally, METH_VARARGS, NULL},
 	 { (char *)"Tally_getMinTally", _wrap_Tally_getMinTally, METH_VARARGS, NULL},
 	 { (char *)"Tally_getBinIndex", _wrap_Tally_getBinIndex, METH_VARARGS, NULL},
@@ -11756,8 +15768,11 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tally_getBatchRelativeError", _wrap_Tally_getBatchRelativeError, METH_VARARGS, NULL},
 	 { (char *)"Tally_setBinSpacingType", _wrap_Tally_setBinSpacingType, METH_VARARGS, NULL},
 	 { (char *)"Tally_setBinEdges", _wrap_Tally_setBinEdges, METH_VARARGS, NULL},
+	 { (char *)"Tally_setPrecisionTrigger", _wrap_Tally_setPrecisionTrigger, METH_VARARGS, NULL},
 	 { (char *)"Tally_generateBinEdges", _wrap_Tally_generateBinEdges, METH_VARARGS, NULL},
 	 { (char *)"Tally_setNumBatches", _wrap_Tally_setNumBatches, METH_VARARGS, NULL},
+	 { (char *)"Tally_incrementNumBatches", _wrap_Tally_incrementNumBatches, METH_VARARGS, NULL},
+	 { (char *)"Tally_isPrecisionTriggered", _wrap_Tally_isPrecisionTriggered, METH_VARARGS, NULL},
 	 { (char *)"Tally_clone", _wrap_Tally_clone, METH_VARARGS, NULL},
 	 { (char *)"Tally_generateBinCenters", _wrap_Tally_generateBinCenters, METH_VARARGS, NULL},
 	 { (char *)"Tally_tally", _wrap_Tally_tally, METH_VARARGS, NULL},
@@ -11781,8 +15796,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"neutron__phi_get", _wrap_neutron__phi_get, METH_VARARGS, NULL},
 	 { (char *)"neutron__energy_set", _wrap_neutron__energy_set, METH_VARARGS, NULL},
 	 { (char *)"neutron__energy_get", _wrap_neutron__energy_get, METH_VARARGS, NULL},
-	 { (char *)"neutron__weight_set", _wrap_neutron__weight_set, METH_VARARGS, NULL},
-	 { (char *)"neutron__weight_get", _wrap_neutron__weight_get, METH_VARARGS, NULL},
 	 { (char *)"neutron__alive_set", _wrap_neutron__alive_set, METH_VARARGS, NULL},
 	 { (char *)"neutron__alive_get", _wrap_neutron__alive_get, METH_VARARGS, NULL},
 	 { (char *)"neutron__in_fuel_set", _wrap_neutron__in_fuel_set, METH_VARARGS, NULL},
@@ -11803,6 +15816,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Fissioner_retrieveCDF", _wrap_Fissioner_retrieveCDF, METH_VARARGS, NULL},
 	 { (char *)"Fissioner_retrieveCDFEnergies", _wrap_Fissioner_retrieveCDFEnergies, METH_VARARGS, NULL},
 	 { (char *)"Fissioner_swigregister", Fissioner_swigregister, METH_VARARGS, NULL},
+	 { (char *)"set_err", _wrap_set_err, METH_VARARGS, NULL},
 	 { (char *)"log_setlevel", _wrap_log_setlevel, METH_VARARGS, NULL},
 	 { (char *)"get_loglevel", _wrap_get_loglevel, METH_VARARGS, NULL},
 	 { (char *)"log_printf", _wrap_log_printf, METH_VARARGS, NULL},
@@ -11810,6 +15824,17 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"getXSLibDirectory", _wrap_getXSLibDirectory, METH_VARARGS, NULL},
 	 { (char *)"parseCrossSections", _wrap_parseCrossSections, METH_VARARGS, NULL},
 	 { (char *)"getNumCrossSectionDataPoints", _wrap_getNumCrossSectionDataPoints, METH_VARARGS, NULL},
+	 { (char *)"new_Timer", _wrap_new_Timer, METH_VARARGS, NULL},
+	 { (char *)"delete_Timer", _wrap_delete_Timer, METH_VARARGS, NULL},
+	 { (char *)"Timer_start", _wrap_Timer_start, METH_VARARGS, NULL},
+	 { (char *)"Timer_stop", _wrap_Timer_stop, METH_VARARGS, NULL},
+	 { (char *)"Timer_restart", _wrap_Timer_restart, METH_VARARGS, NULL},
+	 { (char *)"Timer_reset", _wrap_Timer_reset, METH_VARARGS, NULL},
+	 { (char *)"Timer_recordSplit", _wrap_Timer_recordSplit, METH_VARARGS, NULL},
+	 { (char *)"Timer_getTime", _wrap_Timer_getTime, METH_VARARGS, NULL},
+	 { (char *)"Timer_diff", _wrap_Timer_diff, METH_VARARGS, NULL},
+	 { (char *)"Timer_printSplits", _wrap_Timer_printSplits, METH_VARARGS, NULL},
+	 { (char *)"Timer_swigregister", Timer_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -11822,6 +15847,7 @@ static swig_type_info _swigt__p_Isotope = {"_p_Isotope", "Isotope *", 0, 0, (voi
 static swig_type_info _swigt__p_Material = {"_p_Material", "Material *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Region = {"_p_Region", "Region *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Tally = {"_p_Tally", "Tally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Timer = {"_p_Timer", "Timer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_binSpacingTypes = {"_p_binSpacingTypes", "binSpacingType *|enum binSpacingTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_collisionTypes = {"_p_collisionTypes", "collisionType *|enum collisionTypes *", 0, 0, (void*)0, 0};
@@ -11831,12 +15857,13 @@ static swig_type_info _swigt__p_float = {"_p_float", "float *", 0, 0, (void*)0, 
 static swig_type_info _swigt__p_logLevels = {"_p_logLevels", "enum logLevels *|logLevel *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_neutron = {"_p_neutron", "neutron *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_double = {"_p_p_double", "double **", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_p_int = {"_p_p_int", "int **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_regionTypes = {"_p_regionTypes", "regionType *|enum regionTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_scatterAngleTypes = {"_p_scatterAngleTypes", "scatterAngleType *|enum scatterAngleTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_spatialTypes = {"_p_spatialTypes", "spatialType *|enum spatialTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_tallyDomainTypes = {"_p_tallyDomainTypes", "tallyDomainType *|enum tallyDomainTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_tallyTypes = {"_p_tallyTypes", "tallyType *|enum tallyTypes *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_timespec = {"_p_timespec", "timespec *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_triggerTypes = {"_p_triggerTypes", "triggerType *|enum triggerTypes *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Fissioner,
@@ -11845,6 +15872,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Material,
   &_swigt__p_Region,
   &_swigt__p_Tally,
+  &_swigt__p_Timer,
   &_swigt__p_binSpacingTypes,
   &_swigt__p_char,
   &_swigt__p_collisionTypes,
@@ -11854,12 +15882,13 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_logLevels,
   &_swigt__p_neutron,
   &_swigt__p_p_double,
-  &_swigt__p_p_int,
   &_swigt__p_regionTypes,
   &_swigt__p_scatterAngleTypes,
   &_swigt__p_spatialTypes,
   &_swigt__p_tallyDomainTypes,
   &_swigt__p_tallyTypes,
+  &_swigt__p_timespec,
+  &_swigt__p_triggerTypes,
 };
 
 static swig_cast_info _swigc__p_Fissioner[] = {  {&_swigt__p_Fissioner, 0, 0, 0},{0, 0, 0, 0}};
@@ -11868,6 +15897,7 @@ static swig_cast_info _swigc__p_Isotope[] = {  {&_swigt__p_Isotope, 0, 0, 0},{0,
 static swig_cast_info _swigc__p_Material[] = {  {&_swigt__p_Material, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Region[] = {  {&_swigt__p_Region, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Tally[] = {  {&_swigt__p_Tally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Timer[] = {  {&_swigt__p_Timer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_binSpacingTypes[] = {  {&_swigt__p_binSpacingTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_collisionTypes[] = {  {&_swigt__p_collisionTypes, 0, 0, 0},{0, 0, 0, 0}};
@@ -11877,12 +15907,13 @@ static swig_cast_info _swigc__p_float[] = {  {&_swigt__p_float, 0, 0, 0},{0, 0, 
 static swig_cast_info _swigc__p_logLevels[] = {  {&_swigt__p_logLevels, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_neutron[] = {  {&_swigt__p_neutron, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_double[] = {  {&_swigt__p_p_double, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_p_int[] = {  {&_swigt__p_p_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_regionTypes[] = {  {&_swigt__p_regionTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_scatterAngleTypes[] = {  {&_swigt__p_scatterAngleTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_spatialTypes[] = {  {&_swigt__p_spatialTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_tallyDomainTypes[] = {  {&_swigt__p_tallyDomainTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_tallyTypes[] = {  {&_swigt__p_tallyTypes, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_timespec[] = {  {&_swigt__p_timespec, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_triggerTypes[] = {  {&_swigt__p_triggerTypes, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Fissioner,
@@ -11891,6 +15922,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Material,
   _swigc__p_Region,
   _swigc__p_Tally,
+  _swigc__p_Timer,
   _swigc__p_binSpacingTypes,
   _swigc__p_char,
   _swigc__p_collisionTypes,
@@ -11900,12 +15932,13 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_logLevels,
   _swigc__p_neutron,
   _swigc__p_p_double,
-  _swigc__p_p_int,
   _swigc__p_regionTypes,
   _swigc__p_scatterAngleTypes,
   _swigc__p_spatialTypes,
   _swigc__p_tallyDomainTypes,
   _swigc__p_tallyTypes,
+  _swigc__p_timespec,
+  _swigc__p_triggerTypes,
 };
 
 
@@ -12613,6 +16646,11 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "MATERIAL",SWIG_From_int(static_cast< int >(MATERIAL)));
   SWIG_Python_SetConstant(d, "ISOTOPE",SWIG_From_int(static_cast< int >(ISOTOPE)));
   SWIG_Python_SetConstant(d, "REGION",SWIG_From_int(static_cast< int >(REGION)));
+  SWIG_Python_SetConstant(d, "GEOMETRY",SWIG_From_int(static_cast< int >(GEOMETRY)));
+  SWIG_Python_SetConstant(d, "VARIANCE",SWIG_From_int(static_cast< int >(VARIANCE)));
+  SWIG_Python_SetConstant(d, "STANDARD_DEVIATION",SWIG_From_int(static_cast< int >(STANDARD_DEVIATION)));
+  SWIG_Python_SetConstant(d, "RELATIVE_ERROR",SWIG_From_int(static_cast< int >(RELATIVE_ERROR)));
+  SWIG_Python_SetConstant(d, "NONE",SWIG_From_int(static_cast< int >(NONE)));
   SWIG_Python_SetConstant(d, "FLUX",SWIG_From_int(static_cast< int >(FLUX)));
   SWIG_Python_SetConstant(d, "COLLISION_RATE",SWIG_From_int(static_cast< int >(COLLISION_RATE)));
   SWIG_Python_SetConstant(d, "ELASTIC_RATE",SWIG_From_int(static_cast< int >(ELASTIC_RATE)));

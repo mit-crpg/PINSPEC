@@ -138,6 +138,124 @@ float Region::getPitch() {
 }
 
 
+float Region::getTotalMacroXS(float energy) {
+    return _material->getTotalMacroXS(energy);
+}
+
+
+float Region::getTotalMacroXS(int energy_index) {
+    return _material->getTotalMacroXS(energy_index);
+}
+
+
+float Region::getTotalMicroXS(float energy) {
+    return _material->getTotalMicroXS(energy);
+}
+
+
+float Region::getTotalMicroXS(int energy_index) {
+    return _material->getTotalMicroXS(energy_index);
+}
+
+
+float Region::getElasticMacroXS(float energy) {
+    return _material->getElasticMacroXS(energy);
+}
+
+
+float Region::getElasticMacroXS(int energy_index) {
+    return _material->getElasticMacroXS(energy_index);
+}
+
+
+float Region::getElasticMicroXS(float energy) {
+    return _material->getElasticMicroXS(energy);
+}  
+
+
+float Region::getElasticMicroXS(int energy_index) {
+    return _material->getElasticMicroXS(energy_index);
+}
+
+
+float Region::getAbsorptionMacroXS(float energy) {
+    return _material->getAbsorptionMacroXS(energy);
+}
+
+
+float Region::getAbsorptionMacroXS(int energy_index) {
+    return _material->getAbsorptionMacroXS(energy_index);
+}
+
+
+float Region::getAbsorptionMicroXS(float energy) {
+    return _material->getAbsorptionMicroXS(energy);
+}
+
+
+float Region::getAbsorptionMicroXS(int energy_index) {
+    return _material->getAbsorptionMicroXS(energy_index);
+}
+
+float Region::getCaptureMacroXS(float energy) {
+    return _material->getCaptureMacroXS(energy);
+}
+
+float Region::getCaptureMacroXS(int energy_index) {
+    return _material->getCaptureMacroXS(energy_index);
+}
+
+
+float Region::getCaptureMicroXS(float energy) {
+    return _material->getCaptureMicroXS(energy);
+}
+
+
+float Region::getCaptureMicroXS(int energy_index) {
+    return _material->getCaptureMicroXS(energy_index);
+}
+
+
+float Region::getFissionMacroXS(float energy) {
+    return _material->getFissionMacroXS(energy);
+}
+
+
+float Region::getFissionMacroXS(int energy_index) {
+    return _material->getFissionMacroXS(energy_index);
+}
+
+
+float Region::getFissionMicroXS(float energy) {
+    return _material->getFissionMicroXS(energy);
+}
+
+
+float Region::getFissionMicroXS(int energy_index) {
+    return _material->getFissionMicroXS(energy_index);
+}
+
+
+float Region::getTransportMicroXS(float energy) {
+    return _material->getTransportMicroXS(energy);
+}
+
+
+float Region::getTransportMicroXS(int energy_index) {
+    return _material->getTransportMicroXS(energy_index);
+}
+
+
+float Region::getTransportMacroXS(float energy) {
+    return _material->getTransportMacroXS(energy);
+}
+
+
+float Region::getTransportMacroXS(int energy_index) {
+    return _material->getTransportMacroXS(energy_index);
+}
+
+
 /**
  * Sets this Region's volume (cm^3)
  * @param volume the volume of this Region
@@ -165,7 +283,7 @@ void Region::addTally(Tally* tally) {
 
     if (tally->getTallyDomainType() != REGION)
         log_printf(ERROR, "Unable to add Tally %s to Region %s since the Tally"
-                        " is not for an REGION tally domain", 
+                        " is not for a REGION tally domain", 
                                         tally->getTallyName(), _region_name);
 	_tallies.push_back(tally);
 }
@@ -267,7 +385,7 @@ void Region::addModeratorRingRadius(float radius) {
  * uses the Region's Material to compute the neutron's 
  * next energy and collision type.
  */
-void Region::collideNeutron(neutron* neut) {
+collisionType Region::collideNeutron(neutron* neut) {
 
 	/* If this Region contains any tallies, tally neutron 
 	 * before collision
@@ -291,33 +409,32 @@ void Region::collideNeutron(neutron* neut) {
 	    case ELASTIC_RATE:
 		if (type == ELASTIC)
 		    tally->weightedTally(sample, 
-			_material->getElasticMacroXS(sample) / total_xs, batch_num);
+			getElasticMacroXS(sample) / total_xs, batch_num);
 	    case ABSORPTION_RATE:
 		if (type == CAPTURE || type == FISSION)
 		    tally->weightedTally(sample, 
-			_material->getAbsorptionMacroXS(sample) / total_xs, batch_num);
+			getAbsorptionMacroXS(sample) / total_xs, batch_num);
 	    case CAPTURE_RATE:
 		if (type == CAPTURE)
 		    tally->weightedTally(sample, 
-			_material->getCaptureMacroXS(sample) / total_xs, batch_num);
+            getCaptureMacroXS(sample) / total_xs, batch_num);
 	    case FISSION_RATE:
 		if (type == FISSION)
 		    tally->weightedTally(sample, 
-			_material->getFissionMacroXS(sample) / total_xs, batch_num);
+			getFissionMacroXS(sample) / total_xs, batch_num);
 	    case TRANSPORT_RATE:
 		if (type == ELASTIC)
 		    tally->weightedTally(sample, 
-			_material->getTransportMacroXS(sample) / total_xs, batch_num);
+			getTransportMacroXS(sample) / total_xs, batch_num);
 	    case DIFFUSION_RATE: /* FIXME */
 		if (type == ELASTIC)
 		    tally->weightedTally(sample, 
-			 1.0 / (3.0 * _material->getTransportMacroXS(sample) * total_xs), 
-																batch_num); 
+			 1.0 / (3.0 * getTransportMacroXS(sample) * total_xs), batch_num); 
 	    case LEAKAGE_RATE:; /* FIXME */
 	    }
 	}
 
-	return;
+	return type;
 }
 
 
@@ -380,6 +497,37 @@ bool Region::onBoundary(float x, float y) {
 }
 
 
+bool Region::isPrecisionTriggered() {
+
+    /* Check if this Region has any Tallies with precision triggers */
+    std::vector<Tally*>::iterator iter;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
+        if((*iter)->isPrecisionTriggered())
+            return true;
+    }
+
+    /* Check if this Material has any Tallies with precision triggers */
+    return _material->isPrecisionTriggered();
+}
+
+
+void Region::incrementNumBatches(int num_batches) {
+
+    /* Set the number of batches for each Tally inside of this Region */
+    std::vector<Tally*>::iterator iter;
+	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+        (*iter)->incrementNumBatches(num_batches);
+    }
+
+    /* Set the number of batches for each of the Tallies inside the Material */
+    _material->incrementNumBatches(num_batches);
+
+    return;
+
+}
+
+
 /**
  * Calls each of the Tally class objects in the Region to compute
  * their batch-based statistics from the tallies
@@ -435,8 +583,8 @@ void Region::outputBatchStatistics(char* directory, char* suffix) {
     std::string filename;
 
 	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
-        filename = std::string(directory) + "/" + _region_name + "_" + 
-                    (*iter)->getTallyName() + "_statistics_" + suffix + ".txt";
+        filename = std::string(directory) + "/" + (*iter)->getTallyName()
+                                                  + "_" + suffix + ".txt";
         (*iter)->outputBatchStatistics(filename.c_str());
     }
 

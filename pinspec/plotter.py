@@ -30,8 +30,8 @@ def plotMicroXS(isotope, rxns, dir = '.'):
         
     plt.xscale('log')
     plt.yscale('log')
-    plt.xlabel('Energy [ev]')
-    plt.ylabel('Micro XS [barns]')
+    plt.xlabel('Energy [eV]')
+    plt.ylabel('$\sigma$' +' [b]')
     plt.title(isotope.getIsotopeName() + ' Microscopic XS')
     plt.legend(rxns, loc='lower left')
     plt.grid()
@@ -56,11 +56,11 @@ def plotMacroXS(material, rxns, dir = '.'):
     for rxn in rxns:
         xs = material.retrieveXS(num_energies, rxn)
         plt.plot(energies, xs, lw=1)
-    
+ 
     plt.xscale('log')
     plt.yscale('log')
-    plt.xlabel('Energy [ev]')
-    plt.ylabel('Macro XS [cm^-1]')
+    plt.xlabel('Energy [eV]')
+    plt.ylabel('$\Sigma$'+' ['+'cm$^{-1}$'+']')
     plt.title(material.getMaterialName() + ' Macroscopic XS')
     plt.legend(rxns, loc='lower left')
     plt.grid()
@@ -80,7 +80,7 @@ def plotFlux(flux, dir = '.'):
     
     plt.xscale('log')
     plt.yscale('log')
-    plt.xlabel('Energy [ev]')
+    plt.xlabel('Energy [eV]')
     plt.ylabel('Flux')
     plt.title('Batch-Averaged Flux')
     plt.grid()
@@ -108,7 +108,7 @@ def plotFluxes(fluxes, dir = '.'):
     
     plt.xscale('log')
     plt.yscale('log')
-    plt.xlabel('Energy [ev]')
+    plt.xlabel('Energy [eV]')
     plt.ylabel('Flux')
     plt.title('Batch-Averaged Flux')
     plt.legend(legend, loc='lower right', prop={'size':12})
@@ -134,11 +134,11 @@ def plotThermalScattering(isotope, dir = '.'):
     legend = []
     for i in range(num_cdfs):
         plt.plot(Eprime_to_E, dist[i][:])
-        legend.append(str(E_to_kT[i]) + ' kT')
+        legend.append("%.2e" % E_to_kT[i] + ' kT')
 
     plt.title(isotope.getIsotopeName() + ' Thermal Scattering PDFs')
     plt.ylabel('Probability')
-    plt.xlabel('E'+'''+' / E')
+    plt.xlabel('E'+"'"+'/ E')
     plt.legend(legend, ncol=2, loc='upper right', prop={'size':14})
     plt.grid()
     filename = dir + '/' + isotope.getIsotopeName() + '_thermal_scattering_pdfs.png'
@@ -149,11 +149,10 @@ def plotThermalScattering(isotope, dir = '.'):
     legend = []
     for i in range(num_cdfs):
         plt.plot(Eprime_to_E, cdfs[i][:])
-        legend.append(str(E_to_kT[i]) + ' kT')
-
+        legend.append("%.2e" % E_to_kT[i] + ' kT')
     plt.title(isotope.getIsotopeName() + ' Thermal Scattering CDFs')
     plt.ylabel('Cumulative Probability')
-    plt.xlabel('E'+'''+' / E')
+    plt.xlabel('E'+"'"+' / E')
     plt.legend(legend, ncol=2, loc='lower right', prop={'size':12})
     plt.grid()
     filename = dir + '/' + isotope.getIsotopeName() + 'thermal_scattering_cdfs.png'
@@ -176,7 +175,7 @@ def plotFissionSpectrum(dir = '.'):
     fig = plt.figure()
     plt.plot(cdf_energies, cdf)
     plt.xscale('log')
-    plt.xlabel('Energy [Mev]')
+    plt.xlabel('Energy [MeV]')
     plt.ylabel('Cumulative Probability')
     plt.title('Watt Spectrum CDF')
     plt.grid()
@@ -198,7 +197,7 @@ def plotFissionSpectrum(dir = '.'):
     # Plot fission spectrum
     fig = plt.figure()
     plt.plot(bin_centers, binned_samples)
-    plt.xlabel('Energy [Mev]')
+    plt.xlabel('Energy [MeV]')
     plt.ylabel('Probability')
     plt.title('Watt Spectrum PDF')
     plt.grid()
@@ -210,10 +209,8 @@ def plotRI(RI, dir='.'):
     
     # Plot Resonance Integrals
     fig = plt.figure()
-    bins = RI.bin_centers
-    #bins = np.delete(bins, -1)
-    print bins
-    plt.semilogx(bins, RI.RIs, drawstyle='steps-post')
+    bins = RI.bin_edges
+    plt.semilogx(bins[0:-1], RI.RIs, drawstyle='steps')
     plt.xlabel('Energy [eV]')
     plt.ylabel('RI')
     plt.title('Resonance Integrals')
@@ -221,7 +218,18 @@ def plotRI(RI, dir='.'):
     filename = dir + '/RI.png'
     plt.savefig(filename)
 
+def plotGroupXS(group_xs, dir='.'):
     
+    # Plot Resonance Integrals
+    fig = plt.figure()
+    bins = group_xs.bin_edges
+    plt.semilogx(bins[0:-1], group_xs.groupXS[:,:], drawstyle='steps')
+    plt.xlabel('Energy [eV]')
+    plt.ylabel('Group XS')
+    plt.title('Group XS')
+    plt.grid()
+    filename = dir + '/group_xs.png'
+    plt.savefig(filename)    
     
     
     

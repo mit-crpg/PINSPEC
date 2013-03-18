@@ -62,7 +62,7 @@ def main():
     log_printf(INFO, 'Made fuel region')
 
     # Create Tallies for the fluxes
-    total_flux = Tally('total flux', REGION, FLUX)
+    total_flux = Tally('total flux', GEOMETRY, FLUX)
     moderator_flux = Tally('moderator flux', REGION, FLUX)
     fuel_flux = Tally('fuel flux', REGION, FLUX)
     total_flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
@@ -70,14 +70,13 @@ def main():
     fuel_flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
     region_mod.addTally(moderator_flux)
     region_fuel.addTally(fuel_flux)
-    region_mod.addTally(total_flux)
-    region_fuel.addTally(total_flux)
     
     # Define geometry
     geometry = Geometry()
     geometry.setSpatialType(HOMOGENEOUS_EQUIVALENCE)
     geometry.addRegion(region_mod)
     geometry.addRegion(region_fuel)
+    geometry.addTally(total_flux)
     geometry.setNumBatches(num_batches)
     geometry.setNeutronsPerBatch(num_neutrons_per_batch)
     geometry.setNumThreads(num_threads)

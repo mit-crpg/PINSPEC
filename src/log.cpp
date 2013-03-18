@@ -97,44 +97,51 @@ void log_setlevel(const char* newlevel) {
  * @param *format variable list of C++ formatted i/o
  */
 void log_printf(logLevel level, const char *format, ...) {
+
+    char msg[512];
+    std::string msg_string;
+
     if (level >= log_level) {
     	va_list args;
 
+        va_start(args, format);
+        vsprintf(msg, format, args);
+        va_end(args);
+
     	/* Append the log level to the message */
     	switch (level) {
-	case (DEBUG):
-	    printf("[  DEBUG  ]  ");
-	    break;
-	case (INFO):
-	    printf("[  INFO   ]  ");
-	    break;
-	case (NORMAL):
-	    printf("[  NORMAL ]  ");
-	    break;
-	case (WARNING):
-	    printf("[ WARNING ]  ");
-	    break;
-	case (CRITICAL):
-	    printf("[ CRITICAL]  ");
-	    break;
-	case (RESULT):
-	    printf("[  RESULT ]  ");
-	    break;
-	case (ERROR):
-	    printf("[  ERROR  ]  ");
-	    break;
-    	}
+	        case (DEBUG):
+                msg_string = std::string("[  DEBUG  ]  ") + msg + "\n";
+	            break;
+	        case (INFO):
+                msg_string = std::string("[  INFO   ]  ") + msg + "\n";
+	            break;
+	        case (NORMAL):
+                msg_string = std::string("[  NORMAL ]  ") + msg + "\n";
+	            break;
+	        case (WARNING):
+                msg_string = std::string("[ WARNING ]  ") + msg + "\n";
+	            break;
+	        case (CRITICAL):
+                msg_string = std::string("[ CRITICAL]  ") + msg + "\n";
+	            break;
+	        case (RESULT):
+                msg_string = std::string("[  RESULT ]  ") + msg + "\n";
+	            break;
+	        case (ERROR):
+	            va_start(args, format);
+	            vsprintf(msg, format, args);
+ 	            va_end(args);
+                set_err(msg);
+                throw std::runtime_error(msg);
+	            break;
+          }
+    }
 
-	va_start(args, format);
-	vprintf(format, args);
-	va_end(args);
-	printf("\n");
-    }
-    if (level == ERROR) {
-    	printf("[  EXIT   ]  Exiting program...\n");
-    	abort();
-    }
+   std::cout << msg_string;
+
 }
+
 
 /**
  * Return the log_level
@@ -143,7 +150,4 @@ void log_printf(logLevel level, const char *format, ...) {
 int get_loglevel(){
 	return log_level;
 }
-
-
-
 
