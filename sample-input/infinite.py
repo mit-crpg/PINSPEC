@@ -30,6 +30,8 @@ def main():
     SLBW.SLBWXS(filename,T,'capture') #To generate Doppler Broadened Res Cap
     #SLBW.SLBWXS(filename,T,'scatter') #To generate Doppler Broadened Res Scat
     #SLBW.generatePotentialScattering(filename) #To generate flat Res Scat XS
+    #SLBW.compareXS(filename, XStype='scatter', RI='no')
+    SLBW.compareXS(filename, XStype='capture', RI='no')
 
     # Define isotopes
     h1 = Isotope('H-1')
