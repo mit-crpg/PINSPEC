@@ -70,7 +70,6 @@ float Material::getIsotopeNumDensity(char* isotope) {
 
 int Material::getNumXSEnergies() const {
 
-    int num_xs_energies = 0;
     Isotope* isotope;
 
     if (_isotopes.size() == 0) 
@@ -655,8 +654,7 @@ void Material::setNumBatches(int num_batches) {
  */
 void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 
-	float isotope_number_density, N_av, old_atomic_mass;
-    float *grid;
+	float isotope_number_density, N_av;
     std::map<char*, std::pair<float, Isotope*> >::iterator iter;
     std::map<Isotope*, float> ::iterator iter_AO;
 
@@ -877,7 +875,6 @@ Material* Material::clone() {
 
 	/* Loops over all isotopes and add them to the clone */
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	Isotope* curr;
 
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter) {
 	    new_clone->addIsotope((iter->second.second)->clone(), iter->second.first);

@@ -432,9 +432,9 @@ void Geometry::runMonteCarloSimulation() {
 		/* Loop over batches */
 		/* Loop over neutrons per batch*/		
 		neutron* curr = initializeNewNeutron();
-		float p_ff;
-		float p_mf;
-		float test;
+//		float p_ff;
+//		float p_mf;
+//		float test;
 
 		for (int i=0; i < _num_batches; i++) {
 

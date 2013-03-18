@@ -634,7 +634,7 @@ void Isotope::makeFissionable() {
  */
 void Isotope::loadXS() {
 
-	std::string prefix = "../xs-lib/";
+    std::string directory = getXSLibDirectory();
 	std::string filename;
 	struct stat buffer;
 	float* energies;
@@ -648,12 +648,13 @@ void Isotope::loadXS() {
 
 	/* Check whether an elastic cross-section file exists for isotope */
 
-	filename = prefix + _isotope_name + "-elastic.txt";
+	filename = directory + _isotope_name + "-elastic.txt";
 
 	if (stat(filename.c_str(), &buffer))
 		log_printf(ERROR, "Unable to load elastic xs for isotope %s"
 						" since no data was found in the cross-section"
-						" library for this isotope", _isotope_name);
+						" file %s for this isotope", 
+                        filename.c_str(), _isotope_name);
 
 	log_printf(INFO, "Loading %s for isotope %s", 
 						filename.c_str(), _isotope_name);
@@ -674,12 +675,13 @@ void Isotope::loadXS() {
 	/******************************** CAPTURE ********************************/
 	/* Check whether a capture cross-section file exists for isotope */
 
-	filename = prefix + _isotope_name + "-capture.txt";
+	filename = directory + _isotope_name + "-capture.txt";
 
 	if (stat(filename.c_str(), &buffer))
 		log_printf(ERROR, "Unable to load capture xs for isotope %s"
 						" since no data was found in the cross-section"
-						" library for this isotope", _isotope_name); 
+						" file %s for this isotope", 
+                        filename.c_str(), _isotope_name); 
 
 	log_printf(INFO, "Loading %s for isotope %s", 
 						filename.c_str(), _isotope_name);
@@ -699,7 +701,7 @@ void Isotope::loadXS() {
 	/******************************** FISSION ********************************/
 	/* Check whether a fission cross-section file exists for isotope */
 
-	filename = prefix + _isotope_name + "-fission.txt";
+	filename = directory + _isotope_name + "-fission.txt";
 
     /* If this isotope is fissionable and it finds it's fission xs */
 	if (!stat(filename.c_str(), &buffer)) {
@@ -976,13 +978,11 @@ collisionType Isotope::getCollisionType(float energy) {
     if (test >= prev_collision_xs && test <= collision_xs)
         return ELASTIC;
 
-    /* Fission collision */
+    /* Otherise, return a fission collision */
     prev_collision_xs = collision_xs;
     collision_xs += getFissionXS(energy) / total_xs;
 
-    if (test >= prev_collision_xs && test <= collision_xs)
-        return FISSION;
-
+    return FISSION;
 }
 
 /**

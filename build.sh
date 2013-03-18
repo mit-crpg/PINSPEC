@@ -8,8 +8,8 @@ if [[ $os_type == *Linux* ]]; then
     LFLAGS="-shared `pkg-config python-2.7 --libs` -fPI -fopenmp -lgomp -I/usr/lib64/python2.7/site-packages/numpy/core/include/"
 elif [[ $os_type == *Darwin* ]]; then
     echo "Using Mac OSX flags"
-    CFLAGS="-O3 -march=native -fPIC -I/usr/include/python2.7 -I/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/core/include"
-    LFLAGS="-bundle `python-config --ldflags` -fPI -lgomp -L/opt/local/lib/gcc46"    
+    CFLAGS="-O3 -march=native -fPIC -I/usr/include/python2.7"
+    LFLAGS="-bundle `python-config --ldflags` -fPI -lgomp -L/opt/local/lib/gcc47"    
 fi
 
 if [ "$1" = '--release' ]
@@ -32,7 +32,7 @@ mkdir objs
 fi
 
 
-swig -python -c++ -threads python/pinspec/Geometry.i
+swig -python -c++ -threads pinspec/Geometry.i
 
 # Compile and link code
 g++ src/arraycreator.h -c $CFLAGS
@@ -47,8 +47,8 @@ g++ src/Tally.cpp -c $CFLAGS
 g++ src/Fissioner.cpp -c $CFLAGS
 g++ src/Region.cpp -c $CFLAGS
 g++ src/Geometry.cpp -c $CFLAGS
-g++ python/pinspec/Geometry_wrap.cxx -c $CFLAGS
-g++ $LFLAGS Isotope.o xsreader.o log.o Material.o Tally.o Neutron.o Region.o Fissioner.o Geometry.o Geometry_wrap.o -o python/pinspec/_pinspec.so
+g++ pinspec/Geometry_wrap.cxx -c $CFLAGS
+g++ $LFLAGS Isotope.o xsreader.o log.o Material.o Tally.o Neutron.o Region.o Fissioner.o Geometry.o Geometry_wrap.o -o pinspec/_pinspec.so
 
 # Cleanup
 mv *.o objs/

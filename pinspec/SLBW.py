@@ -1,4 +1,5 @@
 # SLBW.py
+import pinspec
 import matplotlib.pyplot as plt
 import os
 import numpy
@@ -49,11 +50,11 @@ def SLBWXS(nameoffile,T):
 	#--------------------------------------------------
 	# Get file path
 	cur_dir = os.getcwd()
-	filepath = cur_dir + "/../xs-lib/" + nameoffile
+	filepath = str(pinspec.getXSLibDirectory()) + nameoffile
 	if os.path.exists(filepath) == True:
-		print "Found resonance parameter file"
+		pinspec.log_printf(pinspec.INFO, 'Loading resonance paramater file' + filepath)
 	else:
-		print "Did not find resonance parameter file"
+		pinspec.log_printf(pinspec.WARNING, 'Unable to load resonance parameter file' + filepath)
 	# Initialize desired arrays
 	E0 = numpy.array([])
 	GN = numpy.array([])
@@ -179,10 +180,10 @@ def SLBWXS(nameoffile,T):
 
 	#plot fictitious XS
 	#plt.loglog(E, sigma_g)
-	#plt.savefig("U238XS.png")
+	#plt.savefig('U238XS.png')
 
 	# write output file
-	out_name = cur_dir + "/../xs-lib/"+El+"-"+str(int(A))+"-capture.txt"
+	out_name = pinspec.getXSLibDirectory()+El+'-'+str(int(A))+'-capture.txt'
 	numpy.savetxt(out_name, EXS, newline='\n', delimiter='  ')
 	# go back and add header
 	f = open(out_name)
@@ -190,7 +191,7 @@ def SLBWXS(nameoffile,T):
 	f.close()
 	# open the file again for writing
 	f = open(out_name, 'w')
-	f.write("Doppler Broadened SLBW fictitious XS\n")
+	f.write('Doppler Broadened SLBW fictitious XS\n')
 	# write the original contents
 	f.write(text)
 	f.close()

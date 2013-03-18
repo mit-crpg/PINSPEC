@@ -86,7 +86,6 @@
 /**********************************************************************/
 
 %fragment("NumPy_Object_to_Array", "header",
-          fragment="NumPy_Backward_Compatibility",
           fragment="NumPy_Macros",
           fragment="NumPy_Utilities")
 {
@@ -258,7 +257,6 @@
 /**********************************************************************/
 
 %fragment("NumPy_Array_Requirements", "header",
-          fragment="NumPy_Backward_Compatibility",
           fragment="NumPy_Macros")
 {
   /* Test whether a python object is contiguous.  If array is
@@ -416,7 +414,6 @@
 
 /* Combine all NumPy fragments into one for convenience */
 %fragment("NumPy_Fragments", "header",
-          fragment="NumPy_Backward_Compatibility",
           fragment="NumPy_Macros",
           fragment="NumPy_Utilities",
           fragment="NumPy_Object_to_Array",
@@ -1211,7 +1208,7 @@
 /* Typemap suite for (DATA_TYPE ARGOUT_ARRAY1[ANY])
  */
 %typemap(in,numinputs=0,
-         fragment="NumPy_Backward_Compatibility,NumPy_Macros")
+         fragment="NumPy_Macros")
   (DATA_TYPE ARGOUT_ARRAY1[ANY])
   (PyObject * array = NULL)
 {

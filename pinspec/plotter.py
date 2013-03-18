@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from pinspec import *
+from process import *
 
 # Series of functions use to plot XS data (energy, xs) that is saved
 # in text files output by pinspec. The plotter creates
@@ -32,7 +33,7 @@ def plotMicroXS(isotope, rxns, dir = '.'):
     plt.xlabel('Energy [ev]')
     plt.ylabel('Micro XS [barns]')
     plt.title(isotope.getIsotopeName() + ' Microscopic XS')
-    plt.legend(rxns, loc="lower left")
+    plt.legend(rxns, loc='lower left')
     plt.grid()
     fig.savefig(filename)
 
@@ -61,7 +62,7 @@ def plotMacroXS(material, rxns, dir = '.'):
     plt.xlabel('Energy [ev]')
     plt.ylabel('Macro XS [cm^-1]')
     plt.title(material.getMaterialName() + ' Macroscopic XS')
-    plt.legend(rxns, loc="lower left")
+    plt.legend(rxns, loc='lower left')
     plt.grid()
     fig.savefig(filename)
 
@@ -109,7 +110,7 @@ def plotFluxes(fluxes, dir = '.'):
     plt.yscale('log')
     plt.xlabel('Energy [ev]')
     plt.ylabel('Flux')
-    plt.title('Batch-Avergaged Flux')
+    plt.title('Batch-Averaged Flux')
     plt.legend(legend, loc='lower right', prop={'size':12})
     plt.grid()
     fig.savefig(filename + 'flux.png')
@@ -137,7 +138,7 @@ def plotThermalScattering(isotope, dir = '.'):
 
     plt.title(isotope.getIsotopeName() + ' Thermal Scattering PDFs')
     plt.ylabel('Probability')
-    plt.xlabel('E'+"'"+' / E')
+    plt.xlabel('E'+'''+' / E')
     plt.legend(legend, ncol=2, loc='upper right', prop={'size':14})
     plt.grid()
     filename = dir + '/' + isotope.getIsotopeName() + '_thermal_scattering_pdfs.png'
@@ -152,7 +153,7 @@ def plotThermalScattering(isotope, dir = '.'):
 
     plt.title(isotope.getIsotopeName() + ' Thermal Scattering CDFs')
     plt.ylabel('Cumulative Probability')
-    plt.xlabel('E'+"'"+' / E')
+    plt.xlabel('E'+'''+' / E')
     plt.legend(legend, ncol=2, loc='lower right', prop={'size':12})
     plt.grid()
     filename = dir + '/' + isotope.getIsotopeName() + 'thermal_scattering_cdfs.png'
@@ -203,3 +204,31 @@ def plotFissionSpectrum(dir = '.'):
     plt.grid()
     filename = dir + '/fission_spectrum_pdf.png'
     plt.savefig(filename)
+    
+    
+def plotRI(RI, dir='.'):
+    
+    # Plot Resonance Integrals
+    fig = plt.figure()
+    bins = RI.bin_centers
+    #bins = np.delete(bins, -1)
+    print bins
+    plt.semilogx(bins, RI.RIs, drawstyle='steps-post')
+    plt.xlabel('Energy [eV]')
+    plt.ylabel('RI')
+    plt.title('Resonance Integrals')
+    plt.grid()
+    filename = dir + '/RI.png'
+    plt.savefig(filename)
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

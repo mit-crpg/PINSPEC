@@ -1,8 +1,9 @@
 import numpy
 from pinspec import *
-import plotter
-import process
-import SLBW
+import pinspec.SLBW as SLBW
+import pinspec.plotter as plotter
+import pinspec.process as process
+from pinspec.log import *
 
 def main():
 
@@ -13,9 +14,11 @@ def main():
 
     # Set main simulation params
     num_batches = 10
-    num_neutrons_per_batch = 10000
+    num_neutrons_per_batch = 100
     num_threads = 8
     log_setlevel(INFO)
+
+    setXSLibDirectory('../xs-lib/')   # This is also a default, but set it as example
 
     # Call SLBW to create XS
     filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
@@ -43,13 +46,13 @@ def main():
     mix.addIsotope(u238, 0.50)
     mix.addIsotope(u235, .025)
     
-    log_printf(INFO, "Added isotopes")
+    py_printf('INFO', 'Added isotopes')
 
     # Define regions
     region_mix = Region('infinite medium fuel-moderator mix', INFINITE)
     region_mix.setMaterial(mix)
 
-    log_printf(INFO, "Made mixture region")
+    py_printf('INFO', 'Made mixture region')
         
     # plot the fission spectrum the CDF
     #plotter.plotFissionSpectrum()
@@ -82,7 +85,7 @@ def main():
     geometry.setNeutronsPerBatch(num_neutrons_per_batch)
     geometry.setNumThreads(num_threads)
 
-    log_printf(INFO, "Made geometry")
+    py_printf('INFO', 'Made geometry')
 
 	# Run Monte Carlo simulation
     geometry.runMonteCarloSimulation();
@@ -92,14 +95,17 @@ def main():
 
     # Plot fluxes
     plotter.plotFluxes([flux])
+    plotter.plotFluxes([flux])
+    plotter.plotFluxes([flux])
     
     # Compute the resonance integrals
     RI = process.RI(flux_RI, abs_rate)
-    RI.printRI()
+    #RI.printRI()
+    #plotter.plotRI(RI)
     
     # Compute the group cross sections
-    groupXS = process.groupXS(flux_RI, abs_rate)
-    groupXS.printGroupXS()
+    #groupXS = process.groupXS(flux_RI, abs_rate)
+    #groupXS.printGroupXS()
 
 
     # Dump batch statistics to output files to some new directory - gives segmentation fault right now

@@ -1,31 +1,24 @@
-import matplotlib.pyplot as matplt
-import plotter
 import numpy
-import scipy
 from pinspec import *
-from SLBW import *
+import pinspec.SLBW as SLBW
+import pinspec.plotter as plotter
 
 
 def main():
 
-
-    # NOTE: If a user is going to homogenize cladding/gap with the moderator
-	#       then they must figure out the atom ratio using geometric parameters
-	#       and use that when loading the isotope in a material
-
     # Set main simulation params
-    num_batches = 25
-    num_neutrons_per_batch = 100000
-    num_threads = 8
+    num_batches = 20
+    num_neutrons_per_batch = 10000
+    num_threads = 12
     radius_fuel = 0.4096;
     pitch = 1.26
     dancoff = 0.277;
     log_setlevel(INFO)
 
     # Call SLBW to create XS
-#    filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
-#    T=300 #Temp in Kelvin of target nucleus
-#    SLBWXS(filename,T)
+    filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
+    T=300 #Temp in Kelvin of target nucleus
+    SLBW.SLBWXS(filename,T)
 
     # Define isotopes
     h1 = Isotope('H-1')
@@ -40,7 +33,7 @@ def main():
     moderator.addIsotope(h1, 2.0)
     moderator.addIsotope(o16, 1.0)
 
-    log_printf(INFO, "Added isotopes to moderator")
+    log_printf(INFO, 'Added isotopes to moderator')
 
     # Define fuel material
     fuel = Material()
@@ -50,7 +43,7 @@ def main():
     fuel.addIsotope(u238, 0.97)
     fuel.addIsotope(o16, 2.0)
     
-    log_printf(INFO, "Added isotopes to fuel")
+    log_printf(INFO, 'Added isotopes to fuel')
     
     # Define moderator region
     region_mod = Region('moderator', MODERATOR)
@@ -58,7 +51,7 @@ def main():
     region_mod.setFuelRadius(0.4096)
     region_mod.setPitch(1.26)
     
-    log_printf(INFO, "Made moderator region")
+    log_printf(INFO, 'Made moderator region')
     
     # Define fuel region
     region_fuel = Region('fuel', FUEL)
@@ -66,15 +59,15 @@ def main():
     region_fuel.setFuelRadius(0.4096)
     region_fuel.setPitch(1.26)
 
-    log_printf(INFO, "Made fuel region")
+    log_printf(INFO, 'Made fuel region')
 
     # Create Tallies for the fluxes
     total_flux = Tally('total flux', REGION, FLUX)
     moderator_flux = Tally('moderator flux', REGION, FLUX)
     fuel_flux = Tally('fuel flux', REGION, FLUX)
-    total_flux.generateBinEdges(1E-2, 1.2E7, 5000, LOGARITHMIC)
-    moderator_flux.generateBinEdges(1E-2, 1.2E7, 5000, LOGARITHMIC)
-    fuel_flux.generateBinEdges(1E-2, 1.2E7, 5000, LOGARITHMIC)
+    total_flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
+    moderator_flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
+    fuel_flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
     region_mod.addTally(moderator_flux)
     region_fuel.addTally(fuel_flux)
     region_mod.addTally(total_flux)
