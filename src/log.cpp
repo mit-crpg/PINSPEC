@@ -142,3 +142,12 @@ void log_printf(logLevel level, const char *format, ...) {
 
 }
 
+
+/**
+ * Return the log_level
+ * @return log_level
+ */
+int get_loglevel(){
+	return log_level;
+}
+

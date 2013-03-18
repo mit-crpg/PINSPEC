@@ -33,6 +33,7 @@ typedef enum logLevels {
 
 void log_setlevel(logLevel newlevel);
 void log_setlevel(const char* newlevel);
+int get_loglevel();
 
 void log_printf(logLevel level, const char *format, ...);
 
