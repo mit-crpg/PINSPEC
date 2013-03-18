@@ -81,6 +81,18 @@ int Material::getNumXSEnergies() const {
 }
 
 
+binSpacingType Material::getEnergyGridScaleType() const {
+    
+    if (_isotopes.size() == 0)
+        log_printf(ERROR, "Unable to get the energy grid scale type for "
+                        "Material %s since it does not contain any "
+                        "isotopes yet", _material_name);
+
+    Isotope* isotope = _isotopes.begin()->second.second;
+    return isotope->getEnergyGridScaleType();
+}
+
+
 void Material::retrieveXSEnergies(float* energies, int num_xs) const {
 
     Isotope* isotope;
