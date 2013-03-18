@@ -14958,6 +14958,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_get_loglevel(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)":get_loglevel")) SWIG_fail;
+  {
+    try {
+      result = (int)get_loglevel();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_log_printf__varargs__(PyObject *SWIGUNUSEDPARM(self), PyObject *args, PyObject *varargs) {
   PyObject *resultobj = 0;
   logLevel arg1 ;
@@ -15778,6 +15800,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Fissioner_swigregister", Fissioner_swigregister, METH_VARARGS, NULL},
 	 { (char *)"set_err", _wrap_set_err, METH_VARARGS, NULL},
 	 { (char *)"log_setlevel", _wrap_log_setlevel, METH_VARARGS, NULL},
+	 { (char *)"get_loglevel", _wrap_get_loglevel, METH_VARARGS, NULL},
 	 { (char *)"log_printf", _wrap_log_printf, METH_VARARGS, NULL},
 	 { (char *)"setXSLibDirectory", _wrap_setXSLibDirectory, METH_VARARGS, NULL},
 	 { (char *)"getXSLibDirectory", _wrap_getXSLibDirectory, METH_VARARGS, NULL},

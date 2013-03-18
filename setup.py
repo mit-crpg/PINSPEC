@@ -21,6 +21,9 @@ os.environ['OPT'] = ' '.join(
     flag for flag in opt.split() if flag != '-Wstrict-prototypes'
 )
 
+# '/opt/local/lib/gcc47/gcc/x86_64-apple-darwin11/4.7.2/include'
+# '-L/opt/local/lib/gcc47'
+
 # range extension module
 pinspec = Extension('_pinspec',
                    include_dirs=[numpy_include],
