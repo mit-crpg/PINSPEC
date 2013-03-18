@@ -24,16 +24,18 @@ def main():
     o16 = Isotope('O-16')
     u235 = Isotope('U-235')
     u238 = Isotope('U-238')
-    
+    zr90 = Isotope('Zr-90')
+ 
     # Define materials
     mix = Material()
     mix.setMaterialName('Fuel Moderator Mix')
     mix.setDensity(5., 'g/cc')
     mix.addIsotope(h1, 1.0)
     mix.addIsotope(o16, 1.0)
-    mix.addIsotope(u238, 0.50)
-    mix.addIsotope(u235, .005)
-    
+    mix.addIsotope(u238, 0.40)
+    mix.addIsotope(u235, .02)
+    mix.addIsotope(zr90, 0.16)    
+
     log_printf(INFO, 'Added isotopes')
 
     # Define regions
@@ -50,7 +52,7 @@ def main():
 
     # Create a tally for the flux
     flux = Tally('total flux', GEOMETRY, FLUX)
-    flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
+    flux.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC)
 
     ############################################################################
     #EXAMPLE: How to set tally bin edges 
@@ -60,6 +62,10 @@ def main():
     abs_rate_bin_edges = numpy.array([0.1, 1., 5., 10., 100., 1000.])
     abs_rate.setBinEdges(abs_rate_bin_edges)
     mix.addTally(abs_rate)
+
+    # Set a precision trigger: tells simulation to run until maximum relative
+    # error is less than the trigger value (4E-3)
+    abs_rate.setPrecisionTrigger(RELATIVE_ERROR, 3E-3)
 
     # Define geometry
     geometry = Geometry()

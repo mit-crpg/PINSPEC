@@ -283,7 +283,7 @@ void Region::addTally(Tally* tally) {
 
     if (tally->getTallyDomainType() != REGION)
         log_printf(ERROR, "Unable to add Tally %s to Region %s since the Tally"
-                        " is not for an REGION tally domain", 
+                        " is not for a REGION tally domain", 
                                         tally->getTallyName(), _region_name);
 	_tallies.push_back(tally);
 }
@@ -494,6 +494,37 @@ bool Region::onBoundary(float x, float y) {
 		else
 			return false;
 	}
+}
+
+
+bool Region::isPrecisionTriggered() {
+
+    /* Check if this Region has any Tallies with precision triggers */
+    std::vector<Tally*>::iterator iter;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
+        if((*iter)->isPrecisionTriggered())
+            return true;
+    }
+
+    /* Check if this Material has any Tallies with precision triggers */
+    return _material->isPrecisionTriggered();
+}
+
+
+void Region::incrementNumBatches(int num_batches) {
+
+    /* Set the number of batches for each Tally inside of this Region */
+    std::vector<Tally*>::iterator iter;
+	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+        (*iter)->incrementNumBatches(num_batches);
+    }
+
+    /* Set the number of batches for each of the Tallies inside the Material */
+    _material->incrementNumBatches(num_batches);
+
+    return;
+
 }
 
 

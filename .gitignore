@@ -5,6 +5,8 @@
 *.h.gch
 *.so
 Makefile
+*.pbs.e*
+*.pbs.o*
 */*.o
 */*.cxx
 */*.h.gch
@@ -12,6 +14,8 @@ Makefile
 */Makefile
 *~
 */*~
+*/*.pbs.e*
+*/*.pbs.o*
 
 # Jessica specific:
 
@@ -29,4 +33,3 @@ build/
 objs/
 pinspec/Geometry_wrap.cpp
 pinspec/pinspec.py*
-

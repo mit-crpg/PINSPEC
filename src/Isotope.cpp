@@ -1293,6 +1293,34 @@ float Isotope::getDistanceTraveled(neutron* neutron) {
 }
 
 
+bool Isotope::isPrecisionTriggered() {
+
+    /* Check if this Isotope has any Tallies with a precision trigger */
+    std::vector<Tally*>::iterator iter;
+
+	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
+        if((*iter)->isPrecisionTriggered())
+            return true;
+    }
+
+    return false;
+}
+
+
+void Isotope::incrementNumBatches(int num_batches) {
+
+    /* Set the number of batches for each Tally inside of this Isotope */
+    std::vector<Tally*>::iterator iter;
+	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
+        (*iter)->incrementNumBatches(num_batches);
+    }
+
+    return;
+
+}
+
+
+
 /** Calls each of the Tally class objects in the Isotope to compute
  * their batch-based statiscs from the tallies
  */

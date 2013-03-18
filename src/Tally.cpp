@@ -19,6 +19,7 @@ Tally::Tally(char* tally_name, tallyDomainType tally_domain,
 	_tally_name = tally_name;
     _tally_domain = tally_domain;
     _tally_type = tally_type;
+    _trigger_type = NONE;
 
 	 /* Sets the default delta between bins to zero */
 	_bin_delta = 0;
@@ -296,6 +297,94 @@ double* Tally::getBatchRelativeError() {
 }
 
 
+double Tally::getMaxVariance() {
+
+    double max_variance = 0.0;
+
+    for (int i=0; i < _num_bins; i++) {
+        if (_batch_variance[i] > max_variance)
+            max_variance = _batch_variance[i];
+    }
+
+    return max_variance;
+}
+
+
+double Tally::getMaxRelErr() {
+
+    double max_rel_err = 0.0;
+
+    for (int i=0; i < _num_bins; i++) {
+        if (_batch_rel_err[i] > max_rel_err)
+            max_rel_err = _batch_rel_err[i];
+    }
+
+    return max_rel_err;
+}
+
+
+double Tally::getMaxStdDev() {
+
+    double max_std_dev = 0.0;
+
+    for (int i=0; i < _num_bins; i++) {
+        if (_batch_std_dev[i] > max_std_dev)
+            max_std_dev = _batch_std_dev[i];
+    }
+
+    return max_std_dev;
+}
+
+
+bool Tally::isPrecisionTriggered() {
+
+    if (_trigger_type == NONE)
+        return false;
+    else {
+
+        if (_trigger_type == VARIANCE) {
+            if (getMaxVariance() < _trigger_precision) {
+                _trigger_type = NONE;
+                return false;
+            }
+            else {
+                log_printf(INFO, "Tally %s triggered ("
+                            "variance < %1.1E) with a current variance of %1.1E",
+                            _tally_name, _trigger_precision, getMaxVariance());       
+                return true;
+            }
+        }
+        else if (_trigger_type == STANDARD_DEVIATION) {
+            if (getMaxStdDev() < _trigger_precision) {
+                _trigger_type = NONE;
+                return false;
+            }
+            else {
+                log_printf(INFO, "Tally %s triggered ("
+                            "std. dev. < %1.1E) with max std. dev. = %1.1E",
+                            _tally_name, _trigger_precision, getMaxStdDev());       
+                return true;
+            }
+        }
+        else if (_trigger_type == RELATIVE_ERROR) {
+            if (getMaxRelErr() < _trigger_precision) {
+                _trigger_type = NONE;
+                return false;
+            }
+            else {
+                log_printf(INFO, "Tally %s triggered ("
+                            "rel. err. < %1.1E) with max rel. err. = %1.1E",
+                            _tally_name, _trigger_precision, getMaxRelErr());       
+                return true;
+            }
+        }
+    }
+
+    return true;
+}
+
+
+
 void Tally::retrieveTallyEdges(double* data, int num_bins) {
 
     /* Load all tally bin centers into array */
@@ -407,6 +496,13 @@ void Tally::setBinEdges(double* edges, int num_edges) {
 }
 
 
+void Tally::setPrecisionTrigger(triggerType trigger_type, float precision) {
+    _trigger_type = trigger_type;
+    _trigger_precision = precision;
+    return;
+}
+
+
 /**
  * Set the number of batches for this Tally. This method also
  * allocates memory for the tallies and batch statistics arrays
@@ -431,6 +527,28 @@ void Tally::setNumBatches(int num_batches) {
 	_batch_variance = new double[_num_bins];
 	_batch_std_dev = new double[_num_bins];
 	_batch_rel_err = new double[_num_bins];
+}
+
+
+void Tally::incrementNumBatches(int num_batches) {
+
+	_num_batches += num_batches;
+    double** new_tallies = (double**)malloc(sizeof(double*) * _num_batches);
+
+    for (int i=0; i < _num_batches; i++) {
+
+        if (i < _num_batches-num_batches)
+            new_tallies[i] = _tallies[i];
+
+        else {
+            new_tallies[i] = new double[_num_bins];
+	        /* Loop over tallies and set to zero */
+	        for (int j=0; j < _num_bins; j++)
+		        new_tallies[i][j] = 0.0;
+        }
+    }
+    
+    _tallies = new_tallies;
 }
 
 
@@ -687,12 +805,15 @@ void Tally::computeBatchStatistics() {
 	if (_num_batches == 0)
 		log_printf(ERROR, "Cannot compute batch statistics for Tally %s"
 				" since it has  have not yet been generated", _tally_name);
-	if (_num_batches == 0)
-		 log_printf(ERROR, "Cannot compute batch statistics for Tally %s since"
-				 " batches have not yet been created", _tally_name);
+
+	double s1 = 0.0;
+	double s2 = 0.0;
 
 	/* Loop over each bin */
 	for (int i=0; i < _num_bins; i++) {
+
+		s1 = 0.0;
+		s2 = 0.0;
 
 		/* Initialize statistics to zero */
 		_batch_mu[i] = 0.0;
@@ -700,24 +821,20 @@ void Tally::computeBatchStatistics() {
 		_batch_std_dev[i] = 0.0;
 		_batch_rel_err[i] = 0.0;
 
-		/* Accumulate flux from each batch */
-		for (int j=0; j < _num_batches; j++)
-			_batch_mu[i] += _tallies[j][i];
-
-		/* Compute average flux for this bin */
-		_batch_mu[i] /= double(_num_batches);
-
-		/* Compute the variance for this bin */
+		/* Accumulate in s1, s2 counters */
 		for (int j=0; j < _num_batches; j++) {
-			_batch_variance[i] += (_tallies[j][i] - _batch_mu[i])
-					* (_tallies[j][i] - _batch_mu[i]);
+			s1 += _tallies[j][i];
+			s2 += _tallies[j][i] * _tallies[j][i];
 		}
-		_batch_variance[i] /= double(_num_batches);
 
-		/* Compute the standard deviation for this bin */
+		/* Compute batch average */
+		_batch_mu[i] = s1 / _num_batches;
+
+		/* Compute batch variance */
+		_batch_variance[i] = (1.0 / (double(_num_batches) - 1.0)) *
+				(s2 / double(_num_batches) - (_batch_mu[i]*_batch_mu[i]));
+
 		_batch_std_dev[i] = sqrt(_batch_variance[i]);
-
-		/* Compute the relative error for this bin */
 		_batch_rel_err[i] = _batch_std_dev[i] / _batch_mu[i];
 	}
 
@@ -736,14 +853,17 @@ void Tally::computeBatchStatistics() {
 void Tally::computeScaledBatchStatistics(double scale_factor) {
 
 	if (_num_batches == 0)
-		log_printf(ERROR, "Cannot compute batch statistics for BatchBinSet %s "
-				"since the binners have not yet been generated", _tally_name);
-	if (_num_batches == 0)
 		 log_printf(ERROR, "Cannot compute batch statistics for Tally %s since"
 				 " batches have not yet been created", _tally_name);
 
+	double s1 = 0.0;
+	double s2 = 0.0;
+
 	/* Loop over each bin */
 	for (int i=0; i < _num_bins; i++) {
+
+		s1 = 0.0;
+		s2 = 0.0;
 
 		/* Initialize statistics to zero */
 		_batch_mu[i] = 0.0;
@@ -751,25 +871,21 @@ void Tally::computeScaledBatchStatistics(double scale_factor) {
 		_batch_std_dev[i] = 0.0;
 		_batch_rel_err[i] = 0.0;
 
-		/* Accumulate flux from each batch */
-		for (int j=0; j < _num_batches; j++)
-			_batch_mu[i] += _tallies[j][i] / double(scale_factor);
-
-		/* Compute average flux for this bin */
-		_batch_mu[i] /= double(_num_batches);
-
-		/* Compute the variance for this bin */
+		/* Accumulate in s1, s2 counters */
 		for (int j=0; j < _num_batches; j++) {
-			_batch_variance[i] += (_tallies[j][i] / scale_factor
-			- _batch_mu[i]) * (_tallies[j][i] / scale_factor
-												- _batch_mu[i]);
+			s1 += _tallies[j][i] / scale_factor;
+			s2 += (_tallies[j][i] / scale_factor) *
+						(_tallies[j][i] / scale_factor);
 		}
-		_batch_variance[i] /= double(_num_batches);
 
-		/* Compute the standard deviation for this bin */
+		/* Compute batch average */
+		_batch_mu[i] = s1 / _num_batches;
+
+		/* Compute batch variance */
+		_batch_variance[i] = (1.0 / (double(_num_batches) - 1.0)) *
+				(s2 / double(_num_batches) - (_batch_mu[i]*_batch_mu[i]));
+
 		_batch_std_dev[i] = sqrt(_batch_variance[i]);
-
-		/* Compute the relative error for this bin */
 		_batch_rel_err[i] = _batch_std_dev[i] / _batch_mu[i];
 	}
 
