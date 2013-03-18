@@ -35,6 +35,17 @@ typedef enum tallyDomainTypes {
 } tallyDomainType;
 
 
+/* The type of precision trigger for a Tally object - represents
+ * what kind of precision we should track to determine when to end
+ * the simulation */
+typedef enum triggerTypes {
+    VARIANCE,
+    STANDARD_DEVIATION,
+    RELATIVE_ERROR,
+    NONE
+} triggerType;
+
+
 /* Type of tallies */
 typedef enum tallyTypes {
 	FLUX,
@@ -68,6 +79,8 @@ private:
 	binSpacingType _bin_spacing;
 	tallyDomainType _tally_domain;
 	tallyType _tally_type;
+    triggerType _trigger_type;
+    float _trigger_precision;
 
 	int _num_batches;
 	double* _batch_mu;
@@ -75,6 +88,10 @@ private:
 	double* _batch_std_dev;
 	double* _batch_rel_err;
 	bool _computed_statistics;
+
+    double getMaxVariance();
+    double getMaxStdDev();
+    double getMaxRelErr();
 
 public:
 	Tally(char* tally_name, tallyDomainType tally_domain, tallyType tally_type);
@@ -112,10 +129,13 @@ public:
 
     void setBinSpacingType(binSpacingType type);
 	void setBinEdges(double* edges, int num_edges);
+    void setPrecisionTrigger(triggerType trigger_type, float precision);
 
 	void generateBinEdges(double start, double end, int num_bins, 
 											binSpacingType type);
 	void setNumBatches(int num_batches);
+    void incrementNumBatches(int num_batches);
+    bool isPrecisionTriggered();
 	Tally* clone();
 
 	void generateBinCenters();

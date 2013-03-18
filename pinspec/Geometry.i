@@ -11,6 +11,7 @@
     #include "../src/Fissioner.h"
     #include "../src/log.h"
     #include "../src/xsreader.h"
+    #include "../src/Timer.h"
 
     /* Exception helpers */
     static int swig_c_error_num = 0;
@@ -73,3 +74,4 @@
 %include ../src/Fissioner.h
 %include ../src/log.h
 %include ../src/xsreader.h
+%include ../src/Timer.h

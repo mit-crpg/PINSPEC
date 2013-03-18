@@ -97,31 +97,38 @@ void log_setlevel(const char* newlevel) {
  * @param *format variable list of C++ formatted i/o
  */
 void log_printf(logLevel level, const char *format, ...) {
+
+    char msg[512];
+    std::string msg_string;
+
     if (level >= log_level) {
     	va_list args;
+
+        va_start(args, format);
+        vsprintf(msg, format, args);
+        va_end(args);
 
     	/* Append the log level to the message */
     	switch (level) {
 	        case (DEBUG):
-	            printf("[  DEBUG  ]  ");
+                msg_string = std::string("[  DEBUG  ]  ") + msg + "\n";
 	            break;
 	        case (INFO):
-	            printf("[  INFO   ]  ");
+                msg_string = std::string("[  INFO   ]  ") + msg + "\n";
 	            break;
 	        case (NORMAL):
-	            printf("[  NORMAL ]  ");
+                msg_string = std::string("[  NORMAL ]  ") + msg + "\n";
 	            break;
 	        case (WARNING):
-	            printf("[ WARNING ]  ");
+                msg_string = std::string("[ WARNING ]  ") + msg + "\n";
 	            break;
 	        case (CRITICAL):
-	            printf("[ CRITICAL]  ");
+                msg_string = std::string("[ CRITICAL]  ") + msg + "\n";
 	            break;
 	        case (RESULT):
-	            printf("[  RESULT ]  ");
+                msg_string = std::string("[  RESULT ]  ") + msg + "\n";
 	            break;
 	        case (ERROR):
-                char msg[512];
 	            va_start(args, format);
 	            vsprintf(msg, format, args);
  	            va_end(args);
@@ -129,13 +136,9 @@ void log_printf(logLevel level, const char *format, ...) {
                 throw std::runtime_error(msg);
 	            break;
           }
-
-        if (level != ERROR) {
-	        va_start(args, format);
-	        vprintf(format, args);
-	        va_end(args);
-	        printf("\n");
-        }
     }
+
+   std::cout << msg_string;
+
 }
 

@@ -98,6 +98,8 @@ public:
 	void addTally(Tally *tally);
 
 	collisionType collideNeutron(neutron* neut);
+    bool isPrecisionTriggered();
+    void incrementNumBatches(int num_batches);
     void computeBatchStatistics();
     void computeScaledBatchStatistics(float scale_factor);
     void outputBatchStatistics(char* directory, char* suffix);

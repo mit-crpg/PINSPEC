@@ -121,6 +121,8 @@ public:
 	void addModeratorRingRadius(float radius);
 
 	collisionType collideNeutron(neutron* neut);
+    bool isPrecisionTriggered();
+    void incrementNumBatches(int num_batches);
     void computeBatchStatistics();
     void computeScaledBatchStatistics(float scale_factor);
     void outputBatchStatistics(char* directory, char* suffix);

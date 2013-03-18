@@ -52,11 +52,6 @@ int parseCrossSections(const char* file, float* energies, float* xs_values) {
 		count++;
 	}
 
-	/* Convert energy values from MeV to eV */
-	/*for (int i=0; i < count; i++){
-	/*	energies[i] *= 1E6;
-	/*}
-
 	/* Close the file and return the number of data points */
 	input_file.close();
 
