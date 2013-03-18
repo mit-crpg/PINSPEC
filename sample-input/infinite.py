@@ -17,7 +17,9 @@ def main():
     # Call SLBW to create XS
     filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
     T=300 #Temp in Kelvin of target nucleus
-    SLBW.SLBWXS(filename,T)
+    SLBW.SLBWXS(filename,T,'capture')
+    #SLBW.SLBWXS(filename,T,'scatter')
+    SLBW.generatePotentialScattering(filename)
 
     # Define isotopes
     h1 = Isotope('H-1')
@@ -32,7 +34,7 @@ def main():
     mix.addIsotope(h1, 1.0)
     mix.addIsotope(o16, 1.0)
     mix.addIsotope(u238, 0.50)
-    mix.addIsotope(u235, .005)
+    mix.addIsotope(u235, .025)
     
     log_printf(INFO, 'Added isotopes')
 
