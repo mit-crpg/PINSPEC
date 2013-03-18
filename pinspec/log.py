@@ -43,4 +43,23 @@ def assignValue(level):
         return 6
 
 
+def setLevel(level):
+    
+    if level == 'DEBUG':
+        log_setlevel(DEBUG)
+    elif level == 'INFO':
+        log_setlevel(INFO)
+    elif level == 'NORMAL':
+        log_setlevel(NORMAL)
+    elif level == 'WARNING':
+        log_setlevel(WARNING)
+    elif level == 'CRITICAL':
+        log_setlevel(CRITICAL)
+    elif level == 'RESULT':
+        log_setlevel(RESULT)
+    elif level == 'ERROR':
+        log_setlevel(ERROR)
+    else:
+        py_printf('Cannot set log level to unsupported log level %s', str(level))
+
 

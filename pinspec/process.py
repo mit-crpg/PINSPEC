@@ -30,7 +30,7 @@ class RI(object):
 	def printRI(self):
 
 		for i in range(0,self.num_RIs):
-			py_printf('NORMAL', 'RI [ %9.4f - %9.4f ] =  %9.4f', self.bin_edges[i], self.bin_edges[i+1], self.RIs[i])
+			py_printf('NORMAL', 'RI [ %9.4f - %9.4f eV] =  %9.4f', self.bin_edges[i], self.bin_edges[i+1], self.RIs[i])
 
 	def getBinCenters(self):
 		return self.bin_centers			
@@ -80,5 +80,5 @@ class groupXS(object):
 		for j in range(0,self.num_rxns):
 			rxn_mu = self.rxns[j].retrieveTallyMu(self.num_bins) 
 			for i in range(0,self.num_bins):
-				py_printf('NORMAL', 'Group XS [ %9.4f - %9.4f ] =  %9.4f', self.bin_edges[i], self.bin_edges[i+1], self.groupXS[i,j])
+				py_printf('NORMAL', 'Group XS [ %9.4f - %9.4f eV] =  %9.3E cm^-1', self.bin_edges[i], self.bin_edges[i+1], self.groupXS[i,j])
 

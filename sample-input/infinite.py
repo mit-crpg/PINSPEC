@@ -3,25 +3,22 @@ from pinspec import *
 import pinspec.SLBW as SLBW
 import pinspec.plotter as plotter
 import pinspec.process as process
-from pinspec.log import *
+import pinspec.log as log
+
 
 def main():
 
-    # NOTE: If a user is going to homogenize materials
-	#       then they must figure out the atom ratios 
-	#       using geometric parameters and use that 
-    #       when loading the isotope in a material
-
     # Set main simulation params
     num_batches = 10
-    num_neutrons_per_batch = 1000
+    num_neutrons_per_batch = 10000
     num_threads = 4
+    output_dir = 'Infinite'
     
-    log_setlevel(INFO)
+    log.setLevel('INFO')
 
     setXSLibDirectory('../xs-lib/')   # This is also a default, but set it as example
 
-    py_printf('INFO', 'Creating SLBW xs')    
+    log.py_printf('INFO', 'Creating SLBW xs')    
     
     # Call SLBW to create XS
     filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
@@ -36,16 +33,8 @@ def main():
     o16 = Isotope('O-16')
     u235 = Isotope('U-235')
     u238 = Isotope('U-238')
-    
-
-    # Plot the microscopic cross sections for each isotope
-    plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
-    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
-    plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
-    plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
-
     zr90 = Isotope('Zr-90')
- 
+     
     # Define materials
     mix = Material()
     mix.setMaterialName('Fuel Moderator Mix')
@@ -55,29 +44,19 @@ def main():
     mix.addIsotope(u238, 0.40)
     mix.addIsotope(u235, .02)
     mix.addIsotope(zr90, 0.16)    
-    #py_printf('INFO', 'Added isotopes')
 
-    plotter.plotMacroXS(mix, ['total', 'capture', 'elastic', 'absorption'])
+    log.py_printf('INFO', 'Added isotopes')
     
     # Define regions
     region_mix = Region('infinite medium', INFINITE)
     region_mix.setMaterial(mix)
 
-    py_printf('INFO', 'Made mixture region')
-        
-    # plot the fission spectrum the CDF
-    #plotter.plotFissionSpectrum()
-
-    #Plot the thermal scattering kernel PDFs and CDFs
-    #plotter.plotThermalScattering(h1)
+    log.py_printf('INFO', 'Made mixture region')
 
     # Create a tally for the flux
     flux = Tally('total flux', GEOMETRY, FLUX)
     flux.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC)
 
-    ############################################################################
-    #EXAMPLE: How to set tally bin edges 
-    ############################################################################
     # Create a tally for the RI
     abs_rate = Tally('absorption rate', MATERIAL, ABSORPTION_RATE)
     flux_RI = Tally('flux RI', MATERIAL, FLUX)
@@ -100,32 +79,43 @@ def main():
     geometry.setNeutronsPerBatch(num_neutrons_per_batch)
     geometry.setNumThreads(num_threads)
 
-    py_printf('INFO', 'Made geometry')
+    log.py_printf('INFO', 'Made geometry')
 
 	# Run Monte Carlo simulation
     geometry.runMonteCarloSimulation();
 
     # Dump batch statistics to output files to some new directory
-    geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
+    geometry.outputBatchStatistics(output_dir, 'test')
+
+    # Plot the microscopic cross sections for each isotope
+    plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission'], output_dir)
+    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission'], output_dir)
+    plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'], output_dir)
+    plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'], output_dir)
+    plotter.plotMacroXS(mix, ['total', 'capture', 'elastic', \
+                                        'fission', 'absorption'], output_dir)
 
     # Plot fluxes
-    plotter.plotFluxes([flux])
-    plotter.plotFluxes([flux])
-    plotter.plotFluxes([flux])
+    plotter.plotFlux(flux, output_dir)
     
     # Compute the resonance integrals
     RI = process.RI(flux_RI, abs_rate)
     RI.printRI()
-    plotter.plotRI(RI)
+    plotter.plotRI(RI, output_dir)
     
     # Compute the group cross sections
     groupXS = process.groupXS(flux_RI, abs_rate)
     groupXS.printGroupXS()
-    plotter.plotGroupXS(groupXS)
+    plotter.plotGroupXS(groupXS, output_dir)
 
-    # Dump batch statistics to output files to some new directory - gives segmentation fault right now
-    # geometry.outputBatchStatistics('Infinite_MC_Statistics', 'test')
+    # Dump batch statistics to output files to some new directory
+    geometry.outputBatchStatistics(output_dir, 'test')
 
+    # plot the fission spectrum the CDF
+    plotter.plotFissionSpectrum(output_dir)
+
+    #Plot the thermal scattering kernel PDFs and CDFs
+    plotter.plotThermalScattering(h1, output_dir)
 
 if __name__ == '__main__':
 

@@ -840,6 +840,9 @@ void Geometry::initializePmfRatios() {
     _num_ratios = mod->getNumXSEnergies();
     _scale_type = mod->getEnergyGridScaleType();
 
+    if (_scale_type == LOGARITHMIC)
+        log_printf(NORMAL, "Scale type set to LOGARITHMIC for %d pmf ratios", _num_ratios);
+
     /* Allocate memory for ratios */    
     _pmf_ratios = new float[_num_ratios];
 
@@ -897,7 +900,7 @@ void Geometry::incrementNumBatches(int num_batches) {
  */
 float Geometry::computeFuelFuelCollisionProb(float energy) {
 	float p_ff;
-	float sigma_tot_fuel = _fuel->getMaterial()->getTotalMicroXS(energy);
+	float sigma_tot_fuel = _fuel->getMaterial()->getTotalMacroXS(energy);
 	p_ff = ((_beta*sigma_tot_fuel) / (_alpha1*_sigma_e + sigma_tot_fuel)) +
 		((1.0 - _beta)*sigma_tot_fuel / (_alpha2*_sigma_e + sigma_tot_fuel));
     log_printf(DEBUG, "sigma_tot_fuel = %f, p_ff = %f", sigma_tot_fuel, p_ff);
