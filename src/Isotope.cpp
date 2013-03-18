@@ -1370,3 +1370,6 @@ void Isotope::outputBatchStatistics(char* directory, char* suffix) {
 
     return;
 }
+
+
+

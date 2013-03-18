@@ -388,7 +388,7 @@ bool Tally::isPrecisionTriggered() {
 void Tally::retrieveTallyEdges(double* data, int num_bins) {
 
     /* Load all tally bin centers into array */
-    for (int i=0; i < _num_bins; i++)
+    for (int i=0; i < _num_bins+1; i++)
         data[i] = _edges[i];
 
 }
