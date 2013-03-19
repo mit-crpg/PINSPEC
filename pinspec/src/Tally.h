@@ -16,14 +16,11 @@
 #endif
 #include "log.h"
 #include "arraycreator.h"
+#include "Neutron.h"
+#include "Material.h"
+#include "Isotope.h"
+#include "Region.h"
 
-
-/* Tally spacing types */
-typedef enum binSpacingTypes {
-	EQUAL,
-	LOGARITHMIC,
-	OTHER
-} binSpacingType;
 
 
 /* The domain in which this tally resides */
@@ -50,17 +47,12 @@ typedef enum triggerTypes {
 typedef enum tallyTypes {
 	FLUX,
 	COLLISION_RATE,
-	MICRO_ELASTIC_RATE,
-	MACRO_ELASTIC_RATE,
-	MICRO_ABSORPTION_RATE,
-	MACRO_ABSORPTION_RATE,
-	MICRO_CAPTURE_RATE,
-	MACRO_CAPTURE_RATE,
-	MICRO_FISSION_RATE,
-	MACRO_FISSION_RATE,
+	ELASTIC_RATE,
+	ABSORPTION_RATE,
+	CAPTURE_RATE,
+	FISSION_RATE,
 	// transport or diffusion? 
-	MICRO_TRANSPORT_RATE,
-	MACRO_TRANSPORT_RATE,
+	TRANSPORT_RATE,
 	DIFFUSION_RATE,
 	LEAKAGE_RATE
 } tallyType;
@@ -88,6 +80,10 @@ private:
     triggerType _trigger_type;
     float _trigger_precision;
 
+    Material* _material;
+    Isotope* _isotope;
+    Region* _region;
+
 	int _num_batches;
 	double* _batch_mu;
 	double* _batch_variance;
@@ -100,7 +96,9 @@ private:
     double getMaxRelErr();
 
 public:
-	Tally(char* tally_name, tallyDomainType tally_domain, tallyType tally_type);
+	Tally(char* tally_name, Isotope* isotope, tallyType tally_type);
+	Tally(char* tally_name, Material* material, tallyType tally_type);
+	Tally(char* tally_name, Region* region, tallyType tally_type);
 	virtual ~Tally();
 	char* getTallyName();
 	int getNumBins();
@@ -148,9 +146,7 @@ public:
 
 	void tally(double* samples, int num_samples, int batch_num);
 	void tally(double sample, int batch_num);
-	void weightedTally(double* samples, double* sample_weights, 
-			   int num_samples, int batch_num);
-	void weightedTally(double sample, double weight, int batch_num);
+	void weightedTally(neutron* neutron);
 	void normalizeTallies();
 	void normalizeTallies(double scale_factor);
 	void computeBatchStatistics();

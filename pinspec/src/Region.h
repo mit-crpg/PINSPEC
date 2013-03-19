@@ -15,9 +15,8 @@
 #include <algorithm>
 #include <stdarg.h>
 #include <string.h>
-#include "Material.h"
 #include "Surface.h"
-#include "Neutron.h"
+#include "Material.h"
 
 
 #define _USE_MATH_DEFINES
@@ -48,9 +47,6 @@ private:
 	Material* _material;
 	regionType _region_type;
 
-	/* Tallies */
-	std::vector<Tally*> _tallies;
-
 	/* Two region pin cell parameters */
 	float _sigma_e;
 	float _beta;
@@ -68,7 +64,6 @@ private:
     std::vector<Surface*> _bounding_surfaces;
     std::vector<int> _halfspaces;
 
-    void clearTallies();
     bool contains(neutron* neutron);
     bool onBoundary(neutron* neutron);
 
@@ -116,22 +111,16 @@ public:
 	float getTransportMacroXS(int energy_index);
 
     void setMaterial(Material* material);
-    void addTally(Tally* bins);
 //    void addBoundingSurface(Surface* surface, int halfspace);
 
 	void setFuelRadius(float radius);
 	void setPitch(float pitch);
     void setVolume(float volume);
-    void setNumBatches(int num_batches);
 	void addFuelRingRadius(float radius);
 	void addModeratorRingRadius(float radius);
 
 	collisionType collideNeutron(neutron* neut);
-    bool isPrecisionTriggered();
-    void incrementNumBatches(int num_batches);
-    void computeBatchStatistics();
-    void computeScaledBatchStatistics(float scale_factor);
-    void outputBatchStatistics(char* directory, char* suffix);
+
 };
 
 #endif

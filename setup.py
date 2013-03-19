@@ -21,9 +21,12 @@ os.environ['OPT'] = ' '.join(
     flag for flag in opt.split() if flag != '-Wstrict-prototypes'
 )
 
+#, '/opt/local/lib/gcc47/gcc/x86_64-apple-darwin11/4.7.2/include'
+#, '-L/opt/local/lib/gcc47'
+
 # range extension module
 pinspec = Extension('_pinspec',
-                   include_dirs=[numpy_include, '/opt/local/lib/gcc47/gcc/x86_64-apple-darwin11/4.7.2/include'],
+                   include_dirs=[numpy_include],
                    sources=['pinspec/Geometry.i',
                             'pinspec/src/log.cpp', 'pinspec/src/xsreader.cpp', 
                             'pinspec/src/Isotope.cpp', 'pinspec/src/Material.cpp', 
@@ -33,7 +36,7 @@ pinspec = Extension('_pinspec',
                             'pinspec/src/Geometry.cpp'],
                    extra_compile_args=['-O3', '-fopenmp',
                                     '-march=native', '-ffast-math'],
-                   extra_link_args=['-lstdc++', '-fopenmp', '-lgomp', '-fPI', '-L/opt/local/lib/gcc47'],
+                   extra_link_args=['-lstdc++', '-fopenmp', '-lgomp', '-fPI'],
                    language='c++',
                    swig_opts=['-c++'],
                    )

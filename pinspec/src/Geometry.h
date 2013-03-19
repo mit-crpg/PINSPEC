@@ -15,9 +15,8 @@
 #include <vector>
 #include "Region.h"
 #include "Fissioner.h"
-#include "Neutron.h"
 #include "Tally.h"
-#include "Timer.h"       
+#include "Timer.h"
 
 
 typedef enum spatialTypes {
@@ -92,7 +91,7 @@ private:
 	float getTransportMacroXS(float energy, Region* region);
 	float getTransportMacroXS(int energy_index, Region* region);
 
-    void tally(float sample, int batch_num, Region* region, collisionType type);
+    void tally(neutron* neutron);
     void initializeBatchTallies();
     void initializeProbModFuelRatios();
     bool isPrecisionTriggered();

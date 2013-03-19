@@ -3090,17 +3090,17 @@ namespace swig {
 
 
     #define SWIG_FILE_WITH_INIT
-    #include "../src/Geometry.h"
-    #include "../src/Region.h"
-    #include "../src/Surface.h"
-    #include "../src/Isotope.h"
-    #include "../src/Material.h"
-    #include "../src/Tally.h"
-    #include "../src/Neutron.h"
-    #include "../src/Fissioner.h"
-    #include "../src/log.h"
-    #include "../src/xsreader.h"
-    #include "../src/Timer.h"
+    #include "src/Geometry.h"
+    #include "src/Region.h"
+    #include "src/Surface.h"
+    #include "src/Isotope.h"
+    #include "src/Material.h"
+    #include "src/Tally.h"
+    #include "src/Neutron.h"
+    #include "src/Fissioner.h"
+    #include "src/log.h"
+    #include "src/xsreader.h"
+    #include "src/Timer.h"
 
     /* Exception helpers */
     static int swig_c_error_num = 0;

@@ -274,21 +274,6 @@ void Region::setMaterial(Material* material) {
 }
 
 
-
-/**
- * Adds a new Tallies to this region for tallying
- * @param bins a pointer to a Tally class object
- */
-void Region::addTally(Tally* tally) {
-
-    if (tally->getTallyDomainType() != REGION)
-        log_printf(ERROR, "Unable to add Tally %s to Region %s since the Tally"
-                        " is not for a REGION tally domain", 
-                                        tally->getTallyName(), _region_name);
-	_tallies.push_back(tally);
-}
-
-
 /**
  * Sets the fuel radius for this Region if it is not INFINITE
  * @param radius the fuel pin radius
@@ -321,25 +306,6 @@ void Region::setPitch(float pitch) {
         else
             _volume = M_PI * _fuel_radius * _fuel_radius;
     }
-}
-
-
-/**
- * Sets the number of batches for each of the Tallies inside of this Region
- * @param num_batches the number of batches
- */
-void Region::setNumBatches(int num_batches) {
-
-    /* Set the number of batches for each Tally inside of this Region */
-    std::vector<Tally*>::iterator iter;
-	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
-        (*iter)->setNumBatches(num_batches);
-    }
-
-    /* Set the number of batches for each of the Tallies inside the Material */
-    _material->setNumBatches(num_batches);
-
-    return;
 }
 
 
@@ -387,107 +353,10 @@ void Region::addModeratorRingRadius(float radius) {
  */
 collisionType Region::collideNeutron(neutron* neut) {
 
-	/* If this Region contains any tallies, tally neutron 
-	 * before collision
-	 */
-    int batch_num = neut->_batch_num;
-    float sample = neut->_energy;
-    float Sigma_t_mat = _material->getTotalMacroXS(sample);
-    float Sigma_t_reg = getTotalMacroXS(sample);
-
 	/* Collide the neutron in the Region's Material */
     collisionType type = _material->collideNeutron(neut);
 
-    std::vector<Tally*>::iterator iter;
-	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
-	    Tally *tally = *iter;
-	    tallyType tally_type = tally->getTallyType();
-	    switch (tally_type) {
-	    case FLUX: /* tally 1 over material's Macroscpic cross section */
-			tally->weightedTally(sample, 1.0 / Sigma_t_mat, 
-					     batch_num);
-	    case COLLISION_RATE:
-		    tally->weightedTally(sample, 1.0, batch_num);
-	    case MACRO_ELASTIC_RATE:
-		if (type == ELASTIC) {
-		    tally->weightedTally(sample, 
-					 getElasticMacroXS(sample) 
-					 / Sigma_t_mat, batch_num);
-		}
-	    case MICRO_ELASTIC_RATE:
-		if (type == ELASTIC) {
-		    tally->weightedTally(sample, 
-					 getElasticMacroXS(sample) 
-					 / Sigma_t_reg, batch_num);
-		}
-	    case MACRO_ABSORPTION_RATE:
-		if (type == CAPTURE || type == FISSION) {
-		    tally->weightedTally(sample, 
-					 getAbsorptionMacroXS(sample) 
-					 / Sigma_t_mat, batch_num);
-		}
-	    case MICRO_ABSORPTION_RATE:
-		if (type == CAPTURE || type == FISSION) {
-		    tally->weightedTally(sample, 
-					 getAbsorptionMacroXS(sample) 
-					 / Sigma_t_reg, batch_num);
-		}
-	    case MACRO_CAPTURE_RATE:
-		if (type == CAPTURE) {
-		    tally->weightedTally(sample, 
-					 getCaptureMacroXS(sample) 
-					 / Sigma_t_mat, batch_num);
-		}
-	    case MICRO_CAPTURE_RATE:
-		if (type == CAPTURE) {
-		    tally->weightedTally(sample, 
-					 getCaptureMacroXS(sample) 
-					 / Sigma_t_reg, batch_num);
-		}
-	    case MACRO_FISSION_RATE:
-		if (type == FISSION) {
-		    tally->weightedTally(sample, 
-					 getFissionMacroXS(sample) 
-					 / Sigma_t_mat, batch_num);
-		}
-	    case MICRO_FISSION_RATE:
-		if (type == FISSION) {
-		    tally->weightedTally(sample, 
-					 getFissionMacroXS(sample) 
-					 / Sigma_t_reg, batch_num);
-		}
-	    case MACRO_TRANSPORT_RATE:
-		if (type == ELASTIC) {
-		    tally->weightedTally(sample, 
-					 getTransportMacroXS(sample) 
-					 / Sigma_t_mat, batch_num);
-		}
-	    case MICRO_TRANSPORT_RATE:
-		if (type == ELASTIC) {
-		    tally->weightedTally(sample, 
-					 getTransportMacroXS(sample) 
-					 / Sigma_t_reg, batch_num);
-		}
-	    case DIFFUSION_RATE: /* FIXME */
-		if (type == ELASTIC)
-		    tally->weightedTally(sample, 
-					 1.0 / 
-					 (3.0 * getTransportMacroXS(sample) 
-					  * Sigma_t_mat), batch_num); 
-	    case LEAKAGE_RATE:; /* FIXME */
-	    }
-	}
-
 	return type;
-}
-
-
-
-/**
- * Clear this region's vector of Tally class object pointers
- */
-void Region::clearTallies() {
-	_tallies.clear();
 }
 
 
@@ -544,103 +413,5 @@ bool Region::onBoundary(neutron* neutron) {
 		else
 			return false;
 	}
-}
-
-
-bool Region::isPrecisionTriggered() {
-
-    /* Check if this Region has any Tallies with precision triggers */
-    std::vector<Tally*>::iterator iter;
-
-	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
-        if((*iter)->isPrecisionTriggered())
-            return true;
-    }
-
-    /* Check if this Material has any Tallies with precision triggers */
-    return _material->isPrecisionTriggered();
-}
-
-
-void Region::incrementNumBatches(int num_batches) {
-
-    /* Set the number of batches for each Tally inside of this Region */
-    std::vector<Tally*>::iterator iter;
-	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
-        (*iter)->incrementNumBatches(num_batches);
-    }
-
-    /* Set the number of batches for each of the Tallies inside the Material */
-    _material->incrementNumBatches(num_batches);
-
-    return;
-
-}
-
-
-/**
- * Calls each of the Tally class objects in the Region to compute
- * their batch-based statistics from the tallies
- */
-void Region::computeBatchStatistics() {
-
-    /* Compute statistics for each of this Region's Tallies */
-    std::vector<Tally*>::iterator iter;
-
-	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
-        (*iter)->computeBatchStatistics();
-
-    /* Compute statistics for the Material's Tallies */
-    _material->computeBatchStatistics();
-
-    return;
-}
-
-
-/**
- * Calls each of the Tally class objects in the Region to compute
- * their batch-based statistics from the tallies
- */
-void Region::computeScaledBatchStatistics(float scale_factor) {
-
-    /* Account for the volume of the region if it is not infinite */
-	if (_region_type != INFINITE)
-        scale_factor *= _volume;
-
-    /* Compute statistics for each of this Region's Tallies */
-    std::vector<Tally*>::iterator iter;
-
-	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
-        (*iter)->computeScaledBatchStatistics(scale_factor);
-
-    /* Compute statistics for the Material's Tallies */
-    _material->computeScaledBatchStatistics(scale_factor);
-
-    return;
-}
-
-
-/**
- * Calls each of the Tally class objects in the Region to output
- * their tallies and statistics to output files.
- * @param directory the directory to write batch statistics files
- * @param suffix a string to attach to the end of each filename
- */
-void Region::outputBatchStatistics(char* directory, char* suffix) {
-
-    /* Output statistics for each of this Region's Tallies */
-    std::vector<Tally*>::iterator iter;
-    std::string filename;
-
-	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
-        filename = std::string(directory) + "/" + (*iter)->getTallyName()
-                                                  + "_" + suffix + ".txt";
-        (*iter)->outputBatchStatistics(filename.c_str());
-    }
-
-    /* Output statistics for the Materials Tallies */
-    _material->outputBatchStatistics(directory, suffix);
-
-    return;
 }
 
