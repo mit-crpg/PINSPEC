@@ -42,11 +42,13 @@ private:
 	neutron* _neutrons;
 	Fissioner* _fissioner;
 
-    float _dancoff;
+	float _dancoff;
 	float _sigma_e;
 	float _beta;
 	float _alpha1;
 	float _alpha2;
+
+	float _bsquare;
 
     /* Ratio of sigam_f * vol_f / sigma_m * vol_m */
     /* Compute ratios ahead of time as an optimization */
@@ -108,15 +110,17 @@ public:
 	int getNumBatches();
 	int getNumThreads();
 	spatialType getSpatialType();
+	float getBSquare();
 			
 	/* setters */
 	void setNeutronsPerBatch(int num_neutrons_per_batch);
 	void setNumBatches(int num_batches);
 	void setNumThreads(int num_threads);
 	void setSpatialType(spatialType spatial_type);
-    void setDancoffFactor(float dancoff);
+	void setDancoffFactor(float dancoff);
 	void addRegion(Region* region);
-    void addTally(Tally* tally);
+	void addTally(Tally* tally);
+	void setBSquare(float value);
 
 	/* Monte Carlo kernel */
 	void runMonteCarloSimulation();
@@ -147,7 +151,7 @@ inline int Geometry::getEnergyGridIndex(float energy) const {
 		else if (energy < _start_energy)
 			index = 0;
 		else
-			index = (int)floor((energy - _start_energy) / _delta_energy);
+			index = int(floor((energy - _start_energy) / _delta_energy));
 	}
 
 	else if (_scale_type == LOGARITHMIC)
@@ -158,7 +162,7 @@ inline int Geometry::getEnergyGridIndex(float energy) const {
 		else if (energy < _start_energy)
 			index = 0;
 		else
-			index = (int)floor((energy - _start_energy) / _delta_energy);
+			index = int(floor((energy - _start_energy) / _delta_energy));
 
 	return index;
 }

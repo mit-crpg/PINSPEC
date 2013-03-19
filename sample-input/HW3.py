@@ -15,8 +15,6 @@ def main():
     num_threads = 4
     log_setlevel(INFO)
 
-    setXSLibDirectory('../xs-lib/')   # This is also a default, but set it as example
-
     # Call SLBW to create XS
     filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
     T=300 #Temp in Kelvin of target nucleus
@@ -58,7 +56,7 @@ def main():
     #EXAMPLE: How to set tally bin edges 
     ############################################################################
     # Create a tally for the absorption rate
-    abs_rate = Tally('absorption rate', MATERIAL, ABSORPTION_RATE)
+    abs_rate = Tally('absorption rate', MATERIAL, MICRO_ABSORPTION_RATE)
     abs_rate_bin_edges = numpy.array([0.1, 1., 5., 10., 100., 1000.])
     abs_rate.setBinEdges(abs_rate_bin_edges)
     mix.addTally(abs_rate)

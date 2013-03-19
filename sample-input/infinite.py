@@ -6,11 +6,9 @@ import pinspec.process as process
 from pinspec.log import *
 
 def main():
-
-    print 'starting pinspec...'
     
     # Set main simulation params
-    num_batches = 12
+    num_batches = 6
     num_neutrons_per_batch = 10000
     num_threads = 4
     output_dir = 'Infinite'
@@ -19,12 +17,10 @@ def main():
         
     py_printf('NORMAL', 'set problem specs')
     
-
-    setXSLibDirectory('../xs-lib/')
-
     py_printf('INFO', 'Creating SLBW xs')    
     
     # Call SLBW to create XS
+    py_printf('INFO', 'Creating SLBW xs')
     T=300 #Temp in Kelvin of target nucleus
     SLBW.replaceXS() #To clean previous changes to XS files
     SLBW.SLBWXS('U-238',T,'capture') #To generate Doppler Broadened Res Cap
@@ -52,12 +48,12 @@ def main():
     mix = Material()
     mix.setMaterialName('Fuel Moderator Mix')
     mix.setDensity(5., 'g/cc')
-    #mix.addIsotope(b10, .002)
-    mix.addIsotope(o16, 1.0)
+    #mix.addIsotope(b10, .0000001)
+    #mix.addIsotope(o16, 1.0)
     mix.addIsotope(h1, 1.0)
-    mix.addIsotope(u238, 0.10)
-    mix.addIsotope(u235, .0025)
-    mix.addIsotope(zr90, .16)
+    mix.addIsotope(u238, 0.0000010)
+    #mix.addIsotope(u235, .0025)
+    #mix.addIsotope(zr90, .16)
 
     py_printf('INFO', 'Added isotopes')
     
@@ -78,13 +74,13 @@ def main():
 
     # Set a precision trigger: tells simulation to run until maximum relative
     # error is less than the trigger value (4E-3)
-    abs_rate.setPrecisionTrigger(RELATIVE_ERROR, 8E-3)
+    abs_rate.setPrecisionTrigger(RELATIVE_ERROR, 2E-2)
 
     # Define geometry
     geometry = Geometry()
     geometry.setSpatialType(INFINITE_HOMOGENEOUS)
     geometry.addRegion(region_mix)
-    flux = Tally('total flux', mix, FLUX)
+    flux = Tally('total flux', region_mix, FLUX)
     flux.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC) 
     geometry.addTally(flux)
     geometry.addTally(abs_rate)

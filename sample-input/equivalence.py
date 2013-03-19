@@ -19,9 +19,15 @@ def main():
     log.setLevel('INFO')
 
     # Call SLBW to create XS
-    filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
+    # Call SLBW to create XS
+    log.py_printf('INFO', 'Creating SLBW xs')
     T=300 #Temp in Kelvin of target nucleus
-    SLBW.SLBWXS(filename,T)
+    SLBW.replaceXS() #To clean previous changes to XS files
+    SLBW.SLBWXS('U-238',T,'capture') #To generate Doppler Broadened Res Cap
+    #SLBW.SLBWXS('U-238',T,'scatter') #To generate Doppler Broadened Res Scat
+    #SLBW.generatePotentialScattering('U-238') #To generate flat Res Scat XS
+    #SLBW.compareXS('U-238', XStype='scatter', RI='no')
+    SLBW.compareXS('U-238', XStype='capture', RI='no')   
 
     # Define isotopes
     h1 = Isotope('H-1')

@@ -209,7 +209,8 @@ inline int Isotope::getEnergyGridIndex(float energy) const {
 		else if (energy < _start_energy)
 			index = 0;
 		else
-			index = (int)floor((energy - _start_energy) / _delta_energy);
+			index = int(floor((energy - _start_energy) / _delta_energy));
+
 	}
 
 	else if (_scale_type == LOGARITHMIC)
@@ -220,7 +221,7 @@ inline int Isotope::getEnergyGridIndex(float energy) const {
 		else if (energy < _start_energy)
 			index = 0;
 		else
-			index = (int)floor((energy - _start_energy) / _delta_energy);
+			index = int(floor((energy - _start_energy) / _delta_energy));
 
 	return index;
 }

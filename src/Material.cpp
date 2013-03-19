@@ -180,12 +180,7 @@ float Material::getTotalMacroXS(int energy_index) {
  */
 float Material::getTotalMicroXS(float energy) {
 
-	float sigma_t = 0;
-
-	/* Increment sigma_t for each isotope */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
-		sigma_t += iter->second.second->getTotalXS(energy);
+	 float sigma_t = getTotalMacroXS(energy) / _material_number_density;
 
 	return sigma_t;
 }
@@ -767,7 +762,7 @@ collisionType Material::collideNeutron(neutron* neut) {
 
     int batch_num = neut->_batch_num;
     float sample = neut->_energy;
-    float Sigma_t_mat = getTotalMacroXS(sample);
+    float Sigma_t_mat = getTotalMicroXS(sample);
     float Sigma_t_iso = 1.0; //neut->curr_region->getTotalMacroXS(sample);
 
     Isotope *isotope;

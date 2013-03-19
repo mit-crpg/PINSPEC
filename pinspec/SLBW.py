@@ -1,14 +1,16 @@
 # SLBW.py
 from pinspec import *
 from log import *
+import pinspec
 import matplotlib.pyplot as plt
 import numpy
 import os
 import shutil
+import subprocess
 import math
-import scipy.special as spec  # newest version of scipy,needed Cython 0.18 was needed, installed using python-pip, command pip install cython, pulled scipy from github
+import scipy.special as spec
 
-def SLBWXS(nameoffile,T,typeXS='capture',numberofpositiveresonances = 14, \
+def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances = 14, \
            Emin = 1e-5,Ecut = 1000.0,Ebnwdth = 0.075,resspacing = 25, \
            idntclfakereslb = 300,gamg = 0.023,flatxs = 0.1,finalEcut=20E6):
 #---------------------------------------------------------------------------------
@@ -60,10 +62,11 @@ def SLBWXS(nameoffile,T,typeXS='capture',numberofpositiveresonances = 14, \
 	#cur_dir = os.getcwd()
 	filepath = str(pinspec.getXSLibDirectory()) + isotope +'-RP.txt'
 	if os.path.exists(filepath) == True:
-		py_printf('INFO', 'Loading resonance paramater file' + filepath)
+		py_printf('INFO', 'Loading resonance paramater file '\
+										 + isotope + '-RP.txt')
 	else:
 		py_printf('WARNING', 'Unable to load resonance parameter '\
-                                                        'file' + filepath)
+                                          + isotope + '-RP.txt')
 	# Initialize desired arrays
 	E0 = numpy.array([])
 	GN = numpy.array([])
@@ -280,7 +283,7 @@ def generatePotentialScattering(isotope,Emin = 1e-5,finalEcut=20E6):
 	g.write(texts)
 	g.close()
 
-def restoreXS():
+def replaceXS():
 #---------------------------------------------------------------------------
 #Function that cleans up library by replacing XS files with ENDFBVII files
 #---------------------------------------------------------------------------
@@ -291,7 +294,7 @@ def restoreXS():
     		if (os.path.isfile(full_file_name)):
         		shutil.copy(full_file_name, getXSLibDirectory())
 	#--------------------------------------------------------------------
-def compareXS(isotope, XStype='capture', RI='no'):
+def compareXS(isotope, XStype='capture', RI='no', dir = '.'):
 	#Resonance Integral Boundaries
 	RIb=numpy.array([[0.01,0.1],[0.1,1.0],[6,10],[1,6],[10,25],[25,50],\
                                     [50,100],[0.5,10000]], dtype=float)
@@ -352,7 +355,7 @@ def compareXS(isotope, XStype='capture', RI='no'):
 	plt.title(CXStype+' Cross Section Comparison')
 	plt.xlabel('XS [barns]')
 	plt.ylabel('E [eV]')
-	plt.savefig(CXStype+'_XS_Comparison.png')
+	plt.savefig(dir+'/'+CXStype+'_XS_Comparison.png')
 	
 	if RI=='yes':
 		#Make loop for RI calculation for Fake U238
@@ -376,7 +379,7 @@ def compareXS(isotope, XStype='capture', RI='no'):
 			induppr=numpy.flatnonzero(EndfE300>=Eupp)
 			indupr=numpy.array([induppr[0]], dtype=int)
 
-			#create vector to integrate, in	tegrate
+			#create vector to integrate, integrate
 			prod=(barnsT*invEnT)
 			prodr=(barnsEndF300*invEndfE300)
 			#en vector=EnT

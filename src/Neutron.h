@@ -10,8 +10,7 @@
 #ifndef NEUTRON_H_
 #define NEUTRON_H_
 
-//#include "Region.h"
-class Region;
+class Region;	
 
 /* Structure to represent a neutron */
 struct neutron {

@@ -9,6 +9,8 @@ from distutils      import sysconfig, dir_util
 # Third-party modules - we depend on numpy for everything
 import numpy
 
+data_dir = os.path.join(sys.prefix, "local/lib/python2.7/dist-package/pinspec")
+
 
 # Obtain the numpy include directory.  This logic works across numpy versions.
 try:
@@ -21,9 +23,6 @@ os.environ['OPT'] = ' '.join(
     flag for flag in opt.split() if flag != '-Wstrict-prototypes'
 )
 
-# '/opt/local/lib/gcc47/gcc/x86_64-apple-darwin11/4.7.2/include'
-# '-L/opt/local/lib/gcc47'
-
 # range extension module
 pinspec = Extension('_pinspec',
                    include_dirs=[numpy_include, '/opt/local/lib/gcc47/gcc/x86_64-apple-darwin11/4.7.2/include'],
@@ -32,7 +31,7 @@ pinspec = Extension('_pinspec',
                             'src/Isotope.cpp', 'src/Material.cpp', 
                             'src/Neutron.cpp', 'src/Tally.cpp', 
                             'src/Fissioner.cpp', 'src/Region.cpp', 
-                            'src/Surface.cpp', 'src/Timer.cpp', 
+                            'src/Timer.cpp', 'src/Surface.cpp', 
                             'src/Geometry.cpp'],
                    extra_compile_args=['-O3', '-fopenmp',
                                     '-march=native', '-ffast-math'],
@@ -49,6 +48,7 @@ setup(  name        = 'PINSPEC',
         url = 'https://github.com/wbinventor/PINSPEC',
         version     = '0.1',
         ext_modules = [pinspec],
-        packages = ['pinspec']
+        packages = ['pinspec'],
+		package_data = {'pinspec': ['xs-lib/*.txt', 'xs-lib/BackupXS/*.txt']},
         )
 

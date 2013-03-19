@@ -12,8 +12,6 @@ class TestInfiniteMedium(unittest.TestCase):
         self.num_threads = 4
         log_setlevel(INFO)
 
-        setXSLibDirectory('../xs-lib/')   # This is also a default, but set it as example
-
         # Define isotopes
         self.h1 = Isotope('H-1')
         self.o16 = Isotope('O-16')

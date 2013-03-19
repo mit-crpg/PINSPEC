@@ -33,6 +33,8 @@ Geometry::Geometry() {
 	_fissioner->setEMax(20);
 	_fissioner->buildCDF();
 
+	/* Default for axial leakage is zero */
+	_bsquare = 0.0;
 }
 
 
@@ -212,6 +214,14 @@ float Geometry::getTransportMicroXS(int energy_index, Region* region) {
 }
 
 
+float Geometry::getBSquare() {
+    return _bsquare;
+}
+
+void Geometry::setBSquare(float value) {
+    _bsquare = value;
+}
+
 /**
  * Sets the number of neutrons per batch for this simulation
  * @param the number of neutrons per batch
@@ -363,10 +373,6 @@ void Geometry::addRegion(Region* region) {
  */
 void Geometry::addTally(Tally *tally) {
 
-    if (tally->getTallyDomainType() != GEOMETRY)
-        log_printf(ERROR, "Unable to add Tally %s to Geometry since the Tally"
-                        " is not for an GEOMETRY tally domain", 
-                                        tally->getTallyName());
     _tallies.push_back(tally);
     return;
 }
@@ -432,9 +438,8 @@ void Geometry::runMonteCarloSimulation() {
                      * the Geometry
                      */
 			        while (curr->_alive == true) {
-                        sample = curr->_energy;
-				        type = _infinite_medium->collideNeutron(curr);
-                        tally(curr);
+			        	type = _infinite_medium->collideNeutron(curr);
+			        	tally(curr);
 			        }
 		        }
             }

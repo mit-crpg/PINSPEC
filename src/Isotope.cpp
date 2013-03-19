@@ -597,8 +597,8 @@ void Isotope::loadXS() {
 						" file %s for this isotope", 
                         filename.c_str(), _isotope_name);
 
-	log_printf(INFO, "Loading %s for isotope %s", 
-						filename.c_str(), _isotope_name);
+	log_printf(INFO, "Loading %s-elastic.txt for isotope %s", 
+						_isotope_name, _isotope_name);
 
 	/* Find the number of cross-section values in the file */
 	_num_elastic_xs = getNumCrossSectionDataPoints(filename.c_str());
@@ -624,8 +624,8 @@ void Isotope::loadXS() {
 						" file %s for this isotope", 
                         filename.c_str(), _isotope_name); 
 
-	log_printf(INFO, "Loading %s for isotope %s", 
-						filename.c_str(), _isotope_name);
+	log_printf(INFO, "Loading %s-capture.txt for isotope %s", 
+						_isotope_name, _isotope_name);
 
 	/* Find the number of cross-section values in the file */
 	_num_capture_xs = getNumCrossSectionDataPoints(filename.c_str());
@@ -647,8 +647,8 @@ void Isotope::loadXS() {
     /* If this isotope is fissionable and it finds it's fission xs */
 	if (!stat(filename.c_str(), &buffer)) {
 
-		log_printf(INFO, "Loading %s for isotope %s", 
-						filename.c_str(), _isotope_name);
+	log_printf(INFO, "Loading %s-fission.txt for isotope %s", 
+						_isotope_name, _isotope_name);
 
 		/* Find the number of cross-section values in the file */
 		_num_fission_xs = getNumCrossSectionDataPoints(filename.c_str());
@@ -1212,6 +1212,18 @@ collisionType Isotope::collideNeutron(neutron* neut) {
     collisionType type = getCollisionType(sample);
     if (type == FISSION || type == CAPTURE)
     	neut->_alive = false;
+
+    /* Sample outgoing energy uniformally between [alpha*E, E] */
+
+    float alpha = getAlpha();
+    double random = (float)(rand()) / (float)(RAND_MAX);
+
+    /* Asymptotic elastic scattering above 4 eV */
+    if (sample > 4.0)
+    	neut->_energy *= (alpha + (1.0 - alpha) * random);
+    else
+    	neut->_energy =  getThermalScatteringEnergy(sample);
+
 
     return ELASTIC;
 
