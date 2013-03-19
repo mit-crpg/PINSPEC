@@ -210,7 +210,7 @@ def plotRI(RI, dir='.'):
     # Plot Resonance Integrals
     fig = plt.figure()
     bins = RI.bin_edges
-    plt.semilogx(bins[0:-1], RI.RIs, drawstyle='steps')
+    plt.semilogx(bins[0:-1], RI.RIs, drawstyle='steps-post')
     plt.xlabel('Energy [eV]')
     plt.ylabel('RI')
     plt.title('Resonance Integrals')
@@ -223,7 +223,7 @@ def plotGroupXS(group_xs, dir='.'):
     # Plot Resonance Integrals
     fig = plt.figure()
     bins = group_xs.bin_edges
-    plt.semilogx(bins[0:-1], group_xs.groupXS[:,:], drawstyle='steps')
+    plt.semilogx(bins[0:-1], group_xs.groupXS[:,:], drawstyle='steps-post')
     plt.xlabel('Energy [eV]')
     plt.ylabel('Group XS')
     plt.title('Group XS')

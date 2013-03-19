@@ -721,10 +721,13 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Inserts the isotope and increments the total number density */
     _isotopes.insert(new_isotope);
 
-    /* Loop over all isotopes: update all but the last one */
+    log_printf(INFO, "printing isotope number densities");
+
+    /* Loop over all isotopes: update all the number densities */
     for (iter =_isotopes.begin(); iter != _isotopes.end(); ++iter){
     	/* Update isotope's number density */
     	iter->second.first = _isotopes_AO.at(iter->second.second) / total_AO * _material_number_density;
+    	log_printf(INFO, "number density %s: %f", iter->first, iter->second.first);
     }
 
     return;

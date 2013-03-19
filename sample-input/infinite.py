@@ -30,28 +30,29 @@ def main():
 
     # Define isotopes
     h1 = Isotope('H-1')
+    b10 = Isotope('B-10')
     o16 = Isotope('O-16')
     u235 = Isotope('U-235')
     u238 = Isotope('U-238')
-    
+    zr90 = Isotope('Zr-90')    
 
     # Plot the microscopic cross sections for each isotope
-    plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
-    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
-    plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
-    plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
+    #plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
+    #plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
+    #plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
+    #plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
+    plotter.plotMicroXS(b10, ['capture', 'elastic', 'absorption'])
 
-    zr90 = Isotope('Zr-90')
- 
     # Define materials
     mix = Material()
     mix.setMaterialName('Fuel Moderator Mix')
     mix.setDensity(5., 'g/cc')
+    mix.addIsotope(b10, .002)
+    #mix.addIsotope(o16, 1.0)
     mix.addIsotope(h1, 1.0)
-    mix.addIsotope(o16, 1.0)
-    mix.addIsotope(u238, 0.50)
-    mix.addIsotope(u235, .025)
-    mix.addIsotope(zr90, .16)
+    mix.addIsotope(u238, 0.1)
+    #mix.addIsotope(u235, .0125)
+    #mix.addIsotope(zr90, .16)
     
     py_printf('INFO', 'Added isotopes')
 
