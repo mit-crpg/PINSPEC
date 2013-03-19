@@ -8226,6 +8226,37 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Isotope_getEnergyGridScaleType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  binSpacingType result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Isotope_getEnergyGridScaleType",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getEnergyGridScaleType" "', argument " "1"" of type '" "Isotope const *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    try {
+      result = (binSpacingType)((Isotope const *)arg1)->getEnergyGridScaleType();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Isotope_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Isotope *arg1 = (Isotope *) 0 ;
@@ -9564,6 +9595,37 @@ SWIGINTERN PyObject *_wrap_Material_getNumXSEnergies(PyObject *SWIGUNUSEDPARM(se
   {
     try {
       result = (int)((Material const *)arg1)->getNumXSEnergies();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_getEnergyGridScaleType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  binSpacingType result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Material_getEnergyGridScaleType",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getEnergyGridScaleType" "', argument " "1"" of type '" "Material const *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (binSpacingType)((Material const *)arg1)->getEnergyGridScaleType();
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -15676,6 +15738,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_usesThermalScattering", _wrap_Isotope_usesThermalScattering, METH_VARARGS, NULL},
 	 { (char *)"Isotope_isRescaled", _wrap_Isotope_isRescaled, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getEnergyGridIndex", _wrap_Isotope_getEnergyGridIndex, METH_VARARGS, NULL},
+	 { (char *)"Isotope_getEnergyGridScaleType", _wrap_Isotope_getEnergyGridScaleType, METH_VARARGS, NULL},
 	 { (char *)"Isotope_retrieveXSEnergies", _wrap_Isotope_retrieveXSEnergies, METH_VARARGS, NULL},
 	 { (char *)"Isotope_retrieveXS", _wrap_Isotope_retrieveXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setIsotopeType", _wrap_Isotope_setIsotopeType, METH_VARARGS, NULL},
@@ -15711,6 +15774,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Material_getDensity", _wrap_Material_getDensity, METH_VARARGS, NULL},
 	 { (char *)"Material_getIsotopeNumDensity", _wrap_Material_getIsotopeNumDensity, METH_VARARGS, NULL},
 	 { (char *)"Material_getNumXSEnergies", _wrap_Material_getNumXSEnergies, METH_VARARGS, NULL},
+	 { (char *)"Material_getEnergyGridScaleType", _wrap_Material_getEnergyGridScaleType, METH_VARARGS, NULL},
 	 { (char *)"Material_getTotalMacroXS", _wrap_Material_getTotalMacroXS, METH_VARARGS, NULL},
 	 { (char *)"Material_getTotalMicroXS", _wrap_Material_getTotalMicroXS, METH_VARARGS, NULL},
 	 { (char *)"Material_getElasticMacroXS", _wrap_Material_getElasticMacroXS, METH_VARARGS, NULL},

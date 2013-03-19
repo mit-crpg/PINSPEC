@@ -153,6 +153,7 @@ public:
     bool usesThermalScattering();
 	bool isRescaled() const;
 	int getEnergyGridIndex(float energy) const;
+    binSpacingType getEnergyGridScaleType() const;
 
     /* IMPORTANT: The following two class method prototypes must not be changed
      * without changing Geometry.i to allow for the data arrays to be transformed

@@ -2,7 +2,8 @@ import numpy
 from pinspec import *
 import pinspec.SLBW as SLBW
 import pinspec.plotter as plotter
-
+import pinspec.process as process
+import pinspec.log as log
 
 def main():
 
@@ -13,7 +14,9 @@ def main():
     radius_fuel = 0.4096;
     pitch = 1.26
     dancoff = 0.277;
-    log_setlevel(INFO)
+    output_dir = 'Equivalence'
+
+    log.setLevel('INFO')
 
     # Call SLBW to create XS
     filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
@@ -33,7 +36,7 @@ def main():
     moderator.addIsotope(h1, 2.0)
     moderator.addIsotope(o16, 1.0)
 
-    log_printf(INFO, 'Added isotopes to moderator')
+    log.py_printf('INFO', 'Added isotopes to moderator')
 
     # Define fuel material
     fuel = Material()
@@ -43,7 +46,7 @@ def main():
     fuel.addIsotope(u238, 0.97)
     fuel.addIsotope(o16, 2.0)
     
-    log_printf(INFO, 'Added isotopes to fuel')
+    log.py_printf('INFO', 'Added isotopes to fuel')
     
     # Define moderator region
     region_mod = Region('moderator', MODERATOR)
@@ -51,7 +54,7 @@ def main():
     region_mod.setFuelRadius(0.4096)
     region_mod.setPitch(1.26)
     
-    log_printf(INFO, 'Made moderator region')
+    log.py_printf('INFO', 'Made moderator region')
     
     # Define fuel region
     region_fuel = Region('fuel', FUEL)
@@ -59,7 +62,7 @@ def main():
     region_fuel.setFuelRadius(0.4096)
     region_fuel.setPitch(1.26)
 
-    log_printf(INFO, 'Made fuel region')
+    log.py_printf('INFO', 'Made fuel region')
 
     # Create Tallies for the fluxes
     total_flux = Tally('total flux', GEOMETRY, FLUX)
@@ -86,22 +89,22 @@ def main():
     geometry.runMonteCarloSimulation();
 
 	# Dump batch statistics to output files to some new directory
-    geometry.outputBatchStatistics('Equivalence_MC_Statistics', 'test')
+    geometry.outputBatchStatistics(output_dir, 'test')
 
     # Plotting xs, flux, thermal scattering
-    plotter.plotFluxes([total_flux, moderator_flux, fuel_flux])
-    plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission', 'absorption'])
-    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission', 'absorption'])
-    plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
-    plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
+    plotter.plotFluxes([total_flux, moderator_flux, fuel_flux], output_dir)
+    plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission'], output_dir)
+    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission'], output_dir)
+    plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'], output_dir)
+    plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'], output_dir)
     plotter.plotMacroXS(fuel, ['capture', 'elastic', 'fission', \
-                                            'absorption', 'total'])
+                                            'absorption', 'total'], output_dir)
     plotter.plotMacroXS(moderator, ['capture', 'elastic', 'fission', \
-                                                'absorption', 'total'])
-    plotter.plotThermalScatteringPDF(h1)
-    plotter.plotThermalScatteringPDF(u238)
-    plotter.plotThermalScatteringPDF(u235)
-    plotter.plotThermalScatteringPDF(o16)
+                                            'absorption', 'total'], output_dir)
+    plotter.plotThermalScattering(h1, output_dir)
+    plotter.plotThermalScattering(u238, output_dir)
+    plotter.plotThermalScattering(u235, output_dir)
+    plotter.plotThermalScattering(o16, output_dir)
 
 
 if __name__ == '__main__':

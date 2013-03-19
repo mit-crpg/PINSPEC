@@ -486,6 +486,8 @@ void Geometry::runMonteCarloSimulation() {
 		float p_mf;
 		float test;
 
+        initializePmfRatios();
+
         while (precision_triggered) {
             #pragma omp parallel
             {
@@ -784,7 +786,7 @@ void Geometry::tally(float sample, int batch_num,
 	        tally->weightedTally(sample, 
 		    getElasticMacroXS(sample, region) / total_xs, batch_num);
         case ABSORPTION_RATE:
-	    if (type == CAPTURE || type == FISSION)
+//	    if (type == CAPTURE || type == FISSION)
 	        tally->weightedTally(sample, 
 		    getAbsorptionMacroXS(sample, region) / total_xs, batch_num);
         case CAPTURE_RATE:
@@ -829,6 +831,47 @@ void Geometry::initializeBatchTallies() {
 }
 
 
+void Geometry::initializePmfRatios() {
+
+    Material* mod = _moderator->getMaterial();
+    Material* fuel = _fuel->getMaterial();
+    float v_mod = _moderator->getVolume();
+    float v_fuel = _fuel->getVolume();
+    _num_ratios = mod->getNumXSEnergies();
+    _scale_type = mod->getEnergyGridScaleType();
+
+    if (_scale_type == LOGARITHMIC)
+        log_printf(NORMAL, "Scale type set to LOGARITHMIC for %d pmf ratios", _num_ratios);
+
+    /* Allocate memory for ratios */    
+    _pmf_ratios = new float[_num_ratios];
+
+    /* Set energy bounds and delta to allow for O(1) lookup of ratio */
+    float* xs_energies = new float[_num_ratios];
+    mod->retrieveXSEnergies(xs_energies, _num_ratios);
+    _start_energy = xs_energies[0];
+    _end_energy = xs_energies[_num_ratios-1];
+
+    if (_scale_type == EQUAL)
+		_delta_energy = (xs_energies[_num_ratios-1] - 
+                        xs_energies[0]) / _num_ratios;
+    else {
+		_start_energy = log10(xs_energies[0]);
+		_end_energy = log10(xs_energies[_num_ratios-1]);
+		_delta_energy = (_end_energy - _start_energy) / _num_ratios;
+    }
+
+    delete xs_energies;
+
+    /* Loop over all xs energies and compute the P_mf ratios */
+    for (int i=0; i < _num_ratios; i++)
+        _pmf_ratios[i] = (fuel->getTotalMacroXS(i) * v_fuel) / 
+                         (mod->getTotalMacroXS(i) * v_mod);
+
+    return;
+}
+
+
 void Geometry::incrementNumBatches(int num_batches) {
 
     std::vector<Tally*>::iterator iter;
@@ -869,18 +912,14 @@ float Geometry::computeFuelFuelCollisionProb(float energy) {
  * This function computes the two-region moderator-to-fuel collision
  * probability for a two-region pin cell simulation. It uses Carlvik's
  * two-term rational model.
- * @param energy the energy for a neutron in eV
+ * @param ene rgy the energy for a neutron in eV
  * @return the moderator-to-fuel collision probability at that energy
  */
 float Geometry::computeModeratorFuelCollisionProb(float energy) {
-	float p_mf;
 	float p_ff = computeFuelFuelCollisionProb(energy);
-	float p_fm = 1.0 - p_ff;
-	float tot_sigma_f = _fuel->getMaterial()->getTotalMacroXS(energy);
-	float tot_sigma_mod = _moderator->getMaterial()->getTotalMacroXS(energy);
-	float v_mod = _moderator->getVolume();
-    log_printf(DEBUG, "tot_sigma_mod = %f, v_mod = %f", tot_sigma_mod, v_mod);
-	p_mf = p_fm*(tot_sigma_f*_fuel->getVolume()) / (tot_sigma_mod*v_mod);
-    log_printf(DEBUG, "sigma_tot_fuel = %f, p_mf = %f", tot_sigma_f, p_mf);
+    int index = getEnergyGridIndex(energy);
+    float pmf_ratio = _pmf_ratios[index];       // FIXME: Use liner interpolation for more accuracy
+    float p_mf = (1.0 - p_ff) * pmf_ratio;
+    log_printf(DEBUG, "p_ff = %f, p_mf = %f", p_ff, p_mf);
 	return p_mf;
 }

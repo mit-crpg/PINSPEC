@@ -515,6 +515,11 @@ bool Isotope::isRescaled() const {
 }
 
 
+binSpacingType Isotope::getEnergyGridScaleType() const {
+    return _scale_type;
+}
+
+
 /**
  * Set the isotope name
  * @param istope a character array of the isotopes name

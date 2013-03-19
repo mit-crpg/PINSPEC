@@ -82,6 +82,11 @@ private:
     triggerType _trigger_type;
     float _trigger_precision;
 
+    Material* _material;
+    Isotope* _isotope;
+    Region* _region;
+    Geometry* _geometry;
+
 	int _num_batches;
 	double* _batch_mu;
 	double* _batch_variance;

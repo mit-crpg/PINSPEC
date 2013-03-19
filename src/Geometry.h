@@ -49,6 +49,15 @@ private:
 	float _alpha1;
 	float _alpha2;
 
+    /* Ratio of sigam_f * vol_f / sigma_m * vol_m */
+    /* Compute ratios ahead of time as an optimization */
+    int _num_ratios;
+    float* _pmf_ratios;
+	binSpacingTypes _scale_type;
+	float _start_energy;
+	float _end_energy;
+	float _delta_energy;
+
     std::vector<Tally*> _tallies;
 
 	float getTotalMacroXS(float energy, Region* region);
@@ -83,8 +92,10 @@ private:
 
     void tally(float sample, int batch_num, Region* region, collisionType type);
     void initializeBatchTallies();
+    void initializePmfRatios();
     bool isPrecisionTriggered();
     void incrementNumBatches(int num_batches);
+	int getEnergyGridIndex(float energy) const;
     float computeFuelFuelCollisionProb(float energy);
     float computeModeratorFuelCollisionProb(float energy);
 
@@ -114,6 +125,44 @@ public:
     void computeScaledBatchStatistics();
     void outputBatchStatistics(char* directory,  char* suffix);
 };
+
+
+/**
+ * This method returns the index for a certain energy (eV) into
+ * the uniform energy grid of the Geometry's Pmf ratios
+ * @param energy the energy (eV) of interest
+ * @return the index into the uniform energy grid
+ */
+inline int Geometry::getEnergyGridIndex(float energy) const {
+
+	int index;
+
+	if (_spatial_type != HOMOGENEOUS_EQUIVALENCE)
+	    log_printf(ERROR, "Unable to return an index for pmf ratios "
+		       			"since the geometry is not HOMOGENEOUS_EQUIVALENCE"
+						" spatial type");
+
+	if (_scale_type == EQUAL) {
+		if (energy > _end_energy)
+			index = _num_ratios - 1;
+		else if (energy < _start_energy)
+			index = 0;
+		else
+			index = floor((energy - _start_energy) / _delta_energy);
+	}
+
+	else if (_scale_type == LOGARITHMIC)
+		energy = log10(energy);
+
+		if (energy > _end_energy)
+			index = _num_ratios - 1;
+		else if (energy < _start_energy)
+			index = 0;
+		else
+			index = floor((energy - _start_energy) / _delta_energy);
+
+	return index;
+}
 
 #endif
 
