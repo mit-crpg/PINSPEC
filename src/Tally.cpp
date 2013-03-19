@@ -13,13 +13,13 @@
 /**
  * Default Tally constructor
  */
-Tally::Tally(char* tally_name, tallyDomainType tally_domain, 
-                                                    tallyType tally_type) {
+Tally::Tally(char* tally_name, Isotope* isotope, tallyType tally_type) {
 
 	_tally_name = tally_name;
-    _tally_domain = tally_domain;
+    _tally_domain = ISOTOPE;
     _tally_type = tally_type;
     _trigger_type = NONE;
+    _isotope = isotope;
 
 	 /* Sets the default delta between bins to zero */
 	_bin_delta = 0;
@@ -28,7 +28,68 @@ Tally::Tally(char* tally_name, tallyDomainType tally_domain,
 	_num_batches = 0;
     _num_bins = 0;
 	_computed_statistics = false;
+}
 
+
+/**
+ * Default Tally constructor
+ */
+Tally::Tally(char* tally_name, Material* material, tallyType tally_type) {
+
+	_tally_name = tally_name;
+    _tally_domain = MATERIAL;
+    _tally_type = tally_type;
+    _trigger_type = NONE;
+    _material = material;
+
+	 /* Sets the default delta between bins to zero */
+	_bin_delta = 0;
+
+	/* Sets the default for batch statistics */
+	_num_batches = 0;
+    _num_bins = 0;
+	_computed_statistics = false;
+}
+
+
+/**
+ * Default Tally constructor
+ */
+Tally::Tally(char* tally_name, Region* region, tallyType tally_type) {
+
+	_tally_name = tally_name;
+    _tally_domain = REGION;
+    _tally_type = tally_type;
+    _trigger_type = NONE;
+    _region = region;
+
+	 /* Sets the default delta between bins to zero */
+	_bin_delta = 0;
+
+	/* Sets the default for batch statistics */
+	_num_batches = 0;
+    _num_bins = 0;
+	_computed_statistics = false;
+}
+
+
+/**
+ * Default Tally constructor
+ */
+Tally::Tally(char* tally_name, Geometry* geometry, tallyType tally_type) {
+
+	_tally_name = tally_name;
+    _tally_domain = REGION;
+    _tally_type = tally_type;
+    _trigger_type = NONE;
+    _geometry = geometry;
+	 /* Sets the default delta between bins to zero */
+	_bin_delta = 0;
+
+	/* Sets the default for batch statistics */
+	_num_batches = 0;
+    _num_bins = 0;
+	_computed_statistics = false;
 }
 
 
