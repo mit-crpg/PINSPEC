@@ -172,7 +172,7 @@ inline int Tally::getBinIndex(double sample) {
 				 "the bins have not yet been created", _tally_name);
 
 	/* Set index to infinity to begin with */
-	int index = std::numeric_limits<double>::infinity();
+	int index = std::numeric_limits<int>::infinity();
 
 	/* if the sample is equal to the last bin edge, return the last bin */
 	if (sample == _edges[_num_bins])
@@ -201,7 +201,7 @@ inline int Tally::getBinIndex(double sample) {
 
 	/* If this sample was not contained within a bin set index to infinity*/
 	if (index > _num_bins)
-		index = std::numeric_limits<double>::infinity();
+		index = std::numeric_limits<int>::infinity();
 
 	return index;
 }
