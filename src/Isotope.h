@@ -122,13 +122,13 @@ private:
 
 public:
 	Isotope(char *_isotope_name);
-    virtual ~Isotope();
+	virtual ~Isotope();
 
 	void parseName();
 	void makeFissionable();
 
 	char* getIsotopeName() const;
-    int getA() const;
+	int getA() const;
     float getAlpha() const;
     float getN() const;
     float getAO() const;
@@ -151,8 +151,8 @@ public:
     float getTransportXS(int energy_index) const;
     float getTransportXS(float energy) const;
     bool usesThermalScattering();
-	bool isRescaled() const;
-	int getEnergyGridIndex(float energy) const;
+    bool isRescaled() const;
+    int getEnergyGridIndex(float energy) const;
     binSpacingType getEnergyGridScaleType() const;
 
     /* IMPORTANT: The following two class method prototypes must not be changed
@@ -168,12 +168,12 @@ public:
     void setTemperature(float T);
     void setNumBatches(int num_batches);
 
-	Isotope* clone();
+    Isotope* clone();
 
-	collisionType getCollisionType(float energy);
-	collisionType collideNeutron(neutron* neutron);
-	float getDistanceTraveled(neutron *neutron);
-	float getThermalScatteringEnergy(float energy);
+    collisionType getCollisionType(float energy);
+    collisionType collideNeutron(neutron* neutron);
+    float getDistanceTraveled(neutron *neutron);
+    float getThermalScatteringEnergy(float energy);
 
     int getNumThermalCDFs();
     int getNumThermalCDFBins();
@@ -182,7 +182,7 @@ public:
     void retrieveEtokT(float* E_to_kT, int num_cdfs);
     void retrieveEprimeToE(float* Eprime_to_E, int num_bins);
     
-	void addTally(Tally *tally);
+    void addTally(Tally *tally);
 
     bool isPrecisionTriggered();
     void incrementNumBatches(int num_batches);

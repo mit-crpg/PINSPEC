@@ -772,45 +772,92 @@ void Geometry::outputBatchStatistics(char* directory,  char* suffix) {
 
 
 void Geometry::tally(float sample, int batch_num, 
-                                        Region* region, collisionType type) {
+		     Region* region, collisionType type) {
 
-	float total_xs = getTotalMacroXS(sample, region);
+    //float total_xs = getTotalMacroXS(sample, region);
+    float Sigma_t_mat = region->getMaterial()->getTotalMacroXS(sample);
+    float Sigma_t_reg = getTotalMacroXS(sample, region);
+
     std::vector<Tally*>::iterator iter;
 
     /* Tallies the event into the appropriate tally classes  */
     for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
         Tally *tally = *iter;
         tallyType tally_type = tally->getTallyType();
-        switch (tally_type) {
-        case FLUX:
-		    tally->weightedTally(sample, 1.0 / total_xs, batch_num);
-        case COLLISION_RATE:
-	        tally->weightedTally(sample, 1.0, batch_num);
-        case ELASTIC_RATE:
-	    if (type == ELASTIC)
-	        tally->weightedTally(sample, 
-		    getElasticMacroXS(sample, region) / total_xs, batch_num);
-        case ABSORPTION_RATE:
-	    if (type == CAPTURE || type == FISSION)
-	        tally->weightedTally(sample, 
-		    getAbsorptionMacroXS(sample, region) / total_xs, batch_num);
-        case CAPTURE_RATE:
-	    if (type == CAPTURE)
-	        tally->weightedTally(sample, 
-            getCaptureMacroXS(sample, region) / total_xs, batch_num);
-        case FISSION_RATE:
-	    if (type == FISSION)
-	        tally->weightedTally(sample, 
-		    getFissionMacroXS(sample, region) / total_xs, batch_num);
-        case TRANSPORT_RATE:
-	    if (type == ELASTIC)
-	        tally->weightedTally(sample, 
-		    getTransportMacroXS(sample, region) / total_xs, batch_num);
-        case DIFFUSION_RATE: /* FIXME */
-	    if (type == ELASTIC)
-	        tally->weightedTally(sample, 
-		     1.0 / (3.0 * getTransportMacroXS(sample, region) * total_xs), batch_num); 
-        case LEAKAGE_RATE:; /* FIXME */
+	    switch (tally_type) {
+	    case FLUX: /* tally 1 over material's Macroscpic cross section */
+			tally->weightedTally(sample, 1.0 / Sigma_t_reg, 
+					     batch_num);
+	    case COLLISION_RATE:
+		    tally->weightedTally(sample, 1.0, batch_num);
+	    case MACRO_ELASTIC_RATE:
+		if (type == ELASTIC) {
+		    tally->weightedTally(sample, 
+					 getElasticMacroXS(sample, region) 
+					 / Sigma_t_mat, batch_num);
+		}
+	    case MICRO_ELASTIC_RATE:
+		if (type == ELASTIC) {
+		    tally->weightedTally(sample, 
+					 getElasticMacroXS(sample, region) 
+					 / Sigma_t_reg, batch_num);
+		}
+	    case MACRO_ABSORPTION_RATE:
+		if (type == CAPTURE || type == FISSION) {
+		    tally->weightedTally(sample, 
+					 getAbsorptionMacroXS(sample, region) 
+					 / Sigma_t_mat, batch_num);
+		}
+	    case MICRO_ABSORPTION_RATE:
+		if (type == CAPTURE || type == FISSION) {
+		    tally->weightedTally(sample, 
+					 getAbsorptionMacroXS(sample, region) 
+					 / Sigma_t_reg, batch_num);
+		}
+	    case MACRO_CAPTURE_RATE:
+		if (type == CAPTURE) {
+		    tally->weightedTally(sample, 
+					 getCaptureMacroXS(sample, region) 
+					 / Sigma_t_mat, batch_num);
+		}
+	    case MICRO_CAPTURE_RATE:
+		if (type == CAPTURE) {
+		    tally->weightedTally(sample, 
+					 getCaptureMacroXS(sample, region) 
+					 / Sigma_t_reg, batch_num);
+		}
+	    case MACRO_FISSION_RATE:
+		if (type == FISSION) {
+		    tally->weightedTally(sample, 
+					 getFissionMacroXS(sample, region) 
+					 / Sigma_t_mat, batch_num);
+		}
+	    case MICRO_FISSION_RATE:
+		if (type == FISSION) {
+		    tally->weightedTally(sample, 
+					 getFissionMacroXS(sample, region) 
+					 / Sigma_t_reg, batch_num);
+		}
+	    case MACRO_TRANSPORT_RATE:
+		if (type == ELASTIC) {
+		    tally->weightedTally(sample, 
+					 getTransportMacroXS(sample, region) 
+					 / Sigma_t_mat, batch_num);
+		}
+	    case MICRO_TRANSPORT_RATE:
+		if (type == ELASTIC) {
+		    tally->weightedTally(sample, 
+					 getTransportMacroXS(sample, region) 
+					 / Sigma_t_reg, batch_num);
+		}
+	    case DIFFUSION_RATE: /* FIXME */
+		if (type == ELASTIC)
+		    tally->weightedTally(sample, 
+					 1.0 / 
+					 (3.0 * 
+					  getTransportMacroXS(sample, region) 
+					  * Sigma_t_mat), batch_num); 
+	    case LEAKAGE_RATE:; /* FIXME */
         }
     }
 }

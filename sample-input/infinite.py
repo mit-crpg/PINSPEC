@@ -56,7 +56,7 @@ def main():
     flux.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC)
 
     # Create a tally for the RI
-    abs_rate = Tally('absorption rate', MATERIAL, ABSORPTION_RATE)
+    abs_rate = Tally('micro absorption rate', MATERIAL, MICRO_ABSORPTION_RATE)
     flux_RI = Tally('flux RI', MATERIAL, FLUX)
     abs_rate_bin_edges = numpy.array([0.1, 1., 6., 10., 25., 50., 100.])
     abs_rate.setBinEdges(abs_rate_bin_edges)

@@ -824,16 +824,16 @@ void Material::clearTallies() {
  */
 collisionType Material::collideNeutron(neutron* neut) {
 
-    /* FIXME: replace float energy with neutron struct, and update batch_num */
     int batch_num = neut->_batch_num;
     float sample = neut->_energy;
-	float total_xs = getTotalMacroXS(sample);
+    float Sigma_t_mat = getTotalMacroXS(sample);
+    float Sigma_t_iso = 1.0; //neut->curr_region->getTotalMacroXS(sample);
 
     Isotope *isotope;
     isotope = sampleIsotope(sample);
     collisionType type = isotope->collideNeutron(neut);
-    log_printf(DEBUG, "Material %s has sampled collision type %d from isotope %s", 
-                                   _material_name, type, isotope->getIsotopeName());
+    log_printf(DEBUG, "Material %s has sampled collision type %d from ",
+	       "isotope %s", _material_name, type, isotope->getIsotopeName());
 
     /* Tallies the event into the appropriate tally classes  */
     /* Loops over all tallies and add them to the clone */
@@ -843,33 +843,78 @@ collisionType Material::collideNeutron(neutron* neut) {
 	    tallyType tally_type = tally->getTallyType();
 	    switch (tally_type) {
 	    case FLUX:
-			tally->weightedTally(sample, 1.0 / total_xs, batch_num);
+		tally->weightedTally(sample, 1.0 / Sigma_t_mat, batch_num);
 	    case COLLISION_RATE:
-		    tally->weightedTally(sample, 1.0, batch_num);
-	    case ELASTIC_RATE:
+		tally->weightedTally(sample, 1.0, batch_num);		
+	    case MACRO_ELASTIC_RATE:
 		if (type == ELASTIC)
 		    tally->weightedTally(sample, 
-			getElasticMacroXS(sample) / total_xs, batch_num);
-	    case ABSORPTION_RATE:
-		if (type == CAPTURE || type == FISSION)
-		    tally->weightedTally(sample, 
-			getAbsorptionMacroXS(sample) / total_xs, batch_num);
-	    case CAPTURE_RATE:
-		if (type == CAPTURE)
-		    tally->weightedTally(sample, 
-            getCaptureMacroXS(sample) / total_xs, batch_num);
-	    case FISSION_RATE:
-		if (type == FISSION)
-		    tally->weightedTally(sample, 
-			getFissionMacroXS(sample) / total_xs, batch_num);
-	    case TRANSPORT_RATE:
+					 getElasticMacroXS(sample) 
+					 / Sigma_t_iso, 
+					 batch_num);
+	    case MICRO_ELASTIC_RATE:
 		if (type == ELASTIC)
 		    tally->weightedTally(sample, 
-			getTransportMacroXS(sample) / total_xs, batch_num);
+					 getElasticMacroXS(sample) 
+					 / Sigma_t_mat,
+					 batch_num);
+	    case MACRO_ABSORPTION_RATE:
+		if (type == CAPTURE || type == FISSION) {
+		    tally->weightedTally(sample, 
+					 getAbsorptionMacroXS(sample) 
+					 / Sigma_t_iso, 
+					 batch_num);
+		}
+	    case MICRO_ABSORPTION_RATE:
+		if (type == CAPTURE || type == FISSION) {
+		    tally->weightedTally(sample, 
+					 getAbsorptionMacroXS(sample) 
+					 / Sigma_t_mat, 
+					 batch_num);
+		}
+	    case MACRO_CAPTURE_RATE:
+		if (type == CAPTURE) {
+		    tally->weightedTally(sample, 
+					 getCaptureMacroXS(sample) 
+					 / Sigma_t_iso, batch_num);
+		}
+	    case MICRO_CAPTURE_RATE:
+		if (type == CAPTURE) {
+		    tally->weightedTally(sample, 
+					 getCaptureMacroXS(sample) 
+					 / Sigma_t_mat, batch_num);
+		}
+	    case MACRO_FISSION_RATE:
+		if (type == FISSION) {
+		    tally->weightedTally(sample, 
+					 getFissionMacroXS(sample) 
+					 / Sigma_t_iso, batch_num);
+		}
+	    case MICRO_FISSION_RATE:
+		if (type == FISSION) {
+		    tally->weightedTally(sample, 
+					 getFissionMacroXS(sample) 
+					 / Sigma_t_mat, batch_num);
+		}
+	    case MACRO_TRANSPORT_RATE:
+		if (type == ELASTIC) {
+		    tally->weightedTally(sample, 
+					 getTransportMacroXS(sample) 
+					 / Sigma_t_iso, batch_num);
+		}
+	    case MICRO_TRANSPORT_RATE:
+		if (type == ELASTIC) {
+		    tally->weightedTally(sample, 
+					 getTransportMacroXS(sample) 
+					 / Sigma_t_mat, batch_num);
+		}		
 	    case DIFFUSION_RATE: /* FIXME */
 		if (type == ELASTIC)
 		    tally->weightedTally(sample, 
-			 1.0 / (3.0 * getTransportMacroXS(sample) * total_xs), batch_num); 
+					 1.0 / (3.0 * 
+						getTransportMacroXS(sample) 
+						* Sigma_t_iso), 
+					 batch_num); 
 	    case LEAKAGE_RATE:; /* FIXME */
 	    }
 	}
