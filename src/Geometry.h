@@ -92,7 +92,7 @@ private:
 
     void tally(float sample, int batch_num, Region* region, collisionType type);
     void initializeBatchTallies();
-    void initializePmfRatios();
+    void initializeProbModFuelRatios();
     bool isPrecisionTriggered();
     void incrementNumBatches(int num_batches);
 	int getEnergyGridIndex(float energy) const;

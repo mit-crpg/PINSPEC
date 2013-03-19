@@ -32,7 +32,8 @@ pinspec = Extension('_pinspec',
                             'src/Isotope.cpp', 'src/Material.cpp', 
                             'src/Neutron.cpp', 'src/Tally.cpp', 
                             'src/Fissioner.cpp', 'src/Region.cpp', 
-                            'src/Timer.cpp', 'src/Geometry.cpp'],
+                            'src/Surface.cpp', 'src/Timer.cpp', 
+                            'src/Geometry.cpp'],
                    extra_compile_args=['-O3', '-fopenmp',
                                     '-march=native', '-ffast-math'],
                    extra_link_args=['-lstdc++', '-fopenmp', '-lgomp', '-fPI'],
@@ -48,10 +49,6 @@ setup(  name        = 'PINSPEC',
         url = 'https://github.com/wbinventor/PINSPEC',
         version     = '0.1',
         ext_modules = [pinspec],
-#        py_modules = ['plotter', 'SLBW'],
         packages = ['pinspec']
-#        py_modules = ['pinspec']
-#        packages = ['plotter', 'SLBW'],       
-#        package_dir = {'pinspec': 'pinspec', 'pinspec.plotter': 'pinspec/plotter', 'pinspec.SLBW': 'pinspec/SLBW'}
         )
 

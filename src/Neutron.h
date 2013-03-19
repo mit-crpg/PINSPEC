@@ -10,22 +10,22 @@
 #ifndef NEUTRON_H_
 #define NEUTRON_H_
 
-#ifdef __cplusplus
 //#include "Region.h"
+class Region;
 
 /* Structure to represent a neutron */
 struct neutron {
 	int _batch_num;
 	float _x, _y, _z;
+    float _u, _v, _w;
 	float _mu, _phi;
 	float _energy;
 	bool _alive;
+    Region* _region;
 	bool _in_fuel;
-    //Region* curr_reg;
 };
 
 neutron* initializeNewNeutron();
 
-#endif
 
 #endif /* NEUTRON_H_ */

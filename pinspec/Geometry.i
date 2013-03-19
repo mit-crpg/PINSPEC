@@ -4,6 +4,7 @@
     #define SWIG_FILE_WITH_INIT
     #include "../src/Geometry.h"
     #include "../src/Region.h"
+    #include "../src/Surface.h"
     #include "../src/Isotope.h"
     #include "../src/Material.h"
     #include "../src/Tally.h"
@@ -67,6 +68,7 @@
 %include <exception.i> 
 %include ../src/Geometry.h
 %include ../src/Region.h
+%include ../src/Surface.h
 %include ../src/Isotope.h
 %include ../src/Material.h
 %include ../src/Tally.h

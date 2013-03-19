@@ -424,6 +424,7 @@ void Geometry::runMonteCarloSimulation() {
 			        /* Initialize neutron energy [ev] from Watt spectrum */
 			        curr->_energy = _fissioner->emitNeutroneV();
 			        curr->_alive = true;
+                    curr->_region = _infinite_medium;
 			
 			        /* While the neutron is still alive, collide it. All
                      * tallying and collision physics take place within
@@ -486,7 +487,7 @@ void Geometry::runMonteCarloSimulation() {
 		float p_mf;
 		float test;
 
-        initializePmfRatios();
+        initializeProbModFuelRatios();
 
         while (precision_triggered) {
             #pragma omp parallel
@@ -506,6 +507,7 @@ void Geometry::runMonteCarloSimulation() {
 				        curr->_energy = _fissioner->emitNeutroneV();
 				        curr->_alive = true;
 				        curr->_in_fuel = true;
+                        curr->_region = _fuel;
 			
 				        /* While the neutron is still alive, collide it. All
                          * tallying and collision physics take place within
@@ -523,16 +525,19 @@ void Geometry::runMonteCarloSimulation() {
 					        if (curr->_in_fuel) {
 
 						        /* If test is larger than p_ff, move to moderator */
-						        if (test > p_ff)
+						        if (test > p_ff) {
 							        curr->_in_fuel = false;
+                                    curr->_region = _moderator;
+                                }
 					        }
-
 					        /* If the neutron is in the moderator */
 					        else {
 
 						        /* If test is larger than p_mf, move to fuel */
-						        if (test > p_mf)
+						        if (test > p_mf) {
 							        curr->_in_fuel = true;
+                                    curr->_region = _fuel;
+                                }
 					        }
 
 					        /* Collide the neutron in the fuel or moderator */
@@ -878,7 +883,7 @@ void Geometry::initializeBatchTallies() {
 }
 
 
-void Geometry::initializePmfRatios() {
+void Geometry::initializeProbModFuelRatios() {
 
     Material* mod = _moderator->getMaterial();
     Material* fuel = _fuel->getMaterial();
