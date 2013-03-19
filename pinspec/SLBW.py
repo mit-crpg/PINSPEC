@@ -1,14 +1,15 @@
 # SLBW.py
 from pinspec import *
 from log import *
+import pinspec
 import matplotlib.pyplot as plt
 import numpy
 import os
 import shutil
 import math
-import scipy.special as spec  # newest version of scipy,needed Cython 0.18 was needed, installed using python-pip, command pip install cython, pulled scipy from github
+import scipy.special as spec
 
-def SLBWXS(nameoffile,T,typeXS='capture',numberofpositiveresonances = 14, \
+def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances = 14, \
            Emin = 1e-5,Ecut = 1000.0,Ebnwdth = 0.075,resspacing = 25, \
            idntclfakereslb = 300,gamg = 0.023,flatxs = 0.1,finalEcut=20E6):
 #---------------------------------------------------------------------------------
@@ -280,7 +281,7 @@ def generatePotentialScattering(isotope,Emin = 1e-5,finalEcut=20E6):
 	g.write(texts)
 	g.close()
 
-def restoreXS():
+def replaceXS():
 #---------------------------------------------------------------------------
 #Function that cleans up library by replacing XS files with ENDFBVII files
 #---------------------------------------------------------------------------
