@@ -9,8 +9,6 @@ from distutils      import sysconfig, dir_util
 # Third-party modules - we depend on numpy for everything
 import numpy
 
-data_dir = os.path.join(sys.prefix, "local/lib/python2.7/dist-package/pinspec")
-
 
 # Obtain the numpy include directory.  This logic works across numpy versions.
 try:
@@ -27,12 +25,12 @@ os.environ['OPT'] = ' '.join(
 pinspec = Extension('_pinspec',
                    include_dirs=[numpy_include, '/opt/local/lib/gcc47/gcc/x86_64-apple-darwin11/4.7.2/include'],
                    sources=['pinspec/Geometry.i',
-                            'src/log.cpp', 'src/xsreader.cpp', 
-                            'src/Isotope.cpp', 'src/Material.cpp', 
-                            'src/Neutron.cpp', 'src/Tally.cpp', 
-                            'src/Fissioner.cpp', 'src/Region.cpp', 
-                            'src/Timer.cpp', 'src/Surface.cpp', 
-                            'src/Geometry.cpp'],
+                            'pinspec/src/log.cpp', 'pinspec/src/xsreader.cpp', 
+                            'pinspec/src/Isotope.cpp', 'pinspec/src/Material.cpp', 
+                            'pinspec/src/Neutron.cpp', 'pinspec/src/Tally.cpp', 
+                            'pinspec/src/Fissioner.cpp', 'pinspec/src/Region.cpp', 
+                            'pinspec/src/Timer.cpp', 'pinspec/src/Surface.cpp', 
+                            'pinspec/src/Geometry.cpp'],
                    extra_compile_args=['-O3', '-fopenmp',
                                     '-march=native', '-ffast-math'],
                    extra_link_args=['-lstdc++', '-fopenmp', '-lgomp', '-fPI', '-L/opt/local/lib/gcc47'],
