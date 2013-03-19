@@ -218,7 +218,7 @@ float Geometry::getBSquare() {
     return _bsquare;
 }
 
-float Geometry::setBSquare(float value) {
+void Geometry::setBSquare(float value) {
     _bsquare = value;
 }
 
