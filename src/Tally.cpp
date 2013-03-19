@@ -921,16 +921,26 @@ void Tally::outputBatchStatistics(const char* filename) {
 		fprintf(output_file, "Tally type: COLLISION_RATE Rate\n");
 	else if (_tally_type == FLUX)
 		fprintf(output_file, "Tally type: Flux\n");
-	else if (_tally_type == ELASTIC_RATE)
-		fprintf(output_file, "Tally type: ELASTIC_RATE Scattering Reaction Rate\n");
-	else if (_tally_type == ABSORPTION_RATE)
-		fprintf(output_file, "Tally type: ABSORPTION_RATE Reaction Rate\n");
-	else if (_tally_type == CAPTURE_RATE)
-		fprintf(output_file, "Tally type: CAPTURE_RATE Reaction Rate\n");
-	else if (_tally_type == FISSION_RATE)
-		fprintf(output_file, "Tally type: FISSION_RATE Reaction Rate\n");
-	else if (_tally_type == TRANSPORT_RATE)
-		fprintf(output_file, "Tally type: TRANSPORT_RATE Reaction Rate\n");
+	else if (_tally_type == MICRO_ELASTIC_RATE)
+		fprintf(output_file, "Tally type: MICRO_ELASTIC_RATE Scattering Reaction Rate\n");
+	else if (_tally_type == MACRO_ELASTIC_RATE)
+		fprintf(output_file, "Tally type: MACRO_ELASTIC_RATE Scattering Reaction Rate\n");
+	else if (_tally_type == MICRO_ABSORPTION_RATE)
+		fprintf(output_file, "Tally type: MICRO_ABSORPTION_RATE Reaction Rate\n");
+	else if (_tally_type == MACRO_ABSORPTION_RATE)
+		fprintf(output_file, "Tally type: MACRO_ABSORPTION_RATE Reaction Rate\n");
+	else if (_tally_type == MICRO_CAPTURE_RATE)
+		fprintf(output_file, "Tally type: MICRO_CAPTURE_RATE Reaction Rate\n");
+	else if (_tally_type == MACRO_CAPTURE_RATE)
+		fprintf(output_file, "Tally type: MACRO_CAPTURE_RATE Reaction Rate\n");
+	else if (_tally_type == MICRO_FISSION_RATE)
+		fprintf(output_file, "Tally type: MICRO_FISSION_RATE Reaction Rate\n");
+	else if (_tally_type == MACRO_FISSION_RATE)
+		fprintf(output_file, "Tally type: MACRO_FISSION_RATE Reaction Rate\n");
+	else if (_tally_type == MICRO_TRANSPORT_RATE)
+		fprintf(output_file, "Tally type: MICRO_TRANSPORT_RATE Reaction Rate\n");
+	else if (_tally_type == MACRO_TRANSPORT_RATE)
+		fprintf(output_file, "Tally type: MACRO_TRANSPORT_RATE Reaction Rate\n");
 	else if (_tally_type == DIFFUSION_RATE)
 		fprintf(output_file, "Tally type: DIFFUSION_RATE Reaction Rate\n");
 	else if (_tally_type == LEAKAGE_RATE)

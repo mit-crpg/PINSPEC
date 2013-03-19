@@ -1216,7 +1216,11 @@ collisionType Isotope::collideNeutron(neutron* neut) {
     /* obtain incoming energy, batch number */
     int batch_num = neut->_batch_num;
     float sample = neut->_energy;
-	float total_xs = getTotalXS(sample);
+    float total_xs = getTotalXS(sample);
+
+    float energy = neut->_energy;
+    float sigma_total_iso = getTotalXS(energy);
+    float sigma_total_mat = 1.0;//neut->curr_region->getTotalMicroXS(energy);
 
     /* obtain collision type */
     collisionType type = getCollisionType(sample);
@@ -1231,29 +1235,69 @@ collisionType Isotope::collideNeutron(neutron* neut) {
 	    tallyType tally_type = tally->getTallyType();
 	    switch (tally_type) {
 	    case FLUX:
-			tally->weightedTally(sample, 1.0 / total_xs, batch_num);
+		tally->weightedTally(sample, 1.0 / sigma_total_mat, batch_num);
 	    case COLLISION_RATE:
-		    tally->weightedTally(sample, 1.0, batch_num);
-	    case ELASTIC_RATE:
-		if (type == ELASTIC)
+		tally->weightedTally(sample, 1.0, batch_num);
+	    case MACRO_ELASTIC_RATE:
+		if (type == ELASTIC) {
 		    tally->weightedTally(sample, 
-			getElasticXS(sample) / total_xs, batch_num);
-	    case ABSORPTION_RATE:
-		if (type == CAPTURE || type == FISSION)
+					 getElasticXS(sample) / sigma_total_iso,
+					 batch_num);
+		}
+	    case MICRO_ELASTIC_RATE:
+		if (type == ELASTIC) {
 		    tally->weightedTally(sample, 
-			getAbsorptionXS(sample) / total_xs, batch_num);
-	    case CAPTURE_RATE:
-		if (type == CAPTURE)
+					 getElasticXS(sample) / sigma_total_mat,
+					 batch_num);
+		}
+	    case MACRO_ABSORPTION_RATE:
+		if (type == CAPTURE || type == FISSION) {
 		    tally->weightedTally(sample, 
-            getCaptureXS(sample) / total_xs, batch_num);
-	    case FISSION_RATE:
-		if (type == FISSION)
+					 getAbsorptionXS(sample) / sigma_total_iso, 
+					 batch_num);
+		}
+	    case MICRO_ABSORPTION_RATE:
+		if (type == CAPTURE || type == FISSION) {
 		    tally->weightedTally(sample, 
-			getFissionXS(sample) / total_xs, batch_num);
-	    case TRANSPORT_RATE:
-		if (type == ELASTIC)
+					 getAbsorptionXS(sample) / sigma_total_mat, 
+					 batch_num);
+		}
+	    case MACRO_CAPTURE_RATE:
+		if (type == CAPTURE) {
 		    tally->weightedTally(sample, 
-			getTransportXS(sample) / total_xs, batch_num);
+					 getCaptureXS(sample) / sigma_total_iso,
+					 batch_num);
+		}
+	    case MICRO_CAPTURE_RATE:
+		if (type == CAPTURE) {
+		    tally->weightedTally(sample, 
+					 getCaptureXS(sample) /sigma_total_mat, 
+					 batch_num);
+		}
+	    case MACRO_FISSION_RATE:
+		if (type == FISSION) {
+		    tally->weightedTally(sample, 
+					 getFissionXS(sample) / sigma_total_mat,
+					 batch_num);
+		}
+	    case MICRO_FISSION_RATE:
+		if (type == FISSION) {
+		    tally->weightedTally(sample, 
+					 getFissionXS(sample) / sigma_total_iso,
+					 batch_num);
+		}
+	    case MACRO_TRANSPORT_RATE:
+		if (type == ELASTIC) {
+		    tally->weightedTally(sample, 
+					 getTransportXS(sample)/sigma_total_mat,
+					 batch_num);
+		}
+	    case MICRO_TRANSPORT_RATE:
+		if (type == ELASTIC) {
+		    tally->weightedTally(sample, 
+					 getTransportXS(sample)/sigma_total_iso,
+					 batch_num);
+		}
 	    case DIFFUSION_RATE: /* FIXME */
 		if (type == ELASTIC)
 		    tally->weightedTally(sample, 
