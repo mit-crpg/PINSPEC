@@ -11,6 +11,7 @@
 #define NEUTRON_H_
 
 #ifdef __cplusplus
+//#include "Region.h"
 
 /* Structure to represent a neutron */
 struct neutron {
@@ -20,6 +21,7 @@ struct neutron {
 	float _energy;
 	bool _alive;
 	bool _in_fuel;
+    //Region* curr_reg;
 };
 
 neutron* initializeNewNeutron();
