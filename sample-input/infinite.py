@@ -24,6 +24,7 @@ def main():
     T=300                             # temp of target nucleus (kelvin)
     SLBW.restoreXS()                  # clean previous changes to XS files
     SLBW.SLBWXS(filename,T,'capture') #To generate Doppler Broadened Res Cap
+    SLBW.compareXS(filename, XStype='capture', RI='no')
 
     # Define isotopes
     h1 = Isotope('H-1')
