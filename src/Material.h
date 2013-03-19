@@ -49,6 +49,7 @@ public:
 	float getIsotopeNumDensity(char* isotope);
 	
     int getNumXSEnergies() const;
+    binSpacingType getEnergyGridScaleType() const;
 
 	float getTotalMacroXS(float energy);
 	float getTotalMacroXS(int energy_index);
