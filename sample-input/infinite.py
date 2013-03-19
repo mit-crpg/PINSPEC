@@ -9,24 +9,21 @@ import pinspec.log as log
 def main():
 
     # Set main simulation params
-    num_batches = 10
+    num_batches = 12
     num_neutrons_per_batch = 10000
     num_threads = 4
     output_dir = 'Infinite'
     
     log.setLevel('INFO')
 
-    setXSLibDirectory('../xs-lib/')   # This is also a default, but set it as example
-
-    log.py_printf('INFO', 'Creating SLBW xs')    
+    setXSLibDirectory('../xs-lib/')
     
     # Call SLBW to create XS
-    filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
-    T=300 #Temp in Kelvin of target nucleus
-    SLBW.replaceXS() #To clean previous changes to XS files
+    log.py_printf('INFO', 'Creating SLBW xs')    
+    filename = 'U-238-ResonanceParameters.txt'
+    T=300                             # temp of target nucleus (kelvin)
+    SLBW.restoreXS()                  # clean previous changes to XS files
     SLBW.SLBWXS(filename,T,'capture') #To generate Doppler Broadened Res Cap
-    #SLBW.SLBWXS(filename,T,'scatter') #To generate Doppler Broadened Res Scat
-    #SLBW.generatePotentialScattering(filename) #To generate flat Res Scat XS
 
     # Define isotopes
     h1 = Isotope('H-1')

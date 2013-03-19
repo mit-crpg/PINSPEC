@@ -10,15 +10,16 @@
 #ifndef REGION_H_
 #define REGION_H_
 
-#ifdef __cplusplus
 #include <vector>
 #include <math.h>
 #include <algorithm>
 #include <stdarg.h>
 #include <string.h>
 #include "Material.h"
+#include "Surface.h"
 #include "Neutron.h"
-#endif
+
+
 #define _USE_MATH_DEFINES
 
 
@@ -56,16 +57,20 @@ private:
 	float _alpha1;
 	float _alpha2;
 
-	/* Geometry parameters pin cell - needed for HETEROGENOUS spatial type */
+	/* Geometry parameters pin cell */
 	float _fuel_radius;
 	float _pitch;
 	float _half_width;
+
+    /* Combinatorial geometry specifications - for HETEROGENEOUS spatial type */
 	std::vector<float> _fuel_ring_radii;
 	std::vector<float> _moderator_ring_radii;	
+    std::vector<Surface*> _bounding_surfaces;
+    std::vector<int> _halfspaces;
 
     void clearTallies();
-    bool contains(float x, float y);
-    bool onBoundary(float x, float y);
+    bool contains(neutron* neutron);
+    bool onBoundary(neutron* neutron);
 
 public:
 	Region(char* region_name, regionType type);
@@ -110,12 +115,13 @@ public:
 	float getTransportMacroXS(float energy);
 	float getTransportMacroXS(int energy_index);
 
-    void setVolume(float volume);
     void setMaterial(Material* material);
     void addTally(Tally* bins);
+//    void addBoundingSurface(Surface* surface, int halfspace);
 
 	void setFuelRadius(float radius);
 	void setPitch(float pitch);
+    void setVolume(float volume);
     void setNumBatches(int num_batches);
 	void addFuelRingRadius(float radius);
 	void addModeratorRingRadius(float radius);

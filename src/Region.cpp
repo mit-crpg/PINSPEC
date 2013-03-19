@@ -453,7 +453,10 @@ void Region::clearTallies() {
  * @param y the y-coordinate of the position
  * @return if contained (true), otherwise (false)
  */
-bool Region::contains(float x, float y) {
+bool Region::contains(neutron* neutron) {
+
+    float x = neutron->_x;
+    float y = neutron->_y;
 
 	if  (_region_type == INFINITE)
 		return true;
@@ -476,7 +479,10 @@ bool Region::contains(float x, float y) {
  * @param y the y-coordinate of the position
  * @return if on boundary (true), otherwise false
  */
-bool Region::onBoundary(float x, float y) {
+bool Region::onBoundary(neutron* neutron) {
+
+    float x = neutron->_x;
+    float y = neutron->_y;
 
 	if (_region_type == INFINITE) {
 		log_printf(WARNING, "Unable to compute onBoundary method"
