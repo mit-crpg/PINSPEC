@@ -291,7 +291,7 @@ def restoreXS():
     		if (os.path.isfile(full_file_name)):
         		shutil.copy(full_file_name, getXSLibDirectory())
 	#--------------------------------------------------------------------
-def compareXS(isotope, XStype='capture', RI='no'):
+def compareXS(isotope, XStype='capture', RI='no', dir = '.'):
 	#Resonance Integral Boundaries
 	RIb=numpy.array([[0.01,0.1],[0.1,1.0],[6,10],[1,6],[10,25],[25,50],\
                                     [50,100],[0.5,10000]], dtype=float)
@@ -352,7 +352,7 @@ def compareXS(isotope, XStype='capture', RI='no'):
 	plt.title(CXStype+' Cross Section Comparison')
 	plt.xlabel('XS [barns]')
 	plt.ylabel('E [eV]')
-	plt.savefig(CXStype+'_XS_Comparison.png')
+	plt.savefig(dir+'/'+CXStype+'_XS_Comparison.png')
 	
 	if RI=='yes':
 		#Make loop for RI calculation for Fake U238
@@ -376,7 +376,7 @@ def compareXS(isotope, XStype='capture', RI='no'):
 			induppr=numpy.flatnonzero(EndfE300>=Eupp)
 			indupr=numpy.array([induppr[0]], dtype=int)
 
-			#create vector to integrate, in	tegrate
+			#create vector to integrate, integrate
 			prod=(barnsT*invEnT)
 			prodr=(barnsEndF300*invEndfE300)
 			#en vector=EnT
