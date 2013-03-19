@@ -7,13 +7,13 @@ import shutil
 import math
 import scipy.special as spec  # newest version of scipy,needed Cython 0.18 was needed, installed using python-pip, command pip install cython, pulled scipy from github
 
-def SLBWXS(nameoffile,T,typeXS='capture',numberofpositiveresonances = 14,Emin = 1e-5,Ecut = 1000.0,Ebnwdth = 0.075,resspacing = 25,idntclfakereslb = 300,gamg = 0.023,flatxs = 0.1,finalEcut=20E6):
+def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances = 14,Emin = 1e-5,Ecut = 1000.0,Ebnwdth = 0.075,resspacing = 25,idntclfakereslb = 300,gamg = 0.023,flatxs = 0.1,finalEcut=20E6):
 #---------------------------------------------------------------------------------
 # Function that creates resonant capture and scatter XS at a given temperature and
 # frankensteins it with given information
 #----------------------------------------------------------------------------------
         # User defined parameters
-	#nameoffile = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
+	#isotope = 'U-238'  # Must be Reich-Moore parameters in file
 	#numberofpositiveresonances = 14
 	#Emin = 1e-5  # Min energy of fictitious SLBW XS
 	#Ecut = 1000.0  # Max energy of fictitious SLBW XS
@@ -55,7 +55,7 @@ def SLBWXS(nameoffile,T,typeXS='capture',numberofpositiveresonances = 14,Emin = 
 	#--------------------------------------------------
 	# Get file path
 	#cur_dir = os.getcwd()
-	filepath = str(pinspec.getXSLibDirectory()) + nameoffile
+	filepath = str(pinspec.getXSLibDirectory()) + isotope +'-RP.txt'
 	if os.path.exists(filepath) == True:
 		pinspec.log_printf(pinspec.INFO, 'Loading resonance paramater file' + filepath)
 	else:
@@ -127,8 +127,8 @@ def SLBWXS(nameoffile,T,typeXS='capture',numberofpositiveresonances = 14,Emin = 
 	# SLBW section
 	#--------------------------------------------------
 
-	# pull A value from filename
-	El, A, rest = nameoffile.split('-', 2)
+	# pull A value from isotope
+	El, A = isotope.split('-', 1)
 	A = float(A)
 
 	# Construct Energy grid for fictitious XS
@@ -239,12 +239,12 @@ def SLBWXS(nameoffile,T,typeXS='capture',numberofpositiveresonances = 14,Emin = 
 		g.write(texts)
 		g.close()
 		#-----------------
-def generatePotentialScattering(nameoffile,Emin = 1e-5,finalEcut=20E6):
+def generatePotentialScattering(isotope,Emin = 1e-5,finalEcut=20E6):
 #----------------------------------------------------------------------
 # Function that creates  flat scattering XS at sigma_pot
 #----------------------------------------------------------------------
-	#nameoffile = 'U-238-ResonanceParameters.txt'
-	filepath = str(pinspec.getXSLibDirectory()) + nameoffile
+	#isotope = 'U-238-ResonanceParameters.txt'
+	filepath = str(pinspec.getXSLibDirectory()) + isotope + '-RP.txt'
 	if os.path.exists(filepath) == True:
 		pinspec.log_printf(pinspec.INFO, 'Loading resonance paramater file' + filepath)
 	else:
@@ -259,7 +259,7 @@ def generatePotentialScattering(nameoffile,Emin = 1e-5,finalEcut=20E6):
 	ESXS = (E, SXS)
 	ESXS = numpy.transpose(ESXS)
 	# pull A value from filename
-	El, A, rest = nameoffile.split('-', 2)
+	El, A= isotope.split('-', 1)
 	A = float(A)
 	# write output file for scatter XS
 	out_names = pinspec.getXSLibDirectory()+El+'-'+str(int(A))+'-elastic.txt'
@@ -286,12 +286,12 @@ def replaceXS():
     		if (os.path.isfile(full_file_name)):
         		shutil.copy(full_file_name, pinspec.getXSLibDirectory())
 	#--------------------------------------------------------------------
-def compareXS(nameoffile, XStype='capture', RI='no'):
+def compareXS(isotope, XStype='capture', RI='no'):
 	#Resonance Integral Boundaries
 	RIb=numpy.array([[0.01,0.1],[0.1,1.0],[6,10],[1,6],[10,25],[25,50],[50,100],[0.5,10000]], dtype=float)
 	
 	#Get fake XS from info given
-	El, A, Rest = nameoffile.split('-', 2)
+	El, A = isotope.split('-', 1)
 	#Find proper filename for fake XS
 	if XStype=='scatter':
 		XStype='elastic'
