@@ -49,7 +49,7 @@ setup(  name        = 'PINSPEC',
         version     = '0.1',
         ext_modules = [pinspec],
         packages = ['pinspec'],
-		package_data = {'pinspec': ['xs-lib/*.txt', 'xs-lib/BackupXS/*.txt']}
-#		data_files = [ ('pinspec', ['xs-lib'])]
+		package_data = {'pinspec': ['xs-lib/*.txt', 'xs-lib/BackupXS/*.txt']},
+		test_suite = "unit-test"
         )
 

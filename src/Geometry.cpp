@@ -33,6 +33,8 @@ Geometry::Geometry() {
 	_fissioner->setEMax(20);
 	_fissioner->buildCDF();
 
+	/* Default for axial leakage is zero */
+	_bsquare = 0.0;
 }
 
 
@@ -211,6 +213,14 @@ float Geometry::getTransportMicroXS(int energy_index, Region* region) {
     return region->getTotalMicroXS(energy_index);
 }
 
+
+float Geometry::getBSquare() {
+    return _bsquare;
+}
+
+void Geometry::setBSquare(float value) {
+    _bsquare = value;
+}
 
 /**
  * Sets the number of neutrons per batch for this simulation

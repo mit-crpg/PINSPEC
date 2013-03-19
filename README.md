@@ -19,6 +19,10 @@ If you would rather install this as a standalone Python package only accessible 
 
    > python setup.py install --user
 
+Alternatively, it is not a bad idea to avoid installing things by default to /usr/local which may screw up your system. So you may configure to install to $HOME/.local using prefix (You should then make sure "$HOME/.local/bin" is in your path. If not add export PATH="$HOME/.local/bin:$PATH" to your "$HOME/.bashrc" and then open a new terminal): 
+
+   > python2 setup.py install --prefix=$HOME/.local
+
 To run a sample infinite medium input file, do: 
 
    > cd sample-input
