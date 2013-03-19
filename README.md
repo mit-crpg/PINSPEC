@@ -19,6 +19,10 @@ If you would rather install this as a standalone Python package only accessible 
 
    > python setup.py install --user
 
+Alternatively, you can do:
+
+   > python2 setup.py install --prefix=$HOME/.local
+
 To run a sample infinite medium input file, do: 
 
    > cd sample-input
