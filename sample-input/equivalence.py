@@ -21,6 +21,7 @@ def main():
     # Call SLBW to create XS
     filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
     T=300 #Temp in Kelvin of target nucleus
+    SLBW.restoreXS()                  # clean previous changes to XS files
     SLBW.SLBWXS(filename,T)
 
     # Define isotopes

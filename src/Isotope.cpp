@@ -619,8 +619,8 @@ void Isotope::loadXS() {
 						" file %s for this isotope", 
                         filename.c_str(), _isotope_name);
 
-	log_printf(INFO, "Loading %s for isotope %s", 
-						filename.c_str(), _isotope_name);
+	log_printf(INFO, "Loading %s-elastic.txt for isotope %s", 
+						_isotope_name, _isotope_name);
 
 	/* Find the number of cross-section values in the file */
 	_num_elastic_xs = getNumCrossSectionDataPoints(filename.c_str());
@@ -646,8 +646,8 @@ void Isotope::loadXS() {
 						" file %s for this isotope", 
                         filename.c_str(), _isotope_name); 
 
-	log_printf(INFO, "Loading %s for isotope %s", 
-						filename.c_str(), _isotope_name);
+	log_printf(INFO, "Loading %s-capture.txt for isotope %s", 
+						_isotope_name, _isotope_name);
 
 	/* Find the number of cross-section values in the file */
 	_num_capture_xs = getNumCrossSectionDataPoints(filename.c_str());
@@ -669,8 +669,8 @@ void Isotope::loadXS() {
     /* If this isotope is fissionable and it finds it's fission xs */
 	if (!stat(filename.c_str(), &buffer)) {
 
-		log_printf(INFO, "Loading %s for isotope %s", 
-						filename.c_str(), _isotope_name);
+	log_printf(INFO, "Loading %s-fission.txt for isotope %s", 
+						_isotope_name, _isotope_name);
 
 		/* Find the number of cross-section values in the file */
 		_num_fission_xs = getNumCrossSectionDataPoints(filename.c_str());

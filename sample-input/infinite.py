@@ -15,8 +15,6 @@ def main():
     output_dir = 'Infinite'
     
     log.setLevel('INFO')
-
-    setXSLibDirectory('../xs-lib/')
     
     # Call SLBW to create XS
     log.py_printf('INFO', 'Creating SLBW xs')    

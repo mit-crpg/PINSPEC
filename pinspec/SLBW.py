@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy
 import os
 import shutil
+import subprocess
 import math
 import scipy.special as spec  # newest version of scipy,needed Cython 0.18 was needed, installed using python-pip, command pip install cython, pulled scipy from github
 
@@ -60,10 +61,10 @@ def SLBWXS(nameoffile,T,typeXS='capture',numberofpositiveresonances = 14, \
 	#cur_dir = os.getcwd()
 	filepath = str(getXSLibDirectory()) + nameoffile
 	if os.path.exists(filepath) == True:
-		py_printf('INFO', 'Loading resonance paramater file' + filepath)
+		py_printf('INFO', 'Loading resonance paramater file ' + nameoffile)
 	else:
 		py_printf('WARNING', 'Unable to load resonance parameter '\
-                                                        'file' + filepath)
+                                                        'file ' + nameoffile)
 	# Initialize desired arrays
 	E0 = numpy.array([])
 	GN = numpy.array([])

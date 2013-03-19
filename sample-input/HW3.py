@@ -15,8 +15,6 @@ def main():
     num_threads = 4
     log_setlevel(INFO)
 
-    setXSLibDirectory('../xs-lib/')   # This is also a default, but set it as example
-
     # Call SLBW to create XS
     filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
     T=300 #Temp in Kelvin of target nucleus
