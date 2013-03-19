@@ -31,7 +31,7 @@ To run a sample homogeneouse equivalence input file, do:
 
    > python equivalence.py
 
-To access the C++ classes in Python, do
+To access the C++ classes from a Python interpreter, do:
 
    > python
 
