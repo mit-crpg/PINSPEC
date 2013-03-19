@@ -12,6 +12,7 @@
 
 #include "Isotope.h"
 
+//class Isotope;
 
 typedef enum densityUnits {
 	GRAM_CM3,
