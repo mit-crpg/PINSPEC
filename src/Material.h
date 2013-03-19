@@ -12,6 +12,7 @@
 
 #include "Isotope.h"
 
+//class Isotope;
 
 typedef enum densityUnits {
 	GRAM_CM3,
@@ -30,7 +31,6 @@ private:
 	/* Map of number density and isotope pointers */
 	std::map<char*, std::pair<float, Isotope*> > _isotopes;
 	std::map<Isotope*, float> _isotopes_AO;
-	std::vector<Tally*> _tallies;
 
 	densityUnit _density_unit;
 
@@ -92,18 +92,12 @@ public:
 	void setDensity(float density, char* unit);
 	void setNumberDensity(float number_density);
 	void setAtomicMass(float atomic_mass);
-    void setNumBatches(int num_batches);
 	void addIsotope(Isotope *isotope, float atomic_ratio);
 
 	Isotope* sampleIsotope(float energy);
-	void addTally(Tally *tally);
 
 	collisionType collideNeutron(neutron* neut);
-    bool isPrecisionTriggered();
-    void incrementNumBatches(int num_batches);
-    void computeBatchStatistics();
-    void computeScaledBatchStatistics(float scale_factor);
-    void outputBatchStatistics(char* directory, char* suffix);
+
 };
 
 #endif

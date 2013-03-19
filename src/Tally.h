@@ -16,14 +16,11 @@
 #endif
 #include "log.h"
 #include "arraycreator.h"
+#include "Neutron.h"
+#include "Material.h"
+#include "Isotope.h"
+#include "Region.h"
 
-
-/* Tally spacing types */
-typedef enum binSpacingTypes {
-	EQUAL,
-	LOGARITHMIC,
-	OTHER
-} binSpacingType;
 
 
 /* The domain in which this tally resides */
@@ -54,6 +51,7 @@ typedef enum tallyTypes {
 	ABSORPTION_RATE,
 	CAPTURE_RATE,
 	FISSION_RATE,
+	// transport or diffusion? 
 	TRANSPORT_RATE,
 	DIFFUSION_RATE,
 	LEAKAGE_RATE
@@ -85,7 +83,6 @@ private:
     Material* _material;
     Isotope* _isotope;
     Region* _region;
-    Geometry* _geometry;
 
 	int _num_batches;
 	double* _batch_mu;
@@ -99,7 +96,9 @@ private:
     double getMaxRelErr();
 
 public:
-	Tally(char* tally_name, tallyDomainType tally_domain, tallyType tally_type);
+	Tally(char* tally_name, Isotope* isotope, tallyType tally_type);
+	Tally(char* tally_name, Material* material, tallyType tally_type);
+	Tally(char* tally_name, Region* region, tallyType tally_type);
 	virtual ~Tally();
 	char* getTallyName();
 	int getNumBins();
@@ -147,9 +146,7 @@ public:
 
 	void tally(double* samples, int num_samples, int batch_num);
 	void tally(double sample, int batch_num);
-	void weightedTally(double* samples, double* sample_weights, 
-			   int num_samples, int batch_num);
-	void weightedTally(double sample, double weight, int batch_num);
+	void weightedTally(neutron* neutron);
 	void normalizeTallies();
 	void normalizeTallies(double scale_factor);
 	void computeBatchStatistics();
@@ -171,7 +168,7 @@ inline int Tally::getBinIndex(double sample) {
 				 "the bins have not yet been created", _tally_name);
 
 	/* Set index to infinity to begin with */
-	int index = std::numeric_limits<double>::infinity();
+	int index = std::numeric_limits<int>::infinity();
 
 	/* if the sample is equal to the last bin edge, return the last bin */
 	if (sample == _edges[_num_bins])
@@ -200,7 +197,7 @@ inline int Tally::getBinIndex(double sample) {
 
 	/* If this sample was not contained within a bin set index to infinity*/
 	if (index > _num_bins)
-		index = std::numeric_limits<double>::infinity();
+		index = std::numeric_limits<int>::infinity();
 
 	return index;
 }

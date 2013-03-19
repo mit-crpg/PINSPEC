@@ -424,6 +424,7 @@ void Geometry::runMonteCarloSimulation() {
 			        /* Initialize neutron energy [ev] from Watt spectrum */
 			        curr->_energy = _fissioner->emitNeutroneV();
 			        curr->_alive = true;
+                    curr->_region = _infinite_medium;
 			
 			        /* While the neutron is still alive, collide it. All
                      * tallying and collision physics take place within
@@ -433,8 +434,7 @@ void Geometry::runMonteCarloSimulation() {
 			        while (curr->_alive == true) {
                         sample = curr->_energy;
 				        type = _infinite_medium->collideNeutron(curr);
-                        tally(sample, curr->_batch_num, 
-                                            _infinite_medium, type);
+                        tally(curr);
 			        }
 		        }
             }
@@ -486,7 +486,7 @@ void Geometry::runMonteCarloSimulation() {
 		float p_mf;
 		float test;
 
-        initializePmfRatios();
+        initializeProbModFuelRatios();
 
         while (precision_triggered) {
             #pragma omp parallel
@@ -506,6 +506,7 @@ void Geometry::runMonteCarloSimulation() {
 				        curr->_energy = _fissioner->emitNeutroneV();
 				        curr->_alive = true;
 				        curr->_in_fuel = true;
+                        curr->_region = _fuel;
 			
 				        /* While the neutron is still alive, collide it. All
                          * tallying and collision physics take place within
@@ -523,28 +524,31 @@ void Geometry::runMonteCarloSimulation() {
 					        if (curr->_in_fuel) {
 
 						        /* If test is larger than p_ff, move to moderator */
-						        if (test > p_ff)
+						        if (test > p_ff) {
 							        curr->_in_fuel = false;
+                                    curr->_region = _moderator;
+                                }
 					        }
-
 					        /* If the neutron is in the moderator */
 					        else {
 
 						        /* If test is larger than p_mf, move to fuel */
-						        if (test > p_mf)
+						        if (test > p_mf) {
 							        curr->_in_fuel = true;
+                                    curr->_region = _fuel;
+                                }
 					        }
 
 					        /* Collide the neutron in the fuel or moderator */
 					        if (curr->_in_fuel) {
                                 sample = curr->_energy;
 						        type = _fuel->collideNeutron(curr);
-                                tally(sample, curr->_batch_num, _fuel, type);
+                                tally(curr);
                             }
 					        else {
                                 sample = curr->_energy;
 						        type = _moderator->collideNeutron(curr);
-                                tally(sample, curr->_batch_num, _moderator, type);
+                                tally(curr);
                             }
 				        }
 			        }
@@ -622,12 +626,12 @@ void Geometry::runMonteCarloSimulation() {
 				        if (curr->_in_fuel) {
                             sample = curr->_energy;
 					        type = _fuel->collideNeutron(curr);
-                            tally(sample, curr->_batch_num, _fuel, type);
+                            tally(curr);
                         }
 				        else {
                             sample = curr->_energy;
 					        type = _moderator->collideNeutron(curr);
-                            tally(sample, curr->_batch_num, _moderator, type);
+                            tally(curr);
                         }
                     }
                 }
@@ -674,15 +678,10 @@ bool Geometry::isPrecisionTriggered() {
 	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
         if ((*iter)->isPrecisionTriggered())
             return true;
-    }
+	}
 
-    /* Check if the Regions have any Tallies with a trigger on the precision */
-    if (_spatial_type == INFINITE_HOMOGENEOUS)
-        return _infinite_medium->isPrecisionTriggered();
-    else {
-        return (_fuel->isPrecisionTriggered() 
-                || _moderator->isPrecisionTriggered());
-    }
+	return false;
+
 }
 
 
@@ -693,14 +692,6 @@ void Geometry::computeBatchStatistics() {
 
 	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
         (*iter)->computeBatchStatistics();
-
-    /* Compute statistics for Tallies inside the Region's inside the Geometry */
-    if (_spatial_type == INFINITE_HOMOGENEOUS)
-        _infinite_medium->computeBatchStatistics();
-    else {
-        _fuel->computeBatchStatistics();
-        _moderator->computeBatchStatistics();
-    }
 
     return;
 }
@@ -714,13 +705,6 @@ void Geometry::computeScaledBatchStatistics() {
 	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
         (*iter)->computeScaledBatchStatistics(_num_neutrons_per_batch);
 
-    /* Compute statistics for Tallies inside the Region's inside the Geometry */
-    if (_spatial_type == INFINITE_HOMOGENEOUS)
-        _infinite_medium->computeScaledBatchStatistics(_num_neutrons_per_batch);
-    else {
-        _fuel->computeScaledBatchStatistics(_num_neutrons_per_batch);
-        _moderator->computeScaledBatchStatistics(_num_neutrons_per_batch);
-    }
 
     return;
 }
@@ -752,61 +736,20 @@ void Geometry::outputBatchStatistics(char* directory,  char* suffix) {
         (*iter)->outputBatchStatistics(filename.c_str());
     }
 
-    /* Compute statistics for Tallies inside the Region's inside the Geometry */
-
-    /* Call on the Region(s) inside the geometry to output statistics */
-    if (_spatial_type == INFINITE_HOMOGENEOUS)
-        _infinite_medium->outputBatchStatistics(directory, suffix);
-    else {
-        _fuel->outputBatchStatistics(directory, suffix);
-        _moderator->outputBatchStatistics(directory, suffix);
-    }
-
     return;   
 }
 
 
-void Geometry::tally(float sample, int batch_num, 
-                                        Region* region, collisionType type) {
+void Geometry::tally(neutron* neutron) {
 
-	float total_xs = getTotalMacroXS(sample, region);
+
     std::vector<Tally*>::iterator iter;
 
     /* Tallies the event into the appropriate tally classes  */
     for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
         Tally *tally = *iter;
-        tallyType tally_type = tally->getTallyType();
-        switch (tally_type) {
-        case FLUX:
-		    tally->weightedTally(sample, 1.0 / total_xs, batch_num);
-        case COLLISION_RATE:
-	        tally->weightedTally(sample, 1.0, batch_num);
-        case ELASTIC_RATE:
-	    if (type == ELASTIC)
-	        tally->weightedTally(sample, 
-		    getElasticMacroXS(sample, region) / total_xs, batch_num);
-        case ABSORPTION_RATE:
-//	    if (type == CAPTURE || type == FISSION)
-	        tally->weightedTally(sample, 
-		    getAbsorptionMacroXS(sample, region) / total_xs, batch_num);
-        case CAPTURE_RATE:
-	    if (type == CAPTURE)
-	        tally->weightedTally(sample, 
-            getCaptureMacroXS(sample, region) / total_xs, batch_num);
-        case FISSION_RATE:
-	    if (type == FISSION)
-	        tally->weightedTally(sample, 
-		    getFissionMacroXS(sample, region) / total_xs, batch_num);
-        case TRANSPORT_RATE:
-	    if (type == ELASTIC)
-	        tally->weightedTally(sample, 
-		    getTransportMacroXS(sample, region) / total_xs, batch_num);
-        case DIFFUSION_RATE: /* FIXME */
-	    if (type == ELASTIC)
-	        tally->weightedTally(sample, 
-		     1.0 / (3.0 * getTransportMacroXS(sample, region) * total_xs), batch_num); 
-        case LEAKAGE_RATE:; /* FIXME */
-        }
+
+			tally->weightedTally(neutron);
     }
 }
 
@@ -819,19 +762,10 @@ void Geometry::initializeBatchTallies() {
     for (iter = _tallies.begin(); iter != _tallies.end(); iter ++)
         (*iter)->setNumBatches(_num_batches);
 
-    /* Inform Region of the number of batches to run - this is needed to
-     * initialize the Tally classes for this many batches */
-    if (_spatial_type == INFINITE_HOMOGENEOUS)
-        _infinite_medium->setNumBatches(_num_batches);
-    else {
-        _fuel->setNumBatches(_num_batches);
-        _moderator->setNumBatches(_num_batches);
-    }
-
 }
 
 
-void Geometry::initializePmfRatios() {
+void Geometry::initializeProbModFuelRatios() {
 
     Material* mod = _moderator->getMaterial();
     Material* fuel = _fuel->getMaterial();
@@ -879,15 +813,6 @@ void Geometry::incrementNumBatches(int num_batches) {
     /* Update the number of batches for all of this Geometry's Tallies */
     for (iter = _tallies.begin(); iter != _tallies.end(); iter ++)
         (*iter)->incrementNumBatches(_num_batches);
-
-    /* Inform Region of the number of batches to run - this is needed to
-     * initialize the Tally classes for this many batches */
-    if (_spatial_type == INFINITE_HOMOGENEOUS)
-        _infinite_medium->incrementNumBatches(_num_batches);
-    else {
-        _fuel->incrementNumBatches(_num_batches);
-        _moderator->incrementNumBatches(_num_batches);
-    }
     
 }
 

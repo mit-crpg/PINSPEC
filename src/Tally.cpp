@@ -74,26 +74,6 @@ Tally::Tally(char* tally_name, Region* region, tallyType tally_type) {
 
 
 /**
- * Default Tally constructor
- */
-Tally::Tally(char* tally_name, Geometry* geometry, tallyType tally_type) {
-
-	_tally_name = tally_name;
-    _tally_domain = REGION;
-    _tally_type = tally_type;
-    _trigger_type = NONE;
-    _geometry = geometry;
-	 /* Sets the default delta between bins to zero */
-	_bin_delta = 0;
-
-	/* Sets the default for batch statistics */
-	_num_batches = 0;
-    _num_bins = 0;
-	_computed_statistics = false;
-}
-
-
-/**
  * Tally destructor deletes memory for tallies, number of tallies,
  * bin centers and bin edges if they have been created
  */
@@ -621,8 +601,20 @@ void Tally::incrementNumBatches(int num_batches) {
  */
 Tally* Tally::clone() {
 
+	Tally* new_clone;
+
 	/* Allocate memory for the clone */
-	Tally* new_clone = new Tally(_tally_name, _tally_domain, _tally_type);
+	switch(_tally_domain){
+	case MATERIAL:
+		new_clone = new Tally(_tally_name, _material, _tally_type);
+		break;
+	case ISOTOPE:
+		new_clone = new Tally(_tally_name, _isotope, _tally_type);
+		break;
+	case REGION:
+		new_clone = new Tally(_tally_name, _region, _tally_type);
+		break;
+	}
 
     new_clone->setBinSpacingType(_bin_spacing);
     new_clone->setNumBatches(_num_batches);
@@ -758,41 +750,12 @@ void Tally::tally(double sample, int batch_num) {
 
 
 /**
- * Tallies a weight for each sample in a double array of samples
- * @param samples array of samples to tally
- * @param sample_weights array of sample weights to increment tallies by
- * @param num_samples the number of samples to tally
- * @param batch_num the batch number for this sample
- */
-void Tally::weightedTally(double* samples, double* sample_weights,
-										int num_samples, int batch_num) {
-	if (_num_bins == 0)
-		 log_printf(ERROR, "Cannot tally weighted samples in Tally %s "
-				 "since the bins have not yet been created", _tally_name);
-	if (_num_batches == 0)
-		 log_printf(ERROR, "Cannot tally samples in Tally %s since "
-				 "batches have not yet been created", _tally_name);
-
-	int bin_index;
-
-	/* Loop over and tally all samples */
-	for (int i=0; i < num_samples; i++) {
-		bin_index = getBinIndex(samples[i]);
-		if (bin_index >= 0 && bin_index < _num_bins)
-			_tallies[batch_num][bin_index] += sample_weights[i];
-	}
-
-	return;
-}
-
-
-/**
  * Tallies a weight for a sample
  * @param sample a sample to tally
  * @param weight the weight to increment tally by
  * @param batch_num the batch number for this sample
  */
-void Tally::weightedTally(double sample, double weight, int batch_num) {
+void Tally::weightedTally(neutron* neutron) {
 
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot tally weighted sample in Tally %s since "
@@ -801,10 +764,110 @@ void Tally::weightedTally(double sample, double weight, int batch_num) {
 		 log_printf(ERROR, "Cannot tally samples in Tally %s since "
 				 "batches have not yet been created", _tally_name);
 
-	int bin_index = getBinIndex(sample);
+
+	float total_xs = neutron->_region->getTotalMicroXS(neutron->_energy);
+	float energy = neutron->_energy;
+	int bin_index = getBinIndex(energy);
+	double weight;
+
+	switch(_tally_domain){
+	case MATERIAL:
+		switch(_tally_type){
+		case FLUX:
+			weight = 1.0 / total_xs;
+			break;
+		case COLLISION_RATE:
+			weight = 1.0;
+			break;
+		case ELASTIC_RATE:
+			weight = _material->getElasticMicroXS(energy) / total_xs;
+			break;
+		case ABSORPTION_RATE:
+			weight = _material->getAbsorptionMicroXS(energy) / total_xs;
+			break;
+		case CAPTURE_RATE:
+			weight = _material->getCaptureMicroXS(energy) / total_xs;
+			break;
+		case FISSION_RATE:
+			weight = _material->getFissionMicroXS(energy) / total_xs;
+			break;
+		case TRANSPORT_RATE:
+			weight = _material->getTransportMicroXS(energy) / total_xs;
+			break;
+		case DIFFUSION_RATE:
+			weight = 1.0 / (3.0 * _material->getTransportMicroXS(energy))  / total_xs;
+			break;
+		case LEAKAGE_RATE:
+			weight = 1.0;
+			break;
+		}
+		break;
+	case ISOTOPE:
+		switch(_tally_type){
+		case FLUX:
+			weight = 1.0 / total_xs;
+			break;
+		case COLLISION_RATE:
+			weight = 1.0;
+			break;
+		case ELASTIC_RATE:
+			weight = _isotope->getElasticXS(energy) / total_xs;
+			break;
+		case ABSORPTION_RATE:
+			weight = _isotope->getAbsorptionXS(energy) / total_xs;
+			break;
+		case CAPTURE_RATE:
+			weight = _isotope->getCaptureXS(energy) / total_xs;
+			break;
+		case FISSION_RATE:
+			weight = _isotope->getFissionXS(energy) / total_xs;
+			break;
+		case TRANSPORT_RATE:
+			weight = _isotope->getTransportXS(energy) / total_xs;
+			break;
+		case DIFFUSION_RATE:
+			weight = 1.0 / (3.0 * _isotope->getTransportXS(energy))  / total_xs;
+			break;
+		case LEAKAGE_RATE:
+			weight = 1.0;
+			break;
+		}
+		break;
+	case REGION:
+		switch(_tally_type){
+		case FLUX:
+			weight = 1.0 / total_xs;
+			break;
+		case COLLISION_RATE:
+			weight = 1.0;
+			break;
+		case ELASTIC_RATE:
+			weight = _region->getElasticMicroXS(energy) / total_xs;
+			break;
+		case ABSORPTION_RATE:
+			weight = _region->getAbsorptionMicroXS(energy) / total_xs;
+			break;
+		case CAPTURE_RATE:
+			weight = _region->getCaptureMicroXS(energy) / total_xs;
+			break;
+		case FISSION_RATE:
+			weight = _region->getFissionMicroXS(energy) / total_xs;
+			break;
+		case TRANSPORT_RATE:
+			weight = _region->getTransportMicroXS(energy) / total_xs;
+			break;
+		case DIFFUSION_RATE:
+			weight = 1.0 / (3.0 * _region->getTransportMicroXS(energy))  / total_xs;
+			break;
+		case LEAKAGE_RATE:
+			weight = 1.0;
+			break;
+		}
+		break;
+	}
 
 	if (bin_index >= 0 && bin_index < _num_bins) 
-		_tallies[batch_num][bin_index] += double(weight);
+		_tallies[neutron->_batch_num][bin_index] += double(weight);
 
 	return;
 }
@@ -983,15 +1046,15 @@ void Tally::outputBatchStatistics(const char* filename) {
 	else if (_tally_type == FLUX)
 		fprintf(output_file, "Tally type: Flux\n");
 	else if (_tally_type == ELASTIC_RATE)
-		fprintf(output_file, "Tally type: ELASTIC_RATE Scattering Reaction Rate\n");
+		fprintf(output_file, "Tally type: MICRO_ELASTIC_RATE Scattering Reaction Rate\n");
 	else if (_tally_type == ABSORPTION_RATE)
-		fprintf(output_file, "Tally type: ABSORPTION_RATE Reaction Rate\n");
+		fprintf(output_file, "Tally type: MICRO_ABSORPTION_RATE Reaction Rate\n");
 	else if (_tally_type == CAPTURE_RATE)
-		fprintf(output_file, "Tally type: CAPTURE_RATE Reaction Rate\n");
+		fprintf(output_file, "Tally type: MICRO_CAPTURE_RATE Reaction Rate\n");
 	else if (_tally_type == FISSION_RATE)
-		fprintf(output_file, "Tally type: FISSION_RATE Reaction Rate\n");
+		fprintf(output_file, "Tally type: MICRO_FISSION_RATE Reaction Rate\n");
 	else if (_tally_type == TRANSPORT_RATE)
-		fprintf(output_file, "Tally type: TRANSPORT_RATE Reaction Rate\n");
+		fprintf(output_file, "Tally type: MICRO_TRANSPORT_RATE Reaction Rate\n");
 	else if (_tally_type == DIFFUSION_RATE)
 		fprintf(output_file, "Tally type: DIFFUSION_RATE Reaction Rate\n");
 	else if (_tally_type == LEAKAGE_RATE)

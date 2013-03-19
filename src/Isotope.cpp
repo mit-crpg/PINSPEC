@@ -515,11 +515,6 @@ bool Isotope::isRescaled() const {
 }
 
 
-binSpacingType Isotope::getEnergyGridScaleType() const {
-    return _scale_type;
-}
-
-
 /**
  * Set the isotope name
  * @param istope a character array of the isotopes name
@@ -566,23 +561,6 @@ void Isotope::setAO(float AO) {
 void Isotope::setTemperature(float T) {
 	_T = T;
 }
-
-
-/**
- * Sets the number of batches for each of the Tallies inside of this Isotope
- * @param num_batches the number of batches
- */
-void Isotope::setNumBatches(int num_batches) {
-
-    /* Set the number of batches for each Tally inside of this Isotope */
-    std::vector<Tally*>::iterator iter;
-	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
-        (*iter)->setNumBatches(num_batches);
-    }
-
-    return;
-}
-
 
 /**
  * Make this a fissionable isotope
@@ -898,12 +876,6 @@ Isotope* Isotope::clone() {
 	/* Allocate memory for the clone */
 	Isotope* new_clone = new Isotope(_isotope_name);
 
-	/* Loops over all tallies and adds a clone of each one to new isotope */
-	for (std::vector<Tally*>::iterator it = _tallies.begin(); 
-	     it != _tallies.end(); it++) {
-	    new_clone->addTally((*it)->clone());
-	}
-
 	/* Set the clones isotope name, atomic number, number density */
 	new_clone->setIsotopeType(_isotope_name);
 	new_clone->setA(_A);
@@ -1190,97 +1162,6 @@ void Isotope::retrieveEprimeToE(float* Eprime_to_E, int num_bins) {
 }
 
 
-void Isotope::addTally(Tally *tally) {
-
-    if (tally->getTallyDomainType() != ISOTOPE)
-        log_printf(ERROR, "Unable to add Tally %s to Isotope %s since the Tally"
-                        " is not for an ISOTOPE tally domain", 
-                                        tally->getTallyName(), _isotope_name);
-
-    _tallies.push_back(tally);
-    return;
-}
-
-
-/**
- * Clear this isotope's vector of Tally class object pointers
- */
-void Isotope::clearTallies() {
-	_tallies.clear();
-}
-
-/**
- * For a given energy, this method calls getCollisionType() to sample 
- * the collision type, and then tally the event into the appropriate
- * tally classes for that isotope if any. 
- * @param neutron structure
- * @return the collision type (ELASTIC, CAPTURE, FISSION)
- */
-collisionType Isotope::collideNeutron(neutron* neut) {
-
-    /* obtain incoming energy, batch number */
-    int batch_num = neut->_batch_num;
-    float sample = neut->_energy;
-	float total_xs = getTotalXS(sample);
-
-    /* obtain collision type */
-    collisionType type = getCollisionType(sample);
-	if (type == FISSION || type == CAPTURE)
-		neut->_alive = false;
-
-    /* Tallies the event into the appropriate tally classes  */
-    /* Loops over all tallies and add them to the clone */
-     std::vector<Tally*>::iterator iter;
-	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
-	    Tally *tally = *iter;
-	    tallyType tally_type = tally->getTallyType();
-	    switch (tally_type) {
-	    case FLUX:
-			tally->weightedTally(sample, 1.0 / total_xs, batch_num);
-	    case COLLISION_RATE:
-		    tally->weightedTally(sample, 1.0, batch_num);
-	    case ELASTIC_RATE:
-		if (type == ELASTIC)
-		    tally->weightedTally(sample, 
-			getElasticXS(sample) / total_xs, batch_num);
-	    case ABSORPTION_RATE:
-		if (type == CAPTURE || type == FISSION)
-		    tally->weightedTally(sample, 
-			getAbsorptionXS(sample) / total_xs, batch_num);
-	    case CAPTURE_RATE:
-		if (type == CAPTURE)
-		    tally->weightedTally(sample, 
-            getCaptureXS(sample) / total_xs, batch_num);
-	    case FISSION_RATE:
-		if (type == FISSION)
-		    tally->weightedTally(sample, 
-			getFissionXS(sample) / total_xs, batch_num);
-	    case TRANSPORT_RATE:
-		if (type == ELASTIC)
-		    tally->weightedTally(sample, 
-			getTransportXS(sample) / total_xs, batch_num);
-	    case DIFFUSION_RATE: /* FIXME */
-		if (type == ELASTIC)
-		    tally->weightedTally(sample, 
-			 1.0 / (3.0 * getTransportXS(sample) * total_xs), batch_num); 
-	    case LEAKAGE_RATE:; /* FIXME */
-	    }
-	}
-
-	/* Sample outgoing energy uniformally between [alpha*E, E] */
-
-	float alpha = getAlpha();
-	double random = (float)(rand()) / (float)(RAND_MAX);
-
-    /* Asymptotic elastic scattering above 4 eV */
-    if (sample > 4.0)
-    	neut->_energy *= (alpha + (1.0 - alpha) * random);
-    else
-        neut->_energy =  getThermalScatteringEnergy(sample);
-
-    return type;
-}
-
 
 /**
  * For a given neutron, this method samples a distance for the neutron.
@@ -1298,83 +1179,42 @@ float Isotope::getDistanceTraveled(neutron* neutron) {
 }
 
 
-bool Isotope::isPrecisionTriggered() {
 
-    /* Check if this Isotope has any Tallies with a precision trigger */
-    std::vector<Tally*>::iterator iter;
-
-	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
-        if((*iter)->isPrecisionTriggered())
-            return true;
-    }
-
-    return false;
-}
-
-
-void Isotope::incrementNumBatches(int num_batches) {
-
-    /* Set the number of batches for each Tally inside of this Isotope */
-    std::vector<Tally*>::iterator iter;
-	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
-        (*iter)->incrementNumBatches(num_batches);
-    }
-
-    return;
-
-}
-
-
-
-/** Calls each of the Tally class objects in the Isotope to compute
- * their batch-based statiscs from the tallies
+/**
+ * Get the bin spacing type for this isotope's cross sections
+ * @return the scale type
  */
-void Isotope::computeBatchStatistics() {
-
-    /* Compute statistics for each of this Isotope's Tallies */
-    std::vector<Tally*>::iterator iter;
-
-	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
-        (*iter)->computeBatchStatistics();
-
-    return;
+binSpacingTypes Isotope::getEnergyGridScaleType() {
+	return _scale_type;
 }
 
 
-/** Calls each of the Tally class objects in the Isotope to compute
- * their batch-based statiscs from the tallies
+
+/**
+ * For a given energy, this method calls getCollisionType() to sample
+ * the collision type, and then tally the event into the appropriate
+ * tally classes for that isotope if any.
+ * @param neutron structure
+ * @return the collision type (ELASTIC, CAPTURE, FISSION)
  */
-void Isotope::computeScaledBatchStatistics(float scale_factor) {
+collisionType Isotope::collideNeutron(neutron* neut) {
 
-    /* Compute statistics for each of this Isotope's Tallies */
-    std::vector<Tally*>::iterator iter;
+    /* obtain incoming energy, batch number */
+    int batch_num = neut->_batch_num;
+    float sample = neut->_energy;
+    float total_xs = getTotalXS(sample);
 
-	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
-        (*iter)->computeScaledBatchStatistics(scale_factor);
+    float energy = neut->_energy;
+    float sigma_total_iso = getTotalXS(energy);
+    float sigma_total_mat = 1.0;//neut->curr_region->getTotalMicroXS(energy);
 
-    return;
+    /* obtain collision type */
+    collisionType type = getCollisionType(sample);
+    if (type == FISSION || type == CAPTURE)
+    	neut->_alive = false;
+
+    return ELASTIC;
+
 }
-
-
-/** Calls each of the Tally class objects in the Isotope to output
- * their tallies and statistics to output files.
- * @param directory the directory to write batch statistics files
- * @param suffix a string to attach to the end of each filename
- */
-void Isotope::outputBatchStatistics(char* directory, char* suffix) {
-
-    /* Output statistics for each of this Isotope's Tallies */
-    std::vector<Tally*>::iterator iter;
-    std::string filename;
-
-	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
-       filename = std::string(directory) + "/" + (*iter)->getTallyName()
-                                                 + "_" + suffix + ".txt";
-         (*iter)->outputBatchStatistics(filename.c_str());
-    }
-
-    return;
-}
-
 
 

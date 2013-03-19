@@ -636,47 +636,6 @@ void Material::setAtomicMass(float atomic_mass) {
 }
 
 
-
-/**
- * Sets the number of batches for each of the Tallies inside of this Material
- * @param num_batches the number of batches
- */
-void Material::setNumBatches(int num_batches) {
-
-    /* Set the number of batches for each Tally inside of this Material */
-    std::vector<Tally*>::iterator iter1;
-	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); iter1 ++) {
-        (*iter1)->setNumBatches(num_batches);
-    }
-
-    /* Set the number of batches for each of this Material's Tallies */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter2;
-	for (iter2 = _isotopes.begin(); iter2 != _isotopes.end(); ++iter2) {
-        iter2->second.second->setNumBatches(num_batches);
-    }
-
-    return;
-}
-
-
-void Material::incrementNumBatches(int num_batches) {
-
-    /* Set the number of batches for each Tally inside of this Material */
-    std::vector<Tally*>::iterator iter1;
-	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); iter1 ++) {
-        (*iter1)->incrementNumBatches(num_batches);
-    }
-
-    /* Set the number of batches for each of this Material's Tallies */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter2;
-	for (iter2 = _isotopes.begin(); iter2 != _isotopes.end(); ++iter2) {
-        iter2->second.second->incrementNumBatches(num_batches);
-    }
-
-    return;
-
-}
-
 /**
  * Adds a new isotope to this Material
  * @param isotope a pointer to a isotope class object
@@ -796,27 +755,6 @@ float Material::getDensity(){
 }
 
 
-
-/**
- * Add a tally class object to  this material's vector of Tally
- */
-void Material::addTally(Tally *tally) {
-
-    if (tally->getTallyDomainType() != MATERIAL)
-        log_printf(ERROR, "Unable to add Tally %s to Material %s since the Tally"
-                        " is not for an MATERIAL tally domain", 
-                                        tally->getTallyName(), _material_name);
-    _tallies.push_back(tally);
-    return;
-}
-
-/**
- * Clear this material's vector of Tally class object pointers
- */
-void Material::clearTallies() {
-	_tallies.clear();
-}
-
 /**
  * For a given energy, this method calls sampleIsotope() to sample 
  * an isotop, then sample a reaction type in that isotope by using
@@ -827,58 +765,18 @@ void Material::clearTallies() {
  */
 collisionType Material::collideNeutron(neutron* neut) {
 
-    /* FIXME: replace float energy with neutron struct, and update batch_num */
     int batch_num = neut->_batch_num;
     float sample = neut->_energy;
-	float total_xs = getTotalMacroXS(sample);
+    float Sigma_t_mat = getTotalMacroXS(sample);
+    float Sigma_t_iso = 1.0; //neut->curr_region->getTotalMacroXS(sample);
 
     Isotope *isotope;
     isotope = sampleIsotope(sample);
     collisionType type = isotope->collideNeutron(neut);
-    log_printf(DEBUG, "Material %s has sampled collision type %d from isotope %s", 
-                                   _material_name, type, isotope->getIsotopeName());
+    log_printf(DEBUG, "Material %s has sampled collision type %d from ",
+	       "isotope %s", _material_name, type, isotope->getIsotopeName());
 
-    /* Tallies the event into the appropriate tally classes  */
-    /* Loops over all tallies and add them to the clone */
-     std::vector<Tally*>::iterator iter;
-	for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
-	    Tally *tally = *iter;
-	    tallyType tally_type = tally->getTallyType();
-	    switch (tally_type) {
-	    case FLUX:
-			tally->weightedTally(sample, 1.0 / total_xs, batch_num);
-	    case COLLISION_RATE:
-		    tally->weightedTally(sample, 1.0, batch_num);
-	    case ELASTIC_RATE:
-		if (type == ELASTIC)
-		    tally->weightedTally(sample, 
-			getElasticMacroXS(sample) / total_xs, batch_num);
-	    case ABSORPTION_RATE:
-		if (type == CAPTURE || type == FISSION)
-		    tally->weightedTally(sample, 
-			getAbsorptionMacroXS(sample) / total_xs, batch_num);
-	    case CAPTURE_RATE:
-		if (type == CAPTURE)
-		    tally->weightedTally(sample, 
-            getCaptureMacroXS(sample) / total_xs, batch_num);
-	    case FISSION_RATE:
-		if (type == FISSION)
-		    tally->weightedTally(sample, 
-			getFissionMacroXS(sample) / total_xs, batch_num);
-	    case TRANSPORT_RATE:
-		if (type == ELASTIC)
-		    tally->weightedTally(sample, 
-			getTransportMacroXS(sample) / total_xs, batch_num);
-	    case DIFFUSION_RATE: /* FIXME */
-		if (type == ELASTIC)
-		    tally->weightedTally(sample, 
-			 1.0 / (3.0 * getTransportMacroXS(sample) * total_xs), batch_num); 
-	    case LEAKAGE_RATE:; /* FIXME */
-	    }
-	}
-
-
-    return type;
+	return type;
 }
 
 
@@ -892,12 +790,6 @@ Material* Material::clone() {
 
 	/* Allocate memory for the clone */
 	Material* new_clone = new Material();
-
-	/* Loops over all tallies and add them to the clone */
-	for (std::vector<Tally*>::iterator it = _tallies.begin(); 
-	     it != _tallies.end(); it++) {
-	    new_clone->addTally((*it)->clone());
-	}
 
 	/* Loops over all isotopes and add them to the clone */
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
@@ -920,95 +812,6 @@ Material* Material::clone() {
 
 	/* Return a pointer to the cloned Isotope class */
 	return new_clone;
-}
-
-
-bool Material::isPrecisionTriggered() {
-
-    /* Check if this Material has any Tallies with precision triggers */
-    std::vector<Tally*>::iterator iter1;
-
-	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); ++iter1) {
-        if ((*iter1)->isPrecisionTriggered())
-            return true;
-    }
-
-    /* Output statistics for each of this Material's Tallies */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter2;
-	for (iter2 = _isotopes.begin(); iter2 != _isotopes.end(); ++iter2) {
-        if (iter2->second.second->isPrecisionTriggered())
-            return true;
-    }
-
-    return false;
-}
-
-/**
- * Calls each of the Tally class objects in the Material to compute
- * their batch-based statistics from the tallies
- */
-void Material::computeBatchStatistics() {
-
-    /* Compute statistics for each of this Material's Tallies */
-    std::vector<Tally*>::iterator iter1;
-
-	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); ++iter1)
-        (*iter1)->computeBatchStatistics();
-
-    /* Output statistics for each of this Material's Tallies */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter2;
-	for (iter2 = _isotopes.begin(); iter2 != _isotopes.end(); ++iter2)
-        iter2->second.second->computeBatchStatistics();
-
-    return;
-}
-
-
-/**
- * Calls each of the Tally class objects in the Material to compute
- * their batch-based statistics from the tallies
- */
-void Material::computeScaledBatchStatistics(float scale_factor) {
-
-    /* Compute statistics for each of this Material's Tallies */
-    std::vector<Tally*>::iterator iter1;
-
-	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); ++iter1)
-        (*iter1)->computeScaledBatchStatistics(scale_factor);
-
-    /* Output statistics for each of this Material's Tallies */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter2;
-	for (iter2 = _isotopes.begin(); iter2 != _isotopes.end(); ++iter2)
-        iter2->second.second->computeScaledBatchStatistics(scale_factor);
-
-    return;
-}
-
-
-/**
- * Calls each of the Tally class objects in the Material to output
- * their tallies and statistics to output files.
- * @param directory the directory to write batch statistics files
- * @param suffix a string to attach to the end of each filename
- */
-void Material::outputBatchStatistics(char* directory, char* suffix) {
-
-    /* Output statistics for each of this Material's Tallies */
-    std::vector<Tally*>::iterator iter1;
-    std::string filename;
-
-	for (iter1 = _tallies.begin(); iter1 != _tallies.end(); ++iter1) {
-       filename = std::string(directory) + "/" + (*iter1)->getTallyName()
-                                                  + "_" + suffix + ".txt";
-         (*iter1)->outputBatchStatistics(filename.c_str());
-    }
-
-    /* Output statistics for each of this Material's Tallies */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter2;
-	for (iter2 = _isotopes.begin(); iter2 != _isotopes.end(); ++iter2)
-        iter2->second.second->outputBatchStatistics(directory, suffix);
-
-    return;
 }
 
 

@@ -7,27 +7,31 @@ from pinspec.log import *
 
 def main():
 
+    print 'starting pinspec...'
+    
     # Set main simulation params
-    num_batches = 10
+    num_batches = 12
     num_neutrons_per_batch = 10000
     num_threads = 4
     output_dir = 'Infinite'
-    
-    log_setlevel(INFO)
 
-    setXSLibDirectory('../xs-lib/')   # This is also a default, but set it as example
+    log_setlevel(INFO)
+        
+    py_printf('NORMAL', 'set problem specs')
+    
+
+    setXSLibDirectory('../xs-lib/')
 
     py_printf('INFO', 'Creating SLBW xs')    
     
     # Call SLBW to create XS
-    filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
     T=300 #Temp in Kelvin of target nucleus
     SLBW.replaceXS() #To clean previous changes to XS files
-    SLBW.SLBWXS(filename,T,'capture') #To generate Doppler Broadened Res Cap
-    #SLBW.SLBWXS(filename,T,'scatter') #To generate Doppler Broadened Res Scat
-    #SLBW.generatePotentialScattering(filename) #To generate flat Res Scat XS
-    #SLBW.compareXS(filename, XStype='scatter', RI='no')
-    SLBW.compareXS(filename, XStype='capture', RI='no')
+    SLBW.SLBWXS('U-238',T,'capture') #To generate Doppler Broadened Res Cap
+    #SLBW.SLBWXS('U-238',T,'scatter') #To generate Doppler Broadened Res Scat
+    #SLBW.generatePotentialScattering('U-238') #To generate flat Res Scat XS
+    #SLBW.compareXS('U-238', XStype='scatter', RI='no')
+    SLBW.compareXS('U-238', XStype='capture', RI='no')   
 
     # Define isotopes
     h1 = Isotope('H-1')
@@ -35,7 +39,6 @@ def main():
     o16 = Isotope('O-16')
     u235 = Isotope('U-235')
     u238 = Isotope('U-238')
-
     zr90 = Isotope('Zr-90')    
 
     # Plot the microscopic cross sections for each isotope
@@ -65,17 +68,13 @@ def main():
     py_printf('INFO', 'Made mixture region')
 
     # Create a tally for the flux
-    flux = Tally('total flux', GEOMETRY, FLUX)
-    flux.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC)
-
+ 
     # Create a tally for the RI
-    abs_rate = Tally('absorption rate', ISOTOPE, ABSORPTION_RATE)
-    flux_RI = Tally('flux RI', MATERIAL, FLUX)
+    abs_rate = Tally('absorption rate', u238, ABSORPTION_RATE)
+    flux_RI = Tally('flux RI', region_mix, FLUX)
     abs_rate_bin_edges = numpy.array([0.1, 1., 6., 10., 25., 50., 100.])
     abs_rate.setBinEdges(abs_rate_bin_edges)
     flux_RI.setBinEdges(abs_rate_bin_edges)
-    u238.addTally(abs_rate)
-    mix.addTally(flux_RI)
 
     # Set a precision trigger: tells simulation to run until maximum relative
     # error is less than the trigger value (4E-3)
@@ -85,14 +84,19 @@ def main():
     geometry = Geometry()
     geometry.setSpatialType(INFINITE_HOMOGENEOUS)
     geometry.addRegion(region_mix)
+    flux = Tally('total flux', mix, FLUX)
+    flux.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC) 
     geometry.addTally(flux)
+    geometry.addTally(abs_rate)
+    geometry.addTally(flux_RI)
+
     geometry.setNumBatches(num_batches)
     geometry.setNeutronsPerBatch(num_neutrons_per_batch)
     geometry.setNumThreads(num_threads)
 
     py_printf('INFO', 'Made geometry')
 
-	# Run Monte Carlo simulation
+    # Run Monte Carlo simulation
     geometry.runMonteCarloSimulation();
 
     # Dump batch statistics to output files to some new directory

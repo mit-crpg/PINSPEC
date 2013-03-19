@@ -28,8 +28,15 @@
 #include "arraycreator.h"
 #include "xsreader.h"
 #include "log.h"
-#include "Tally.h"
 #include "Neutron.h"
+
+
+/* Tally spacing types */
+typedef enum binSpacingTypes {
+	EQUAL,
+	LOGARITHMIC,
+	OTHER
+} binSpacingType;
 
 
 /* Types of collisions */
@@ -51,7 +58,6 @@ typedef enum scatterAngleTypes {
  * The isotope class represents an isotope and all of its properties
  * which are relevant to neutronics
  */
-#ifdef __cplusplus
 class Isotope {
 
 private:
@@ -91,8 +97,6 @@ private:
 	float _end_energy;
 	float _delta_energy;
 
-	std::vector<Tally*> _tallies;
-
 	int _num_thermal_cdfs;
 	int _num_thermal_cdf_bins;
 	float* _thermal_dist;
@@ -113,22 +117,19 @@ private:
 								int num_energies, binSpacingTypes scale_type);	
 	void rescaleXS(float* new_energies, int num_energies);
 
-
 	void initializeThermalScattering(float start_energy, float end_energy,
 					 int num_bins, int num_distributions);
 	float thermalScatteringProb(float E_prime_to_E, int dist_index);
 
-	void clearTallies();
-
 public:
 	Isotope(char *_isotope_name);
-    virtual ~Isotope();
+	virtual ~Isotope();
 
 	void parseName();
 	void makeFissionable();
 
 	char* getIsotopeName() const;
-    int getA() const;
+	int getA() const;
     float getAlpha() const;
     float getN() const;
     float getAO() const;
@@ -151,9 +152,8 @@ public:
     float getTransportXS(int energy_index) const;
     float getTransportXS(float energy) const;
     bool usesThermalScattering();
-	bool isRescaled() const;
-	int getEnergyGridIndex(float energy) const;
-    binSpacingType getEnergyGridScaleType() const;
+    bool isRescaled() const;
+    int getEnergyGridIndex(float energy) const;
 
     /* IMPORTANT: The following two class method prototypes must not be changed
      * without changing Geometry.i to allow for the data arrays to be transformed
@@ -166,14 +166,13 @@ public:
     void setAO(float AO);
     void setN(float N);
     void setTemperature(float T);
-    void setNumBatches(int num_batches);
 
-	Isotope* clone();
+    Isotope* clone();
 
-	collisionType getCollisionType(float energy);
-	collisionType collideNeutron(neutron* neutron);
-	float getDistanceTraveled(neutron *neutron);
-	float getThermalScatteringEnergy(float energy);
+    collisionType getCollisionType(float energy);
+    collisionType collideNeutron(neutron* neutron);
+    float getDistanceTraveled(neutron *neutron);
+    float getThermalScatteringEnergy(float energy);
 
     int getNumThermalCDFs();
     int getNumThermalCDFBins();
@@ -181,14 +180,9 @@ public:
     void retrieveThermalDistributions(float* cdfs, int num_values);
     void retrieveEtokT(float* E_to_kT, int num_cdfs);
     void retrieveEprimeToE(float* Eprime_to_E, int num_bins);
-    
-	void addTally(Tally *tally);
 
-    bool isPrecisionTriggered();
-    void incrementNumBatches(int num_batches);
-    void computeBatchStatistics();
-    void computeScaledBatchStatistics(float scale_factor);
-    void outputBatchStatistics(char* directory, char* suffix);
+    binSpacingTypes getEnergyGridScaleType();
+
 };
 
 
@@ -208,13 +202,14 @@ inline int Isotope::getEnergyGridIndex(float energy) const {
 		       			"since its cross-sections have not been"
 						" rescaled", _isotope_name);
 
+
 	if (_scale_type == EQUAL) {
 		if (energy > _end_energy)
 			index = _num_energies - 1;
 		else if (energy < _start_energy)
 			index = 0;
 		else
-			index = floor((energy - _start_energy) / _delta_energy);
+			index = (int)floor((energy - _start_energy) / _delta_energy);
 	}
 
 	else if (_scale_type == LOGARITHMIC)
@@ -225,12 +220,9 @@ inline int Isotope::getEnergyGridIndex(float energy) const {
 		else if (energy < _start_energy)
 			index = 0;
 		else
-			index = floor((energy - _start_energy) / _delta_energy);
+			index = (int)floor((energy - _start_energy) / _delta_energy);
 
 	return index;
 }
-
-
-#endif
 
 #endif /* ISOTOPE_H_ */

@@ -15,9 +15,8 @@
 #include <vector>
 #include "Region.h"
 #include "Fissioner.h"
-#include "Neutron.h"
 #include "Tally.h"
-#include "Timer.h"       
+#include "Timer.h"
 
 
 typedef enum spatialTypes {
@@ -90,9 +89,9 @@ private:
 	float getTransportMacroXS(float energy, Region* region);
 	float getTransportMacroXS(int energy_index, Region* region);
 
-    void tally(float sample, int batch_num, Region* region, collisionType type);
+    void tally(neutron* neutron);
     void initializeBatchTallies();
-    void initializePmfRatios();
+    void initializeProbModFuelRatios();
     bool isPrecisionTriggered();
     void incrementNumBatches(int num_batches);
 	int getEnergyGridIndex(float energy) const;
@@ -148,7 +147,7 @@ inline int Geometry::getEnergyGridIndex(float energy) const {
 		else if (energy < _start_energy)
 			index = 0;
 		else
-			index = floor((energy - _start_energy) / _delta_energy);
+			index = (int)floor((energy - _start_energy) / _delta_energy);
 	}
 
 	else if (_scale_type == LOGARITHMIC)
@@ -159,7 +158,7 @@ inline int Geometry::getEnergyGridIndex(float energy) const {
 		else if (energy < _start_energy)
 			index = 0;
 		else
-			index = floor((energy - _start_energy) / _delta_energy);
+			index = (int)floor((energy - _start_energy) / _delta_energy);
 
 	return index;
 }
