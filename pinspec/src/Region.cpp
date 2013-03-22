@@ -23,12 +23,7 @@ Region::Region(char* region_name, regionType type) {
 	_fuel_radius = 0.0;
 	_pitch = 0.0;
 	_half_width = 0.0;
-
-	_sigma_e = 0.0;
-	_beta = 0.0;
-	_alpha1 = 0.0;
-	_alpha2 = 0.0;
-
+	_buckling_squared = 0.0;
 }
 
 
@@ -63,6 +58,11 @@ float Region::getVolume() {
  */
 Material* Region::getMaterial() {
 	return _material;
+}
+
+
+bool Region::containsIsotope(Isotope* isotope) {
+	return _material->containsIsotope(isotope);
 }
 
 
@@ -135,6 +135,11 @@ float Region::getPitch() {
 					" which is INFINITE", _region_name);
 
 	return _pitch;
+}
+
+
+float Region::getBucklingSquared() {
+	return _buckling_squared;
 }
 
 
@@ -309,40 +314,10 @@ void Region::setPitch(float pitch) {
 }
 
 
-/**
- * Adds a new fuel ring radius for this Region if it is not INFINITE
- * @param radius a fuel ring radius
- */
-void Region::addFuelRingRadius(float radius) {
-
-	if (_region_type == INFINITE)
-		log_printf(ERROR, "Cannot add a fuel pin ring radius for region %s"
-					" which is INFINITE", _region_name);
-	else if (_region_type == MODERATOR)
-		log_printf(ERROR, "Cannot add a fuel ring radius for region %s"
-					" which is a MODERATOR type region", _region_name);
-
-	_fuel_ring_radii.push_back(radius);
+void Region::setBucklingSquared(float buckling_squared) {
+	_buckling_squared = buckling_squared;
+	_material->setBucklingSquared(_buckling_squared);
 }
-
-
-
-/**
- * Adds a new moderator ring radius for this Region if it is not INFINITE
- * @param radius the fuel pin radius
- */
-void Region::addModeratorRingRadius(float radius) {
-
-	if (_region_type == INFINITE)
-		log_printf(ERROR, "Cannot add a moderator ring radius for region %s"
-					" which is INFINITE", _region_name);
-	else if (_region_type == FUEL)
-		log_printf(ERROR, "Cannot add a moderator ring radius for region %s"
-					" which is a FUEL type region", _region_name);
-
-	_moderator_ring_radii.push_back(radius);
-}
-
 
 
 /**
@@ -351,12 +326,13 @@ void Region::addModeratorRingRadius(float radius) {
  * uses the Region's Material to compute the neutron's 
  * next energy and collision type.
  */
-collisionType Region::collideNeutron(neutron* neut) {
+void Region::collideNeutron(neutron* neutron) {
 
 	/* Collide the neutron in the Region's Material */
-    collisionType type = _material->collideNeutron(neut);
+	neutron->_material = _material;
+    _material->collideNeutron(neutron);
 
-	return type;
+	return;
 }
 
 

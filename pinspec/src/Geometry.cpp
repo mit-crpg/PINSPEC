@@ -29,12 +29,9 @@ Geometry::Geometry() {
 
 	/* Initialize a fissioner with a fission spectrum and sampling CDF */
 	_fissioner = new Fissioner();
-	_fissioner->setNumBins(10000);
-	_fissioner->setEMax(20);
-	_fissioner->buildCDF();
 
 	/* Default for axial leakage is zero */
-	_bsquare = 0.0;
+	_buckling_squared = 0.0;
 }
 
 
@@ -94,132 +91,13 @@ spatialType Geometry::getSpatialType() {
 }
 
 
-float Geometry::getTotalMacroXS(float energy, Region* region) {
-    return region->getTotalMacroXS(energy);
+float Geometry::getBucklingSquared() {
+    return _buckling_squared;
 }
 
 
-float Geometry::getTotalMacroXS(int energy_index, Region* region) {
-    return region->getTotalMacroXS(energy_index);
-}
-
-
-float Geometry::getTotalMicroXS(float energy, Region* region) {
-    return region->getTotalMicroXS(energy);
-}
-
-
-float Geometry::getTotalMicroXS(int energy_index, Region* region) {
-    return region->getTotalMicroXS(energy_index);
-}
-
-
-float Geometry::getElasticMacroXS(float energy, Region* region) {
-    return region->getTotalMacroXS(energy);
-}
-
-
-float Geometry::getElasticMacroXS(int energy_index, Region* region) {
-    return region->getTotalMacroXS(energy_index);
-}
-
-
-float Geometry::getElasticMicroXS(float energy, Region* region) {
-    return region->getTotalMicroXS(energy);
-}
-
-
-float Geometry::getElasticMicroXS(int energy_index, Region* region) {
-    return region->getTotalMicroXS(energy_index);
-}
-
-
-float Geometry::getAbsorptionMacroXS(float energy, Region* region) {
-    return region->getTotalMacroXS(energy);
-}
-
-
-float Geometry::getAbsorptionMacroXS(int energy_index, Region* region) {
-    return region->getTotalMacroXS(energy_index);
-}
-
-
-float Geometry::getAbsorptionMicroXS(float energy, Region* region) {
-    return region->getTotalMicroXS(energy);
-}
-
-
-float Geometry::getAbsorptionMicroXS(int energy_index, Region* region) {
-    return region->getTotalMicroXS(energy_index);
-}
-
-
-float Geometry::getCaptureMacroXS(float energy, Region* region) {
-    return region->getTotalMacroXS(energy);
-}
-
-
-float Geometry::getCaptureMacroXS(int energy_index, Region* region) {
-    return region->getTotalMacroXS(energy_index);
-}
-
-
-float Geometry::getCaptureMicroXS(float energy, Region* region) {
-    return region->getTotalMicroXS(energy);
-}
-
-
-float Geometry::getCaptureMicroXS(int energy_index, Region* region) {
-    return region->getTotalMicroXS(energy_index);
-}
-
-
-float Geometry::getFissionMacroXS(float energy, Region* region) {
-    return region->getTotalMacroXS(energy);
-}
-
-
-float Geometry::getFissionMacroXS(int energy_index, Region* region) {
-    return region->getTotalMacroXS(energy_index);
-}
-
-
-float Geometry::getFissionMicroXS(float energy, Region* region) {
-    return region->getTotalMicroXS(energy);
-}
-
-
-float Geometry::getFissionMicroXS(int energy_index, Region* region) {
-    return region->getTotalMicroXS(energy_index);
-}
-
-
-float Geometry::getTransportMacroXS(float energy, Region* region) {
-    return region->getTotalMacroXS(energy);
-}
-
-
-float Geometry::getTransportMacroXS(int energy_index, Region* region) {
-    return region->getTotalMacroXS(energy_index);
-}
-
-
-float Geometry::getTransportMicroXS(float energy, Region* region) {
-    return region->getTotalMicroXS(energy);
-}
-
-
-float Geometry::getTransportMicroXS(int energy_index, Region* region) {
-    return region->getTotalMicroXS(energy_index);
-}
-
-
-float Geometry::getBSquare() {
-    return _bsquare;
-}
-
-void Geometry::setBSquare(float value) {
-    _bsquare = value;
+void Geometry::setBucklingSquared(float buckling_squared) {
+    _buckling_squared = buckling_squared;
 }
 
 /**
@@ -366,18 +244,6 @@ void Geometry::addRegion(Region* region) {
 }
 
 
-
-/**
- * Add a tally class object to  this Geometry's vector of Tallies
- * @param tally a pointer to a Tally object
- */
-void Geometry::addTally(Tally *tally) {
-
-    _tallies.push_back(tally);
-    return;
-}
-
-
 void Geometry::runMonteCarloSimulation() {
 
 	if (_infinite_medium == NULL && _fuel == NULL && _moderator == NULL)
@@ -387,11 +253,10 @@ void Geometry::runMonteCarloSimulation() {
     int start_batch = 0;
     int end_batch = _num_batches;
     neutron* curr;
-    float sample;
-    collisionType type;
     bool precision_triggered = true;
     Timer timer;
     timer.start();
+	TallyBank* tally_bank = TallyBank::Get();
 
 	/* Print report to the screen */
 	log_printf(NORMAL, "Beginning PINSPEC Monte Carlo Simulation...");
@@ -401,7 +266,7 @@ void Geometry::runMonteCarloSimulation() {
 
     
 	omp_set_num_threads(_num_threads);
-    initializeBatchTallies();
+    tally_bank->initializeBatchTallies(_num_batches);
 
 	/*************************************************************************/
 	/************************   INFINITE_HOMOGENEOUS *************************/
@@ -411,11 +276,13 @@ void Geometry::runMonteCarloSimulation() {
     /* If we are running an infinite medium spectral calculation */
     if (_spatial_type == INFINITE_HOMOGENEOUS){
 
+		_infinite_medium->setBucklingSquared(_buckling_squared);
+
         while (precision_triggered) {
 
             #pragma omp parallel
             {
-	            #pragma omp for private(curr, sample, type)
+	            #pragma omp for private(curr)
 	        for (int i=start_batch; i < end_batch; i++) {
 
 		        log_printf(NORMAL, "Thread %d/%d running batch %d", 
@@ -438,18 +305,18 @@ void Geometry::runMonteCarloSimulation() {
                      * the Geometry
                      */
 			        while (curr->_alive == true) {
-			        	type = _infinite_medium->collideNeutron(curr);
-			        	tally(curr);
+			        	_infinite_medium->collideNeutron(curr);
+			        	tally_bank->tally(curr);
 			        }
 		        }
             }
             }
 
-            computeScaledBatchStatistics();
-            if (!isPrecisionTriggered())
+            tally_bank->computeScaledBatchStatistics(_num_neutrons_per_batch);
+            if (!tally_bank->isPrecisionTriggered())
                 precision_triggered = false;
             else {
-                incrementNumBatches(_num_batches);
+                tally_bank->incrementNumBatches(_num_batches);
                 start_batch = end_batch;
                 end_batch += _num_batches;                
             }
@@ -484,6 +351,10 @@ void Geometry::runMonteCarloSimulation() {
             log_printf(ERROR, "Unable to run simulation since region %s "
                     " does not know the pin pitch", _moderator->getRegionName());
 
+		_fuel->setBucklingSquared(_buckling_squared);
+		_moderator->setBucklingSquared(_buckling_squared);
+        initializeProbModFuelRatios();
+
 		/* Initialize neutrons from fission spectrum for each thread */
 		/* Loop over batches */
 		/* Loop over neutrons per batch*/		
@@ -491,12 +362,10 @@ void Geometry::runMonteCarloSimulation() {
 		float p_mf;
 		float test;
 
-        initializeProbModFuelRatios();
-
         while (precision_triggered) {
             #pragma omp parallel
             {
-               #pragma omp for private(curr, p_ff, p_mf, test, sample, type)
+               #pragma omp for private(curr, p_ff, p_mf, test)
 		        for (int i=start_batch; i < end_batch; i++) {
 
 		            log_printf(NORMAL, "Thread %d/%d running batch %d", 
@@ -510,7 +379,6 @@ void Geometry::runMonteCarloSimulation() {
 				        /* Initialize neutron's energy [ev] from Watt spectrum */
 				        curr->_energy = _fissioner->emitNeutroneV();
 				        curr->_alive = true;
-				        curr->_in_fuel = true;
                         curr->_region = _fuel;
 			
 				        /* While the neutron is still alive, collide it. All
@@ -521,49 +389,44 @@ void Geometry::runMonteCarloSimulation() {
 				        while (curr->_alive == true) {
 
 					        /* Determine if neutron collided in fuel or moderator */
-					        p_ff = computeFuelFuelCollisionProb(curr->_energy);
-					        p_mf = computeModeratorFuelCollisionProb(curr->_energy);
+					        p_ff = computeFuelFuelCollisionProb(curr);
+					        p_mf = computeModeratorFuelCollisionProb(curr);
 					        test = float(rand()) / RAND_MAX;
 
 					        /* If the neutron is in the fuel */
-					        if (curr->_in_fuel) {
+					        if (curr->_region == _fuel) {
 
 						        /* If test is larger than p_ff, move to moderator */
 						        if (test > p_ff) {
-							        curr->_in_fuel = false;
                                     curr->_region = _moderator;
+								    _moderator->collideNeutron(curr);
                                 }
+								else
+								    _fuel->collideNeutron(curr);
 					        }
 					        /* If the neutron is in the moderator */
 					        else {
 
 						        /* If test is larger than p_mf, move to fuel */
 						        if (test > p_mf) {
-							        curr->_in_fuel = true;
                                     curr->_region = _fuel;
+								    _fuel->collideNeutron(curr);
                                 }
+								else
+								    _moderator->collideNeutron(curr);
 					        }
 
-					        /* Collide the neutron in the fuel or moderator */
-					        if (curr->_in_fuel) {
-                                sample = curr->_energy;
-						        type = _fuel->collideNeutron(curr);
-                                tally(curr);
-                            }
-					        else {
-                                sample = curr->_energy;
-						        type = _moderator->collideNeutron(curr);
-                                tally(curr);
-                            }
+							/* Tally the neutron collision */
+							tally_bank->tally(curr);
 				        }
 			        }
 		        }
             }
-            computeScaledBatchStatistics();
-            if (!isPrecisionTriggered())
+            tally_bank->computeScaledBatchStatistics(_num_neutrons_per_batch);
+            if (!tally_bank->isPrecisionTriggered())
                 precision_triggered = false;
             else {
-                incrementNumBatches(_num_batches);
+                tally_bank->incrementNumBatches(_num_batches);
                 start_batch = end_batch;
                 end_batch += _num_batches;                
             }
@@ -619,7 +482,6 @@ void Geometry::runMonteCarloSimulation() {
 				    /* Initialize this neutron's energy [ev] from Watt spectrum */
 				    curr->_energy = _fissioner->emitNeutroneV();
 				    curr->_alive = true;
-				    curr->_in_fuel = true;
 			
 				    /* While the neutron is still alive, collide it. All
                      * tallying and collision physics take place within
@@ -627,25 +489,18 @@ void Geometry::runMonteCarloSimulation() {
                      * the Geometry
                      */
 				    while (curr->_alive == true) { 
+						/* Find the region the neutron is currently within */
 				        /* Collide the neutron in the fuel or moderator */
-				        if (curr->_in_fuel) {
-                            sample = curr->_energy;
-					        type = _fuel->collideNeutron(curr);
-                            tally(curr);
-                        }
-				        else {
-                            sample = curr->_energy;
-					        type = _moderator->collideNeutron(curr);
-                            tally(curr);
-                        }
+				        _fuel->collideNeutron(curr);
+						tally_bank->tally(curr);
                     }
                 }
             }
-            computeScaledBatchStatistics();
-            if (!isPrecisionTriggered())
+            tally_bank->computeScaledBatchStatistics(_num_neutrons_per_batch);
+            if (!tally_bank->isPrecisionTriggered())
                 precision_triggered = false;
             else {
-                incrementNumBatches(_num_batches);
+                tally_bank->incrementNumBatches(_num_batches);
                 start_batch = end_batch;
                 end_batch += _num_batches;                
             }
@@ -675,101 +530,6 @@ void Geometry::runMonteCarloSimulation() {
 }
 
 
-bool Geometry::isPrecisionTriggered() {
-
-    /* Check if the Geometry has any Tallies with a trigger on the precision */
-    std::vector<Tally*>::iterator iter;
-
-	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
-        if ((*iter)->isPrecisionTriggered())
-            return true;
-	}
-
-	return false;
-
-}
-
-
-void Geometry::computeBatchStatistics() {
-
-    /* Compute statistics for each of this Geometry's Tallies */
-    std::vector<Tally*>::iterator iter;
-
-	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
-        (*iter)->computeBatchStatistics();
-
-    return;
-}
-
-
-void Geometry::computeScaledBatchStatistics() {
-
-    /* Compute statistics for each of this Geometry's Tallies */
-    std::vector<Tally*>::iterator iter;
-
-	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter)
-        (*iter)->computeScaledBatchStatistics(_num_neutrons_per_batch);
-
-
-    return;
-}
-
-
-/**
- * Calls each of the Tally class objects in the simulation to output
- * their tallies and statistics to output files. If a user asks to
- * output the files to a directory which does not exist, this method
- * will create the directory.
- * @param directory the directory to write batch statistics files
- * @param suffix a string to attach to the end of each filename
- */
-void Geometry::outputBatchStatistics(char* directory,  char* suffix) {
-
-    /* Check to see if directory exists - if not, create it */
-    struct stat st;
-    if (!stat(directory, &st) == 0) {
-		mkdir(directory, S_IRWXU);
-    }
-
-    /* Compute statistics for each of this Geometry's Tallies */
-    std::vector<Tally*>::iterator iter;
-    std::string filename;
-
-	for (iter = _tallies.begin(); iter != _tallies.end(); ++iter) {
-        filename = std::string(directory) + "/" + (*iter)->getTallyName()
-                                               + "_" + suffix + ".txt";
-        (*iter)->outputBatchStatistics(filename.c_str());
-    }
-
-    return;   
-}
-
-
-void Geometry::tally(neutron* neutron) {
-
-
-    std::vector<Tally*>::iterator iter;
-
-    /* Tallies the event into the appropriate tally classes  */
-    for (iter = _tallies.begin(); iter != _tallies.end(); iter ++) {
-        Tally *tally = *iter;
-
-			tally->weightedTally(neutron);
-    }
-}
-
-
-void Geometry::initializeBatchTallies() {
-
-    std::vector<Tally*>::iterator iter;
-
-    /* Set the number of batches for all of this Geometry's Tallies */
-    for (iter = _tallies.begin(); iter != _tallies.end(); iter ++)
-        (*iter)->setNumBatches(_num_batches);
-
-}
-
-
 void Geometry::initializeProbModFuelRatios() {
 
     Material* mod = _moderator->getMaterial();
@@ -777,10 +537,6 @@ void Geometry::initializeProbModFuelRatios() {
     float v_mod = _moderator->getVolume();
     float v_fuel = _fuel->getVolume();
     _num_ratios = mod->getNumXSEnergies();
-    _scale_type = mod->getEnergyGridScaleType();
-
-    if (_scale_type == LOGARITHMIC)
-        log_printf(NORMAL, "Scale type set to LOGARITHMIC for %d pmf ratios", _num_ratios);
 
     /* Allocate memory for ratios */    
     _pmf_ratios = new float[_num_ratios];
@@ -811,24 +567,14 @@ void Geometry::initializeProbModFuelRatios() {
 }
 
 
-void Geometry::incrementNumBatches(int num_batches) {
-
-    std::vector<Tally*>::iterator iter;
-
-    /* Update the number of batches for all of this Geometry's Tallies */
-    for (iter = _tallies.begin(); iter != _tallies.end(); iter ++)
-        (*iter)->incrementNumBatches(_num_batches);
-    
-}
-
-
 /**
  * This function computes the two-region fuel-to-fuel collision probability for
  * a two-region pin cell simulation. It uses Carlvik's two-term rational model.
  * @param energy the energy for a neutron in eV
  * @return the fuel-to-fuel collision probability at that energy
  */
-float Geometry::computeFuelFuelCollisionProb(float energy) {
+float Geometry::computeFuelFuelCollisionProb(neutron* neutron) {
+	float energy = neutron->_energy;
 	float p_ff;
 	float sigma_tot_fuel = _fuel->getMaterial()->getTotalMacroXS(energy);
 	p_ff = ((_beta*sigma_tot_fuel) / (_alpha1*_sigma_e + sigma_tot_fuel)) +
@@ -845,8 +591,9 @@ float Geometry::computeFuelFuelCollisionProb(float energy) {
  * @param ene rgy the energy for a neutron in eV
  * @return the moderator-to-fuel collision probability at that energy
  */
-float Geometry::computeModeratorFuelCollisionProb(float energy) {
-	float p_ff = computeFuelFuelCollisionProb(energy);
+float Geometry::computeModeratorFuelCollisionProb(neutron* neutron) {
+	float energy = neutron->_energy;
+	float p_ff = computeFuelFuelCollisionProb(neutron);
     int index = getEnergyGridIndex(energy);
     float pmf_ratio = _pmf_ratios[index];       // FIXME: Use liner interpolation for more accuracy
     float p_mf = (1.0 - p_ff) * pmf_ratio;

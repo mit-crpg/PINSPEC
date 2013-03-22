@@ -15,7 +15,7 @@
 #include <vector>
 #include "Region.h"
 #include "Fissioner.h"
-#include "Tally.h"
+#include "TallyBank.h"
 #include "Timer.h"
 
 
@@ -26,7 +26,6 @@ typedef enum spatialTypes {
 } spatialType;
 
 
-#ifdef __cplusplus
 class Geometry {
 
 private:
@@ -48,7 +47,7 @@ private:
 	float _alpha1;
 	float _alpha2;
 
-	float _bsquare;
+	float _buckling_squared;
 
     /* Ratio of sigam_f * vol_f / sigma_m * vol_m */
     /* Compute ratios ahead of time as an optimization */
@@ -59,46 +58,10 @@ private:
 	float _end_energy;
 	float _delta_energy;
 
-    std::vector<Tally*> _tallies;
-
-	float getTotalMacroXS(float energy, Region* region);
-	float getTotalMacroXS(int energy_index, Region* region);
-	float getTotalMicroXS(float energy, Region* region);
-	float getTotalMicroXS(int energy_index, Region* region);
-	
-	float getElasticMacroXS(float energy, Region* region);
-	float getElasticMacroXS(int energy_index, Region* region);
-	float getElasticMicroXS(float energy, Region* region);
-	float getElasticMicroXS(int energy_index, Region* region);
-	
-	float getAbsorptionMacroXS(float energy, Region* region);
-	float getAbsorptionMacroXS(int energy_index, Region* region);
-	float getAbsorptionMicroXS(float energy, Region* region);
-	float getAbsorptionMicroXS(int energy_index, Region* region);
-	
-	float getCaptureMacroXS(float energy, Region* region);
-	float getCaptureMacroXS(int energy_index, Region* region);
-	float getCaptureMicroXS(float energy, Region* region);
-	float getCaptureMicroXS(int energy_index, Region* region);
-	
-	float getFissionMacroXS(float energy, Region* region);
-	float getFissionMacroXS(int energy_index, Region* region);
-	float getFissionMicroXS(float energy, Region* region);
-	float getFissionMicroXS(int energy_index, Region* region);
-	
-	float getTransportMicroXS(float energy, Region* region);
-	float getTransportMicroXS(int energy_index, Region* region);
-	float getTransportMacroXS(float energy, Region* region);
-	float getTransportMacroXS(int energy_index, Region* region);
-
-    void tally(neutron* neutron);
-    void initializeBatchTallies();
     void initializeProbModFuelRatios();
-    bool isPrecisionTriggered();
-    void incrementNumBatches(int num_batches);
 	int getEnergyGridIndex(float energy) const;
-    float computeFuelFuelCollisionProb(float energy);
-    float computeModeratorFuelCollisionProb(float energy);
+    float computeFuelFuelCollisionProb(neutron* neutron);
+    float computeModeratorFuelCollisionProb(neutron* neutron);
 
 public:
 	Geometry();
@@ -110,7 +73,7 @@ public:
 	int getNumBatches();
 	int getNumThreads();
 	spatialType getSpatialType();
-	float getBSquare();
+	float getBucklingSquared();
 			
 	/* setters */
 	void setNeutronsPerBatch(int num_neutrons_per_batch);
@@ -119,54 +82,33 @@ public:
 	void setSpatialType(spatialType spatial_type);
 	void setDancoffFactor(float dancoff);
 	void addRegion(Region* region);
-	void addTally(Tally* tally);
-	void setBSquare(float value);
+	void setBucklingSquared(float buckling_squared);
 
 	/* Monte Carlo kernel */
 	void runMonteCarloSimulation();
-    void computeBatchStatistics();
-    void computeScaledBatchStatistics();
-    void outputBatchStatistics(char* directory,  char* suffix);
 };
 
 
 /**
  * This method returns the index for a certain energy (eV) into
- * the uniform energy grid of the Geometry's Pmf ratios
+ * the uniform lethargy grid of the Geometry's Pmf ratios
  * @param energy the energy (eV) of interest
- * @return the index into the uniform energy grid
+ * @return the index into the uniform lethargy grid
  */
 inline int Geometry::getEnergyGridIndex(float energy) const {
 
 	int index;
 
-	if (_spatial_type != HOMOGENEOUS_EQUIVALENCE)
-	    log_printf(ERROR, "Unable to return an index for pmf ratios "
-		       			"since the geometry is not HOMOGENEOUS_EQUIVALENCE"
-						" spatial type");
+	energy = log10(energy);
 
-	if (_scale_type == EQUAL) {
-		if (energy > _end_energy)
-			index = _num_ratios - 1;
-		else if (energy < _start_energy)
-			index = 0;
-		else
-			index = int(floor((energy - _start_energy) / _delta_energy));
-	}
-
-	else if (_scale_type == LOGARITHMIC)
-		energy = log10(energy);
-
-		if (energy > _end_energy)
-			index = _num_ratios - 1;
-		else if (energy < _start_energy)
-			index = 0;
-		else
-			index = int(floor((energy - _start_energy) / _delta_energy));
+	if (energy > _end_energy)
+		index = _num_ratios - 1;
+	else if (energy < _start_energy)
+		index = 0;
+	else
+		index = int(floor((energy - _start_energy) / _delta_energy));
 
 	return index;
 }
-
-#endif
 
 #endif /* GEOMETRY_H_ */

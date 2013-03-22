@@ -3,7 +3,7 @@ from pinspec import *
 import pinspec.SLBW as SLBW
 import pinspec.plotter as plotter
 import pinspec.process as process
-import pinspec.log as log
+from pinspec.log import *
 
 def main():
 
@@ -16,18 +16,18 @@ def main():
     dancoff = 0.277;
     output_dir = 'Equivalence'
 
-    log.setLevel('INFO')
+    setLevel('INFO')
 
     # Call SLBW to create XS
-    # Call SLBW to create XS
-    log.py_printf('INFO', 'Creating SLBW xs')
-    T=300 #Temp in Kelvin of target nucleus
-    SLBW.replaceXS() #To clean previous changes to XS files
-    SLBW.SLBWXS('U-238',T,'capture') #To generate Doppler Broadened Res Cap
+    # Call SLBW to create XS	
+    #log.py_printf('INFO', 'Creating SLBW xs')
+    #T=300 #Temp in Kelvin of target nucleus
+    #SLBW.replaceXS() #To clean previous changes to XS files
+    #SLBW.SLBWXS('U-238',T,'capture') #To generate Doppler Broadened Res Cap
     #SLBW.SLBWXS('U-238',T,'scatter') #To generate Doppler Broadened Res Scat
     #SLBW.generatePotentialScattering('U-238') #To generate flat Res Scat XS
     #SLBW.compareXS('U-238', XStype='scatter', RI='no')
-    SLBW.compareXS('U-238', XStype='capture', RI='no')   
+    #SLBW.compareXS('U-238', XStype='capture', RI='no')   
 
     # Define isotopes
     h1 = Isotope('H-1')
@@ -36,23 +36,21 @@ def main():
     u238 = Isotope('U-238')
     
     # Define moderator material
-    moderator = Material()
-    moderator.setMaterialName('moderator')
+    moderator = Material('moderator')
     moderator.setDensity(1.0, 'g/cc')
     moderator.addIsotope(h1, 2.0)
     moderator.addIsotope(o16, 1.0)
 
-    log.py_printf('INFO', 'Added isotopes to moderator')
+    py_printf('INFO', 'Added isotopes to moderator')
 
     # Define fuel material
-    fuel = Material()
-    fuel.setMaterialName('fuel')
+    fuel = Material('fuel')
     fuel.setDensity(10.0, 'g/cc')
     fuel.addIsotope(u235, 0.03)
     fuel.addIsotope(u238, 0.97)
     fuel.addIsotope(o16, 2.0)
     
-    log.py_printf('INFO', 'Added isotopes to fuel')
+    py_printf('INFO', 'Added isotopes to fuel')
     
     # Define moderator region
     region_mod = Region('moderator', MODERATOR)
@@ -60,7 +58,7 @@ def main():
     region_mod.setFuelRadius(0.4096)
     region_mod.setPitch(1.26)
     
-    log.py_printf('INFO', 'Made moderator region')
+    py_printf('INFO', 'Made moderator region')
     
     # Define fuel region
     region_fuel = Region('fuel', FUEL)
@@ -68,34 +66,36 @@ def main():
     region_fuel.setFuelRadius(0.4096)
     region_fuel.setPitch(1.26)
 
-    log.py_printf('INFO', 'Made fuel region')
-
-    # Create Tallies for the fluxes
-    total_flux = Tally('total flux', GEOMETRY, FLUX)
-    moderator_flux = Tally('moderator flux', REGION, FLUX)
-    fuel_flux = Tally('fuel flux', REGION, FLUX)
-    total_flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
-    moderator_flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
-    fuel_flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
-    region_mod.addTally(moderator_flux)
-    region_fuel.addTally(fuel_flux)
+    py_printf('INFO', 'Made fuel region')
     
     # Define geometry
     geometry = Geometry()
     geometry.setSpatialType(HOMOGENEOUS_EQUIVALENCE)
     geometry.addRegion(region_mod)
     geometry.addRegion(region_fuel)
-    geometry.addTally(total_flux)
     geometry.setNumBatches(num_batches)
     geometry.setNeutronsPerBatch(num_neutrons_per_batch)
     geometry.setNumThreads(num_threads)
     geometry.setDancoffFactor(dancoff)
 
+    # Create Tallies for the fluxes
+    total_flux = TallyFactory.createTally('total flux', geometry, FLUX)
+    moderator_flux = TallyFactory.createTally('moderator flux', region_mod, FLUX)
+    fuel_flux = TallyFactory.createTally('fuel flux', region_fuel, FLUX)
+    total_flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
+    moderator_flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
+    fuel_flux.generateBinEdges(1E-2, 1E7, 2000, LOGARITHMIC)
+
+	# Register tallies
+    TallyBank.registerTally(total_flux, geometry)
+    TallyBank.registerTally(moderator_flux, region_mod)
+    TallyBank.registerTally(fuel_flux, region_fuel)
+
 	# Run Monte Carlo simulation
     geometry.runMonteCarloSimulation();
 
 	# Dump batch statistics to output files to some new directory
-    geometry.outputBatchStatistics(output_dir, 'test')
+    TallyBank.outputBatchStatistics(output_dir, 'test')
 
     # Plotting xs, flux, thermal scattering
     plotter.plotFluxes([total_flux, moderator_flux, fuel_flux], output_dir)

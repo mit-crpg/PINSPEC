@@ -13,7 +13,6 @@
 #ifdef __cplusplus
 #include <limits>
 #include <math.h>
-#endif
 #include "log.h"
 #include "arraycreator.h"
 #include "Neutron.h"
@@ -21,6 +20,7 @@
 #include "Isotope.h"
 #include "Region.h"
 
+class Geometry;
 
 
 /* The domain in which this tally resides */
@@ -46,16 +46,23 @@ typedef enum triggerTypes {
 /* Type of tallies */
 typedef enum tallyTypes {
 	FLUX,
+	LEAKAGE_RATE,
 	COLLISION_RATE,
 	ELASTIC_RATE,
 	ABSORPTION_RATE,
 	CAPTURE_RATE,
 	FISSION_RATE,
-	// transport or diffusion? 
 	TRANSPORT_RATE,
-	DIFFUSION_RATE,
-	LEAKAGE_RATE
+	DIFFUSION_RATE
 } tallyType;
+
+
+/* Tally spacing types */
+typedef enum binSpacingTypes {
+	EQUAL,
+	LOGARITHMIC,
+	OTHER
+} binSpacingType;
 
 
 /**
@@ -64,10 +71,9 @@ typedef enum tallyTypes {
  * holds the edges, the centers between bins. It also allows 
  * for tallies to be made within each bin.
  */
-#ifdef __cplusplus
 class Tally{
 
-private:
+protected:
 	char* _tally_name;
 	int _num_bins;
 	double* _edges;
@@ -80,10 +86,6 @@ private:
     triggerType _trigger_type;
     float _trigger_precision;
 
-    Material* _material;
-    Isotope* _isotope;
-    Region* _region;
-
 	int _num_batches;
 	double* _batch_mu;
 	double* _batch_variance;
@@ -91,14 +93,8 @@ private:
 	double* _batch_rel_err;
 	bool _computed_statistics;
 
-    double getMaxVariance();
-    double getMaxStdDev();
-    double getMaxRelErr();
-
 public:
-	Tally(char* tally_name, Isotope* isotope, tallyType tally_type);
-	Tally(char* tally_name, Material* material, tallyType tally_type);
-	Tally(char* tally_name, Region* region, tallyType tally_type);
+	Tally(char* tally_name);
 	virtual ~Tally();
 	char* getTallyName();
 	int getNumBins();
@@ -114,6 +110,10 @@ public:
 	double getMaxTally();
 	double getMinTally();
 	int getBinIndex(double sample);
+
+    double getMaxVariance();
+    double getMaxStdDev();
+    double getMaxRelErr();
 
     /* IMPORTANT: The following five class method prototypes must not be changed
      * without changing Geometry.i to allow for the data arrays to be transformed
@@ -134,24 +134,495 @@ public:
     void setBinSpacingType(binSpacingType type);
 	void setBinEdges(double* edges, int num_edges);
     void setPrecisionTrigger(triggerType trigger_type, float precision);
-
 	void generateBinEdges(double start, double end, int num_bins, 
 											binSpacingType type);
+	void generateBinCenters();
+
 	void setNumBatches(int num_batches);
     void incrementNumBatches(int num_batches);
     bool isPrecisionTriggered();
-	Tally* clone();
 
-	void generateBinCenters();
-
-	void tally(double* samples, int num_samples, int batch_num);
-	void tally(double sample, int batch_num);
-	void weightedTally(neutron* neutron);
-	void normalizeTallies();
-	void normalizeTallies(double scale_factor);
 	void computeBatchStatistics();
 	void computeScaledBatchStatistics(double scale_factor);
 	void outputBatchStatistics(const char* filename);
+
+	void tally(neutron* neutron, double weight);
+	virtual void tally(neutron* neutron) =0;
+//	virtual Tally* clone() =0;
+};
+
+
+class IsotopeTally: public Tally {
+
+protected:
+    Isotope* _isotope;
+public:
+	IsotopeTally(char* tally_name, Isotope* isotope)
+			: Tally(tally_name){ 
+				_tally_domain = ISOTOPE;
+				_isotope = isotope; 
+			}
+	Isotope* getIsotope() { return _isotope; }
+	virtual void tally(neutron* neutron) =0;
+};
+
+
+class MaterialTally: public Tally {
+
+protected:
+    Material* _material;
+public:
+	MaterialTally(char* tally_name, Material* material)
+			: Tally(tally_name) { 
+				_tally_domain = MATERIAL;
+				_material = material; 
+			}
+	Material* getMaterial() { return _material; }
+	virtual void tally(neutron* neutron) =0;
+};
+
+
+class RegionTally: public Tally {
+
+protected:
+    Region* _region;
+public:
+	RegionTally(char* tally_name, Region* region)
+			: Tally(tally_name) { 
+				_tally_domain = REGION;
+				_region = region; 
+			}
+	Region* getRegion() { return _region; }
+	virtual void tally(neutron* neutron) =0;
+};
+
+
+class GeometryTally: public Tally {
+
+protected:
+	Geometry* _geometry;
+public:
+	GeometryTally(char* tally_name, Geometry* geometry)
+			: Tally(tally_name) {
+				_tally_domain = GEOMETRY;
+				_geometry = geometry;
+			}
+	Geometry* getGeometry() { return _geometry; }
+	virtual void tally(neutron* neutron) =0;
+};
+
+
+/******************************************************************************/
+/*************************** Collision Rate Tallies ***************************/
+/******************************************************************************/
+
+class IsotopeCollisionRateTally: public IsotopeTally {
+
+public:
+	IsotopeCollisionRateTally(char* tally_name, Isotope* isotope)
+			: IsotopeTally(tally_name, isotope){
+ 				_tally_type = COLLISION_RATE; 
+			}
+	void tally(neutron* neutron);
+};
+
+
+class MaterialCollisionRateTally: public MaterialTally {
+
+public:
+	MaterialCollisionRateTally(char* tally_name, Material* material)
+			: MaterialTally(tally_name, material){
+ 				_tally_type = COLLISION_RATE; 
+			}
+	void tally(neutron* neutron);
+};
+
+
+
+class RegionCollisionRateTally: public RegionTally {
+
+public:
+	RegionCollisionRateTally(char* tally_name, Region* region)
+			: RegionTally(tally_name, region){
+ 				_tally_type = COLLISION_RATE; 
+			}
+	void tally(neutron* neutron);
+};
+
+
+
+class GeometryCollisionRateTally: public GeometryTally {
+
+public:
+	GeometryCollisionRateTally(char* tally_name, Geometry* geometry)
+			: GeometryTally(tally_name, geometry){
+ 				_tally_type = COLLISION_RATE; 
+			}
+	void tally(neutron* neutron);
+};
+
+
+
+/******************************************************************************/
+/**************************** Elastic Rate Tallies ****************************/
+/******************************************************************************/
+//FIXME - implement scattering matrix and override most Tally methods
+
+class IsotopeElasticRateTally: public IsotopeTally {
+
+public:
+	IsotopeElasticRateTally(char* tally_name, Isotope* isotope)
+			: IsotopeTally(tally_name, isotope){
+				_tally_type = ELASTIC_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class MaterialElasticRateTally: public MaterialTally {
+
+public:
+	MaterialElasticRateTally(char* tally_name, Material* material)
+			: MaterialTally(tally_name, material){
+				_tally_type = ELASTIC_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class RegionElasticRateTally: public RegionTally {
+
+public:
+	RegionElasticRateTally(char* tally_name, Region* region)
+			: RegionTally(tally_name, region){
+				_tally_type = ELASTIC_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class GeometryElasticRateTally: public GeometryTally {
+
+public:
+	GeometryElasticRateTally(char* tally_name, Geometry* geometry)
+			: GeometryTally(tally_name, geometry){
+				_tally_type = ELASTIC_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+/******************************************************************************/
+/************************** Absorption Rate Tallies ***************************/
+/******************************************************************************/
+
+class IsotopeAbsorptionRateTally: public IsotopeTally {
+
+public:
+	IsotopeAbsorptionRateTally(char* tally_name, Isotope* isotope)
+			: IsotopeTally(tally_name, isotope) {
+				_tally_type = ABSORPTION_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class MaterialAbsorptionRateTally: public MaterialTally {
+
+public:
+	MaterialAbsorptionRateTally(char* tally_name, Material* material)
+			: MaterialTally(tally_name, material) {
+				_tally_type = ABSORPTION_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class RegionAbsorptionRateTally: public RegionTally {
+
+public:
+	RegionAbsorptionRateTally(char* tally_name, Region* region)
+			: RegionTally(tally_name, region) {
+				_tally_type = ABSORPTION_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class GeometryAbsorptionRateTally: public GeometryTally {
+
+public:
+	GeometryAbsorptionRateTally(char* tally_name, Geometry* geometry)
+			: GeometryTally(tally_name, geometry) {
+				_tally_type = ABSORPTION_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+/******************************************************************************/
+/**************************** Capture Rate Tallies ****************************/
+/******************************************************************************/
+
+class IsotopeCaptureRateTally: public IsotopeTally {
+
+public:
+	IsotopeCaptureRateTally(char* tally_name, Isotope* isotope)
+			: IsotopeTally(tally_name, isotope) {
+				_tally_type = CAPTURE_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class MaterialCaptureRateTally: public MaterialTally {
+
+public:
+	MaterialCaptureRateTally(char* tally_name, Material* material)
+			: MaterialTally(tally_name, material) {
+				_tally_type = CAPTURE_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class RegionCaptureRateTally: public RegionTally {
+
+public:
+	RegionCaptureRateTally(char* tally_name, Region* region)
+			: RegionTally(tally_name, region) {
+				_tally_type = CAPTURE_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class GeometryCaptureRateTally: public GeometryTally {
+
+public:
+	GeometryCaptureRateTally(char* tally_name, Geometry* geometry)
+			: GeometryTally(tally_name, geometry) {
+				_tally_type = CAPTURE_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+/******************************************************************************/
+/*************************** Fission Rate Tallies *****************************/
+/******************************************************************************/
+
+class IsotopeFissionRateTally: public IsotopeTally {
+
+public:
+	IsotopeFissionRateTally(char* tally_name, Isotope* isotope)
+			: IsotopeTally(tally_name, isotope) {
+				_tally_type = FISSION_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class MaterialFissionRateTally: public MaterialTally {
+
+public:
+	MaterialFissionRateTally(char* tally_name, Material* material)
+			: MaterialTally(tally_name, material) {
+				_tally_type = FISSION_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class RegionFissionRateTally: public RegionTally {
+
+public:
+	RegionFissionRateTally(char* tally_name, Region* region)
+			: RegionTally(tally_name, region) {
+				_tally_type = FISSION_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class GeometryFissionRateTally: public GeometryTally {
+
+public:
+	GeometryFissionRateTally(char* tally_name, Geometry* geometry)
+			: GeometryTally(tally_name, geometry) {
+				_tally_type = FISSION_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+/******************************************************************************/
+/************************** Transport Rate Tallies ****************************/
+/******************************************************************************/
+
+class IsotopeTransportRateTally: public IsotopeTally {
+
+public:
+	IsotopeTransportRateTally(char* tally_name, Isotope* isotope)
+			: IsotopeTally(tally_name, isotope) {
+				_tally_type = TRANSPORT_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class MaterialTransportRateTally: public MaterialTally {
+
+public:
+	MaterialTransportRateTally(char* tally_name, Material* material)
+			: MaterialTally(tally_name, material) {
+				_tally_type = TRANSPORT_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class RegionTransportRateTally: public RegionTally {
+
+public:
+	RegionTransportRateTally(char* tally_name, Region* region)
+			: RegionTally(tally_name, region) {
+				_tally_type = TRANSPORT_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class GeometryTransportRateTally: public GeometryTally {
+
+public:
+	GeometryTransportRateTally(char* tally_name, Geometry* geometry) 
+			: GeometryTally(tally_name, geometry) {
+				_tally_type = TRANSPORT_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+/******************************************************************************/
+/************************** Diffusion Rate Tallies ****************************/
+/******************************************************************************/
+
+class IsotopeDiffusionRateTally: public IsotopeTally {
+
+public:
+	IsotopeDiffusionRateTally(char* tally_name, Isotope* isotope)
+			: IsotopeTally(tally_name, isotope) {
+				_tally_type = DIFFUSION_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class MaterialDiffusionRateTally: public MaterialTally {
+
+public:
+	MaterialDiffusionRateTally(char* tally_name, Material* material)
+			: MaterialTally(tally_name, material) {
+				_tally_type = DIFFUSION_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class RegionDiffusionRateTally: public RegionTally {
+
+public:
+	RegionDiffusionRateTally(char* tally_name, Region* region)
+			: RegionTally(tally_name, region) {
+				_tally_type = DIFFUSION_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class GeometryDiffusionRateTally: public GeometryTally {
+
+public:
+	GeometryDiffusionRateTally(char* tally_name, Geometry* geometry)
+			: GeometryTally(tally_name, geometry) {
+				_tally_type = DIFFUSION_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+/******************************************************************************/
+/*************************** Leakage Rate Tallies *****************************/
+/******************************************************************************/
+//FIXME
+
+class MaterialLeakageRateTally: public MaterialTally {
+
+public:
+	MaterialLeakageRateTally(char* tally_name, Material* material)
+			: MaterialTally(tally_name, material) {
+				_tally_type = LEAKAGE_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class RegionLeakageRateTally: public RegionTally {
+
+public:
+	RegionLeakageRateTally(char* tally_name, Region* region)
+			: RegionTally(tally_name, region) {
+				_tally_type = LEAKAGE_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+class GeometryLeakageRateTally: public GeometryTally {
+
+public:
+	GeometryLeakageRateTally(char* tally_name, Geometry* geometry)
+			: GeometryTally(tally_name, geometry) {
+				_tally_type = LEAKAGE_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+/******************************************************************************/
+/****************************** Flux Tallies **********************************/
+/******************************************************************************/
+
+class MaterialFluxTally: public MaterialTally {
+
+public:
+	MaterialFluxTally(char* tally_name, Material* material)
+			: MaterialTally(tally_name, material) {
+				_tally_type = FLUX;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class RegionFluxTally: public RegionTally {
+
+public:
+	RegionFluxTally(char* tally_name, Region* region)
+			: RegionTally(tally_name, region) {
+				_tally_type = FLUX;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class GeometryFluxTally: public GeometryTally {
+
+public:
+	GeometryFluxTally(char* tally_name, Geometry* geometry)
+			: GeometryTally(tally_name, geometry) {
+				_tally_type = FLUX;
+			}
+	void tally(neutron* neutron);
 };
 
 
@@ -183,17 +654,9 @@ inline int Tally::getBinIndex(double sample) {
 		index = int((log10(sample) - log10(_edges[0])) / _bin_delta);
 
 	/* If the bin_type == OTHER then the bin edges were not generated by
-	 * generateEqualBinEdges, so use a brute force search to find the bin */
-	else {
-
-		/* Loop over all bin edges to find the correct bin index */
-		for (int i=0; i <= _num_bins; i++) {
-			if (sample >= _edges[i] && sample < _edges[i+1]) {
-				index = i;
-				break;
-			}
-		}
-	}
+	 * generateEqualBinEdges, so use a binary search to find the bin */
+	else
+		index = findUpperIndex(_edges, _num_bins, 0, sample) - 1;
 
 	/* If this sample was not contained within a bin set index to infinity*/
 	if (index > _num_bins)

@@ -13,55 +13,10 @@
 /**
  * Default Tally constructor
  */
-Tally::Tally(char* tally_name, Isotope* isotope, tallyType tally_type) {
+Tally::Tally(char* tally_name) {
 
 	_tally_name = tally_name;
-    _tally_domain = ISOTOPE;
-    _tally_type = tally_type;
     _trigger_type = NONE;
-    _isotope = isotope;
-
-	 /* Sets the default delta between bins to zero */
-	_bin_delta = 0;
-
-	/* Sets the default for batch statistics */
-	_num_batches = 0;
-    _num_bins = 0;
-	_computed_statistics = false;
-}
-
-
-/**
- * Default Tally constructor
- */
-Tally::Tally(char* tally_name, Material* material, tallyType tally_type) {
-
-	_tally_name = tally_name;
-    _tally_domain = MATERIAL;
-    _tally_type = tally_type;
-    _trigger_type = NONE;
-    _material = material;
-
-	 /* Sets the default delta between bins to zero */
-	_bin_delta = 0;
-
-	/* Sets the default for batch statistics */
-	_num_batches = 0;
-    _num_bins = 0;
-	_computed_statistics = false;
-}
-
-
-/**
- * Default Tally constructor
- */
-Tally::Tally(char* tally_name, Region* region, tallyType tally_type) {
-
-	_tally_name = tally_name;
-    _tally_domain = REGION;
-    _tally_type = tally_type;
-    _trigger_type = NONE;
-    _region = region;
 
 	 /* Sets the default delta between bins to zero */
 	_bin_delta = 0;
@@ -131,7 +86,7 @@ double* Tally::getBinEdges() {
 double* Tally::getBinCenters() {
 	 if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot return bin centers for Tally %s since the "
-				 "bins have not yet been created", _tally_name);
+				 "centers have not yet been created", _tally_name);
 
 	 return _centers;
 }
@@ -180,8 +135,9 @@ tallyDomainType Tally::getTallyDomainType() {
 	return _tally_domain;
 }
 
+
 /**
- * Returns the type of tally for these bins (FLUX, COLLISION_RATE, ABSORPTION_RATE, etc)
+ * Returns the type of tally for these bins (FLUX, COLLISION_RATE, etc)
  * @return the tally type
  */
 tallyType Tally::getTallyType() {
@@ -211,12 +167,12 @@ double Tally::getTally(int batch_num, int bin_index) {
 
 	if (bin_index < 0 || bin_index >= _num_bins)
 		log_printf(ERROR, "Tried to get a tally for a bin index for Tally %s"
-				"which does not exist: %d, num_bins = %d", _tally_name, bin_index,
-				_num_bins);
+				"which does not exist: %d, num_bins = %d", 
+						_tally_name, bin_index, _num_bins);
 	if (batch_num < 0 || batch_num >= _num_batches)
 		log_printf(ERROR, "Tried to get a tally for a batch for Tally %s"
-				"which does not exist: %d, num_batches = %d", _tally_name, batch_num,
-				_num_batches);
+				"which does not exist: %d, num_batches = %d", 
+						_tally_name, batch_num, _num_batches);
 
 	return _tallies[batch_num][bin_index];
 }
@@ -390,8 +346,8 @@ bool Tally::isPrecisionTriggered() {
             }
             else {
                 log_printf(INFO, "Tally %s triggered ("
-                            "variance < %1.1E) with a current variance of %1.1E",
-                            _tally_name, _trigger_precision, getMaxVariance());       
+                          "variance < %1.1E) with a current variance of %1.1E",
+                          _tally_name, _trigger_precision, getMaxVariance());
                 return true;
             }
         }
@@ -415,7 +371,7 @@ bool Tally::isPrecisionTriggered() {
             else {
                 log_printf(INFO, "Tally %s triggered ("
                             "rel. err. < %1.1E) with max rel. err. = %1.1E",
-                            _tally_name, _trigger_precision, getMaxRelErr());       
+                            _tally_name, _trigger_precision, getMaxRelErr());   
                 return true;
             }
         }
@@ -452,7 +408,7 @@ void Tally::retrieveTallyMu(double* data, int num_bins) {
 
     if (!_computed_statistics)
         log_printf(ERROR, "Unable to retrieve tally mu for Tally %s since"
-                      " it has not yet computed batch statistics", _tally_name);
+                    " it has not yet computed batch statistics", _tally_name);
     if (_num_batches == 0)
         log_printf(ERROR, "Unable to retrieve tally mu for Tally %s since it"
               " does not know how many batches it should tally", _tally_name);
@@ -465,11 +421,13 @@ void Tally::retrieveTallyMu(double* data, int num_bins) {
 void Tally::retrieveTallyVariance(double* data, int num_bins) {
 
     if (!_computed_statistics)
-        log_printf(ERROR, "Unable to retrieve tally variances for Tally %s since"
-                      " it has not yet computed batch statistics", _tally_name);
+        log_printf(ERROR, "Unable to retrieve tally variances for Tally %s "
+						"since it has not yet computed batch statistics", 
+																_tally_name);
     if (_num_batches == 0)
-        log_printf(ERROR, "Unable to retrieve tally variance for Tally %s since it"
-              " does not know how many batches it should tally", _tally_name);
+        log_printf(ERROR, "Unable to retrieve tally variances for Tally %s "
+						"since it does not know how many batches it should"
+						" tally", _tally_name);
 
     /* Load all tally variances into array */
     for (int i=0; i < _num_bins; i++)
@@ -480,11 +438,12 @@ void Tally::retrieveTallyVariance(double* data, int num_bins) {
 void Tally::retrieveTallyStdDev(double* data, int num_bins) {
 
     if (!_computed_statistics)
-        log_printf(ERROR, "Unable to retrieve tally std. dev. for Tally %s since"
-                      " it has not yet computed batch statistics", _tally_name);
+        log_printf(ERROR, "Unable to retrieve tally std. dev. for Tally %s "
+			"since it has not yet computed batch statistics", _tally_name);
     if (_num_batches == 0)
-        log_printf(ERROR, "Unable to retrieve tally std. dev. for Tally %s since it"
-              " does not know how many batches it should tally", _tally_name);
+        log_printf(ERROR, "Unable to retrieve tally std. dev. for Tally %s "
+			"since it does not know how many batches it should tally", 
+																_tally_name);
 
     /* Load all tally standard deviations into array */
     for (int i=0; i < _num_bins; i++)
@@ -495,11 +454,12 @@ void Tally::retrieveTallyStdDev(double* data, int num_bins) {
 void Tally::retrieveTallyRelErr(double* data, int num_bins) {
 
     if (!_computed_statistics)
-        log_printf(ERROR, "Unable to retrieve tally rel. err. for Tally %s since"
-                      " it has not yet computed batch statistics", _tally_name);
+        log_printf(ERROR, "Unable to retrieve tally rel. err. for Tally %s "
+			"since it has not yet computed batch statistics", _tally_name);
     if (_num_batches == 0)
-        log_printf(ERROR, "Unable to retrieve tally rel. err. for Tally %s since it"
-              " does not know how many batches it should tally", _tally_name);
+        log_printf(ERROR, "Unable to retrieve tally rel. err. for Tally %s "	
+			"since it does not know how many batches it should tally", 
+																_tally_name);
 
     /* Load all tally variances into array */
     for (int i=0; i < _num_bins; i++)
@@ -538,6 +498,11 @@ void Tally::setBinEdges(double* edges, int num_edges) {
 
 
 void Tally::setPrecisionTrigger(triggerType trigger_type, float precision) {
+
+	if (precision < 0.0)
+		log_printf(ERROR, "Unable to set a negative trigger precision of %f"
+					" for tally %s", precision, _tally_name);
+
     _trigger_type = trigger_type;
     _trigger_precision = precision;
     return;
@@ -590,48 +555,6 @@ void Tally::incrementNumBatches(int num_batches) {
     }
     
     _tallies = new_tallies;
-}
-
-
-/**
- * This method clones a given Tally class object by executing a deep
- * copy of all of the Tally's class attributes and giving them to a new
- * Tally class object
- * @return a pointer to the new cloned Tally class object
- */
-Tally* Tally::clone() {
-
-	Tally* new_clone;
-
-	/* Allocate memory for the clone */
-	switch(_tally_domain){
-	case MATERIAL:
-		new_clone = new Tally(_tally_name, _material, _tally_type);
-		break;
-	case ISOTOPE:
-		new_clone = new Tally(_tally_name, _isotope, _tally_type);
-		break;
-	case REGION:
-		new_clone = new Tally(_tally_name, _region, _tally_type);
-		break;
-	}
-
-    new_clone->setBinSpacingType(_bin_spacing);
-    new_clone->setNumBatches(_num_batches);
-
-    /* If the bins are regularly spaced, re-generate them for the new Tally */
-    if (_bin_spacing == EQUAL || _bin_spacing == LOGARITHMIC)
-        new_clone->generateBinEdges(_edges[0], _edges[_num_bins], 
-                                    _num_bins, _bin_spacing);
-    /* If the bins are not regularly spaced, deep copy them to the new Tally */
-    else {
-        double* edges = new double[_num_bins+1];
-        memcpy(edges, _edges, _num_bins * sizeof(double));
-        new_clone->setBinEdges(edges, _num_bins);
-    }
-
-	/* Return a pointer to the cloned Isotope class */
-	return new_clone;
 }
 
 
@@ -699,63 +622,11 @@ void Tally::generateBinCenters() {
 
 
 /**
- * Tallies unity for each sample in a double array of samples
- * @param samples array of samples to tally
- * @param num_samples the number of samples to tally
- * @param batch_num the batch number for this sample
- */
-void Tally::tally(double* samples, int num_samples, int batch_num) {
-
-	if (_num_bins == 0)
-		 log_printf(ERROR, "Cannot tally samples in Tally %s since the "
-				 "bins have not yet been created", _tally_name);
-	if (_num_batches == 0)
-		 log_printf(ERROR, "Cannot tally samples in Tally %s since "
-				 "batches have not yet been created", _tally_name);
-
-	int bin_index;
-
-	/* Loop over and tally all samples */
-	for (int i=0; i < num_samples; i++) {
-		bin_index = getBinIndex(samples[i]);
-		if (bin_index >= 0 && bin_index < _num_bins)
-			_tallies[batch_num][bin_index]++;
-	}
-
-	return;
-}
-
-
-/**
- * Tallies unity for a sample
- * @param samples array of samples to tally
- * @param batch_num the batch number for this sample
- */
-void Tally::tally(double sample, int batch_num) {
-
-	if (_num_bins == 0)
-		 log_printf(ERROR, "Cannot tally sample in Tally %s since "
-				 "the bins have not yet been created", _tally_name);
-	if (_num_batches == 0)
-		 log_printf(ERROR, "Cannot tally samples in Tally %s since "
-				 "batches have not yet been created", _tally_name);
-
-	int bin_index = getBinIndex(sample);
-
-	if (bin_index >= 0 && bin_index < _num_bins)
-		_tallies[batch_num][bin_index]++;
-
-	return;
-}
-
-
-/**
  * Tallies a weight for a sample
- * @param sample a sample to tally
+ * @param neutron the neutron we are tallying
  * @param weight the weight to increment tally by
- * @param batch_num the batch number for this sample
  */
-void Tally::weightedTally(neutron* neutron) {
+void Tally::tally(neutron* neutron, double weight) {
 
 	if (_num_bins == 0)
 		 log_printf(ERROR, "Cannot tally weighted sample in Tally %s since "
@@ -764,157 +635,10 @@ void Tally::weightedTally(neutron* neutron) {
 		 log_printf(ERROR, "Cannot tally samples in Tally %s since "
 				 "batches have not yet been created", _tally_name);
 
-
-	float total_xs = neutron->_region->getTotalMicroXS(neutron->_energy);
-	float energy = neutron->_energy;
-	int bin_index = getBinIndex(energy);
-	double weight;
-
-	switch(_tally_domain){
-	case MATERIAL:
-		switch(_tally_type){
-		case FLUX:
-			weight = 1.0 / total_xs;
-			break;
-		case COLLISION_RATE:
-			weight = 1.0;
-			break;
-		case ELASTIC_RATE:
-			weight = _material->getElasticMicroXS(energy) / total_xs;
-			break;
-		case ABSORPTION_RATE:
-			weight = _material->getAbsorptionMicroXS(energy) / total_xs;
-			break;
-		case CAPTURE_RATE:
-			weight = _material->getCaptureMicroXS(energy) / total_xs;
-			break;
-		case FISSION_RATE:
-			weight = _material->getFissionMicroXS(energy) / total_xs;
-			break;
-		case TRANSPORT_RATE:
-			weight = _material->getTransportMicroXS(energy) / total_xs;
-			break;
-		case DIFFUSION_RATE:
-			weight = 1.0 / (3.0 * _material->getTransportMicroXS(energy))  / total_xs;
-			break;
-		case LEAKAGE_RATE:
-			weight = 1.0;
-			break;
-		}
-		break;
-	case ISOTOPE:
-		switch(_tally_type){
-		case FLUX:
-			weight = 1.0 / total_xs;
-			break;
-		case COLLISION_RATE:
-			weight = 1.0;
-			break;
-		case ELASTIC_RATE:
-			weight = _isotope->getElasticXS(energy) / total_xs;
-			break;
-		case ABSORPTION_RATE:
-			weight = _isotope->getAbsorptionXS(energy) / total_xs;
-			break;
-		case CAPTURE_RATE:
-			weight = _isotope->getCaptureXS(energy) / total_xs;
-			break;
-		case FISSION_RATE:
-			weight = _isotope->getFissionXS(energy) / total_xs;
-			break;
-		case TRANSPORT_RATE:
-			weight = _isotope->getTransportXS(energy) / total_xs;
-			break;
-		case DIFFUSION_RATE:
-			weight = 1.0 / (3.0 * _isotope->getTransportXS(energy))  / total_xs;
-			break;
-		case LEAKAGE_RATE:
-			weight = 1.0;
-			break;
-		}
-		break;
-	case REGION:
-		switch(_tally_type){
-		case FLUX:
-			weight = 1.0 / total_xs;
-			break;
-		case COLLISION_RATE:
-			weight = 1.0;
-			break;
-		case ELASTIC_RATE:
-			weight = _region->getElasticMicroXS(energy) / total_xs;
-			break;
-		case ABSORPTION_RATE:
-			weight = _region->getAbsorptionMicroXS(energy) / total_xs;
-			break;
-		case CAPTURE_RATE:
-			weight = _region->getCaptureMicroXS(energy) / total_xs;
-			break;
-		case FISSION_RATE:
-			weight = _region->getFissionMicroXS(energy) / total_xs;
-			break;
-		case TRANSPORT_RATE:
-			weight = _region->getTransportMicroXS(energy) / total_xs;
-			break;
-		case DIFFUSION_RATE:
-			weight = 1.0 / (3.0 * _region->getTransportMicroXS(energy))  / total_xs;
-			break;
-		case LEAKAGE_RATE:
-			weight = 1.0;
-			break;
-		}
-		break;
-	}
+	int bin_index = getBinIndex(neutron->_old_energy);
 
 	if (bin_index >= 0 && bin_index < _num_bins) 
-		_tallies[neutron->_batch_num][bin_index] += double(weight);
-
-	return;
-}
-
-
-/**
- * Divide each tally by the maximum tally value
- */
-void Tally::normalizeTallies() {
-
-	if (_num_bins == 0)
-		log_printf(ERROR, "Cannot normalize tallies for Tally %s since it is"
-						"the bins have not yet been created", _tally_name);
-	if (_num_batches == 0)
-		 log_printf(ERROR, "Cannot normalize tallies for Tally %s since "
-				 "batches have not yet been created", _tally_name);
-
-	double max_tally = getMaxTally();
-
-	/* Divide each tally by maximum tally value */
-	for (int i=0; i < _num_batches; i++) {
-		for (int j=0; j < _num_bins; j++)
-			_tallies[i][j] /= max_tally;
-	}
-
-	return;
-}
-
-
-/**
- * Divide each tally by a given scaling factor
- * @param scale_factor factor to normalize tallies by
- */
-void Tally::normalizeTallies(double scale_factor) {
-
-	if (_num_bins == 0)
-		log_printf(ERROR, "Cannot normalize tallies for Tally %s since it is"
-						"the bins have not yet been created", _tally_name);
-	if (_num_batches == 0)
-		 log_printf(ERROR, "Cannot normalize tallies for Tally %s since "
-				 "batches have not yet been created", _tally_name);
-
-	/* Divide each tally by maximum tally value */
-	for (int i=0; i < _num_batches; i++) {
-		for (int j=0; j < _num_bins; j++)
-		_tallies[i][j] /= double(scale_factor);
-	}
+		_tallies[neutron->_batch_num][bin_index] += weight;
 
 	return;
 }
@@ -928,7 +652,7 @@ void Tally::computeBatchStatistics() {
 
 	if (_num_batches == 0)
 		log_printf(ERROR, "Cannot compute batch statistics for Tally %s"
-				" since it has  have not yet been generated", _tally_name);
+			" since the number of batches has not been set yet", _tally_name);
 
 	double s1 = 0.0;
 	double s2 = 0.0;
@@ -978,7 +702,7 @@ void Tally::computeScaledBatchStatistics(double scale_factor) {
 
 	if (_num_batches == 0)
 		 log_printf(ERROR, "Cannot compute batch statistics for Tally %s since"
-				 " batches have not yet been created", _tally_name);
+				 " then number of batches has not yet been set", _tally_name);
 
 	double s1 = 0.0;
 	double s2 = 0.0;
@@ -1046,15 +770,16 @@ void Tally::outputBatchStatistics(const char* filename) {
 	else if (_tally_type == FLUX)
 		fprintf(output_file, "Tally type: Flux\n");
 	else if (_tally_type == ELASTIC_RATE)
-		fprintf(output_file, "Tally type: MICRO_ELASTIC_RATE Scattering Reaction Rate\n");
+		fprintf(output_file, "Tally type: ELASTIC_RATE Scattering Reaction"
+																" Rate\n");
 	else if (_tally_type == ABSORPTION_RATE)
-		fprintf(output_file, "Tally type: MICRO_ABSORPTION_RATE Reaction Rate\n");
+		fprintf(output_file, "Tally type: ABSORPTION_RATE Reaction Rate\n");
 	else if (_tally_type == CAPTURE_RATE)
-		fprintf(output_file, "Tally type: MICRO_CAPTURE_RATE Reaction Rate\n");
+		fprintf(output_file, "Tally type: CAPTURE_RATE Reaction Rate\n");
 	else if (_tally_type == FISSION_RATE)
-		fprintf(output_file, "Tally type: MICRO_FISSION_RATE Reaction Rate\n");
+		fprintf(output_file, "Tally type: FISSION_RATE Reaction Rate\n");
 	else if (_tally_type == TRANSPORT_RATE)
-		fprintf(output_file, "Tally type: MICRO_TRANSPORT_RATE Reaction Rate\n");
+		fprintf(output_file, "Tally type: TRANSPORT_RATE Reaction Rate\n");
 	else if (_tally_type == DIFFUSION_RATE)
 		fprintf(output_file, "Tally type: DIFFUSION_RATE Reaction Rate\n");
 	else if (_tally_type == LEAKAGE_RATE)
@@ -1066,9 +791,13 @@ void Tally::outputBatchStatistics(const char* filename) {
 		fprintf(output_file, "Tally Domain: Material\n");
 	else if (_tally_domain == REGION)
 		fprintf(output_file, "Tally Domain: Region\n");
+	else
+		fprintf(output_file, "Tally Domain: Geometry\n");
+
 
 	if (_bin_spacing == EQUAL)
-		fprintf(output_file, "Equally spaced bins with width = %d\n", _bin_spacing);
+		fprintf(output_file, "Equally spaced bins with width = %d\n", 
+														_bin_spacing);
 	else if (_bin_spacing == LOGARITHMIC)
 		fprintf(output_file, "Logarithmically spaced bins\n");
 	else if (_bin_spacing == OTHER)
@@ -1087,5 +816,299 @@ void Tally::outputBatchStatistics(const char* filename) {
 
 	fclose(output_file);
 
+	return;
+}
+
+
+/******************************************************************************/
+/*********************** Collision Rate Tallying Methods **********************/
+/******************************************************************************/
+
+void IsotopeCollisionRateTally::tally(neutron* neutron) {
+	Tally::tally(neutron, 1.0);
+	return;
+}
+
+
+void MaterialCollisionRateTally::tally(neutron* neutron) {
+	Tally::tally(neutron, 1.0);
+	return;
+}
+
+
+void RegionCollisionRateTally::tally(neutron* neutron) {
+	Tally::tally(neutron, 1.0);
+	return;
+}
+
+
+void GeometryCollisionRateTally::tally(neutron* neutron) {
+	Tally::tally(neutron, 1.0);
+	return;
+}
+
+/******************************************************************************/
+/************************ Elastic Rate Tallying Methods ***********************/
+/******************************************************************************/
+//FIXME
+
+void IsotopeElasticRateTally::tally(neutron* neutron) {
+	double weight = _isotope->getElasticXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void MaterialElasticRateTally::tally(neutron* neutron) {
+	double weight = _material->getElasticMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void RegionElasticRateTally::tally(neutron* neutron) {
+	double weight = _region->getElasticMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void GeometryElasticRateTally::tally(neutron* neutron) {
+	double weight = neutron->_region->getElasticMicroXS(neutron->_old_energy)
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+/******************************************************************************/
+/********************** Absorption Rate Tallying Methods **********************/
+/******************************************************************************/
+
+void IsotopeAbsorptionRateTally::tally(neutron* neutron) {
+	double weight = _isotope->getAbsorptionXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+//	log_printf(NORMAL, "Tallied %f for neutron old energy %f with total xs %f for isotope %s absorption rate", weight, neutron->_old_energy, neutron->_total_xs, _tally_name);
+	return;
+}
+
+
+void MaterialAbsorptionRateTally::tally(neutron* neutron) {
+	double weight = _material->getAbsorptionMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void RegionAbsorptionRateTally::tally(neutron* neutron) {
+	double weight = _region->getAbsorptionMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void GeometryAbsorptionRateTally::tally(neutron* neutron) {
+	double weight = neutron->_region->getAbsorptionMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+/******************************************************************************/
+/************************ Capture Rate Tallying Methods ***********************/
+/******************************************************************************/
+
+void IsotopeCaptureRateTally::tally(neutron* neutron) {
+	double weight = _isotope->getCaptureXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void MaterialCaptureRateTally::tally(neutron* neutron) {
+	double weight = _material->getCaptureMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void RegionCaptureRateTally::tally(neutron* neutron) {
+	double weight = _region->getCaptureMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void GeometryCaptureRateTally::tally(neutron* neutron) {
+	double weight = neutron->_region->getCaptureMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+/******************************************************************************/
+/*********************** Fission Rate Tallying Methods ************************/
+/******************************************************************************/
+
+void IsotopeFissionRateTally::tally(neutron* neutron) {
+	double weight = _isotope->getFissionXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void MaterialFissionRateTally::tally(neutron* neutron) {
+	double weight = _material->getFissionMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void RegionFissionRateTally::tally(neutron* neutron) {
+	double weight = _region->getFissionMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+void GeometryFissionRateTally::tally(neutron* neutron) {
+	double weight = neutron->_region->getFissionMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+/******************************************************************************/
+/********************** Transport Rate Tallying Methods ***********************/
+/******************************************************************************/
+
+void IsotopeTransportRateTally::tally(neutron* neutron) {
+	double weight = _isotope->getTransportXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void MaterialTransportRateTally::tally(neutron* neutron) {
+	double weight = _material->getTransportMicroXS(neutron->_old_energy) 
+														/neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void RegionTransportRateTally::tally(neutron* neutron) {
+	double weight = _region->getTransportMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void GeometryTransportRateTally::tally(neutron* neutron) {
+	double weight = neutron->_region->getTransportMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+/******************************************************************************/
+/********************** Diffusion Rate Tallying Methods ***********************/
+/******************************************************************************/
+
+void IsotopeDiffusionRateTally::tally(neutron* neutron) {
+	double weight = 1.0 / (3.0 * _isotope->getTransportXS(neutron->_old_energy))  
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void MaterialDiffusionRateTally::tally(neutron* neutron) {
+	double weight = 1.0 / (3.0 * _material->getTransportMicroXS(neutron->_old_energy)) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void RegionDiffusionRateTally::tally(neutron* neutron) {
+	double weight = 1.0 / (3.0 * _region->getTransportMicroXS(neutron->_old_energy)) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void GeometryDiffusionRateTally::tally(neutron* neutron) {
+	double weight = 1.0 / (3.0 * neutron->_region->getTransportMicroXS(neutron->_old_energy))
+														/ neutron->_total_xs;
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+/******************************************************************************/
+/*********************** Leakage Rate Tallying Methods ************************/
+/******************************************************************************/
+//FIXME
+
+void MaterialLeakageRateTally::tally(neutron* neutron) {
+	double weight = _material->getBucklingSquared() / 
+					(3.0 * _material->getTransportMicroXS(neutron->_old_energy) * 
+												neutron->_total_xs);
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+void RegionLeakageRateTally::tally(neutron* neutron) {
+	double weight = _region->getBucklingSquared() / 
+					(3.0 * _region->getTransportMicroXS(neutron->_old_energy) * 
+												neutron->_total_xs);
+	Tally::tally(neutron, weight);
+	return;
+}
+
+void GeometryLeakageRateTally::tally(neutron* neutron) {
+	double weight = neutron->_region->getBucklingSquared() / 
+					(3.0 * neutron->_region->getTransportMicroXS(neutron->_old_energy) * 
+												neutron->_total_xs);
+	Tally::tally(neutron, weight);
+	return;
+}
+
+
+/******************************************************************************/
+/************************** Flux Tallying Methods *****************************/
+/******************************************************************************/
+
+void MaterialFluxTally::tally(neutron* neutron) {
+	Tally::tally(neutron, double(1.0 / neutron->_total_xs));
+	return;
+}
+
+
+void RegionFluxTally::tally(neutron* neutron) {
+	Tally::tally(neutron, double(1.0 / neutron->_total_xs));
+	return;
+}
+
+
+void GeometryFluxTally::tally(neutron* neutron) {
+	Tally::tally(neutron, double(1.0 / neutron->_total_xs));
 	return;
 }

@@ -11,6 +11,7 @@
 #define ISOTOPE_H_
 
 #ifdef __cplusplus
+#include <limits>
 #include <vector>
 #include <map>
 #include <math.h>
@@ -22,37 +23,13 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#endif
 #include "interpolate.h"
 #include "integrate.h"
 #include "arraycreator.h"
 #include "xsreader.h"
 #include "log.h"
 #include "Neutron.h"
-
-
-/* Tally spacing types */
-typedef enum binSpacingTypes {
-	EQUAL,
-	LOGARITHMIC,
-	OTHER
-} binSpacingType;
-
-
-/* Types of collisions */
-typedef enum collisionTypes{
-	ELASTIC,
-	CAPTURE,
-	FISSION,
-	LEAKAGE,
-} collisionType;
-
-/* Types of angular scattering distributions */
-typedef enum scatterAngleTypes {
-	ISOTROPIC_CM,
-	ISOTROPIC_LAB
-} scatterAngleType;
-
+#include "Tally.h"
 
 /**
  * The isotope class represents an isotope and all of its properties
@@ -71,11 +48,11 @@ private:
 	float _T;
 	float _mu_avg;
 	bool _fissionable;
+	bool _rescaled;
 
 	int _num_elastic_xs;
 	float* _elastic_xs;
 	float* _elastic_xs_energies;
-	scatterAngleType _elastic_angle;
 	int _num_absorb_xs;
 	float* _absorb_xs;
 	float* _absorb_xs_energies;
@@ -89,9 +66,7 @@ private:
 	float* _total_xs;
 	float* _total_xs_energies;
 
-	/* Values related to rescaled cross-sections on a uniform energy grid */
-	bool _rescaled;
-	binSpacingTypes _scale_type;
+	/* Values related to rescaled cross-sections on a uniform lethargy grid */
 	int _num_energies;
 	float _start_energy;
 	float _end_energy;
@@ -107,15 +82,12 @@ private:
 
 	void loadXS();
 	void setElasticXS(float* elastic_xs, float* elastic_xs_energies,
-			  int num_elastic_xs, scatterAngleType type);
-	void setElasticAngleType(scatterAngleType type);
+			  									int num_elastic_xs);
 	void setCaptureXS(float* capture_xs, float* capture_xs_energies,
-			     int num_capture_xs);
+											     int num_capture_xs);
 	void setFissionXS(float* fission_xs, float* fission_xs_energies,
-			  int num_fission_xs);
-	void rescaleCrossSections(float start_energy, float end_energy,
-								int num_energies, binSpacingTypes scale_type);	
-	void rescaleXS(float* new_energies, int num_energies);
+											 	 int num_fission_xs);
+	void rescaleXS(float start_energy, float end_energy, int num_energies);
 
 	void initializeThermalScattering(float start_energy, float end_energy,
 					 int num_bins, int num_distributions);
@@ -140,7 +112,6 @@ public:
     int getNumXSEnergies() const;
     float getElasticXS(float energy) const;
     float getElasticXS(int energy_index) const;
-    scatterAngleType getElasticAngleType() const;
     float getAbsorptionXS(float energy) const;
     float getAbsorptionXS(int energy_index) const;
     float getCaptureXS(float energy) const;
@@ -161,7 +132,6 @@ public:
     void retrieveXSEnergies(float* energies, int num_xs) const;
     void retrieveXS(float* xs, int num_xs, char* xs_type) const;
 
-    void setIsotopeType(char* isotope);
     void setA(int A);
     void setAO(float AO);
     void setN(float N);
@@ -169,8 +139,8 @@ public:
 
     Isotope* clone();
 
-    collisionType getCollisionType(float energy);
-    collisionType collideNeutron(neutron* neutron);
+    void sampleCollisionType(neutron* neutron);
+    void collideNeutron(neutron* neutron);
     float getDistanceTraveled(neutron *neutron);
     float getThermalScatteringEnergy(float energy);
 
@@ -180,50 +150,32 @@ public:
     void retrieveThermalDistributions(float* cdfs, int num_values);
     void retrieveEtokT(float* E_to_kT, int num_cdfs);
     void retrieveEprimeToE(float* Eprime_to_E, int num_bins);
-
-    binSpacingTypes getEnergyGridScaleType();
-
 };
 
 
 /**
  * This method returns the index for a certain energy (eV) into
- * the uniform energy grid if this Isotope's
+ * the uniform lethargy grid if this Isotope's
  * cross-sections have been rescaled
  * @param energy the energy (eV) of interest
- * @return the index into the uniform energy grid
+ * @return the index into the uniform lethargy grid
  */
 inline int Isotope::getEnergyGridIndex(float energy) const {
 
 	int index;
 
-	if (!_rescaled)
-	    log_printf(ERROR, "Unable to return an index for isotope %s "
-		       			"since its cross-sections have not been"
-						" rescaled", _isotope_name);
+	energy = log10(energy);
 
-
-	if (_scale_type == EQUAL) {
-		if (energy > _end_energy)
-			index = _num_energies - 1;
-		else if (energy < _start_energy)
-			index = 0;
-		else
-			index = int(floor((energy - _start_energy) / _delta_energy));
-
-	}
-
-	else if (_scale_type == LOGARITHMIC)
-		energy = log10(energy);
-
-		if (energy > _end_energy)
-			index = _num_energies - 1;
-		else if (energy < _start_energy)
-			index = 0;
-		else
-			index = int(floor((energy - _start_energy) / _delta_energy));
+	if (energy > _end_energy)
+		index = _num_energies - 1;
+	else if (energy < _start_energy)
+		index = 0;
+	else
+		index = int(floor((energy - _start_energy) / _delta_energy));
 
 	return index;
 }
+
+#endif
 
 #endif /* ISOTOPE_H_ */

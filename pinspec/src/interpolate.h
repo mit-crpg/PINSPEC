@@ -10,6 +10,7 @@
 #ifndef INTERPOLATE_H_
 #define INTERPOLATE_H_
 
+#include <limits>
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -34,13 +35,9 @@ int findUpperIndex(T* x, int upper_bound, int lower_bound, U pt) {
 	/* Compute the midpoint between the bounding indices */
 	int new_bound = floor(bound_delta / 2.0) + lower_bound;
 
-	/* Check that bound are appropriate */
-	if (bound_delta <= 0) {
-		printf("Unable to find the upper index using binary search"
-				"since upper_bound = %d and lower_bound = %d",
-				upper_bound, lower_bound);
-		exit(1);
-	}
+	/* Check that bound are appropriate - if not, return infinity */
+	if (bound_delta <= 0)
+		return std::numeric_limits<int>::infinity();
 
 	/* If the upper and lower bound only differ by one, we are are finished */
 	if (bound_delta == 1)

@@ -39,8 +39,7 @@ Isotope::Isotope(char* isotope_name){
 	_start_energy = 1E-7;
 	_end_energy = 2E7;
 	_num_energies = 100000;
-    rescaleCrossSections(_start_energy, _end_energy,
-						_num_energies, LOGARITHMIC);
+    rescaleXS(_start_energy, _end_energy, _num_energies);
  
 	/* By default the thermal scattering cdfs have not been initialized */
 	_num_thermal_cdfs = 0;
@@ -243,10 +242,10 @@ void Isotope::retrieveXS(float* xs, int num_xs, char* xs_type) const {
  */
 float Isotope::getElasticXS(float energy) const {
 
-	if (_num_elastic_xs == 0)
-		return 0.0;
-    else if (_rescaled)
+    if (_rescaled)
         return getElasticXS(getEnergyGridIndex(energy));
+	else if (_num_elastic_xs == 0)
+		return 0.0;
     else
 	    return linearInterp<float, float, float>(_elastic_xs_energies,
 						     _elastic_xs, _num_elastic_xs, energy);
@@ -262,33 +261,13 @@ float Isotope::getElasticXS(float energy) const {
  */
 float Isotope::getElasticXS(int energy_index) const {
 
-	if (_num_elastic_xs == 0)
-		return 0.0;
-
-	else if (energy_index > _num_elastic_xs) {
+	if (energy_index > _num_elastic_xs) {
 	    log_printf(ERROR, "Unable to retrieve elastic xs for"
 		       " isotope %s since the energy index %d is out of"
 		       " bounds", _isotope_name, energy_index);
 	}
 
 	return _elastic_xs[energy_index];
-}
-
-
-/**
- * Returns the type of angular elastic scattering distribution for
- * this isotope (ISOTROPIC_CM or ISOTROPIC_LAB)
- * @return the type of angular scattering distribution
- */
-scatterAngleType Isotope::getElasticAngleType() const {
-
-    if (_num_elastic_xs == 0) {
-	log_printf(ERROR, "Cannot return an elastic angle type"
-		   "for isotope %s since it has not been set", 
-		   _isotope_name);
-    }
-
-	return _elastic_angle;
 }
 
 
@@ -300,10 +279,10 @@ scatterAngleType Isotope::getElasticAngleType() const {
  */
 float Isotope::getAbsorptionXS(float energy) const {
 
-	if (_num_absorb_xs == 0)
-		return 0.0;
-    else if (_rescaled)
+    if (_rescaled)
         return getAbsorptionXS(getEnergyGridIndex(energy));
+	else if (_num_absorb_xs == 0)
+		return 0.0;
     else
 	    return linearInterp<float, float, float>(_absorb_xs_energies,
 								    _absorb_xs, _num_absorb_xs, energy);
@@ -319,14 +298,12 @@ float Isotope::getAbsorptionXS(float energy) const {
  */
 float Isotope::getAbsorptionXS(int energy_index) const {
 
-	if (_num_absorb_xs == 0)
-		return 0.0;
-
-	else if (energy_index > _num_absorb_xs) {
+	if (energy_index > _num_absorb_xs) {
 	    log_printf(ERROR, "Unable to retrieve absorption xs for"
 		       " isotope %s since the energy index %d is out of"
 		       " bounds", _isotope_name, energy_index);
 	}
+
 	return _absorb_xs[energy_index];
 }
 
@@ -339,10 +316,10 @@ float Isotope::getAbsorptionXS(int energy_index) const {
  */
 float Isotope::getCaptureXS(float energy) const{
 
-	if (_num_capture_xs == 0)
-		return 0.0;
-    else if (_rescaled)
+    if (_rescaled)
         return getCaptureXS(getEnergyGridIndex(energy));
+	else if (_num_capture_xs == 0)
+		return 0.0;
     else
     	return linearInterp<float, float, float>(_capture_xs_energies,
 								_capture_xs, _num_capture_xs, energy);
@@ -358,10 +335,7 @@ float Isotope::getCaptureXS(float energy) const{
  */
 float Isotope::getCaptureXS(int energy_index) const {
 
-	if (_num_capture_xs == 0)
-		return 0.0;
-
-	else if (energy_index > _num_capture_xs)
+	if (energy_index > _num_capture_xs)
 		log_printf(ERROR, "Unable to retrieve capture xs for"
 				" isotope %s since the energy index %d is out of"
 				" bounds", _isotope_name, energy_index);
@@ -378,10 +352,10 @@ float Isotope::getCaptureXS(int energy_index) const {
  */
 float Isotope::getFissionXS(float energy) const{
 
-	if (_num_fission_xs == 0)
-		return 0.0;
-    else if (_rescaled)
+    if (_rescaled)
         return getFissionXS(getEnergyGridIndex(energy));
+	else if (_num_fission_xs == 0)
+		return 0.0;
     else
     	return linearInterp<float, float, float>(_fission_xs_energies,
 							_fission_xs, _num_fission_xs, energy);
@@ -397,10 +371,7 @@ float Isotope::getFissionXS(float energy) const{
  */
 float Isotope::getFissionXS(int energy_index) const {
 
-	if (_num_fission_xs == 0)
-		return 0.0;
-
-	else if (energy_index > _num_fission_xs) {
+	if (energy_index > _num_fission_xs) {
 	    log_printf(ERROR, "Unable to retrieve fission xs for"
 		       " isotope %s since the energy index %d is out of"
 		       " bounds", _isotope_name, energy_index);
@@ -516,15 +487,6 @@ bool Isotope::isRescaled() const {
 
 
 /**
- * Set the isotope name
- * @param istope a character array of the isotopes name
- */
-void Isotope::setIsotopeType(char* isotope) {
-	_isotope_name = isotope;
-}
-
-
-/**
  * Set the atomic number and update alpha, eta and rho
  * @param A atomic number
  */
@@ -610,7 +572,7 @@ void Isotope::loadXS() {
 	/* Parse the file into the data structures */
 	parseCrossSections(filename.c_str(), energies, xs_values);
 
-	setElasticXS(xs_values, energies, _num_elastic_xs, ISOTROPIC_LAB);
+	setElasticXS(xs_values, energies, _num_elastic_xs);
 
 
 	/******************************** CAPTURE ********************************/
@@ -693,20 +655,10 @@ void Isotope::loadXS() {
  * @param type the type of angular scattering distribution
  */
 void Isotope::setElasticXS(float* elastic_xs, float* elastic_xs_energies,
-								int num_elastic_xs, scatterAngleType type) {
+													int num_elastic_xs) {
     _elastic_xs = elastic_xs;
     _elastic_xs_energies = elastic_xs_energies;
     _num_elastic_xs = num_elastic_xs;
-    _elastic_angle = type;
-}
-
-
-/**
- * Set the type of angular elastic scattering distribution for this isotope
- * @param type the angular elastic scattering distribution type
- */
-void Isotope::setElasticAngleType(scatterAngleType type) {
-	_elastic_angle = type;
 }
 
 
@@ -738,50 +690,23 @@ void Isotope::setFissionXS(float* fission_xs, float* fission_xs_energies,
 }
 
 
-void Isotope::rescaleCrossSections(float start_energy, float end_energy,
-								int num_energies, binSpacingTypes scale_type) {
+void Isotope::rescaleXS(float start_energy, float end_energy,
+													int num_energies) {
 
 	float* grid;
-
-	if (scale_type == EQUAL) {
-		grid = linspace<float, float>(start_energy, end_energy, num_energies);
-		_start_energy = start_energy;
-		_end_energy = end_energy;
-		_delta_energy = (_end_energy - _start_energy) / num_energies;
-	}
-	else {
-		grid = logspace<float, float>(start_energy, end_energy, num_energies);
-		_start_energy = log10(start_energy);
-		_end_energy = log10(end_energy);
-		_delta_energy = (_end_energy - _start_energy) / num_energies;
-	}
-
-	_num_energies = num_energies;
-	_scale_type = scale_type;
-
-	rescaleXS(grid, num_energies);
-
-	_rescaled = true;
-	delete [] grid;
-	return;
-}
-
-
-/**
- * Rescales all cross-sections to a new energy grid by interpolating to find the
- * cross-section value at the old energy grid at the new points
- * @param energies the new energy grid
- * @param num_energies the number of points in the new energy grid
- */
-void Isotope::rescaleXS(float* energies, int num_energies) {
-
     float* new_energies;
     float* new_xs;
+
+	_num_energies = num_energies;
+	_start_energy = start_energy;
+	_end_energy = end_energy;
+
+	grid = logspace<float, float>(start_energy, end_energy, _num_energies);
 
 	/* Capture xs */
 	if (_num_capture_xs != 0) {
 		new_energies = new float[num_energies];
-		memcpy(new_energies, energies, sizeof(float)*num_energies);
+		memcpy(new_energies, grid, sizeof(float)*num_energies);
 		new_xs = new float[num_energies];
 
 		for (int i=0; i < num_energies; i++)
@@ -797,7 +722,7 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 	/* Elastic xs */
 	if (_num_elastic_xs != 0) {
 		new_energies = new float[num_energies];
-		memcpy(new_energies, energies, sizeof(float)*num_energies);
+		memcpy(new_energies, grid, sizeof(float)*num_energies);
 		new_xs = new float[num_energies];
 
 		for (int i=0; i < num_energies; i++)
@@ -813,7 +738,7 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 	/* Fission xs */
 	if (_num_fission_xs != 0) {
 		new_energies = new float[num_energies];
-		memcpy(new_energies, energies, sizeof(float)*num_energies);
+		memcpy(new_energies, grid, sizeof(float)*num_energies);
 		new_xs = new float[num_energies];
 
 
@@ -829,7 +754,7 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 
 	/* Generate an absorption xs on the uniform energy/lethargy grid */
 	new_energies = new float[num_energies];
-	memcpy(new_energies, energies, sizeof(float)*num_energies);
+	memcpy(new_energies, grid, sizeof(float)*num_energies);
 	new_xs = new float[num_energies];
 
 	_num_absorb_xs = num_energies;
@@ -846,10 +771,9 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 	_absorb_xs = new_xs;
 	_absorb_xs_energies = new_energies;
 
-
 	/* Generate a total xs on the uniform energy/lethargy grid */
 	new_energies = new float[num_energies];
-	memcpy(new_energies, energies, sizeof(float)*num_energies);
+	memcpy(new_energies, grid, sizeof(float)*num_energies);
 	new_xs = new float[num_energies];
 
 	_num_total_xs = num_energies;
@@ -860,6 +784,12 @@ void Isotope::rescaleXS(float* energies, int num_energies) {
 
 	_total_xs = new_xs;
 	_total_xs_energies = new_energies;
+
+	_rescaled = true;
+	_start_energy = log10(start_energy);
+	_end_energy = log10(end_energy);
+	_delta_energy = (_end_energy - _start_energy) / _num_energies;
+	delete [] grid;
 
 	return;
 }
@@ -876,8 +806,7 @@ Isotope* Isotope::clone() {
 	/* Allocate memory for the clone */
 	Isotope* new_clone = new Isotope(_isotope_name);
 
-	/* Set the clones isotope name, atomic number, number density */
-	new_clone->setIsotopeType(_isotope_name);
+	/* Set the clone's atomic number, number density */
 	new_clone->setA(_A);
 	new_clone->setN(_N);
 	new_clone->setTemperature(_T);
@@ -890,35 +819,34 @@ Isotope* Isotope::clone() {
 /**
  * For a given energy, this method determines a random collision type
  * based on the values of each of its cross-section types at that energy
- * @param energy the incoming neutron energy (eV)
- * @return the collision type (ELASTIC, CAPTURE, FISSION)
+ * @param neutron a poiner to a nuetron
  */
-collisionType Isotope::getCollisionType(float energy) {
+void Isotope::sampleCollisionType(neutron* neutron) {
 
+	float energy = neutron->_energy;
 	float test = float(rand()) / RAND_MAX;
 	float collision_xs = 0.0;
 	float prev_collision_xs = 0.0;
 	float total_xs = getTotalXS(energy);
 
-    /* Capture collision */
-    collision_xs += getCaptureXS(energy) / total_xs;
-    
-    if (test >= prev_collision_xs && test <= collision_xs)
-        return CAPTURE;
-
     /* Elastic scatter collision */
-    prev_collision_xs = collision_xs;
     collision_xs += getElasticXS(energy) / total_xs;
-
     if (test >= prev_collision_xs && test <= collision_xs)
-        return ELASTIC;
+		return;
+
+    /* Capture collision */
+    prev_collision_xs = collision_xs;
+    collision_xs += getCaptureXS(energy) / total_xs;    
+    if (test >= prev_collision_xs && test <= collision_xs) {
+    	neutron->_alive = false;
+		return;
+	}
 
     /* Otherise, return a fission collision */
-    prev_collision_xs = collision_xs;
-    collision_xs += getFissionXS(energy) / total_xs;
-
-    return FISSION;
+   	neutron->_alive = false;
+	return;
 }
+
 
 /**
  * For a given neutron energy in eV in a scattering collision, this
@@ -1169,25 +1097,17 @@ void Isotope::retrieveEprimeToE(float* Eprime_to_E, int num_bins) {
  * @return the distance traveled
  */
 float Isotope::getDistanceTraveled(neutron* neutron) {
-    double Sigma, random, distance;
 
-    Sigma = getTotalXS(neutron->_energy);
+    double sigma_a;
+	double random;
+	double distance;
+
+    sigma_a = getTotalXS(neutron->_energy);
     random = (float)(rand()) / (float)(RAND_MAX);
-    distance = - log(random)/Sigma;
+    distance = - log(random) / sigma_a;
 
     return distance;
 }
-
-
-
-/**
- * Get the bin spacing type for this isotope's cross sections
- * @return the scale type
- */
-binSpacingTypes Isotope::getEnergyGridScaleType() {
-	return _scale_type;
-}
-
 
 
 /**
@@ -1195,38 +1115,26 @@ binSpacingTypes Isotope::getEnergyGridScaleType() {
  * the collision type, and then tally the event into the appropriate
  * tally classes for that isotope if any.
  * @param neutron structure
- * @return the collision type (ELASTIC, CAPTURE, FISSION)
  */
-collisionType Isotope::collideNeutron(neutron* neut) {
+void Isotope::collideNeutron(neutron* neutron) {
 
-    /* obtain incoming energy, batch number */
-    int batch_num = neut->_batch_num;
-    float sample = neut->_energy;
-    float total_xs = getTotalXS(sample);
-
-    float energy = neut->_energy;
-    float sigma_total_iso = getTotalXS(energy);
-    float sigma_total_mat = 1.0;//neut->curr_region->getTotalMicroXS(energy);
+	neutron->_old_energy = neutron->_energy;
 
     /* obtain collision type */
-    collisionType type = getCollisionType(sample);
-    if (type == FISSION || type == CAPTURE)
-    	neut->_alive = false;
+    sampleCollisionType(neutron);
 
     /* Sample outgoing energy uniformally between [alpha*E, E] */
-
     float alpha = getAlpha();
     double random = (float)(rand()) / (float)(RAND_MAX);
 
     /* Asymptotic elastic scattering above 4 eV */
-    if (sample > 4.0)
-    	neut->_energy *= (alpha + (1.0 - alpha) * random);
+    if (neutron->_energy > 4.0)
+    	neutron->_energy *= (alpha + (1.0 - alpha) * random);
     else
-    	neut->_energy =  getThermalScatteringEnergy(sample);
+    	neutron->_energy =  getThermalScatteringEnergy(neutron->_energy);
 
-
-    return ELASTIC;
-
+	return;
 }
+
 
 

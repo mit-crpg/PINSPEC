@@ -11,6 +11,9 @@
 #define NEUTRON_H_
 
 class Region;	
+class Material;
+class Isotope;
+
 
 /* Structure to represent a neutron */
 struct neutron {
@@ -20,8 +23,12 @@ struct neutron {
 	float _mu, _phi;
 	float _energy;
 	bool _alive;
+
     Region* _region;
-	bool _in_fuel;
+	Material* _material;
+	Isotope* _isotope;
+	float _old_energy;
+	float _total_xs;
 };
 
 neutron* initializeNewNeutron();

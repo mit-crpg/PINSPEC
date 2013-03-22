@@ -1,19 +1,17 @@
-import numpy
 import time
 import matplotlib.pyplot as plt
+import numpy
 from pinspec import *
 import pinspec.SLBW as SLBW
 import pinspec.plotter as plotter
-
+from pinspec.log import *
 
 def main():
 
     # Set main simulation params
     num_batches = 25
     num_neutrons_per_batch = 200000
-    log_setlevel(INFO)
-
-    setXSLibDirectory('../xs-lib/')   # This is also a default, but set it as example
+    setlevel(INFO)
 
     # Call SLBW to create XS
     filename = 'U-238-ResonanceParameters.txt'  # Must be Reich-Moore parameters
@@ -28,8 +26,7 @@ def main():
     zr90 = Isotope('Zr-90')
  
     # Define materials
-    mix = Material()
-    mix.setMaterialName('Fuel Moderator Mix')
+    mix = Material('Fuel Moderator Mix')
     mix.setDensity(5., 'g/cc')
     mix.addIsotope(h1, 1.0)
     mix.addIsotope(o16, 1.0)
@@ -48,17 +45,15 @@ def main():
         region_mix.setMaterial(mix)
 
         # Create a tally for the flux
-        flux = Tally('total flux', GEOMETRY, FLUX)
+        flux = TallyFactory.createTally('total flux', region_mix, FLUX)
         flux.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC)
 
-        ############################################################################
-        #EXAMPLE: How to set tally bin edges 
-        ############################################################################
-        # Create a tally for the absorption rate
-        abs_rate = Tally('absorption rate', REGION, ABSORPTION_RATE)
+        abs_rate = TallyFactory.createTally('absorption rate', region_mix, ABSORPTION_RATE)
         abs_rate_bin_edges = numpy.array([0.1, 1., 5., 10., 100., 1000.])
         abs_rate.setBinEdges(abs_rate_bin_edges)
-        region_mix.addTally(abs_rate)
+
+		TallyBank.registerTally(abs_rate)
+		TallyBank.registerTally(flux)
 
         # Define geometry
         geometry = Geometry()
@@ -67,7 +62,6 @@ def main():
         geometry.setNumBatches(num_batches)
         geometry.setNeutronsPerBatch(num_neutrons_per_batch)
         geometry.setNumThreads(int(num_threads))
-        geometry.addTally(flux)
 
 	    # Run Monte Carlo simulation
         start_time = time.time()
