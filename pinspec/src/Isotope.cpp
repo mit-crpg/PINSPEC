@@ -274,8 +274,197 @@ void Isotope::retrieveXS(float* xs, int num_xs, char* xs_type) const {
 }
 
 
+void Isotope::setElasticXS(double* energies, int num_energies,
+                               double* elastic_xs, int num_xs) {
+
+    /* Check that the # of xs values is 1 less than the # energy bounds */
+    if (num_xs != num_energies)
+		log_printf(ERROR, "Unable to set elastic xs for isotope %s since"
+                " the number of xs values is %d while the number of "
+                "energies is %d", _isotope_name, num_xs, num_energies);
+
+	/* Check that all energies are >0 and monotonically increasing */
+	double prev_energy = energies[0];
+
+	for (int i=0 ; i < num_xs; i++) {
+
+		/* Check for monotonically increasing energy */
+		if (energies[i] < prev_energy)
+			log_printf(ERROR, "Unable to set elastic xs for isotope %s"
+                        " since all xs energies must be monotonically "
+						"increasing", _isotope_name);
+		/* Check that energy is non-negative */		
+		if (energies[i] < 0.0)
+			log_printf(ERROR, "Unable to set elastic xs for isotope %s"
+                        " since all xs energies must be "
+						"non-negative", _isotope_name);
+	}
+
+	/* Check that all xs are non-negative */
+	for (int i=0; i < num_xs; i++) {
+		if (elastic_xs[i] < 0.0)
+			log_printf(ERROR, "Unable to set elastic xs for isotope %s"
+                        " since all xs values must be "
+						"non-negative", _isotope_name);
+	}
+
+    log_printf(INFO, "Setting elastic xs for isotope %s", _isotope_name);
+	
+	/* Free memory for old elastic xs from ENDF */
+	delete [] _elastic_xs;
+	delete [] _elastic_xs_energies;
+
+	/* Allocate memory for the new elastic xs and energies */
+    _num_elastic_xs = num_xs;
+    _elastic_xs = new float[_num_elastic_xs];
+    _elastic_xs_energies = new float[_num_elastic_xs];
+
+    for (int i=0; i < _num_elastic_xs; i++) {
+        _elastic_xs[i] = elastic_xs[i];
+        _elastic_xs_energies[i] = energies[i];
+    }
+
+	_elastic_rescaled = false;
+
+	generateTotalXS(pow(10., _start_energy), pow(10., _end_energy), 
+													_num_energies);
+
+	return;
+}
+
+
+void Isotope::setCaptureXS(double* energies, int num_energies,
+                               double* capture_xs, int num_xs) {
+
+    /* Check that the # of xs values is 1 less than the # energy bounds */
+    if (num_xs != num_energies)
+		log_printf(ERROR, "Unable to set capture xs for isotope %s since"
+                " the number of xs values is %d while the number of "
+                "energies is %d", _isotope_name, num_xs, num_energies);
+
+	/* Check that all energies are >0 and monotonically increasing */
+	double prev_energy = energies[0];
+
+	for (int i=0 ; i < num_xs; i++) {
+
+		/* Check for monotonically increasing energy */
+		if (energies[i] < prev_energy)
+			log_printf(ERROR, "Unable to set capture xs for isotope %s"
+                        " since all xs energies must be monotonically "
+						"increasing", _isotope_name);
+		/* Check that energy is non-negative */		
+		if (energies[i] < 0.0)
+			log_printf(ERROR, "Unable to set capture xs for isotope %s"
+                        " since all xs energies must be "
+						"non-negative", _isotope_name);
+	}
+
+	/* Check that all xs are non-negative */
+	for (int i=0; i < num_xs; i++) {
+
+		if (capture_xs[i] < 0.0)
+			log_printf(ERROR, "Unable to set capture xs for isotope %s"
+                        " since all xs values must be "
+						"non-negative", _isotope_name);
+	}
+
+    log_printf(INFO, "Setting capture xs for isotope %s", _isotope_name);
+	
+	/* Free memory for old capture xs from ENDF */
+	delete [] _capture_xs;
+	delete [] _capture_xs_energies;
+
+	/* Allocate memory for the new capture xs and energies */
+    _num_capture_xs = num_xs;
+    _capture_xs = new float[_num_capture_xs];
+    _capture_xs_energies = new float[_num_capture_xs];
+
+    for (int i=0; i < _num_capture_xs; i++) {
+        _capture_xs[i] = capture_xs[i];
+        _capture_xs_energies[i] = energies[i];
+    }
+
+	_capture_rescaled = false;
+
+	generateAbsorptionXS(pow(10., _start_energy), pow(10., _end_energy), 
+													_num_energies);
+	generateTotalXS(pow(10., _start_energy), pow(10., _end_energy), 
+													_num_energies);
+
+	return;
+}
+
+
+void Isotope::setFissionXS(double* energies, int num_energies,
+                               double* fission_xs, int num_xs) {
+
+    /* Check that the # of xs values is 1 less than the # energy bounds */
+    if (num_xs != num_energies)
+		log_printf(ERROR, "Unable to set fission xs for isotope %s since"
+                " the number of xs values is %d while the number of "
+                "energies is %d", _isotope_name, num_xs, num_energies);
+
+	/* Check that all energies are >0 and monotonically increasing */
+	double prev_energy = energies[0];
+
+	for (int i=0 ; i < num_xs; i++) {
+
+		/* Check for monotonically increasing energy */
+		if (energies[i] < prev_energy)
+			log_printf(ERROR, "Unable to set fission xs for isotope %s"
+                        " since all xs energies must be monotonically "
+						"increasing", _isotope_name);
+		/* Check that energy is non-negative */		
+		if (energies[i] < 0.0)
+			log_printf(ERROR, "Unable to set fission xs for isotope %s"
+                        " since all xs energies must be "
+						"non-negative", _isotope_name);
+	}
+
+	/* Check that all xs are non-negative */
+	for (int i=0; i < num_xs; i++) {
+		if (fission_xs[i] < 0.0)
+			log_printf(ERROR, "Unable to set fission xs for isotope %s"
+                        " since all xs values must be "
+						"non-negative", _isotope_name);
+	}
+
+    log_printf(INFO, "Setting fission xs for isotope %s", _isotope_name);
+	
+	/* Free memory for old elastic xs from ENDF */
+	delete [] _fission_xs;
+	delete [] _fission_xs_energies;
+
+	/* Allocate memory for the new fission xs and energies */
+    _num_fission_xs = num_xs;
+    _fission_xs = new float[_num_fission_xs];
+    _fission_xs_energies = new float[_num_fission_xs];
+
+    for (int i=0; i < _num_fission_xs; i++) {
+        _fission_xs[i] = fission_xs[i];
+        _fission_xs_energies[i] = energies[i];
+    }
+
+	_fission_rescaled = false;
+
+	generateAbsorptionXS(pow(10., _start_energy), pow(10., _end_energy), 
+													_num_energies);
+	generateTotalXS(pow(10., _start_energy), pow(10., _end_energy), 
+													_num_energies);
+
+	return;
+}
+
+
 void Isotope::setMultigroupElasticXS(double* energies, int num_energies, 
                                         double* elastic_xs, int num_xs) {
+
+    /* Check that the # of xs values is 1 less than the # energy bounds */
+    if (num_xs != num_energies)
+		log_printf(ERROR, "Unable to set multigroup elastic xs for "
+				"isotope %s since the number of xs values is %d while "
+                "the number of energies is %d", 
+                _isotope_name, num_xs, num_energies);
 
 	/* Check that all energies are >0 and monotonically increasing */
 	double prev_energy = energies[0];
@@ -345,6 +534,13 @@ void Isotope::setMultigroupElasticXS(double* energies, int num_energies,
 
 void Isotope::setMultigroupCaptureXS(double* energies, int num_energies,
                                         double* capture_xs, int num_xs) {
+
+    /* Check that the # of xs values is 1 less than the # energy bounds */
+    if (num_xs != num_energies)
+		log_printf(ERROR, "Unable to set multigroup capture xs for "
+				"isotope %s since the number of xs values is %d while "
+                "the number of energies is %d", 
+                _isotope_name, num_xs, num_energies);
 
 	/* Check that all energies are >0 and monotonically increasing */
 	double prev_energy = energies[0];
@@ -420,6 +616,13 @@ void Isotope::setMultigroupCaptureXS(double* energies, int num_energies,
 
 void Isotope::setMultigroupFissionXS(double* energies, int num_energies,
                                      double* fission_xs, int num_xs) {
+
+    /* Check that the # of xs values is 1 less than the # energy bounds */
+    if (num_xs != num_energies)
+		log_printf(ERROR, "Unable to set multigroup fission xs for "
+				"isotope %s since the number of xs values is %d while "
+                "the number of energies is %d", 
+                _isotope_name, num_xs, num_energies);
 
 	/* Check that all energies are >0 and monotonically increasing */
 	double prev_energy = energies[0];

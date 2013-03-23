@@ -137,12 +137,20 @@ public:
     bool isRescaled() const;
     int getEnergyGridIndex(float energy) const;
 
-    /* IMPORTANT: The following two class method prototypes must not be changed
+    /* IMPORTANT: The following eight class method prototypes must not be changed
      * without changing Geometry.i to allow for the data arrays to be transformed
      * into numpy arrays */
     void retrieveXSEnergies(float* energies, int num_xs, 
                                             char* xs_type) const;
     void retrieveXS(float* xs, int num_xs, char* xs_type) const;
+
+
+	void setElasticXS(double* energies, int num_energies,
+                       double* elastic_xs, int num_xs);
+	void setCaptureXS(double* energies, int num_energies,
+                       double* capture_xs, int num_xs);
+	void setFissionXS(double* energies, int num_energies,
+                       double* fission_xs, int num_xs);
 
 	void setMultigroupElasticXS(double* energies, int num_energies, 
                                 double* elastic_xs, int num_xs);
@@ -150,6 +158,7 @@ public:
                                 double* capture_xs, int num_xs);
 	void setMultigroupFissionXS(double* energies, int num_energies, 
                                 double* fission_xs, int num_xs);
+
 
     void setA(int A);
     void setAO(float AO);

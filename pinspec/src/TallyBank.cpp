@@ -282,6 +282,11 @@ void TallyBank::registerTally(Tally* tally, Isotope* isotope) {
 						" in an isotope since it is a FLUX type tally",
 												isotope_tally->getTallyName());
 
+		else if (isotope_tally->getTallyType() == INTERCOLLISION_TIME)
+			log_printf(ERROR, "The TallyBank is unable to register tally %s"
+						" in an isotope since it is an INTERCOLLISION_TIME"
+                        " type tally", isotope_tally->getTallyName());
+
 		else if (isotope_tally->getTallyType() == LEAKAGE_RATE)
 			log_printf(ERROR, "The TallyBank is unable to register tally %s"
 					" in an isotope since it is a LEAKAGE_RATE type tally",

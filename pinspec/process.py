@@ -82,3 +82,32 @@ class groupXS(object):
 			for i in range(0,self.num_bins):
 				py_printf('NORMAL', 'Group XS [ %9.4f - %9.4f eV] =  %9.3E cm^-1', self.bin_edges[i], self.bin_edges[i+1], self.groupXS[i,j])
 
+
+
+def computeMeanNumCollisions(coll_rate, num_neutrons):
+
+	coll_rate.computeScaledBatchStatistics(num_neutrons)
+
+	num_bins = coll_rate.getNumBins()
+	coll_rate_mu = coll_rate.retrieveTallyMu(num_bins)
+	mean_rate = 0.0
+
+	for i in range(num_bins):
+		mean_rate += coll_rate_mu[i]
+
+	return mean_rate
+
+
+def computeMeanNeutronLifetime(coll_times, num_neutrons):
+
+	coll_times.computeScaledBatchStatistics(num_neutrons)
+
+	num_bins = coll_times.getNumBins()
+	coll_times_mu = coll_times.retrieveTallyMu(num_bins)
+	mean_time = 0.0
+
+	for i in range(num_bins):
+		mean_time += coll_times_mu[i]
+
+	return mean_time
+

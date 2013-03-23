@@ -14,10 +14,16 @@ Tally* TallyFactory::createTally(char* tally_name, Isotope* isotope,
 														tallyType tally_type) {
 	if (tally_type == FLUX)
 		log_printf(ERROR, "Unable to create a FLUX type Tally for an "
-				"Isotope. FLUX Tallies are only supported for Regions.");
+				"Isotope. FLUX Tallies are only supported for "
+                 "materials, regions and the geometry.");
 	if (tally_type == LEAKAGE_RATE)
 		log_printf(ERROR, "Unable to create a LEAKAGE_RATE type tally for an"
-			" Isotope. LEAKAGE_RATE Tallies are only supported for Regions.");
+			     " Isotope. LEAKAGE_RATE Tallies are only supported for "
+                 "materials, regions and the geometry.");
+	if (tally_type == INTERCOLLISION_TIME)
+		log_printf(ERROR, "Unable to create an INTERCOLLISION_TIME type "
+                "tally for an Isotope. INTERCOLLISION_TIME Tallies are only "
+                "supported for materials, regions and the geometry.");
 
 	if (tally_type == COLLISION_RATE)
 		return new IsotopeCollisionRateTally(tally_name, isotope);
@@ -39,11 +45,12 @@ Tally* TallyFactory::createTally(char* tally_name, Isotope* isotope,
 Tally* TallyFactory::createTally(char* tally_name, Material* material, 
 														tallyType tally_type) {
 
-
 	if (tally_type == FLUX)
 		return new MaterialFluxTally(tally_name, material);
 	else if (tally_type == LEAKAGE_RATE)
 		return new MaterialLeakageRateTally(tally_name, material);
+    else if (tally_type == INTERCOLLISION_TIME)
+		return new MaterialInterCollisionTimeTally(tally_name, material);    
 	else if (tally_type == COLLISION_RATE)
 		return new MaterialCollisionRateTally(tally_name, material);
 	else if (tally_type == ELASTIC_RATE)
@@ -68,6 +75,8 @@ Tally* TallyFactory::createTally(char* tally_name, Region* region,
 		return new RegionFluxTally(tally_name, region);
 	else if (tally_type == LEAKAGE_RATE)
 		return new RegionLeakageRateTally(tally_name, region);
+    else if (tally_type == INTERCOLLISION_TIME)
+		return new RegionInterCollisionTimeTally(tally_name, region);    
 	else if (tally_type == COLLISION_RATE)
 		return new RegionCollisionRateTally(tally_name, region);
 	else if (tally_type == ELASTIC_RATE)
@@ -92,6 +101,8 @@ Tally* TallyFactory::createTally(char* tally_name, Geometry* geometry,
 		return new GeometryFluxTally(tally_name, geometry);
 	else if (tally_type == LEAKAGE_RATE)
 		return new GeometryLeakageRateTally(tally_name, geometry);
+    else if (tally_type == INTERCOLLISION_TIME)
+		return new GeometryInterCollisionTimeTally(tally_name, geometry);    
 	else if (tally_type == COLLISION_RATE)
 		return new GeometryCollisionRateTally(tally_name, geometry);
 	else if (tally_type == ELASTIC_RATE)

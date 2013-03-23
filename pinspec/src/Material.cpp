@@ -664,7 +664,7 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
                         isotope->getIsotopeName(), _material_name);
 
     /* Increments the material's total atomic mass and number density */
-    N_av = 6.023E-1;
+    N_av = 6.023E23;
 
     /* Compute the total atomic ratio */
     float total_AO = 0.0;
@@ -675,13 +675,15 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Sum the partial contributions to the material atomic mass */
     _material_atomic_mass = 0.0;
     for (iter_AO =_isotopes_AO.begin(); iter_AO != _isotopes_AO.end(); ++iter_AO){
-    	_material_atomic_mass += iter_AO->second / total_AO * iter_AO->first->getA();
+    	_material_atomic_mass += iter_AO->second * iter_AO->first->getA();
     }
 
     /* Calculates the material's number density */
     /* Notice I am using old_atomic_mass because I update all isotopes at
      * the end of this function. */
     _material_number_density = _material_density * N_av / _material_atomic_mass;
+
+    log_printf(NORMAL, "material # density = %1.2E", _material_number_density);
 
     /* Calculates the isotope's number density */
     isotope_number_density = atomic_ratio / total_AO * _material_number_density;
@@ -697,13 +699,12 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Inserts the isotope and increments the total number density */
     _isotopes.insert(new_isotope);
 
-    log_printf(INFO, "printing isotope number densities");
-
     /* Loop over all isotopes: update all the number densities */
     for (iter =_isotopes.begin(); iter != _isotopes.end(); ++iter){
     	/* Update isotope's number density */
     	iter->second.first = _isotopes_AO.at(iter->second.second) / total_AO * _material_number_density;
-    	log_printf(INFO, "number density %s: %f", iter->first, iter->second.first);
+    	log_printf(INFO, "Isotope %s has number density %1.3E in material %s", 
+                        iter->first, iter->second.first, _material_name);
     }
 
     return;

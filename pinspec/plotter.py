@@ -270,7 +270,7 @@ def plotThermalScattering(isotope, directory = '.', uselegend=True, \
 
     if filename is '':
         cdfsfilename = directory + '/' + isotope.getIsotopeName() + \
-                                        'thermal-scattering-cdfs.png'
+                                        '-thermal-scattering-cdfs.png'
     else:
         cdfsfilename = directory + '/' + filename.replace(' ', '-').lower() + \
                                         '-thermal-scattering-cdfs.png'

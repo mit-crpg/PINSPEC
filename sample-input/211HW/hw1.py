@@ -12,10 +12,11 @@ def main():
     ###########################################################################
 
     # Set main simulation params
-    num_neutrons = 10000
+    num_neutrons = 1000000
     output_dir = 'HW1'
     log_setlevel(INFO)
 
+    py_printf('NORMAL', 'Beginning simulation of homework 1 for 2012 22.211...')
     py_printf('INFO', 'Initializing isotopes...')
 
 	# Initialize isotopes
@@ -45,9 +46,7 @@ def main():
     num_generations = 15
     max_energy = 2E6
 
-    py_printf('NORMAL', 'Beginning Problems 1 and 2...')
-    py_printf('NORMAL', '# generations = %d\t\t# neutrons / generation = %d', \
-                                                num_generations, num_neutrons)
+    py_printf('NORMAL', 'Beginning problems 1 and 2...')
     py_printf('INFO', 'Initializing generational flux tallies...')
 
 	# Create flux tallies for each generation
@@ -63,6 +62,8 @@ def main():
         c12_fluxes[i].generateBinEdges(1E3, 2E6, 1000, EQUAL)
 
     py_printf('INFO', 'Simulating generational flux from H-1...')
+    py_printf('INFO', '# generations = %d\t\t# neutrons / generation = %d', \
+                                                num_generations, num_neutrons)
 
     neutron = initializeNewNeutron()
 
@@ -96,15 +97,14 @@ def main():
                             filename='c12-generational-flux', \
                             title='C12 Generational Flux')
 
+
     ###########################################################################
     #########################   Problems 3 and 4   ############################
     ###########################################################################
 
     num_generations = 50
     
-    py_printf('NORMAL', 'Beginning Problems 3 and 4...')
-    py_printf('NORMAL', '# generations = %d\t\t# neutrons / generation = %d', \
-                                                num_generations, num_neutrons)
+    py_printf('NORMAL', 'Beginning problems 3 and 4...')
     py_printf('INFO', 'Initializing lethargy and energy flux tallies...')
 
     lethargy_flux = TallyFactory.createTally('lethargy flux', \
@@ -117,7 +117,8 @@ def main():
     neutron = initializeNewNeutron()
 
     py_printf('INFO', 'Simulating generational flux from C-12...')
-
+    py_printf('INFO', '# generations = %d\t\t# neutrons / generation = %d', \
+                                                num_generations, num_neutrons)
     for i in range(num_neutrons):	
         neutron._energy = max_energy			# initialize energy to 2 MeV
 
@@ -143,9 +144,7 @@ def main():
     #############################   Problem 5   ###############################
     ###########################################################################
 
-    py_printf('NORMAL', 'Beginning Problem 5...')
-    py_printf('NORMAL', '# generations = %d\t\t# neutrons / generation = %d', \
-                                                num_generations, num_neutrons)
+    py_printf('NORMAL', 'Beginning problem 5...')
 
     num_generations = 15
     
@@ -164,6 +163,8 @@ def main():
 
     py_printf('INFO', 'Simulating H-1 flux for %d generations...', \
                                                         num_generations)
+    py_printf('INFO', '# generations = %d\t\t# neutrons / generation = %d', \
+                                                num_generations, num_neutrons)
 
     for i in range(num_neutrons):	
 

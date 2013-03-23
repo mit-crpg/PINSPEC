@@ -23,6 +23,10 @@
 class Geometry;
 
 
+#define NEUTRON_MASS 939565378           /* Mass of neutron in eV / c^2 */
+#define LIGHT_SPEED 299792458               /* Speed of light in m / s */
+
+
 /* The domain in which this tally resides */
 typedef enum tallyDomainTypes {
 	MATERIAL,
@@ -48,6 +52,7 @@ typedef enum tallyTypes {
 	FLUX,
 	LEAKAGE_RATE,
 	COLLISION_RATE,
+    INTERCOLLISION_TIME,
 	ELASTIC_RATE,
 	ABSORPTION_RATE,
 	CAPTURE_RATE,
@@ -624,6 +629,45 @@ public:
 	GeometryFluxTally(char* tally_name, Geometry* geometry)
 			: GeometryTally(tally_name, geometry) {
 				_tally_type = FLUX;
+			}
+	void tally(neutron* neutron);
+};
+
+
+/******************************************************************************/
+/*************************** Mean Lifetime Tallies ****************************/
+/******************************************************************************/
+
+class MaterialInterCollisionTimeTally: public MaterialTally {
+
+public:
+	MaterialInterCollisionTimeTally(char* tally_name, Material* material)
+			: MaterialTally(tally_name, material){
+ 				_tally_type = INTERCOLLISION_TIME; 
+			}
+	void tally(neutron* neutron);
+};
+
+
+
+class RegionInterCollisionTimeTally: public RegionTally {
+
+public:
+	RegionInterCollisionTimeTally(char* tally_name, Region* region)
+			: RegionTally(tally_name, region){
+ 				_tally_type = INTERCOLLISION_TIME; 
+			}
+	void tally(neutron* neutron);
+};
+
+
+
+class GeometryInterCollisionTimeTally: public GeometryTally {
+
+public:
+	GeometryInterCollisionTimeTally(char* tally_name, Geometry* geometry)
+			: GeometryTally(tally_name, geometry){
+ 				_tally_type = INTERCOLLISION_TIME; 
 			}
 	void tally(neutron* neutron);
 };

@@ -343,7 +343,7 @@ triggerType Tally::getTriggerType() {
 }
 
 
-bool Tally::hasComputedBatchStatistics() {
+bool Tally::hasComputedBatchStatistics() {    
     return _computed_statistics;
 }
 
@@ -920,7 +920,6 @@ void IsotopeAbsorptionRateTally::tally(neutron* neutron) {
 	double weight = _isotope->getAbsorptionXS(neutron->_old_energy) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
-//	log_printf(NORMAL, "Tallied %f for neutron old energy %f with total xs %f for isotope %s absorption rate", weight, neutron->_old_energy, neutron->_total_xs, _tally_name);
 	return;
 }
 
@@ -1114,7 +1113,7 @@ void RegionLeakageRateTally::tally(neutron* neutron) {
 
 void GeometryLeakageRateTally::tally(neutron* neutron) {
 	double weight = neutron->_region->getBucklingSquared() / 
-					(3.0 * neutron->_region->getTransportMicroXS(neutron->_old_energy) * 
+			(3.0 * neutron->_region->getTransportMicroXS(neutron->_old_energy) * 
 												neutron->_total_xs);
 	Tally::tally(neutron, weight);
 	return;
@@ -1140,4 +1139,33 @@ void RegionFluxTally::tally(neutron* neutron) {
 void GeometryFluxTally::tally(neutron* neutron) {
 	Tally::tally(neutron, double(1.0 / neutron->_total_xs));
 	return;
+}
+
+
+/******************************************************************************/
+/*************************** Mean Lifetime Tallies ****************************/
+/******************************************************************************/
+
+void MaterialInterCollisionTimeTally::tally(neutron* neutron) {
+    float distance = (1.0 / neutron->_total_xs) * 1E-2;
+    float velocity = LIGHT_SPEED * sqrt(2.0 * neutron->_old_energy / NEUTRON_MASS);
+    Tally::tally(neutron, double(distance / velocity));
+    return;
+}
+
+
+
+void RegionInterCollisionTimeTally::tally(neutron* neutron) {
+    float distance = (1.0 / neutron->_total_xs)  * 1E-2;
+    float velocity = LIGHT_SPEED * sqrt(2.0 * neutron->_old_energy / NEUTRON_MASS);
+    Tally::tally(neutron, double(distance / velocity));
+    return;
+}
+
+
+void GeometryInterCollisionTimeTally::tally(neutron* neutron) {
+    float distance = (1.0 / neutron->_total_xs) * 1E-2;
+    float velocity = LIGHT_SPEED * sqrt(2.0 * neutron->_old_energy / NEUTRON_MASS);
+    Tally::tally(neutron, double(distance / velocity));
+    return;
 }

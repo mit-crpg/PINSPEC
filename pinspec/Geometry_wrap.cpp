@@ -2952,64 +2952,67 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 #define SWIGTYPE_p_GeometryElasticRateTally swig_types[7]
 #define SWIGTYPE_p_GeometryFissionRateTally swig_types[8]
 #define SWIGTYPE_p_GeometryFluxTally swig_types[9]
-#define SWIGTYPE_p_GeometryLeakageRateTally swig_types[10]
-#define SWIGTYPE_p_GeometryTally swig_types[11]
-#define SWIGTYPE_p_GeometryTransportRateTally swig_types[12]
-#define SWIGTYPE_p_Isotope swig_types[13]
-#define SWIGTYPE_p_IsotopeAbsorptionRateTally swig_types[14]
-#define SWIGTYPE_p_IsotopeCaptureRateTally swig_types[15]
-#define SWIGTYPE_p_IsotopeCollisionRateTally swig_types[16]
-#define SWIGTYPE_p_IsotopeDiffusionRateTally swig_types[17]
-#define SWIGTYPE_p_IsotopeElasticRateTally swig_types[18]
-#define SWIGTYPE_p_IsotopeFissionRateTally swig_types[19]
-#define SWIGTYPE_p_IsotopeTally swig_types[20]
-#define SWIGTYPE_p_IsotopeTransportRateTally swig_types[21]
-#define SWIGTYPE_p_Material swig_types[22]
-#define SWIGTYPE_p_MaterialAbsorptionRateTally swig_types[23]
-#define SWIGTYPE_p_MaterialCaptureRateTally swig_types[24]
-#define SWIGTYPE_p_MaterialCollisionRateTally swig_types[25]
-#define SWIGTYPE_p_MaterialDiffusionRateTally swig_types[26]
-#define SWIGTYPE_p_MaterialElasticRateTally swig_types[27]
-#define SWIGTYPE_p_MaterialFissionRateTally swig_types[28]
-#define SWIGTYPE_p_MaterialFluxTally swig_types[29]
-#define SWIGTYPE_p_MaterialLeakageRateTally swig_types[30]
-#define SWIGTYPE_p_MaterialTally swig_types[31]
-#define SWIGTYPE_p_MaterialTransportRateTally swig_types[32]
-#define SWIGTYPE_p_Region swig_types[33]
-#define SWIGTYPE_p_RegionAbsorptionRateTally swig_types[34]
-#define SWIGTYPE_p_RegionCaptureRateTally swig_types[35]
-#define SWIGTYPE_p_RegionCollisionRateTally swig_types[36]
-#define SWIGTYPE_p_RegionDiffusionRateTally swig_types[37]
-#define SWIGTYPE_p_RegionElasticRateTally swig_types[38]
-#define SWIGTYPE_p_RegionFissionRateTally swig_types[39]
-#define SWIGTYPE_p_RegionFluxTally swig_types[40]
-#define SWIGTYPE_p_RegionLeakageRateTally swig_types[41]
-#define SWIGTYPE_p_RegionTally swig_types[42]
-#define SWIGTYPE_p_RegionTransportRateTally swig_types[43]
-#define SWIGTYPE_p_Surface swig_types[44]
-#define SWIGTYPE_p_Tally swig_types[45]
-#define SWIGTYPE_p_TallyBank swig_types[46]
-#define SWIGTYPE_p_TallyFactory swig_types[47]
-#define SWIGTYPE_p_Timer swig_types[48]
-#define SWIGTYPE_p_XPlane swig_types[49]
-#define SWIGTYPE_p_YPlane swig_types[50]
-#define SWIGTYPE_p_binSpacingTypes swig_types[51]
-#define SWIGTYPE_p_boundaryTypes swig_types[52]
-#define SWIGTYPE_p_char swig_types[53]
-#define SWIGTYPE_p_densityUnits swig_types[54]
-#define SWIGTYPE_p_double swig_types[55]
-#define SWIGTYPE_p_float swig_types[56]
-#define SWIGTYPE_p_logLevels swig_types[57]
-#define SWIGTYPE_p_neutron swig_types[58]
-#define SWIGTYPE_p_p_double swig_types[59]
-#define SWIGTYPE_p_regionTypes swig_types[60]
-#define SWIGTYPE_p_spatialTypes swig_types[61]
-#define SWIGTYPE_p_tallyDomainTypes swig_types[62]
-#define SWIGTYPE_p_tallyTypes swig_types[63]
-#define SWIGTYPE_p_timespec swig_types[64]
-#define SWIGTYPE_p_triggerTypes swig_types[65]
-static swig_type_info *swig_types[67];
-static swig_module_info swig_module = {swig_types, 66, 0, 0, 0, 0};
+#define SWIGTYPE_p_GeometryInterCollisionTimeTally swig_types[10]
+#define SWIGTYPE_p_GeometryLeakageRateTally swig_types[11]
+#define SWIGTYPE_p_GeometryTally swig_types[12]
+#define SWIGTYPE_p_GeometryTransportRateTally swig_types[13]
+#define SWIGTYPE_p_Isotope swig_types[14]
+#define SWIGTYPE_p_IsotopeAbsorptionRateTally swig_types[15]
+#define SWIGTYPE_p_IsotopeCaptureRateTally swig_types[16]
+#define SWIGTYPE_p_IsotopeCollisionRateTally swig_types[17]
+#define SWIGTYPE_p_IsotopeDiffusionRateTally swig_types[18]
+#define SWIGTYPE_p_IsotopeElasticRateTally swig_types[19]
+#define SWIGTYPE_p_IsotopeFissionRateTally swig_types[20]
+#define SWIGTYPE_p_IsotopeTally swig_types[21]
+#define SWIGTYPE_p_IsotopeTransportRateTally swig_types[22]
+#define SWIGTYPE_p_Material swig_types[23]
+#define SWIGTYPE_p_MaterialAbsorptionRateTally swig_types[24]
+#define SWIGTYPE_p_MaterialCaptureRateTally swig_types[25]
+#define SWIGTYPE_p_MaterialCollisionRateTally swig_types[26]
+#define SWIGTYPE_p_MaterialDiffusionRateTally swig_types[27]
+#define SWIGTYPE_p_MaterialElasticRateTally swig_types[28]
+#define SWIGTYPE_p_MaterialFissionRateTally swig_types[29]
+#define SWIGTYPE_p_MaterialFluxTally swig_types[30]
+#define SWIGTYPE_p_MaterialInterCollisionTimeTally swig_types[31]
+#define SWIGTYPE_p_MaterialLeakageRateTally swig_types[32]
+#define SWIGTYPE_p_MaterialTally swig_types[33]
+#define SWIGTYPE_p_MaterialTransportRateTally swig_types[34]
+#define SWIGTYPE_p_Region swig_types[35]
+#define SWIGTYPE_p_RegionAbsorptionRateTally swig_types[36]
+#define SWIGTYPE_p_RegionCaptureRateTally swig_types[37]
+#define SWIGTYPE_p_RegionCollisionRateTally swig_types[38]
+#define SWIGTYPE_p_RegionDiffusionRateTally swig_types[39]
+#define SWIGTYPE_p_RegionElasticRateTally swig_types[40]
+#define SWIGTYPE_p_RegionFissionRateTally swig_types[41]
+#define SWIGTYPE_p_RegionFluxTally swig_types[42]
+#define SWIGTYPE_p_RegionInterCollisionTimeTally swig_types[43]
+#define SWIGTYPE_p_RegionLeakageRateTally swig_types[44]
+#define SWIGTYPE_p_RegionTally swig_types[45]
+#define SWIGTYPE_p_RegionTransportRateTally swig_types[46]
+#define SWIGTYPE_p_Surface swig_types[47]
+#define SWIGTYPE_p_Tally swig_types[48]
+#define SWIGTYPE_p_TallyBank swig_types[49]
+#define SWIGTYPE_p_TallyFactory swig_types[50]
+#define SWIGTYPE_p_Timer swig_types[51]
+#define SWIGTYPE_p_XPlane swig_types[52]
+#define SWIGTYPE_p_YPlane swig_types[53]
+#define SWIGTYPE_p_binSpacingTypes swig_types[54]
+#define SWIGTYPE_p_boundaryTypes swig_types[55]
+#define SWIGTYPE_p_char swig_types[56]
+#define SWIGTYPE_p_densityUnits swig_types[57]
+#define SWIGTYPE_p_double swig_types[58]
+#define SWIGTYPE_p_float swig_types[59]
+#define SWIGTYPE_p_logLevels swig_types[60]
+#define SWIGTYPE_p_neutron swig_types[61]
+#define SWIGTYPE_p_p_double swig_types[62]
+#define SWIGTYPE_p_regionTypes swig_types[63]
+#define SWIGTYPE_p_spatialTypes swig_types[64]
+#define SWIGTYPE_p_tallyDomainTypes swig_types[65]
+#define SWIGTYPE_p_tallyTypes swig_types[66]
+#define SWIGTYPE_p_timespec swig_types[67]
+#define SWIGTYPE_p_triggerTypes swig_types[68]
+static swig_type_info *swig_types[70];
+static swig_module_info swig_module = {swig_types, 69, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -8992,6 +8995,254 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveXS(PyObject *SWIGUNUSEDPARM(self), Py
   return resultobj;
 fail:
   if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_setElasticXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:Isotope_setElasticXS",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setElasticXS" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  res4 = SWIG_ConvertPtr(obj2, &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Isotope_setElasticXS" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  ecode5 = SWIG_AsVal_int(obj3, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Isotope_setElasticXS" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  {
+    try {
+      (arg1)->setElasticXS(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_setCaptureXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyArrayObject *array4 = NULL ;
+  int is_new_object4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_setCaptureXS",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setCaptureXS" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array4 = obj_to_array_contiguous_allow_conversion(obj2, NPY_DOUBLE,
+      &is_new_object4);
+    if (!array4 || !require_dimensions(array4, 1) ||
+      !require_size(array4, size, 1)) SWIG_fail;
+    arg4 = (double*) array_data(array4);
+    arg5 = (int) array_size(array4,0);
+  }
+  {
+    try {
+      (arg1)->setCaptureXS(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_setFissionXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyArrayObject *array4 = NULL ;
+  int is_new_object4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_setFissionXS",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setFissionXS" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array4 = obj_to_array_contiguous_allow_conversion(obj2, NPY_DOUBLE,
+      &is_new_object4);
+    if (!array4 || !require_dimensions(array4, 1) ||
+      !require_size(array4, size, 1)) SWIG_fail;
+    arg4 = (double*) array_data(array4);
+    arg5 = (int) array_size(array4,0);
+  }
+  {
+    try {
+      (arg1)->setFissionXS(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
   return NULL;
 }
 
@@ -18637,6 +18888,363 @@ SWIGINTERN PyObject *GeometryFluxTally_swigregister(PyObject *SWIGUNUSEDPARM(sel
   return SWIG_Py_Void();
 }
 
+SWIGINTERN PyObject *_wrap_new_MaterialInterCollisionTimeTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  Material *arg2 = (Material *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  MaterialInterCollisionTimeTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_MaterialInterCollisionTimeTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialInterCollisionTimeTally" "', argument " "1"" of type '" "char *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_MaterialInterCollisionTimeTally" "', argument " "2"" of type '" "Material *""'"); 
+  }
+  arg2 = reinterpret_cast< Material * >(argp2);
+  {
+    try {
+      result = (MaterialInterCollisionTimeTally *)new MaterialInterCollisionTimeTally(arg1,arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialInterCollisionTimeTally, SWIG_POINTER_NEW |  0 );
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MaterialInterCollisionTimeTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialInterCollisionTimeTally *arg1 = (MaterialInterCollisionTimeTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MaterialInterCollisionTimeTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialInterCollisionTimeTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MaterialInterCollisionTimeTally_tally" "', argument " "1"" of type '" "MaterialInterCollisionTimeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialInterCollisionTimeTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MaterialInterCollisionTimeTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MaterialInterCollisionTimeTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialInterCollisionTimeTally *arg1 = (MaterialInterCollisionTimeTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MaterialInterCollisionTimeTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialInterCollisionTimeTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MaterialInterCollisionTimeTally" "', argument " "1"" of type '" "MaterialInterCollisionTimeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialInterCollisionTimeTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MaterialInterCollisionTimeTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_MaterialInterCollisionTimeTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_RegionInterCollisionTimeTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  Region *arg2 = (Region *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  RegionInterCollisionTimeTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_RegionInterCollisionTimeTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionInterCollisionTimeTally" "', argument " "1"" of type '" "char *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_RegionInterCollisionTimeTally" "', argument " "2"" of type '" "Region *""'"); 
+  }
+  arg2 = reinterpret_cast< Region * >(argp2);
+  {
+    try {
+      result = (RegionInterCollisionTimeTally *)new RegionInterCollisionTimeTally(arg1,arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionInterCollisionTimeTally, SWIG_POINTER_NEW |  0 );
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_RegionInterCollisionTimeTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionInterCollisionTimeTally *arg1 = (RegionInterCollisionTimeTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:RegionInterCollisionTimeTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionInterCollisionTimeTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RegionInterCollisionTimeTally_tally" "', argument " "1"" of type '" "RegionInterCollisionTimeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionInterCollisionTimeTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RegionInterCollisionTimeTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_RegionInterCollisionTimeTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionInterCollisionTimeTally *arg1 = (RegionInterCollisionTimeTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_RegionInterCollisionTimeTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionInterCollisionTimeTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RegionInterCollisionTimeTally" "', argument " "1"" of type '" "RegionInterCollisionTimeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionInterCollisionTimeTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *RegionInterCollisionTimeTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_RegionInterCollisionTimeTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_GeometryInterCollisionTimeTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  Geometry *arg2 = (Geometry *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  GeometryInterCollisionTimeTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_GeometryInterCollisionTimeTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryInterCollisionTimeTally" "', argument " "1"" of type '" "char *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_GeometryInterCollisionTimeTally" "', argument " "2"" of type '" "Geometry *""'"); 
+  }
+  arg2 = reinterpret_cast< Geometry * >(argp2);
+  {
+    try {
+      result = (GeometryInterCollisionTimeTally *)new GeometryInterCollisionTimeTally(arg1,arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryInterCollisionTimeTally, SWIG_POINTER_NEW |  0 );
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GeometryInterCollisionTimeTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryInterCollisionTimeTally *arg1 = (GeometryInterCollisionTimeTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:GeometryInterCollisionTimeTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryInterCollisionTimeTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GeometryInterCollisionTimeTally_tally" "', argument " "1"" of type '" "GeometryInterCollisionTimeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryInterCollisionTimeTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GeometryInterCollisionTimeTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GeometryInterCollisionTimeTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryInterCollisionTimeTally *arg1 = (GeometryInterCollisionTimeTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_GeometryInterCollisionTimeTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryInterCollisionTimeTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GeometryInterCollisionTimeTally" "', argument " "1"" of type '" "GeometryInterCollisionTimeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryInterCollisionTimeTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *GeometryInterCollisionTimeTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_GeometryInterCollisionTimeTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
 SWIGINTERN PyObject *_wrap_delete_TallyBank(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   TallyBank *arg1 = (TallyBank *) 0 ;
@@ -21939,6 +22547,9 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_getEnergyGridIndex", _wrap_Isotope_getEnergyGridIndex, METH_VARARGS, NULL},
 	 { (char *)"Isotope_retrieveXSEnergies", _wrap_Isotope_retrieveXSEnergies, METH_VARARGS, NULL},
 	 { (char *)"Isotope_retrieveXS", _wrap_Isotope_retrieveXS, METH_VARARGS, NULL},
+	 { (char *)"Isotope_setElasticXS", _wrap_Isotope_setElasticXS, METH_VARARGS, NULL},
+	 { (char *)"Isotope_setCaptureXS", _wrap_Isotope_setCaptureXS, METH_VARARGS, NULL},
+	 { (char *)"Isotope_setFissionXS", _wrap_Isotope_setFissionXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setMultigroupElasticXS", _wrap_Isotope_setMultigroupElasticXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setMultigroupCaptureXS", _wrap_Isotope_setMultigroupCaptureXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setMultigroupFissionXS", _wrap_Isotope_setMultigroupFissionXS, METH_VARARGS, NULL},
@@ -22190,6 +22801,18 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"GeometryFluxTally_tally", _wrap_GeometryFluxTally_tally, METH_VARARGS, NULL},
 	 { (char *)"delete_GeometryFluxTally", _wrap_delete_GeometryFluxTally, METH_VARARGS, NULL},
 	 { (char *)"GeometryFluxTally_swigregister", GeometryFluxTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_MaterialInterCollisionTimeTally", _wrap_new_MaterialInterCollisionTimeTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialInterCollisionTimeTally_tally", _wrap_MaterialInterCollisionTimeTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_MaterialInterCollisionTimeTally", _wrap_delete_MaterialInterCollisionTimeTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialInterCollisionTimeTally_swigregister", MaterialInterCollisionTimeTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_RegionInterCollisionTimeTally", _wrap_new_RegionInterCollisionTimeTally, METH_VARARGS, NULL},
+	 { (char *)"RegionInterCollisionTimeTally_tally", _wrap_RegionInterCollisionTimeTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_RegionInterCollisionTimeTally", _wrap_delete_RegionInterCollisionTimeTally, METH_VARARGS, NULL},
+	 { (char *)"RegionInterCollisionTimeTally_swigregister", RegionInterCollisionTimeTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_GeometryInterCollisionTimeTally", _wrap_new_GeometryInterCollisionTimeTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryInterCollisionTimeTally_tally", _wrap_GeometryInterCollisionTimeTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_GeometryInterCollisionTimeTally", _wrap_delete_GeometryInterCollisionTimeTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryInterCollisionTimeTally_swigregister", GeometryInterCollisionTimeTally_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_TallyBank", _wrap_delete_TallyBank, METH_VARARGS, NULL},
 	 { (char *)"TallyBank_Get", _wrap_TallyBank_Get, METH_VARARGS, NULL},
 	 { (char *)"TallyBank_registerTally", _wrap_TallyBank_registerTally, METH_VARARGS, NULL},
@@ -22288,6 +22911,9 @@ static void *_p_YPlaneTo_p_Surface(void *x, int *SWIGUNUSEDPARM(newmemory)) {
 static void *_p_CircleTo_p_Surface(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Surface *)  ((Circle *) x));
 }
+static void *_p_MaterialInterCollisionTimeTallyTo_p_MaterialTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((MaterialTally *)  ((MaterialInterCollisionTimeTally *) x));
+}
 static void *_p_MaterialCollisionRateTallyTo_p_MaterialTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((MaterialTally *)  ((MaterialCollisionRateTally *) x));
 }
@@ -22315,6 +22941,9 @@ static void *_p_MaterialLeakageRateTallyTo_p_MaterialTally(void *x, int *SWIGUNU
 static void *_p_MaterialFluxTallyTo_p_MaterialTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((MaterialTally *)  ((MaterialFluxTally *) x));
 }
+static void *_p_RegionInterCollisionTimeTallyTo_p_RegionTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((RegionTally *)  ((RegionInterCollisionTimeTally *) x));
+}
 static void *_p_RegionCollisionRateTallyTo_p_RegionTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((RegionTally *)  ((RegionCollisionRateTally *) x));
 }
@@ -22341,6 +22970,9 @@ static void *_p_RegionLeakageRateTallyTo_p_RegionTally(void *x, int *SWIGUNUSEDP
 }
 static void *_p_RegionFluxTallyTo_p_RegionTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((RegionTally *)  ((RegionFluxTally *) x));
+}
+static void *_p_GeometryInterCollisionTimeTallyTo_p_GeometryTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((GeometryTally *)  ((GeometryInterCollisionTimeTally *) x));
 }
 static void *_p_GeometryCollisionRateTallyTo_p_GeometryTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((GeometryTally *)  ((GeometryCollisionRateTally *) x));
@@ -22374,6 +23006,15 @@ static void *_p_MaterialTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory))
 }
 static void *_p_RegionTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Tally *)  ((RegionTally *) x));
+}
+static void *_p_MaterialInterCollisionTimeTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (MaterialTally *) ((MaterialInterCollisionTimeTally *) x));
+}
+static void *_p_RegionInterCollisionTimeTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (RegionTally *) ((RegionInterCollisionTimeTally *) x));
+}
+static void *_p_GeometryInterCollisionTimeTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (GeometryTally *) ((GeometryInterCollisionTimeTally *) x));
 }
 static void *_p_GeometryTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Tally *)  ((GeometryTally *) x));
@@ -22514,6 +23155,7 @@ static swig_type_info _swigt__p_GeometryDiffusionRateTally = {"_p_GeometryDiffus
 static swig_type_info _swigt__p_GeometryElasticRateTally = {"_p_GeometryElasticRateTally", "GeometryElasticRateTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_GeometryFissionRateTally = {"_p_GeometryFissionRateTally", "GeometryFissionRateTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_GeometryFluxTally = {"_p_GeometryFluxTally", "GeometryFluxTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_GeometryInterCollisionTimeTally = {"_p_GeometryInterCollisionTimeTally", "GeometryInterCollisionTimeTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_GeometryLeakageRateTally = {"_p_GeometryLeakageRateTally", "GeometryLeakageRateTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_GeometryTally = {"_p_GeometryTally", "GeometryTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_GeometryTransportRateTally = {"_p_GeometryTransportRateTally", "GeometryTransportRateTally *", 0, 0, (void*)0, 0};
@@ -22534,6 +23176,7 @@ static swig_type_info _swigt__p_MaterialDiffusionRateTally = {"_p_MaterialDiffus
 static swig_type_info _swigt__p_MaterialElasticRateTally = {"_p_MaterialElasticRateTally", "MaterialElasticRateTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MaterialFissionRateTally = {"_p_MaterialFissionRateTally", "MaterialFissionRateTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MaterialFluxTally = {"_p_MaterialFluxTally", "MaterialFluxTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MaterialInterCollisionTimeTally = {"_p_MaterialInterCollisionTimeTally", "MaterialInterCollisionTimeTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MaterialLeakageRateTally = {"_p_MaterialLeakageRateTally", "MaterialLeakageRateTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MaterialTally = {"_p_MaterialTally", "MaterialTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MaterialTransportRateTally = {"_p_MaterialTransportRateTally", "MaterialTransportRateTally *", 0, 0, (void*)0, 0};
@@ -22545,6 +23188,7 @@ static swig_type_info _swigt__p_RegionDiffusionRateTally = {"_p_RegionDiffusionR
 static swig_type_info _swigt__p_RegionElasticRateTally = {"_p_RegionElasticRateTally", "RegionElasticRateTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_RegionFissionRateTally = {"_p_RegionFissionRateTally", "RegionFissionRateTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_RegionFluxTally = {"_p_RegionFluxTally", "RegionFluxTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RegionInterCollisionTimeTally = {"_p_RegionInterCollisionTimeTally", "RegionInterCollisionTimeTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_RegionLeakageRateTally = {"_p_RegionLeakageRateTally", "RegionLeakageRateTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_RegionTally = {"_p_RegionTally", "RegionTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_RegionTransportRateTally = {"_p_RegionTransportRateTally", "RegionTransportRateTally *", 0, 0, (void*)0, 0};
@@ -22582,6 +23226,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_GeometryElasticRateTally,
   &_swigt__p_GeometryFissionRateTally,
   &_swigt__p_GeometryFluxTally,
+  &_swigt__p_GeometryInterCollisionTimeTally,
   &_swigt__p_GeometryLeakageRateTally,
   &_swigt__p_GeometryTally,
   &_swigt__p_GeometryTransportRateTally,
@@ -22602,6 +23247,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_MaterialElasticRateTally,
   &_swigt__p_MaterialFissionRateTally,
   &_swigt__p_MaterialFluxTally,
+  &_swigt__p_MaterialInterCollisionTimeTally,
   &_swigt__p_MaterialLeakageRateTally,
   &_swigt__p_MaterialTally,
   &_swigt__p_MaterialTransportRateTally,
@@ -22613,6 +23259,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_RegionElasticRateTally,
   &_swigt__p_RegionFissionRateTally,
   &_swigt__p_RegionFluxTally,
+  &_swigt__p_RegionInterCollisionTimeTally,
   &_swigt__p_RegionLeakageRateTally,
   &_swigt__p_RegionTally,
   &_swigt__p_RegionTransportRateTally,
@@ -22650,8 +23297,9 @@ static swig_cast_info _swigc__p_GeometryDiffusionRateTally[] = {  {&_swigt__p_Ge
 static swig_cast_info _swigc__p_GeometryElasticRateTally[] = {  {&_swigt__p_GeometryElasticRateTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_GeometryFissionRateTally[] = {  {&_swigt__p_GeometryFissionRateTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_GeometryFluxTally[] = {  {&_swigt__p_GeometryFluxTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_GeometryInterCollisionTimeTally[] = {  {&_swigt__p_GeometryInterCollisionTimeTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_GeometryLeakageRateTally[] = {  {&_swigt__p_GeometryLeakageRateTally, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_GeometryTally[] = {  {&_swigt__p_GeometryTally, 0, 0, 0},  {&_swigt__p_GeometryCollisionRateTally, _p_GeometryCollisionRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryElasticRateTally, _p_GeometryElasticRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryAbsorptionRateTally, _p_GeometryAbsorptionRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryCaptureRateTally, _p_GeometryCaptureRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryFissionRateTally, _p_GeometryFissionRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryTransportRateTally, _p_GeometryTransportRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryDiffusionRateTally, _p_GeometryDiffusionRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryLeakageRateTally, _p_GeometryLeakageRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryFluxTally, _p_GeometryFluxTallyTo_p_GeometryTally, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_GeometryTally[] = {  {&_swigt__p_GeometryTally, 0, 0, 0},  {&_swigt__p_GeometryInterCollisionTimeTally, _p_GeometryInterCollisionTimeTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryCollisionRateTally, _p_GeometryCollisionRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryElasticRateTally, _p_GeometryElasticRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryAbsorptionRateTally, _p_GeometryAbsorptionRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryCaptureRateTally, _p_GeometryCaptureRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryFissionRateTally, _p_GeometryFissionRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryTransportRateTally, _p_GeometryTransportRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryDiffusionRateTally, _p_GeometryDiffusionRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryLeakageRateTally, _p_GeometryLeakageRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryFluxTally, _p_GeometryFluxTallyTo_p_GeometryTally, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_GeometryTransportRateTally[] = {  {&_swigt__p_GeometryTransportRateTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Isotope[] = {  {&_swigt__p_Isotope, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_IsotopeAbsorptionRateTally[] = {  {&_swigt__p_IsotopeAbsorptionRateTally, 0, 0, 0},{0, 0, 0, 0}};
@@ -22670,8 +23318,9 @@ static swig_cast_info _swigc__p_MaterialDiffusionRateTally[] = {  {&_swigt__p_Ma
 static swig_cast_info _swigc__p_MaterialElasticRateTally[] = {  {&_swigt__p_MaterialElasticRateTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MaterialFissionRateTally[] = {  {&_swigt__p_MaterialFissionRateTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MaterialFluxTally[] = {  {&_swigt__p_MaterialFluxTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MaterialInterCollisionTimeTally[] = {  {&_swigt__p_MaterialInterCollisionTimeTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MaterialLeakageRateTally[] = {  {&_swigt__p_MaterialLeakageRateTally, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_MaterialTally[] = {  {&_swigt__p_MaterialTally, 0, 0, 0},  {&_swigt__p_MaterialCollisionRateTally, _p_MaterialCollisionRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialElasticRateTally, _p_MaterialElasticRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialAbsorptionRateTally, _p_MaterialAbsorptionRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialCaptureRateTally, _p_MaterialCaptureRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialFissionRateTally, _p_MaterialFissionRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialTransportRateTally, _p_MaterialTransportRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialDiffusionRateTally, _p_MaterialDiffusionRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialLeakageRateTally, _p_MaterialLeakageRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialFluxTally, _p_MaterialFluxTallyTo_p_MaterialTally, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MaterialTally[] = {  {&_swigt__p_MaterialTally, 0, 0, 0},  {&_swigt__p_MaterialInterCollisionTimeTally, _p_MaterialInterCollisionTimeTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialCollisionRateTally, _p_MaterialCollisionRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialElasticRateTally, _p_MaterialElasticRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialAbsorptionRateTally, _p_MaterialAbsorptionRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialCaptureRateTally, _p_MaterialCaptureRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialFissionRateTally, _p_MaterialFissionRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialTransportRateTally, _p_MaterialTransportRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialDiffusionRateTally, _p_MaterialDiffusionRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialLeakageRateTally, _p_MaterialLeakageRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialFluxTally, _p_MaterialFluxTallyTo_p_MaterialTally, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MaterialTransportRateTally[] = {  {&_swigt__p_MaterialTransportRateTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Region[] = {  {&_swigt__p_Region, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_RegionAbsorptionRateTally[] = {  {&_swigt__p_RegionAbsorptionRateTally, 0, 0, 0},{0, 0, 0, 0}};
@@ -22681,11 +23330,12 @@ static swig_cast_info _swigc__p_RegionDiffusionRateTally[] = {  {&_swigt__p_Regi
 static swig_cast_info _swigc__p_RegionElasticRateTally[] = {  {&_swigt__p_RegionElasticRateTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_RegionFissionRateTally[] = {  {&_swigt__p_RegionFissionRateTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_RegionFluxTally[] = {  {&_swigt__p_RegionFluxTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RegionInterCollisionTimeTally[] = {  {&_swigt__p_RegionInterCollisionTimeTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_RegionLeakageRateTally[] = {  {&_swigt__p_RegionLeakageRateTally, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_RegionTally[] = {  {&_swigt__p_RegionCollisionRateTally, _p_RegionCollisionRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionElasticRateTally, _p_RegionElasticRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionAbsorptionRateTally, _p_RegionAbsorptionRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionCaptureRateTally, _p_RegionCaptureRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionFissionRateTally, _p_RegionFissionRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionTransportRateTally, _p_RegionTransportRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionDiffusionRateTally, _p_RegionDiffusionRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionLeakageRateTally, _p_RegionLeakageRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionFluxTally, _p_RegionFluxTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RegionTally[] = {  {&_swigt__p_RegionInterCollisionTimeTally, _p_RegionInterCollisionTimeTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionCollisionRateTally, _p_RegionCollisionRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionElasticRateTally, _p_RegionElasticRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionAbsorptionRateTally, _p_RegionAbsorptionRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionCaptureRateTally, _p_RegionCaptureRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionFissionRateTally, _p_RegionFissionRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionTransportRateTally, _p_RegionTransportRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionDiffusionRateTally, _p_RegionDiffusionRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionLeakageRateTally, _p_RegionLeakageRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionFluxTally, _p_RegionFluxTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_RegionTransportRateTally[] = {  {&_swigt__p_RegionTransportRateTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Surface[] = {  {&_swigt__p_XPlane, _p_XPlaneTo_p_Surface, 0, 0},  {&_swigt__p_Surface, 0, 0, 0},  {&_swigt__p_YPlane, _p_YPlaneTo_p_Surface, 0, 0},  {&_swigt__p_Circle, _p_CircleTo_p_Surface, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Tally[] = {  {&_swigt__p_MaterialTally, _p_MaterialTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionTally, _p_RegionTallyTo_p_Tally, 0, 0},  {&_swigt__p_Tally, 0, 0, 0},  {&_swigt__p_GeometryTally, _p_GeometryTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryFluxTally, _p_GeometryFluxTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionFluxTally, _p_RegionFluxTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialFluxTally, _p_MaterialFluxTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeTally, _p_IsotopeTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeCollisionRateTally, _p_IsotopeCollisionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeElasticRateTally, _p_IsotopeElasticRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryLeakageRateTally, _p_GeometryLeakageRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryDiffusionRateTally, _p_GeometryDiffusionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryTransportRateTally, _p_GeometryTransportRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryFissionRateTally, _p_GeometryFissionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryCaptureRateTally, _p_GeometryCaptureRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryAbsorptionRateTally, _p_GeometryAbsorptionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryElasticRateTally, _p_GeometryElasticRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryCollisionRateTally, _p_GeometryCollisionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionLeakageRateTally, _p_RegionLeakageRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionDiffusionRateTally, _p_RegionDiffusionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionTransportRateTally, _p_RegionTransportRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionFissionRateTally, _p_RegionFissionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionCaptureRateTally, _p_RegionCaptureRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionAbsorptionRateTally, _p_RegionAbsorptionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialCollisionRateTally, _p_MaterialCollisionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialElasticRateTally, _p_MaterialElasticRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialAbsorptionRateTally, _p_MaterialAbsorptionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialCaptureRateTally, _p_MaterialCaptureRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialFissionRateTally, _p_MaterialFissionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialTransportRateTally, _p_MaterialTransportRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialDiffusionRateTally, _p_MaterialDiffusionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialLeakageRateTally, _p_MaterialLeakageRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionCollisionRateTally, _p_RegionCollisionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionElasticRateTally, _p_RegionElasticRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeAbsorptionRateTally, _p_IsotopeAbsorptionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeCaptureRateTally, _p_IsotopeCaptureRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeFissionRateTally, _p_IsotopeFissionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeTransportRateTally, _p_IsotopeTransportRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeDiffusionRateTally, _p_IsotopeDiffusionRateTallyTo_p_Tally, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Tally[] = {  {&_swigt__p_MaterialTally, _p_MaterialTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionTally, _p_RegionTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryInterCollisionTimeTally, _p_GeometryInterCollisionTimeTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialInterCollisionTimeTally, _p_MaterialInterCollisionTimeTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionInterCollisionTimeTally, _p_RegionInterCollisionTimeTallyTo_p_Tally, 0, 0},  {&_swigt__p_Tally, 0, 0, 0},  {&_swigt__p_GeometryTally, _p_GeometryTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryFluxTally, _p_GeometryFluxTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionFluxTally, _p_RegionFluxTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialFluxTally, _p_MaterialFluxTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryLeakageRateTally, _p_GeometryLeakageRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryDiffusionRateTally, _p_GeometryDiffusionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryTransportRateTally, _p_GeometryTransportRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryFissionRateTally, _p_GeometryFissionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryCaptureRateTally, _p_GeometryCaptureRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryAbsorptionRateTally, _p_GeometryAbsorptionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryElasticRateTally, _p_GeometryElasticRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryCollisionRateTally, _p_GeometryCollisionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionLeakageRateTally, _p_RegionLeakageRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionDiffusionRateTally, _p_RegionDiffusionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionTransportRateTally, _p_RegionTransportRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionFissionRateTally, _p_RegionFissionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionCaptureRateTally, _p_RegionCaptureRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionAbsorptionRateTally, _p_RegionAbsorptionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionElasticRateTally, _p_RegionElasticRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionCollisionRateTally, _p_RegionCollisionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialCollisionRateTally, _p_MaterialCollisionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialElasticRateTally, _p_MaterialElasticRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialAbsorptionRateTally, _p_MaterialAbsorptionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialCaptureRateTally, _p_MaterialCaptureRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialFissionRateTally, _p_MaterialFissionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialTransportRateTally, _p_MaterialTransportRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialDiffusionRateTally, _p_MaterialDiffusionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialLeakageRateTally, _p_MaterialLeakageRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeCollisionRateTally, _p_IsotopeCollisionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeTally, _p_IsotopeTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeElasticRateTally, _p_IsotopeElasticRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeAbsorptionRateTally, _p_IsotopeAbsorptionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeCaptureRateTally, _p_IsotopeCaptureRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeFissionRateTally, _p_IsotopeFissionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeTransportRateTally, _p_IsotopeTransportRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeDiffusionRateTally, _p_IsotopeDiffusionRateTallyTo_p_Tally, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TallyBank[] = {  {&_swigt__p_TallyBank, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_TallyFactory[] = {  {&_swigt__p_TallyFactory, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Timer[] = {  {&_swigt__p_Timer, 0, 0, 0},{0, 0, 0, 0}};
@@ -22718,6 +23368,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_GeometryElasticRateTally,
   _swigc__p_GeometryFissionRateTally,
   _swigc__p_GeometryFluxTally,
+  _swigc__p_GeometryInterCollisionTimeTally,
   _swigc__p_GeometryLeakageRateTally,
   _swigc__p_GeometryTally,
   _swigc__p_GeometryTransportRateTally,
@@ -22738,6 +23389,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_MaterialElasticRateTally,
   _swigc__p_MaterialFissionRateTally,
   _swigc__p_MaterialFluxTally,
+  _swigc__p_MaterialInterCollisionTimeTally,
   _swigc__p_MaterialLeakageRateTally,
   _swigc__p_MaterialTally,
   _swigc__p_MaterialTransportRateTally,
@@ -22749,6 +23401,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_RegionElasticRateTally,
   _swigc__p_RegionFissionRateTally,
   _swigc__p_RegionFluxTally,
+  _swigc__p_RegionInterCollisionTimeTally,
   _swigc__p_RegionLeakageRateTally,
   _swigc__p_RegionTally,
   _swigc__p_RegionTransportRateTally,
@@ -23477,6 +24130,8 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "INTERFACE",SWIG_From_int(static_cast< int >(INTERFACE)));
   SWIG_Python_SetConstant(d, "GRAM_CM3",SWIG_From_int(static_cast< int >(GRAM_CM3)));
   SWIG_Python_SetConstant(d, "NUM_CM3",SWIG_From_int(static_cast< int >(NUM_CM3)));
+  SWIG_Python_SetConstant(d, "NEUTRON_MASS",SWIG_From_int(static_cast< int >(939565378)));
+  SWIG_Python_SetConstant(d, "LIGHT_SPEED",SWIG_From_int(static_cast< int >(299792458)));
   SWIG_Python_SetConstant(d, "MATERIAL",SWIG_From_int(static_cast< int >(MATERIAL)));
   SWIG_Python_SetConstant(d, "ISOTOPE",SWIG_From_int(static_cast< int >(ISOTOPE)));
   SWIG_Python_SetConstant(d, "REGION",SWIG_From_int(static_cast< int >(REGION)));
@@ -23488,6 +24143,7 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "FLUX",SWIG_From_int(static_cast< int >(FLUX)));
   SWIG_Python_SetConstant(d, "LEAKAGE_RATE",SWIG_From_int(static_cast< int >(LEAKAGE_RATE)));
   SWIG_Python_SetConstant(d, "COLLISION_RATE",SWIG_From_int(static_cast< int >(COLLISION_RATE)));
+  SWIG_Python_SetConstant(d, "INTERCOLLISION_TIME",SWIG_From_int(static_cast< int >(INTERCOLLISION_TIME)));
   SWIG_Python_SetConstant(d, "ELASTIC_RATE",SWIG_From_int(static_cast< int >(ELASTIC_RATE)));
   SWIG_Python_SetConstant(d, "ABSORPTION_RATE",SWIG_From_int(static_cast< int >(ABSORPTION_RATE)));
   SWIG_Python_SetConstant(d, "CAPTURE_RATE",SWIG_From_int(static_cast< int >(CAPTURE_RATE)));
