@@ -10,6 +10,7 @@
 #ifndef GEOMETRY_H_
 #define GEOMETRY_H_
 
+#ifdef __cplusplus
 #include <sys/stat.h>
 #include <omp.h>
 #include <vector>
@@ -110,5 +111,7 @@ inline int Geometry::getEnergyGridIndex(float energy) const {
 
 	return index;
 }
+
+#endif
 
 #endif /* GEOMETRY_H_ */

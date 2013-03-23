@@ -10,6 +10,8 @@
 #ifndef TALLYFACTORY_H_
 #define TALLYFACTORY_H_
 
+#ifdef __cplusplus
+
 #include "Tally.h"
 
 
@@ -33,5 +35,8 @@ public:
 	Tally* createTally(char* tally_name, Material* material, tallyType tally_type);
 	Tally* createTally(char* tally_name, Isotope* isotope, tallyType tally_type);
 };
+
+
+#endif
 
 #endif /* TALLYFACTORY_H_ */

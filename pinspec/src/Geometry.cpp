@@ -536,14 +536,14 @@ void Geometry::initializeProbModFuelRatios() {
     Material* fuel = _fuel->getMaterial();
     float v_mod = _moderator->getVolume();
     float v_fuel = _fuel->getVolume();
-    _num_ratios = mod->getNumXSEnergies();
+    _num_ratios = mod->getNumXSEnergies((char*)"elastic");
 
     /* Allocate memory for ratios */    
     _pmf_ratios = new float[_num_ratios];
 
     /* Set energy bounds and delta to allow for O(1) lookup of ratio */
     float* xs_energies = new float[_num_ratios];
-    mod->retrieveXSEnergies(xs_energies, _num_ratios);
+    mod->retrieveXSEnergies(xs_energies, _num_ratios, (char*)"elastic");
     _start_energy = xs_energies[0];
     _end_energy = xs_energies[_num_ratios-1];
 

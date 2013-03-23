@@ -10,6 +10,7 @@
 #ifndef TALLYBANK_H_
 #define TALLYBANK_H_
 
+#ifdef __cplusplus
 #include <set>
 #include <map>
 #include <utility>
@@ -56,5 +57,7 @@ public:
 
 	void clearTallies();
 };
+
+#endif
 
 #endif /* TALLYBANK_H_ */

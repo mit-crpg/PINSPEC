@@ -114,6 +114,9 @@ public:
     double getMaxVariance();
     double getMaxStdDev();
     double getMaxRelErr();
+	float getTriggerPrecision();
+	triggerType getTriggerType();
+    bool hasComputedBatchStatistics();
 
     /* IMPORTANT: The following five class method prototypes must not be changed
      * without changing Geometry.i to allow for the data arrays to be transformed

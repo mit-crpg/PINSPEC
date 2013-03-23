@@ -82,20 +82,23 @@ float Material::getBucklingSquared() {
 }
 
 
-int Material::getNumXSEnergies() const {
+int Material::getNumXSEnergies(char* xs_type) const {
 
     Isotope* isotope;
 
     if (_isotopes.size() == 0) 
-        log_printf(ERROR, "Unable to return the number of xs energies for "
-                    " material %s since it has no isotopes", _material_name);
+        log_printf(ERROR, "Unable to return the number of xs energies "
+                   "for material %s since it has no isotopes", _material_name);
 
     isotope = _isotopes.begin()->second.second;
-    return isotope->getNumXSEnergies();
+
+    return isotope->getNumXSEnergies(xs_type);
+
 }
 
 
-void Material::retrieveXSEnergies(float* energies, int num_xs) const {
+void Material::retrieveXSEnergies(float* energies, int num_xs, 
+                                                    char* xs_type) const {
 
     Isotope* isotope;
 
@@ -104,7 +107,7 @@ void Material::retrieveXSEnergies(float* energies, int num_xs) const {
                     " material %s since it has no isotopes", _material_name);
 
     isotope = _isotopes.begin()->second.second;
-    isotope->retrieveXSEnergies(energies, num_xs);
+    isotope->retrieveXSEnergies(energies, num_xs, xs_type);
 }
 
 

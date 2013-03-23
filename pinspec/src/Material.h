@@ -47,7 +47,7 @@ public:
 	bool containsIsotope(Isotope* isotope);
 	float getBucklingSquared();
 
-    int getNumXSEnergies() const;
+    int getNumXSEnergies(char* xs_type) const;
 
 	float getTotalMacroXS(float energy);
 	float getTotalMacroXS(int energy_index);
@@ -82,7 +82,8 @@ public:
     /* IMPORTANT: The following two class method prototypes must not be changed
      * without changing Geometry.i to allow for the data arrays to be transformed
      * into numpy arrays */
-    void retrieveXSEnergies(float* energies, int num_xs) const;
+    void retrieveXSEnergies(float* energies, int num_xs, 
+                                    char* xs_type) const;
     void retrieveXS(float* xs, int num_xs, char* xs_type);
 		
 	/* setters */

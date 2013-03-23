@@ -1,1 +1,4 @@
 from pinspec import *
+
+replaceXS()
+

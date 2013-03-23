@@ -430,7 +430,7 @@ void TallyBank::tally(neutron* neutron) {
 
 		tallies = *(*region_iter).second;
 
-		for (tally_iter = tallies.begin(); tally_iter !=
+			for (tally_iter = tallies.begin(); tally_iter !=
 								tallies.end(); ++tally_iter) {
 			(*tally_iter)->tally(neutron);
 		}

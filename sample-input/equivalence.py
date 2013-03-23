@@ -16,7 +16,7 @@ def main():
     dancoff = 0.277;
     output_dir = 'Equivalence'
 
-    setLevel('INFO')
+    log_setlevel(INFO)
 
     # Call SLBW to create XS
     # Call SLBW to create XS	

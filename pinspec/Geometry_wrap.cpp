@@ -7944,20 +7944,30 @@ fail:
 SWIGINTERN PyObject *_wrap_Isotope_getNumXSEnergies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Isotope *arg1 = (Isotope *) 0 ;
+  char *arg2 = (char *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
   PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
   int result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Isotope_getNumXSEnergies",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_getNumXSEnergies",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getNumXSEnergies" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_getNumXSEnergies" "', argument " "2"" of type '" "char *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
   {
     try {
-      result = (int)((Isotope const *)arg1)->getNumXSEnergies();
+      result = (int)((Isotope const *)arg1)->getNumXSEnergies(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -7966,8 +7976,10 @@ SWIGINTERN PyObject *_wrap_Isotope_getNumXSEnergies(PyObject *SWIGUNUSEDPARM(sel
     }
   }
   resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
 fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return NULL;
 }
 
@@ -8859,13 +8871,18 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(s
   Isotope *arg1 = (Isotope *) 0 ;
   float *arg2 = (float *) 0 ;
   int arg3 ;
+  char *arg4 = (char *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject *array2 = NULL ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_retrieveXSEnergies",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_retrieveXSEnergies",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_retrieveXSEnergies" "', argument " "1"" of type '" "Isotope const *""'"); 
@@ -8887,9 +8904,14 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(s
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
+  res4 = SWIG_AsCharPtrAndSize(obj2, &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Isotope_retrieveXSEnergies" "', argument " "4"" of type '" "char *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
   {
     try {
-      ((Isotope const *)arg1)->retrieveXSEnergies(arg2,arg3);
+      ((Isotope const *)arg1)->retrieveXSEnergies(arg2,arg3,arg4);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -8901,8 +8923,10 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(s
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
   }
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return resultobj;
 fail:
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return NULL;
 }
 
@@ -8968,6 +8992,254 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveXS(PyObject *SWIGUNUSEDPARM(self), Py
   return resultobj;
 fail:
   if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_setMultigroupElasticXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:Isotope_setMultigroupElasticXS",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setMultigroupElasticXS" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  res4 = SWIG_ConvertPtr(obj2, &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Isotope_setMultigroupElasticXS" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  ecode5 = SWIG_AsVal_int(obj3, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Isotope_setMultigroupElasticXS" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  {
+    try {
+      (arg1)->setMultigroupElasticXS(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_setMultigroupCaptureXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyArrayObject *array4 = NULL ;
+  int is_new_object4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_setMultigroupCaptureXS",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setMultigroupCaptureXS" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array4 = obj_to_array_contiguous_allow_conversion(obj2, NPY_DOUBLE,
+      &is_new_object4);
+    if (!array4 || !require_dimensions(array4, 1) ||
+      !require_size(array4, size, 1)) SWIG_fail;
+    arg4 = (double*) array_data(array4);
+    arg5 = (int) array_size(array4,0);
+  }
+  {
+    try {
+      (arg1)->setMultigroupCaptureXS(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_setMultigroupFissionXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyArrayObject *array4 = NULL ;
+  int is_new_object4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_setMultigroupFissionXS",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setMultigroupFissionXS" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array4 = obj_to_array_contiguous_allow_conversion(obj2, NPY_DOUBLE,
+      &is_new_object4);
+    if (!array4 || !require_dimensions(array4, 1) ||
+      !require_size(array4, size, 1)) SWIG_fail;
+    arg4 = (double*) array_data(array4);
+    arg5 = (int) array_size(array4,0);
+  }
+  {
+    try {
+      (arg1)->setMultigroupFissionXS(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
   return NULL;
 }
 
@@ -9114,6 +9386,66 @@ SWIGINTERN PyObject *_wrap_Isotope_setTemperature(PyObject *SWIGUNUSEDPARM(self)
   {
     try {
       (arg1)->setTemperature(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_neglectThermalScattering(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Isotope_neglectThermalScattering",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_neglectThermalScattering" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    try {
+      (arg1)->neglectThermalScattering();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_useThermalScattering(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Isotope_useThermalScattering",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_useThermalScattering" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    try {
+      (arg1)->useThermalScattering();
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -9915,20 +10247,30 @@ fail:
 SWIGINTERN PyObject *_wrap_Material_getNumXSEnergies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Material *arg1 = (Material *) 0 ;
+  char *arg2 = (char *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
   PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
   int result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Material_getNumXSEnergies",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:Material_getNumXSEnergies",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getNumXSEnergies" "', argument " "1"" of type '" "Material const *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_getNumXSEnergies" "', argument " "2"" of type '" "char *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
   {
     try {
-      result = (int)((Material const *)arg1)->getNumXSEnergies();
+      result = (int)((Material const *)arg1)->getNumXSEnergies(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -9937,8 +10279,10 @@ SWIGINTERN PyObject *_wrap_Material_getNumXSEnergies(PyObject *SWIGUNUSEDPARM(se
     }
   }
   resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
 fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return NULL;
 }
 
@@ -11508,13 +11852,18 @@ SWIGINTERN PyObject *_wrap_Material_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(
   Material *arg1 = (Material *) 0 ;
   float *arg2 = (float *) 0 ;
   int arg3 ;
+  char *arg4 = (char *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject *array2 = NULL ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:Material_retrieveXSEnergies",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Material_retrieveXSEnergies",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_retrieveXSEnergies" "', argument " "1"" of type '" "Material const *""'"); 
@@ -11536,9 +11885,14 @@ SWIGINTERN PyObject *_wrap_Material_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
+  res4 = SWIG_AsCharPtrAndSize(obj2, &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Material_retrieveXSEnergies" "', argument " "4"" of type '" "char *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
   {
     try {
-      ((Material const *)arg1)->retrieveXSEnergies(arg2,arg3);
+      ((Material const *)arg1)->retrieveXSEnergies(arg2,arg3,arg4);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -11550,8 +11904,10 @@ SWIGINTERN PyObject *_wrap_Material_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
   }
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return resultobj;
 fail:
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return NULL;
 }
 
@@ -12626,6 +12982,99 @@ SWIGINTERN PyObject *_wrap_Tally_getMaxRelErr(PyObject *SWIGUNUSEDPARM(self), Py
     }
   }
   resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_getTriggerPrecision(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_getTriggerPrecision",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getTriggerPrecision" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      result = (float)(arg1)->getTriggerPrecision();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_getTriggerType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  triggerType result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_getTriggerType",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getTriggerType" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      result = (triggerType)(arg1)->getTriggerType();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_hasComputedBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_hasComputedBatchStatistics",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_hasComputedBatchStatistics" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      result = (bool)(arg1)->hasComputedBatchStatistics();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
   return NULL;
@@ -21490,10 +21939,15 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_getEnergyGridIndex", _wrap_Isotope_getEnergyGridIndex, METH_VARARGS, NULL},
 	 { (char *)"Isotope_retrieveXSEnergies", _wrap_Isotope_retrieveXSEnergies, METH_VARARGS, NULL},
 	 { (char *)"Isotope_retrieveXS", _wrap_Isotope_retrieveXS, METH_VARARGS, NULL},
+	 { (char *)"Isotope_setMultigroupElasticXS", _wrap_Isotope_setMultigroupElasticXS, METH_VARARGS, NULL},
+	 { (char *)"Isotope_setMultigroupCaptureXS", _wrap_Isotope_setMultigroupCaptureXS, METH_VARARGS, NULL},
+	 { (char *)"Isotope_setMultigroupFissionXS", _wrap_Isotope_setMultigroupFissionXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setA", _wrap_Isotope_setA, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setAO", _wrap_Isotope_setAO, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setN", _wrap_Isotope_setN, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setTemperature", _wrap_Isotope_setTemperature, METH_VARARGS, NULL},
+	 { (char *)"Isotope_neglectThermalScattering", _wrap_Isotope_neglectThermalScattering, METH_VARARGS, NULL},
+	 { (char *)"Isotope_useThermalScattering", _wrap_Isotope_useThermalScattering, METH_VARARGS, NULL},
 	 { (char *)"Isotope_clone", _wrap_Isotope_clone, METH_VARARGS, NULL},
 	 { (char *)"Isotope_sampleCollisionType", _wrap_Isotope_sampleCollisionType, METH_VARARGS, NULL},
 	 { (char *)"Isotope_collideNeutron", _wrap_Isotope_collideNeutron, METH_VARARGS, NULL},
@@ -21557,6 +22011,9 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tally_getMaxVariance", _wrap_Tally_getMaxVariance, METH_VARARGS, NULL},
 	 { (char *)"Tally_getMaxStdDev", _wrap_Tally_getMaxStdDev, METH_VARARGS, NULL},
 	 { (char *)"Tally_getMaxRelErr", _wrap_Tally_getMaxRelErr, METH_VARARGS, NULL},
+	 { (char *)"Tally_getTriggerPrecision", _wrap_Tally_getTriggerPrecision, METH_VARARGS, NULL},
+	 { (char *)"Tally_getTriggerType", _wrap_Tally_getTriggerType, METH_VARARGS, NULL},
+	 { (char *)"Tally_hasComputedBatchStatistics", _wrap_Tally_hasComputedBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Tally_retrieveTallyEdges", _wrap_Tally_retrieveTallyEdges, METH_VARARGS, NULL},
 	 { (char *)"Tally_retrieveTallyCenters", _wrap_Tally_retrieveTallyCenters, METH_VARARGS, NULL},
 	 { (char *)"Tally_retrieveTallyMu", _wrap_Tally_retrieveTallyMu, METH_VARARGS, NULL},

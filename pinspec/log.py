@@ -43,7 +43,7 @@ def assignValue(level):
         return 6
 
 
-def setLevel(level):
+def setlevel(level):
     
     if level == 'DEBUG':
         log_setlevel(DEBUG)

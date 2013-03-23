@@ -29,14 +29,14 @@
 #include "xsreader.h"
 #include "log.h"
 #include "Neutron.h"
-#include "Tally.h"
+
 
 /**
  * The isotope class represents an isotope and all of its properties
  * which are relevant to neutronics
  */
 class Isotope {
-
+	
 private:
 	char* _isotope_name;
 	int _A;
@@ -53,15 +53,22 @@ private:
 	int _num_elastic_xs;
 	float* _elastic_xs;
 	float* _elastic_xs_energies;
-	int _num_absorb_xs;
-	float* _absorb_xs;
-	float* _absorb_xs_energies;
+	bool _elastic_rescaled;
+
 	int _num_capture_xs;
 	float* _capture_xs;
 	float* _capture_xs_energies;
+	bool _capture_rescaled;
+
 	int _num_fission_xs;
 	float* _fission_xs;
 	float* _fission_xs_energies;
+	bool _fission_rescaled;
+
+	int _num_absorb_xs;
+	float* _absorb_xs;
+	float* _absorb_xs_energies;
+
 	int _num_total_xs;
 	float* _total_xs;
 	float* _total_xs_energies;
@@ -72,6 +79,7 @@ private:
 	float _end_energy;
 	float _delta_energy;
 
+	bool _use_thermal_scattering;
 	int _num_thermal_cdfs;
 	int _num_thermal_cdf_bins;
 	float* _thermal_dist;
@@ -88,6 +96,8 @@ private:
 	void setFissionXS(float* fission_xs, float* fission_xs_energies,
 											 	 int num_fission_xs);
 	void rescaleXS(float start_energy, float end_energy, int num_energies);
+	void generateAbsorptionXS(float start_energy, float end_energy, int num_energies);
+	void generateTotalXS(float start_energy, float end_energy, int num_energies);
 
 	void initializeThermalScattering(float start_energy, float end_energy,
 					 int num_bins, int num_distributions);
@@ -109,7 +119,8 @@ public:
     float getMuAverage() const;
 	bool isFissionable() const;
 
-    int getNumXSEnergies() const;
+    int getNumXSEnergies(char* xs_type) const;
+
     float getElasticXS(float energy) const;
     float getElasticXS(int energy_index) const;
     float getAbsorptionXS(float energy) const;
@@ -129,13 +140,23 @@ public:
     /* IMPORTANT: The following two class method prototypes must not be changed
      * without changing Geometry.i to allow for the data arrays to be transformed
      * into numpy arrays */
-    void retrieveXSEnergies(float* energies, int num_xs) const;
+    void retrieveXSEnergies(float* energies, int num_xs, 
+                                            char* xs_type) const;
     void retrieveXS(float* xs, int num_xs, char* xs_type) const;
+
+	void setMultigroupElasticXS(double* energies, int num_energies, 
+                                double* elastic_xs, int num_xs);
+	void setMultigroupCaptureXS(double* energies, int num_energies, 
+                                double* capture_xs, int num_xs);
+	void setMultigroupFissionXS(double* energies, int num_energies, 
+                                double* fission_xs, int num_xs);
 
     void setA(int A);
     void setAO(float AO);
     void setN(float N);
     void setTemperature(float T);
+	void neglectThermalScattering();
+	void useThermalScattering();
 
     Isotope* clone();
 

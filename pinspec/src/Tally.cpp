@@ -333,6 +333,21 @@ double Tally::getMaxStdDev() {
 }
 
 
+float Tally::getTriggerPrecision() {
+	return _trigger_precision;
+}
+
+
+triggerType Tally::getTriggerType() {
+	return _trigger_type;
+}
+
+
+bool Tally::hasComputedBatchStatistics() {
+    return _computed_statistics;
+}
+
+
 bool Tally::isPrecisionTriggered() {
 
     if (_trigger_type == NONE)
@@ -515,6 +530,17 @@ void Tally::setPrecisionTrigger(triggerType trigger_type, float precision) {
  * @param num_batches the number of batches
  */
 void Tally::setNumBatches(int num_batches) {
+
+    /* Clean up memory from old arrays of batch statistics */
+	if (_num_batches != 0) {
+		delete [] _tallies;
+		delete [] _centers;
+		delete [] _batch_mu;
+		delete [] _batch_variance;
+		delete [] _batch_std_dev;
+		delete [] _batch_rel_err;
+	}
+
 	_num_batches = num_batches;
 
 	/* Set all tallies to zero by default */
@@ -596,6 +622,9 @@ void Tally::generateBinEdges(double start, double end, int num_bins,
 
 	/* Create an array of the center values between bins */
 	generateBinCenters();
+
+    /* Generate arrays for a default of 1 set of batch statistics */
+    setNumBatches(1);
 
 	return;
 }
