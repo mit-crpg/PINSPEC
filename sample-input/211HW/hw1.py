@@ -62,8 +62,8 @@ def main():
         c12_fluxes[i].generateBinEdges(1E3, 2E6, 1000, EQUAL)
 
     py_printf('INFO', 'Simulating generational flux from H-1...')
-    py_printf('INFO', '# generations = %d\t\t# neutrons / generation = %d', \
-                                                num_generations, num_neutrons)
+    py_printf('INFO', '# neutrons = %d\t\t# generations = %d', 
+                                                num_neutrons, num_generations)
 
     neutron = initializeNewNeutron()
 
@@ -117,8 +117,8 @@ def main():
     neutron = initializeNewNeutron()
 
     py_printf('INFO', 'Simulating generational flux from C-12...')
-    py_printf('INFO', '# generations = %d\t\t# neutrons / generation = %d', \
-                                                num_generations, num_neutrons)
+    py_printf('INFO', '# neutrons = %d\t\t# generations = %d', 
+                                                num_neutrons, num_generations)
     for i in range(num_neutrons):	
         neutron._energy = max_energy			# initialize energy to 2 MeV
 
@@ -163,8 +163,8 @@ def main():
 
     py_printf('INFO', 'Simulating H-1 flux for %d generations...', \
                                                         num_generations)
-    py_printf('INFO', '# generations = %d\t\t# neutrons / generation = %d', \
-                                                num_generations, num_neutrons)
+    py_printf('INFO', '# neutrons = %d\t\t# generations = %d', 
+                                                num_neutrons, num_generations)
 
     for i in range(num_neutrons):	
 

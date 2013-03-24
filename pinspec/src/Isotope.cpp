@@ -460,7 +460,7 @@ void Isotope::setMultigroupElasticXS(double* energies, int num_energies,
                                         double* elastic_xs, int num_xs) {
 
     /* Check that the # of xs values is 1 less than the # energy bounds */
-    if (num_xs != num_energies)
+    if (num_xs != num_energies-1)
 		log_printf(ERROR, "Unable to set multigroup elastic xs for "
 				"isotope %s since the number of xs values is %d while "
                 "the number of energies is %d", 
@@ -536,7 +536,7 @@ void Isotope::setMultigroupCaptureXS(double* energies, int num_energies,
                                         double* capture_xs, int num_xs) {
 
     /* Check that the # of xs values is 1 less than the # energy bounds */
-    if (num_xs != num_energies)
+    if (num_xs != num_energies-1)
 		log_printf(ERROR, "Unable to set multigroup capture xs for "
 				"isotope %s since the number of xs values is %d while "
                 "the number of energies is %d", 
@@ -618,7 +618,7 @@ void Isotope::setMultigroupFissionXS(double* energies, int num_energies,
                                      double* fission_xs, int num_xs) {
 
     /* Check that the # of xs values is 1 less than the # energy bounds */
-    if (num_xs != num_energies)
+    if (num_xs != num_energies-1)
 		log_printf(ERROR, "Unable to set multigroup fission xs for "
 				"isotope %s since the number of xs values is %d while "
                 "the number of energies is %d", 
