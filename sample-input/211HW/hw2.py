@@ -12,7 +12,7 @@ def main():
     ###########################################################################
 
     # Set main simulation params
-    num_neutrons = 10000
+    num_neutrons = 1000000
     output_dir = 'HW2'
     log_setlevel(INFO)
 
@@ -56,13 +56,6 @@ def main():
     h1_material = Material('H-1')
     h1_material.setDensity(0.07778, 'g/cc')
     h1_material.addIsotope(h1, 2.0)
-
-    o16 = Isotope('O-16')
-    h2o = Material('H2O')
-    h2o.setDensity(0.7, 'g/cc')
-    h2o.addIsotope(h1, 2.0)
-    h2o.addIsotope(o16, 1.0)
-    h2o.addIsotope(h1, 0.0)
     
     py_printf('INFO', 'Initializing tallies for the flux, collision rate, etc')
 

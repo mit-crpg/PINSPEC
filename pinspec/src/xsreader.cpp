@@ -10,6 +10,9 @@
 #include "xsreader.h"
 
 
+static char* _xs_directory;
+
+
 void setXSLibDirectory(char* xs_directory) {
     _xs_directory = xs_directory;
     log_printf(INFO, "Set the cross-section library directory "

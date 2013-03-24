@@ -65,7 +65,7 @@ Isotope* Material::getIsotope(char* isotope) {
  * @return the isotope's number density
  */
 float Material::getIsotopeNumDensity(char* isotope) {
-	return _isotopes.at(isotope).first;
+	return _isotopes.at(isotope).first * 1E24;
 }
 
 
@@ -664,7 +664,7 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
                         isotope->getIsotopeName(), _material_name);
 
     /* Increments the material's total atomic mass and number density */
-    N_av = 6.023E23;
+    N_av = 6.023E-1;
 
     /* Compute the total atomic ratio */
     float total_AO = 0.0;
@@ -683,8 +683,6 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
      * the end of this function. */
     _material_number_density = _material_density * N_av / _material_atomic_mass;
 
-    log_printf(NORMAL, "material # density = %1.2E", _material_number_density);
-
     /* Calculates the isotope's number density */
     isotope_number_density = atomic_ratio / total_AO * _material_number_density;
 
@@ -702,9 +700,9 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Loop over all isotopes: update all the number densities */
     for (iter =_isotopes.begin(); iter != _isotopes.end(); ++iter){
     	/* Update isotope's number density */
-    	iter->second.first = _isotopes_AO.at(iter->second.second) / total_AO * _material_number_density;
+    	iter->second.first = _isotopes_AO.at(iter->second.second) * _material_number_density;
     	log_printf(INFO, "Isotope %s has number density %1.3E in material %s", 
-                        iter->first, iter->second.first, _material_name);
+                        iter->first, iter->second.first*1E24, _material_name);
     }
 
     return;
