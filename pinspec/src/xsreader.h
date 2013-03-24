@@ -22,6 +22,7 @@
 
 void setXSLibDirectory(char* xs_directory);
 char* getXSLibDirectory();
+int restoreXSLibrary();
 int parseCrossSections(const char* file, float* energies, float* xs_values);
 int getNumCrossSectionDataPoints(const char* file);
 

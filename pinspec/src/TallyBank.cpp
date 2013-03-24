@@ -342,6 +342,43 @@ void TallyBank::registerTally(Tally* tally, Isotope* isotope) {
 }
 
 
+void TallyBank::deregisterTally(Tally* tally) {
+
+    std::set<Tally*>::iterator set_iter;
+	std::map<Region*, std::set<Tally*>* >::iterator iter1;
+	std::map<Material*, std::set<Tally*>* >::iterator iter2;
+	std::map<Isotope*, std::set<Tally*>* >::iterator iter3;
+
+    set_iter = _all_tallies.find(tally);
+    if (set_iter != _all_tallies.end())
+        _all_tallies.erase(set_iter);
+
+    set_iter = _geometry_tallies.find(tally);
+    if (set_iter != _geometry_tallies.end())
+        _geometry_tallies.erase(set_iter);
+
+    for (iter1 = _region_tallies.begin(); iter1 != _region_tallies.end(); ++iter1) {
+        set_iter = ((*iter1).second)->find(tally);
+        if (set_iter != ((*iter1).second)->end())
+            ((*iter1).second)->erase(set_iter);
+    }
+
+    for (iter2 = _material_tallies.begin(); iter2 != _material_tallies.end(); ++iter2) {
+        set_iter = ((*iter2).second)->find(tally);
+        if (set_iter != ((*iter2).second)->end())
+            ((*iter2).second)->erase(set_iter);
+    }
+
+    for (iter3 = _isotope_tallies.begin(); iter3 != _isotope_tallies.end(); ++iter3) {
+        set_iter = ((*iter3).second)->find(tally);
+        if (set_iter != ((*iter3).second)->end())
+            ((*iter3).second)->erase(set_iter);
+    }
+
+    return;
+}
+
+
 bool TallyBank::isPrecisionTriggered() {
 
     /* Check if the TallyBank has any tallies with a trigger on precision */
@@ -472,12 +509,12 @@ void TallyBank::initializeBatchTallies(int num_batches) {
 
     std::set<Tally*>::iterator iter;
 
-	log_printf(NORMAL, "TallyBank has %d tallies", _all_tallies.size());
-
     /* Set the number of batches for all of this Geometry's Tallies */
     for (iter = _all_tallies.begin(); iter != _all_tallies.end(); iter ++)
         (*iter)->setNumBatches(num_batches);
 
+	log_printf(INFO, "TallyBank has initialized %d tallies for %d batches", 
+                                        _all_tallies.size(), num_batches);
 }
 
 

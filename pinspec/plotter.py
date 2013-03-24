@@ -86,8 +86,6 @@ def plotMacroXS(material, rxns, directory = '.', loglog=True, \
         # plot xs
         plt.plot(energies, xs, lw=1)
 
-        xs = material.retrieveXS(num_energies, rxn)
-        plt.plot(energies, xs, lw=1)
 
     plt.xlabel('Energy [eV]')
     plt.ylabel('$\Sigma$'+' ['+'cm$^{-1}$'+']')

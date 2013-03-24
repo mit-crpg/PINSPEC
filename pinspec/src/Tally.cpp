@@ -294,6 +294,19 @@ double* Tally::getBatchRelativeError() {
 }
 
 
+double Tally::getMaxMu() {
+
+    double max_mu = 0.0;
+
+    for (int i=0; i < _num_bins; i++) {
+        if (_batch_mu[i] > max_mu)
+            max_mu = _batch_mu[i];
+    }
+
+    return max_mu;
+}
+
+
 double Tally::getMaxVariance() {
 
     double max_variance = 0.0;
@@ -534,7 +547,6 @@ void Tally::setNumBatches(int num_batches) {
     /* Clean up memory from old arrays of batch statistics */
 	if (_num_batches != 0) {
 		delete [] _tallies;
-		delete [] _centers;
 		delete [] _batch_mu;
 		delete [] _batch_variance;
 		delete [] _batch_std_dev;
@@ -771,6 +783,27 @@ void Tally::computeScaledBatchStatistics(double scale_factor) {
 	return;
 }
 
+
+/**
+ * Divide each tally by the maximum tally value
+ */
+void Tally::normalizeBatchMu() {
+
+	if (_num_bins == 0)
+		log_printf(ERROR, "Cannot normalize batch mu for Tally %s since its "
+						" bins have not yet been created", _tally_name);
+	if (!_computed_statistics)
+		log_printf(ERROR, "Cannot normalize batch mu for Tally %s since it "
+						" has not yet computed batch statistics", _tally_name);
+
+	double max_mu = getMaxMu();
+
+	/* Divide each tally by maximum tally value */
+	for (int n=0; n < _num_bins; n++)
+		_batch_mu[n] /= max_mu;
+
+	return;
+}
 
 /**
  * Outputs the batch statistics (if they have been computed) to an
@@ -1131,7 +1164,7 @@ void MaterialFluxTally::tally(neutron* neutron) {
 
 
 void RegionFluxTally::tally(neutron* neutron) {
-	Tally::tally(neutron, double(1.0 / neutron->_total_xs));
+ 	Tally::tally(neutron, double(1.0 / neutron->_total_xs));
 	return;
 }
 

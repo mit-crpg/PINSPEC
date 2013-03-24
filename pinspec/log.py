@@ -9,19 +9,26 @@ def py_printf(level, my_str, *args):
     
     if level_val <= get_loglevel:
         if level == 'DEBUG':
-            print '[  DEBUG  ]  ' + my_str % args
+            log_printf(DEBUG, my_str, args)
+#            print '[  DEBUG  ]  ' + my_str % args
         elif level == 'INFO':
-            print '[  INFO   ]  ' + my_str % args
+            log_printf(INFO, my_str, args)
+#            print '[  INFO   ]  ' + my_str % args
         elif level == 'NORMAL':
-            print '[  NORMAL ]  ' + my_str % args
+            log_printf(NORMAL, my_str, args)
+#            print '[  NORMAL ]  ' + my_str % args
         elif level == 'WARNING':
-            print '[ WARNING ]  ' + my_str % args
+            log_printf(WARNING, my_str, args)
+#            print '[ WARNING ]  ' + my_str % args
         elif level == 'CRITICAL':
-            print '[ CRITICAL]  ' + my_str % args
+            log_printf(CRITICAL, my_str, args)
+#            print '[ CRITICAL]  ' + my_str % args
         elif level == 'RESULT':
-            print '[  RESULT ]  ' + my_str % args
+            log_printf(RESULT, my_str, args)
+#            print '[  RESULT ]  ' + my_str % args
         elif level == 'ERROR':
-            print '[  ERROR  ]  ' + my_str % args
+            log_printf(ERROR, my_str, args)
+#            print '[  ERROR  ]  ' + my_str % args
 
 
 

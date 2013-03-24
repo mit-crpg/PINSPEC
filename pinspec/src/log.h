@@ -18,6 +18,9 @@
 #include <iostream>
 #include <string.h>
 #include <stdexcept>
+#include <iostream>
+#include <fstream>
+#include <time.h>
 
 extern void set_err(const char *msg);
 
@@ -39,6 +42,7 @@ void log_printf(logLevel level, const char *format, ...);
 
 #ifndef LOG_C
 	extern logLevel log_level;
+    extern char logfilename;
 #endif
 
 #endif

@@ -285,7 +285,7 @@ void Geometry::runMonteCarloSimulation() {
 	            #pragma omp for private(curr)
 	        for (int i=start_batch; i < end_batch; i++) {
 
-		        log_printf(NORMAL, "Thread %d/%d running batch %d", 
+		        log_printf(INFO, "Thread %d/%d running batch %d", 
                                         omp_get_thread_num()+1, 
                                         omp_get_num_threads(), i);
 
@@ -368,7 +368,7 @@ void Geometry::runMonteCarloSimulation() {
                #pragma omp for private(curr, p_ff, p_mf, test)
 		        for (int i=start_batch; i < end_batch; i++) {
 
-		            log_printf(NORMAL, "Thread %d/%d running batch %d", 
+		            log_printf(INFO, "Thread %d/%d running batch %d", 
                                   omp_get_thread_num()+1, omp_get_num_threads(), i);
 
 	                curr = initializeNewNeutron();
@@ -472,7 +472,7 @@ void Geometry::runMonteCarloSimulation() {
         while (precision_triggered) {
 		    for (int i=start_batch; i < end_batch; i++) {
 
-			        log_printf(NORMAL, "Thread %d/%d running batch %d", 
+			        log_printf(INFO, "Thread %d/%d running batch %d", 
                                   omp_get_thread_num()+1, omp_get_num_threads(), i);
 
 			    curr->_batch_num = i;

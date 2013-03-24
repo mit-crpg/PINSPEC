@@ -652,6 +652,15 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     std::map<char*, std::pair<float, Isotope*> >::iterator iter;
     std::map<Isotope*, float> ::iterator iter_AO;
 
+    /* Remove prior version of this isotope if it is already in the material */
+    iter = _isotopes.find(isotope->getIsotopeName());
+    if (iter != _isotopes.end())
+        _isotopes.erase(iter);
+
+    iter_AO = _isotopes_AO.find(isotope);
+    if (iter_AO != _isotopes_AO.end())
+        _isotopes_AO.erase(iter_AO);
+
     /* Add isotope and isotope AO to _isotopes_AO map */
     std::pair<Isotope*, float> new_isotope_AO =
    	std::pair<Isotope*, float> (isotope, atomic_ratio);
@@ -679,8 +688,6 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     }
 
     /* Calculates the material's number density */
-    /* Notice I am using old_atomic_mass because I update all isotopes at
-     * the end of this function. */
     _material_number_density = _material_density * N_av / _material_atomic_mass;
 
     /* Calculates the isotope's number density */

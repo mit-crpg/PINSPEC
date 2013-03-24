@@ -46,6 +46,7 @@ public:
 	void registerTally(Tally* tally, Region* region);	 
 	void registerTally(Tally* tally, Material* material);
 	void registerTally(Tally* tally, Isotope* isotope);
+    void deregisterTally(Tally* tally);
 
     void initializeBatchTallies(int num_batches);
     bool isPrecisionTriggered();

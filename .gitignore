@@ -43,3 +43,5 @@ sample-input/Infinite_MC_Statistics/*
 sample-input/Equivalence_MC_Statistics/*
 sample-input/Infinite/*
 sample-input/Equivalence/*
+log-*
+*/log-*

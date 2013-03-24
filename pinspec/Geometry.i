@@ -65,7 +65,7 @@
 %apply (float* ARGOUT_ARRAY1, int DIM1) {(float* Eprime_to_E, int num_bins)}
 %apply (float* ARGOUT_ARRAY1, int DIM1) {(float* E_to_kT, int num_cdfs)}
 %apply (float* ARGOUT_ARRAY1, int DIM1) {(float* dist, int num_values)}
-%apply (float* IN_ARRAY1, int DIM1) {(float* energies, int num_energies), (float* elastic_xs, int num_xs)}
+%apply (double* IN_ARRAY1, int DIM1) {(double* energies, int num_energies), (double* elastic_xs, int num_xs)}
 %apply (double* IN_ARRAY1, int DIM1) {(double* energies, int num_energies), (double* capture_xs, int num_xs)}
 %apply (double* IN_ARRAY1, int DIM1) {(double* energies, int num_energies), (double* fission_xs, int num_xs)}
 

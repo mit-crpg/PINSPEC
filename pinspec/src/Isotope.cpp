@@ -38,7 +38,7 @@ Isotope::Isotope(char* isotope_name){
 	loadXS();	
 	
     /* Rescales the isotope's cross sections */
-	_start_energy = 1E-7;
+	_start_energy = 1E-5;
 	_end_energy = 2E7;
 	_num_energies = 100000;
     rescaleXS(_start_energy, _end_energy, _num_energies);
@@ -326,8 +326,7 @@ void Isotope::setElasticXS(double* energies, int num_energies,
 
 	_elastic_rescaled = false;
 
-	generateTotalXS(pow(10., _start_energy), pow(10., _end_energy), 
-													_num_energies);
+    rescaleXS(pow(10., _start_energy), pow(10., _end_energy), _num_energies);
 
 	return;
 }
@@ -386,10 +385,7 @@ void Isotope::setCaptureXS(double* energies, int num_energies,
 
 	_capture_rescaled = false;
 
-	generateAbsorptionXS(pow(10., _start_energy), pow(10., _end_energy), 
-													_num_energies);
-	generateTotalXS(pow(10., _start_energy), pow(10., _end_energy), 
-													_num_energies);
+    rescaleXS(pow(10., _start_energy), pow(10., _end_energy), _num_energies);
 
 	return;
 }
@@ -447,10 +443,7 @@ void Isotope::setFissionXS(double* energies, int num_energies,
 
 	_fission_rescaled = false;
 
-	generateAbsorptionXS(pow(10., _start_energy), pow(10., _end_energy), 
-													_num_energies);
-	generateTotalXS(pow(10., _start_energy), pow(10., _end_energy), 
-													_num_energies);
+    rescaleXS(pow(10., _start_energy), pow(10., _end_energy), _num_energies);
 
 	return;
 }
@@ -525,8 +518,7 @@ void Isotope::setMultigroupElasticXS(double* energies, int num_energies,
 
 	_elastic_rescaled = false;
 
-	generateTotalXS(pow(10., _start_energy), pow(10., _end_energy), 
-													_num_energies);
+    rescaleXS(pow(10., _start_energy), pow(10., _end_energy), _num_energies);
 
 	return;
 }
@@ -590,11 +582,10 @@ void Isotope::setMultigroupCaptureXS(double* energies, int num_energies,
 
 	/* Create a piecewise step function to represent the multigroup xs */
 	for (int i=1; i < _num_capture_xs-1; i+=2) {
-        log_printf(NORMAL, "i = %d", i);
 		_capture_xs[i] = capture_xs[i/2];
 		_capture_xs[i+1] = capture_xs[i/2];
-		_capture_xs_energies[i] = energies[i/2] - 1E-5;
-		_capture_xs_energies[i+1] = energies[i/2] + 1E-5;
+		_capture_xs_energies[i] = energies[i/2] - 1E-3;
+		_capture_xs_energies[i+1] = energies[i/2] + 1E-3;
 	}
 
 	/* Highest energy xs value */
@@ -603,13 +594,8 @@ void Isotope::setMultigroupCaptureXS(double* energies, int num_energies,
 
 	_capture_rescaled = false;
 
-	generateAbsorptionXS(pow(10., _start_energy), pow(10., _end_energy), 
-													_num_energies);
-
-	generateTotalXS(pow(10., _start_energy), pow(10., _end_energy), 
-													_num_energies);
-
-
+    rescaleXS(pow(10.,_start_energy), pow(10., _end_energy), _num_energies);
+    
 	return;
 }
 
@@ -630,7 +616,7 @@ void Isotope::setMultigroupFissionXS(double* energies, int num_energies,
 	for (int i=0 ; i < num_xs+1; i++) {
 
 		/* Check for monotonically increasing energy */
-		if (energies[i] > prev_energy)
+		if (energies[i] < prev_energy)
 			log_printf(ERROR, "Unable to set multigroup fission xs for "
 					"isotope %s since all xs energies must be monotonically "
 											"increasing", _isotope_name);
@@ -683,10 +669,7 @@ void Isotope::setMultigroupFissionXS(double* energies, int num_energies,
 
 	_fission_rescaled = false;
 
-	generateAbsorptionXS(pow(10., _start_energy), pow(10., _end_energy), 
-													_num_energies);
-	generateTotalXS(pow(10., _start_energy), pow(10., _end_energy), 
-													_num_energies);
+    rescaleXS(pow(10., _start_energy), pow(10., _end_energy), _num_energies);
 
 	return;
 }
@@ -704,7 +687,7 @@ float Isotope::getElasticXS(float energy) const {
         return getElasticXS(getEnergyGridIndex(energy));
 	else if (_num_elastic_xs == 0)
 		return 0.0;
-    else
+    else 
 	    return linearInterp<float, float, float>(_elastic_xs_energies,
 						     _elastic_xs, _num_elastic_xs, energy);
 }
@@ -1111,6 +1094,115 @@ void Isotope::loadXS() {
 }
 
 
+void Isotope::loadXS(char* xs_type) {
+
+    std::string directory = getXSLibDirectory();
+	std::string filename;
+	struct stat buffer;
+	float* energies;
+	float* xs_values;
+
+	/* Set this isotope's appropriate cross-section using the data
+	 * structures */
+
+
+	/******************************** ELASTIC ********************************/
+
+    if (!strcmp(xs_type, "elastic")) {
+
+	    /* Check whether an elastic cross-section file exists for isotope */
+	    filename = directory + _isotope_name + "-elastic.txt";
+
+	    if (stat(filename.c_str(), &buffer))
+		    log_printf(ERROR, "Unable to load elastic xs for isotope %s"
+						    " since no data was found in the cross-section"
+						    " file %s for this isotope", 
+                            filename.c_str(), _isotope_name);
+
+	    log_printf(INFO, "Loading %s-elastic.txt for isotope %s", 
+						    _isotope_name, _isotope_name);
+
+	    /* Find the number of cross-section values in the file */
+	    _num_elastic_xs = getNumCrossSectionDataPoints(filename.c_str());
+
+	    /* Initialize data structures to store cross-section values */
+	    energies = new float[_num_elastic_xs];
+	    xs_values = new float[_num_elastic_xs];
+
+	    /* Parse the file into the data structures */
+	    parseCrossSections(filename.c_str(), energies, xs_values);
+
+	    setElasticXS(xs_values, energies, _num_elastic_xs);
+    }
+
+
+	/******************************** CAPTURE ********************************/
+
+    if (!strcmp(xs_type, "capture")) {
+
+	    /* Check whether a capture cross-section file exists for isotope */
+	    filename = directory + _isotope_name + "-capture.txt";
+
+	    if (stat(filename.c_str(), &buffer))
+		    log_printf(ERROR, "Unable to load capture xs for isotope %s"
+						    " since no data was found in the cross-section"
+						    " file %s for this isotope", 
+                            filename.c_str(), _isotope_name); 
+
+	    log_printf(INFO, "Loading %s-capture.txt for isotope %s", 
+						    _isotope_name, _isotope_name);
+
+	    /* Find the number of cross-section values in the file */
+	    _num_capture_xs = getNumCrossSectionDataPoints(filename.c_str());
+
+	    /* Initialize data structures to store cross-section values */
+	    energies = new float[_num_capture_xs];
+	    xs_values = new float[_num_capture_xs];
+
+	    /* Parse the file into the data structures */
+	    parseCrossSections(filename.c_str(), energies, xs_values);
+
+	    setCaptureXS(xs_values, energies, _num_capture_xs);
+    }
+
+
+	/******************************** FISSION ********************************/
+
+    if (!strcmp(xs_type, "fission")) {
+
+	    /* Check whether a fission cross-section file exists for isotope */
+	    filename = directory + _isotope_name + "-fission.txt";
+
+	    if (stat(filename.c_str(), &buffer))
+		    log_printf(ERROR, "Unable to load fission xs for isotope %s"
+						    " since no data was found in the cross-section"
+						    " file %s for this isotope", 
+                            filename.c_str(), _isotope_name); 
+
+	    log_printf(INFO, "Loading %s-fission.txt for isotope %s", 
+						    _isotope_name, _isotope_name);
+
+		/* Find the number of cross-section values in the file */
+		_num_fission_xs = getNumCrossSectionDataPoints(filename.c_str());
+
+		/* Initialize data structures to store cross-section values */
+		energies = new float[_num_fission_xs];
+		xs_values = new float[_num_fission_xs];
+
+		/* Parse the file into the data structures */
+		parseCrossSections(filename.c_str(), energies, xs_values);
+
+		setFissionXS(xs_values, energies, _num_fission_xs);
+		makeFissionable();
+	}
+    
+    rescaleXS(pow(10., _start_energy), pow(10., _end_energy), _num_energies);
+
+	return;
+}
+
+
+
 /**
  * Set the elastic cross-section for this isotope
  * @param elastic_xs a float array of microscopic elastic xs (barns)
@@ -1164,14 +1256,15 @@ void Isotope::rescaleXS(float start_energy, float end_energy,
     float* new_energies;
     float* new_xs;
 
-	_num_energies = num_energies;
-	_start_energy = start_energy;
-	_end_energy = end_energy;
+	_capture_rescaled = false;
+	_elastic_rescaled = false;
+	_fission_rescaled = false;
 
-	grid = logspace<float, float>(start_energy, end_energy, _num_energies);
+	grid = logspace<float, float>(start_energy, end_energy, num_energies);
 
 	/* Capture xs */
 	if (_num_capture_xs != 0) {
+
 		new_energies = new float[num_energies];
 		memcpy(new_energies, grid, sizeof(float)*num_energies);
 		new_xs = new float[num_energies];
@@ -1181,10 +1274,9 @@ void Isotope::rescaleXS(float start_energy, float end_energy,
 
 		_num_capture_xs = num_energies;
 		delete [] _capture_xs_energies;
-		delete _capture_xs;
+		delete [] _capture_xs;
 		_capture_xs = new_xs;
 		_capture_xs_energies = new_energies;
-		_capture_rescaled = true;
 	}
 
 	/* Elastic xs */
@@ -1194,14 +1286,13 @@ void Isotope::rescaleXS(float start_energy, float end_energy,
 		new_xs = new float[num_energies];
 
 		for (int i=0; i < num_energies; i++)
-			new_xs[i] = getElasticXS(new_energies[i]);
+			new_xs[i] = getElasticXS(grid[i]);
 
 		_num_elastic_xs = num_energies;
 		delete [] _elastic_xs_energies;
-		delete _elastic_xs;
+		delete [] _elastic_xs;
 		_elastic_xs = new_xs;
 		_elastic_xs_energies = new_energies;
-		_elastic_rescaled = true;
 	}
 
 	/* Fission xs */
@@ -1210,24 +1301,25 @@ void Isotope::rescaleXS(float start_energy, float end_energy,
 		memcpy(new_energies, grid, sizeof(float)*num_energies);
 		new_xs = new float[num_energies];
 
-
 		for (int i=0; i < num_energies; i++)
 			new_xs[i] = getFissionXS(new_energies[i]);
 
 		_num_fission_xs = num_energies;
 		delete [] _fission_xs_energies;
-		delete _fission_xs;
+		delete [] _fission_xs;
 		_fission_xs = new_xs;
 		_fission_xs_energies = new_energies;
-		_fission_rescaled = true;
 	}
+
+	generateAbsorptionXS(start_energy, end_energy, num_energies);
+	generateTotalXS(start_energy, end_energy, num_energies);
 
 	_start_energy = log10(start_energy);
 	_end_energy = log10(end_energy);
 	_delta_energy = (_end_energy - _start_energy) / _num_energies;
-
-	generateAbsorptionXS(start_energy, end_energy, num_energies);
-	generateTotalXS(start_energy, end_energy, num_energies);
+	_capture_rescaled = true;
+	_elastic_rescaled = true;
+	_fission_rescaled = true;
 
 	delete [] grid;
 

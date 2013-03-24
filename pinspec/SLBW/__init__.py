@@ -1,4 +1,1 @@
 from pinspec import *
-
-replaceXS()
-

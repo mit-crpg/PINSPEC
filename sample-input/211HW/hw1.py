@@ -8,7 +8,7 @@ from pinspec.log import *
 def main():
 
     ###########################################################################
-    ###################   Initialize Params and Isotopes   ###################
+    ###################   Initialize Params and Isotopes   ####################
     ###########################################################################
 
     # Set main simulation params
@@ -55,10 +55,12 @@ def main():
 
     for i in range(num_generations):
 
-        h1_fluxes.append(TallyFactory.createTally('h1 flux', h1, COLLISION_RATE))
+        h1_fluxes.append(TallyFactory.createTally('h1 flux', \
+                                                    h1, COLLISION_RATE))
         h1_fluxes[i].generateBinEdges(0., 2E6, 1000, EQUAL)
 
-        c12_fluxes.append(TallyFactory.createTally('c12 flux', c12, COLLISION_RATE))
+        c12_fluxes.append(TallyFactory.createTally('c12 flux', \
+                                                    c12, COLLISION_RATE))
         c12_fluxes[i].generateBinEdges(1E3, 2E6, 1000, EQUAL)
 
     py_printf('INFO', 'Simulating generational flux from H-1...')
@@ -149,8 +151,8 @@ def main():
     num_generations = 15
     
     h1_material = Material('H-1')
-    h1_material.setDensity(5., 'g/cc')
-    h1_material.addIsotope(h1, 1.0)
+    h1_material.setDensity(0.07778, 'g/cc')
+    h1_material.addIsotope(h1, 2.0)
 
     py_printf('INFO', 'Initializing lethargy flux tally...')
 

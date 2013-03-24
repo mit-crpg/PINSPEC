@@ -3853,6 +3853,56 @@ SWIG_AsVal_bool (PyObject *obj, bool *val)
   return SWIG_OK;
 }
 
+
+SWIGINTERN int
+SWIG_AsCharArray(PyObject * obj, char *val, size_t size)
+{ 
+  char* cptr = 0; size_t csize = 0; int alloc = SWIG_OLDOBJ;
+  int res = SWIG_AsCharPtrAndSize(obj, &cptr, &csize, &alloc);
+  if (SWIG_IsOK(res)) {
+    if ((csize == size + 1) && cptr && !(cptr[csize-1])) --csize;
+    if (csize <= size) {
+      if (val) {
+	if (csize) memcpy(val, cptr, csize*sizeof(char));
+	if (csize < size) memset(val + csize, 0, (size - csize)*sizeof(char));
+      }
+      if (alloc == SWIG_NEWOBJ) {
+	delete[] cptr;
+	res = SWIG_DelNewMask(res);
+      }      
+      return res;
+    }
+    if (alloc == SWIG_NEWOBJ) delete[] cptr;
+  }
+  return SWIG_TypeError;
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_char (PyObject * obj, char *val)
+{    
+  int res = SWIG_AsCharArray(obj, val, 1);
+  if (!SWIG_IsOK(res)) {
+    long v;
+    res = SWIG_AddCast(SWIG_AsVal_long (obj, &v));
+    if (SWIG_IsOK(res)) {
+      if ((CHAR_MIN <= v) && (v <= CHAR_MAX)) {
+	if (val) *val = static_cast< char >(v);
+      } else {
+	res = SWIG_OverflowError;
+      }
+    }
+  }
+  return res;
+}
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_char  (char c) 
+{ 
+  return SWIG_FromCharPtrAndSize(&c,1);
+}
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -9020,16 +9070,13 @@ SWIGINTERN PyObject *_wrap_Isotope_setElasticXS(PyObject *SWIGUNUSEDPARM(self), 
   int res1 = 0 ;
   PyArrayObject *array2 = NULL ;
   int is_new_object2 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  int val5 ;
-  int ecode5 = 0 ;
+  PyArrayObject *array4 = NULL ;
+  int is_new_object4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:Isotope_setElasticXS",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_setElasticXS",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setElasticXS" "', argument " "1"" of type '" "Isotope *""'"); 
@@ -9046,16 +9093,17 @@ SWIGINTERN PyObject *_wrap_Isotope_setElasticXS(PyObject *SWIGUNUSEDPARM(self), 
     arg2 = (double*) array_data(array2);
     arg3 = (int) array_size(array2,0);
   }
-  res4 = SWIG_ConvertPtr(obj2, &argp4,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Isotope_setElasticXS" "', argument " "4"" of type '" "double *""'"); 
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array4 = obj_to_array_contiguous_allow_conversion(obj2, NPY_DOUBLE,
+      &is_new_object4);
+    if (!array4 || !require_dimensions(array4, 1) ||
+      !require_size(array4, size, 1)) SWIG_fail;
+    arg4 = (double*) array_data(array4);
+    arg5 = (int) array_size(array4,0);
   }
-  arg4 = reinterpret_cast< double * >(argp4);
-  ecode5 = SWIG_AsVal_int(obj3, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Isotope_setElasticXS" "', argument " "5"" of type '" "int""'");
-  } 
-  arg5 = static_cast< int >(val5);
   {
     try {
       (arg1)->setElasticXS(arg2,arg3,arg4,arg5);
@@ -9073,12 +9121,24 @@ SWIGINTERN PyObject *_wrap_Isotope_setElasticXS(PyObject *SWIGUNUSEDPARM(self), 
       Py_DECREF(array2); 
     }
   }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
   return resultobj;
 fail:
   {
     if (is_new_object2 && array2)
     {
       Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
     }
   }
   return NULL;
@@ -9268,16 +9328,13 @@ SWIGINTERN PyObject *_wrap_Isotope_setMultigroupElasticXS(PyObject *SWIGUNUSEDPA
   int res1 = 0 ;
   PyArrayObject *array2 = NULL ;
   int is_new_object2 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  int val5 ;
-  int ecode5 = 0 ;
+  PyArrayObject *array4 = NULL ;
+  int is_new_object4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:Isotope_setMultigroupElasticXS",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_setMultigroupElasticXS",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setMultigroupElasticXS" "', argument " "1"" of type '" "Isotope *""'"); 
@@ -9294,16 +9351,17 @@ SWIGINTERN PyObject *_wrap_Isotope_setMultigroupElasticXS(PyObject *SWIGUNUSEDPA
     arg2 = (double*) array_data(array2);
     arg3 = (int) array_size(array2,0);
   }
-  res4 = SWIG_ConvertPtr(obj2, &argp4,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Isotope_setMultigroupElasticXS" "', argument " "4"" of type '" "double *""'"); 
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array4 = obj_to_array_contiguous_allow_conversion(obj2, NPY_DOUBLE,
+      &is_new_object4);
+    if (!array4 || !require_dimensions(array4, 1) ||
+      !require_size(array4, size, 1)) SWIG_fail;
+    arg4 = (double*) array_data(array4);
+    arg5 = (int) array_size(array4,0);
   }
-  arg4 = reinterpret_cast< double * >(argp4);
-  ecode5 = SWIG_AsVal_int(obj3, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Isotope_setMultigroupElasticXS" "', argument " "5"" of type '" "int""'");
-  } 
-  arg5 = static_cast< int >(val5);
   {
     try {
       (arg1)->setMultigroupElasticXS(arg2,arg3,arg4,arg5);
@@ -9321,12 +9379,24 @@ SWIGINTERN PyObject *_wrap_Isotope_setMultigroupElasticXS(PyObject *SWIGUNUSEDPA
       Py_DECREF(array2); 
     }
   }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
   return resultobj;
 fail:
   {
     if (is_new_object2 && array2)
     {
       Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
     }
   }
   return NULL;
@@ -13156,6 +13226,37 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Tally_getMaxMu(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_getMaxMu",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getMaxMu" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      result = (double)(arg1)->getMaxMu();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Tally_getMaxVariance(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
@@ -14220,6 +14321,36 @@ SWIGINTERN PyObject *_wrap_Tally_computeScaledBatchStatistics(PyObject *SWIGUNUS
   {
     try {
       (arg1)->computeScaledBatchStatistics(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_normalizeBatchMu(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_normalizeBatchMu",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_normalizeBatchMu" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      (arg1)->normalizeBatchMu();
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -19651,6 +19782,45 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_TallyBank_deregisterTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  Tally *arg2 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:TallyBank_deregisterTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_deregisterTally" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TallyBank_deregisterTally" "', argument " "2"" of type '" "Tally *""'"); 
+  }
+  arg2 = reinterpret_cast< Tally * >(argp2);
+  {
+    try {
+      (arg1)->deregisterTally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_TallyBank_initializeBatchTallies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   TallyBank *arg1 = (TallyBank *) 0 ;
@@ -21935,6 +22105,29 @@ SWIGINTERN PyObject *Swig_var_log_level_get(void) {
 }
 
 
+SWIGINTERN int Swig_var_logfilename_set(PyObject *_val) {
+  {
+    char val;
+    int res = SWIG_AsVal_char(_val, &val);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""logfilename""' of type '""char""'");
+    }
+    logfilename = static_cast< char >(val);
+  }
+  return 0;
+fail:
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_logfilename_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_From_char(static_cast< char >(logfilename));
+  return pyobj;
+}
+
+
 SWIGINTERN PyObject *_wrap_setXSLibDirectory(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   char *arg1 = (char *) 0 ;
@@ -21984,6 +22177,28 @@ SWIGINTERN PyObject *_wrap_getXSLibDirectory(PyObject *SWIGUNUSEDPARM(self), PyO
     }
   }
   resultobj = SWIG_FromCharPtr((const char *)result);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_restoreXSLibrary(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)":restoreXSLibrary")) SWIG_fail;
+  {
+    try {
+      result = (int)restoreXSLibrary();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -22601,6 +22816,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tally_getMaxTally", _wrap_Tally_getMaxTally, METH_VARARGS, NULL},
 	 { (char *)"Tally_getMinTally", _wrap_Tally_getMinTally, METH_VARARGS, NULL},
 	 { (char *)"Tally_getBinIndex", _wrap_Tally_getBinIndex, METH_VARARGS, NULL},
+	 { (char *)"Tally_getMaxMu", _wrap_Tally_getMaxMu, METH_VARARGS, NULL},
 	 { (char *)"Tally_getMaxVariance", _wrap_Tally_getMaxVariance, METH_VARARGS, NULL},
 	 { (char *)"Tally_getMaxStdDev", _wrap_Tally_getMaxStdDev, METH_VARARGS, NULL},
 	 { (char *)"Tally_getMaxRelErr", _wrap_Tally_getMaxRelErr, METH_VARARGS, NULL},
@@ -22628,6 +22844,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tally_isPrecisionTriggered", _wrap_Tally_isPrecisionTriggered, METH_VARARGS, NULL},
 	 { (char *)"Tally_computeBatchStatistics", _wrap_Tally_computeBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Tally_computeScaledBatchStatistics", _wrap_Tally_computeScaledBatchStatistics, METH_VARARGS, NULL},
+	 { (char *)"Tally_normalizeBatchMu", _wrap_Tally_normalizeBatchMu, METH_VARARGS, NULL},
 	 { (char *)"Tally_outputBatchStatistics", _wrap_Tally_outputBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Tally_tally", _wrap_Tally_tally, METH_VARARGS, NULL},
 	 { (char *)"Tally_swigregister", Tally_swigregister, METH_VARARGS, NULL},
@@ -22798,6 +23015,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_TallyBank", _wrap_delete_TallyBank, METH_VARARGS, NULL},
 	 { (char *)"TallyBank_Get", _wrap_TallyBank_Get, METH_VARARGS, NULL},
 	 { (char *)"TallyBank_registerTally", _wrap_TallyBank_registerTally, METH_VARARGS, NULL},
+	 { (char *)"TallyBank_deregisterTally", _wrap_TallyBank_deregisterTally, METH_VARARGS, NULL},
 	 { (char *)"TallyBank_initializeBatchTallies", _wrap_TallyBank_initializeBatchTallies, METH_VARARGS, NULL},
 	 { (char *)"TallyBank_isPrecisionTriggered", _wrap_TallyBank_isPrecisionTriggered, METH_VARARGS, NULL},
 	 { (char *)"TallyBank_incrementNumBatches", _wrap_TallyBank_incrementNumBatches, METH_VARARGS, NULL},
@@ -22865,6 +23083,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"log_printf", _wrap_log_printf, METH_VARARGS, NULL},
 	 { (char *)"setXSLibDirectory", _wrap_setXSLibDirectory, METH_VARARGS, NULL},
 	 { (char *)"getXSLibDirectory", _wrap_getXSLibDirectory, METH_VARARGS, NULL},
+	 { (char *)"restoreXSLibrary", _wrap_restoreXSLibrary, METH_VARARGS, NULL},
 	 { (char *)"parseCrossSections", _wrap_parseCrossSections, METH_VARARGS, NULL},
 	 { (char *)"getNumCrossSectionDataPoints", _wrap_getNumCrossSectionDataPoints, METH_VARARGS, NULL},
 	 { (char *)"new_Timer", _wrap_new_Timer, METH_VARARGS, NULL},
@@ -24144,6 +24363,7 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "ERROR",SWIG_From_int(static_cast< int >(ERROR)));
   PyDict_SetItemString(md,(char*)"cvar", SWIG_globals());
   SWIG_addvarlink(SWIG_globals(),(char*)"log_level",Swig_var_log_level_get, Swig_var_log_level_set);
+  SWIG_addvarlink(SWIG_globals(),(char*)"logfilename",Swig_var_logfilename_get, Swig_var_logfilename_set);
 #if PY_VERSION_HEX >= 0x03000000
   return m;
 #else

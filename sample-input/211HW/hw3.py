@@ -6,117 +6,157 @@ import pinspec.process as process
 from pinspec.log import *
 
 def main():
-    
+
+    ###########################################################################
+    ###################   Initialize Params and Isotopes   ####################
+    ###########################################################################
+
     # Set main simulation params
     num_batches = 10
-    num_neutrons_per_batch = 10000
+    num_neutrons_per_batch = 100000
     num_threads = 4
-    output_dir = 'Infinite'
-
+    output_dir = 'HW3'
     log_setlevel(INFO)
-    
-    # Call SLBW to create XS
-    #py_printf('INFO', 'Creating SLBW xs')
-    #T=300 #Temp in Kelvin of target nucleus
-    #SLBW.replaceXS() #To clean previous changes to XS files
-    #SLBW.SLBWXS('U-238',T,'capture') #To generate Doppler Broadened Res Cap
-    #SLBW.SLBWXS('U-238',T,'scatter') #To generate Doppler Broadened Res Scat
-    #SLBW.generatePotentialScattering('U-238') #To generate flat Res Scat XS
-    #SLBW.compareXS('U-238', XStype='scatter', RI='no')
-    #SLBW.compareXS('U-238', XStype='capture', RI='no')   
 
-    # Define isotopes
+    py_printf('NORMAL', 'Beginning simulation of homework 3 for 2012 22.211...')
+
+    py_printf('INFO', 'Initializing isotopes...')
+
+	# Initialize isotopes
     h1 = Isotope('H-1')
-    b10 = Isotope('B-10')
-    o16 = Isotope('O-16')
-    u235 = Isotope('U-235')
     u238 = Isotope('U-238')
-    zr90 = Isotope('Zr-90')    
+
+    # Create an artifical capture xs for hydrogen
+    norm_const = 0.025
+    h1_capture_energies = numpy.logspace(-5., 7.5, 500);
+    h1_capture_xs = numpy.sqrt(norm_const/h1_capture_energies) * 2.;
+    h1.setCaptureXS(h1_capture_energies, h1_capture_xs)
+
+	# Zero out the scatter, fission xs for U-238
+    energy = numpy.array([1E-7, 2e7])	# energy bounds
+    xs = numpy.array([0.0])				# one group xs
+    u238.setMultigroupElasticXS(energy, xs)
+    u238.setMultigroupFissionXS(energy, xs)
+
+    py_printf('INFO', 'Plotting microscopic cross-sections...')
+
+    plotter.plotMicroXS(h1, ['capture', 'elastic', 'fission'], output_dir )
+    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission'], output_dir)
+
+	# Turn off thermal scattering for U-238
+    u238.neglectThermalScattering()
+
+    py_printf('INFO', 'Creating a fuel-moderator mixture material...')
 
     # Define materials
     mix = Material('Fuel Moderator Mix')
     mix.setDensity(5., 'g/cc')
-    #mix.addIsotope(b10, .0000001)
-    #mix.addIsotope(o16, 1.0)
     mix.addIsotope(h1, 1.0)
-    mix.addIsotope(u238, 0.0000010)
-    #mix.addIsotope(u235, .0025)
-    #mix.addIsotope(zr90, .16)
+    mix.addIsotope(u238, 1E-1)
 
-    py_printf('INFO', 'Added isotopes')
+    py_printf('INFO', 'Creating an infinite homogeneous region...')
     
     # Define regions
     region_mix = Region('infinite medium', INFINITE)
     region_mix.setMaterial(mix)
 
-    py_printf('INFO', 'Made mixture region')
-
-    # Create a tally for the flux
+    py_printf('INFO', 'Creating the geometry...')
  
-    # Create a tallies to compute the the RI
-    abs_rate = TallyFactory.createTally('absorption rate', \
-												u238, ABSORPTION_RATE)
-    flux_RI = TallyFactory.createTally('flux RI', mix, FLUX)
-    RI_bin_edges = numpy.array([0.01, 0.1, 1.0, 6.0, 10.0, 25.0, \
-												50.0, 100.0, 1000.0])
-    abs_rate.setBinEdges(RI_bin_edges)
-    flux_RI.setBinEdges(RI_bin_edges)
-
-    # Set a precision trigger: tells simulation to run until maximum relative
-    # error is less than the trigger value (4E-3)
-    abs_rate.setPrecisionTrigger(RELATIVE_ERROR, 2E-2)
-
     # Define geometry
     geometry = Geometry()
     geometry.setSpatialType(INFINITE_HOMOGENEOUS)
     geometry.addRegion(region_mix)
-    flux = TallyFactory.createTally('total flux', region_mix, FLUX)
-    flux.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC) 
-
-	# Register the tallies
-    TallyBank.registerTally(flux, geometry)
-    TallyBank.registerTally(abs_rate, mix)
-    TallyBank.registerTally(flux_RI, mix)
-
     geometry.setNumBatches(num_batches)
     geometry.setNeutronsPerBatch(num_neutrons_per_batch)
     geometry.setNumThreads(num_threads)
 
-    py_printf('INFO', 'Made geometry')
+    py_printf('INFO', 'Initializing tallies for flux and absorption rates...')
 
-    # Run Monte Carlo simulation
-    geometry.runMonteCarloSimulation();
+    # Create a tally for the flux
+    flux1 = TallyFactory.createTally('U/H = 1E-6', geometry, FLUX)
+    flux2 = TallyFactory.createTally('U/H = 0.01', geometry, FLUX)
+    flux3 = TallyFactory.createTally('U/H = 0.1', geometry, FLUX)
+    flux4 = TallyFactory.createTally('U/H = 1.0', geometry, FLUX)
+    flux1.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
+    flux2.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
+    flux3.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
+    flux4.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
+    fluxes = [flux1, flux2, flux3, flux4]
+
+    # Create tallies to compute absorption in u238 and the material
+    u238_abs_rate = TallyFactory.createTally('u-238 absorption rate', \
+                                            u238, ABSORPTION_RATE)
+    tot_abs_rate = TallyFactory.createTally('total absorption rate', \
+                                                        mix, ABSORPTION_RATE)
+    abs_rate_flux = TallyFactory.createTally('absorption rate flux', \
+                                                        mix, FLUX)
+
+    abs_rate_bin_edges = numpy.array([1E-5, 1., 6., 10., 25., 50., 100., 1000.])
+    tot_abs_rate.generateBinEdges(1E-7, 2E7, 1, EQUAL)
+    u238_abs_rate.setBinEdges(abs_rate_bin_edges)
+    abs_rate_flux.setBinEdges(abs_rate_bin_edges)
+
+    py_printf('INFO', 'Registering tallies with the TallyBank...')
+
+    TallyBank.registerTally(u238_abs_rate, mix)
+    TallyBank.registerTally(tot_abs_rate, mix)
+    TallyBank.registerTally(abs_rate_flux, mix)
 
 
-    # Plot the microscopic cross sections for each isotope
-    plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission'], output_dir)
-    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission'], output_dir)
-    plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'], output_dir)
-    plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'], output_dir)
-    plotter.plotMacroXS(mix, ['total', 'capture', 'elastic', \
-                                        'fission', 'absorption'], output_dir)
+    ###########################################################################
+    #########################   Problems 1 and 2   ############################
+    ###########################################################################
 
-    # Plot fluxes
-    plotter.plotFlux(flux, output_dir)
+    py_printf('NORMAL', 'Beginning problem 2...')
+
+    u_h_ratios = [1E-6, 1E-2, 1E-1, 1E0]
+    temps = [300, 600, 900, 1200]
+
+    for temp in range(4):
+
+        RIs = []
+        abs_rate_ratios = []
+
+        SLBW.SLBWXS('U-238', temps[temp], 'capture') #To generate Doppler Broadened Res Cap
+
+        for u_h_ratio in range(4):
+
+            TallyBank.registerTally(fluxes[u_h_ratio])
+
+            # Update U-238 atom ratio
+            mix.addIsotope(u238, u_h_ratios[u_h_ratio])
+
+            # Run Monte Carlo simulation
+            geometry.runMonteCarloSimulation();
+
+            # Compute the resonance integrals
+            RI = process.RI(abs_rate_flux, u238_abs_rate)
+            RI.setName('U/H=%1.0E' % u_h_ratios[u_h_ratio])
+            RIs.append(RI)
+
+	        # Compute reaction rate ratios
+            u238_abs_reaction_rate = process.ReactionRate(u238_abs_rate)
+            tot_abs_reaction_rate = process.ReactionRate(tot_abs_rate)
+            abs_rate_ratio = u238_abs_reaction_rate / tot_abs_reaction_rate
+            abs_rate_ratio.setName('U/H=%1.0E' % u_h_ratios[u_h_ratio])
+            abs_rate_ratios.append(abs_rate_ratio)
+
+            fluxes[u_h_ratio].normalizeBatchMu()
+            TallyBank.deregisterTally(fluxes[u_h_ratio])
+
+
+        # Plot fluxes
+        plotter.plotFluxes(fluxes, output_dir, 
+                            title='Flux for Temp = '+str(temps[temp])+'K', 
+                            filename='flux-temp-'+str(temps[temp])+'K')
+
+        # print the reaction rate ratios and resonance integrals to the shell
+        process.printReactionRateRatios(abs_rate_ratios)
+        process.printResonanceIntegrals(RIs)
+
+
+    py_printf('NORMAL', 'Finished')
     
-    # Compute the resonance integrals
-    RI = process.RI(flux_RI, abs_rate)
-    RI.printRI()
-    plotter.plotRI(RI, output_dir)
-    
-    # Compute the group cross sections
-    groupXS = process.groupXS(flux_RI, abs_rate)
-    groupXS.printGroupXS()
-    plotter.plotGroupXS(groupXS, output_dir)
-
-    # Dump batch statistics to output files to some new directory
-    TallyBank.outputBatchStatistics(output_dir, 'test')
-
-    # plot the fission spectrum the CDF
-    plotter.plotFissionSpectrum(output_dir)
-
-    #Plot the thermal scattering kernel PDFs and CDFs
-    plotter.plotThermalScattering(h1, output_dir)
 
 if __name__ == '__main__':
 

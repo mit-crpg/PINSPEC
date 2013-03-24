@@ -14,6 +14,7 @@
 
 /* Default logging level is the lowest (most verbose) level */
 logLevel log_level = NORMAL;
+char logfilename[10];
 
 
 /**
@@ -25,27 +26,41 @@ void log_setlevel(logLevel newlevel) {
 
     switch (newlevel) {
     case DEBUG:
-	log_printf(INFO, "Logging level set to DEBUG");
-	break;
+	    log_printf(INFO, "Logging level set to DEBUG");
+	    break;
     case INFO:
-	log_printf(INFO, "Logging level set to INFO");
-	break;
+	    log_printf(INFO, "Logging level set to INFO");
+	    break;
     case NORMAL:
-	log_printf(INFO, "Logging level set to NORMAL");
-	break;
+	    log_printf(INFO, "Logging level set to NORMAL");
+	    break;
     case WARNING:
-	log_printf(INFO, "Logging level set to WARNING");
-	break;
+	    log_printf(INFO, "Logging level set to WARNING");
+	    break;
     case CRITICAL:
-	log_printf(INFO, "Logging level set to CRITICAL");
-	break;
+	    log_printf(INFO, "Logging level set to CRITICAL");
+	    break;
     case RESULT:
-	log_printf(INFO, "Logging level set to RESULT");
-	break;
+	    log_printf(INFO, "Logging level set to RESULT");
+	    break;
     case ERROR:
-	log_printf(INFO, "Logging level set to ERROR");
-	break;
+	    log_printf(INFO, "Logging level set to ERROR");
+	    break;
     }
+
+    /* Create an output file for all log messages */
+    std::ofstream myfile;
+    sprintf(logfilename, "log-%d", (rand() % 1000));
+    myfile.open (logfilename); 
+
+    /* Get the current time and write it to the top of the file */
+    time_t rawtime;
+    struct tm * timeinfo;
+    time (&rawtime);
+    timeinfo = localtime (&rawtime);
+    myfile << "Current local time and date: " << asctime(timeinfo);
+    myfile.close();
+
 }
 
 
@@ -58,32 +73,32 @@ void log_setlevel(logLevel newlevel) {
 void log_setlevel(const char* newlevel) {
 
     if (strcmp("DEBUG", newlevel) == 0) {
-	log_level = DEBUG;
-	log_printf(INFO, "Logging level set to DEBUG");
+	    log_level = DEBUG;
+	    log_printf(INFO, "Logging level set to DEBUG");
     }
     else if (strcmp("INFO", newlevel) == 0) {
-	log_level = INFO;
-	log_printf(INFO, "Logging level set to INFO");
+	    log_level = INFO;
+	    log_printf(INFO, "Logging level set to INFO");
     }
     else if (strcmp("NORMAL", newlevel) == 0) {
-	log_level = NORMAL;
-	log_printf(INFO, "Logging level set to NORMAL");
+	    log_level = NORMAL;
+	    log_printf(INFO, "Logging level set to NORMAL");
     }
     else if (strcmp("WARNING", newlevel) == 0) {
-	log_level = WARNING;
-	log_printf(INFO, "Logging level set to WARNING");
+	    log_level = WARNING;
+	    log_printf(INFO, "Logging level set to WARNING");
     }
     else if (strcmp("CRITICAL", newlevel) == 0) {
-	log_level = CRITICAL;
-	log_printf(INFO, "Logging level set to CRITICAL");
+	    log_level = CRITICAL;
+	    log_printf(INFO, "Logging level set to CRITICAL");
     }
     else if (strcmp("RESULT", newlevel) == 0) {
-	log_level = RESULT;
-	log_printf(INFO, "Logging level set to RESULT");
+	    log_level = RESULT;
+	    log_printf(INFO, "Logging level set to RESULT");
     }
     else if (strcmp("ERROR", newlevel) == 0) {
-	log_level = ERROR;
-	log_printf(INFO, "Logging level set to ERROR");
+	    log_level = ERROR;
+	    log_printf(INFO, "Logging level set to ERROR");
     }
 
     return;
@@ -136,10 +151,16 @@ void log_printf(logLevel level, const char *format, ...) {
                 throw std::runtime_error(msg);
 	            break;
           }
+
+        /* Write the message to the shell */
+        std::cout << msg_string;
+
+        /* Write the message to the output file */
+        std::ofstream myfile;
+        myfile.open (logfilename, std::ios::app); 
+        myfile << msg_string;
+        myfile.close();
     }
-
-   std::cout << msg_string;
-
 }
 
 
