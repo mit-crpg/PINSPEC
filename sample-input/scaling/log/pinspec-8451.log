@@ -197,3 +197,198 @@ Current local time and date: Mon Mar 25 11:46:37 2013
 [  INFO   ]  Thread 5/6 running batch 20
 [  INFO   ]  Thread 3/6 running batch 10
 [  INFO   ]  Thread 2/6 running batch 5
+[  INFO   ]  Thread 3/6 running batch 11
+[  INFO   ]  Thread 2/6 running batch 6
+[  INFO   ]  Thread 4/6 running batch 16
+[  INFO   ]  Thread 5/6 running batch 21
+[  INFO   ]  Thread 1/6 running batch 1
+[  INFO   ]  Thread 2/6 running batch 7
+[  INFO   ]  Thread 3/6 running batch 12
+[  INFO   ]  Thread 4/6 running batch 17
+[  INFO   ]  Thread 1/6 running batch 2
+[  INFO   ]  Thread 5/6 running batch 22
+[  INFO   ]  Thread 4/6 running batch 18
+[  INFO   ]  Thread 2/6 running batch 8
+[  INFO   ]  Thread 3/6 running batch 13
+[  INFO   ]  Thread 5/6 running batch 23
+[  INFO   ]  Thread 1/6 running batch 3
+[  INFO   ]  Thread 4/6 running batch 19
+[  INFO   ]  Thread 2/6 running batch 9
+[  INFO   ]  Thread 3/6 running batch 14
+[  INFO   ]  Thread 5/6 running batch 24
+[  INFO   ]  Thread 1/6 running batch 4
+[  NORMAL ]  PINSPEC simulated 18833 neutrons / sec in 132.743678 sec
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 25     # threads = 7
+[  INFO   ]  TallyBank has initialized 1 tallies for 25 batches
+[  INFO   ]  Thread 1/7 running batch 0
+[  INFO   ]  Thread 3/7 running batch 8
+[  INFO   ]  Thread 4/7 running batch 12
+[  INFO   ]  Thread 2/7 running batch 4
+[  INFO   ]  Thread 5/7 running batch 16
+[  INFO   ]  Thread 6/7 running batch 20
+[  INFO   ]  Thread 7/7 running batch 24
+[  INFO   ]  Thread 3/7 running batch 9
+[  INFO   ]  Thread 1/7 running batch 1
+[  INFO   ]  Thread 4/7 running batch 13
+[  INFO   ]  Thread 5/7 running batch 17
+[  INFO   ]  Thread 2/7 running batch 5
+[  INFO   ]  Thread 6/7 running batch 21
+[  INFO   ]  Thread 2/7 running batch 6
+[  INFO   ]  Thread 3/7 running batch 10
+[  INFO   ]  Thread 4/7 running batch 14
+[  INFO   ]  Thread 5/7 running batch 18
+[  INFO   ]  Thread 6/7 running batch 22
+[  INFO   ]  Thread 1/7 running batch 2
+[  INFO   ]  Thread 2/7 running batch 7
+[  INFO   ]  Thread 3/7 running batch 11
+[  INFO   ]  Thread 4/7 running batch 15
+[  INFO   ]  Thread 5/7 running batch 19
+[  INFO   ]  Thread 1/7 running batch 3
+[  INFO   ]  Thread 6/7 running batch 23
+[  NORMAL ]  PINSPEC simulated 16007 neutrons / sec in 156.183264 sec
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 25     # threads = 8
+[  INFO   ]  TallyBank has initialized 1 tallies for 25 batches
+[  INFO   ]  Thread 1/8 running batch 0
+[  INFO   ]  Thread 7/8 running batch 24
+[  INFO   ]  Thread 2/8 running batch 4
+[  INFO   ]  Thread 3/8 running batch 8
+[  INFO   ]  Thread 5/8 running batch 16
+[  INFO   ]  Thread 4/8 running batch 12
+[  INFO   ]  Thread 6/8 running batch 20
+[  INFO   ]  Thread 3/8 running batch 9
+[  INFO   ]  Thread 4/8 running batch 13
+[  INFO   ]  Thread 5/8 running batch 17
+[  INFO   ]  Thread 2/8 running batch 5
+[  INFO   ]  Thread 6/8 running batch 21
+[  INFO   ]  Thread 1/8 running batch 1
+[  INFO   ]  Thread 4/8 running batch 14
+[  INFO   ]  Thread 3/8 running batch 10
+[  INFO   ]  Thread 2/8 running batch 6
+[  INFO   ]  Thread 5/8 running batch 18
+[  INFO   ]  Thread 6/8 running batch 22
+[  INFO   ]  Thread 1/8 running batch 2
+[  INFO   ]  Thread 3/8 running batch 11
+[  INFO   ]  Thread 5/8 running batch 19
+[  INFO   ]  Thread 4/8 running batch 15
+[  INFO   ]  Thread 2/8 running batch 7
+[  INFO   ]  Thread 6/8 running batch 23
+[  INFO   ]  Thread 1/8 running batch 3
+[  NORMAL ]  PINSPEC simulated 17167 neutrons / sec in 145.631181 sec
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 25     # threads = 9
+[  INFO   ]  TallyBank has initialized 1 tallies for 25 batches
+[  INFO   ]  Thread 1/9 running batch 0
+[  INFO   ]  Thread 4/9 running batch 9
+[  INFO   ]  Thread 7/9 running batch 18
+[  INFO   ]  Thread 2/9 running batch 3
+[  INFO   ]  Thread 5/9 running batch 12
+[  INFO   ]  Thread 3/9 running batch 6
+[  INFO   ]  Thread 6/9 running batch 15
+[  INFO   ]  Thread 9/9 running batch 24
+[  INFO   ]  Thread 8/9 running batch 21
+[  INFO   ]  Thread 6/9 running batch 16
+[  INFO   ]  Thread 4/9 running batch 10
+[  INFO   ]  Thread 2/9 running batch 4
+[  INFO   ]  Thread 5/9 running batch 13
+[  INFO   ]  Thread 8/9 running batch 22
+[  INFO   ]  Thread 7/9 running batch 19
+[  INFO   ]  Thread 3/9 running batch 7
+[  INFO   ]  Thread 1/9 running batch 1
+[  INFO   ]  Thread 2/9 running batch 5
+[  INFO   ]  Thread 5/9 running batch 14
+[  INFO   ]  Thread 8/9 running batch 23
+[  INFO   ]  Thread 4/9 running batch 11
+[  INFO   ]  Thread 6/9 running batch 17
+[  INFO   ]  Thread 7/9 running batch 20
+[  INFO   ]  Thread 3/9 running batch 8
+[  INFO   ]  Thread 1/9 running batch 2
+[  NORMAL ]  PINSPEC simulated 13929 neutrons / sec in 179.479343 sec
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 25     # threads = 10
+[  INFO   ]  TallyBank has initialized 1 tallies for 25 batches
+[  INFO   ]  Thread 1/10 running batch 0
+[  INFO   ]  Thread 9/10 running batch 24
+[  INFO   ]  Thread 2/10 running batch 3
+[  INFO   ]  Thread 8/10 running batch 21
+[  INFO   ]  Thread 5/10 running batch 12
+[  INFO   ]  Thread 4/10 running batch 9
+[  INFO   ]  Thread 7/10 running batch 18
+[  INFO   ]  Thread 3/10 running batch 6
+[  INFO   ]  Thread 6/10 running batch 15
+[  INFO   ]  Thread 8/10 running batch 22
+[  INFO   ]  Thread 3/10 running batch 7
+[  INFO   ]  Thread 6/10 running batch 16
+[  INFO   ]  Thread 2/10 running batch 4
+[  INFO   ]  Thread 5/10 running batch 13
+[  INFO   ]  Thread 7/10 running batch 19
+[  INFO   ]  Thread 4/10 running batch 10
+[  INFO   ]  Thread 1/10 running batch 1
+[  INFO   ]  Thread 8/10 running batch 23
+[  INFO   ]  Thread 6/10 running batch 17
+[  INFO   ]  Thread 5/10 running batch 14
+[  INFO   ]  Thread 3/10 running batch 8
+[  INFO   ]  Thread 2/10 running batch 5
+[  INFO   ]  Thread 4/10 running batch 11
+[  INFO   ]  Thread 7/10 running batch 20
+[  INFO   ]  Thread 1/10 running batch 2
+[  NORMAL ]  PINSPEC simulated 13747 neutrons / sec in 181.860694 sec
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 25     # threads = 11
+[  INFO   ]  TallyBank has initialized 1 tallies for 25 batches
+[  INFO   ]  Thread 1/11 running batch 0
+[  INFO   ]  Thread 8/11 running batch 21
+[  INFO   ]  Thread 9/11 running batch 24
+[  INFO   ]  Thread 4/11 running batch 9
+[  INFO   ]  Thread 6/11 running batch 15
+[  INFO   ]  Thread 3/11 running batch 6
+[  INFO   ]  Thread 7/11 running batch 18
+[  INFO   ]  Thread 2/11 running batch 3
+[  INFO   ]  Thread 5/11 running batch 12
+[  INFO   ]  Thread 7/11 running batch 19
+[  INFO   ]  Thread 4/11 running batch 10
+[  INFO   ]  Thread 3/11 running batch 7
+[  INFO   ]  Thread 8/11 running batch 22
+[  INFO   ]  Thread 5/11 running batch 13
+[  INFO   ]  Thread 2/11 running batch 4
+[  INFO   ]  Thread 1/11 running batch 1
+[  INFO   ]  Thread 6/11 running batch 16
+[  INFO   ]  Thread 5/11 running batch 14
+[  INFO   ]  Thread 8/11 running batch 23
+[  INFO   ]  Thread 4/11 running batch 11
+[  INFO   ]  Thread 7/11 running batch 20
+[  INFO   ]  Thread 2/11 running batch 5
+[  INFO   ]  Thread 3/11 running batch 8
+[  INFO   ]  Thread 6/11 running batch 17
+[  INFO   ]  Thread 1/11 running batch 2
+[  NORMAL ]  PINSPEC simulated 14587 neutrons / sec in 171.380792 sec
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 25     # threads = 12
+[  INFO   ]  TallyBank has initialized 1 tallies for 25 batches
+[  INFO   ]  Thread 1/12 running batch 0
+[  INFO   ]  Thread 2/12 running batch 3
+[  INFO   ]  Thread 9/12 running batch 24
+[  INFO   ]  Thread 8/12 running batch 21
+[  INFO   ]  Thread 5/12 running batch 12
+[  INFO   ]  Thread 3/12 running batch 6
+[  INFO   ]  Thread 4/12 running batch 9
+[  INFO   ]  Thread 6/12 running batch 15
+[  INFO   ]  Thread 7/12 running batch 18
+[  INFO   ]  Thread 2/12 running batch 4
+[  INFO   ]  Thread 3/12 running batch 7
+[  INFO   ]  Thread 7/12 running batch 19
+[  INFO   ]  Thread 8/12 running batch 22
+[  INFO   ]  Thread 6/12 running batch 16
+[  INFO   ]  Thread 4/12 running batch 10
+[  INFO   ]  Thread 5/12 running batch 13
+[  INFO   ]  Thread 1/12 running batch 1
+[  INFO   ]  Thread 8/12 running batch 23
+[  INFO   ]  Thread 7/12 running batch 20
+[  INFO   ]  Thread 3/12 running batch 8
+[  INFO   ]  Thread 5/12 running batch 14
+[  INFO   ]  Thread 2/12 running batch 5
+[  INFO   ]  Thread 6/12 running batch 17
+[  INFO   ]  Thread 4/12 running batch 11
+[  INFO   ]  Thread 1/12 running batch 2
+[  NORMAL ]  PINSPEC simulated 14957 neutrons / sec in 167.150251 sec

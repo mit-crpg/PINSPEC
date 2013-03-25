@@ -1,4 +1,4 @@
-Current local time and date: Sun Mar 24 23:15:26 2013
+Current local time and date: Mon Mar 25 17:11:45 2013
 [  INFO   ]  Logging level set to INFO
 [  TITLE  ]  *******************************************************************
 [  TITLE  ]               Simulation of homework 3 for 2012 22.211             
@@ -15,14 +15,14 @@ Current local time and date: Sun Mar 24 23:15:26 2013
 [  INFO   ]  Plotting microscopic cross-sections...
 [  INFO   ]  Creating a fuel-moderator mixture material...
 [  INFO   ]  Isotope H-1 has number density 3.011E+24 in material Fuel Moderator Mix
-[  INFO   ]  Isotope H-1 has number density 1.214E+23 in material Fuel Moderator Mix
 [  INFO   ]  Isotope U-238 has number density 1.214E+22 in material Fuel Moderator Mix
+[  INFO   ]  Isotope H-1 has number density 1.214E+23 in material Fuel Moderator Mix
 [  INFO   ]  Creating an infinite homogeneous region...
 [  INFO   ]  Creating the geometry...
 [  INFO   ]  Initializing tallies for flux and absorption rates...
 [  INFO   ]  Registering tallies with the TallyBank...
-[  INFO   ]  Registered tally  with the TallyBank for material Fuel Moderator Mix
-[  INFO   ]  Registered tally  with the TallyBank for material Fuel Moderator Mix
+[  INFO   ]  Registered tally  with the TallyBank for region infinite medium
+[  INFO   ]  Registered tally  with the TallyBank for region infinite medium
 [  INFO   ]  Registered tally  with the TallyBank for region infinite medium
 [  NORMAL ]  Problems 1 and 2
 [  TITLE  ]  *******************************************************************

@@ -9,13 +9,13 @@ from pinspec.log import *
 def main():
 
     # Set main simulation params
-    num_batches = 25
+    num_batches = 24
     num_neutrons_per_batch = 100000
     setOutputDirectory('scaling')
 
     log_setlevel(INFO)
 
-    py_printf('TITLE', 'Starting a weak scaling multi-threading study')
+    py_printf('TITLE', 'Starting a strong scaling multi-threading study')
 
     py_printf('INFO', 'Initializing isotopes...')
 
@@ -80,7 +80,7 @@ def main():
     # Plot the runtime vs. thread count
     fig = plt.figure()
     plt.plot(threads, runtimes)
-    plt.title('Runtime vs. Thread Count')
+    plt.title('Strong Scaling: Runtime vs. Thread Count')
     plt.xlabel('# Threads')
     plt.ylabel('Runtime [sec]')
     plt.grid()
