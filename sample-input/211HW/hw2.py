@@ -13,10 +13,10 @@ def main():
 
     # Set main simulation params
     num_neutrons = 1000000
-    output_dir = 'HW2'
+    setOutputDirectory('HW2');
     log_setlevel(INFO)
 
-    py_printf('NORMAL', 'Beginning simulation of homework 2 for 2012 22.211...')
+    py_printf('TITLE', 'Simulation of homework 2 for 2012 22.211')
     py_printf('INFO', 'Initializing isotopes...')
 
 	# Initialize isotopes
@@ -30,27 +30,27 @@ def main():
     h1.setCaptureXS(h1_capture_energies, h1_capture_xs)
 
     py_printf('INFO', 'Plotting microscopic cross-sections...')
-    plotter.plotMicroXS(h1, ['capture', 'elastic', 'fission'], output_dir )
-    plotter.plotMicroXS(c12, ['capture', 'elastic', 'fission'], output_dir )
+    plotter.plotMicroXS(h1, ['capture', 'elastic', 'fission'])
+    plotter.plotMicroXS(c12, ['capture', 'elastic', 'fission'])
 
     ###########################################################################
     ##########################   Problems 1 and 2   ###########################
     ###########################################################################
 
-    py_printf('NORMAL', 'Beginning problems 1 and 2...')
+    py_printf('TITLE', 'Problems 1 and 2')
     py_printf('INFO', 'Plotting thermal scattering distributions...')
 
     #Plot the thermal scattering kernel PDFs and CDFs
-    plotter.plotThermalScattering(h1, output_dir)
+    plotter.plotThermalScattering(h1)
 
     #Plot the thermal scattering kernel PDFs and CDFs
-    plotter.plotThermalScattering(c12, output_dir)
+    plotter.plotThermalScattering(c12)
 
     ###########################################################################
     ###########################   Problems 3-6   ##############################
     ###########################################################################
 
-    py_printf('NORMAL', 'Beginning problem 5...')
+    py_printf('TITLE', 'Problems 3-6')
     py_printf('INFO', 'Initializing the collision rate tally...')
 
     h1_material = Material('H-1')
@@ -59,21 +59,17 @@ def main():
     
     py_printf('INFO', 'Initializing tallies for the flux, collision rate, etc')
 
-    flux = TallyFactory.createTally('flux', h1_material, FLUX)
+    flux = TallyFactory.createTally(h1_material, FLUX)
     flux.generateBinEdges(1E-2, 1E7, 1000, LOGARITHMIC)
 
-    coll_rate_1eV = TallyFactory.createTally('collision rate to 1 eV', 
-                                                   h1_material, COLLISION_RATE)
+    coll_rate_1eV = TallyFactory.createTally(h1_material, COLLISION_RATE)
     coll_rate_1eV.generateBinEdges(1E-1, 2E6, 1, EQUAL)
 
-    coll_rate = TallyFactory.createTally('collision rate', h1_material, 
-                                                                COLLISION_RATE)
+    coll_rate = TallyFactory.createTally(h1_material, COLLISION_RATE)
     coll_rate.generateBinEdges(1E-7, 2E6, 1, EQUAL)
 
-    times = TallyFactory.createTally('times between collisions', h1_material, \
-                                                           INTERCOLLISION_TIME)
+    times = TallyFactory.createTally(h1_material, INTERCOLLISION_TIME)
     times.generateBinEdges(1E-7, 2E6, 1, EQUAL)
-
 
     py_printf('INFO', 'Simulating %d neutrons in H-1...', num_neutrons)
 
@@ -104,27 +100,23 @@ def main():
 
     py_printf('INFO', 'Plotting the flux...')
 
-    plotter.plotFlux(flux, directory=output_dir, 
-                        title='H-1 Flux', filename='h-1-flux')
+    plotter.plotFlux(flux, title='H-1 Flux', filename='h-1-flux')
 
     num_collisions = process.computeMeanNumCollisions(coll_rate_1eV, \
                                                               num_neutrons)
 
-    py_printf('RESULT', 'Mean number of collisions to 1 eV: %f', \
-                                                            num_collisions)
+    py_printf('RESULT', 'Mean # of collisions to 1 eV: %f', num_collisions)
 
     num_collisions = process.computeMeanNumCollisions(coll_rate, \
                                                               num_neutrons)
 
-    py_printf('RESULT', 'Mean number of collisions to death in H-1: %f', 
-                                                            num_collisions)
+    py_printf('RESULT', 'Mean # of collisions to death: %f', num_collisions)
 
     mean_lifetime = process.computeMeanNeutronLifetime(times, num_neutrons)
 
-    py_printf('RESULT', 'Average neutron lifetime: %1.2E seconds', \
-                                                            mean_lifetime)
+    py_printf('RESULT', 'Avg neutron lifetime: %1.2E seconds', mean_lifetime)
 
-    py_printf('NORMAL', 'Finished')
+    py_printf('TITLE', 'Finished')
 
 
 if __name__ == '__main__':

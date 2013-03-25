@@ -13,6 +13,7 @@
 #ifdef __cplusplus
 #include <limits>
 #include <math.h>
+#include <string.h>
 #include "log.h"
 #include "arraycreator.h"
 #include "Neutron.h"
@@ -99,7 +100,7 @@ protected:
 	bool _computed_statistics;
 
 public:
-	Tally(char* tally_name);
+	Tally(const char* tally_name=(char*)"");
 	virtual ~Tally();
 	char* getTallyName();
 	int getNumBins();
@@ -167,7 +168,7 @@ class IsotopeTally: public Tally {
 protected:
     Isotope* _isotope;
 public:
-	IsotopeTally(char* tally_name, Isotope* isotope)
+	IsotopeTally(Isotope* isotope, const char* tally_name=(char*)"")
 			: Tally(tally_name){ 
 				_tally_domain = ISOTOPE;
 				_isotope = isotope; 
@@ -182,7 +183,7 @@ class MaterialTally: public Tally {
 protected:
     Material* _material;
 public:
-	MaterialTally(char* tally_name, Material* material)
+	MaterialTally(Material* material, const char* tally_name=(char*)"")
 			: Tally(tally_name) { 
 				_tally_domain = MATERIAL;
 				_material = material; 
@@ -197,7 +198,7 @@ class RegionTally: public Tally {
 protected:
     Region* _region;
 public:
-	RegionTally(char* tally_name, Region* region)
+	RegionTally(Region* region, const char* tally_name=(char*)"")
 			: Tally(tally_name) { 
 				_tally_domain = REGION;
 				_region = region; 
@@ -212,7 +213,7 @@ class GeometryTally: public Tally {
 protected:
 	Geometry* _geometry;
 public:
-	GeometryTally(char* tally_name, Geometry* geometry)
+	GeometryTally(Geometry* geometry, const char* tally_name=(char*)"")
 			: Tally(tally_name) {
 				_tally_domain = GEOMETRY;
 				_geometry = geometry;
@@ -229,8 +230,8 @@ public:
 class IsotopeCollisionRateTally: public IsotopeTally {
 
 public:
-	IsotopeCollisionRateTally(char* tally_name, Isotope* isotope)
-			: IsotopeTally(tally_name, isotope){
+	IsotopeCollisionRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+			: IsotopeTally(isotope, tally_name){
  				_tally_type = COLLISION_RATE; 
 			}
 	void tally(neutron* neutron);
@@ -240,8 +241,8 @@ public:
 class MaterialCollisionRateTally: public MaterialTally {
 
 public:
-	MaterialCollisionRateTally(char* tally_name, Material* material)
-			: MaterialTally(tally_name, material){
+	MaterialCollisionRateTally(Material* material, const char* tally_name=(char*)"")
+			: MaterialTally(material, tally_name){
  				_tally_type = COLLISION_RATE; 
 			}
 	void tally(neutron* neutron);
@@ -252,8 +253,8 @@ public:
 class RegionCollisionRateTally: public RegionTally {
 
 public:
-	RegionCollisionRateTally(char* tally_name, Region* region)
-			: RegionTally(tally_name, region){
+	RegionCollisionRateTally(Region* region, const char* tally_name=(char*)"")
+			: RegionTally(region, tally_name){
  				_tally_type = COLLISION_RATE; 
 			}
 	void tally(neutron* neutron);
@@ -264,8 +265,8 @@ public:
 class GeometryCollisionRateTally: public GeometryTally {
 
 public:
-	GeometryCollisionRateTally(char* tally_name, Geometry* geometry)
-			: GeometryTally(tally_name, geometry){
+	GeometryCollisionRateTally(Geometry* geometry, const char* tally_name=(char*)"")
+			: GeometryTally(geometry, tally_name){
  				_tally_type = COLLISION_RATE; 
 			}
 	void tally(neutron* neutron);
@@ -281,8 +282,8 @@ public:
 class IsotopeElasticRateTally: public IsotopeTally {
 
 public:
-	IsotopeElasticRateTally(char* tally_name, Isotope* isotope)
-			: IsotopeTally(tally_name, isotope){
+	IsotopeElasticRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+			: IsotopeTally(isotope, tally_name){
 				_tally_type = ELASTIC_RATE;
 			}
 	void tally(neutron* neutron);
@@ -292,8 +293,8 @@ public:
 class MaterialElasticRateTally: public MaterialTally {
 
 public:
-	MaterialElasticRateTally(char* tally_name, Material* material)
-			: MaterialTally(tally_name, material){
+	MaterialElasticRateTally(Material* material, const char* tally_name=(char*)"")
+			: MaterialTally(material, tally_name){
 				_tally_type = ELASTIC_RATE;
 			}
 	void tally(neutron* neutron);
@@ -303,8 +304,8 @@ public:
 class RegionElasticRateTally: public RegionTally {
 
 public:
-	RegionElasticRateTally(char* tally_name, Region* region)
-			: RegionTally(tally_name, region){
+	RegionElasticRateTally(Region* region, const char* tally_name=(char*)"")
+			: RegionTally(region, tally_name){
 				_tally_type = ELASTIC_RATE;
 			}
 	void tally(neutron* neutron);
@@ -314,8 +315,8 @@ public:
 class GeometryElasticRateTally: public GeometryTally {
 
 public:
-	GeometryElasticRateTally(char* tally_name, Geometry* geometry)
-			: GeometryTally(tally_name, geometry){
+	GeometryElasticRateTally(Geometry* geometry, const char* tally_name=(char*)"")
+			: GeometryTally(geometry, tally_name){
 				_tally_type = ELASTIC_RATE;
 			}
 	void tally(neutron* neutron);
@@ -329,8 +330,8 @@ public:
 class IsotopeAbsorptionRateTally: public IsotopeTally {
 
 public:
-	IsotopeAbsorptionRateTally(char* tally_name, Isotope* isotope)
-			: IsotopeTally(tally_name, isotope) {
+	IsotopeAbsorptionRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+			: IsotopeTally(isotope, tally_name) {
 				_tally_type = ABSORPTION_RATE;
 			}
 	void tally(neutron* neutron);
@@ -340,8 +341,8 @@ public:
 class MaterialAbsorptionRateTally: public MaterialTally {
 
 public:
-	MaterialAbsorptionRateTally(char* tally_name, Material* material)
-			: MaterialTally(tally_name, material) {
+	MaterialAbsorptionRateTally(Material* material, const char* tally_name=(char*)"")
+			: MaterialTally(material, tally_name) {
 				_tally_type = ABSORPTION_RATE;
 			}
 	void tally(neutron* neutron);
@@ -351,8 +352,8 @@ public:
 class RegionAbsorptionRateTally: public RegionTally {
 
 public:
-	RegionAbsorptionRateTally(char* tally_name, Region* region)
-			: RegionTally(tally_name, region) {
+	RegionAbsorptionRateTally(Region* region, const char* tally_name=(char*)"")
+			: RegionTally(region, tally_name) {
 				_tally_type = ABSORPTION_RATE;
 			}
 	void tally(neutron* neutron);
@@ -362,8 +363,8 @@ public:
 class GeometryAbsorptionRateTally: public GeometryTally {
 
 public:
-	GeometryAbsorptionRateTally(char* tally_name, Geometry* geometry)
-			: GeometryTally(tally_name, geometry) {
+	GeometryAbsorptionRateTally(Geometry* geometry, const char* tally_name=(char*)"")
+			: GeometryTally(geometry, tally_name) {
 				_tally_type = ABSORPTION_RATE;
 			}
 	void tally(neutron* neutron);
@@ -377,8 +378,8 @@ public:
 class IsotopeCaptureRateTally: public IsotopeTally {
 
 public:
-	IsotopeCaptureRateTally(char* tally_name, Isotope* isotope)
-			: IsotopeTally(tally_name, isotope) {
+	IsotopeCaptureRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+			: IsotopeTally(isotope, tally_name) {
 				_tally_type = CAPTURE_RATE;
 			}
 	void tally(neutron* neutron);
@@ -388,8 +389,8 @@ public:
 class MaterialCaptureRateTally: public MaterialTally {
 
 public:
-	MaterialCaptureRateTally(char* tally_name, Material* material)
-			: MaterialTally(tally_name, material) {
+	MaterialCaptureRateTally(Material* material, const char* tally_name=(char*)"")
+			: MaterialTally(material, tally_name) {
 				_tally_type = CAPTURE_RATE;
 			}
 	void tally(neutron* neutron);
@@ -399,8 +400,8 @@ public:
 class RegionCaptureRateTally: public RegionTally {
 
 public:
-	RegionCaptureRateTally(char* tally_name, Region* region)
-			: RegionTally(tally_name, region) {
+	RegionCaptureRateTally(Region* region, const char* tally_name=(char*)"")
+			: RegionTally(region, tally_name) {
 				_tally_type = CAPTURE_RATE;
 			}
 	void tally(neutron* neutron);
@@ -410,8 +411,8 @@ public:
 class GeometryCaptureRateTally: public GeometryTally {
 
 public:
-	GeometryCaptureRateTally(char* tally_name, Geometry* geometry)
-			: GeometryTally(tally_name, geometry) {
+	GeometryCaptureRateTally(Geometry* geometry, const char* tally_name=(char*)"")
+			: GeometryTally(geometry, tally_name) {
 				_tally_type = CAPTURE_RATE;
 			}
 	void tally(neutron* neutron);
@@ -425,8 +426,8 @@ public:
 class IsotopeFissionRateTally: public IsotopeTally {
 
 public:
-	IsotopeFissionRateTally(char* tally_name, Isotope* isotope)
-			: IsotopeTally(tally_name, isotope) {
+	IsotopeFissionRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+			: IsotopeTally(isotope, tally_name) {
 				_tally_type = FISSION_RATE;
 			}
 	void tally(neutron* neutron);
@@ -436,8 +437,8 @@ public:
 class MaterialFissionRateTally: public MaterialTally {
 
 public:
-	MaterialFissionRateTally(char* tally_name, Material* material)
-			: MaterialTally(tally_name, material) {
+	MaterialFissionRateTally(Material* material, const char* tally_name=(char*)"")
+			: MaterialTally(material, tally_name) {
 				_tally_type = FISSION_RATE;
 			}
 	void tally(neutron* neutron);
@@ -447,8 +448,8 @@ public:
 class RegionFissionRateTally: public RegionTally {
 
 public:
-	RegionFissionRateTally(char* tally_name, Region* region)
-			: RegionTally(tally_name, region) {
+	RegionFissionRateTally(Region* region, const char* tally_name=(char*)"")
+			: RegionTally(region, tally_name) {
 				_tally_type = FISSION_RATE;
 			}
 	void tally(neutron* neutron);
@@ -458,8 +459,8 @@ public:
 class GeometryFissionRateTally: public GeometryTally {
 
 public:
-	GeometryFissionRateTally(char* tally_name, Geometry* geometry)
-			: GeometryTally(tally_name, geometry) {
+	GeometryFissionRateTally(Geometry* geometry, const char* tally_name=(char*)"")
+			: GeometryTally(geometry, tally_name) {
 				_tally_type = FISSION_RATE;
 			}
 	void tally(neutron* neutron);
@@ -473,8 +474,8 @@ public:
 class IsotopeTransportRateTally: public IsotopeTally {
 
 public:
-	IsotopeTransportRateTally(char* tally_name, Isotope* isotope)
-			: IsotopeTally(tally_name, isotope) {
+	IsotopeTransportRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+			: IsotopeTally(isotope, tally_name) {
 				_tally_type = TRANSPORT_RATE;
 			}
 	void tally(neutron* neutron);
@@ -484,8 +485,8 @@ public:
 class MaterialTransportRateTally: public MaterialTally {
 
 public:
-	MaterialTransportRateTally(char* tally_name, Material* material)
-			: MaterialTally(tally_name, material) {
+	MaterialTransportRateTally(Material* material, const char* tally_name=(char*)"")
+			: MaterialTally(material, tally_name) {
 				_tally_type = TRANSPORT_RATE;
 			}
 	void tally(neutron* neutron);
@@ -495,8 +496,8 @@ public:
 class RegionTransportRateTally: public RegionTally {
 
 public:
-	RegionTransportRateTally(char* tally_name, Region* region)
-			: RegionTally(tally_name, region) {
+	RegionTransportRateTally(Region* region, const char* tally_name=(char*)"")
+			: RegionTally(region, tally_name) {
 				_tally_type = TRANSPORT_RATE;
 			}
 	void tally(neutron* neutron);
@@ -506,8 +507,8 @@ public:
 class GeometryTransportRateTally: public GeometryTally {
 
 public:
-	GeometryTransportRateTally(char* tally_name, Geometry* geometry) 
-			: GeometryTally(tally_name, geometry) {
+	GeometryTransportRateTally(Geometry* geometry, const char* tally_name=(char*)"") 
+			: GeometryTally(geometry, tally_name) {
 				_tally_type = TRANSPORT_RATE;
 			}
 	void tally(neutron* neutron);
@@ -521,8 +522,8 @@ public:
 class IsotopeDiffusionRateTally: public IsotopeTally {
 
 public:
-	IsotopeDiffusionRateTally(char* tally_name, Isotope* isotope)
-			: IsotopeTally(tally_name, isotope) {
+	IsotopeDiffusionRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+			: IsotopeTally(isotope, tally_name) {
 				_tally_type = DIFFUSION_RATE;
 			}
 	void tally(neutron* neutron);
@@ -532,8 +533,8 @@ public:
 class MaterialDiffusionRateTally: public MaterialTally {
 
 public:
-	MaterialDiffusionRateTally(char* tally_name, Material* material)
-			: MaterialTally(tally_name, material) {
+	MaterialDiffusionRateTally(Material* material, const char* tally_name=(char*)"")
+			: MaterialTally(material, tally_name) {
 				_tally_type = DIFFUSION_RATE;
 			}
 	void tally(neutron* neutron);
@@ -543,8 +544,8 @@ public:
 class RegionDiffusionRateTally: public RegionTally {
 
 public:
-	RegionDiffusionRateTally(char* tally_name, Region* region)
-			: RegionTally(tally_name, region) {
+	RegionDiffusionRateTally(Region* region, const char* tally_name=(char*)"")
+			: RegionTally(region, tally_name) {
 				_tally_type = DIFFUSION_RATE;
 			}
 	void tally(neutron* neutron);
@@ -554,8 +555,8 @@ public:
 class GeometryDiffusionRateTally: public GeometryTally {
 
 public:
-	GeometryDiffusionRateTally(char* tally_name, Geometry* geometry)
-			: GeometryTally(tally_name, geometry) {
+	GeometryDiffusionRateTally(Geometry* geometry, const char* tally_name=(char*)"")
+			: GeometryTally(geometry, tally_name) {
 				_tally_type = DIFFUSION_RATE;
 			}
 	void tally(neutron* neutron);
@@ -570,8 +571,8 @@ public:
 class MaterialLeakageRateTally: public MaterialTally {
 
 public:
-	MaterialLeakageRateTally(char* tally_name, Material* material)
-			: MaterialTally(tally_name, material) {
+	MaterialLeakageRateTally(Material* material, const char* tally_name=(char*)"")
+			: MaterialTally(material, tally_name) {
 				_tally_type = LEAKAGE_RATE;
 			}
 	void tally(neutron* neutron);
@@ -581,8 +582,8 @@ public:
 class RegionLeakageRateTally: public RegionTally {
 
 public:
-	RegionLeakageRateTally(char* tally_name, Region* region)
-			: RegionTally(tally_name, region) {
+	RegionLeakageRateTally(Region* region, const char* tally_name=(char*)"")
+			: RegionTally(region, tally_name) {
 				_tally_type = LEAKAGE_RATE;
 			}
 	void tally(neutron* neutron);
@@ -591,8 +592,8 @@ public:
 class GeometryLeakageRateTally: public GeometryTally {
 
 public:
-	GeometryLeakageRateTally(char* tally_name, Geometry* geometry)
-			: GeometryTally(tally_name, geometry) {
+	GeometryLeakageRateTally(Geometry* geometry, const char* tally_name=(char*)"")
+			: GeometryTally(geometry, tally_name) {
 				_tally_type = LEAKAGE_RATE;
 			}
 	void tally(neutron* neutron);
@@ -606,8 +607,8 @@ public:
 class MaterialFluxTally: public MaterialTally {
 
 public:
-	MaterialFluxTally(char* tally_name, Material* material)
-			: MaterialTally(tally_name, material) {
+	MaterialFluxTally(Material* material, const char* tally_name=(char*)"")
+			: MaterialTally(material, tally_name) {
 				_tally_type = FLUX;
 			}
 	void tally(neutron* neutron);
@@ -617,8 +618,8 @@ public:
 class RegionFluxTally: public RegionTally {
 
 public:
-	RegionFluxTally(char* tally_name, Region* region)
-			: RegionTally(tally_name, region) {
+	RegionFluxTally(Region* region, const char* tally_name=(char*)"")
+			: RegionTally(region, tally_name) {
 				_tally_type = FLUX;
 			}
 	void tally(neutron* neutron);
@@ -628,8 +629,8 @@ public:
 class GeometryFluxTally: public GeometryTally {
 
 public:
-	GeometryFluxTally(char* tally_name, Geometry* geometry)
-			: GeometryTally(tally_name, geometry) {
+	GeometryFluxTally(Geometry* geometry, const char* tally_name=(char*)"")
+			: GeometryTally(geometry, tally_name) {
 				_tally_type = FLUX;
 			}
 	void tally(neutron* neutron);
@@ -643,8 +644,8 @@ public:
 class MaterialInterCollisionTimeTally: public MaterialTally {
 
 public:
-	MaterialInterCollisionTimeTally(char* tally_name, Material* material)
-			: MaterialTally(tally_name, material){
+	MaterialInterCollisionTimeTally(Material* material, const char* tally_name=(char*)"")
+			: MaterialTally(material, tally_name){
  				_tally_type = INTERCOLLISION_TIME; 
 			}
 	void tally(neutron* neutron);
@@ -655,8 +656,8 @@ public:
 class RegionInterCollisionTimeTally: public RegionTally {
 
 public:
-	RegionInterCollisionTimeTally(char* tally_name, Region* region)
-			: RegionTally(tally_name, region){
+	RegionInterCollisionTimeTally(Region* region, const char* tally_name=(char*)"")
+			: RegionTally(region, tally_name){
  				_tally_type = INTERCOLLISION_TIME; 
 			}
 	void tally(neutron* neutron);
@@ -667,8 +668,8 @@ public:
 class GeometryInterCollisionTimeTally: public GeometryTally {
 
 public:
-	GeometryInterCollisionTimeTally(char* tally_name, Geometry* geometry)
-			: GeometryTally(tally_name, geometry){
+	GeometryInterCollisionTimeTally(Geometry* geometry, const char* tally_name=(char*)"")
+			: GeometryTally(geometry, tally_name){
  				_tally_type = INTERCOLLISION_TIME; 
 			}
 	void tally(neutron* neutron);

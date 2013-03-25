@@ -14,7 +14,36 @@
 
 /* Default logging level is the lowest (most verbose) level */
 logLevel log_level = NORMAL;
-char logfilename[10];
+std::string logfile_name = "";
+std::string output_directory = ".";
+bool logging = false;
+
+
+void setOutputDirectory(char* directory) {
+
+    output_directory = std::string(directory);
+
+    /* Check to see if directory exists - if not, create it */
+    struct stat st;
+    if (!stat(directory, &st) == 0) {
+		mkdir(directory, S_IRWXU);
+        mkdir((output_directory+"/log").c_str(), S_IRWXU);
+    }
+
+    logfile_name = output_directory + "/" + logfile_name;
+
+    return;
+}
+
+
+const char* getOutputDirectory() {
+    return output_directory.c_str();
+}
+
+
+void setLogfileName(char* filename) {
+    logfile_name = output_directory + "/" + filename;
+}
 
 
 /**
@@ -34,6 +63,8 @@ void log_setlevel(logLevel newlevel) {
     case NORMAL:
 	    log_printf(INFO, "Logging level set to NORMAL");
 	    break;
+    case TITLE:
+	    log_printf(INFO, "Logging level set to TITLE");
     case WARNING:
 	    log_printf(INFO, "Logging level set to WARNING");
 	    break;
@@ -47,20 +78,6 @@ void log_setlevel(logLevel newlevel) {
 	    log_printf(INFO, "Logging level set to ERROR");
 	    break;
     }
-
-    /* Create an output file for all log messages */
-    std::ofstream myfile;
-    sprintf(logfilename, "log-%d", (rand() % 1000));
-    myfile.open (logfilename); 
-
-    /* Get the current time and write it to the top of the file */
-    time_t rawtime;
-    struct tm * timeinfo;
-    time (&rawtime);
-    timeinfo = localtime (&rawtime);
-    myfile << "Current local time and date: " << asctime(timeinfo);
-    myfile.close();
-
 }
 
 
@@ -83,6 +100,10 @@ void log_setlevel(const char* newlevel) {
     else if (strcmp("NORMAL", newlevel) == 0) {
 	    log_level = NORMAL;
 	    log_printf(INFO, "Logging level set to NORMAL");
+    }
+    else if (strcmp("TITLE", newlevel) == 0) {
+	    log_level = NORMAL;
+	    log_printf(INFO, "Logging level set to TITLE");
     }
     else if (strcmp("WARNING", newlevel) == 0) {
 	    log_level = WARNING;
@@ -134,6 +155,19 @@ void log_printf(logLevel level, const char *format, ...) {
 	        case (NORMAL):
                 msg_string = std::string("[  NORMAL ]  ") + msg + "\n";
 	            break;
+	        case (TITLE):
+            {
+                int size = strlen(msg);
+                int halfpad = (67 - size) / 2;
+                std::string pad = std::string(halfpad, ' ');
+                std::string prefix = std::string("[  TITLE  ]  ");
+                std::stringstream ss;
+                ss << prefix << std::string(67, '*') << "\n";
+                ss << prefix << pad << msg << pad << "\n";
+                ss << prefix << std::string(67, '*') << "\n";
+                msg_string = ss.str();
+	            break;
+            }
 	        case (WARNING):
                 msg_string = std::string("[ WARNING ]  ") + msg + "\n";
 	            break;
@@ -152,14 +186,41 @@ void log_printf(logLevel level, const char *format, ...) {
 	            break;
           }
 
-        /* Write the message to the shell */
-        std::cout << msg_string;
 
-        /* Write the message to the output file */
-        std::ofstream myfile;
-        myfile.open (logfilename, std::ios::app); 
-        myfile << msg_string;
-        myfile.close();
+        /* If this is our first time logging, add a header with date, time */
+        if (!logging) {
+
+            /* If output directory was not defined by user, then log file is
+             * written to a "log" subdirectory. Create it if it doesn't exist */
+            if (output_directory.compare(".") == 0) {
+                struct stat st;
+                if (!stat("log", &st) == 0)
+                    mkdir("log", S_IRWXU);
+            }
+
+            /* Write the message to the output file */
+            std::ofstream logfile;
+            logfile.open (logfile_name.c_str(), std::ios::app); 
+
+            /* Append date, time to the top of log output file */
+            time_t rawtime;
+            struct tm * timeinfo;
+            time (&rawtime);
+            timeinfo = localtime (&rawtime);
+            logfile << "Current local time and date: " << asctime(timeinfo);
+            logging = true;
+
+            logfile.close();
+        }
+
+        /* Write the log message to the logfile */
+        std::ofstream logfile;
+        logfile.open (logfile_name.c_str(), std::ios::app); 
+        logfile << msg_string;
+        logfile.close();
+
+        /* Write the log message to the shell */
+        std::cout << msg_string;
     }
 }
 

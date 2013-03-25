@@ -13,13 +13,12 @@ def main():
 
     # Set main simulation params
     num_batches = 10
-    num_neutrons_per_batch = 100000
+    num_neutrons_per_batch = 10000
     num_threads = 4
-    output_dir = 'HW3'
+    setOutputDirectory('HW3');
     log_setlevel(INFO)
 
-    py_printf('NORMAL', 'Beginning simulation of homework 3 for 2012 22.211...')
-
+    py_printf('TITLE', 'Simulation of homework 3 for 2012 22.211')
     py_printf('INFO', 'Initializing isotopes...')
 
 	# Initialize isotopes
@@ -40,8 +39,8 @@ def main():
 
     py_printf('INFO', 'Plotting microscopic cross-sections...')
 
-    plotter.plotMicroXS(h1, ['capture', 'elastic', 'fission'], output_dir )
-    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission'], output_dir)
+    plotter.plotMicroXS(h1, ['capture', 'elastic', 'fission'])
+    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission'])
 
 	# Turn off thermal scattering for U-238
     u238.neglectThermalScattering()
@@ -73,10 +72,10 @@ def main():
     py_printf('INFO', 'Initializing tallies for flux and absorption rates...')
 
     # Create a tally for the flux
-    flux1 = TallyFactory.createTally('U/H = 1E-6', geometry, FLUX)
-    flux2 = TallyFactory.createTally('U/H = 0.01', geometry, FLUX)
-    flux3 = TallyFactory.createTally('U/H = 0.1', geometry, FLUX)
-    flux4 = TallyFactory.createTally('U/H = 1.0', geometry, FLUX)
+    flux1 = TallyFactory.createTally(geometry, FLUX, 'U/H = 1E-6')
+    flux2 = TallyFactory.createTally(geometry, FLUX, 'U/H = 0.01')
+    flux3 = TallyFactory.createTally(geometry, FLUX, 'U/H = 0.1')
+    flux4 = TallyFactory.createTally(geometry, FLUX, 'U/H = 1.0')
     flux1.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
     flux2.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
     flux3.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
@@ -84,12 +83,9 @@ def main():
     fluxes = [flux1, flux2, flux3, flux4]
 
     # Create tallies to compute absorption in u238 and the material
-    u238_abs_rate = TallyFactory.createTally('u-238 absorption rate', \
-                                            u238, ABSORPTION_RATE)
-    tot_abs_rate = TallyFactory.createTally('total absorption rate', \
-                                                        mix, ABSORPTION_RATE)
-    abs_rate_flux = TallyFactory.createTally('absorption rate flux', \
-                                                        mix, FLUX)
+    u238_abs_rate = TallyFactory.createTally(u238, ABSORPTION_RATE)
+    tot_abs_rate = TallyFactory.createTally(mix, ABSORPTION_RATE)
+    abs_rate_flux = TallyFactory.createTally(region_mix, FLUX)
 
     abs_rate_bin_edges = numpy.array([1E-5, 1., 6., 10., 25., 50., 100., 1000.])
     tot_abs_rate.generateBinEdges(1E-7, 2E7, 1, EQUAL)
@@ -99,20 +95,22 @@ def main():
     py_printf('INFO', 'Registering tallies with the TallyBank...')
 
     TallyBank.registerTally(u238_abs_rate, mix)
-    TallyBank.registerTally(tot_abs_rate, mix)
-    TallyBank.registerTally(abs_rate_flux, mix)
+    TallyBank.registerTally(tot_abs_rate)
+    TallyBank.registerTally(abs_rate_flux)
 
 
     ###########################################################################
     #########################   Problems 1 and 2   ############################
     ###########################################################################
 
-    py_printf('NORMAL', 'Beginning problem 2...')
+    py_printf('NORMAL', 'Problems 1 and 2')
 
     u_h_ratios = [1E-6, 1E-2, 1E-1, 1E0]
     temps = [300, 600, 900, 1200]
 
     for temp in range(4):
+
+        py_printf('TITLE', 'Temperature = %dK', temps[temp])
 
         RIs = []
         abs_rate_ratios = []
@@ -146,8 +144,7 @@ def main():
 
 
         # Plot fluxes
-        plotter.plotFluxes(fluxes, output_dir, 
-                            title='Flux for Temp = '+str(temps[temp])+'K', 
+        plotter.plotFluxes(fluxes,title='Flux for Temp = '+str(temps[temp])+'K', 
                             filename='flux-temp-'+str(temps[temp])+'K')
 
         # print the reaction rate ratios and resonance integrals to the shell

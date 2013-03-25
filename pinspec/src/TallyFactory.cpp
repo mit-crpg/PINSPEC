@@ -10,8 +10,8 @@
 #include "TallyFactory.h"
 
 
-Tally* TallyFactory::createTally(char* tally_name, Isotope* isotope, 
-														tallyType tally_type) {
+Tally* TallyFactory::createTally(Isotope* isotope, tallyType tally_type, 
+                                                  const char* tally_name) {
 	if (tally_type == FLUX)
 		log_printf(ERROR, "Unable to create a FLUX type Tally for an "
 				"Isotope. FLUX Tallies are only supported for "
@@ -26,96 +26,96 @@ Tally* TallyFactory::createTally(char* tally_name, Isotope* isotope,
                 "supported for materials, regions and the geometry.");
 
 	if (tally_type == COLLISION_RATE)
-		return new IsotopeCollisionRateTally(tally_name, isotope);
+		return new IsotopeCollisionRateTally(isotope, tally_name);
 	else if (tally_type == ELASTIC_RATE)
-		return new IsotopeElasticRateTally(tally_name, isotope);
+		return new IsotopeElasticRateTally(isotope, tally_name);
 	else if (tally_type == ABSORPTION_RATE)
-		return new IsotopeAbsorptionRateTally(tally_name, isotope);
+		return new IsotopeAbsorptionRateTally(isotope, tally_name);
 	else if (tally_type == CAPTURE_RATE)
-		return new IsotopeCaptureRateTally(tally_name, isotope);
+		return new IsotopeCaptureRateTally(isotope, tally_name);
 	else if (tally_type == FISSION_RATE)
-		return new IsotopeFissionRateTally(tally_name, isotope);
+		return new IsotopeFissionRateTally(isotope, tally_name);
 	else if (tally_type == TRANSPORT_RATE)
-		return new IsotopeTransportRateTally(tally_name, isotope);
+		return new IsotopeTransportRateTally(isotope, tally_name);
 	else
-		return new IsotopeDiffusionRateTally(tally_name, isotope);
+		return new IsotopeDiffusionRateTally(isotope, tally_name);
 }
 
 
-Tally* TallyFactory::createTally(char* tally_name, Material* material, 
-														tallyType tally_type) {
+Tally* TallyFactory::createTally(Material* material, tallyType tally_type,
+                                                  const char* tally_name) {
 
 	if (tally_type == FLUX)
-		return new MaterialFluxTally(tally_name, material);
+		return new MaterialFluxTally(material, tally_name);
 	else if (tally_type == LEAKAGE_RATE)
-		return new MaterialLeakageRateTally(tally_name, material);
+		return new MaterialLeakageRateTally(material, tally_name);
     else if (tally_type == INTERCOLLISION_TIME)
-		return new MaterialInterCollisionTimeTally(tally_name, material);    
+		return new MaterialInterCollisionTimeTally(material, tally_name);    
 	else if (tally_type == COLLISION_RATE)
-		return new MaterialCollisionRateTally(tally_name, material);
+		return new MaterialCollisionRateTally(material, tally_name);
 	else if (tally_type == ELASTIC_RATE)
-		return new MaterialElasticRateTally(tally_name, material);
+		return new MaterialElasticRateTally(material, tally_name);
 	else if (tally_type == ABSORPTION_RATE)
-		return new MaterialAbsorptionRateTally(tally_name, material);
+		return new MaterialAbsorptionRateTally(material, tally_name);
 	else if (tally_type == CAPTURE_RATE)
-		return new MaterialCaptureRateTally(tally_name, material);
+		return new MaterialCaptureRateTally(material, tally_name);
 	else if (tally_type == FISSION_RATE)
-		return new MaterialFissionRateTally(tally_name, material);
+		return new MaterialFissionRateTally(material, tally_name);
 	else if (tally_type == TRANSPORT_RATE)
-		return new MaterialTransportRateTally(tally_name, material);
+		return new MaterialTransportRateTally(material, tally_name);
 	else
-		return new MaterialDiffusionRateTally(tally_name, material);
+		return new MaterialDiffusionRateTally(material, tally_name);
 }
 
 
-Tally* TallyFactory::createTally(char* tally_name, Region* region, 
-														tallyType tally_type) {
+Tally* TallyFactory::createTally(Region* region, tallyType tally_type,
+                                                  const char* tally_name) {
 
 	if (tally_type == FLUX)
-		return new RegionFluxTally(tally_name, region);
+		return new RegionFluxTally(region, tally_name);
 	else if (tally_type == LEAKAGE_RATE)
-		return new RegionLeakageRateTally(tally_name, region);
+		return new RegionLeakageRateTally(region, tally_name);
     else if (tally_type == INTERCOLLISION_TIME)
-		return new RegionInterCollisionTimeTally(tally_name, region);    
+		return new RegionInterCollisionTimeTally(region, tally_name);    
 	else if (tally_type == COLLISION_RATE)
-		return new RegionCollisionRateTally(tally_name, region);
+		return new RegionCollisionRateTally(region, tally_name);
 	else if (tally_type == ELASTIC_RATE)
-		return new RegionElasticRateTally(tally_name, region);
+		return new RegionElasticRateTally(region, tally_name);
 	else if (tally_type == ABSORPTION_RATE)
-		return new RegionAbsorptionRateTally(tally_name, region);
+		return new RegionAbsorptionRateTally(region, tally_name);
 	else if (tally_type == CAPTURE_RATE)
-		return new RegionCaptureRateTally(tally_name, region);
+		return new RegionCaptureRateTally(region, tally_name);
 	else if (tally_type == FISSION_RATE)
-		return new RegionFissionRateTally(tally_name, region);
+		return new RegionFissionRateTally(region, tally_name);
 	else if (tally_type == TRANSPORT_RATE)
-		return new RegionTransportRateTally(tally_name, region);
+		return new RegionTransportRateTally(region, tally_name);
 	else
-		return new RegionDiffusionRateTally(tally_name, region);
+		return new RegionDiffusionRateTally(region, tally_name);
 }
 
 
-Tally* TallyFactory::createTally(char* tally_name, Geometry* geometry, 
-														tallyType tally_type) {
+Tally* TallyFactory::createTally(Geometry* geometry, tallyType tally_type,
+                                                  const char* tally_name) {
 
 	if (tally_type == FLUX)
-		return new GeometryFluxTally(tally_name, geometry);
+		return new GeometryFluxTally(geometry, tally_name);
 	else if (tally_type == LEAKAGE_RATE)
-		return new GeometryLeakageRateTally(tally_name, geometry);
+		return new GeometryLeakageRateTally(geometry, tally_name);
     else if (tally_type == INTERCOLLISION_TIME)
-		return new GeometryInterCollisionTimeTally(tally_name, geometry);    
+		return new GeometryInterCollisionTimeTally(geometry, tally_name);    
 	else if (tally_type == COLLISION_RATE)
-		return new GeometryCollisionRateTally(tally_name, geometry);
+		return new GeometryCollisionRateTally(geometry, tally_name);
 	else if (tally_type == ELASTIC_RATE)
-		return new GeometryElasticRateTally(tally_name, geometry);
+		return new GeometryElasticRateTally(geometry, tally_name);
 	else if (tally_type == ABSORPTION_RATE)
-		return new GeometryAbsorptionRateTally(tally_name, geometry);
+		return new GeometryAbsorptionRateTally(geometry, tally_name);
 	else if (tally_type == CAPTURE_RATE)
-		return new GeometryCaptureRateTally(tally_name, geometry);
+		return new GeometryCaptureRateTally(geometry, tally_name);
 	else if (tally_type == FISSION_RATE)
-		return new GeometryFissionRateTally(tally_name, geometry);
+		return new GeometryFissionRateTally(geometry, tally_name);
 	else if (tally_type == TRANSPORT_RATE)
-		return new GeometryTransportRateTally(tally_name, geometry);
+		return new GeometryTransportRateTally(geometry, tally_name);
 	else
-		return new GeometryDiffusionRateTally(tally_name, geometry);
+		return new GeometryDiffusionRateTally(geometry, tally_name);
 
 }

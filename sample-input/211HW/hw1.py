@@ -12,11 +12,11 @@ def main():
     ###########################################################################
 
     # Set main simulation params
-    num_neutrons = 1000000
-    output_dir = 'HW1'
+    num_neutrons = 100000
+    setOutputDirectory('HW1');
     log_setlevel(INFO)
 
-    py_printf('NORMAL', 'Beginning simulation of homework 1 for 2012 22.211...')
+    py_printf('TITLE', 'Simulation of homework 1 for 2012 22.211')
     py_printf('INFO', 'Initializing isotopes...')
 
 	# Initialize isotopes
@@ -31,8 +31,8 @@ def main():
 
     py_printf('INFO', 'Plotting microscopic cross-sections...')
 
-    plotter.plotMicroXS(h1, ['capture', 'elastic', 'fission'], output_dir )
-    plotter.plotMicroXS(c12, ['capture', 'elastic', 'fission'], output_dir)
+    plotter.plotMicroXS(h1, ['capture', 'elastic', 'fission'])
+    plotter.plotMicroXS(c12, ['capture', 'elastic', 'fission'])
 
 	# Turn off thermal scattering
     h1.neglectThermalScattering()
@@ -46,7 +46,7 @@ def main():
     num_generations = 15
     max_energy = 2E6
 
-    py_printf('NORMAL', 'Beginning problems 1 and 2...')
+    py_printf('TITLE', 'Problems 1 and 2')
     py_printf('INFO', 'Initializing generational flux tallies...')
 
 	# Create flux tallies for each generation
@@ -55,12 +55,10 @@ def main():
 
     for i in range(num_generations):
 
-        h1_fluxes.append(TallyFactory.createTally('h1 flux', \
-                                                    h1, COLLISION_RATE))
+        h1_fluxes.append(TallyFactory.createTally(h1, COLLISION_RATE))
         h1_fluxes[i].generateBinEdges(0., 2E6, 1000, EQUAL)
 
-        c12_fluxes.append(TallyFactory.createTally('c12 flux', \
-                                                    c12, COLLISION_RATE))
+        c12_fluxes.append(TallyFactory.createTally(c12, COLLISION_RATE))
         c12_fluxes[i].generateBinEdges(1E3, 2E6, 1000, EQUAL)
 
     py_printf('INFO', 'Simulating generational flux from H-1...')
@@ -89,13 +87,11 @@ def main():
 
     py_printf('INFO', 'Plotting the generational fluxes...')
 
-    plotter.plotFluxes(h1_fluxes[1:], directory=output_dir, \
-                            loglog=False, uselegend=False, \
+    plotter.plotFluxes(h1_fluxes[1:], loglog=False, uselegend=False, \
                             filename='h1-generational-flux', \
                             title='H1 Generational Flux')
 
-    plotter.plotFluxes(c12_fluxes[1:], directory=output_dir, \
-                            loglog=False, uselegend=False, 
+    plotter.plotFluxes(c12_fluxes[1:], loglog=False, uselegend=False, 
                             filename='c12-generational-flux', \
                             title='C12 Generational Flux')
 
@@ -106,14 +102,13 @@ def main():
 
     num_generations = 50
     
-    py_printf('NORMAL', 'Beginning problems 3 and 4...')
+    py_printf('TITLE', 'Problems 3 and 4')
     py_printf('INFO', 'Initializing lethargy and energy flux tallies...')
 
-    lethargy_flux = TallyFactory.createTally('lethargy flux', \
-                                            c12, COLLISION_RATE)
+    lethargy_flux = TallyFactory.createTally(c12, COLLISION_RATE)
     lethargy_flux.generateBinEdges(1E2, 2E6, 5000, LOGARITHMIC)
 
-    energy_flux = TallyFactory.createTally('energy flux', c12, COLLISION_RATE)
+    energy_flux = TallyFactory.createTally(c12, COLLISION_RATE)
     energy_flux.generateBinEdges(1E2, 2E6, 5000, EQUAL)
 
     neutron = initializeNewNeutron()
@@ -134,11 +129,9 @@ def main():
     
     py_printf('INFO', 'Plotting the lethargy and energy fluxes...')
 
-    plotter.plotFlux(lethargy_flux, directory=output_dir, \
-                        filename='lethargy-flux', \
+    plotter.plotFlux(lethargy_flux, filename='lethargy-flux', \
                         title='C12 Lethargy Flux From Mono-energetic Source')
-    plotter.plotFlux(energy_flux, directory=output_dir, \
-                        filename='energy-flux', \
+    plotter.plotFlux(energy_flux, filename='energy-flux', \
                         title='C12 Energy Flux From Mono-energetic Source')
 
 
@@ -146,7 +139,7 @@ def main():
     #############################   Problem 5   ###############################
     ###########################################################################
 
-    py_printf('NORMAL', 'Beginning problem 5...')
+    py_printf('TITLE', 'Problem 5')
 
     num_generations = 15
     
@@ -156,8 +149,7 @@ def main():
 
     py_printf('INFO', 'Initializing lethargy flux tally...')
 
-    lethargy_flux = TallyFactory.createTally('lethargy flux', \
-                                            h1_material, FLUX)
+    lethargy_flux = TallyFactory.createTally(h1_material, FLUX)
     lethargy_flux.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
 
     neutron = initializeNewNeutron()
@@ -179,11 +171,10 @@ def main():
     
     py_printf('INFO', 'Plotting the lethargy flux...')
 
-    plotter.plotFlux(lethargy_flux, directory=output_dir, \
-                            filename='lethargy-flux-fission', \
+    plotter.plotFlux(lethargy_flux, filename='lethargy-flux-fission', \
                             title='H1 Energy Flux From Fission Spectrum')
 
-    py_printf('NORMAL', 'Finished')
+    py_printf('TITLE', 'Finished')
 
 
 if __name__ == '__main__':

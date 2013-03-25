@@ -13,9 +13,9 @@
 /**
  * Default Tally constructor
  */
-Tally::Tally(char* tally_name) {
+Tally::Tally(const char* tally_name) {
 
-	_tally_name = tally_name;
+	_tally_name = (char*)tally_name;
     _trigger_type = NONE;
 
 	 /* Sets the default delta between bins to zero */
