@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pinspec import *
 from log import *
+import scipy.integrate as integrate
 
 
 # NEEDS LOTS OF ERROR CHECKING!!!!
@@ -38,6 +39,7 @@ class ReactionRate(object):
     def __div__(self, other_rate):
 
         return ReactionRateRatio(self, other_rate)
+
 
 
 class ReactionRateRatio(object):
@@ -89,6 +91,7 @@ class ReactionRateRatio(object):
 
     def getName(self):
         return self.name
+
 
 
 def printReactionRateRatios(ratios):
@@ -251,3 +254,46 @@ def computeMeanNeutronLifetime(coll_times, num_neutrons):
 
     return mean_time
 
+
+def computeNumericalRIs(isotope, energy_bounds, xs_type='capture'):
+
+    if not (xs_type is 'capture' or 'elastic' or 'fission'):
+        py_printf('ERROR', 'Unable to compute a numerical RI for ' + \
+                                    'unsupported xs type ' + str(xs_type))
+
+    isotope_name = isotope.getIsotopeName()
+
+    # Retrieve doppler broadened xs and energies directly from isotope
+    doppler_num_energies = isotope.getNumXSEnergies(xs_type)
+    doppler_energies = isotope.retrieveXSEnergies(doppler_num_energies, xs_type)
+    doppler_xs = isotope.retrieveXS(doppler_num_energies, xs_type)
+
+    # Parse in ENDF 300K from backup xs file
+    backup_xs_path = getXSLibDirectory() + 'BackupXS/' + isotope_name + \
+                                                        '-' + xs_type + '.txt'
+    backup_num_energies = 0
+    backup_energies = numpy.array([])
+    backup_xs = numpy.array([])
+    
+    backup_file = open(backup_xs_path, 'r').readlines()
+    for line in backup_file:
+        if not 'ENDF' in line and not 'Doppler' in line:
+            energy, xs = line.split(',', 1)
+            backup_energies = np.append(backup_energies, np.float32(energy))
+            backup_xs = np.append(backup_xs, np.float32(xs))
+            backup_num_energies += 1
+            
+    # Interpolate into the doppler-broadened and backup xs
+    backup_RI = np.zeros(energy_bounds.size-1)
+    doppler_RI = np.zeros(energy_bounds.size-1)
+
+    for i in range(energy_bounds.size-1):
+        energies = np.logspace(np.log10(energy_bounds[i]), \
+                                            np.log10(energy_bounds[i+1]), 10000)
+        interp_backup_xs = np.interp(energies, backup_energies, backup_xs)
+        interp_doppler_xs = np.interp(energies, doppler_energies, doppler_xs)
+        backup_RI[i] = integrate.trapz(interp_backup_xs * (1./energies), energies)
+        doppler_RI[i] = integrate.trapz(interp_doppler_xs * (1./energies), energies)
+
+    print 'doppler_RI = ' + str(doppler_RI)
+    print 'backup_RI = ' + str(backup_RI)

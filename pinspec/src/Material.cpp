@@ -19,6 +19,7 @@ Material::Material(char* material_name) {
 	_material_number_density = 0.0;
 	_material_atomic_mass = 1.0;
 	_buckling_squared = 0.0;
+    _volume = 0.0;
 }
 
 
@@ -79,6 +80,11 @@ bool Material::containsIsotope(Isotope* isotope) {
 
 float Material::getBucklingSquared() {
 	return _buckling_squared;
+}
+
+
+float Material::getVolume() {
+    return _volume;
 }
 
 
@@ -638,6 +644,11 @@ void Material::setAtomicMass(float atomic_mass) {
 
 void Material::setBucklingSquared(float buckling_squared) {
 	_buckling_squared = buckling_squared;
+}
+
+
+void Material::incrementVolume(float volume) {
+    _volume += volume;
 }
 
 

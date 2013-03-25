@@ -75,6 +75,7 @@ public:
 	int getNumThreads();
 	spatialType getSpatialType();
 	float getBucklingSquared();
+    float getVolume();
 			
 	/* setters */
 	void setNeutronsPerBatch(int num_neutrons_per_batch);

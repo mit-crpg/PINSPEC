@@ -89,7 +89,6 @@ private:
 	float _kB;
 
 	void loadXS();
-    void loadXS(char* xs_type);
 	void setElasticXS(float* elastic_xs, float* elastic_xs_energies,
 			  									int num_elastic_xs);
 	void setCaptureXS(float* capture_xs, float* capture_xs_energies,
@@ -161,6 +160,7 @@ public:
                                 double* fission_xs, int num_xs);
 
 
+    void loadXS(char* xs_type);
     void setA(int A);
     void setAO(float AO);
     void setN(float N);

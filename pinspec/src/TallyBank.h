@@ -18,6 +18,7 @@
 #include "Region.h"
 #include "Material.h"
 #include "Isotope.h"
+#include "Geometry.h"
 
 
 /* Factory for creating instances of Tallies */
@@ -28,7 +29,7 @@ private:
 	TallyBank &operator=(const TallyBank &) { return *this; }
 
 	std::set<Tally*> _all_tallies;
-	std::set<Tally*> _geometry_tallies;
+	std::map< Geometry*, std::set<Tally*>* > _geometry_tallies;
 	std::map< Region*, std::set<Tally*>* > _region_tallies;
 	std::map< Material*, std::set<Tally*>* > _material_tallies;
 	std::map< Isotope*, std::set<Tally*>* > _isotope_tallies;
@@ -53,7 +54,7 @@ public:
     void incrementNumBatches(int num_batches);
     void computeBatchStatistics();
     void computeScaledBatchStatistics(float scale_factor);
-    void outputBatchStatistics(char* directory,  char* suffix);
+    void outputBatchStatistics();
 	void tally(neutron* neutron);
 
 	void clearTallies();

@@ -697,9 +697,17 @@ void Tally::computeBatchStatistics() {
 
 	double s1 = 0.0;
 	double s2 = 0.0;
+    double delta;
 
 	/* Loop over each bin */
 	for (int i=0; i < _num_bins; i++) {
+
+        if (_bin_spacing == LOGARITHMIC)
+            delta = _bin_delta;
+        else if (_bin_spacing == EQUAL)
+            delta = _bin_delta;
+        else
+            delta = _edges[i+1] - _edges[i];
 
 		s1 = 0.0;
 		s2 = 0.0;
@@ -712,8 +720,8 @@ void Tally::computeBatchStatistics() {
 
 		/* Accumulate in s1, s2 counters */
 		for (int j=0; j < _num_batches; j++) {
-			s1 += _tallies[j][i];
-			s2 += _tallies[j][i] * _tallies[j][i];
+			s1 += _tallies[j][i] / delta;
+			s2 += (_tallies[j][i] / delta) * (_tallies[j][i] / delta);
 		}
 
 		/* Compute batch average */
@@ -747,9 +755,17 @@ void Tally::computeScaledBatchStatistics(double scale_factor) {
 
 	double s1 = 0.0;
 	double s2 = 0.0;
+    double delta;
 
 	/* Loop over each bin */
 	for (int i=0; i < _num_bins; i++) {
+
+        if (_bin_spacing == LOGARITHMIC)
+            delta = _bin_delta;
+        else if (_bin_spacing == EQUAL)
+            delta = _bin_delta;
+        else
+            delta = _edges[i+1] - _edges[i];
 
 		s1 = 0.0;
 		s2 = 0.0;
@@ -762,9 +778,10 @@ void Tally::computeScaledBatchStatistics(double scale_factor) {
 
 		/* Accumulate in s1, s2 counters */
 		for (int j=0; j < _num_batches; j++) {
-			s1 += _tallies[j][i] / scale_factor;
-			s2 += (_tallies[j][i] / scale_factor) *
-						(_tallies[j][i] / scale_factor);
+
+			s1 += _tallies[j][i] / (scale_factor * delta);
+			s2 += (_tallies[j][i] / (scale_factor * delta)) *
+						(_tallies[j][i] / (scale_factor * delta));
 		}
 
 		/* Compute batch average */

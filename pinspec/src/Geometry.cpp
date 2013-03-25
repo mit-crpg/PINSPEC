@@ -96,6 +96,17 @@ float Geometry::getBucklingSquared() {
 }
 
 
+float Geometry::getVolume() {
+    if (_spatial_type == INFINITE_HOMOGENEOUS)
+        return _infinite_medium->getVolume();
+    else if (_spatial_type = HOMOGENEOUS_EQUIVALENCE)
+        return _fuel->getVolume() + _moderator->getVolume();
+    else
+        return 1.0;     //FIXME: Update this for heterogeneous case when implemented
+}
+
+
+
 void Geometry::setBucklingSquared(float buckling_squared) {
     _buckling_squared = buckling_squared;
 }
@@ -408,7 +419,7 @@ void Geometry::runMonteCarloSimulation() {
 					        else {
 
 						        /* If test is larger than p_mf, move to fuel */
-						        if (test > p_mf) {
+						        if (test < p_mf) {
                                     curr->_region = _fuel;
 								    _fuel->collideNeutron(curr);
                                 }

@@ -4095,6 +4095,37 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Geometry_getVolume(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Geometry_getVolume",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getVolume" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  {
+    try {
+      result = (float)(arg1)->getVolume();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Geometry_setNeutronsPerBatch(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Geometry *arg1 = (Geometry *) 0 ;
@@ -9526,6 +9557,48 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Isotope_loadXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_loadXS",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_loadXS" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_loadXS" "', argument " "2"" of type '" "char *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      (arg1)->loadXS(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Isotope_setA(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Isotope *arg1 = (Isotope *) 0 ;
@@ -10512,6 +10585,37 @@ SWIGINTERN PyObject *_wrap_Material_getBucklingSquared(PyObject *SWIGUNUSEDPARM(
   {
     try {
       result = (float)(arg1)->getBucklingSquared();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_getVolume(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Material_getVolume",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getVolume" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (float)(arg1)->getVolume();
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -12455,6 +12559,45 @@ SWIGINTERN PyObject *_wrap_Material_setBucklingSquared(PyObject *SWIGUNUSEDPARM(
   {
     try {
       (arg1)->setBucklingSquared(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_incrementVolume(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Material_incrementVolume",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_incrementVolume" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_incrementVolume" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      (arg1)->incrementVolume(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -22654,39 +22797,19 @@ fail:
 SWIGINTERN PyObject *_wrap_TallyBank_outputBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   TallyBank *arg1 = (TallyBank *) 0 ;
-  char *arg2 = (char *) 0 ;
-  char *arg3 = (char *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  int res3 ;
-  char *buf3 = 0 ;
-  int alloc3 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:TallyBank_outputBatchStatistics",&obj0,&obj1,&obj2)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:TallyBank_outputBatchStatistics",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_outputBatchStatistics" "', argument " "1"" of type '" "TallyBank *""'"); 
   }
   arg1 = reinterpret_cast< TallyBank * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TallyBank_outputBatchStatistics" "', argument " "2"" of type '" "char *""'");
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "TallyBank_outputBatchStatistics" "', argument " "3"" of type '" "char *""'");
-  }
-  arg3 = reinterpret_cast< char * >(buf3);
   {
     try {
-      (arg1)->outputBatchStatistics(arg2,arg3);
+      (arg1)->outputBatchStatistics();
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -22695,12 +22818,8 @@ SWIGINTERN PyObject *_wrap_TallyBank_outputBatchStatistics(PyObject *SWIGUNUSEDP
     }
   }
   resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
   return NULL;
 }
 
@@ -25728,6 +25847,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Geometry_getNumThreads", _wrap_Geometry_getNumThreads, METH_VARARGS, NULL},
 	 { (char *)"Geometry_getSpatialType", _wrap_Geometry_getSpatialType, METH_VARARGS, NULL},
 	 { (char *)"Geometry_getBucklingSquared", _wrap_Geometry_getBucklingSquared, METH_VARARGS, NULL},
+	 { (char *)"Geometry_getVolume", _wrap_Geometry_getVolume, METH_VARARGS, NULL},
 	 { (char *)"Geometry_setNeutronsPerBatch", _wrap_Geometry_setNeutronsPerBatch, METH_VARARGS, NULL},
 	 { (char *)"Geometry_setNumBatches", _wrap_Geometry_setNumBatches, METH_VARARGS, NULL},
 	 { (char *)"Geometry_setNumThreads", _wrap_Geometry_setNumThreads, METH_VARARGS, NULL},
@@ -25830,6 +25950,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_setMultigroupElasticXS", _wrap_Isotope_setMultigroupElasticXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setMultigroupCaptureXS", _wrap_Isotope_setMultigroupCaptureXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setMultigroupFissionXS", _wrap_Isotope_setMultigroupFissionXS, METH_VARARGS, NULL},
+	 { (char *)"Isotope_loadXS", _wrap_Isotope_loadXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setA", _wrap_Isotope_setA, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setAO", _wrap_Isotope_setAO, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setN", _wrap_Isotope_setN, METH_VARARGS, NULL},
@@ -25857,6 +25978,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Material_getIsotopeNumDensity", _wrap_Material_getIsotopeNumDensity, METH_VARARGS, NULL},
 	 { (char *)"Material_containsIsotope", _wrap_Material_containsIsotope, METH_VARARGS, NULL},
 	 { (char *)"Material_getBucklingSquared", _wrap_Material_getBucklingSquared, METH_VARARGS, NULL},
+	 { (char *)"Material_getVolume", _wrap_Material_getVolume, METH_VARARGS, NULL},
 	 { (char *)"Material_getNumXSEnergies", _wrap_Material_getNumXSEnergies, METH_VARARGS, NULL},
 	 { (char *)"Material_getTotalMacroXS", _wrap_Material_getTotalMacroXS, METH_VARARGS, NULL},
 	 { (char *)"Material_getTotalMicroXS", _wrap_Material_getTotalMicroXS, METH_VARARGS, NULL},
@@ -25877,6 +25999,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Material_setNumberDensity", _wrap_Material_setNumberDensity, METH_VARARGS, NULL},
 	 { (char *)"Material_setAtomicMass", _wrap_Material_setAtomicMass, METH_VARARGS, NULL},
 	 { (char *)"Material_setBucklingSquared", _wrap_Material_setBucklingSquared, METH_VARARGS, NULL},
+	 { (char *)"Material_incrementVolume", _wrap_Material_incrementVolume, METH_VARARGS, NULL},
 	 { (char *)"Material_addIsotope", _wrap_Material_addIsotope, METH_VARARGS, NULL},
 	 { (char *)"Material_clone", _wrap_Material_clone, METH_VARARGS, NULL},
 	 { (char *)"Material_sampleIsotope", _wrap_Material_sampleIsotope, METH_VARARGS, NULL},

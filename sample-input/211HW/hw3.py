@@ -116,6 +116,8 @@ def main():
         abs_rate_ratios = []
 
         SLBW.SLBWXS('U-238', temps[temp], 'capture') #To generate Doppler Broadened Res Cap
+        u238.loadXS('capture')
+        process.computeNumericalRIs(u238, abs_rate_bin_edges, xs_type='capture')
 
         for u_h_ratio in range(4):
 

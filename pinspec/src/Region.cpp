@@ -18,8 +18,13 @@ Region::Region(char* region_name, regionType type) {
     _region_name = region_name;
     _region_type = type;
 
+    /* Default volume */
+    if (_region_type == INFINITE)
+    	_volume = 1.0;
+    else
+        _volume = 0.0;
+
 	/* Default two region pin cell parameters */
-	_volume = 0.0;
 	_fuel_radius = 0.0;
 	_pitch = 0.0;
 	_half_width = 0.0;
@@ -267,6 +272,9 @@ float Region::getTransportMacroXS(int energy_index) {
  */
 void Region::setVolume(float volume) {
 	_volume = volume;
+
+    if (_material != NULL)
+        _material->incrementVolume(_volume);
 }
 
 
@@ -276,6 +284,7 @@ void Region::setVolume(float volume) {
  */
 void Region::setMaterial(Material* material) {
 	_material = material;
+    _material->incrementVolume(_volume);
 }
 
 
@@ -293,6 +302,9 @@ void Region::setFuelRadius(float radius) {
         else
             _volume = M_PI * _fuel_radius * _fuel_radius;
     }
+
+    if (_material != NULL)
+        _material->incrementVolume(_volume);
 }
 
 

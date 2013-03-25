@@ -10,6 +10,7 @@ import subprocess
 import math
 import scipy.special as spec
 
+
 def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances = 14, \
            Emin = 1e-5,Ecut = 1000.0,Ebnwdth = 0.075,resspacing = 25, \
            idntclfakereslb = 300,gamg = 0.023,flatxs = 0.1,finalEcut=20E6):
@@ -203,14 +204,6 @@ def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances = 14, \
 	ESXS = (E, sigma_n)
 	ESXS = numpy.transpose(ESXS)
 
-
-	#plot fictitious XS
-	#plt.loglog(E, sigma_n)
-	#plt.savefig('U238SXS.png')
-	#plot fictitious XS
-	#plt.loglog(E, sigma_g)
-	#plt.savefig('U238AXS.png')
-
 	#----------------------------------
 	#---So if capture is specified
 	#---------------------------------
@@ -246,6 +239,7 @@ def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances = 14, \
 		g.write(texts)
 		g.close()
 		#-----------------
+
 def generatePotentialScattering(isotope,Emin = 1e-5,finalEcut=20E6):
 #----------------------------------------------------------------------
 # Function that creates  flat scattering XS at sigma_pot
@@ -283,17 +277,8 @@ def generatePotentialScattering(isotope,Emin = 1e-5,finalEcut=20E6):
 	g.write(texts)
 	g.close()
 
-def replaceXS():
-#---------------------------------------------------------------------------
-#Function that cleans up library by replacing XS files with ENDFBVII files
-#---------------------------------------------------------------------------
-	XS_backup_path=str(getXSLibDirectory())+'/BackupXS'
-	src_files = os.listdir(XS_backup_path)
-	for file_name in src_files:
-    		full_file_name = os.path.join(XS_backup_path, file_name)
-    		if (os.path.isfile(full_file_name)):
-        		shutil.copy(full_file_name, getXSLibDirectory())
-	#--------------------------------------------------------------------
+
+
 def compareXS(isotope, XStype='capture', RI='no', dir = '.'):
 	#Resonance Integral Boundaries
 	RIb=numpy.array([[0.01,0.1],[0.1,1.0],[6,10],[1,6],[10,25],[25,50],\
