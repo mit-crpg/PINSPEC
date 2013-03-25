@@ -712,8 +712,8 @@ void Tally::computeBatchStatistics() {
 
 		/* Accumulate in s1, s2 counters */
 		for (int j=0; j < _num_batches; j++) {
-			s1 += _tallies[j][i] / delta;
-			s2 += (_tallies[j][i] / delta) * (_tallies[j][i] / delta);
+			s1 += _tallies[j][i];
+			s2 += _tallies[j][i] * _tallies[j][i];
 		}
 
 		/* Compute batch average */
@@ -763,9 +763,9 @@ void Tally::computeScaledBatchStatistics(double scale_factor) {
 		/* Accumulate in s1, s2 counters */
 		for (int j=0; j < _num_batches; j++) {
 
-			s1 += _tallies[j][i] / (scale_factor * delta);
-			s2 += (_tallies[j][i] / (scale_factor * delta)) *
-						(_tallies[j][i] / (scale_factor * delta));
+			s1 += _tallies[j][i] / scale_factor;
+			s2 += (_tallies[j][i] / scale_factor) *
+						(_tallies[j][i] / scale_factor);
 		}
 
 		/* Compute batch average */
