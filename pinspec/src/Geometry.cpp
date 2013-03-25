@@ -99,7 +99,7 @@ float Geometry::getBucklingSquared() {
 float Geometry::getVolume() {
     if (_spatial_type == INFINITE_HOMOGENEOUS)
         return _infinite_medium->getVolume();
-    else if (_spatial_type = HOMOGENEOUS_EQUIVALENCE)
+    else if (_spatial_type == HOMOGENEOUS_EQUIVALENCE)
         return _fuel->getVolume() + _moderator->getVolume();
     else
         return 1.0;     //FIXME: Update this for heterogeneous case when implemented

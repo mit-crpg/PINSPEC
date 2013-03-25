@@ -11,7 +11,7 @@ def main():
     num_batches = 10
     num_neutrons_per_batch = 100000
     num_threads = 4
-    setOutputDirectory('Equivalence')
+    setOutputDirectory('infinite')
 
     log_setlevel(INFO)
 
@@ -63,7 +63,7 @@ def main():
     
     # Set a precision trigger: tells simulation to run until maximum relative
     # error is less than the trigger value (2E-2)
-    flux.setPrecisionTrigger(RELATIVE_ERROR, 2E-2)
+#    flux.setPrecisionTrigger(RELATIVE_ERROR, 2E-2)
 
 	# Register the tallies
     TallyBank.registerTally(flux)

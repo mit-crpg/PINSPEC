@@ -364,18 +364,18 @@ void TallyBank::deregisterTally(Tally* tally) {
 
     for (iter2 = _region_tallies.begin(); iter2 != _region_tallies.end(); ++iter2) {
         set_iter = ((*iter2).second)->find(tally);
-        if (set_iter != ((*iter1).second)->end())
+        if (set_iter != ((*iter2).second)->end())
             ((*iter2).second)->erase(set_iter);
     }
 
     for (iter3 = _material_tallies.begin(); iter3 != _material_tallies.end(); ++iter3) {
         set_iter = ((*iter3).second)->find(tally);
-        if (set_iter != ((*iter2).second)->end())
+        if (set_iter != ((*iter3).second)->end())
             ((*iter3).second)->erase(set_iter);
     }
 
     for (iter4 = _isotope_tallies.begin(); iter4 != _isotope_tallies.end(); ++iter4) {
-        set_iter = ((*iter3).second)->find(tally);
+        set_iter = ((*iter4).second)->find(tally);
         if (set_iter != ((*iter4).second)->end())
             ((*iter4).second)->erase(set_iter);
     }
@@ -429,7 +429,10 @@ void TallyBank::computeScaledBatchStatistics(float scale_factor) {
         volume = (*(*iter1).first).getVolume();
 
         for (set_iter = tally_set.begin(); set_iter != tally_set.end(); ++set_iter) {
-            (*set_iter)->computeScaledBatchStatistics(scale_factor*volume);
+            if ((*set_iter)->getTallyType() == INTERCOLLISION_TIME)
+                (*set_iter)->computeScaledBatchStatistics(scale_factor);
+            else
+                (*set_iter)->computeScaledBatchStatistics(scale_factor*volume);
         }
     }
 
@@ -440,7 +443,10 @@ void TallyBank::computeScaledBatchStatistics(float scale_factor) {
 
         for (set_iter = tally_set.begin(); set_iter != tally_set.end(); ++set_iter) {
             volume = (*(*iter2).first).getVolume();
-            (*set_iter)->computeScaledBatchStatistics(scale_factor*volume);
+            if ((*set_iter)->getTallyType() == INTERCOLLISION_TIME)
+                (*set_iter)->computeScaledBatchStatistics(scale_factor);
+            else
+                (*set_iter)->computeScaledBatchStatistics(scale_factor*volume);
         }
     }
 
@@ -451,7 +457,10 @@ void TallyBank::computeScaledBatchStatistics(float scale_factor) {
 
         for (set_iter = tally_set.begin(); set_iter != tally_set.end(); ++set_iter) {
             volume = (*(*iter3).first).getVolume();
-            (*set_iter)->computeScaledBatchStatistics(scale_factor*volume);
+            if ((*set_iter)->getTallyType() == INTERCOLLISION_TIME)
+                (*set_iter)->computeScaledBatchStatistics(scale_factor);
+            else
+                (*set_iter)->computeScaledBatchStatistics(scale_factor*volume);
         }
     }
 

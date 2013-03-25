@@ -697,17 +697,9 @@ void Tally::computeBatchStatistics() {
 
 	double s1 = 0.0;
 	double s2 = 0.0;
-    double delta;
 
 	/* Loop over each bin */
 	for (int i=0; i < _num_bins; i++) {
-
-        if (_bin_spacing == LOGARITHMIC)
-            delta = _bin_delta;
-        else if (_bin_spacing == EQUAL)
-            delta = _bin_delta;
-        else
-            delta = _edges[i+1] - _edges[i];
 
 		s1 = 0.0;
 		s2 = 0.0;
@@ -755,17 +747,9 @@ void Tally::computeScaledBatchStatistics(double scale_factor) {
 
 	double s1 = 0.0;
 	double s2 = 0.0;
-    double delta;
 
 	/* Loop over each bin */
 	for (int i=0; i < _num_bins; i++) {
-
-        if (_bin_spacing == LOGARITHMIC)
-            delta = _bin_delta;
-        else if (_bin_spacing == EQUAL)
-            delta = _bin_delta;
-        else
-            delta = _edges[i+1] - _edges[i];
 
 		s1 = 0.0;
 		s2 = 0.0;

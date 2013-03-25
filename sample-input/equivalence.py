@@ -14,7 +14,7 @@ def main():
     radius_fuel = 0.4096;
     pitch = 1.26
     dancoff = 0.277;
-    setOutputDirectory('Equivalence')
+    setOutputDirectory('equivalence')
 
     log_setlevel(INFO)
 

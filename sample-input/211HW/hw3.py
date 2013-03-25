@@ -13,7 +13,7 @@ def main():
 
     # Set main simulation params
     num_batches = 10
-    num_neutrons_per_batch = 10000
+    num_neutrons_per_batch = 100000
     num_threads = 4
     setOutputDirectory('HW3');
     log_setlevel(INFO)
@@ -84,7 +84,7 @@ def main():
 
     # Create tallies to compute absorption in u238 and the material
     u238_abs_rate = TallyFactory.createTally(u238, ABSORPTION_RATE)
-    tot_abs_rate = TallyFactory.createTally(mix, ABSORPTION_RATE)
+    tot_abs_rate = TallyFactory.createTally(region_mix, ABSORPTION_RATE)
     abs_rate_flux = TallyFactory.createTally(region_mix, FLUX)
 
     abs_rate_bin_edges = numpy.array([1E-5, 1., 6., 10., 25., 50., 100., 1000.])
@@ -94,8 +94,8 @@ def main():
 
     py_printf('INFO', 'Registering tallies with the TallyBank...')
 
-    TallyBank.registerTally(u238_abs_rate, mix)
-    TallyBank.registerTally(tot_abs_rate)
+    TallyBank.registerTally(u238_abs_rate, region_mix)
+    TallyBank.registerTally(tot_abs_rate, region_mix)
     TallyBank.registerTally(abs_rate_flux)
 
 
@@ -154,7 +154,7 @@ def main():
         process.printResonanceIntegrals(RIs)
 
 
-    py_printf('NORMAL', 'Finished')
+    py_printf('TITLE', 'Finished')
     
 
 if __name__ == '__main__':
