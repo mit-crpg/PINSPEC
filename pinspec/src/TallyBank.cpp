@@ -35,6 +35,11 @@ void TallyBank::registerTally(Tally* tally) {
 		IsotopeTally* isotope_tally = static_cast<IsotopeTally*>(tally);
 		registerTally(isotope_tally, isotope_tally->getIsotope());
 	}
+
+	/* Don't track tallies with UNDEFINED domain (only for DERIVED tallies) */
+	else if (tally->getTallyDomainType() == UNDEFINED)
+        log_printf(ERROR, "Unable to register DERIVED type tally %s with the"
+                        " TallyBank", tally->getTallyName());
 	
 }
 
@@ -81,6 +86,12 @@ void TallyBank::registerTally(Tally* tally, Geometry* geometry) {
 		IsotopeTally* isotope_tally = static_cast<IsotopeTally*>(tally);
 		registerTally(isotope_tally, isotope_tally->getIsotope());
 	}
+
+	/* Don't track tallies with UNDEFINED domain (only for DERIVED tallies) */
+	else if (tally->getTallyDomainType() == UNDEFINED)
+        log_printf(ERROR, "Unable to register DERIVED type tally %s with the"
+                        " TallyBank", tally->getTallyName());
+
 }
 
 
@@ -145,6 +156,11 @@ void TallyBank::registerTally(Tally* tally, Region* region) {
 						isotope_tally->getIsotope()->getIsotopeName(),
 						region->getMaterial()->getMaterialName());
 	}
+
+	/* Don't track tallies with UNDEFINED domain (only for DERIVED tallies) */
+	else if (tally->getTallyDomainType() == UNDEFINED)
+        log_printf(ERROR, "Unable to register DERIVED type tally %s with the"
+                        " TallyBank", tally->getTallyName());
 
 
 	/* If the tally and region passed all tests, register the region
@@ -324,6 +340,11 @@ void TallyBank::registerTally(Tally* tally, Isotope* isotope) {
 					" in an isotope since it is a DIFFUSION_RATE type tally",
 												isotope_tally->getTallyName());
 	}
+
+	/* Don't track tallies with UNDEFINED domain (only for DERIVED tallies) */
+	else if (tally->getTallyDomainType() == UNDEFINED)
+        log_printf(ERROR, "Unable to register DERIVED type tally %s with the"
+                        " TallyBank", tally->getTallyName());
 
 	/* If the tally and isotope passed all tests, register the isotope
 	 * and add this tally to the isotope's tally registry */

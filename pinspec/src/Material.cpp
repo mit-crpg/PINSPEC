@@ -679,7 +679,7 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 
     /* Checks to make sure material density is set already */
     if (_material_density <= 0)
-	log_printf(ERROR, "Unable to add Isotope %s since the number density "
+    	log_printf(ERROR, "Unable to add Isotope %s since the number density "
                        "for Material %s has not yet been set", 
                         isotope->getIsotopeName(), _material_name);
 

@@ -14,6 +14,10 @@ def py_printf(level, my_str, *args):
             log_printf(INFO, my_str % args)
         elif level == 'NORMAL':
             log_printf(NORMAL, my_str % args)
+        elif level == 'SEPARATOR':
+            log_printf(SEPARATOR, my_str % args)
+        elif level == 'HEADER':
+            log_printf(HEADER, my_str % args)
         elif level == 'TITLE':
             log_printf(TITLE, my_str % args)
         elif level == 'WARNING':
@@ -35,16 +39,20 @@ def assignValue(level):
         return 1
     elif level == 'NORMAL':
         return 2
-    elif level == 'TITLE':
+    elif level == 'SEPARATOR':
         return 3
-    elif level == 'WARNING':
+    elif level == 'HEADER':
         return 4
-    elif level == 'CRITICAL':
+    elif level == 'TITLE':
         return 5
-    elif level == 'RESULT':
+    elif level == 'WARNING':
         return 6
-    elif level == 'ERROR':
+    elif level == 'CRITICAL':
         return 7
+    elif level == 'RESULT':
+        return 8
+    elif level == 'ERROR':
+        return 9
 
 
 def setlevel(level):
@@ -55,6 +63,10 @@ def setlevel(level):
         log_setlevel(INFO)
     elif level == 'NORMAL':
         log_setlevel(NORMAL)
+    elif level == 'SEPARATOR':
+        log_setlevel(SEPARATOR)
+    elif level == 'HEADER':
+        log_setlevel(HEADER)
     elif level == 'TITLE':
         log_setlevel(TITLE)
     elif level == 'WARNING':

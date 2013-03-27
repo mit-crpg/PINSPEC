@@ -14,6 +14,7 @@
 #include <limits>
 #include <math.h>
 #include <string.h>
+#include <sstream>
 #include "log.h"
 #include "arraycreator.h"
 #include "Neutron.h"
@@ -22,7 +23,7 @@
 #include "Region.h"
 
 class Geometry;
-
+class DerivedTally;
 
 #define NEUTRON_MASS 939565378           /* Mass of neutron in eV / c^2 */
 #define LIGHT_SPEED 299792458               /* Speed of light in m / s */
@@ -33,7 +34,8 @@ typedef enum tallyDomainTypes {
 	MATERIAL,
 	ISOTOPE,
 	REGION,
-    GEOMETRY
+    GEOMETRY,
+    UNDEFINED                       /* For derived type tallies */
 } tallyDomainType;
 
 
@@ -49,6 +51,8 @@ typedef enum triggerTypes {
 
 
 /* Type of tallies */
+/* DERIVED type tallies are returned when users apply mathematical operations 
+ * to two or more tallies (ie, tally2 / tally2 or tally1 + tally2) */
 typedef enum tallyTypes {
 	FLUX,
 	LEAKAGE_RATE,
@@ -59,7 +63,8 @@ typedef enum tallyTypes {
 	CAPTURE_RATE,
 	FISSION_RATE,
 	TRANSPORT_RATE,
-	DIFFUSION_RATE
+	DIFFUSION_RATE,
+    DERIVED
 } tallyType;
 
 
@@ -101,6 +106,8 @@ protected:
 
 public:
 	Tally(const char* tally_name=(char*)"");
+//    Tally(const Tally &tally);       /* Copy constructor - how to? */
+//    Tally(const Tally *tally);             /* Copy constructor - how to? */
 	virtual ~Tally();
 	char* getTallyName();
 	int getNumBins();
@@ -141,6 +148,8 @@ public:
 	double* getBatchStdDev();
 	double* getBatchRelativeError();
 
+    void setTallyDomainType(tallyDomainType type);
+    void setTallyType(tallyType type);
     void setBinSpacingType(binSpacingType type);
 	void setBinEdges(double* edges, int num_edges);
     void setPrecisionTrigger(triggerType trigger_type, float precision);
@@ -156,10 +165,54 @@ public:
 	void computeScaledBatchStatistics(double scale_factor);
     void normalizeBatchMu();
 	void outputBatchStatistics(const char* filename);
+    void printTallies(bool uncertainties=false);
+    Tally* clone();
 
 	void tally(neutron* neutron, double weight);
 	virtual void tally(neutron* neutron) =0;
-//	virtual Tally* clone() =0;
+
+    /* Perhaps we can generalize the following functions somewhat, but
+     * this is what I came up with for now */
+    DerivedTally* addIntegers(const int* amt, const int length);
+    DerivedTally* addFloats(const float* amt, const int length);
+    DerivedTally* addDoubles(const double* amt, const int length);
+
+    DerivedTally* subtractIntegers(const int* amt, const int length);
+    DerivedTally* subtractFloats(const float* amt, const int length);
+    DerivedTally* subtractDoubles(const double* amt, const int length);
+
+    DerivedTally* multiplyIntegers(const int* amt, const int length);
+    DerivedTally* multiplyFloats(const float* amt, const int length);
+    DerivedTally* multiplyDoubles(const double* amt, const int length);
+
+    DerivedTally* divideIntegers(const int* amt, const int length);
+    DerivedTally* divideFloats(const float* amt, const int length);
+    DerivedTally* divideDoubles(const double* amt, const int length);
+
+    /* Assignment operators - how to? */
+//    Tally* operator=(Tally* tally);
+//    Tally* operator=(const Tally& tally);
+
+    /* Operator overloads */
+    DerivedTally* operator+(Tally* tally);
+    DerivedTally* operator-(Tally* tally);
+    DerivedTally* operator*(Tally* tally);
+    DerivedTally* operator/(Tally* tally);
+
+    DerivedTally* operator+(const int amt);
+    DerivedTally* operator-(const int amt);
+    DerivedTally* operator*(const int amt);
+    DerivedTally* operator/(const int amt);
+
+    DerivedTally* operator+(const float amt);
+    DerivedTally* operator-(const float amt);
+    DerivedTally* operator*(const float amt);
+    DerivedTally* operator/(const float amt);
+
+    DerivedTally* operator+(const double amt);
+    DerivedTally* operator-(const double amt);
+    DerivedTally* operator*(const double amt);
+    DerivedTally* operator/(const double amt);
 };
 
 
@@ -676,6 +729,29 @@ public:
 };
 
 
+/******************************************************************************/
+/****************************** Derived Tallies *******************************/
+/******************************************************************************/
+
+class DerivedTally: public Tally {
+
+public:
+	DerivedTally(const char* tally_name=(char*)"")
+			: Tally(tally_name){ 
+				_tally_domain = UNDEFINED;
+                _tally_type = DERIVED;
+			}
+	void tally(neutron* neutron);
+    void setTallyName(char* tally_name);
+    void setTallies(double** tallies);
+    void setBatchMu(double* batch_mu);
+    void setBatchVariance(double* batch_variance);
+    void setBatchStdDev(double* batch_std_dev);
+    void setBatchRelErr(double* batch_rel_err);
+    void setComputedBatchStatistics(bool computed);
+};
+
+
 /**
  * Finds the bin index for a sample in a set of bins. If the samples
  * is outside the bounds of all bins, it returns infinity
@@ -714,6 +790,8 @@ inline int Tally::getBinIndex(double sample) {
 
 	return index;
 }
+
+
 
 #endif
 

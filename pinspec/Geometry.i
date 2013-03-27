@@ -55,6 +55,10 @@
 %}
 
 
+%ignore Tally::operator=(Tally* tally);
+%ignore Tally::operator=(const Tally& tally);
+
+
 %apply (float* ARGOUT_ARRAY1, int DIM1) {(float* xs, int num_xs)}
 %apply (float* ARGOUT_ARRAY1, int DIM1) {(float* energies, int num_xs)}
 %apply (double* ARGOUT_ARRAY1, int DIM1) {(double* data, int num_bins)}
@@ -68,6 +72,11 @@
 %apply (double* IN_ARRAY1, int DIM1) {(double* energies, int num_energies), (double* elastic_xs, int num_xs)}
 %apply (double* IN_ARRAY1, int DIM1) {(double* energies, int num_energies), (double* capture_xs, int num_xs)}
 %apply (double* IN_ARRAY1, int DIM1) {(double* energies, int num_energies), (double* fission_xs, int num_xs)}
+
+
+%apply (int* IN_ARRAY1, int DIM1) {(const int* amt, const int length)}
+%apply (float* IN_ARRAY1, int DIM1) {(const float* amt, const int length)}
+%apply (double* IN_ARRAY1, int DIM1) {(const double* amt, const int length)}
 
 %include <exception.i> 
 %include src/Geometry.h

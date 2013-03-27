@@ -37,7 +37,7 @@ def main():
     ##########################   Problems 1 and 2   ###########################
     ###########################################################################
 
-    py_printf('TITLE', 'Problems 1 and 2')
+    py_printf('HEADER', 'Problems 1 and 2')
     py_printf('INFO', 'Plotting thermal scattering distributions...')
 
     #Plot the thermal scattering kernel PDFs and CDFs
@@ -50,7 +50,7 @@ def main():
     ###########################   Problems 3-6   ##############################
     ###########################################################################
 
-    py_printf('TITLE', 'Problems 3-6')
+    py_printf('HEADER', 'Problems 3-6')
     py_printf('INFO', 'Initializing the collision rate tally...')
 
     h1_material = Material('H-1')

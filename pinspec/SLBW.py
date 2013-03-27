@@ -341,43 +341,6 @@ def compareXS(isotope, XStype='capture', RI='no', dir = '.'):
 	plt.xlabel('XS [barns]')
 	plt.ylabel('E [eV]')
 	plt.savefig(dir+'/'+CXStype+'_XS_Comparison.png')
-	
-	if RI=='yes':
-		#Make loop for RI calculation for Fake U238
-		prod=numpy.zeros_like(barnsT)
-		prodr=numpy.zeros_like(barnsEndF300)
-		RIfake=numpy.zeros(len(RIb), dtype=float)
-		RIreal=numpy.zeros(len(RIb), dtype=float)
-
-		for i in range(len(RIb-1)):
-			#Retrieve bounds
-			Elow=RIb[i,0]
-			Eupp=RIb[i,1]
-		
-			#Find index matching boundary in Energy vectors
-			indlow=numpy.flatnonzero(EnT>=Elow) 
-			indlo=numpy.array([indlow[0]], dtype=int)
-			indupp=numpy.flatnonzero(EnT>=Eupp)
-			indup=numpy.array([indupp[0]], dtype=int)
-			indlowr=numpy.flatnonzero(EndfE300>=Elow) 
-			indlor=numpy.array([indlowr[0]], dtype=int)
-			induppr=numpy.flatnonzero(EndfE300>=Eupp)
-			indupr=numpy.array([induppr[0]], dtype=int)
-
-			#create vector to integrate, integrate
-			prod=(barnsT*invEnT)
-			prodr=(barnsEndF300*invEndfE300)
-			#en vector=EnT
-			RIfake[i]=numpy.trapz(prod[indlo:indup],EnT[indlo:indup])
-			RIreal[i]=numpy.trapz(prodr[indlor:indupr],EndfE300[indlor:indupr])
-        
-		py_printf('INFO', 'Resonance Integral Bounds:')
-		py_printf('INFO',  str(RIb))
-		py_printf('INFO', 'Doppler broadened '+El+'-'+A+' '+XStype+\
-                            ' Resonance Integrals at T='+T+' K:')
-		py_printf('INFO', str(RIfake))
-		py_printf('INFO', 'Real Resonance Integrals integrated from ENDF7 XS at T=300K:')
-		py_printf(str(RIreal))
 
 
 

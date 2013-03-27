@@ -17,6 +17,10 @@ logLevel log_level = NORMAL;
 std::string logfile_name = "";
 std::string output_directory = ".";
 bool logging = false;
+char separator_char = '-';
+char header_char = '*';
+char title_char = '*';
+int line_length = 67;           /* Must account for log level prefix */
 
 
 void setOutputDirectory(char* directory) {
@@ -46,6 +50,26 @@ void setLogfileName(char* filename) {
 }
 
 
+void setSeparatorCharacter(char c) {
+    separator_char = c;
+}
+
+
+void setHeaderCharacter(char c) {
+    header_char = c;
+}
+
+
+void setTitleCharacter(char c) {
+    title_char = c;
+}
+
+
+void setLineLength(int length) {
+    line_length = length;
+}
+
+
 /**
  * Set the minimum level which will be printed to the console
  * @param newlevel the logging level
@@ -63,8 +87,15 @@ void log_setlevel(logLevel newlevel) {
     case NORMAL:
 	    log_printf(INFO, "Logging level set to NORMAL");
 	    break;
+    case SEPARATOR:
+	    log_printf(INFO, "Logging level set to SEPARATOR");
+        break;
+    case HEADER:
+	    log_printf(INFO, "Logging level set to HEADER");
+        break;
     case TITLE:
 	    log_printf(INFO, "Logging level set to TITLE");
+        break;
     case WARNING:
 	    log_printf(INFO, "Logging level set to WARNING");
 	    break;
@@ -101,8 +132,16 @@ void log_setlevel(const char* newlevel) {
 	    log_level = NORMAL;
 	    log_printf(INFO, "Logging level set to NORMAL");
     }
+    else if (strcmp("SEPARATOR", newlevel) == 0) {
+	    log_level = HEADER;
+	    log_printf(INFO, "Logging level set to SEPARATOR");
+    }
+    else if (strcmp("HEADER", newlevel) == 0) {
+	    log_level = HEADER;
+	    log_printf(INFO, "Logging level set to HEADER");
+    }
     else if (strcmp("TITLE", newlevel) == 0) {
-	    log_level = NORMAL;
+	    log_level = TITLE;
 	    log_printf(INFO, "Logging level set to TITLE");
     }
     else if (strcmp("WARNING", newlevel) == 0) {
@@ -134,55 +173,137 @@ void log_setlevel(const char* newlevel) {
  */
 void log_printf(logLevel level, const char *format, ...) {
 
-    char msg[512];
+    char message[512];
     std::string msg_string;
 
     if (level >= log_level) {
     	va_list args;
 
         va_start(args, format);
-        vsprintf(msg, format, args);
+        vsprintf(message, format, args);
         va_end(args);
 
     	/* Append the log level to the message */
     	switch (level) {
 	        case (DEBUG):
-                msg_string = std::string("[  DEBUG  ]  ") + msg + "\n";
+            {
+                std::string msg = std::string(message);
+                std::string level_prefix = "[  DEBUG  ]  ";
+
+                /* If message is too long for a line, split into many lines */
+                if (int(msg.length()) > line_length)
+                    msg_string = createMultilineMsg(level_prefix, msg);
+
+                /* Puts message on single line */
+                else
+                    msg_string = level_prefix + msg + "\n";
+
 	            break;
+            }
 	        case (INFO):
-                msg_string = std::string("[  INFO   ]  ") + msg + "\n";
+            {
+                std::string msg = std::string(message);
+                std::string level_prefix = "[  INFO   ]  ";
+
+                /* If message is too long for a line, split into many lines */
+                if (int(msg.length()) > line_length)
+                    msg_string = createMultilineMsg(level_prefix, msg);
+
+                /* Puts message on single line */
+                else
+                    msg_string = level_prefix + msg + "\n";
+
 	            break;
+            }
 	        case (NORMAL):
-                msg_string = std::string("[  NORMAL ]  ") + msg + "\n";
+            {
+                std::string msg = std::string(message);
+                std::string level_prefix = "[  NORMAL ]  ";
+
+                /* If message is too long for a line, split into many lines */
+                if (int(msg.length()) > line_length)
+                    msg_string = createMultilineMsg(level_prefix, msg);
+
+                /* Puts message on single line */
+                else
+                    msg_string = level_prefix + msg + "\n";
+
 	            break;
+            }
+	        case (SEPARATOR):
+            {
+                std::string pad = std::string(line_length, separator_char);
+                std::string prefix = std::string("[SEPARATOR]  ");
+                std::stringstream ss;
+                ss << prefix << pad << "\n";
+                msg_string = ss.str();
+	            break;
+            }
+	        case (HEADER):
+            {
+                int size = strlen(message);
+                int halfpad = (line_length - 4 - size) / 2;
+                std::string pad1 = std::string(halfpad, header_char);
+                std::string pad2 = std::string(halfpad + 
+                                    (line_length - 4 - size) % 2, header_char);
+                std::string prefix = std::string("[  HEADER ]  ");
+                std::stringstream ss;
+                ss << prefix << pad1 << "  " << message << "  " << pad2 << "\n";
+                msg_string = ss.str();
+	            break;
+            }
 	        case (TITLE):
             {
-                int size = strlen(msg);
-                int halfpad = (67 - size) / 2;
+                int size = strlen(message);
+                int halfpad = (line_length - size) / 2;
                 std::string pad = std::string(halfpad, ' ');
                 std::string prefix = std::string("[  TITLE  ]  ");
                 std::stringstream ss;
-                ss << prefix << std::string(67, '*') << "\n";
-                ss << prefix << pad << msg << pad << "\n";
-                ss << prefix << std::string(67, '*') << "\n";
+                ss << prefix << std::string(line_length, title_char) << "\n";
+                ss << prefix << pad << message << pad << "\n";
+                ss << prefix << std::string(line_length, title_char) << "\n";
                 msg_string = ss.str();
 	            break;
             }
 	        case (WARNING):
-                msg_string = std::string("[ WARNING ]  ") + msg + "\n";
+            {
+                std::string msg = std::string(message);
+                std::string level_prefix = "[ WARNING ]  ";
+
+                /* If message is too long for a line, split into many lines */
+                if (int(msg.length()) > line_length)
+                    msg_string = createMultilineMsg(level_prefix, msg);
+
+                /* Puts message on single line */
+                else
+                    msg_string = level_prefix + msg + "\n";
+
 	            break;
+            }
 	        case (CRITICAL):
-                msg_string = std::string("[ CRITICAL]  ") + msg + "\n";
+            {
+                std::string msg = std::string(message);
+                std::string level_prefix = "[ CRITICAL]  ";
+
+                /* If message is too long for a line, split into many lines */
+                if (int(msg.length()) > line_length)
+                    msg_string = createMultilineMsg(level_prefix, msg);
+
+                /* Puts message on single line */
+                else
+                    msg_string = level_prefix + msg + "\n";
+
 	            break;
+            }
 	        case (RESULT):
-                msg_string = std::string("[  RESULT ]  ") + msg + "\n";
+                msg_string = std::string("[  RESULT ]  ") + message + "\n";
 	            break;
 	        case (ERROR):
 	            va_start(args, format);
-	            vsprintf(msg, format, args);
+	            vsprintf(message, format, args);
  	            va_end(args);
-                set_err(msg);
-                throw std::runtime_error(msg);
+                set_err(message);
+                throw std::runtime_error(message);
 	            break;
           }
 
@@ -222,6 +343,58 @@ void log_printf(logLevel level, const char *format, ...) {
         /* Write the log message to the shell */
         std::cout << msg_string;
     }
+}
+
+
+std::string createMultilineMsg(std::string level, std::string message) {
+
+    int size = message.length();
+
+    std::string substring;
+    int start = 0;
+    int end = line_length;
+
+    std::string msg_string;
+
+    /* Loop over msg creating substrings for each line */
+    while (end < size + line_length) {
+
+        /* Append log level to the beginning of each line */
+        msg_string += level;
+
+        /* Begin multiline messages with ellipsis */
+        if (start != 0)
+            msg_string += "... ";
+
+        /* Find the current full length substring for line*/
+        substring = message.substr(start, line_length);
+
+        /* Truncate substring to last complete word */
+        if (end < size-1) {
+            int endspace = substring.find_last_of(" ");
+            if (message.at(endspace+1) != ' ' && 
+                           endspace != int(std::string::npos)) {
+                end -= line_length - endspace;
+                substring = message.substr(start, end-start);
+            }
+        }
+
+        /* concatenate substring to output message */
+        msg_string += substring + "\n";
+
+        /* Reduce line length to account for ellipsis prefix */
+        if (start == 0)
+            line_length -= 4;
+
+        /* Update substring indices */
+        start = end + 1;
+        end += line_length + 1;
+    }
+
+    /* Reset line length */
+    line_length += 4;
+
+    return msg_string;
 }
 
 

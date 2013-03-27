@@ -10,7 +10,7 @@ def main():
 
     # Set main simulation params
     num_neutrons_per_batch = 100000
-    setOutputDirectory('scaling')
+    setOutputDirectory('weak-scaling')
 
     log_setlevel(INFO)
 

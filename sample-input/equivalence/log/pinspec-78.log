@@ -1,4 +1,4 @@
-Current local time and date: Mon Mar 25 03:13:10 2013
+Current local time and date: Wed Mar 27 16:40:35 2013
 [  INFO   ]  Logging level set to INFO
 [  TITLE  ]  *******************************************************************
 [  TITLE  ]         Simulating a hetero-homogeneous equivalence pin-cell       
@@ -30,7 +30,7 @@ Current local time and date: Mon Mar 25 03:13:10 2013
 [  INFO   ]  Initializing the geometry...
 [  INFO   ]  Initializing flux tallies...
 [  INFO   ]  Registered tally total with the TallyBank for the geometry
-[  INFO   ]  Registered tally moderator with the TallyBank for material moderator
+[  INFO   ]  Registered tally moderator with the TallyBank for material moderato
 [  INFO   ]  Registered tally fuel with the TallyBank for material fuel
 [  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
 [  NORMAL ]  # neutrons / batch = 1000000     # batches = 25     # threads = 4
@@ -39,28 +39,28 @@ Current local time and date: Mon Mar 25 03:13:10 2013
 [  INFO   ]  Thread 3/4 running batch 14
 [  INFO   ]  Thread 2/4 running batch 7
 [  INFO   ]  Thread 4/4 running batch 21
-[  INFO   ]  Thread 2/4 running batch 8
 [  INFO   ]  Thread 4/4 running batch 22
 [  INFO   ]  Thread 3/4 running batch 15
+[  INFO   ]  Thread 2/4 running batch 8
 [  INFO   ]  Thread 1/4 running batch 1
-[  INFO   ]  Thread 2/4 running batch 9
 [  INFO   ]  Thread 4/4 running batch 23
 [  INFO   ]  Thread 3/4 running batch 16
+[  INFO   ]  Thread 2/4 running batch 9
 [  INFO   ]  Thread 1/4 running batch 2
-[  INFO   ]  Thread 2/4 running batch 10
 [  INFO   ]  Thread 4/4 running batch 24
 [  INFO   ]  Thread 3/4 running batch 17
+[  INFO   ]  Thread 2/4 running batch 10
 [  INFO   ]  Thread 1/4 running batch 3
-[  INFO   ]  Thread 2/4 running batch 11
 [  INFO   ]  Thread 3/4 running batch 18
+[  INFO   ]  Thread 2/4 running batch 11
 [  INFO   ]  Thread 1/4 running batch 4
-[  INFO   ]  Thread 2/4 running batch 12
 [  INFO   ]  Thread 3/4 running batch 19
+[  INFO   ]  Thread 2/4 running batch 12
 [  INFO   ]  Thread 1/4 running batch 5
-[  INFO   ]  Thread 2/4 running batch 13
 [  INFO   ]  Thread 3/4 running batch 20
+[  INFO   ]  Thread 2/4 running batch 13
 [  INFO   ]  Thread 1/4 running batch 6
-[  NORMAL ]  PINSPEC simulated 36879 neutrons / sec in 677.895404 sec
+[  NORMAL ]  PINSPEC simulated 35063 neutrons / sec in 712.997051 sec
 [  INFO   ]  Writing tally batch statistics to output file...
 [  INFO   ]  Plotting fluxes...
 [  INFO   ]  Plotting microscopic and macroscopic cross-sections...

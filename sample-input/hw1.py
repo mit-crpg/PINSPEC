@@ -12,7 +12,7 @@ def main():
     ###########################################################################
 
     # Set main simulation params
-    num_neutrons = 100000
+    num_neutrons = 1000000
     setOutputDirectory('HW1');
     log_setlevel(INFO)
 
@@ -46,7 +46,7 @@ def main():
     num_generations = 15
     max_energy = 2E6
 
-    py_printf('TITLE', 'Problems 1 and 2')
+    py_printf('HEADER', 'Problems 1 and 2')
     py_printf('INFO', 'Initializing generational flux tallies...')
 
 	# Create flux tallies for each generation
@@ -102,7 +102,7 @@ def main():
 
     num_generations = 50
     
-    py_printf('TITLE', 'Problems 3 and 4')
+    py_printf('HEADER', 'Problems 3 and 4')
     py_printf('INFO', 'Initializing lethargy and energy flux tallies...')
 
     lethargy_flux = TallyFactory.createTally(c12, COLLISION_RATE)
@@ -139,7 +139,7 @@ def main():
     #############################   Problem 5   ###############################
     ###########################################################################
 
-    py_printf('TITLE', 'Problem 5')
+    py_printf('HEADER', 'Problem 5')
 
     num_generations = 15
     

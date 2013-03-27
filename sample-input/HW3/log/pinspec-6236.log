@@ -1,0 +1,503 @@
+Current local time and date: Wed Mar 27 16:55:09 2013
+[  INFO   ]  Logging level set to INFO
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]               Simulation of homework 3 for 2012 22.211             
+[  TITLE  ]  *******************************************************************
+[  INFO   ]  Initializing isotopes...
+[  INFO   ]  Loading H-1-elastic.txt for isotope H-1
+[  INFO   ]  Loading H-1-capture.txt for isotope H-1
+[  INFO   ]  Loading U-238-elastic.txt for isotope U-238
+[  INFO   ]  Loading U-238-capture.txt for isotope U-238
+[  INFO   ]  Loading U-238-fission.txt for isotope U-238
+[  INFO   ]  Setting capture xs for isotope H-1
+[  INFO   ]  Setting 1-group elastic xs for isotope U-238
+[  INFO   ]  Setting 1-group fission xs for isotope U-238
+[  INFO   ]  Plotting microscopic cross-sections...
+[  INFO   ]  Creating a fuel-moderator mixture material...
+[  INFO   ]  Isotope H-1 has number density 3.011E+24 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope H-1 has number density 1.214E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 1.214E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Creating an infinite homogeneous region...
+[  INFO   ]  Creating the geometry...
+[  INFO   ]  Initializing tallies for flux and absorption rates...
+[  INFO   ]  Registering tallies with the TallyBank...
+[  INFO   ]  Registered tally u238 abs with the TallyBank for region infinite
+[  INFO   ]  ... medium
+[  INFO   ]  Registered tally tot abs with the TallyBank for region infinite
+[  INFO   ]  ... medium
+[  INFO   ]  Registered tally  with the TallyBank for region infinite medium
+[  HEADER ]  ***********************  Problems 1 and 2  ************************
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]                          Temperature = 300K                        
+[  TITLE  ]  *******************************************************************
+[  INFO   ]  Loading resonance paramater file U-238-RP.txt
+[  INFO   ]  Loading U-238-capture.txt for isotope U-238
+[  INFO   ]  Registered tally U/H = 1E-6 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 3.011E+24 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 3.011E+18 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 26782 neutrons / sec in 37.337959 sec
+[  INFO   ]  Registered tally U/H = 0.01 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 8.910E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 8.910E+21 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 27173 neutrons / sec in 36.800576 sec
+[  INFO   ]  Registered tally U/H = 0.1 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 1.214E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 1.214E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 32600 neutrons / sec in 30.674476 sec
+[  INFO   ]  Registered tally U/H = 1.0 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 1.260E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 1.260E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 60004 neutrons / sec in 16.665455 sec
+[  HEADER ]  ***********  Batch Statistics for Temp = 300K Tallies  ************
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu        Mu        Mu        Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  0.073498  0.138095  0.249600  0.270082
+[  RESULT ]  [    1.00 -    6.00 eV ]:  4.60E-03  8.76E-03  0.017397  0.034796
+[  RESULT ]  [    6.00 -   10.00 eV ]:  0.400013  0.286973  0.154274  0.087353
+[  RESULT ]  [   10.00 -   25.00 eV ]:  0.208472  0.154015  0.086746  0.061992
+[  RESULT ]  [   25.00 -   50.00 eV ]:  0.134481  0.113971  0.068347  0.051941
+[  RESULT ]  [   50.00 -  100.00 eV ]:  0.039884  0.051958  0.039910  0.029106
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  0.073895  0.123718  0.161504  0.216170
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  **************  Batch Statistics for  Effective RIs  **************
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu        Mu        Mu        Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  18.71756  18.68913  18.49265  16.77866
+[  RESULT ]  [    1.00 -    6.00 eV ]:  1.448523  1.448383  1.443161  1.399561
+[  RESULT ]  [    6.00 -   10.00 eV ]:  126.5208  49.08016  13.76213  4.052297
+[  RESULT ]  [   10.00 -   25.00 eV ]:  65.74271  25.24929  6.949464  2.166811
+[  RESULT ]  [   25.00 -   50.00 eV ]:  42.23912  18.32680  5.245070  1.626955
+[  RESULT ]  [   50.00 -  100.00 eV ]:  12.49928  8.220554  2.940028  0.815184
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  2.251512  1.876386  1.082287  0.469734
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  ****************  Batch Statistics for  True RIs  *****************
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  229.1643
+[  RESULT ]  [    1.00 -    6.00 eV ]:  1.455785
+[  RESULT ]  [    6.00 -   10.00 eV ]:  126.9687
+[  RESULT ]  [   10.00 -   25.00 eV ]:  66.08343
+[  RESULT ]  [   25.00 -   50.00 eV ]:  41.66303
+[  RESULT ]  [   50.00 -  100.00 eV ]:  12.32138
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  20.88121
+[SEPARATOR]  -------------------------------------------------------------------
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]                          Temperature = 600K                        
+[  TITLE  ]  *******************************************************************
+[  INFO   ]  Loading resonance paramater file U-238-RP.txt
+[  INFO   ]  Loading U-238-capture.txt for isotope U-238
+[  INFO   ]  Registered tally U/H = 1E-6 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 3.011E+24 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 3.011E+18 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 1/4 running batch 2
+[  INFO   ]  Thread 3/4 running batch 8
+[  NORMAL ]  PINSPEC simulated 27680 neutrons / sec in 36.126638 sec
+[  INFO   ]  Registered tally U/H = 0.01 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 8.910E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 8.910E+21 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 28294 neutrons / sec in 35.342568 sec
+[  INFO   ]  Registered tally U/H = 0.1 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 1.214E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 1.214E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 32050 neutrons / sec in 31.201550 sec
+[  INFO   ]  Registered tally U/H = 1.0 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 1.260E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 1.260E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 65558 neutrons / sec in 15.253755 sec
+[  HEADER ]  ***********  Batch Statistics for Temp = 600K Tallies  ************
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu        Mu        Mu        Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  0.073399  0.127794  0.238877  0.262916
+[  RESULT ]  [    1.00 -    6.00 eV ]:  4.61E-03  8.13E-03  0.016613  0.033842
+[  RESULT ]  [    6.00 -   10.00 eV ]:  0.401256  0.299887  0.158832  0.087091
+[  RESULT ]  [   10.00 -   25.00 eV ]:  0.209530  0.162615  0.091363  0.061447
+[  RESULT ]  [   25.00 -   50.00 eV ]:  0.132530  0.116823  0.071232  0.051979
+[  RESULT ]  [   50.00 -  100.00 eV ]:  0.040092  0.051545  0.043272  0.030989
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  0.073517  0.119834  0.167158  0.229738
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  **************  Batch Statistics for  Effective RIs  **************
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu        Mu        Mu        Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  18.71271  18.69232  18.48609  16.77356
+[  RESULT ]  [    1.00 -    6.00 eV ]:  1.450490  1.452460  1.444390  1.399475
+[  RESULT ]  [    6.00 -   10.00 eV ]:  127.1516  55.74427  14.99014  4.160901
+[  RESULT ]  [   10.00 -   25.00 eV ]:  65.95299  28.73874  7.641135  2.200757
+[  RESULT ]  [   25.00 -   50.00 eV ]:  41.64395  20.28295  5.702752  1.667126
+[  RESULT ]  [   50.00 -  100.00 eV ]:  12.54823  8.741085  3.322936  0.889893
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  2.239708  1.949795  1.153994  0.499466
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  ****************  Batch Statistics for  True RIs  *****************
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu        Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  229.1643  229.1785
+[  RESULT ]  [    1.00 -    6.00 eV ]:  1.455785  1.458958
+[  RESULT ]  [    6.00 -   10.00 eV ]:  126.9687  126.9737
+[  RESULT ]  [   10.00 -   25.00 eV ]:  66.08343  66.07680
+[  RESULT ]  [   25.00 -   50.00 eV ]:  41.66303  41.66290
+[  RESULT ]  [   50.00 -  100.00 eV ]:  12.32138  12.32361
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  20.88121  20.88897
+[SEPARATOR]  -------------------------------------------------------------------
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]                          Temperature = 900K                        
+[  TITLE  ]  *******************************************************************
+[  INFO   ]  Loading resonance paramater file U-238-RP.txt
+[  INFO   ]  Loading U-238-capture.txt for isotope U-238
+[  INFO   ]  Registered tally U/H = 1E-6 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 3.011E+24 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 3.011E+18 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 25976 neutrons / sec in 38.497320 sec
+[  INFO   ]  Registered tally U/H = 0.01 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 8.910E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 8.910E+21 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 28176 neutrons / sec in 35.490822 sec
+[  INFO   ]  Registered tally U/H = 0.1 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 1.214E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 1.214E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 30627 neutrons / sec in 32.650789 sec
+[  INFO   ]  Registered tally U/H = 1.0 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 1.260E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 1.260E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 61071 neutrons / sec in 16.374398 sec
+[  HEADER ]  ***********  Batch Statistics for Temp = 900K Tallies  ************
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu        Mu        Mu        Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  0.073609  0.121756  0.230273  0.258103
+[  RESULT ]  [    1.00 -    6.00 eV ]:  4.65E-03  7.75E-03  0.016078  0.033198
+[  RESULT ]  [    6.00 -   10.00 eV ]:  0.401980  0.305300  0.163678  0.086370
+[  RESULT ]  [   10.00 -   25.00 eV ]:  0.209922  0.169552  0.094886  0.061648
+[  RESULT ]  [   25.00 -   50.00 eV ]:  0.131942  0.119859  0.073675  0.051732
+[  RESULT ]  [   50.00 -  100.00 eV ]:  0.039048  0.051545  0.045888  0.032756
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  0.073588  0.116226  0.170524  0.238615
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  **************  Batch Statistics for  Effective RIs  **************
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu        Mu        Mu        Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  18.71944  18.69911  18.49263  16.77921
+[  RESULT ]  [    1.00 -    6.00 eV ]:  1.458028  1.453655  1.450262  1.399658
+[  RESULT ]  [    6.00 -   10.00 eV ]:  127.2600  59.57800  16.11801  4.233647
+[  RESULT ]  [   10.00 -   25.00 eV ]:  66.02680  31.36214  8.205964  2.248195
+[  RESULT ]  [   25.00 -   50.00 eV ]:  41.34873  21.70273  6.086326  1.687235
+[  RESULT ]  [   50.00 -  100.00 eV ]:  12.19337  9.172610  3.622978  0.957571
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  2.236474  1.976477  1.205970  0.519121
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  ****************  Batch Statistics for  True RIs  *****************
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu        Mu        Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  229.1643  229.1785  229.1927
+[  RESULT ]  [    1.00 -    6.00 eV ]:  1.455785  1.458958  1.462193
+[  RESULT ]  [    6.00 -   10.00 eV ]:  126.9687  126.9737  126.9783
+[  RESULT ]  [   10.00 -   25.00 eV ]:  66.08343  66.07680  66.07651
+[  RESULT ]  [   25.00 -   50.00 eV ]:  41.66303  41.66290  41.66300
+[  RESULT ]  [   50.00 -  100.00 eV ]:  12.32138  12.32361  12.32502
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  20.88121  20.88897  20.88971
+[SEPARATOR]  -------------------------------------------------------------------
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]                          Temperature = 1200K                        
+[  TITLE  ]  *******************************************************************
+[  INFO   ]  Loading resonance paramater file U-238-RP.txt
+[  INFO   ]  Loading U-238-capture.txt for isotope U-238
+[  INFO   ]  Registered tally U/H = 1E-6 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 3.011E+24 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 3.011E+18 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 25284 neutrons / sec in 39.550450 sec
+[  INFO   ]  Registered tally U/H = 0.01 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 8.910E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 8.910E+21 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 26618 neutrons / sec in 37.568160 sec
+[  INFO   ]  Registered tally U/H = 0.1 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 1.214E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 1.214E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 31972 neutrons / sec in 31.277127 sec
+[  INFO   ]  Registered tally U/H = 1.0 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 1.260E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 1.260E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  NORMAL ]  Beginning PINSPEC Monte Carlo Simulation...
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 56648 neutrons / sec in 17.652950 sec
+[  HEADER ]  ***********  Batch Statistics for Temp = 1200K Tallies  ***********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu        Mu        Mu        Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  0.073344  0.117774  0.222996  0.253520
+[  RESULT ]  [    1.00 -    6.00 eV ]:  4.63E-03  7.51E-03  0.015648  0.032723
+[  RESULT ]  [    6.00 -   10.00 eV ]:  0.400690  0.311933  0.167513  0.086104
+[  RESULT ]  [   10.00 -   25.00 eV ]:  0.211145  0.171750  0.097806  0.061827
+[  RESULT ]  [   25.00 -   50.00 eV ]:  0.132358  0.121277  0.076173  0.051761
+[  RESULT ]  [   50.00 -  100.00 eV ]:  0.039221  0.051335  0.047905  0.033855
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  0.073598  0.113950  0.173421  0.246834
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  **************  Batch Statistics for  Effective RIs  **************
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu        Mu        Mu        Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  18.72101  18.69758  18.49424  16.77819
+[  RESULT ]  [    1.00 -    6.00 eV ]:  1.456840  1.456376  1.452235  1.403445
+[  RESULT ]  [    6.00 -   10.00 eV ]:  127.1825  62.99705  17.04589  4.324130
+[  RESULT ]  [   10.00 -   25.00 eV ]:  66.65667  32.92133  8.709326  2.302746
+[  RESULT ]  [   25.00 -   50.00 eV ]:  41.65563  22.75951  6.456432  1.713876
+[  RESULT ]  [   50.00 -  100.00 eV ]:  12.29978  9.420462  3.881567  1.001465
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  2.247638  1.997918  1.249335  0.538022
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  ****************  Batch Statistics for  True RIs  *****************
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu        Mu        Mu        Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  229.1643  229.1785  229.1927  229.2069
+[  RESULT ]  [    1.00 -    6.00 eV ]:  1.455785  1.458958  1.462193  1.465492
+[  RESULT ]  [    6.00 -   10.00 eV ]:  126.9687  126.9737  126.9783  126.9828
+[  RESULT ]  [   10.00 -   25.00 eV ]:  66.08343  66.07680  66.07651  66.07750
+[  RESULT ]  [   25.00 -   50.00 eV ]:  41.66303  41.66290  41.66300  41.66333
+[  RESULT ]  [   50.00 -  100.00 eV ]:  12.32138  12.32361  12.32502  12.32597
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  20.88121  20.88897  20.88971  20.89005
+[SEPARATOR]  -------------------------------------------------------------------
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]                               Finished                             
+[  TITLE  ]  *******************************************************************

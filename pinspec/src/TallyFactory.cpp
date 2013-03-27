@@ -14,16 +14,19 @@ Tally* TallyFactory::createTally(Isotope* isotope, tallyType tally_type,
                                                   const char* tally_name) {
 	if (tally_type == FLUX)
 		log_printf(ERROR, "Unable to create a FLUX type Tally for an "
-				"Isotope. FLUX Tallies are only supported for "
+				"Isotope. FLUX tallies are only supported for "
                  "materials, regions and the geometry.");
 	if (tally_type == LEAKAGE_RATE)
 		log_printf(ERROR, "Unable to create a LEAKAGE_RATE type tally for an"
-			     " Isotope. LEAKAGE_RATE Tallies are only supported for "
+			     " Isotope. LEAKAGE_RATE tallies are only supported for "
                  "materials, regions and the geometry.");
 	if (tally_type == INTERCOLLISION_TIME)
 		log_printf(ERROR, "Unable to create an INTERCOLLISION_TIME type "
-                "tally for an Isotope. INTERCOLLISION_TIME Tallies are only "
+                "tally for an Isotope. INTERCOLLISION_TIME tallies are only "
                 "supported for materials, regions and the geometry.");
+    if (tally_type == DERIVED)
+        log_printf(ERROR, "DERIVED type tallies cannot be created by the "
+                                                        " TallyFactory.");
 
 	if (tally_type == COLLISION_RATE)
 		return new IsotopeCollisionRateTally(isotope, tally_name);
@@ -44,6 +47,10 @@ Tally* TallyFactory::createTally(Isotope* isotope, tallyType tally_type,
 
 Tally* TallyFactory::createTally(Material* material, tallyType tally_type,
                                                   const char* tally_name) {
+
+    if (tally_type == DERIVED)
+        log_printf(ERROR, "DERIVED type tallies cannot be created by the "
+                                                        " TallyFactory.");
 
 	if (tally_type == FLUX)
 		return new MaterialFluxTally(material, tally_name);
@@ -71,6 +78,10 @@ Tally* TallyFactory::createTally(Material* material, tallyType tally_type,
 Tally* TallyFactory::createTally(Region* region, tallyType tally_type,
                                                   const char* tally_name) {
 
+    if (tally_type == DERIVED)
+        log_printf(ERROR, "DERIVED type tallies cannot be created by the "
+                                                        " TallyFactory.");
+
 	if (tally_type == FLUX)
 		return new RegionFluxTally(region, tally_name);
 	else if (tally_type == LEAKAGE_RATE)
@@ -96,6 +107,10 @@ Tally* TallyFactory::createTally(Region* region, tallyType tally_type,
 
 Tally* TallyFactory::createTally(Geometry* geometry, tallyType tally_type,
                                                   const char* tally_name) {
+
+    if (tally_type == DERIVED)
+        log_printf(ERROR, "DERIVED type tallies cannot be created by the "
+                                                        " TallyFactory.");
 
 	if (tally_type == FLUX)
 		return new GeometryFluxTally(geometry, tally_name);

@@ -17,6 +17,7 @@ Tally::Tally(const char* tally_name) {
 
 	_tally_name = (char*)tally_name;
     _trigger_type = NONE;
+    _trigger_precision = std::numeric_limits<float>::max();
 
 	 /* Sets the default delta between bins to zero */
 	_bin_delta = 0;
@@ -504,6 +505,17 @@ void Tally::setBinSpacingType(binSpacingType type) {
 }
 
 
+void Tally::setTallyDomainType(tallyDomainType type) {
+    _tally_domain = type;
+}
+
+
+void Tally::setTallyType(tallyType type) {
+    _tally_type = type;
+}
+
+
+
 /**
  * Set a user-defined double array of bin edge values
  * @param edges the array of bin edges
@@ -883,9 +895,1135 @@ void Tally::outputBatchStatistics(const char* filename) {
 }
 
 
-/******************************************************************************/
-/*********************** Collision Rate Tallying Methods **********************/
-/******************************************************************************/
+void Tally::printTallies(bool uncertainties) {
+
+    log_printf(HEADER, "Batch Statistics for Tally %s", _tally_name);
+
+    /* Create a tally statistics table header */
+    std::stringstream title;
+    title << std::string(7, ' ') << "Energy Band" << std::string(9, ' ');
+    title << "   Mu   ";
+
+    if (uncertainties) {
+        title << std::string(2, ' ') << "Variance";
+        title << std::string(2, ' ') << "Std. Dev.";
+        title << std::string(1, ' ') << "Rel. Err.";
+    }
+
+    log_printf(SEPARATOR, "");
+    log_printf(RESULT, title.str().c_str());
+    log_printf(SEPARATOR, "");
+
+    char lower_bound[12];
+    char upper_bound[12];
+    char mu[12];
+    char variance[12];
+    char std_dev[12];
+    char rel_err [12];
+
+    /* Loop over each reaction rate and construct a string with the reate
+     * and the user-specified statistics to print to the shell */
+    for (int i=0; i < _num_bins; i++) {
+
+        std::stringstream entry;
+        
+        sprintf(lower_bound, "%7.2f", _edges[i]);
+        sprintf(upper_bound, "%7.2f", _edges[i+1]);
+
+        if (_batch_mu[i] < 1E-2)
+            sprintf(mu, "%8.2E", _batch_mu[i]);
+        else
+            sprintf(mu, "%8.6f", _batch_mu[i]);
+
+
+        entry << "[ " << lower_bound << " - " << upper_bound << " eV ]:  ";
+        entry << mu;
+        
+        if (uncertainties) {
+            sprintf(variance, "%8.2E", _batch_variance[i]);
+            sprintf(std_dev, "%8.2E", _batch_std_dev[i]);
+            sprintf(rel_err, "%8.2E", _batch_rel_err[i]);
+            entry << std::string(2, ' ') << variance;
+            entry << std::string(2, ' ') << std_dev;
+            entry << std::string(2, ' ') << rel_err;
+        }
+
+        log_printf(RESULT, entry.str().c_str());
+    }
+
+    log_printf(SEPARATOR, "");
+}
+
+
+Tally* Tally::clone() {
+    
+    /* Deep copy all of the parameters attributes to this Tally */
+    DerivedTally* tally = new DerivedTally(_tally_name);
+    tally->setTallyDomainType(_tally_domain);
+    tally->setTallyType(_tally_type);
+    tally->setBinSpacingType(_bin_spacing);
+    tally->setPrecisionTrigger(_trigger_type, _trigger_precision);
+
+    /* If we have LOGARITHMIC or EQUAL bins, generate them for the new clone */
+    if (_bin_spacing == LOGARITHMIC || _bin_spacing == EQUAL)
+        tally->generateBinEdges(_edges[0], _edges[_num_bins], 
+                                                    _num_bins, _bin_spacing);
+    else
+        tally->setBinEdges(_edges, _num_bins+1);
+
+    tally->setNumBatches(_num_batches);
+    tally->setComputedBatchStatistics(_computed_statistics);
+
+    if (_computed_statistics) {
+        double* batch_mu = new double[_num_bins];
+        double* batch_variance = new double[_num_bins];
+        double* batch_std_dev = new double[_num_bins];
+        double* batch_rel_err = new double[_num_bins];
+
+        memcpy(batch_mu, _batch_mu, _num_bins);
+        memcpy(batch_variance, _batch_variance, _num_bins);
+        memcpy(batch_std_dev, _batch_std_dev, _num_bins);
+        memcpy(batch_rel_err, _batch_rel_err, _num_bins);
+
+        tally->setBatchMu(batch_mu);
+        tally->setBatchVariance(batch_variance);
+        tally->setBatchStdDev(batch_std_dev);
+        tally->setBatchRelErr(batch_rel_err);
+    }
+
+    double** tallies = (double**) malloc(sizeof(double*) * _num_batches);
+    for (int i=0; i < _num_batches; i++) {
+	    tallies[i] = new double[_num_bins];
+        memcpy(tallies[i], _tallies[i], _num_bins);
+    }
+    
+    tally->setTallies(tallies);
+
+    return tally;
+}
+
+
+DerivedTally* Tally::operator+(Tally* tally) {
+
+    /* If the tallies have not yet computed batch statistics, reject */
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to add tally %s which has not yet computed "
+                                            "batch statistics", _tally_name);
+    else if (!tally->hasComputedBatchStatistics())
+        log_printf(ERROR, "Unable to add tally %s which has not yet computed "
+                                    "batch statistics", tally->getTallyName());
+
+    /* Check that the tally bin numbers and edges match appropriately */
+    else if (_num_bins != 1 && tally->getNumBins() != 1) {
+
+        /* If the two tallies have different numbers of bins, reject */
+        if (_num_bins != tally->getNumBins())
+            log_printf(ERROR, "Unable to add tally %s with %d bins to tally %s"
+                                " with %d bins", _tally_name, _num_bins,
+                                tally->getTallyName(), tally->getNumBins());
+
+        /* Check that all bin edges match */
+        double* edges = new double[_num_bins+1];
+        tally->retrieveTallyEdges(edges, _num_bins);
+
+        /* Loop over all edges */
+        for (int i=0; i < _num_bins+1; i++) {
+            if (_edges[i] != edges[i])
+                log_printf(ERROR, "Unable to add tally %s with bin edge %d to "
+                            "tally %s with bin edge %d", 
+                            _tally_name, _edges[i],
+                           tally->getTallyName(), edges[i]);
+        }
+    }
+
+    /* Create a new derived type tally and initialize it */        
+    const char* tally_name = (std::string(_tally_name) + 
+                                    " + " + tally->getTallyName()).c_str(); 
+    DerivedTally* new_tally = new DerivedTally(tally_name);
+
+    new_tally->setBinSpacingType(_bin_spacing);
+    new_tally->setBinEdges(_edges, _num_bins+1);
+
+    /* Initialize new arrays for the derived tallies statistics */
+    int max_num_bins = std::max(_num_bins, tally->getNumBins());
+    double* new_mu = new double[max_num_bins];
+    double* new_variance = new double[max_num_bins];
+    double* new_std_dev = new double[max_num_bins];
+    double* new_rel_err = new double[max_num_bins];
+
+    /* Retrieve statistics metrics from RHS tally */
+    double* mu = new double[tally->getNumBins()];
+    double* variance = new double[tally->getNumBins()];
+
+    tally->retrieveTallyMu(mu, tally->getNumBins());
+    tally->retrieveTallyVariance(variance ,tally->getNumBins());
+
+    double *mu1, *mu2;
+    double *variance1, *variance2;
+
+    /* Check if the LHS tally (this one) only has one bin */
+    if (_num_bins == max_num_bins) {
+        mu1 = _batch_mu;
+        variance1 = _batch_variance;
+    }
+    else {
+        mu1 = new double[max_num_bins];
+        variance1 = new double[max_num_bins];
+        for (int i=0; i < max_num_bins; i++) {
+            mu1[i] = _batch_mu[0];
+            variance1[i] = _batch_variance[0];
+        }
+    }
+
+    /* Check if the RHS tally only has one bin */        
+    if (tally->getNumBins() == max_num_bins) {
+        mu2 = mu;
+        variance2 = variance;
+    }
+    else {
+        mu2 = new double[max_num_bins];
+        variance2 = new double[max_num_bins];
+        for (int i=0; i < max_num_bins; i++) {
+            mu2[i] = mu[0];
+            variance2[i] = variance[0];
+        }
+    }
+
+    /* Compute the derived tallies batch mu */
+    for (int i=0; i < max_num_bins; i++) {
+        new_mu[i] = mu1[i] + mu2[i];
+        new_variance[i] = variance1[i] + variance2[i];
+        new_std_dev[i] = sqrt(new_variance[i]);
+        new_mu[i] = new_std_dev[i] / new_mu[i];
+    }
+
+    new_tally->setNumBatches(1);
+    new_tally->setBatchMu(new_mu);
+    new_tally->setBatchVariance(new_variance);
+    new_tally->setBatchStdDev(new_std_dev);
+    new_tally->setBatchRelErr(new_rel_err);
+    new_tally->setComputedBatchStatistics(true); 
+
+    return new_tally;
+}
+
+
+DerivedTally* Tally::operator-(Tally* tally) {
+
+    /* If the tallies have not yet computed batch statistics, reject */
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to subtract tally %s which has not yet "
+                        "computed batch statistics", _tally_name);
+    else if (!tally->hasComputedBatchStatistics())
+        log_printf(ERROR, "Unable to subtract tally %s which has not yet "
+                        "computed batch statistics", tally->getTallyName());
+
+    /* Check that the tally bin numbers and edges match appropriately */
+    else if (_num_bins != 1 && tally->getNumBins() != 1) {
+
+        /* If the two tallies have different numbers of bins, reject */
+        if (_num_bins != tally->getNumBins())
+            log_printf(ERROR, "Unable to subtract tally %s with %d bins and "
+                            " tally %s with %d bins", _tally_name, _num_bins,
+                            tally->getTallyName(), tally->getNumBins());
+
+        /* Check that all bin edges match */
+        double* edges = new double[_num_bins+1];
+        tally->retrieveTallyEdges(edges, _num_bins);
+
+        /* Loop over all edges */
+        for (int i=0; i < _num_bins+1; i++) {
+            if (_edges[i] != edges[i])
+                log_printf(ERROR, "Unable to subtract tally %s with bin edge"
+                            " %d and tally %s with bin edge %d", 
+                            _tally_name, _edges[i],
+                           tally->getTallyName(), edges[i]);
+        }
+    }
+
+    /* Create a new derived type tally and initialize it */        
+    const char* tally_name = (std::string(_tally_name) + 
+                                      " - " + tally->getTallyName()).c_str(); 
+    DerivedTally* new_tally = new DerivedTally(tally_name);
+
+    new_tally->setBinSpacingType(_bin_spacing);
+    new_tally->setBinEdges(_edges, _num_bins+1);
+
+    /* Initialize new arrays for the derived tallies statistics */
+    int max_num_bins = std::max(_num_bins, tally->getNumBins());
+    double* new_mu = new double[max_num_bins];
+    double* new_variance = new double[max_num_bins];
+    double* new_std_dev = new double[max_num_bins];
+    double* new_rel_err = new double[max_num_bins];
+
+    /* Retrieve statistics metrics from RHS tally */
+    double* mu = new double[tally->getNumBins()];
+    double* variance = new double[tally->getNumBins()];
+
+    tally->retrieveTallyMu(mu, tally->getNumBins());
+    tally->retrieveTallyVariance(variance ,tally->getNumBins());
+
+    double *mu1, *mu2;
+    double *variance1, *variance2;
+
+    /* Check if the LHS tally (this one) only has one bin */
+    if (_num_bins == max_num_bins) {
+        mu1 = _batch_mu;
+        variance1 = _batch_variance;
+    }
+    else {
+        mu1 = new double[max_num_bins];
+        variance1 = new double[max_num_bins];
+        for (int i=0; i < max_num_bins; i++) {
+            mu1[i] = _batch_mu[0];
+            variance1[i] = _batch_variance[0];
+        }
+    }
+
+    /* Check if the RHS tally only has one bin */        
+    if (tally->getNumBins() == max_num_bins) {
+        mu2 = mu;
+        variance2 = variance;
+    }
+    else {
+        mu2 = new double[max_num_bins];
+        variance2 = new double[max_num_bins];
+        for (int i=0; i < max_num_bins; i++) {
+            mu2[i] = mu[0];
+            variance2[i] = variance[0];
+        }
+    }
+
+    /* Compute the derived tallies batch mu */
+    for (int i=0; i < max_num_bins; i++) {
+        new_mu[i] = mu1[i] - mu2[i];
+        new_variance[i] = variance1[i] + variance2[i];
+        new_std_dev[i] = sqrt(new_variance[i]);
+        new_mu[i] = new_std_dev[i] / new_mu[i];
+    }
+
+    new_tally->setNumBatches(1);
+    new_tally->setBatchMu(new_mu);
+    new_tally->setBatchVariance(new_variance);
+    new_tally->setBatchStdDev(new_std_dev);
+    new_tally->setBatchRelErr(new_rel_err);
+    new_tally->setComputedBatchStatistics(true); 
+
+    return new_tally;
+}
+
+
+DerivedTally* Tally::operator*(Tally* tally) {
+
+    /* If the tallies have not yet computed batch statistics, reject */
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to multiply tally %s which has not yet "
+                        "computed batch statistics", _tally_name);
+    else if (!tally->hasComputedBatchStatistics())
+        log_printf(ERROR, "Unable to multiply tally %s which has not yet "
+                        "computed batch statistics", tally->getTallyName());
+
+    /* Check that the tally bin numbers and edges match appropriately */
+    else if (_num_bins != 1 && tally->getNumBins() != 1) {
+
+        /* If the two tallies have different numbers of bins, reject */
+        if (_num_bins != tally->getNumBins())
+            log_printf(ERROR, "Unable to multiply tally %s with %d bins and "
+                            " tally %s with %d bins", _tally_name, _num_bins,
+                            tally->getTallyName(), tally->getNumBins());
+
+        /* Check that all bin edges match */
+        double* edges = new double[_num_bins+1];
+        tally->retrieveTallyEdges(edges, _num_bins);
+
+        /* Loop over all edges */
+        for (int i=0; i < _num_bins+1; i++) {
+            if (_edges[i] != edges[i])
+                log_printf(ERROR, "Unable to multiply tally %s with bin edge"
+                            " %d and tally %s with bin edge %d", 
+                            _tally_name, _edges[i],
+                           tally->getTallyName(), edges[i]);
+        }
+    }
+
+    /* Create a new derived type tally and initialize it */        
+    const char* tally_name = (std::string(_tally_name) + 
+                                      " * " + tally->getTallyName()).c_str(); 
+    DerivedTally* new_tally = new DerivedTally(tally_name);
+
+    new_tally->setBinSpacingType(_bin_spacing);
+    new_tally->setBinEdges(_edges, _num_bins+1);
+
+    /* Initialize new arrays for the derived tallies statistics */
+    int max_num_bins = std::max(_num_bins, tally->getNumBins());
+    double* new_mu = new double[max_num_bins];
+    double* new_variance = new double[max_num_bins];
+    double* new_std_dev = new double[max_num_bins];
+    double* new_rel_err = new double[max_num_bins];
+
+    /* Retrieve statistics metrics from RHS tally */
+    double* mu = new double[tally->getNumBins()];
+    double* variance = new double[tally->getNumBins()];
+
+    tally->retrieveTallyMu(mu, tally->getNumBins());
+    tally->retrieveTallyVariance(variance ,tally->getNumBins());
+
+    double *mu1, *mu2;
+    double *variance1, *variance2;
+
+    /* Check if the LHS tally (this one) only has one bin */
+    if (_num_bins == max_num_bins) {
+        mu1 = _batch_mu;
+        variance1 = _batch_variance;
+    }
+    else {
+        mu1 = new double[max_num_bins];
+        variance1 = new double[max_num_bins];
+        for (int i=0; i < max_num_bins; i++) {
+            mu1[i] = _batch_mu[0];
+            variance1[i] = _batch_variance[0];
+        }
+    }
+
+    /* Check if the RHS tally only has one bin */        
+    if (tally->getNumBins() == max_num_bins) {
+        mu2 = mu;
+        variance2 = variance;
+    }
+    else {
+        mu2 = new double[max_num_bins];
+        variance2 = new double[max_num_bins];
+        for (int i=0; i < max_num_bins; i++) {
+            mu2[i] = mu[0];
+            variance2[i] = variance[0];
+        }
+    }
+
+    /* Compute the derived tallies batch mu */
+    for (int i=0; i < max_num_bins; i++) {
+        new_mu[i] = mu1[i] * mu2[i];
+        new_variance[i] = mu1[i]*mu1[i]*variance2[i] + 
+                            mu2[i]*mu2[i]*variance1[i] + 
+                            variance1[i] * variance2[i];
+        new_std_dev[i] = sqrt(new_variance[i]);
+        new_mu[i] = new_std_dev[i] / new_mu[i];
+    }
+
+    new_tally->setNumBatches(1);
+    new_tally->setBatchMu(new_mu);
+    new_tally->setBatchVariance(new_variance);
+    new_tally->setBatchStdDev(new_std_dev);
+    new_tally->setBatchRelErr(new_rel_err);
+    new_tally->setComputedBatchStatistics(true); 
+
+    return new_tally;
+}
+
+DerivedTally* Tally::operator/(Tally* tally) {
+
+    /* If the tallies have not yet computed batch statistics, reject */
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to divide tally %s which has not yet "
+                        "computed batch statistics", _tally_name);
+    else if (!tally->hasComputedBatchStatistics())
+        log_printf(ERROR, "Unable to divide tally %s which has not yet "
+                        "computed batch statistics", tally->getTallyName());
+
+    /* Check that the tally bin numbers and edges match appropriately */
+    else if (_num_bins != 1 && tally->getNumBins() != 1) {
+
+        /* If the two tallies have different numbers of bins, reject */
+        if (_num_bins != tally->getNumBins())
+            log_printf(ERROR, "Unable to divide tally %s with %d bins and "
+                            " tally %s with %d bins", _tally_name, _num_bins,
+                            tally->getTallyName(), tally->getNumBins());
+
+        /* Check that all bin edges match */
+        double* edges = new double[_num_bins+1];
+        tally->retrieveTallyEdges(edges, _num_bins);
+
+        /* Loop over all edges */
+        for (int i=0; i < _num_bins+1; i++) {
+            if (_edges[i] != edges[i])
+                log_printf(ERROR, "Unable to divide tally %s with bin edge"
+                            " %d and tally %s with bin edge %d", 
+                            _tally_name, _edges[i],
+                           tally->getTallyName(), edges[i]);
+        }
+    }
+
+    /* Create a new derived type tally and initialize it */        
+    const char* tally_name = (std::string(_tally_name) + 
+                                       " / " + tally->getTallyName()).c_str(); 
+    DerivedTally* new_tally = new DerivedTally(tally_name);
+
+    new_tally->setBinSpacingType(_bin_spacing);
+    new_tally->setBinEdges(_edges, _num_bins+1);
+
+    /* Initialize new arrays for the derived tallies statistics */
+    int max_num_bins = std::max(_num_bins, tally->getNumBins());
+    double* new_mu = new double[max_num_bins];
+    double* new_variance = new double[max_num_bins];
+    double* new_std_dev = new double[max_num_bins];
+    double* new_rel_err = new double[max_num_bins];
+
+    /* Retrieve statistics metrics from RHS tally */
+    double* mu = new double[tally->getNumBins()];
+    double* variance = new double[tally->getNumBins()];
+
+    tally->retrieveTallyMu(mu, tally->getNumBins());
+    tally->retrieveTallyVariance(variance ,tally->getNumBins());
+
+    double *mu1, *mu2;
+    double *variance1, *variance2;
+
+    /* Check if the LHS tally (this one) only has one bin */
+    if (_num_bins == max_num_bins) {
+        mu1 = _batch_mu;
+        variance1 = _batch_variance;
+    }
+    else {
+        mu1 = new double[max_num_bins];
+        variance1 = new double[max_num_bins];
+        for (int i=0; i < max_num_bins; i++) {
+            mu1[i] = _batch_mu[0];
+            variance1[i] = _batch_variance[0];
+        }
+    }
+
+    /* Check if the RHS tally only has one bin */        
+    if (tally->getNumBins() == max_num_bins) {
+        mu2 = mu;
+        variance2 = variance;
+    }
+    else {
+        mu2 = new double[max_num_bins];
+        variance2 = new double[max_num_bins];
+        for (int i=0; i < max_num_bins; i++) {
+            mu2[i] = mu[0];
+            variance2[i] = variance[0];
+        }
+    }
+
+    /* Compute the derived tallies batch mu */
+    /* http://en.wikipedia.org/wiki/Taylor_expansions_for_the_moments_of_functions_of_random_variables */        
+    for (int i=0; i < max_num_bins; i++) {
+        new_mu[i] = (mu1[i] / mu2[i]) 
+                    + (mu1[i] / (mu2[i] * mu2[i] * mu2[i])) * variance2[i];
+        new_variance[i] = variance1[i] / (mu2[i] * mu2[i]) +
+                            ((mu1[i] * mu1[i] * variance2[i]) /
+                            (mu2[i] * mu2[i] * mu2[i] * mu2[i]));
+        new_std_dev[i] = sqrt(new_variance[i]);
+        new_rel_err[i] = new_std_dev[i] / new_mu[i];
+    }
+
+    new_tally->setNumBatches(1);
+    new_tally->setBatchMu(new_mu);
+    new_tally->setBatchVariance(new_variance);
+    new_tally->setBatchStdDev(new_std_dev);
+    new_tally->setBatchRelErr(new_rel_err);
+    new_tally->setComputedBatchStatistics(true); 
+
+    return new_tally;
+}
+
+
+DerivedTally* Tally::operator+(int amt) {
+    
+    Tally* new_tally = this->clone();
+    new_tally->_tally_domain = UNDEFINED;
+    new_tally->_tally_type = DERIVED;   
+    
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and does not otherwise perturb the batch statistics */
+    for (int i=0; i < _num_bins; i++)
+        new_tally->_batch_mu[i] += amt;
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::operator-(const int amt) {
+
+    Tally* new_tally = this->clone();
+    new_tally->_tally_domain = UNDEFINED;
+    new_tally->_tally_type = DERIVED;   
+    
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and does not otherwise perturb the batch statistics */
+    for (int i=0; i < _num_bins; i++) 
+        new_tally->_batch_mu[i] -= amt;
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::operator*(const int amt) {
+
+    Tally* new_tally = this->clone();
+    new_tally->_tally_domain = UNDEFINED;
+    new_tally->_tally_type = DERIVED;   
+    
+    /* Multiplying this tally by some amount multiplies the batch mu
+     * by a constant and updates the perturbed batch statistics */
+    for (int i=0; i < _num_bins; i++) {
+        new_tally->_batch_mu[i] *= amt;
+        new_tally->_batch_variance[i] *= amt * amt;
+        new_tally->_batch_std_dev[i] = sqrt(new_tally->_batch_variance[i]);
+        new_tally->_batch_rel_err[i] = new_tally->_batch_std_dev[i] / 
+                                        new_tally->_batch_mu[i];
+    }
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::operator/(const int amt) {
+
+    Tally* new_tally = this->clone();
+    new_tally->_tally_domain = UNDEFINED;
+    new_tally->_tally_type = DERIVED;   
+    
+    /* Divide the batch mu for this tally and updated the perturbed batch
+     * statistics */
+    for (int i=0; i < _num_bins; i++) {
+        new_tally->_batch_mu[i] /= amt;
+        new_tally->_batch_variance[i] *= (1.0 / amt) * (1.0 / amt);
+        new_tally->_batch_std_dev[i] = sqrt(new_tally->_batch_variance[i]);
+        new_tally->_batch_rel_err[i] = new_tally->_batch_std_dev[i] / 
+                                        new_tally->_batch_mu[i];
+    }
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::operator+(const float amt) {
+
+    Tally* new_tally = this->clone();
+    new_tally->_tally_domain = UNDEFINED;
+    new_tally->_tally_type = DERIVED;   
+    
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and does not otherwise perturb the batch statistics */
+    for (int i=0; i < _num_bins; i++) 
+        new_tally->_batch_mu[i] += amt;
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::operator-(const float amt) {
+
+    Tally* new_tally = this->clone();
+    new_tally->_tally_domain = UNDEFINED;
+    new_tally->_tally_type = DERIVED;   
+    
+    /* Subtracting an amount to this tally only subtracts the batch mu
+     * by an offset and does not otherwise perturb the batch statistics */
+    for (int i=0; i < _num_bins; i++) 
+        new_tally->_batch_mu[i] -= amt;
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::operator*(const float amt) {
+
+    Tally* new_tally = this->clone();
+    new_tally->_tally_domain = UNDEFINED;
+    new_tally->_tally_type = DERIVED;   
+    
+    /* Multiplying this tally by some amount multiplies the batch mu
+     * by a constant and updates the perturbed batch statistics */
+    for (int i=0; i < _num_bins; i++) {
+        new_tally->_batch_mu[i] *= amt;
+        new_tally->_batch_variance[i] *= amt * amt;
+        new_tally->_batch_std_dev[i] = sqrt(new_tally->_batch_variance[i]);
+        new_tally->_batch_rel_err[i] = new_tally->_batch_std_dev[i] / 
+                                        new_tally->_batch_mu[i];
+    }
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::operator/(const float amt) {
+
+    Tally* new_tally = this->clone();
+    new_tally->_tally_domain = UNDEFINED;
+    new_tally->_tally_type = DERIVED;   
+    
+    /* Divide the batch mu for this tally and updated the perturbed batch
+     * statistics */
+    for (int i=0; i < _num_bins; i++) {
+        new_tally->_batch_mu[i] /= amt;
+        new_tally->_batch_variance[i] *= (1.0 / amt) * (1.0 / amt);
+        new_tally->_batch_std_dev[i] = sqrt(new_tally->_batch_variance[i]);
+        new_tally->_batch_rel_err[i] = new_tally->_batch_std_dev[i] / 
+                                        new_tally->_batch_mu[i];
+    }
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::operator+(const double amt) {
+
+    Tally* new_tally = this->clone();
+    new_tally->_tally_domain = UNDEFINED;
+    new_tally->_tally_type = DERIVED;   
+    
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and does not otherwise perturb the batch statistics */
+    for (int i=0; i < _num_bins; i++) 
+        new_tally->_batch_mu[i] += amt;
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::operator-(const double amt) {
+
+    Tally* new_tally = this->clone();
+    new_tally->_tally_domain = UNDEFINED;
+    new_tally->_tally_type = DERIVED;   
+    
+    /* Subtracting an amount to this tally only subtracts the batch mu
+     * by an offset and does not otherwise perturb the batch statistics */
+    for (int i=0; i < _num_bins; i++) 
+        new_tally->_batch_mu[i] -= amt;
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::operator*(const double amt) {
+
+    Tally* new_tally = this->clone();
+    new_tally->_tally_domain = UNDEFINED;
+    new_tally->_tally_type = DERIVED;   
+    
+    /* Multiplying this tally by some amount multiplies the batch mu
+     * by a constant and updates the perturbed batch statistics */
+    for (int i=0; i < _num_bins; i++) {
+        new_tally->_batch_mu[i] *= amt;
+        new_tally->_batch_variance[i] *= amt * amt;
+        new_tally->_batch_std_dev[i] = sqrt(new_tally->_batch_variance[i]);
+        new_tally->_batch_rel_err[i] = new_tally->_batch_std_dev[i] / 
+                                        new_tally->_batch_mu[i];
+    }
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::operator/(const double amt) {
+
+    Tally* new_tally = this->clone();
+    new_tally->_tally_domain = UNDEFINED;
+    new_tally->_tally_type = DERIVED;   
+    
+    /* Divide the batch mu for this tally and updated the perturbed batch
+     * statistics */
+    for (int i=0; i < _num_bins; i++) {
+        new_tally->_batch_mu[i] /= amt;
+        new_tally->_batch_variance[i] *= (1.0 / amt) * (1.0 / amt);
+        new_tally->_batch_std_dev[i] = sqrt(new_tally->_batch_variance[i]);
+        new_tally->_batch_rel_err[i] = new_tally->_batch_std_dev[i] / 
+                                        new_tally->_batch_mu[i];
+    }
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::addIntegers(const int* amt, const int length) {
+
+    if (length != _num_bins)
+        log_printf(ERROR, "Unable to add an integer array of length %d"
+                        " to tally %s with %d bins", length,
+                        _tally_name, _num_bins);
+
+    Tally* new_tally = this->clone();
+    new_tally->setTallyDomainType(UNDEFINED);
+    new_tally->setTallyType(DERIVED);
+    
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and does not otherwise perturb the batch statistics */
+    double* batch_mu = new double[length];
+    for (int i=0; i < _num_bins; i++)
+        batch_mu[i] = _batch_mu[i] + amt[i];
+
+    new_tally->setNumBatches(1);
+    static_cast<DerivedTally*>(new_tally)->setBatchMu(batch_mu);
+    static_cast<DerivedTally*>(new_tally)->setComputedBatchStatistics(true);
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::addFloats(const float* amt, const int length) {
+
+    if (length != _num_bins)
+        log_printf(ERROR, "Unable to add a float array of length %d"
+                        " to tally %s with %d bins", length,
+                        _tally_name, _num_bins);
+
+    Tally* new_tally = this->clone();
+    new_tally->setTallyDomainType(UNDEFINED);
+    new_tally->setTallyType(DERIVED);
+    new_tally->setNumBatches(1);
+    
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and does not otherwise perturb the batch statistics */
+    double* batch_mu = new double[length];
+    for (int i=0; i < _num_bins; i++)
+        batch_mu[i] = _batch_mu[i] + amt[i];
+
+    new_tally->setNumBatches(1);
+    static_cast<DerivedTally*>(new_tally)->setBatchMu(batch_mu);
+    static_cast<DerivedTally*>(new_tally)->setComputedBatchStatistics(true);
+
+    return static_cast<DerivedTally*>(new_tally);
+
+}
+
+
+DerivedTally* Tally::addDoubles(const double* amt, const int length) {
+
+    if (length != _num_bins)
+        log_printf(ERROR, "Unable to add a float array of length %d"
+                        " to tally %s with %d bins", length,
+                        _tally_name, _num_bins);
+
+    Tally* new_tally = this->clone();
+    new_tally->setTallyDomainType(UNDEFINED);
+    new_tally->setTallyType(DERIVED);
+    new_tally->setNumBatches(1);
+    
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and does not otherwise perturb the batch statistics */
+    double* batch_mu = new double[length];
+    for (int i=0; i < _num_bins; i++)
+        batch_mu[i] = _batch_mu[i] + amt[i];
+
+    new_tally->setNumBatches(1);
+    static_cast<DerivedTally*>(new_tally)->setBatchMu(batch_mu);
+    static_cast<DerivedTally*>(new_tally)->setComputedBatchStatistics(true);
+
+    return static_cast<DerivedTally*>(new_tally);
+
+}
+
+
+DerivedTally* Tally::subtractIntegers(const int* amt, const int length) {
+
+    if (length != _num_bins)
+        log_printf(ERROR, "Unable to subtract an integer array of length %d"
+                        " to tally %s with %d bins", length,
+                        _tally_name, _num_bins);
+
+    Tally* new_tally = this->clone();
+    new_tally->setTallyDomainType(UNDEFINED);
+    new_tally->setTallyType(DERIVED);
+    new_tally->setNumBatches(1);
+    
+    /* Subtracting an amount to this tally only increments the batch mu
+     * by an offset and does not otherwise perturb the batch statistics */
+    double* batch_mu = new double[length];
+    for (int i=0; i < _num_bins; i++)
+        batch_mu[i] = _batch_mu[i] - amt[i];
+
+    new_tally->setNumBatches(1);
+    static_cast<DerivedTally*>(new_tally)->setBatchMu(batch_mu);
+    static_cast<DerivedTally*>(new_tally)->setComputedBatchStatistics(true);
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::subtractFloats(const float* amt, const int length) {
+
+    if (length != _num_bins)
+        log_printf(ERROR, "Unable to subtract a float array of length %d"
+                        " to tally %s with %d bins", length,
+                        _tally_name, _num_bins);
+
+    Tally* new_tally = this->clone();
+    new_tally->setTallyDomainType(UNDEFINED);
+    new_tally->setTallyType(DERIVED);
+    new_tally->setNumBatches(1);
+    
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and does not otherwise perturb the batch statistics */
+    double* batch_mu = new double[length];
+    for (int i=0; i < _num_bins; i++)
+        batch_mu[i] = _batch_mu[i] - amt[i];
+
+    new_tally->setNumBatches(1);
+    static_cast<DerivedTally*>(new_tally)->setBatchMu(batch_mu);
+    static_cast<DerivedTally*>(new_tally)->setComputedBatchStatistics(true);
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::subtractDoubles(const double* amt, const int length) {
+
+    if (length != _num_bins)
+        log_printf(ERROR, "Unable to subtract a double array of length %d"
+                        " to tally %s with %d bins", length,
+                        _tally_name, _num_bins);
+
+    Tally* new_tally = this->clone();
+    new_tally->setTallyDomainType(UNDEFINED);
+    new_tally->setTallyType(DERIVED);
+    new_tally->setNumBatches(1);
+    
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and does not otherwise perturb the batch statistics */
+    double* batch_mu = new double[length];
+    for (int i=0; i < _num_bins; i++)
+        batch_mu[i] = _batch_mu[i] - amt[i];
+
+    new_tally->setNumBatches(1);
+    static_cast<DerivedTally*>(new_tally)->setBatchMu(batch_mu);
+    static_cast<DerivedTally*>(new_tally)->setComputedBatchStatistics(true);
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::multiplyIntegers(const int* amt, const int length) {
+
+    if (length != _num_bins)
+        log_printf(ERROR, "Unable to multiply an integer array of length %d"
+                        " with tally %s with %d bins", length,
+                        _tally_name, _num_bins);
+
+    Tally* new_tally = this->clone();
+    new_tally->setTallyDomainType(UNDEFINED);
+    new_tally->setTallyType(DERIVED);
+    new_tally->setNumBatches(1);
+    
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and adjust batch statistics appropriately */
+    double* batch_mu = new double[length];
+    double* batch_variance = new double[length];
+    double* batch_std_dev = new double[length];
+    double* batch_rel_err = new double[length];
+
+    for (int i=0; i < _num_bins; i++) {
+        batch_mu[i] = _batch_mu[i] * amt[i];
+        batch_variance[i] = amt[i] * amt[i] * _batch_variance[i];
+        batch_std_dev[i] = sqrt(batch_variance[i]);
+        batch_rel_err[i] = batch_std_dev[i] / batch_mu[i];
+    }
+
+    new_tally->setNumBatches(1);
+    static_cast<DerivedTally*>(new_tally)->setBatchMu(batch_mu);
+    static_cast<DerivedTally*>(new_tally)->setBatchVariance(batch_variance);
+    static_cast<DerivedTally*>(new_tally)->setBatchStdDev(batch_std_dev);
+    static_cast<DerivedTally*>(new_tally)->setBatchRelErr(batch_rel_err);
+    static_cast<DerivedTally*>(new_tally)->setComputedBatchStatistics(true);
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::multiplyFloats(const float* amt, const int length) {
+
+    if (length != _num_bins)
+        log_printf(ERROR, "Unable to multiply a float array of length %d"
+                        " with tally %s with %d bins", length,
+                        _tally_name, _num_bins);
+
+    Tally* new_tally = this->clone();
+    new_tally->setTallyDomainType(UNDEFINED);
+    new_tally->setTallyType(DERIVED);
+    new_tally->setNumBatches(1);
+    
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and adjust batch statistics appropriately */
+    double* batch_mu = new double[length];
+    double* batch_variance = new double[length];
+    double* batch_std_dev = new double[length];
+    double* batch_rel_err = new double[length];
+
+    for (int i=0; i < _num_bins; i++) {
+        batch_mu[i] = _batch_mu[i] * amt[i];
+        batch_variance[i] = amt[i] * amt[i] * _batch_variance[i];
+        batch_std_dev[i] = sqrt(batch_variance[i]);
+        batch_rel_err[i] = batch_std_dev[i] / batch_mu[i];
+    }
+
+    new_tally->setNumBatches(1);
+    static_cast<DerivedTally*>(new_tally)->setBatchMu(batch_mu);
+    static_cast<DerivedTally*>(new_tally)->setBatchVariance(batch_variance);
+    static_cast<DerivedTally*>(new_tally)->setBatchStdDev(batch_std_dev);
+    static_cast<DerivedTally*>(new_tally)->setBatchRelErr(batch_rel_err);
+    static_cast<DerivedTally*>(new_tally)->setComputedBatchStatistics(true);
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::multiplyDoubles(const double* amt, const int length) {
+
+    if (length != _num_bins)
+        log_printf(ERROR, "Unable to multiply a double array of length %d"
+                        " with tally %s with %d bins", length,
+                        _tally_name, _num_bins);
+
+    Tally* new_tally = this->clone();
+    new_tally->setTallyDomainType(UNDEFINED);
+    new_tally->setTallyType(DERIVED);
+
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and adjust batch statistics appropriately */
+    double* batch_mu = new double[length];
+    double* batch_variance = new double[length];
+    double* batch_std_dev = new double[length];
+    double* batch_rel_err = new double[length];
+
+    for (int i=0; i < _num_bins; i++) {
+        batch_mu[i] = _batch_mu[i] * amt[i];
+        batch_variance[i] = amt[i] * amt[i] * _batch_variance[i];
+        batch_std_dev[i] = sqrt(batch_variance[i]);
+        batch_rel_err[i] = batch_std_dev[i] / batch_mu[i];
+    }
+
+
+    new_tally->setNumBatches(1);
+    static_cast<DerivedTally*>(new_tally)->setBatchMu(batch_mu);
+    static_cast<DerivedTally*>(new_tally)->setBatchVariance(batch_variance);
+    static_cast<DerivedTally*>(new_tally)->setBatchStdDev(batch_std_dev);
+    static_cast<DerivedTally*>(new_tally)->setBatchRelErr(batch_rel_err);
+    static_cast<DerivedTally*>(new_tally)->setComputedBatchStatistics(true);
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::divideIntegers(const int* amt, const int length) {
+
+    if (length != _num_bins)
+        log_printf(ERROR, "Unable to divide an integer array of length %d"
+                        " with tally %s with %d bins", length,
+                        _tally_name, _num_bins);
+
+    Tally* new_tally = this->clone();
+    new_tally->setTallyDomainType(UNDEFINED);
+    new_tally->setTallyType(DERIVED);
+    new_tally->setNumBatches(1);
+    
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and adjust batch statistics appropriately */
+    double* batch_mu = new double[length];
+    double* batch_variance = new double[length];
+    double* batch_std_dev = new double[length];
+    double* batch_rel_err = new double[length];
+
+    for (int i=0; i < _num_bins; i++) {
+        batch_mu[i] = (_batch_mu[i] / amt[i]);
+        batch_variance[i] = (1.0 / amt[i]) * (1.0 / amt[i]) 
+                                                        * _batch_variance[i];
+        batch_std_dev[i] = sqrt(batch_variance[i]);
+        batch_rel_err[i] = batch_std_dev[i] / batch_mu[i];
+    }
+
+    new_tally->setNumBatches(1);
+    static_cast<DerivedTally*>(new_tally)->setBatchMu(batch_mu);
+    static_cast<DerivedTally*>(new_tally)->setBatchVariance(batch_variance);
+    static_cast<DerivedTally*>(new_tally)->setBatchStdDev(batch_std_dev);
+    static_cast<DerivedTally*>(new_tally)->setBatchRelErr(batch_rel_err);
+    static_cast<DerivedTally*>(new_tally)->setComputedBatchStatistics(true);
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::divideFloats(const float* amt, const int length) {
+
+    if (length != _num_bins)
+        log_printf(ERROR, "Unable to divide a float array of length %d"
+                        " with tally %s with %d bins", length,
+                        _tally_name, _num_bins);
+
+    Tally* new_tally = this->clone();
+    new_tally->setTallyDomainType(UNDEFINED);
+    new_tally->setTallyType(DERIVED);
+    new_tally->setNumBatches(1);
+    
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and adjust batch statistics appropriately */
+    double* batch_mu = new double[length];
+    double* batch_variance = new double[length];
+    double* batch_std_dev = new double[length];
+    double* batch_rel_err = new double[length];
+
+    for (int i=0; i < _num_bins; i++) {
+        batch_mu[i] = (_batch_mu[i] / amt[i]);
+        batch_variance[i] = (1.0 / amt[i]) * (1.0 / amt[i]) 
+                                                        * _batch_variance[i];
+        batch_std_dev[i] = sqrt(batch_variance[i]);
+        batch_rel_err[i] = batch_std_dev[i] / batch_mu[i];
+    }
+
+    new_tally->setNumBatches(1);
+    static_cast<DerivedTally*>(new_tally)->setBatchMu(batch_mu);
+    static_cast<DerivedTally*>(new_tally)->setBatchVariance(batch_variance);
+    static_cast<DerivedTally*>(new_tally)->setBatchStdDev(batch_std_dev);
+    static_cast<DerivedTally*>(new_tally)->setBatchRelErr(batch_rel_err);
+    static_cast<DerivedTally*>(new_tally)->setComputedBatchStatistics(true);
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+DerivedTally* Tally::divideDoubles(const double* amt, const int length) {
+
+    if (length != _num_bins)
+        log_printf(ERROR, "Unable to divide a double array of length %d"
+                        " with tally %s with %d bins", length,
+                        _tally_name, _num_bins);
+
+    Tally* new_tally = this->clone();
+    new_tally->setTallyDomainType(UNDEFINED);
+    new_tally->setTallyType(DERIVED);
+    new_tally->setNumBatches(1);
+    
+    /* Adding an amount to this tally only increments the batch mu
+     * by an offset and adjust batch statistics appropriately */
+    double* batch_mu = new double[length];
+    double* batch_variance = new double[length];
+    double* batch_std_dev = new double[length];
+    double* batch_rel_err = new double[length];
+
+    for (int i=0; i < _num_bins; i++) {
+        batch_mu[i] = (_batch_mu[i] / amt[i]);
+        batch_variance[i] = (1.0 / amt[i]) * (1.0 / amt[i]) 
+                                                        * _batch_variance[i];
+        batch_std_dev[i] = sqrt(batch_variance[i]);
+        batch_rel_err[i] = batch_std_dev[i] / batch_mu[i];
+    }
+
+    new_tally->setNumBatches(1);
+    static_cast<DerivedTally*>(new_tally)->setBatchMu(batch_mu);
+    static_cast<DerivedTally*>(new_tally)->setBatchVariance(batch_variance);
+    static_cast<DerivedTally*>(new_tally)->setBatchStdDev(batch_std_dev);
+    static_cast<DerivedTally*>(new_tally)->setBatchRelErr(batch_rel_err);
+    static_cast<DerivedTally*>(new_tally)->setComputedBatchStatistics(true);
+
+    return static_cast<DerivedTally*>(new_tally);
+}
+
+
+
+/*****************************************************************************/
+/********************** Collision Rate Tallying Methods **********************/
+/*****************************************************************************/
 
 void IsotopeCollisionRateTally::tally(neutron* neutron) {
 	Tally::tally(neutron, 1.0);
@@ -1203,3 +2341,49 @@ void GeometryInterCollisionTimeTally::tally(neutron* neutron) {
     Tally::tally(neutron, double(distance / velocity));
     return;
 }
+
+
+/******************************************************************************/
+/****************************** Derived Tallies *******************************/
+/******************************************************************************/
+
+void DerivedTally::tally(neutron* neutron) {
+    log_printf(ERROR, "Unable to tally a neutron in DERIVED type tally %s", 
+                                                                  _tally_name);
+}
+
+
+void DerivedTally::setTallyName(char* tally_name) {
+    _tally_name = tally_name;
+}
+
+
+void DerivedTally::setTallies(double** tallies) {
+    _tallies = tallies;
+}
+
+
+void DerivedTally::setBatchMu(double* batch_mu) {
+    _batch_mu = batch_mu;
+}
+
+
+void DerivedTally::setBatchVariance(double* batch_variance) {
+    _batch_variance = batch_variance;
+}
+
+
+void DerivedTally::setBatchStdDev(double* batch_std_dev) {
+    _batch_std_dev = batch_std_dev;
+}
+
+
+void DerivedTally::setBatchRelErr(double* batch_rel_err) {
+    _batch_rel_err = batch_rel_err;
+}
+
+
+void DerivedTally::setComputedBatchStatistics(bool computed) {
+    _computed_statistics = computed;
+}
+
