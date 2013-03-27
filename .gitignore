@@ -39,9 +39,5 @@ build/
 objs/
 pinspec/Geometry_wrap.cpp
 pinspec/pinspec.py*
-sample-input/Infinite_MC_Statistics/*
-sample-input/Equivalence_MC_Statistics/*
-sample-input/Infinite/*
-sample-input/Equivalence/*
-log-*
-*/log-*
+pinspec-*-.log
+*/pinspec-*-.log
