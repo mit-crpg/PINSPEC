@@ -200,15 +200,15 @@ def printTallies(tallies, header='', types='Tallies'):
             entry = '[ %7.2f - %7.2f eV ]:' % (edges[i], edges[i+1]) 
 
             for j in range(len(tallies)):
-                if (mu[j][i] < 1E-2):
+                if (mu[j][i] <= 1E-2):
                     entry += '  %8.2E' % mu[j][i]
-                elif (mu[j][i] > 10. and mu[j][i] < 100.):
+                elif (mu[j][i] >= 10. and mu[j][i] < 100.):
                     entry += '  %8.5f' % mu[j][i]
-                elif (mu[j][i] > 100. and mu[j][i] < 1000.):
+                elif (mu[j][i] >= 100. and mu[j][i] < 1000.):
                     entry += '  %8.4f' % mu[j][i]
-                elif (mu[j][i] > 1000. and mu[j][i] < 10000.):
+                elif (mu[j][i] >= 1000. and mu[j][i] < 10000.):
                     entry += '  %8.3f' % mu[j][i]
-                elif (mu[j][i] > 10000. and mu[j][i] < 100000.):
+                elif (mu[j][i] >= 10000. and mu[j][i] < 100000.):
                     entry += '  %8.2f' % mu[j][i]
                 else:
                     entry += '  %8.6f' % mu[j][i]
@@ -256,8 +256,174 @@ def printTallies(tallies, header='', types='Tallies'):
 
 
 ###############################################################################
-############################  Resonance Integrals  ############################
+####################  Tally Data Processing Routines  #########################
 ###############################################################################
+
+def computeMeanNumCollisions(coll_rate, num_neutrons):
+
+    coll_rate.computeScaledBatchStatistics(num_neutrons)
+
+    num_bins = coll_rate.getNumBins()
+    coll_rate_mu = coll_rate.retrieveTallyMu(num_bins)
+    mean_rate = 0.0
+
+    for i in range(num_bins):
+        mean_rate += coll_rate_mu[i]
+
+    return mean_rate
+
+
+def computeMeanNeutronLifetime(coll_times, num_neutrons):
+
+    coll_times.computeScaledBatchStatistics(num_neutrons)
+
+    num_bins = coll_times.getNumBins()
+    coll_times_mu = coll_times.retrieveTallyMu(num_bins)
+    mean_time = 0.0
+
+    for i in range(num_bins):
+        mean_time += coll_times_mu[i]
+
+    return mean_time
+
+
+
+###############################################################################
+###########################  Resonance Integrals  #############################
+###############################################################################
+
+class RIEff(object):
+
+    def __init__(self, tally1, tally2, name=''):
+
+        self._name=''
+        self._RI=None
+        self._flux=None
+        self._rate=None
+        self._num_RIs=0
+
+        self.computeRIs(tally1, tally2)
+        self.setName(name)
+
+
+    def computeRIs(self, tally1, tally2):
+
+        # Check that input parameters are correct
+        if not isinstance(tally1, Tally):
+            py_printf('ERROR', 'Unable to create an effective resonance ' \
+                   + 'integral given input of type %s', str(type(tally1)))
+        if not isinstance(tally2, Tally):
+            py_printf('ERROR', 'Unable to create an effective resonance ' \
+                    + 'integral given input of type %s', str(type(tally2)))
+        if not tally1.hasComputedBatchStatistics():
+            py_printf('ERROR', 'Unable to create an effective resonance ' \
+                    + 'integral from tally %s since it has not yet computed' \
+                    + 'batch statistics', tally1.getTallyName())
+        if not tally2.hasComputedBatchStatistics():
+            py_printf('ERROR', 'Unable to create an effective resonance ' \
+                    + 'integral from tally %s since it has not yet computed' \
+                    + 'batch statistics', tally2.getTallyName())
+        if (tally1.getTallyType() is not FLUX) and \
+                                        (tally2.getTallyType() is not FLUX):
+            py_printf('ERROR', 'Unable to create an effective resonance ' \
+                   + 'integral since neither tally input is of FLUX tally type')
+
+        rate_types = [CAPTURE_RATE, ELASTIC_RATE, FISSION_RATE, ABSORPTION_RATE]
+
+        if not (tally1.getTallyType() in rate_types) and not \
+                                        (tally2.getTallyType() in rate_types):
+            py_printf('ERROR', 'Unable to create an effective resonance ' + \
+                   'integral since neither tally input is of RATE tally type')
+
+        if (tally1.getNumBins() is not tally2.getNumBins()):
+            py_printf('ERROR', 'Unable to create an effective resonance ' \
+                       + 'integral since tally %s has %d bins while tally %s ' \
+                       + 'has %d bins', tally1.getTallyName(), \
+                        tally1.getNumBins(), tally2.getTallyName(), \
+                        tally2.getNumBins())
+
+        if not (getTallyEdges(tally1)==getTallyEdges(tally2)).all():
+            py_printf('ERROR', 'Unable to create an effective resonance ' \
+                       + 'integral since tally %s has different bin edges ' \
+                       + 'than tally %s', tally1.getTallyName(), \
+                        tally2.getTallyName())
+
+
+        # If we have passed all checks, then create effective RI
+        self._flux = None
+        self._rate = None
+
+        if (tally1.getTallyType() is FLUX):
+            self._flux = tally1
+            self._rate = tally2
+        else:
+            self._flux = tally2
+            self._rate = tally1
+
+        self._num_RIs = self._flux.getNumBins()
+
+        # Compute the resonance integral using tally division and 
+        # multiplication operations - this allows us to compute all
+        # statistics and uncertainties for the RIs, and to use all
+        # of the class methods provided for a Tally class since 
+        # self._RI is now a DERIVED type tally object
+        edges = getTallyEdges(self._flux)
+        log_array = np.log(edges[1:] / edges[0:edges.size-1])
+        self._RI = (self._rate / self._flux).multiplyDoubles(log_array)
+
+
+    def setName(self, name=''):
+        if name is '':
+            self._name = 'Effective RI'
+        else:
+            self._name = name
+
+        self._RI.setTallyName(self._name)
+
+
+    def getName(self):
+        return self.name
+
+    
+    def getNumIntegrals(self):
+        return self._RI.getNumBins()
+
+
+    def getIntegrals(self):
+        return getTallyBatchMu(self._RI)
+
+
+    def getVariances(self):
+        return getTallyBatchVariances(self._RI)
+
+
+    def getStandardDeviation(self):
+        return getTallyBatchStdDev(self._RI)
+
+
+    def getRelativeError(self):
+        return getTallyRelErr(self._RI)
+
+
+    def getEnergyBandsCenters(self):
+        return getTallyCenters(self._RI)
+
+
+    def getEnergyBands(self):
+        return getTallyEdges(self._RI)
+
+
+    def getRITally(self):
+        return self._RI
+
+                
+    def printRI(self, uncertainties=False):
+        self._RI.printTallies(uncertainties)                
+
+
+    def outputRItoFile(self, filename=''):
+        self._RI.outputBatchStatistics(filename)
+
 
 
 class RITrue(object):
@@ -367,139 +533,6 @@ class RITrue(object):
         py_printf('SEPARATOR', '')
 
 
-class RIEff(object):
-
-    def __init__(self, tally1, tally2, name=''):
-
-        self._name=''
-        self._RI=None
-        self._flux=None
-        self._rate=None
-        self._num_RIs=0
-
-        self.computeRIs(tally1, tally2)
-        self.setName(name)
-
-
-    def computeRIs(self, tally1, tally2):
-
-        # Check that input parameters are correct
-        if not isinstance(tally1, Tally):
-            py_printf('ERROR', 'Unable to create an effective resonance ' \
-                   + 'integral given input of type %s', str(type(tally1)))
-        if not isinstance(tally2, Tally):
-            py_printf('ERROR', 'Unable to create an effective resonance ' \
-                    + 'integral given input of type %s', str(type(tally2)))
-        if not tally1.hasComputedBatchStatistics():
-            py_printf('ERROR', 'Unable to create an effective resonance ' \
-                    + 'integral from tally %s since it has not yet computed' \
-                    + 'batch statistics', tally1.getTallyName())
-        if not tally2.hasComputedBatchStatistics():
-            py_printf('ERROR', 'Unable to create an effective resonance ' \
-                    + 'integral from tally %s since it has not yet computed' \
-                    + 'batch statistics', tally2.getTallyName())
-        if (tally1.getTallyType() is not FLUX) and \
-                                        (tally2.getTallyType() is not FLUX):
-            py_printf('ERROR', 'Unable to create an effective resonance ' \
-                       + 'integral since neither tally input is of FLUX type')
-
-        rate_types = [CAPTURE_RATE, ELASTIC_RATE, FISSION_RATE, ABSORPTION_RATE]
-
-        if not (tally1.getTallyType() in rate_types) and not \
-                                        (tally2.getTallyType() in rate_types):
-            py_printf('ERROR', 'Unable to create an effective resonance ' + \
-                       'integral since neither tally input is of *_RATE type')
-
-        if (tally1.getNumBins() is not tally2.getNumBins()):
-            py_printf('ERROR', 'Unable to create an effective resonance ' \
-                       + 'integral since tally %s has %d bins while tally %s ' \
-                       + 'has %d bins', tally1.getTallyName(), \
-                        tally1.getNumBins(), tally2.getTallyName(), \
-                        tally2.getNumBins())
-
-        if not (getTallyEdges(tally1)==getTallyEdges(tally2)).all():
-            py_printf('ERROR', 'Unable to create an effective resonance ' \
-                       + 'integral since tally %s has different bin edges ' \
-                       + 'than tally %s', tally1.getTallyName(), \
-                        tally2.getTallyName())
-
-
-        # If we have passed all checks, then create effective RI
-        self._flux = None
-        self._rate = None
-
-        if (tally1.getTallyType() is FLUX):
-            self._flux = tally1
-            self._rate = tally2
-        else:
-            self._flux = tally2
-            self._rate = tally1
-
-        self._num_RIs = self._flux.getNumBins()
-
-        # Compute the resonance integral using tally division and 
-        # multiplication operations - this allows us to compute all
-        # statistics and uncertainties for the RIs, and to use all
-        # of the class methods provided for a Tally class since 
-        # self._RI is now a DERIVED type tally object
-        edges = getTallyEdges(self._flux)
-        log_array = np.log(edges[1:] / edges[0:edges.size-1])
-        self._RI = (self._rate / self._flux).multiplyDoubles(log_array)
-
-
-    def setName(self, name=''):
-        if name is '':
-            self._name = 'Effective RI'
-        else:
-            self._name = name
-
-        self._RI.setTallyName(self._name)
-
-
-    def getName(self):
-        return self.name
-
-    
-    def getNumIntegrals(self):
-        return self._RI.getNumBins()
-
-
-    def getIntegrals(self):
-        return getTallyMu(self._RI)
-
-
-    def getVariances(self):
-        return getTallyBatchVariances(self._RI)
-
-
-    def getStandardDeviation(self):
-        return getTallyBatchStdDev(self._RI)
-
-
-    def getRelativeError(self):
-        return getTallyRelErr(self._RI)
-
-
-    def getEnergyBandsCenters(self):
-        return getTallyCenters(self._RI)
-
-
-    def getEnergyBands(self):
-        return getTallyEdges(self._RI)
-
-
-    def getRITally(self):
-        return self._RI
-
-                
-    def printRI(self):
-        self._RI.printTallies()                
-
-
-    def outputRItoFile(self, filename=''):
-        self._RI.outputBatchStatistics(filename)
-
-
 
 def printRIs(RIs, header=''):
     if isinstance(RIs, list):
@@ -517,116 +550,155 @@ def printRIs(RIs, header=''):
     else:
         py_printf('ERROR', 'Unable to print RIs since input is of type %s', \
                                                      str(type(RIs)))
+
+# TODO: Plotting functions
+
+
+###############################################################################
+############################  Group Cross-Sections  ###########################
+###############################################################################
+
+class GroupXS(object):
     
+    def __init__(self, tally1, tally2, name=''):
+        
+        self._name=''
+        self._xs=None
+        self._flux=None
+        self._rate=None
+        self._num_xs=0
 
-class groupXS(object):
+        self.computeGroupXS(tally1, tally2)
+        self.setName(name)
+
+
+    def computeGroupXS(self, tally1, tally2):
+
+        # Check that input parameters are correct
+        if not isinstance(tally1, Tally):
+            py_printf('ERROR', 'Unable to create a group cross-section ' \
+                   + 'given input of type %s', str(type(tally1)))
+        if not isinstance(tally2, Tally):
+            py_printf('ERROR', 'Unable to create a group cross-section ' \
+                    + 'given input of type %s', str(type(tally2)))
+        if not tally1.hasComputedBatchStatistics():
+            py_printf('ERROR', 'Unable to create a group cross-section ' \
+                    + 'from tally %s since it has not yet computed' \
+                    + 'batch statistics', tally1.getTallyName())
+        if not tally2.hasComputedBatchStatistics():
+            py_printf('ERROR', 'Unable to create a group cross-section ' \
+                    + 'from tally %s since it has not yet computed' \
+                    + 'batch statistics', tally2.getTallyName())
+        if (tally1.getTallyType() is not FLUX) and \
+                                        (tally2.getTallyType() is not FLUX):
+            py_printf('ERROR', 'Unable to create a group cross-section ' \
+                       + 'since neither tally input is of FLUX type')
+
+        rate_types = [CAPTURE_RATE, ELASTIC_RATE, \
+                        FISSION_RATE, ABSORPTION_RATE, \
+                        DIFFUSION_RATE, TRANSPORT_RATE, COLLISION_RATE ]
+
+        if not (tally1.getTallyType() in rate_types) and not \
+                                        (tally2.getTallyType() in rate_types):
+            py_printf('ERROR', 'Unable to create a group cross-section ' + \
+                       'since neither tally input is of RATE tally type')
+
+        if (tally1.getNumBins() is not tally2.getNumBins()):
+            py_printf('ERROR', 'Unable to create a group cross-section ' \
+                       + 'since tally %s has %d bins while tally %s ' \
+                       + 'has %d bins', tally1.getTallyName(), \
+                        tally1.getNumBins(), tally2.getTallyName(), \
+                        tally2.getNumBins())
+
+        if not (getTallyEdges(tally1)==getTallyEdges(tally2)).all():
+            py_printf('ERROR', 'Unable to create a group cross-section ' \
+                       + 'since tally %s has different bin edges ' \
+                       + 'than tally %s', tally1.getTallyName(), \
+                        tally2.getTallyName())
+
+
+        # If we have passed all checks, then create group XS
+        self._flux = None
+        self._rate = None
+
+        if (tally1.getTallyType() is FLUX):
+            self._flux = tally1
+            self._rate = tally2
+        else:
+            self._flux = tally2
+            self._rate = tally1
+
+        self._num_xs = self._flux.getNumBins()
+
+        # Compute the group cross-section using tally division and 
+        # multiplication operations - this allows us to compute all
+        # statistics and uncertainties for the xs's, and to use all
+        # of the class methods provided for a Tally class since 
+        # self._xs is now a DERIVED type tally object
+        self._xs = (self._rate / self._flux)
+
+
+    def setName(self, name=''):
+        if name is '':
+            if self._rate.getTallyType() is ELASTIC_RATE:
+                self._name = 'Elastic Group XS'
+            elif self._rate.getTallyType() is CAPTURE_RATE:
+                self._name = 'Capture Group XS'
+            elif self._rate.getTallyType() is FISSION_RATE:
+                self._name = 'Fission Group XS'
+            elif self._rate.getTallyType() is ABSORPTION_RATE:
+                self._name = 'Absorption Group XS'
+            elif self._rate.getTallyType() is TRANSPORT_RATE:
+                self._name = 'Transport Group XS'
+            elif self._rate.getTallyType() is DIFFUSION_RATE:
+                self._name = 'Diffusion Coeff.'
+            elif self._rate.getTallyType() is COLLISION_RATE:
+                self._name = 'Total Group XS'
+        else:
+            self._name = name
+
+        self._xs.setTallyName(self._name)
+
+
+    def getName(self):
+        return self.name
+
     
-    def __init__(self, flux, rxns):
-        
-        self.flux = flux    
-        
-        if type(rxns) is not list:            
-            rxns = [rxns]
-        
-        self.num_bins = rxns[0].getNumBins()
-        self.bin_edges = rxns[0].retrieveTallyEdges(self.num_bins+1)
-        self.rxns = rxns
-        self.num_rxns = len(rxns)
-        
-        self.groupXS = np.zeros(shape=(self.num_bins, self.num_rxns))
-        self.computeGroupXS()
-        
-    def computeGroupXS(self):
-        
-        # Get the bin center energies
-        n_bins = self.flux.getNumBins()
-        self.flux.computeBatchStatistics()
-        flux_bin_centers = self.flux.retrieveTallyCenters(n_bins)
+    def getNumXS(self):
+        return self._xs.getNumBins()
 
-        flux_mu = self.flux.retrieveTallyMu(n_bins)
-        for j in range(0,self.num_rxns):
-            rxn_mu = self.rxns[j].retrieveTallyMu(self.num_bins) 
-            for i in range(0,self.num_bins):
-                self.groupXS[i,j] = rxn_mu[i] / flux_mu[i]
+
+    def getXS(self):
+        return getTallyBatchMu(self._xs)
+
+
+    def getVariances(self):
+        return getTallyBatchVariances(self._xs)
+
+
+    def getStandardDeviation(self):
+        return getTallyBatchStdDev(self._xs)
+
+
+    def getRelativeError(self):
+        return getTallyRelErr(self._xs)
+
+
+    def getEnergyBandsCenters(self):
+        return getTallyCenters(self._xs)
+
+
+    def getEnergyBands(self):
+        return getTallyEdges(self._xs)
+
+
+    def getRITally(self):
+        return self._xs
+
                 
-                
-                
-    def printGroupXS(self):
-        
-        for j in range(0,self.num_rxns):
-            rxn_mu = self.rxns[j].retrieveTallyMu(self.num_bins) 
-            for i in range(0,self.num_bins):
-                py_printf('RESULT', 'Group XS [ %7.2f - %7.2f eV  ] =  %5.3E cm^-1', self.bin_edges[i], self.bin_edges[i+1], self.groupXS[i,j])
+    def printXS(self, uncertainties=False):
+        self._xs.printTallies(uncertainties)
 
 
-
-def computeMeanNumCollisions(coll_rate, num_neutrons):
-
-    coll_rate.computeScaledBatchStatistics(num_neutrons)
-
-    num_bins = coll_rate.getNumBins()
-    coll_rate_mu = coll_rate.retrieveTallyMu(num_bins)
-    mean_rate = 0.0
-
-    for i in range(num_bins):
-        mean_rate += coll_rate_mu[i]
-
-    return mean_rate
-
-
-def computeMeanNeutronLifetime(coll_times, num_neutrons):
-
-    coll_times.computeScaledBatchStatistics(num_neutrons)
-
-    num_bins = coll_times.getNumBins()
-    coll_times_mu = coll_times.retrieveTallyMu(num_bins)
-    mean_time = 0.0
-
-    for i in range(num_bins):
-        mean_time += coll_times_mu[i]
-
-    return mean_time
-
-
-def computeNumericalRIs(isotope, energy_bounds, xs_type='capture'):
-
-    if not (xs_type is 'capture' or 'elastic' or 'fission'):
-        py_printf('ERROR', 'Unable to compute a numerical RI for ' + \
-                                    'unsupported xs type ' + str(xs_type))
-
-    isotope_name = isotope.getIsotopeName()
-
-    # Retrieve doppler broadened xs and energies directly from isotope
-    doppler_num_energies = isotope.getNumXSEnergies(xs_type)
-    doppler_energies = isotope.retrieveXSEnergies(doppler_num_energies, xs_type)
-    doppler_xs = isotope.retrieveXS(doppler_num_energies, xs_type)
-
-    # Parse in ENDF 300K from backup xs file
-    backup_xs_path = getXSLibDirectory() + 'BackupXS/' + isotope_name + \
-                                                        '-' + xs_type + '.txt'
-    backup_num_energies = 0
-    backup_energies = numpy.array([])
-    backup_xs = numpy.array([])
-    
-    backup_file = open(backup_xs_path, 'r').readlines()
-    for line in backup_file:
-        if not 'ENDF' in line and not 'Doppler' in line:
-            energy, xs = line.split(',', 1)
-            backup_energies = np.append(backup_energies, np.float32(energy))
-            backup_xs = np.append(backup_xs, np.float32(xs))
-            backup_num_energies += 1
-            
-    # Interpolate into the doppler-broadened and backup xs
-    backup_RI = np.zeros(energy_bounds.size-1)
-    doppler_RI = np.zeros(energy_bounds.size-1)
-
-    for i in range(energy_bounds.size-1):
-        energies = np.logspace(np.log10(energy_bounds[i]), \
-                                            np.log10(energy_bounds[i+1]), 10000)
-        interp_backup_xs = np.interp(energies, backup_energies, backup_xs)
-        interp_doppler_xs = np.interp(energies, doppler_energies, doppler_xs)
-        backup_RI[i] = integrate.trapz(interp_backup_xs * (1./energies), energies)
-        doppler_RI[i] = integrate.trapz(interp_doppler_xs * (1./energies), energies)
-
-    print 'doppler_RI = ' + str(doppler_RI)
-    print 'backup_RI = ' + str(backup_RI)
+    def outputXStoFile(self, filename=''):
+        self._xs.outputBatchStatistics(filename)

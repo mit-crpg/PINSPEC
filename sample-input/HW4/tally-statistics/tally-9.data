@@ -1,0 +1,8 @@
+Batch-based tally statistics for PINSPEC
+Tally name: 
+Tally type: ABSORPTION_RATE Reaction Rate
+Tally Domain: Geometry
+Equally spaced bins with width = 10000000.000000
+# batches: 10	, # bins: 1
+Bin center, Mu, Variance, Std Dev, Rel Err
+5000000.0000000000, 0.6292994111, 0.0000029366, 0.0017136426, 0.0027230958

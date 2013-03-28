@@ -1,0 +1,140 @@
+Current local time and date: Thu Mar 28 03:03:54 2013
+[  INFO   ]  Logging level set to INFO
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]               Simulation of homework 4 for 2012 22.211             
+[  TITLE  ]  *******************************************************************
+[  INFO   ]  Computing homogenized number densities...
+[  INFO   ]  Initializing isotopes...
+[  INFO   ]  Loading H-1-elastic.txt for isotope H-1
+[  INFO   ]  Loading H-1-capture.txt for isotope H-1
+[  INFO   ]  Loading O-16-elastic.txt for isotope O-16
+[  INFO   ]  Loading O-16-capture.txt for isotope O-16
+[  INFO   ]  Loading U-235-elastic.txt for isotope U-235
+[  INFO   ]  Loading U-235-capture.txt for isotope U-235
+[  INFO   ]  Loading U-235-fission.txt for isotope U-235
+[  INFO   ]  Loading U-238-elastic.txt for isotope U-238
+[  INFO   ]  Loading U-238-capture.txt for isotope U-238
+[  INFO   ]  Loading U-238-fission.txt for isotope U-238
+[  INFO   ]  Loading Zr-90-elastic.txt for isotope Zr-90
+[  INFO   ]  Loading Zr-90-capture.txt for isotope Zr-90
+[  INFO   ]  Setting 1-group elastic xs for isotope U-235
+[  INFO   ]  Setting 1-group elastic xs for isotope U-238
+[  INFO   ]  Setting 1-group capture xs for isotope Zr-90
+[  INFO   ]  Setting 1-group capture xs for isotope O-16
+[  INFO   ]  Initializing fuel and moderator materials...
+[  INFO   ]  Isotope H-1 has number density 1.093E+24 in material moderator
+[  INFO   ]  Isotope H-1 has number density 1.215E+23 in material moderator
+[  INFO   ]  Isotope O-16 has number density 6.074E+22 in material moderator
+[  INFO   ]  Isotope H-1 has number density 5.526E+22 in material moderator
+[  INFO   ]  Isotope O-16 has number density 2.763E+22 in material moderator
+[  INFO   ]  Isotope Zr-90 has number density 6.621E+21 in material moderator
+[  INFO   ]  Isotope U-235 has number density 2.614E+22 in material fuel
+[  INFO   ]  Isotope U-235 has number density 7.837E+20 in material fuel
+[  INFO   ]  Isotope U-238 has number density 2.504E+22 in material fuel
+[  INFO   ]  Isotope O-16 has number density 4.552E+22 in material fuel
+[  INFO   ]  Isotope U-235 has number density 6.908E+20 in material fuel
+[  INFO   ]  Isotope U-238 has number density 2.207E+22 in material fuel
+[  INFO   ]  Initializing fuel and moderator regions...
+[  INFO   ]  Initializing the geometry...
+[  INFO   ]  Initializing tallies...
+[  INFO   ]  Registered tally total with the TallyBank for the geometry
+[  INFO   ]  Registered tally moderator with the TallyBank for material moderato
+[  INFO   ]  Registered tally fuel with the TallyBank for material fuel
+[  INFO   ]  Registered tally Fuel Flux with the TallyBank for material fuel
+[  INFO   ]  Registered tally Moderator Flux with the TallyBank for material
+[  INFO   ]  ... moderator
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 10000     # batches = 10     # threads = 4
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 15 tallies for 10 batches
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 1/4 running batch 2
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 2/4 running batch 5
+[  NORMAL ]  PINSPEC simulated 10445 neutrons / sec in 9.574058 sec
+[  INFO   ]  Writing tally batch statistics to output file...
+[  INFO   ]  Plotting fluxes...
+[  INFO   ]  Plotting microscopic and macroscopic cross-sections...
+[  INFO   ]  Computing group cross-sections...
+[  HEADER ]  **********  Batch Statistics for Tally Elastic Group XS  **********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.62 eV ]:  1.248668  4.83E-05  6.95E-03  5.57E-03
+[  RESULT ]  [    0.62 - 1.0E+07 eV ]:  0.638069  1.51E-06  1.23E-03  1.92E-03
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  **********  Batch Statistics for Tally Capture Group XS  **********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.62 eV ]:  0.032281  2.48E-08  1.58E-04  4.88E-03
+[  RESULT ]  [    0.62 - 1.0E+07 eV ]:  7.12E-03  1.86E-09  4.31E-05  6.06E-03
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  **********  Batch Statistics for Tally Fission Group XS  **********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.62 eV ]:  0.071110  1.13E-07  3.36E-04  4.72E-03
+[  RESULT ]  [    0.62 - 1.0E+07 eV ]:  2.60E-03  1.36E-10  1.17E-05  4.48E-03
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  ********  Batch Statistics for Tally Absorption Group XS  *********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.62 eV ]:  0.103391  2.41E-07  4.91E-04  4.75E-03
+[  RESULT ]  [    0.62 - 1.0E+07 eV ]:  9.72E-03  2.80E-09  5.29E-05  5.44E-03
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  *********  Batch Statistics for Tally Transport Group XS  *********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.62 eV ]:  0.667887  1.21E-05  3.47E-03  5.20E-03
+[  RESULT ]  [    0.62 - 1.0E+07 eV ]:  0.362995  6.21E-07  7.88E-04  2.17E-03
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  **********  Batch Statistics for Tally Diffusion Coeff.  **********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.62 eV ]:  0.521017  7.17E-06  2.68E-03  5.14E-03
+[  RESULT ]  [    0.62 - 1.0E+07 eV ]:  1.304969  1.63E-05  4.04E-03  3.10E-03
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  ***********  Batch Statistics for Tally Total Group XS  ***********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.62 eV ]:  1.352059  5.46E-05  7.39E-03  5.46E-03
+[  RESULT ]  [    0.62 - 1.0E+07 eV ]:  0.647788  1.59E-06  1.26E-03  1.95E-03
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  Isotope H-1 has number density 2.770E+24 in material Mix
+[  INFO   ]  Isotope H-1 has number density 8.751E+22 in material Mix
+[  INFO   ]  Isotope O-16 has number density 1.676E+23 in material Mix
+[  INFO   ]  Isotope H-1 has number density 6.528E+22 in material Mix
+[  INFO   ]  Isotope O-16 has number density 1.250E+23 in material Mix
+[  INFO   ]  Isotope Zr-90 has number density 7.820E+21 in material Mix
+[  INFO   ]  Isotope H-1 has number density 5.834E+22 in material Mix
+[  INFO   ]  Isotope O-16 has number density 1.118E+23 in material Mix
+[  INFO   ]  Isotope U-235 has number density 1.253E+21 in material Mix
+[  INFO   ]  Isotope Zr-90 has number density 6.989E+21 in material Mix
+[  INFO   ]  Isotope H-1 has number density 1.314E+22 in material Mix
+[  INFO   ]  Isotope O-16 has number density 2.517E+22 in material Mix
+[  INFO   ]  Isotope U-235 has number density 2.822E+20 in material Mix
+[  INFO   ]  Isotope U-238 has number density 9.017E+21 in material Mix
+[  INFO   ]  Isotope Zr-90 has number density 1.574E+21 in material Mix

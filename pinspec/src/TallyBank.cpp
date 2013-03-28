@@ -7,7 +7,12 @@
  *              wboyd@mit.edu
  */
 
+#define TALLYBANK_C
+
 #include "TallyBank.h"
+
+
+int output_file_num = 0;
 
 
 void TallyBank::registerTally(Tally* tally) {
@@ -50,14 +55,22 @@ void TallyBank::registerTally(Tally* tally, Geometry* geometry) {
 	if (tally->getTallyDomainType() == GEOMETRY) {
 
 		 /* Add this tally to the geometry's tally registry */
-		std::set<Tally*>* tally_set = new std::set<Tally*>;
-		tally_set->insert(tally);
-		_geometry_tallies[geometry] = tally_set;
+	    /* If this geometry is not registered yet, create a new pair for it*/
+	    if (_geometry_tallies.find(geometry) == _geometry_tallies.end()) {
+		    std::set<Tally*>* tally_set = new std::set<Tally*>;
+		    tally_set->insert(tally);
+		    _geometry_tallies[geometry] = tally_set;
+	    }
 
-    	_all_tallies.insert(tally);
+	    /* Register this tally for an existing geometry in the TallyBank */
+	    else
+		    _geometry_tallies.find(geometry)->second->insert(tally);
 
-		log_printf(INFO, "Registered tally %s with the TallyBank for the "
-										"geometry", tally->getTallyName());	
+	    /* Add the tally to the global registry */
+	    _all_tallies.insert(tally);
+
+	    log_printf(INFO, "Registered tally %s with the TallyBank for"
+                                " the geometry", tally->getTallyName());
 	}
 
 
@@ -97,9 +110,6 @@ void TallyBank::registerTally(Tally* tally, Geometry* geometry) {
 
 void TallyBank::registerTally(Tally* tally, Region* region) {
 	
-	log_printf(DEBUG, "Registering tally %s for region %s", 
-							tally->getTallyName(), region->getRegionName());
-
 	/* We are unable to track tallies with a GEOMETRY domain for a region */
 	if (tally->getTallyDomainType() == GEOMETRY)
 		log_printf(ERROR, "The TallyBank is unable to register tally %s"
@@ -434,7 +444,6 @@ void TallyBank::computeBatchStatistics() {
 
 void TallyBank::computeScaledBatchStatistics(float scale_factor) {
 
-
     std::set<Tally*>::iterator set_iter;
 	std::map<Geometry*, std::set<Tally*>* >::iterator iter1;
 	std::map<Region*, std::set<Tally*>* >::iterator iter2;
@@ -445,7 +454,6 @@ void TallyBank::computeScaledBatchStatistics(float scale_factor) {
 
     /* Geometry tallies */
     for (iter1 = _geometry_tallies.begin(); iter1 != _geometry_tallies.end(); ++iter1) {
-
         std::set<Tally*> tally_set = (*(*iter1).second);
         volume = (*(*iter1).first).getVolume();
 
@@ -475,9 +483,9 @@ void TallyBank::computeScaledBatchStatistics(float scale_factor) {
     for (iter3 = _material_tallies.begin(); iter3 != _material_tallies.end(); ++iter3) {
 
         std::set<Tally*> tally_set = (*(*iter3).second);
+        volume = (*(*iter3).first).getVolume();
 
         for (set_iter = tally_set.begin(); set_iter != tally_set.end(); ++set_iter) {
-            volume = (*(*iter3).first).getVolume();
             if ((*set_iter)->getTallyType() == INTERCOLLISION_TIME)
                 (*set_iter)->computeScaledBatchStatistics(scale_factor);
             else
@@ -509,6 +517,9 @@ void TallyBank::computeScaledBatchStatistics(float scale_factor) {
 void TallyBank::outputBatchStatistics() {
 
     const char* directory = getOutputDirectory();
+    const char* sub_directory = "/tally-statistics";
+
+    std::string full_directory = std::string(directory) + sub_directory;
 
     /* Check to see if directory exists - if not, create it */
     struct stat st;
@@ -516,13 +527,42 @@ void TallyBank::outputBatchStatistics() {
 		mkdir(directory, S_IRWXU);
     }
 
+    /* Create tally-statistics subdirectory */
+    if (!stat(full_directory.c_str(), &st) == 0) {
+		mkdir(full_directory.c_str(), S_IRWXU);
+    }
+
     /* Compute statistics for each of the TallyBank's tallies */
     std::set<Tally*>::iterator iter;
-    std::string filename;
 
 	for (iter = _all_tallies.begin(); iter != _all_tallies.end(); ++iter) {
-        filename = std::string(directory) + "/" +(*iter)->getTallyName()+".txt";
-        (*iter)->outputBatchStatistics(filename.c_str());
+
+        std::stringstream filename;
+
+        /* Create filename using the tally's name if it has one */
+        if (strlen((*iter)->getTallyName()) != 0)
+            filename << (*iter)->getTallyName();
+
+        /* If the tally does not have a name, generate a unique id for it */
+        else {
+            filename << "tally-" << output_file_num;
+            output_file_num++;
+        }
+
+        /* Output batch statistics for this tally */
+        filename << ".data";
+        std::string filename_str = filename.str();
+        filename.str("");
+
+        /* Replace spaces with dashes in filename */
+        replace(filename_str.begin(), filename_str.end(), ' ', '-');
+
+        /* Make string all lower case */
+        std::transform(filename_str.begin(), filename_str.end(), 
+                                    filename_str.begin(), ::tolower);
+
+        filename << full_directory << "/" << filename_str;
+        (*iter)->outputBatchStatistics(filename.str().c_str());
     }
 
     return;   

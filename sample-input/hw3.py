@@ -13,7 +13,7 @@ def main():
 
     # Set main simulation params
     num_batches = 10
-    num_neutrons_per_batch = 1000
+    num_neutrons_per_batch = 100000
     num_threads = 4
     setOutputDirectory('HW3');
     log_setlevel(INFO)

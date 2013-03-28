@@ -690,6 +690,9 @@ void Tally::tally(neutron* neutron, double weight) {
 
 	int bin_index = getBinIndex(neutron->_old_energy);
 
+    if (weight < 0.0)
+        log_printf(NORMAL, "weight = %f", weight);
+
 	if (bin_index >= 0 && bin_index < _num_bins) 
 		_tallies[neutron->_batch_num][bin_index] += weight;
 
@@ -839,6 +842,7 @@ void Tally::outputBatchStatistics(const char* filename) {
 
 	/* Print header to output file */
 	fprintf(output_file, "Batch-based tally statistics for PINSPEC\n");
+    fprintf(output_file, "Tally name: %s\n", _tally_name);
 
 	if (_tally_type == COLLISION_RATE)
 		fprintf(output_file, "Tally type: COLLISION_RATE Rate\n");
@@ -871,10 +875,11 @@ void Tally::outputBatchStatistics(const char* filename) {
 
 
 	if (_bin_spacing == EQUAL)
-		fprintf(output_file, "Equally spaced bins with width = %d\n", 
-														_bin_spacing);
+		fprintf(output_file, "Equally spaced bins with width = %f\n", 
+														_bin_delta);
 	else if (_bin_spacing == LOGARITHMIC)
-		fprintf(output_file, "Logarithmically spaced bins\n");
+		fprintf(output_file, "Logarithmically spaced bins with"
+                                        " width = %f\n", _bin_delta);
 	else if (_bin_spacing == OTHER)
 		fprintf(output_file, "User-defined bins\n");
 
@@ -914,31 +919,63 @@ void Tally::printTallies(bool uncertainties) {
     log_printf(RESULT, title.str().c_str());
     log_printf(SEPARATOR, "");
 
-    char lower_bound[12];
-    char upper_bound[12];
+    char lower_bound[16];
+    char upper_bound[16];
     char mu[12];
-    char variance[12];
-    char std_dev[12];
-    char rel_err [12];
+    char variance[16];
+    char std_dev[16];
+    char rel_err [16];
 
     /* Loop over each reaction rate and construct a string with the reate
      * and the user-specified statistics to print to the shell */
     for (int i=0; i < _num_bins; i++) {
 
         std::stringstream entry;
-        
-        sprintf(lower_bound, "%7.2f", _edges[i]);
-        sprintf(upper_bound, "%7.2f", _edges[i+1]);
 
+        /* Format lower bound of bin energy interval */
+        if (_edges[i] == 0.0)
+            sprintf(lower_bound, "%7.2f", _edges[i]);
+        else if (_edges[i] > 0.0 && _edges[i] < 1E-2)
+            sprintf(lower_bound, "%7.1E", _edges[i]);
+        else if (_edges[i] >= 1E-2 && _edges[i] < 1E4)
+            sprintf(lower_bound, "%7.2f", _edges[i]);
+        else
+            sprintf(lower_bound, "%7.1E", _edges[i]);
+
+        /* Format upper bound of bin energy interval */
+        if (_edges[i+1] == 0.0)
+            sprintf(upper_bound, "%7.2f", _edges[i+1]);
+        else if (_edges[i+1] > 0.0 && _edges[i+1] < 1E-2)
+            sprintf(upper_bound, "%7.1E", _edges[i+1]);
+        else if (_edges[i+1] > 1E-2 && _edges[i+1] < 1E4)
+            sprintf(upper_bound, "%7.2f", _edges[i+1]);
+        else
+            sprintf(upper_bound, "%7.1E", _edges[i+1]);
+
+        /* Format batch average */
         if (_batch_mu[i] < 1E-2)
             sprintf(mu, "%8.2E", _batch_mu[i]);
-        else
+        else if (_batch_mu[i] >= 1E-2 && _batch_mu[i] < 10.)
             sprintf(mu, "%8.6f", _batch_mu[i]);
+        else if (_batch_mu[i] >= 10. &&  _batch_mu[i] < 1E2)
+            sprintf(mu, "%8.5f", _batch_mu[i]);
+        else if (_batch_mu[i] >= 1E2 && _batch_mu[i] < 1E3)
+            sprintf(mu, "%8.4f", _batch_mu[i]);
+        else if (_batch_mu[i] >= 1E3 && _batch_mu[i] < 1E4)
+            sprintf(mu, "%8.3f", _batch_mu[i]);
+        else if (_batch_mu[i] >= 1E4 && _batch_mu[i] < 1E5)
+            sprintf(mu, "%8.2f", _batch_mu[i]);
+        else if (_batch_mu[i] >= 1E5 && _batch_mu[i] < 1E6)
+            sprintf(mu, "%8.2f", _batch_mu[i]);
+        else
+            sprintf(mu, "%8.2E", _batch_mu[i]);
 
 
         entry << "[ " << lower_bound << " - " << upper_bound << " eV ]:  ";
         entry << mu;
         
+        /* No need to format uncertainties since we can assume they are small
+         * and use scientific notation */
         if (uncertainties) {
             sprintf(variance, "%8.2E", _batch_variance[i]);
             sprintf(std_dev, "%8.2E", _batch_std_dev[i]);
@@ -980,10 +1017,10 @@ Tally* Tally::clone() {
         double* batch_std_dev = new double[_num_bins];
         double* batch_rel_err = new double[_num_bins];
 
-        memcpy(batch_mu, _batch_mu, _num_bins);
-        memcpy(batch_variance, _batch_variance, _num_bins);
-        memcpy(batch_std_dev, _batch_std_dev, _num_bins);
-        memcpy(batch_rel_err, _batch_rel_err, _num_bins);
+        memcpy(batch_mu, _batch_mu, _num_bins*sizeof(double));
+        memcpy(batch_variance, _batch_variance, _num_bins*sizeof(double));
+        memcpy(batch_std_dev, _batch_std_dev, _num_bins*sizeof(double));
+        memcpy(batch_rel_err, _batch_rel_err, _num_bins*sizeof(double));
 
         tally->setBatchMu(batch_mu);
         tally->setBatchVariance(batch_variance);
@@ -2062,7 +2099,7 @@ void IsotopeElasticRateTally::tally(neutron* neutron) {
 
 
 void MaterialElasticRateTally::tally(neutron* neutron) {
-	double weight = _material->getElasticMicroXS(neutron->_old_energy) 
+	double weight = _material->getElasticMacroXS(neutron->_old_energy) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2070,7 +2107,7 @@ void MaterialElasticRateTally::tally(neutron* neutron) {
 
 
 void RegionElasticRateTally::tally(neutron* neutron) {
-	double weight = _region->getElasticMicroXS(neutron->_old_energy) 
+	double weight = _region->getElasticMacroXS(neutron->_old_energy) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2078,7 +2115,7 @@ void RegionElasticRateTally::tally(neutron* neutron) {
 
 
 void GeometryElasticRateTally::tally(neutron* neutron) {
-	double weight = neutron->_region->getElasticMicroXS(neutron->_old_energy)
+	double weight = neutron->_region->getElasticMacroXS(neutron->_old_energy)
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2097,7 +2134,7 @@ void IsotopeAbsorptionRateTally::tally(neutron* neutron) {
 
 
 void MaterialAbsorptionRateTally::tally(neutron* neutron) {
-	double weight = _material->getAbsorptionMicroXS(neutron->_old_energy) 
+	double weight = _material->getAbsorptionMacroXS(neutron->_old_energy) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2105,7 +2142,7 @@ void MaterialAbsorptionRateTally::tally(neutron* neutron) {
 
 
 void RegionAbsorptionRateTally::tally(neutron* neutron) {
-	double weight = _region->getAbsorptionMicroXS(neutron->_old_energy) 
+	double weight = _region->getAbsorptionMacroXS(neutron->_old_energy) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2113,7 +2150,7 @@ void RegionAbsorptionRateTally::tally(neutron* neutron) {
 
 
 void GeometryAbsorptionRateTally::tally(neutron* neutron) {
-	double weight = neutron->_region->getAbsorptionMicroXS(neutron->_old_energy) 
+	double weight = neutron->_region->getAbsorptionMacroXS(neutron->_old_energy) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2132,7 +2169,7 @@ void IsotopeCaptureRateTally::tally(neutron* neutron) {
 
 
 void MaterialCaptureRateTally::tally(neutron* neutron) {
-	double weight = _material->getCaptureMicroXS(neutron->_old_energy) 
+	double weight = _material->getCaptureMacroXS(neutron->_old_energy) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2140,7 +2177,7 @@ void MaterialCaptureRateTally::tally(neutron* neutron) {
 
 
 void RegionCaptureRateTally::tally(neutron* neutron) {
-	double weight = _region->getCaptureMicroXS(neutron->_old_energy) 
+	double weight = _region->getCaptureMacroXS(neutron->_old_energy) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2148,7 +2185,7 @@ void RegionCaptureRateTally::tally(neutron* neutron) {
 
 
 void GeometryCaptureRateTally::tally(neutron* neutron) {
-	double weight = neutron->_region->getCaptureMicroXS(neutron->_old_energy) 
+	double weight = neutron->_region->getCaptureMacroXS(neutron->_old_energy) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2168,22 +2205,22 @@ void IsotopeFissionRateTally::tally(neutron* neutron) {
 
 
 void MaterialFissionRateTally::tally(neutron* neutron) {
-	double weight = _material->getFissionMicroXS(neutron->_old_energy) 
+	double weight = _material->getFissionMacroXS(neutron->_old_energy) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
 }
 
-
+//FIXME: Macros alright here?
 void RegionFissionRateTally::tally(neutron* neutron) {
-	double weight = _region->getFissionMicroXS(neutron->_old_energy) 
+	double weight = _region->getFissionMacroXS(neutron->_old_energy) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
 }
 
 void GeometryFissionRateTally::tally(neutron* neutron) {
-	double weight = neutron->_region->getFissionMicroXS(neutron->_old_energy) 
+	double weight = neutron->_region->getFissionMacroXS(neutron->_old_energy) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2203,7 +2240,7 @@ void IsotopeTransportRateTally::tally(neutron* neutron) {
 
 
 void MaterialTransportRateTally::tally(neutron* neutron) {
-	double weight = _material->getTransportMicroXS(neutron->_old_energy) 
+	double weight = _material->getTransportMacroXS(neutron->_old_energy) 
 														/neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2211,7 +2248,7 @@ void MaterialTransportRateTally::tally(neutron* neutron) {
 
 
 void RegionTransportRateTally::tally(neutron* neutron) {
-	double weight = _region->getTransportMicroXS(neutron->_old_energy) 
+	double weight = _region->getTransportMacroXS(neutron->_old_energy) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2219,7 +2256,7 @@ void RegionTransportRateTally::tally(neutron* neutron) {
 
 
 void GeometryTransportRateTally::tally(neutron* neutron) {
-	double weight = neutron->_region->getTransportMicroXS(neutron->_old_energy) 
+	double weight = neutron->_region->getTransportMacroXS(neutron->_old_energy) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2238,7 +2275,7 @@ void IsotopeDiffusionRateTally::tally(neutron* neutron) {
 
 
 void MaterialDiffusionRateTally::tally(neutron* neutron) {
-	double weight = 1.0 / (3.0 * _material->getTransportMicroXS(neutron->_old_energy)) 
+	double weight = 1.0 / (3.0 * _material->getTransportMacroXS(neutron->_old_energy)) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2246,7 +2283,7 @@ void MaterialDiffusionRateTally::tally(neutron* neutron) {
 
 
 void RegionDiffusionRateTally::tally(neutron* neutron) {
-	double weight = 1.0 / (3.0 * _region->getTransportMicroXS(neutron->_old_energy)) 
+	double weight = 1.0 / (3.0 * _region->getTransportMacroXS(neutron->_old_energy)) 
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2254,7 +2291,7 @@ void RegionDiffusionRateTally::tally(neutron* neutron) {
 
 
 void GeometryDiffusionRateTally::tally(neutron* neutron) {
-	double weight = 1.0 / (3.0 * neutron->_region->getTransportMicroXS(neutron->_old_energy))
+	double weight = 1.0 / (3.0 * neutron->_region->getTransportMacroXS(neutron->_old_energy))
 														/ neutron->_total_xs;
 	Tally::tally(neutron, weight);
 	return;
@@ -2268,7 +2305,7 @@ void GeometryDiffusionRateTally::tally(neutron* neutron) {
 
 void MaterialLeakageRateTally::tally(neutron* neutron) {
 	double weight = _material->getBucklingSquared() / 
-					(3.0 * _material->getTransportMicroXS(neutron->_old_energy) * 
+					(3.0 * _material->getTransportMacroXS(neutron->_old_energy) * 
 												neutron->_total_xs);
 	Tally::tally(neutron, weight);
 	return;
@@ -2277,7 +2314,7 @@ void MaterialLeakageRateTally::tally(neutron* neutron) {
 
 void RegionLeakageRateTally::tally(neutron* neutron) {
 	double weight = _region->getBucklingSquared() / 
-					(3.0 * _region->getTransportMicroXS(neutron->_old_energy) * 
+					(3.0 * _region->getTransportMacroXS(neutron->_old_energy) * 
 												neutron->_total_xs);
 	Tally::tally(neutron, weight);
 	return;
@@ -2285,7 +2322,7 @@ void RegionLeakageRateTally::tally(neutron* neutron) {
 
 void GeometryLeakageRateTally::tally(neutron* neutron) {
 	double weight = neutron->_region->getBucklingSquared() / 
-			(3.0 * neutron->_region->getTransportMicroXS(neutron->_old_energy) * 
+			(3.0 * neutron->_region->getTransportMacroXS(neutron->_old_energy) * 
 												neutron->_total_xs);
 	Tally::tally(neutron, weight);
 	return;

@@ -296,7 +296,7 @@ void Region::setFuelRadius(float radius) {
 
 	_fuel_radius = radius;
 
-    if (_fuel_radius != 0.0) {
+    if (_pitch != 0.0) {
         if (_region_type == MODERATOR)
             _volume = _pitch * _pitch - M_PI * _fuel_radius * _fuel_radius;
         else
@@ -322,6 +322,9 @@ void Region::setPitch(float pitch) {
             _volume = _pitch * _pitch - M_PI * _fuel_radius * _fuel_radius;
         else
             _volume = M_PI * _fuel_radius * _fuel_radius;
+
+    if (_material != NULL)
+        _material->incrementVolume(_volume);
     }
 }
 

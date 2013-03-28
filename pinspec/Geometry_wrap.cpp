@@ -24545,6 +24545,29 @@ SWIGINTERN PyObject *DerivedTally_swigregister(PyObject *SWIGUNUSEDPARM(self), P
   return SWIG_Py_Void();
 }
 
+SWIGINTERN int Swig_var_output_file_num_set(PyObject *_val) {
+  {
+    int val;
+    int res = SWIG_AsVal_int(_val, &val);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""output_file_num""' of type '""int""'");
+    }
+    output_file_num = static_cast< int >(val);
+  }
+  return 0;
+fail:
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_output_file_num_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_From_int(static_cast< int >(output_file_num));
+  return pyobj;
+}
+
+
 SWIGINTERN PyObject *_wrap_delete_TallyBank(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   TallyBank *arg1 = (TallyBank *) 0 ;
@@ -30241,6 +30264,8 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "EQUAL",SWIG_From_int(static_cast< int >(EQUAL)));
   SWIG_Python_SetConstant(d, "LOGARITHMIC",SWIG_From_int(static_cast< int >(LOGARITHMIC)));
   SWIG_Python_SetConstant(d, "OTHER",SWIG_From_int(static_cast< int >(OTHER)));
+  PyDict_SetItemString(md,(char*)"cvar", SWIG_globals());
+  SWIG_addvarlink(SWIG_globals(),(char*)"output_file_num",Swig_var_output_file_num_get, Swig_var_output_file_num_set);
   SWIG_Python_SetConstant(d, "DEBUG",SWIG_From_int(static_cast< int >(DEBUG)));
   SWIG_Python_SetConstant(d, "INFO",SWIG_From_int(static_cast< int >(INFO)));
   SWIG_Python_SetConstant(d, "NORMAL",SWIG_From_int(static_cast< int >(NORMAL)));
@@ -30251,7 +30276,6 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "CRITICAL",SWIG_From_int(static_cast< int >(CRITICAL)));
   SWIG_Python_SetConstant(d, "RESULT",SWIG_From_int(static_cast< int >(RESULT)));
   SWIG_Python_SetConstant(d, "ERROR",SWIG_From_int(static_cast< int >(ERROR)));
-  PyDict_SetItemString(md,(char*)"cvar", SWIG_globals());
   SWIG_addvarlink(SWIG_globals(),(char*)"log_level",Swig_var_log_level_get, Swig_var_log_level_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"logfile_name",Swig_var_logfile_name_get, Swig_var_logfile_name_set);
   SWIG_addvarlink(SWIG_globals(),(char*)"output_directory",Swig_var_output_directory_get, Swig_var_output_directory_set);

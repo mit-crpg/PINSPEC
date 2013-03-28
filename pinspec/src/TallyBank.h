@@ -14,11 +14,17 @@
 #include <set>
 #include <map>
 #include <utility>
+#include <string.h>
+#include <sstream>
 #include "Tally.h"
 #include "Region.h"
 #include "Material.h"
 #include "Isotope.h"
 #include "Geometry.h"
+
+#ifndef TALLYBANK_C
+    extern int output_file_num;
+#endif
 
 
 /* Factory for creating instances of Tallies */

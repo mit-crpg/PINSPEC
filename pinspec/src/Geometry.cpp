@@ -270,10 +270,11 @@ void Geometry::runMonteCarloSimulation() {
 	TallyBank* tally_bank = TallyBank::Get();
 
 	/* Print report to the screen */
-	log_printf(NORMAL, "Beginning PINSPEC Monte Carlo Simulation...");
+	log_printf(TITLE, "Beginning PINSPEC Monte Carlo Simulation...");
 	log_printf(NORMAL, "# neutrons / batch = %d     # batches = %d     "
                       "# threads = %d", _num_neutrons_per_batch, 
                         _num_batches, _num_threads);
+    log_printf(SEPARATOR, "");
 
     
 	omp_set_num_threads(_num_threads);
@@ -449,6 +450,10 @@ void Geometry::runMonteCarloSimulation() {
 	/*************************************************************************/
 	/***************************   HETEROGENEOUS *****************************/
 	/*************************************************************************/
+
+    //TODO: Truly heterogeneous geometry is NOT yet implemented!
+    //The following code is simply to stub out what will become
+    //the heterogeneous monte carlo kernel
 
 	/* If we are running homogeneous equivalence spectral calculation */
 	else if (_spatial_type == HETEROGENEOUS) {
