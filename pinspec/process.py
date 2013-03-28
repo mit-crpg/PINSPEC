@@ -30,7 +30,7 @@ class RI(object):
 	def printRI(self):
 
 		for i in range(0,self.num_RIs):
-			py_printf('NORMAL', 'RI [ %9.4f - %9.4f eV] =  %9.4f', self.bin_edges[i], self.bin_edges[i+1], self.RIs[i])
+			py_printf('NORMAL', '   RI    [ %9.4f - %9.4f eV] =  %9.3E', self.bin_edges[i], self.bin_edges[i+1], self.RIs[i])
 
 	def getBinCenters(self):
 		return self.bin_centers			

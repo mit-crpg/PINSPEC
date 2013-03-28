@@ -104,16 +104,6 @@ float Geometry::getTotalMacroXS(int energy_index, Region* region) {
 }
 
 
-float Geometry::getTotalMicroXS(float energy, Region* region) {
-    return region->getTotalMicroXS(energy);
-}
-
-
-float Geometry::getTotalMicroXS(int energy_index, Region* region) {
-    return region->getTotalMicroXS(energy_index);
-}
-
-
 float Geometry::getElasticMacroXS(float energy, Region* region) {
     return region->getTotalMacroXS(energy);
 }
@@ -123,17 +113,6 @@ float Geometry::getElasticMacroXS(int energy_index, Region* region) {
     return region->getTotalMacroXS(energy_index);
 }
 
-
-float Geometry::getElasticMicroXS(float energy, Region* region) {
-    return region->getTotalMicroXS(energy);
-}
-
-
-float Geometry::getElasticMicroXS(int energy_index, Region* region) {
-    return region->getTotalMicroXS(energy_index);
-}
-
-
 float Geometry::getAbsorptionMacroXS(float energy, Region* region) {
     return region->getTotalMacroXS(energy);
 }
@@ -141,16 +120,6 @@ float Geometry::getAbsorptionMacroXS(float energy, Region* region) {
 
 float Geometry::getAbsorptionMacroXS(int energy_index, Region* region) {
     return region->getTotalMacroXS(energy_index);
-}
-
-
-float Geometry::getAbsorptionMicroXS(float energy, Region* region) {
-    return region->getTotalMicroXS(energy);
-}
-
-
-float Geometry::getAbsorptionMicroXS(int energy_index, Region* region) {
-    return region->getTotalMicroXS(energy_index);
 }
 
 
@@ -164,16 +133,6 @@ float Geometry::getCaptureMacroXS(int energy_index, Region* region) {
 }
 
 
-float Geometry::getCaptureMicroXS(float energy, Region* region) {
-    return region->getTotalMicroXS(energy);
-}
-
-
-float Geometry::getCaptureMicroXS(int energy_index, Region* region) {
-    return region->getTotalMicroXS(energy_index);
-}
-
-
 float Geometry::getFissionMacroXS(float energy, Region* region) {
     return region->getTotalMacroXS(energy);
 }
@@ -184,16 +143,6 @@ float Geometry::getFissionMacroXS(int energy_index, Region* region) {
 }
 
 
-float Geometry::getFissionMicroXS(float energy, Region* region) {
-    return region->getTotalMicroXS(energy);
-}
-
-
-float Geometry::getFissionMicroXS(int energy_index, Region* region) {
-    return region->getTotalMicroXS(energy_index);
-}
-
-
 float Geometry::getTransportMacroXS(float energy, Region* region) {
     return region->getTotalMacroXS(energy);
 }
@@ -201,16 +150,6 @@ float Geometry::getTransportMacroXS(float energy, Region* region) {
 
 float Geometry::getTransportMacroXS(int energy_index, Region* region) {
     return region->getTotalMacroXS(energy_index);
-}
-
-
-float Geometry::getTransportMicroXS(float energy, Region* region) {
-    return region->getTotalMicroXS(energy);
-}
-
-
-float Geometry::getTransportMicroXS(int energy_index, Region* region) {
-    return region->getTotalMicroXS(energy_index);
 }
 
 

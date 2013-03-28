@@ -17,9 +17,10 @@
 #include "log.h"
 #include "arraycreator.h"
 #include "Neutron.h"
+#include "Region.h"
 #include "Material.h"
 #include "Isotope.h"
-#include "Region.h"
+class Geometry;
 
 
 
@@ -99,6 +100,7 @@ public:
 	Tally(char* tally_name, Isotope* isotope, tallyType tally_type);
 	Tally(char* tally_name, Material* material, tallyType tally_type);
 	Tally(char* tally_name, Region* region, tallyType tally_type);
+	Tally(char* tally_name, Geometry* geometry, tallyType tally_type);
 	virtual ~Tally();
 	char* getTallyName();
 	int getNumBins();

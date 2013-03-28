@@ -148,16 +148,6 @@ float Region::getTotalMacroXS(int energy_index) {
 }
 
 
-float Region::getTotalMicroXS(float energy) {
-    return _material->getTotalMicroXS(energy);
-}
-
-
-float Region::getTotalMicroXS(int energy_index) {
-    return _material->getTotalMicroXS(energy_index);
-}
-
-
 float Region::getElasticMacroXS(float energy) {
     return _material->getElasticMacroXS(energy);
 }
@@ -165,16 +155,6 @@ float Region::getElasticMacroXS(float energy) {
 
 float Region::getElasticMacroXS(int energy_index) {
     return _material->getElasticMacroXS(energy_index);
-}
-
-
-float Region::getElasticMicroXS(float energy) {
-    return _material->getElasticMicroXS(energy);
-}  
-
-
-float Region::getElasticMicroXS(int energy_index) {
-    return _material->getElasticMicroXS(energy_index);
 }
 
 
@@ -188,31 +168,12 @@ float Region::getAbsorptionMacroXS(int energy_index) {
 }
 
 
-float Region::getAbsorptionMicroXS(float energy) {
-    return _material->getAbsorptionMicroXS(energy);
-}
-
-
-float Region::getAbsorptionMicroXS(int energy_index) {
-    return _material->getAbsorptionMicroXS(energy_index);
-}
-
 float Region::getCaptureMacroXS(float energy) {
     return _material->getCaptureMacroXS(energy);
 }
 
 float Region::getCaptureMacroXS(int energy_index) {
     return _material->getCaptureMacroXS(energy_index);
-}
-
-
-float Region::getCaptureMicroXS(float energy) {
-    return _material->getCaptureMicroXS(energy);
-}
-
-
-float Region::getCaptureMicroXS(int energy_index) {
-    return _material->getCaptureMicroXS(energy_index);
 }
 
 
@@ -223,26 +184,6 @@ float Region::getFissionMacroXS(float energy) {
 
 float Region::getFissionMacroXS(int energy_index) {
     return _material->getFissionMacroXS(energy_index);
-}
-
-
-float Region::getFissionMicroXS(float energy) {
-    return _material->getFissionMicroXS(energy);
-}
-
-
-float Region::getFissionMicroXS(int energy_index) {
-    return _material->getFissionMicroXS(energy_index);
-}
-
-
-float Region::getTransportMicroXS(float energy) {
-    return _material->getTransportMicroXS(energy);
-}
-
-
-float Region::getTransportMicroXS(int energy_index) {
-    return _material->getTransportMicroXS(energy_index);
 }
 
 

@@ -575,6 +575,9 @@ void Isotope::makeFissionable() {
  */
 void Isotope::loadXS() {
 
+	log_printf(INFO, "Loading isotope %s", _isotope_name);
+
+	/* initialize variables */
     std::string directory = getXSLibDirectory();
 	std::string filename;
 	struct stat buffer;
@@ -596,9 +599,6 @@ void Isotope::loadXS() {
 						" since no data was found in the cross-section"
 						" file %s for this isotope", 
                         filename.c_str(), _isotope_name);
-
-	log_printf(INFO, "Loading %s-elastic.txt for isotope %s", 
-						_isotope_name, _isotope_name);
 
 	/* Find the number of cross-section values in the file */
 	_num_elastic_xs = getNumCrossSectionDataPoints(filename.c_str());
@@ -624,9 +624,6 @@ void Isotope::loadXS() {
 						" file %s for this isotope", 
                         filename.c_str(), _isotope_name); 
 
-	log_printf(INFO, "Loading %s-capture.txt for isotope %s", 
-						_isotope_name, _isotope_name);
-
 	/* Find the number of cross-section values in the file */
 	_num_capture_xs = getNumCrossSectionDataPoints(filename.c_str());
 
@@ -646,9 +643,6 @@ void Isotope::loadXS() {
 
     /* If this isotope is fissionable and it finds it's fission xs */
 	if (!stat(filename.c_str(), &buffer)) {
-
-	log_printf(INFO, "Loading %s-fission.txt for isotope %s", 
-						_isotope_name, _isotope_name);
 
 		/* Find the number of cross-section values in the file */
 		_num_fission_xs = getNumCrossSectionDataPoints(filename.c_str());
@@ -1200,13 +1194,9 @@ binSpacingTypes Isotope::getEnergyGridScaleType() {
 collisionType Isotope::collideNeutron(neutron* neut) {
 
     /* obtain incoming energy, batch number */
-    int batch_num = neut->_batch_num;
     float sample = neut->_energy;
-    float total_xs = getTotalXS(sample);
 
     float energy = neut->_energy;
-    float sigma_total_iso = getTotalXS(energy);
-    float sigma_total_mat = 1.0;//neut->curr_region->getTotalMicroXS(energy);
 
     /* obtain collision type */
     collisionType type = getCollisionType(sample);

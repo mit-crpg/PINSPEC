@@ -74,6 +74,26 @@ Tally::Tally(char* tally_name, Region* region, tallyType tally_type) {
 
 
 /**
+ * Default Tally constructor
+ */
+Tally::Tally(char* tally_name, Geometry* geometry, tallyType tally_type) {
+
+	_tally_name = tally_name;
+    _tally_domain = GEOMETRY;
+    _tally_type = tally_type;
+    _trigger_type = NONE;
+
+	 /* Sets the default delta between bins to zero */
+	_bin_delta = 0;
+
+	/* Sets the default for batch statistics */
+	_num_batches = 0;
+    _num_bins = 0;
+	_computed_statistics = false;
+}
+
+
+/**
  * Tally destructor deletes memory for tallies, number of tallies,
  * bin centers and bin edges if they have been created
  */
@@ -765,7 +785,9 @@ void Tally::weightedTally(neutron* neutron) {
 				 "batches have not yet been created", _tally_name);
 
 
-	float total_xs = neutron->_region->getTotalMicroXS(neutron->_energy);
+	Region* region = neutron->_region;
+	float num_density = region->getMaterial()->getMaterialNumberDensity();
+	float total_xs = region->getTotalMacroXS(neutron->_energy) * num_density;
 	float energy = neutron->_energy;
 	int bin_index = getBinIndex(energy);
 	double weight;
@@ -780,22 +802,22 @@ void Tally::weightedTally(neutron* neutron) {
 			weight = 1.0;
 			break;
 		case ELASTIC_RATE:
-			weight = _material->getElasticMicroXS(energy) / total_xs;
+			weight = _material->getElasticMacroXS(energy) / (total_xs * num_density);
 			break;
 		case ABSORPTION_RATE:
-			weight = _material->getAbsorptionMicroXS(energy) / total_xs;
+			weight = _material->getAbsorptionMacroXS(energy) / (total_xs * num_density);
 			break;
 		case CAPTURE_RATE:
-			weight = _material->getCaptureMicroXS(energy) / total_xs;
+			weight = _material->getCaptureMacroXS(energy) / (total_xs * num_density);
 			break;
 		case FISSION_RATE:
-			weight = _material->getFissionMicroXS(energy) / total_xs;
+			weight = _material->getFissionMacroXS(energy) / (total_xs * num_density);
 			break;
 		case TRANSPORT_RATE:
-			weight = _material->getTransportMicroXS(energy) / total_xs;
+			weight = _material->getTransportMacroXS(energy) / (total_xs * num_density);
 			break;
 		case DIFFUSION_RATE:
-			weight = 1.0 / (3.0 * _material->getTransportMicroXS(energy))  / total_xs;
+			weight = 1.0 / (3.0 * _material->getTransportMacroXS(energy))  / (total_xs * num_density);
 			break;
 		case LEAKAGE_RATE:
 			weight = 1.0;
@@ -826,7 +848,7 @@ void Tally::weightedTally(neutron* neutron) {
 			weight = _isotope->getTransportXS(energy) / total_xs;
 			break;
 		case DIFFUSION_RATE:
-			weight = 1.0 / (3.0 * _isotope->getTransportXS(energy))  / total_xs;
+			weight = 1.0 / (3.0 * _isotope->getTransportXS(energy)) / total_xs;
 			break;
 		case LEAKAGE_RATE:
 			weight = 1.0;
@@ -842,28 +864,60 @@ void Tally::weightedTally(neutron* neutron) {
 			weight = 1.0;
 			break;
 		case ELASTIC_RATE:
-			weight = _region->getElasticMicroXS(energy) / total_xs;
+			weight = _region->getElasticMacroXS(energy) / (total_xs * num_density);
 			break;
 		case ABSORPTION_RATE:
-			weight = _region->getAbsorptionMicroXS(energy) / total_xs;
+			weight = _region->getAbsorptionMacroXS(energy) / (total_xs * num_density);
 			break;
 		case CAPTURE_RATE:
-			weight = _region->getCaptureMicroXS(energy) / total_xs;
+			weight = _region->getCaptureMacroXS(energy) / (total_xs * num_density);
 			break;
 		case FISSION_RATE:
-			weight = _region->getFissionMicroXS(energy) / total_xs;
+			weight = _region->getFissionMacroXS(energy) / (total_xs * num_density);
 			break;
 		case TRANSPORT_RATE:
-			weight = _region->getTransportMicroXS(energy) / total_xs;
+			weight = _region->getTransportMacroXS(energy) / (total_xs * num_density);
 			break;
 		case DIFFUSION_RATE:
-			weight = 1.0 / (3.0 * _region->getTransportMicroXS(energy))  / total_xs;
+			weight = 1.0 / (3.0 * _region->getTransportMacroXS(energy))  / (total_xs * num_density);
 			break;
 		case LEAKAGE_RATE:
 			weight = 1.0;
 			break;
 		}
 		break;
+	case GEOMETRY:
+		switch(_tally_type){
+		case FLUX:
+			weight = 1.0 / total_xs;
+			break;
+		case COLLISION_RATE:
+			weight = 1.0;
+			break;
+		case ELASTIC_RATE:
+			weight = region->getElasticMacroXS(energy) / (total_xs * num_density);
+			break;
+		case ABSORPTION_RATE:
+			weight = region->getAbsorptionMacroXS(energy) / (total_xs * num_density);
+			break;
+		case CAPTURE_RATE:
+			weight = region->getCaptureMacroXS(energy) / (total_xs * num_density);
+			break;
+		case FISSION_RATE:
+			weight = region->getFissionMacroXS(energy) / (total_xs * num_density);
+			break;
+		case TRANSPORT_RATE:
+			weight = region->getTransportMacroXS(energy) / (total_xs * num_density);
+			break;
+		case DIFFUSION_RATE:
+			weight = 1.0 / (3.0 * region->getTransportMacroXS(energy))  / (total_xs * num_density);
+			break;
+		case LEAKAGE_RATE:
+			weight = 1.0;
+			break;
+		}
+		break;
+
 	}
 
 	if (bin_index >= 0 && bin_index < _num_bins) 

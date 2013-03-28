@@ -141,6 +141,7 @@ public:
     float getElasticXS(float energy) const;
     float getElasticXS(int energy_index) const;
     scatterAngleType getElasticAngleType() const;
+
     float getAbsorptionXS(float energy) const;
     float getAbsorptionXS(int energy_index) const;
     float getCaptureXS(float energy) const;
@@ -151,6 +152,7 @@ public:
     float getTotalXS(int energy_index) const;
     float getTransportXS(int energy_index) const;
     float getTransportXS(float energy) const;
+
     bool usesThermalScattering();
     bool isRescaled() const;
     int getEnergyGridIndex(float energy) const;

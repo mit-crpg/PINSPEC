@@ -53,31 +53,19 @@ public:
 
 	float getTotalMacroXS(float energy);
 	float getTotalMacroXS(int energy_index);
-	float getTotalMicroXS(float energy);
-	float getTotalMicroXS(int energy_index);
 	
 	float getElasticMacroXS(float energy);
 	float getElasticMacroXS(int energy_index);
-	float getElasticMicroXS(float energy);
-	float getElasticMicroXS(int energy_index);
 	
 	float getAbsorptionMacroXS(float energy);
 	float getAbsorptionMacroXS(int energy_index);
-	float getAbsorptionMicroXS(float energy);
-	float getAbsorptionMicroXS(int energy_index);
 	
 	float getCaptureMacroXS(float energy);
 	float getCaptureMacroXS(int energy_index);
-	float getCaptureMicroXS(float energy);
-	float getCaptureMicroXS(int energy_index);
 	
 	float getFissionMacroXS(float energy);
 	float getFissionMacroXS(int energy_index);
-	float getFissionMicroXS(float energy);
-	float getFissionMicroXS(int energy_index);
 	
-	float getTransportMicroXS(float energy);
-	float getTransportMicroXS(int energy_index);
 	float getTransportMacroXS(float energy);
 	float getTransportMacroXS(int energy_index);
 

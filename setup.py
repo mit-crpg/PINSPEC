@@ -21,7 +21,6 @@ os.environ['OPT'] = ' '.join(
     flag for flag in opt.split() if flag != '-Wstrict-prototypes'
 )
 
-#, '/opt/local/lib/gcc47/gcc/x86_64-apple-darwin11/4.7.2/include'
 #, '-L/opt/local/lib/gcc47'
 
 # range extension module
@@ -36,7 +35,7 @@ pinspec = Extension('_pinspec',
                             'pinspec/src/Geometry.cpp'],
                    extra_compile_args=['-O3', '-fopenmp',
                                     '-march=native', '-ffast-math'],
-                   extra_link_args=['-lstdc++', '-fopenmp', '-lgomp', '-fPI'],
+                   extra_link_args=['-lstdc++', '-fopenmp', '-lgomp', '-fPI', '-L/opt/local/lib/gcc47'],
                    language='c++',
                    swig_opts=['-c++'],
                    )

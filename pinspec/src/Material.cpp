@@ -173,39 +173,6 @@ float Material::getTotalMacroXS(int energy_index) {
 
 
 /**
- * Returns the total microscopic cross-section within this Material
- * at some energy
- * @param energy energy of interest (eV)
- * @return the total microscopic cross-section (barns)
- */
-float Material::getTotalMicroXS(float energy) {
-
-	 float sigma_t = getTotalMacroXS(energy) / _material_number_density;
-
-	return sigma_t;
-}
-
-
-/**
- * Returns the total microscopic cross-section within this Material
- * at some index into a rescaled energy grid
- * @param energy energy of interest (eV)
- * @return the total microscopic cross-section (barns)
- */
-float Material::getTotalMicroXS(int energy_index) {
-
-	float sigma_t = 0;
-
-	/* Increment sigma_t for each isotope */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
-		sigma_t += iter->second.second->getTotalXS(energy_index);
-
-	return sigma_t;
-}
-
-
-/**
  * Returns the total macroscopic elastic scattering cross-section within
  * this Material at some energy
  * @param energy energy of interest (eV)
@@ -246,44 +213,6 @@ float Material::getElasticMacroXS(int energy_index) {
 
 
 /**
- * Returns the total macroscopic elastic scattering cross-section within
- * this Material at some energy
- * @param energy energy of interest (eV)
- * @return the total elastic microscopic scattering cross-section (barns)
- */
-float Material::getElasticMicroXS(float energy) {
-
-	float sigma_s = 0;
-
-	/* Increment sigma_s for each isotope */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
-		sigma_s += iter->second.second->getElasticXS(energy);
-
-	return sigma_s;
-}
-
-
-/**
- * Returns the elastic microscopic cross-section within this Material
- * at some index into a rescaled energy grid
- * @param energy energy of interest (eV)
- * @return the elastic microscopic cross-section (barns)
- */
-float Material::getElasticMicroXS(int energy_index) {
-
-	float sigma_e = 0;
-
-	/* Increment sigma_e for each isotope */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
-		sigma_e += iter->second.second->getElasticXS(energy_index);
-
-	return sigma_e;
-}
-
-
-/**
  * Returns the total macroscopic absorption cross-section within this Material
  * at some energy
  * @param energy energy of interest (eV)
@@ -317,43 +246,6 @@ float Material::getAbsorptionMacroXS(int energy_index) {
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
 		sigma_a += iter->second.second->getAbsorptionXS(energy_index)
 										* iter->second.first;
-
-	return sigma_a;
-}
-
-
-/**
- * Returns the total microscopic absorption cross-section within this Material
- * at some energy
- * @param energy energy of interest (eV)
- * @return the total microscopic absorption cross-section (barns)
- */
-float Material::getAbsorptionMicroXS(float energy) {
-	float sigma_a = 0;
-
-	/* Increment sigma_a for each isotope */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
-		sigma_a += iter->second.second->getAbsorptionXS(energy);
-
-	return sigma_a;
-}
-
-
-/**
- * Returns the absorption microscopic cross-section within this Material
- * at some index into a rescaled energy grid
- * @param energy energy of interest (eV)
- * @return the absorption microscopic cross-section (barns)
- */
-float Material::getAbsorptionMicroXS(int energy_index) {
-
-	float sigma_a = 0;
-
-	/* Increment sigma_f for each isotope */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
-		sigma_a += iter->second.second->getAbsorptionXS(energy_index);
 
 	return sigma_a;
 }
@@ -400,44 +292,6 @@ float Material::getCaptureMacroXS(int energy_index) {
 
 
 /**
- * Returns the total microscopic capture cross-section within this Material
- * at some energy
- * @param energy energy of interest (eV)
- * @return the total microscopic capture cross-section (barns)
- */
-float Material::getCaptureMicroXS(float energy) {
-
-	float sigma_a = 0;
-
-	/* Increment sigma_a for each isotope */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
-		sigma_a += iter->second.second->getCaptureXS(energy);
-
-	return sigma_a;
-}
-
-
-/**
- * Returns the capture microscopic cross-section within this Material
- * at some index into a rescaled energy grid
- * @param energy energy of interest (eV)
- * @return the capture microscopic cross-section (barns)
- */
-float Material::getCaptureMicroXS(int energy_index) {
-
-	float sigma_c = 0;
-
-	/* Increment sigma_t for each isotope */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
-		sigma_c += iter->second.second->getCaptureXS(energy_index);
-
-	return sigma_c;
-}
-
-
-/**
  * Returns the total macroscopic fission cross-section within this Material
  * at some energy
  * @param energy energy of interest (eV)
@@ -474,62 +328,6 @@ float Material::getFissionMacroXS(int energy_index) {
 										* iter->second.first;
 
 	return sigma_f;
-}
-
-
-/**
- * Returns the total microscopic fission cross-section within this Material
- * at some energy
- * @param energy energy of interest (eV)
- * @return the total microscopic fission cross-section (barns)
- */
-float Material::getFissionMicroXS(float energy) {
-
-	float sigma_f = 0;
-
-	/* Increment sigma_f for each isotope */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
-		sigma_f += iter->second.second->getFissionXS(energy);
-
-	return sigma_f;
-}
-
-
-/**
- * Returns the fission microscopic cross-section within this Material
- * at some index into a rescaled energy grid
- * @param energy energy of interest (eV)
- * @return the fission microscopic cross-section (barns)
- */
-float Material::getFissionMicroXS(int energy_index) {
-
-	float sigma_f = 0;
-
-	/* Increment sigma_f for each isotope */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
-		sigma_f += iter->second.second->getFissionXS(energy_index);
-
-	return sigma_f;
-}
-
-
-/**
- * Returns the total microscopic transport cross-section within this Material
- * at some energy
- * @param energy energy of interest (eV)
- * @return the total microscopic transport cross-section (barns)
- */
-float Material::getTransportMicroXS(float energy) {
-	float sigma_tr = 0;
-
-	/* Increment sigma_a for each isotope */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
-		sigma_tr += iter->second.second->getTransportXS(energy);
-
-	return sigma_tr;
 }
 
 
@@ -572,23 +370,6 @@ float Material::getTransportMacroXS(float energy) {
 }
 
 
-/**
- * Returns the transport microscopic cross-section within this Material
- * at some index into a rescaled energy grid
- * @param energy energy of interest (eV)
- * @return the transport microscopic cross-section (barns)
- */
-float Material::getTransportMicroXS(int energy_index) {
-
-	float sigma_tr = 0;
-
-	/* Increment sigma_f for each isotope */
-	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
-	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter)
-		sigma_tr += iter->second.second->getTransportXS(energy_index);
-
-	return sigma_tr;
-}
 
 
 /**
@@ -687,13 +468,10 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Inserts the isotope and increments the total number density */
     _isotopes.insert(new_isotope);
 
-    log_printf(INFO, "printing isotope number densities");
-
     /* Loop over all isotopes: update all the number densities */
     for (iter =_isotopes.begin(); iter != _isotopes.end(); ++iter){
     	/* Update isotope's number density */
     	iter->second.first = _isotopes_AO.at(iter->second.second) / total_AO * _material_number_density;
-    	log_printf(INFO, "number density %s: %f", iter->first, iter->second.first);
     }
 
     return;
@@ -760,10 +538,7 @@ float Material::getDensity(){
  */
 collisionType Material::collideNeutron(neutron* neut) {
 
-    int batch_num = neut->_batch_num;
     float sample = neut->_energy;
-    float Sigma_t_mat = getTotalMicroXS(sample);
-    float Sigma_t_iso = 1.0; //neut->curr_region->getTotalMacroXS(sample);
 
     Isotope *isotope;
     isotope = sampleIsotope(sample);
