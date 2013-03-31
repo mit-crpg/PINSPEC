@@ -13,7 +13,7 @@ def main():
     num_threads = 4
     setOutputDirectory('infinite')
 
-    log_setLevel(INFO)
+    log_setlevel(INFO)
 
     py_printf('TITLE', 'Simulating an infinite medium homogenized pin-cell')
 
