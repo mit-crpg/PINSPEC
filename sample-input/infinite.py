@@ -13,7 +13,7 @@ def main():
     num_threads = 4
     output_dir = 'Infinite'
 
-    setlevel(INFO)
+    setLevel(INFO)
     
     # Call SLBW to create XS
     #py_printf('INFO', 'Creating SLBW xs')
