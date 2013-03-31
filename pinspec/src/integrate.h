@@ -7,8 +7,8 @@
  *              wboyd@mit.edu
  */
 
-#include <stdio.h>
 #ifdef __cplusplus
+#include <stdio.h>
 #include <string>
 #endif
 #include <stdlib.h>

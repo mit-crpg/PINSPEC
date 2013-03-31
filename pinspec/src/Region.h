@@ -10,6 +10,7 @@
 #ifndef REGION_H_
 #define REGION_H_
 
+#ifdef __cplusplus
 #include <vector>
 #include <math.h>
 #include <algorithm>
@@ -18,15 +19,14 @@
 #include "Surface.h"
 #include "Material.h"
 
-
 #define _USE_MATH_DEFINES
-
 
 typedef enum regionTypes {
 	FUEL,
 	MODERATOR,
 	INFINITE
 } regionType;
+
 
 
 /**
@@ -108,5 +108,7 @@ public:
 	void collideNeutron(neutron* neutron);
 };
 
+
+#endif
 
 #endif /* REGION_H_ */

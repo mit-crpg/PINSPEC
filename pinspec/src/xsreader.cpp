@@ -10,6 +10,9 @@
 #include "xsreader.h"
 
 
+static char* _xs_directory;
+
+
 void setXSLibDirectory(char* xs_directory) {
     _xs_directory = xs_directory;
     log_printf(INFO, "Set the cross-section library directory "
@@ -20,6 +23,14 @@ void setXSLibDirectory(char* xs_directory) {
 
 char* getXSLibDirectory() {
     return _xs_directory;
+}
+
+
+int restoreXSLibrary() {
+    std::string cmd = std::string("cp ") + _xs_directory + 
+                                                "/BackupXS/* " + _xs_directory;
+    int ret = system(cmd.c_str());
+    return ret;
 }
 
 

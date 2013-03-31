@@ -1,0 +1,9 @@
+Batch-based tally statistics for PINSPEC
+Tally name: 
+Tally type: TRANSPORT_RATE Reaction Rate
+Tally Domain: Geometry
+User-defined bins
+# batches: 10	, # bins: 2
+Bin center, Mu, Variance, Std Dev, Rel Err
+0.3125000000, 2.8177995472, 0.0001501853, 0.0122550132, 0.0043491430
+5000000.3125000000, 7.1421356114, 0.0000491126, 0.0070080355, 0.0009812241

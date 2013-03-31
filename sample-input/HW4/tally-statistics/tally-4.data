@@ -1,0 +1,9 @@
+Batch-based tally statistics for PINSPEC
+Tally name: 
+Tally type: FISSION_RATE Reaction Rate
+Tally Domain: Geometry
+User-defined bins
+# batches: 10	, # bins: 2
+Bin center, Mu, Variance, Std Dev, Rel Err
+0.3125000000, 0.3008530348, 0.0000013105, 0.0011447691, 0.0038050776
+5000000.3125000000, 0.0511178514, 0.0000000131, 0.0001144612, 0.0022391633

@@ -19,6 +19,7 @@ Material::Material(char* material_name) {
 	_material_number_density = 0.0;
 	_material_atomic_mass = 1.0;
 	_buckling_squared = 0.0;
+    _volume = 0.0;
 }
 
 
@@ -65,7 +66,7 @@ Isotope* Material::getIsotope(char* isotope) {
  * @return the isotope's number density
  */
 float Material::getIsotopeNumDensity(char* isotope) {
-	return _isotopes.at(isotope).first;
+	return _isotopes.at(isotope).first * 1E24;
 }
 
 
@@ -82,20 +83,28 @@ float Material::getBucklingSquared() {
 }
 
 
-int Material::getNumXSEnergies() const {
+float Material::getVolume() {
+    return _volume;
+}
+
+
+int Material::getNumXSEnergies(char* xs_type) const {
 
     Isotope* isotope;
 
     if (_isotopes.size() == 0) 
-        log_printf(ERROR, "Unable to return the number of xs energies for "
-                    " material %s since it has no isotopes", _material_name);
+        log_printf(ERROR, "Unable to return the number of xs energies "
+                   "for material %s since it has no isotopes", _material_name);
 
     isotope = _isotopes.begin()->second.second;
-    return isotope->getNumXSEnergies();
+
+    return isotope->getNumXSEnergies(xs_type);
+
 }
 
 
-void Material::retrieveXSEnergies(float* energies, int num_xs) const {
+void Material::retrieveXSEnergies(float* energies, int num_xs, 
+                                                    char* xs_type) const {
 
     Isotope* isotope;
 
@@ -104,7 +113,7 @@ void Material::retrieveXSEnergies(float* energies, int num_xs) const {
                     " material %s since it has no isotopes", _material_name);
 
     isotope = _isotopes.begin()->second.second;
-    isotope->retrieveXSEnergies(energies, num_xs);
+    isotope->retrieveXSEnergies(energies, num_xs, xs_type);
 }
 
 
@@ -638,6 +647,11 @@ void Material::setBucklingSquared(float buckling_squared) {
 }
 
 
+void Material::incrementVolume(float volume) {
+    _volume += volume;
+}
+
+
 /**
  * Adds a new isotope to this Material
  * @param isotope a pointer to a isotope class object
@@ -649,6 +663,15 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     std::map<char*, std::pair<float, Isotope*> >::iterator iter;
     std::map<Isotope*, float> ::iterator iter_AO;
 
+    /* Remove prior version of this isotope if it is already in the material */
+    iter = _isotopes.find(isotope->getIsotopeName());
+    if (iter != _isotopes.end())
+        _isotopes.erase(iter);
+
+    iter_AO = _isotopes_AO.find(isotope);
+    if (iter_AO != _isotopes_AO.end())
+        _isotopes_AO.erase(iter_AO);
+
     /* Add isotope and isotope AO to _isotopes_AO map */
     std::pair<Isotope*, float> new_isotope_AO =
    	std::pair<Isotope*, float> (isotope, atomic_ratio);
@@ -656,7 +679,7 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 
     /* Checks to make sure material density is set already */
     if (_material_density <= 0)
-	log_printf(ERROR, "Unable to add Isotope %s since the number density "
+    	log_printf(ERROR, "Unable to add Isotope %s since the number density "
                        "for Material %s has not yet been set", 
                         isotope->getIsotopeName(), _material_name);
 
@@ -672,12 +695,10 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Sum the partial contributions to the material atomic mass */
     _material_atomic_mass = 0.0;
     for (iter_AO =_isotopes_AO.begin(); iter_AO != _isotopes_AO.end(); ++iter_AO){
-    	_material_atomic_mass += iter_AO->second / total_AO * iter_AO->first->getA();
+    	_material_atomic_mass += iter_AO->second * iter_AO->first->getA();
     }
 
     /* Calculates the material's number density */
-    /* Notice I am using old_atomic_mass because I update all isotopes at
-     * the end of this function. */
     _material_number_density = _material_density * N_av / _material_atomic_mass;
 
     /* Calculates the isotope's number density */
@@ -694,13 +715,12 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Inserts the isotope and increments the total number density */
     _isotopes.insert(new_isotope);
 
-    log_printf(INFO, "printing isotope number densities");
-
     /* Loop over all isotopes: update all the number densities */
     for (iter =_isotopes.begin(); iter != _isotopes.end(); ++iter){
     	/* Update isotope's number density */
-    	iter->second.first = _isotopes_AO.at(iter->second.second) / total_AO * _material_number_density;
-    	log_printf(INFO, "number density %s: %f", iter->first, iter->second.first);
+    	iter->second.first = _isotopes_AO.at(iter->second.second) * _material_number_density;
+    	log_printf(INFO, "Isotope %s has number density %1.3E in material %s", 
+                        iter->first, iter->second.first*1E24, _material_name);
     }
 
     return;

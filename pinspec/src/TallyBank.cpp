@@ -7,7 +7,12 @@
  *              wboyd@mit.edu
  */
 
+#define TALLYBANK_C
+
 #include "TallyBank.h"
+
+
+int output_file_num = 0;
 
 
 void TallyBank::registerTally(Tally* tally) {
@@ -35,6 +40,11 @@ void TallyBank::registerTally(Tally* tally) {
 		IsotopeTally* isotope_tally = static_cast<IsotopeTally*>(tally);
 		registerTally(isotope_tally, isotope_tally->getIsotope());
 	}
+
+	/* Don't track tallies with UNDEFINED domain (only for DERIVED tallies) */
+	else if (tally->getTallyDomainType() == UNDEFINED)
+        log_printf(ERROR, "Unable to register DERIVED type tally %s with the"
+                        " TallyBank", tally->getTallyName());
 	
 }
 
@@ -45,11 +55,22 @@ void TallyBank::registerTally(Tally* tally, Geometry* geometry) {
 	if (tally->getTallyDomainType() == GEOMETRY) {
 
 		 /* Add this tally to the geometry's tally registry */
-		_geometry_tallies.insert(tally);
-		_all_tallies.insert(tally);
+	    /* If this geometry is not registered yet, create a new pair for it*/
+	    if (_geometry_tallies.find(geometry) == _geometry_tallies.end()) {
+		    std::set<Tally*>* tally_set = new std::set<Tally*>;
+		    tally_set->insert(tally);
+		    _geometry_tallies[geometry] = tally_set;
+	    }
 
-		log_printf(INFO, "Registered tally %s with the TallyBank for the "
-										"geometry", tally->getTallyName());	
+	    /* Register this tally for an existing geometry in the TallyBank */
+	    else
+		    _geometry_tallies.find(geometry)->second->insert(tally);
+
+	    /* Add the tally to the global registry */
+	    _all_tallies.insert(tally);
+
+	    log_printf(INFO, "Registered tally %s with the TallyBank for"
+                                " the geometry", tally->getTallyName());
 	}
 
 
@@ -79,14 +100,16 @@ void TallyBank::registerTally(Tally* tally, Geometry* geometry) {
 		registerTally(isotope_tally, isotope_tally->getIsotope());
 	}
 
+	/* Don't track tallies with UNDEFINED domain (only for DERIVED tallies) */
+	else if (tally->getTallyDomainType() == UNDEFINED)
+        log_printf(ERROR, "Unable to register DERIVED type tally %s with the"
+                        " TallyBank", tally->getTallyName());
+
 }
 
 
 void TallyBank::registerTally(Tally* tally, Region* region) {
 	
-	log_printf(DEBUG, "Registering tally %s for region %s", 
-							tally->getTallyName(), region->getRegionName());
-
 	/* We are unable to track tallies with a GEOMETRY domain for a region */
 	if (tally->getTallyDomainType() == GEOMETRY)
 		log_printf(ERROR, "The TallyBank is unable to register tally %s"
@@ -143,6 +166,11 @@ void TallyBank::registerTally(Tally* tally, Region* region) {
 						isotope_tally->getIsotope()->getIsotopeName(),
 						region->getMaterial()->getMaterialName());
 	}
+
+	/* Don't track tallies with UNDEFINED domain (only for DERIVED tallies) */
+	else if (tally->getTallyDomainType() == UNDEFINED)
+        log_printf(ERROR, "Unable to register DERIVED type tally %s with the"
+                        " TallyBank", tally->getTallyName());
 
 
 	/* If the tally and region passed all tests, register the region
@@ -282,6 +310,11 @@ void TallyBank::registerTally(Tally* tally, Isotope* isotope) {
 						" in an isotope since it is a FLUX type tally",
 												isotope_tally->getTallyName());
 
+		else if (isotope_tally->getTallyType() == INTERCOLLISION_TIME)
+			log_printf(ERROR, "The TallyBank is unable to register tally %s"
+						" in an isotope since it is an INTERCOLLISION_TIME"
+                        " type tally", isotope_tally->getTallyName());
+
 		else if (isotope_tally->getTallyType() == LEAKAGE_RATE)
 			log_printf(ERROR, "The TallyBank is unable to register tally %s"
 					" in an isotope since it is a LEAKAGE_RATE type tally",
@@ -318,6 +351,11 @@ void TallyBank::registerTally(Tally* tally, Isotope* isotope) {
 												isotope_tally->getTallyName());
 	}
 
+	/* Don't track tallies with UNDEFINED domain (only for DERIVED tallies) */
+	else if (tally->getTallyDomainType() == UNDEFINED)
+        log_printf(ERROR, "Unable to register DERIVED type tally %s with the"
+                        " TallyBank", tally->getTallyName());
+
 	/* If the tally and isotope passed all tests, register the isotope
 	 * and add this tally to the isotope's tally registry */
 
@@ -334,6 +372,46 @@ void TallyBank::registerTally(Tally* tally, Isotope* isotope) {
 
 	/* Add the tally to the global registry */
 	_all_tallies.insert(tally);	
+}
+
+
+void TallyBank::deregisterTally(Tally* tally) {
+
+    std::set<Tally*>::iterator set_iter;
+	std::map<Geometry*, std::set<Tally*>* >::iterator iter1;
+	std::map<Region*, std::set<Tally*>* >::iterator iter2;
+	std::map<Material*, std::set<Tally*>* >::iterator iter3;
+	std::map<Isotope*, std::set<Tally*>* >::iterator iter4;
+
+    set_iter = _all_tallies.find(tally);
+    if (set_iter != _all_tallies.end())
+        _all_tallies.erase(set_iter);
+
+    for (iter1 = _geometry_tallies.begin(); iter1 != _geometry_tallies.end(); ++iter1) {
+        set_iter = ((*iter1).second)->find(tally);
+        if (set_iter != ((*iter1).second)->end())
+            ((*iter1).second)->erase(set_iter);
+    }
+
+    for (iter2 = _region_tallies.begin(); iter2 != _region_tallies.end(); ++iter2) {
+        set_iter = ((*iter2).second)->find(tally);
+        if (set_iter != ((*iter2).second)->end())
+            ((*iter2).second)->erase(set_iter);
+    }
+
+    for (iter3 = _material_tallies.begin(); iter3 != _material_tallies.end(); ++iter3) {
+        set_iter = ((*iter3).second)->find(tally);
+        if (set_iter != ((*iter3).second)->end())
+            ((*iter3).second)->erase(set_iter);
+    }
+
+    for (iter4 = _isotope_tallies.begin(); iter4 != _isotope_tallies.end(); ++iter4) {
+        set_iter = ((*iter4).second)->find(tally);
+        if (set_iter != ((*iter4).second)->end())
+            ((*iter4).second)->erase(set_iter);
+    }
+
+    return;
 }
 
 
@@ -366,11 +444,63 @@ void TallyBank::computeBatchStatistics() {
 
 void TallyBank::computeScaledBatchStatistics(float scale_factor) {
 
-    /* Compute statistics for each of the TallyBank's tallies */
-    std::set<Tally*>::iterator iter;
+    std::set<Tally*>::iterator set_iter;
+	std::map<Geometry*, std::set<Tally*>* >::iterator iter1;
+	std::map<Region*, std::set<Tally*>* >::iterator iter2;
+	std::map<Material*, std::set<Tally*>* >::iterator iter3;
+	std::map<Isotope*, std::set<Tally*>* >::iterator iter4;
 
-	for (iter = _all_tallies.begin(); iter != _all_tallies.end(); ++iter)
-        (*iter)->computeScaledBatchStatistics(scale_factor);
+    float volume;
+
+    /* Geometry tallies */
+    for (iter1 = _geometry_tallies.begin(); iter1 != _geometry_tallies.end(); ++iter1) {
+        std::set<Tally*> tally_set = (*(*iter1).second);
+        volume = (*(*iter1).first).getVolume();
+
+        for (set_iter = tally_set.begin(); set_iter != tally_set.end(); ++set_iter) {
+            if ((*set_iter)->getTallyType() == INTERCOLLISION_TIME)
+                (*set_iter)->computeScaledBatchStatistics(scale_factor);
+            else
+                (*set_iter)->computeScaledBatchStatistics(scale_factor*volume);
+        }
+    }
+
+    /* Region tallies */
+    for (iter2 = _region_tallies.begin(); iter2 != _region_tallies.end(); ++iter2) {
+
+        std::set<Tally*> tally_set = (*(*iter2).second);
+
+        for (set_iter = tally_set.begin(); set_iter != tally_set.end(); ++set_iter) {
+            volume = (*(*iter2).first).getVolume();
+            if ((*set_iter)->getTallyType() == INTERCOLLISION_TIME)
+                (*set_iter)->computeScaledBatchStatistics(scale_factor);
+            else
+                (*set_iter)->computeScaledBatchStatistics(scale_factor*volume);
+        }
+    }
+
+    /* Material tallies */
+    for (iter3 = _material_tallies.begin(); iter3 != _material_tallies.end(); ++iter3) {
+
+        std::set<Tally*> tally_set = (*(*iter3).second);
+        volume = (*(*iter3).first).getVolume();
+
+        for (set_iter = tally_set.begin(); set_iter != tally_set.end(); ++set_iter) {
+            if ((*set_iter)->getTallyType() == INTERCOLLISION_TIME)
+                (*set_iter)->computeScaledBatchStatistics(scale_factor);
+            else
+                (*set_iter)->computeScaledBatchStatistics(scale_factor*volume);
+        }
+    }
+
+    /* Isotope tallies */
+    for (iter4 = _isotope_tallies.begin(); iter4 != _isotope_tallies.end(); ++iter4) {
+
+        std::set<Tally*> tally_set = (*(*iter4).second);
+
+        for (set_iter = tally_set.begin(); set_iter != tally_set.end(); ++set_iter)
+            (*set_iter)->computeScaledBatchStatistics(scale_factor);
+    }
 
     return;
 }
@@ -384,7 +514,12 @@ void TallyBank::computeScaledBatchStatistics(float scale_factor) {
  * @param directory the directory to write batch statistics files
  * @param suffix a string to attach to the end of each filename
  */
-void TallyBank::outputBatchStatistics(char* directory,  char* suffix) {
+void TallyBank::outputBatchStatistics() {
+
+    const char* directory = getOutputDirectory();
+    const char* sub_directory = "/tally-statistics";
+
+    std::string full_directory = std::string(directory) + sub_directory;
 
     /* Check to see if directory exists - if not, create it */
     struct stat st;
@@ -392,14 +527,42 @@ void TallyBank::outputBatchStatistics(char* directory,  char* suffix) {
 		mkdir(directory, S_IRWXU);
     }
 
+    /* Create tally-statistics subdirectory */
+    if (!stat(full_directory.c_str(), &st) == 0) {
+		mkdir(full_directory.c_str(), S_IRWXU);
+    }
+
     /* Compute statistics for each of the TallyBank's tallies */
     std::set<Tally*>::iterator iter;
-    std::string filename;
 
 	for (iter = _all_tallies.begin(); iter != _all_tallies.end(); ++iter) {
-        filename = std::string(directory) + "/" + (*iter)->getTallyName()
-                                               + "_" + suffix + ".txt";
-        (*iter)->outputBatchStatistics(filename.c_str());
+
+        std::stringstream filename;
+
+        /* Create filename using the tally's name if it has one */
+        if (strlen((*iter)->getTallyName()) != 0)
+            filename << (*iter)->getTallyName();
+
+        /* If the tally does not have a name, generate a unique id for it */
+        else {
+            filename << "tally-" << output_file_num;
+            output_file_num++;
+        }
+
+        /* Output batch statistics for this tally */
+        filename << ".data";
+        std::string filename_str = filename.str();
+        filename.str("");
+
+        /* Replace spaces with dashes in filename */
+        replace(filename_str.begin(), filename_str.end(), ' ', '-');
+
+        /* Make string all lower case */
+        std::transform(filename_str.begin(), filename_str.end(), 
+                                    filename_str.begin(), ::tolower);
+
+        filename << full_directory << "/" << filename_str;
+        (*iter)->outputBatchStatistics(filename.str().c_str());
     }
 
     return;   
@@ -410,6 +573,7 @@ void TallyBank::tally(neutron* neutron) {
 
 	std::set<Tally*> tallies;
 	std::set<Tally*>::iterator tally_iter;
+	std::map<Geometry*, std::set<Tally*>* >::iterator geometry_iter;
 	std::map<Region*, std::set<Tally*>* >::iterator region_iter;
 	std::map<Material*, std::set<Tally*>* >::iterator material_iter;
 	std::map<Isotope*, std::set<Tally*>* >::iterator isotope_iter;
@@ -419,9 +583,14 @@ void TallyBank::tally(neutron* neutron) {
 	isotope_iter = _isotope_tallies.find(neutron->_isotope);
 
 	/* Tally within all tallies registered for the entire geometry */
-	for (tally_iter = _geometry_tallies.begin(); tally_iter != 
-									_geometry_tallies.end(); ++tally_iter)
-		(*tally_iter)->tally(neutron);
+	for (geometry_iter = _geometry_tallies.begin(); geometry_iter != 
+    									_geometry_tallies.end(); ++geometry_iter) {
+
+        tallies = (*(*geometry_iter).second);
+
+        for (tally_iter = tallies.begin(); tally_iter != tallies.end(); ++tally_iter)
+    		(*tally_iter)->tally(neutron);
+    }
 
 
 	/* Tally within all tallies for this neutron's region
@@ -430,7 +599,7 @@ void TallyBank::tally(neutron* neutron) {
 
 		tallies = *(*region_iter).second;
 
-		for (tally_iter = tallies.begin(); tally_iter !=
+			for (tally_iter = tallies.begin(); tally_iter !=
 								tallies.end(); ++tally_iter) {
 			(*tally_iter)->tally(neutron);
 		}
@@ -467,12 +636,12 @@ void TallyBank::initializeBatchTallies(int num_batches) {
 
     std::set<Tally*>::iterator iter;
 
-	log_printf(NORMAL, "TallyBank has %d tallies", _all_tallies.size());
-
     /* Set the number of batches for all of this Geometry's Tallies */
     for (iter = _all_tallies.begin(); iter != _all_tallies.end(); iter ++)
         (*iter)->setNumBatches(num_batches);
 
+	log_printf(INFO, "TallyBank has initialized %d tallies for %d batches", 
+                                        _all_tallies.size(), num_batches);
 }
 
 

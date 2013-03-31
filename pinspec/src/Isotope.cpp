@@ -9,7 +9,6 @@
 
 #include "Isotope.h"
 
-
 /**
  * Isotope constructor sets default values for some isotope properties
  */
@@ -29,6 +28,9 @@ Isotope::Isotope(char* isotope_name){
 	_num_fission_xs = 0;
 	_num_absorb_xs = 0;
 	_num_total_xs = 0;
+	_elastic_rescaled = false;
+	_capture_rescaled = false;
+	_fission_rescaled = false;
     _rescaled = false;
 
 	/* Attempt to load xs for this isotope - if the data 
@@ -36,12 +38,13 @@ Isotope::Isotope(char* isotope_name){
 	loadXS();	
 	
     /* Rescales the isotope's cross sections */
-	_start_energy = 1E-7;
+	_start_energy = 1E-5;
 	_end_energy = 2E7;
 	_num_energies = 100000;
     rescaleXS(_start_energy, _end_energy, _num_energies);
  
 	/* By default the thermal scattering cdfs have not been initialized */
+	_use_thermal_scattering = true;
 	_num_thermal_cdfs = 0;
 	_num_thermal_cdf_bins = 0;
 
@@ -154,8 +157,7 @@ float Isotope::getN() const {
 
 /**
  * Returns the relative atomic amount
- * @return the relative atomic amount    void retrieveThermalDistributions(float* cdfs, int num_values);
-
+ * @return the relative atomic amount 
  */
 float Isotope::getAO() const {
     return _AO;
@@ -187,21 +189,59 @@ float Isotope::getMuAverage() const {
  */
 bool Isotope::isFissionable() const {
 	return _fissionable;
-
-
-
 }
 
 
-int Isotope::getNumXSEnergies() const {
-    return _num_energies;
+int Isotope::getNumXSEnergies(char* xs_type) const {
+
+    if (!strcmp(xs_type, "elastic"))
+        return _num_elastic_xs;
+
+    else if (!strcmp(xs_type, "capture"))
+        return _num_capture_xs;
+
+    else if (!strcmp(xs_type, "fission"))
+        return _num_fission_xs;
+
+    else if (!strcmp(xs_type, "absorption"))
+        return _num_absorb_xs;
+
+    else if (!strcmp(xs_type, "total"))
+        return _num_total_xs;
+
+    else 
+        return 0;
 }
 
 
-void Isotope::retrieveXSEnergies(float* energies, int num_xs) const {
+void Isotope::retrieveXSEnergies(float* energies, int num_xs, 
+                                                char* xs_type) const {
 
-    for (int i=0; i < num_xs; i++)
-        energies[i] = _elastic_xs_energies[i];
+    if (!strcmp(xs_type, "elastic")) {
+        for (int i=0; i < _num_elastic_xs; i++)
+            energies[i] = _elastic_xs_energies[i];
+    }
+
+    if (!strcmp(xs_type, "capture")) {
+        for (int i=0; i < _num_capture_xs; i++)
+            energies[i] = _capture_xs_energies[i];
+    }
+
+    if (!strcmp(xs_type, "fission")) {
+        for (int i=0; i < _num_fission_xs; i++)
+            energies[i] = _fission_xs_energies[i];
+    }
+
+    if (!strcmp(xs_type, "absorption")) {
+        for (int i=0; i < _num_absorb_xs; i++)
+            energies[i] = _absorb_xs_energies[i];
+    }
+
+    if (!strcmp(xs_type, "total")) {
+        for (int i=0; i < _num_total_xs; i++)
+            energies[i] = _total_xs_energies[i];
+    }
+
 }
 
 
@@ -234,6 +274,407 @@ void Isotope::retrieveXS(float* xs, int num_xs, char* xs_type) const {
 }
 
 
+void Isotope::setElasticXS(double* energies, int num_energies,
+                               double* elastic_xs, int num_xs) {
+
+    /* Check that the # of xs values is 1 less than the # energy bounds */
+    if (num_xs != num_energies)
+		log_printf(ERROR, "Unable to set elastic xs for isotope %s since"
+                " the number of xs values is %d while the number of "
+                "energies is %d", _isotope_name, num_xs, num_energies);
+
+	/* Check that all energies are >0 and monotonically increasing */
+	double prev_energy = energies[0];
+
+	for (int i=0 ; i < num_xs; i++) {
+
+		/* Check for monotonically increasing energy */
+		if (energies[i] < prev_energy)
+			log_printf(ERROR, "Unable to set elastic xs for isotope %s"
+                        " since all xs energies must be monotonically "
+						"increasing", _isotope_name);
+		/* Check that energy is non-negative */		
+		if (energies[i] < 0.0)
+			log_printf(ERROR, "Unable to set elastic xs for isotope %s"
+                        " since all xs energies must be "
+						"non-negative", _isotope_name);
+	}
+
+	/* Check that all xs are non-negative */
+	for (int i=0; i < num_xs; i++) {
+		if (elastic_xs[i] < 0.0)
+			log_printf(ERROR, "Unable to set elastic xs for isotope %s"
+                        " since all xs values must be "
+						"non-negative", _isotope_name);
+	}
+
+    log_printf(INFO, "Setting elastic xs for isotope %s", _isotope_name);
+	
+	/* Free memory for old elastic xs from ENDF */
+	delete [] _elastic_xs;
+	delete [] _elastic_xs_energies;
+
+	/* Allocate memory for the new elastic xs and energies */
+    _num_elastic_xs = num_xs;
+    _elastic_xs = new float[_num_elastic_xs];
+    _elastic_xs_energies = new float[_num_elastic_xs];
+
+    for (int i=0; i < _num_elastic_xs; i++) {
+        _elastic_xs[i] = elastic_xs[i];
+        _elastic_xs_energies[i] = energies[i];
+    }
+
+	_elastic_rescaled = false;
+
+    rescaleXS(pow(10., _start_energy), pow(10., _end_energy), _num_energies);
+
+	return;
+}
+
+
+void Isotope::setCaptureXS(double* energies, int num_energies,
+                               double* capture_xs, int num_xs) {
+
+    /* Check that the # of xs values is 1 less than the # energy bounds */
+    if (num_xs != num_energies)
+		log_printf(ERROR, "Unable to set capture xs for isotope %s since"
+                " the number of xs values is %d while the number of "
+                "energies is %d", _isotope_name, num_xs, num_energies);
+
+	/* Check that all energies are >0 and monotonically increasing */
+	double prev_energy = energies[0];
+
+	for (int i=0 ; i < num_xs; i++) {
+
+		/* Check for monotonically increasing energy */
+		if (energies[i] < prev_energy)
+			log_printf(ERROR, "Unable to set capture xs for isotope %s"
+                        " since all xs energies must be monotonically "
+						"increasing", _isotope_name);
+		/* Check that energy is non-negative */		
+		if (energies[i] < 0.0)
+			log_printf(ERROR, "Unable to set capture xs for isotope %s"
+                        " since all xs energies must be "
+						"non-negative", _isotope_name);
+	}
+
+	/* Check that all xs are non-negative */
+	for (int i=0; i < num_xs; i++) {
+
+		if (capture_xs[i] < 0.0)
+			log_printf(ERROR, "Unable to set capture xs for isotope %s"
+                        " since all xs values must be "
+						"non-negative", _isotope_name);
+	}
+
+    log_printf(INFO, "Setting capture xs for isotope %s", _isotope_name);
+	
+	/* Free memory for old capture xs from ENDF */
+	delete [] _capture_xs;
+	delete [] _capture_xs_energies;
+
+	/* Allocate memory for the new capture xs and energies */
+    _num_capture_xs = num_xs;
+    _capture_xs = new float[_num_capture_xs];
+    _capture_xs_energies = new float[_num_capture_xs];
+
+    for (int i=0; i < _num_capture_xs; i++) {
+        _capture_xs[i] = capture_xs[i];
+        _capture_xs_energies[i] = energies[i];
+    }
+
+	_capture_rescaled = false;
+
+    rescaleXS(pow(10., _start_energy), pow(10., _end_energy), _num_energies);
+
+	return;
+}
+
+
+void Isotope::setFissionXS(double* energies, int num_energies,
+                               double* fission_xs, int num_xs) {
+
+    /* Check that the # of xs values is 1 less than the # energy bounds */
+    if (num_xs != num_energies)
+		log_printf(ERROR, "Unable to set fission xs for isotope %s since"
+                " the number of xs values is %d while the number of "
+                "energies is %d", _isotope_name, num_xs, num_energies);
+
+	/* Check that all energies are >0 and monotonically increasing */
+	double prev_energy = energies[0];
+
+	for (int i=0 ; i < num_xs; i++) {
+
+		/* Check for monotonically increasing energy */
+		if (energies[i] < prev_energy)
+			log_printf(ERROR, "Unable to set fission xs for isotope %s"
+                        " since all xs energies must be monotonically "
+						"increasing", _isotope_name);
+		/* Check that energy is non-negative */		
+		if (energies[i] < 0.0)
+			log_printf(ERROR, "Unable to set fission xs for isotope %s"
+                        " since all xs energies must be "
+						"non-negative", _isotope_name);
+	}
+
+	/* Check that all xs are non-negative */
+	for (int i=0; i < num_xs; i++) {
+		if (fission_xs[i] < 0.0)
+			log_printf(ERROR, "Unable to set fission xs for isotope %s"
+                        " since all xs values must be "
+						"non-negative", _isotope_name);
+	}
+
+    log_printf(INFO, "Setting fission xs for isotope %s", _isotope_name);
+	
+	/* Free memory for old elastic xs from ENDF */
+	delete [] _fission_xs;
+	delete [] _fission_xs_energies;
+
+	/* Allocate memory for the new fission xs and energies */
+    _num_fission_xs = num_xs;
+    _fission_xs = new float[_num_fission_xs];
+    _fission_xs_energies = new float[_num_fission_xs];
+
+    for (int i=0; i < _num_fission_xs; i++) {
+        _fission_xs[i] = fission_xs[i];
+        _fission_xs_energies[i] = energies[i];
+    }
+
+	_fission_rescaled = false;
+
+    rescaleXS(pow(10., _start_energy), pow(10., _end_energy), _num_energies);
+
+	return;
+}
+
+
+void Isotope::setMultigroupElasticXS(double* energies, int num_energies, 
+                                        double* elastic_xs, int num_xs) {
+
+    /* Check that the # of xs values is 1 less than the # energy bounds */
+    if (num_xs != num_energies-1)
+		log_printf(ERROR, "Unable to set multigroup elastic xs for "
+				"isotope %s since the number of xs values is %d while "
+                "the number of energies is %d", 
+                _isotope_name, num_xs, num_energies);
+
+	/* Check that all energies are >0 and monotonically increasing */
+	double prev_energy = energies[0];
+
+	for (int i=0 ; i < num_xs+1; i++) {
+
+		/* Check for monotonically increasing energy */
+		if (energies[i] < prev_energy)
+			log_printf(ERROR, "Unable to set multigroup elastic xs for "
+					"isotope %s since all xs energies must be monotonically "
+											"increasing", _isotope_name);
+		/* Check that energy is non-negative */		
+		if (energies[i] < 0.0)
+			log_printf(ERROR, "Unable to set multigroup elastic xs for "
+						"isotope %s since all xs energies must be "
+										"non-negative", _isotope_name);
+	}
+
+	/* Check that all xs are non-negative */
+	for (int i=0; i < num_xs; i++) {
+		if (elastic_xs[i] < 0.0)
+			log_printf(ERROR, "Unable to set multigroup elastic xs for "
+						"isotope %s since all xs values must be "
+										"non-negative", _isotope_name);
+	}
+
+    log_printf(INFO, "Setting %d-group elastic xs for isotope %s", 
+                                            num_xs, _isotope_name);
+	
+	/* Free memory for old elastic xs from ENDF */
+	delete [] _elastic_xs;
+	delete [] _elastic_xs_energies;
+
+	/* The number of elastic xs values for the multigroup case */
+	/* We approximate the multigroup xs as a continuous energy xs
+     * using a piecewise step function */
+	_num_elastic_xs = 2 * num_xs;
+
+	/* Allocate memory for the new multigroup xs and energies */
+	_elastic_xs = new float[_num_elastic_xs];
+	_elastic_xs_energies = new float[_num_elastic_xs];
+
+	/* Lowest energy xs value */
+	_elastic_xs_energies[0] = energies[0];
+	_elastic_xs[0] = elastic_xs[0];
+
+	/* Create a piecewise step function to represent the multigroup xs */
+	for (int i=1; i < _num_elastic_xs-1; i+=2) {
+		_elastic_xs[i] = elastic_xs[i/2];
+		_elastic_xs[i+1] = elastic_xs[i/2];
+		_elastic_xs_energies[i] = energies[i/2] - 1E-5;
+		_elastic_xs_energies[i+1] = energies[i/2] + 1E-5;
+	}
+
+	/* Highest energy xs value */
+	_elastic_xs_energies[_num_elastic_xs-1] = energies[num_xs];
+	_elastic_xs[_num_elastic_xs-1] = elastic_xs[num_xs-1];
+
+	_elastic_rescaled = false;
+
+    rescaleXS(pow(10., _start_energy), pow(10., _end_energy), _num_energies);
+
+	return;
+}
+
+
+void Isotope::setMultigroupCaptureXS(double* energies, int num_energies,
+                                        double* capture_xs, int num_xs) {
+
+    /* Check that the # of xs values is 1 less than the # energy bounds */
+    if (num_xs != num_energies-1)
+		log_printf(ERROR, "Unable to set multigroup capture xs for "
+				"isotope %s since the number of xs values is %d while "
+                "the number of energies is %d", 
+                _isotope_name, num_xs, num_energies);
+
+	/* Check that all energies are >0 and monotonically increasing */
+	double prev_energy = energies[0];
+
+	for (int i=0 ; i < num_energies; i++) {
+
+    	/* Check for monotonically increasing energy */
+		if (energies[i] < prev_energy)
+			log_printf(ERROR, "Unable to set multigroup capture xs for "
+					"isotope %s since all xs energies must be monotonically "
+											"increasing", _isotope_name);
+		/* Check that energy is non-negative */		
+		if (energies[i] < 0.0)
+			log_printf(ERROR, "Unable to set multigroup capture xs for "
+						"isotope %s since all xs energies must be "
+										"non-negative", _isotope_name);
+	}
+
+	/* Check that all xs are non-negative */
+	for (int i=0; i < num_xs; i++) {
+		if (capture_xs[i] < 0.0)
+			log_printf(ERROR, "Unable to set multigroup capture xs for "
+						"isotope %s since all xs values must be "
+										"non-negative", _isotope_name);
+	}
+
+
+    log_printf(INFO, "Setting %d-group capture xs for isotope %s", 
+                                                num_xs, _isotope_name);
+	
+	/* Free memory for old capture xs from ENDF */
+	delete [] _capture_xs;
+	delete [] _capture_xs_energies;
+
+	/* The number of capture xs values for the multigroup case */
+	/* We approximate the multigroup xs as a continuous energy xs
+     * using a piecewise step function */
+	_num_capture_xs = 2 * num_xs;
+
+	/* Allocate memory for the new multigroup xs and energies */
+	_capture_xs = new float[_num_capture_xs];
+	_capture_xs_energies = new float[_num_capture_xs];
+
+	/* Lowest energy xs value */
+	_capture_xs_energies[0] = energies[0];
+	_capture_xs[0] = capture_xs[0];
+
+	/* Create a piecewise step function to represent the multigroup xs */
+	for (int i=1; i < _num_capture_xs-1; i+=2) {
+		_capture_xs[i] = capture_xs[i/2];
+		_capture_xs[i+1] = capture_xs[i/2];
+		_capture_xs_energies[i] = energies[i/2] - 1E-3;
+		_capture_xs_energies[i+1] = energies[i/2] + 1E-3;
+	}
+
+	/* Highest energy xs value */
+	_capture_xs_energies[_num_capture_xs-1] = energies[num_xs];
+	_capture_xs[_num_capture_xs-1] = capture_xs[num_xs-1];
+
+	_capture_rescaled = false;
+
+    rescaleXS(pow(10.,_start_energy), pow(10., _end_energy), _num_energies);
+    
+	return;
+}
+
+
+void Isotope::setMultigroupFissionXS(double* energies, int num_energies,
+                                     double* fission_xs, int num_xs) {
+
+    /* Check that the # of xs values is 1 less than the # energy bounds */
+    if (num_xs != num_energies-1)
+		log_printf(ERROR, "Unable to set multigroup fission xs for "
+				"isotope %s since the number of xs values is %d while "
+                "the number of energies is %d", 
+                _isotope_name, num_xs, num_energies);
+
+	/* Check that all energies are >0 and monotonically increasing */
+	double prev_energy = energies[0];
+
+	for (int i=0 ; i < num_xs+1; i++) {
+
+		/* Check for monotonically increasing energy */
+		if (energies[i] < prev_energy)
+			log_printf(ERROR, "Unable to set multigroup fission xs for "
+					"isotope %s since all xs energies must be monotonically "
+											"increasing", _isotope_name);
+		/* Check that energy is non-negative */		
+		if (energies[i] < 0.0)
+			log_printf(ERROR, "Unable to set multigroup fission xs for "
+						"isotope %s since all xs energies must be "
+										"non-negative", _isotope_name);
+	}
+
+	/* Check that all xs are non-negative */
+	for (int i=0; i < num_xs; i++) {
+		if (fission_xs[i] < 0.0)
+			log_printf(ERROR, "Unable to set multigroup fission xs for "
+						"isotope %s since all xs values must be "
+										"non-negative", _isotope_name);
+	}
+	
+    log_printf(INFO, "Setting %d-group fission xs for isotope %s", 
+                                            num_xs, _isotope_name);
+
+	/* Free memory for old capture xs from ENDF */
+	delete [] _fission_xs;
+	delete [] _fission_xs_energies;
+
+	/* The number of fission xs values for the multigroup case */
+	/* We approximate the multigroup xs as a continuous energy xs
+     * using a piecewise step function */
+	_num_fission_xs = 2 * num_xs;
+
+	/* Allocate memory for the new multigroup xs and energies */
+	_fission_xs = new float[_num_fission_xs];
+	_fission_xs_energies = new float[_num_fission_xs];
+
+	/* Lowest energy xs value */
+	_fission_xs_energies[0] = energies[0];
+	_fission_xs[0] = fission_xs[0];
+
+	/* Create a piecewise step function to represent the multigroup xs */
+	for (int i=1; i < _num_fission_xs-1; i+=2) {
+		_fission_xs[i] = fission_xs[i/2];
+		_fission_xs[i+1] = fission_xs[i/2];
+		_fission_xs_energies[i] = energies[i/2] - 1E-5;
+		_fission_xs_energies[i+1] = energies[i/2] + 1E-5;
+	}
+
+	/* Highest energy xs value */
+	_fission_xs_energies[_num_fission_xs-1] = energies[num_xs];
+	_fission_xs[_num_fission_xs-1] = fission_xs[num_xs-1];
+
+	_fission_rescaled = false;
+
+    rescaleXS(pow(10., _start_energy), pow(10., _end_energy), _num_energies);
+
+	return;
+}
+
+
 /**
  * Returns an elastic scattering cross-section value for a certain
  * energy based on linear interpolation
@@ -242,11 +683,11 @@ void Isotope::retrieveXS(float* xs, int num_xs, char* xs_type) const {
  */
 float Isotope::getElasticXS(float energy) const {
 
-    if (_rescaled)
+    if (_elastic_rescaled)
         return getElasticXS(getEnergyGridIndex(energy));
 	else if (_num_elastic_xs == 0)
 		return 0.0;
-    else
+    else 
 	    return linearInterp<float, float, float>(_elastic_xs_energies,
 						     _elastic_xs, _num_elastic_xs, energy);
 }
@@ -316,7 +757,7 @@ float Isotope::getAbsorptionXS(int energy_index) const {
  */
 float Isotope::getCaptureXS(float energy) const{
 
-    if (_rescaled)
+    if (_capture_rescaled)
         return getCaptureXS(getEnergyGridIndex(energy));
 	else if (_num_capture_xs == 0)
 		return 0.0;
@@ -352,7 +793,7 @@ float Isotope::getCaptureXS(int energy_index) const {
  */
 float Isotope::getFissionXS(float energy) const{
 
-    if (_rescaled)
+    if (_fission_rescaled)
         return getFissionXS(getEnergyGridIndex(energy));
 	else if (_num_fission_xs == 0)
 		return 0.0;
@@ -464,15 +905,11 @@ float Isotope::getTransportXS(int energy_index) const {
 
 /**
  * This method returns true if the thermal scattering distributions
- * for this isotope have been initialized, and false otherwise
+ * for this isotope are to be used in the collideNeutron method
  * @return boolean if the thermal scattering distributions exist
  */
 bool Isotope::usesThermalScattering() {
-
-	if (_num_thermal_cdfs == 0)
-		return false;
-	else
-		return true;
+	return _use_thermal_scattering;
 }
 
 
@@ -522,6 +959,16 @@ void Isotope::setAO(float AO) {
  */
 void Isotope::setTemperature(float T) {
 	_T = T;
+}
+
+
+void Isotope::neglectThermalScattering() {
+	_use_thermal_scattering = false;
+}
+
+
+void Isotope::useThermalScattering() {
+	_use_thermal_scattering = false;
 }
 
 /**
@@ -647,6 +1094,115 @@ void Isotope::loadXS() {
 }
 
 
+void Isotope::loadXS(char* xs_type) {
+
+    std::string directory = getXSLibDirectory();
+	std::string filename;
+	struct stat buffer;
+	float* energies;
+	float* xs_values;
+
+	/* Set this isotope's appropriate cross-section using the data
+	 * structures */
+
+
+	/******************************** ELASTIC ********************************/
+
+    if (!strcmp(xs_type, "elastic")) {
+
+	    /* Check whether an elastic cross-section file exists for isotope */
+	    filename = directory + _isotope_name + "-elastic.txt";
+
+	    if (stat(filename.c_str(), &buffer))
+		    log_printf(ERROR, "Unable to load elastic xs for isotope %s"
+						    " since no data was found in the cross-section"
+						    " file %s for this isotope", 
+                            filename.c_str(), _isotope_name);
+
+	    log_printf(INFO, "Loading %s-elastic.txt for isotope %s", 
+						    _isotope_name, _isotope_name);
+
+	    /* Find the number of cross-section values in the file */
+	    _num_elastic_xs = getNumCrossSectionDataPoints(filename.c_str());
+
+	    /* Initialize data structures to store cross-section values */
+	    energies = new float[_num_elastic_xs];
+	    xs_values = new float[_num_elastic_xs];
+
+	    /* Parse the file into the data structures */
+	    parseCrossSections(filename.c_str(), energies, xs_values);
+
+	    setElasticXS(xs_values, energies, _num_elastic_xs);
+    }
+
+
+	/******************************** CAPTURE ********************************/
+
+    if (!strcmp(xs_type, "capture")) {
+
+	    /* Check whether a capture cross-section file exists for isotope */
+	    filename = directory + _isotope_name + "-capture.txt";
+
+	    if (stat(filename.c_str(), &buffer))
+		    log_printf(ERROR, "Unable to load capture xs for isotope %s"
+						    " since no data was found in the cross-section"
+						    " file %s for this isotope", 
+                            filename.c_str(), _isotope_name); 
+
+	    log_printf(INFO, "Loading %s-capture.txt for isotope %s", 
+						    _isotope_name, _isotope_name);
+
+	    /* Find the number of cross-section values in the file */
+	    _num_capture_xs = getNumCrossSectionDataPoints(filename.c_str());
+
+	    /* Initialize data structures to store cross-section values */
+	    energies = new float[_num_capture_xs];
+	    xs_values = new float[_num_capture_xs];
+
+	    /* Parse the file into the data structures */
+	    parseCrossSections(filename.c_str(), energies, xs_values);
+
+	    setCaptureXS(xs_values, energies, _num_capture_xs);
+    }
+
+
+	/******************************** FISSION ********************************/
+
+    if (!strcmp(xs_type, "fission")) {
+
+	    /* Check whether a fission cross-section file exists for isotope */
+	    filename = directory + _isotope_name + "-fission.txt";
+
+	    if (stat(filename.c_str(), &buffer))
+		    log_printf(ERROR, "Unable to load fission xs for isotope %s"
+						    " since no data was found in the cross-section"
+						    " file %s for this isotope", 
+                            filename.c_str(), _isotope_name); 
+
+	    log_printf(INFO, "Loading %s-fission.txt for isotope %s", 
+						    _isotope_name, _isotope_name);
+
+		/* Find the number of cross-section values in the file */
+		_num_fission_xs = getNumCrossSectionDataPoints(filename.c_str());
+
+		/* Initialize data structures to store cross-section values */
+		energies = new float[_num_fission_xs];
+		xs_values = new float[_num_fission_xs];
+
+		/* Parse the file into the data structures */
+		parseCrossSections(filename.c_str(), energies, xs_values);
+
+		setFissionXS(xs_values, energies, _num_fission_xs);
+		makeFissionable();
+	}
+    
+    rescaleXS(pow(10., _start_energy), pow(10., _end_energy), _num_energies);
+
+	return;
+}
+
+
+
 /**
  * Set the elastic cross-section for this isotope
  * @param elastic_xs a float array of microscopic elastic xs (barns)
@@ -659,6 +1215,7 @@ void Isotope::setElasticXS(float* elastic_xs, float* elastic_xs_energies,
     _elastic_xs = elastic_xs;
     _elastic_xs_energies = elastic_xs_energies;
     _num_elastic_xs = num_elastic_xs;
+	_elastic_rescaled = false;
 }
 
 
@@ -673,6 +1230,7 @@ void Isotope::setCaptureXS(float* capture_xs, float* capture_xs_energies,
     _capture_xs = capture_xs;
     _capture_xs_energies = capture_xs_energies;
     _num_capture_xs = num_capture_xs;
+	_capture_rescaled = false;
 }
 
 
@@ -687,6 +1245,7 @@ void Isotope::setFissionXS(float* fission_xs, float* fission_xs_energies,
     _fission_xs = fission_xs;
     _fission_xs_energies = fission_xs_energies;
     _num_fission_xs = num_fission_xs;
+	_fission_rescaled = false;
 }
 
 
@@ -697,14 +1256,15 @@ void Isotope::rescaleXS(float start_energy, float end_energy,
     float* new_energies;
     float* new_xs;
 
-	_num_energies = num_energies;
-	_start_energy = start_energy;
-	_end_energy = end_energy;
+	_capture_rescaled = false;
+	_elastic_rescaled = false;
+	_fission_rescaled = false;
 
-	grid = logspace<float, float>(start_energy, end_energy, _num_energies);
+	grid = logspace<float, float>(start_energy, end_energy, num_energies);
 
 	/* Capture xs */
 	if (_num_capture_xs != 0) {
+
 		new_energies = new float[num_energies];
 		memcpy(new_energies, grid, sizeof(float)*num_energies);
 		new_xs = new float[num_energies];
@@ -714,7 +1274,7 @@ void Isotope::rescaleXS(float start_energy, float end_energy,
 
 		_num_capture_xs = num_energies;
 		delete [] _capture_xs_energies;
-		delete _capture_xs;
+		delete [] _capture_xs;
 		_capture_xs = new_xs;
 		_capture_xs_energies = new_energies;
 	}
@@ -726,11 +1286,11 @@ void Isotope::rescaleXS(float start_energy, float end_energy,
 		new_xs = new float[num_energies];
 
 		for (int i=0; i < num_energies; i++)
-			new_xs[i] = getElasticXS(new_energies[i]);
+			new_xs[i] = getElasticXS(grid[i]);
 
 		_num_elastic_xs = num_energies;
 		delete [] _elastic_xs_energies;
-		delete _elastic_xs;
+		delete [] _elastic_xs;
 		_elastic_xs = new_xs;
 		_elastic_xs_energies = new_energies;
 	}
@@ -741,21 +1301,39 @@ void Isotope::rescaleXS(float start_energy, float end_energy,
 		memcpy(new_energies, grid, sizeof(float)*num_energies);
 		new_xs = new float[num_energies];
 
-
 		for (int i=0; i < num_energies; i++)
 			new_xs[i] = getFissionXS(new_energies[i]);
 
 		_num_fission_xs = num_energies;
 		delete [] _fission_xs_energies;
-		delete _fission_xs;
+		delete [] _fission_xs;
 		_fission_xs = new_xs;
 		_fission_xs_energies = new_energies;
 	}
 
+	generateAbsorptionXS(start_energy, end_energy, num_energies);
+	generateTotalXS(start_energy, end_energy, num_energies);
+
+	_start_energy = log10(start_energy);
+	_end_energy = log10(end_energy);
+	_delta_energy = (_end_energy - _start_energy) / _num_energies;
+	_capture_rescaled = true;
+	_elastic_rescaled = true;
+	_fission_rescaled = true;
+
+	delete [] grid;
+
+	return;
+}
+
+
+void Isotope::generateAbsorptionXS(float start_energy, float end_energy, 
+														int num_energies) {
+
 	/* Generate an absorption xs on the uniform energy/lethargy grid */
-	new_energies = new float[num_energies];
-	memcpy(new_energies, grid, sizeof(float)*num_energies);
-	new_xs = new float[num_energies];
+	float* new_energies = logspace<float, float>(start_energy, 
+												end_energy, num_energies);
+	float* new_xs = new float[num_energies];
 
 	_num_absorb_xs = num_energies;
 
@@ -763,6 +1341,7 @@ void Isotope::rescaleXS(float start_energy, float end_energy,
 	    for (int i=0; i < num_energies; i++)
 		    new_xs[i] = getCaptureXS(new_energies[i]) + 
                                                 getFissionXS(new_energies[i]);
+
     else
 	    for (int i=0; i < num_energies; i++)
 		    new_xs[i] = getCaptureXS(new_energies[i]);
@@ -771,10 +1350,17 @@ void Isotope::rescaleXS(float start_energy, float end_energy,
 	_absorb_xs = new_xs;
 	_absorb_xs_energies = new_energies;
 
+	return;
+}
+
+
+void Isotope::generateTotalXS(float start_energy, float end_energy, 
+														int num_energies) {
+
 	/* Generate a total xs on the uniform energy/lethargy grid */
-	new_energies = new float[num_energies];
-	memcpy(new_energies, grid, sizeof(float)*num_energies);
-	new_xs = new float[num_energies];
+	float* new_energies = logspace<float, float>(start_energy, 
+										end_energy, num_energies);
+	float* new_xs = new float[num_energies];
 
 	_num_total_xs = num_energies;
 
@@ -786,13 +1372,8 @@ void Isotope::rescaleXS(float start_energy, float end_energy,
 	_total_xs_energies = new_energies;
 
 	_rescaled = true;
-	_start_energy = log10(start_energy);
-	_end_energy = log10(end_energy);
-	_delta_energy = (_end_energy - _start_energy) / _num_energies;
-	delete [] grid;
-
-	return;
 }
+
 
 
 /**
@@ -1127,11 +1708,11 @@ void Isotope::collideNeutron(neutron* neutron) {
     float alpha = getAlpha();
     double random = (float)(rand()) / (float)(RAND_MAX);
 
-    /* Asymptotic elastic scattering above 4 eV */
-    if (neutron->_energy > 4.0)
+    /* Asymptotic elastic scattering above 4 eV or if no thermal scattering */
+    if (neutron->_energy > 4.0 || !_use_thermal_scattering)
     	neutron->_energy *= (alpha + (1.0 - alpha) * random);
     else
-    	neutron->_energy =  getThermalScatteringEnergy(neutron->_energy);
+    	neutron->_energy = getThermalScatteringEnergy(neutron->_energy);
 
 	return;
 }

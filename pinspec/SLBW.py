@@ -10,6 +10,7 @@ import subprocess
 import math
 import scipy.special as spec
 
+
 def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances = 14, \
            Emin = 1e-5,Ecut = 1000.0,Ebnwdth = 0.075,resspacing = 25, \
            idntclfakereslb = 300,gamg = 0.023,flatxs = 0.1,finalEcut=20E6):
@@ -203,14 +204,6 @@ def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances = 14, \
 	ESXS = (E, sigma_n)
 	ESXS = numpy.transpose(ESXS)
 
-
-	#plot fictitious XS
-	#plt.loglog(E, sigma_n)
-	#plt.savefig('U238SXS.png')
-	#plot fictitious XS
-	#plt.loglog(E, sigma_g)
-	#plt.savefig('U238AXS.png')
-
 	#----------------------------------
 	#---So if capture is specified
 	#---------------------------------
@@ -246,6 +239,7 @@ def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances = 14, \
 		g.write(texts)
 		g.close()
 		#-----------------
+
 def generatePotentialScattering(isotope,Emin = 1e-5,finalEcut=20E6):
 #----------------------------------------------------------------------
 # Function that creates  flat scattering XS at sigma_pot
@@ -283,17 +277,8 @@ def generatePotentialScattering(isotope,Emin = 1e-5,finalEcut=20E6):
 	g.write(texts)
 	g.close()
 
-def replaceXS():
-#---------------------------------------------------------------------------
-#Function that cleans up library by replacing XS files with ENDFBVII files
-#---------------------------------------------------------------------------
-	XS_backup_path=str(getXSLibDirectory())+'/BackupXS'
-	src_files = os.listdir(XS_backup_path)
-	for file_name in src_files:
-    		full_file_name = os.path.join(XS_backup_path, file_name)
-    		if (os.path.isfile(full_file_name)):
-        		shutil.copy(full_file_name, getXSLibDirectory())
-	#--------------------------------------------------------------------
+
+
 def compareXS(isotope, XStype='capture', RI='no', dir = '.'):
 	#Resonance Integral Boundaries
 	RIb=numpy.array([[0.01,0.1],[0.1,1.0],[6,10],[1,6],[10,25],[25,50],\
@@ -356,43 +341,6 @@ def compareXS(isotope, XStype='capture', RI='no', dir = '.'):
 	plt.xlabel('XS [barns]')
 	plt.ylabel('E [eV]')
 	plt.savefig(dir+'/'+CXStype+'_XS_Comparison.png')
-	
-	if RI=='yes':
-		#Make loop for RI calculation for Fake U238
-		prod=numpy.zeros_like(barnsT)
-		prodr=numpy.zeros_like(barnsEndF300)
-		RIfake=numpy.zeros(len(RIb), dtype=float)
-		RIreal=numpy.zeros(len(RIb), dtype=float)
-
-		for i in range(len(RIb-1)):
-			#Retrieve bounds
-			Elow=RIb[i,0]
-			Eupp=RIb[i,1]
-		
-			#Find index matching boundary in Energy vectors
-			indlow=numpy.flatnonzero(EnT>=Elow) 
-			indlo=numpy.array([indlow[0]], dtype=int)
-			indupp=numpy.flatnonzero(EnT>=Eupp)
-			indup=numpy.array([indupp[0]], dtype=int)
-			indlowr=numpy.flatnonzero(EndfE300>=Elow) 
-			indlor=numpy.array([indlowr[0]], dtype=int)
-			induppr=numpy.flatnonzero(EndfE300>=Eupp)
-			indupr=numpy.array([induppr[0]], dtype=int)
-
-			#create vector to integrate, integrate
-			prod=(barnsT*invEnT)
-			prodr=(barnsEndF300*invEndfE300)
-			#en vector=EnT
-			RIfake[i]=numpy.trapz(prod[indlo:indup],EnT[indlo:indup])
-			RIreal[i]=numpy.trapz(prodr[indlor:indupr],EndfE300[indlor:indupr])
-        
-		py_printf('INFO', 'Resonance Integral Bounds:')
-		py_printf('INFO',  str(RIb))
-		py_printf('INFO', 'Doppler broadened '+El+'-'+A+' '+XStype+\
-                            ' Resonance Integrals at T='+T+' K:')
-		py_printf('INFO', str(RIfake))
-		py_printf('INFO', 'Real Resonance Integrals integrated from ENDF7 XS at T=300K:')
-		py_printf(str(RIreal))
 
 
 

@@ -27,6 +27,7 @@ private:
 	float _material_atomic_mass;
 
 	float _buckling_squared;
+    float _volume;
 
 	/* Map of number density and isotope pointers */
 	std::map<char*, std::pair<float, Isotope*> > _isotopes;
@@ -46,8 +47,9 @@ public:
 	float getIsotopeNumDensity(char* isotope);
 	bool containsIsotope(Isotope* isotope);
 	float getBucklingSquared();
+    float getVolume();
 
-    int getNumXSEnergies() const;
+    int getNumXSEnergies(char* xs_type) const;
 
 	float getTotalMacroXS(float energy);
 	float getTotalMacroXS(int energy_index);
@@ -82,7 +84,8 @@ public:
     /* IMPORTANT: The following two class method prototypes must not be changed
      * without changing Geometry.i to allow for the data arrays to be transformed
      * into numpy arrays */
-    void retrieveXSEnergies(float* energies, int num_xs) const;
+    void retrieveXSEnergies(float* energies, int num_xs, 
+                                    char* xs_type) const;
     void retrieveXS(float* xs, int num_xs, char* xs_type);
 		
 	/* setters */
@@ -91,6 +94,7 @@ public:
 	void setNumberDensity(float number_density);
 	void setAtomicMass(float atomic_mass);
 	void setBucklingSquared(float buckling_squared);
+    void incrementVolume(float volume);
 	void addIsotope(Isotope *isotope, float atomic_ratio);
 	Material *clone();
 

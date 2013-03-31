@@ -10,6 +10,7 @@
 #ifndef GEOMETRY_H_
 #define GEOMETRY_H_
 
+#ifdef __cplusplus
 #include <sys/stat.h>
 #include <omp.h>
 #include <vector>
@@ -74,6 +75,7 @@ public:
 	int getNumThreads();
 	spatialType getSpatialType();
 	float getBucklingSquared();
+    float getVolume();
 			
 	/* setters */
 	void setNeutronsPerBatch(int num_neutrons_per_batch);
@@ -110,5 +112,7 @@ inline int Geometry::getEnergyGridIndex(float energy) const {
 
 	return index;
 }
+
+#endif
 
 #endif /* GEOMETRY_H_ */
