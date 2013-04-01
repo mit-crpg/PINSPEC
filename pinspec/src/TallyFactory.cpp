@@ -29,6 +29,8 @@ Tally* TallyFactory::createTally(char* tally_name, Isotope* isotope,
 		return new IsotopeCollisionRateTally(tally_name, isotope);
 	else if (tally_type == ELASTIC_RATE)
 		return new IsotopeElasticRateTally(tally_name, isotope);
+	else if (tally_type == OUTSCATTER_RATE)
+	    return new IsotopeOutscatterRateTally(tally_name, isotope);
 	else if (tally_type == ABSORPTION_RATE)
 		return new IsotopeAbsorptionRateTally(tally_name, isotope);
 	else if (tally_type == CAPTURE_RATE)
@@ -49,12 +51,14 @@ Tally* TallyFactory::createTally(char* tally_name, Material* material,
 		return new MaterialFluxTally(tally_name, material);
 	else if (tally_type == LEAKAGE_RATE)
 		return new MaterialLeakageRateTally(tally_name, material);
-    else if (tally_type == INTERCOLLISION_TIME)
+	else if (tally_type == INTERCOLLISION_TIME)
 		return new MaterialInterCollisionTimeTally(tally_name, material);    
 	else if (tally_type == COLLISION_RATE)
 		return new MaterialCollisionRateTally(tally_name, material);
 	else if (tally_type == ELASTIC_RATE)
 		return new MaterialElasticRateTally(tally_name, material);
+	else if (tally_type == OUTSCATTER_RATE)
+	    return new MaterialOutscatterRateTally(tally_name, material);
 	else if (tally_type == ABSORPTION_RATE)
 		return new MaterialAbsorptionRateTally(tally_name, material);
 	else if (tally_type == CAPTURE_RATE)
@@ -76,7 +80,8 @@ Tally* TallyFactory::createTally(char* tally_name, Region* region,
 	else if (tally_type == LEAKAGE_RATE)
 		return new RegionLeakageRateTally(tally_name, region);
     else if (tally_type == INTERCOLLISION_TIME)
-		return new RegionInterCollisionTimeTally(tally_name, region);    
+		return new RegionInterCollisionTimeTally(tally_name, region);    	else if (tally_type == OUTSCATTER_RATE)
+	    return new RegionOutscatterRateTally(tally_name, region); 
 	else if (tally_type == COLLISION_RATE)
 		return new RegionCollisionRateTally(tally_name, region);
 	else if (tally_type == ELASTIC_RATE)
@@ -102,7 +107,9 @@ Tally* TallyFactory::createTally(char* tally_name, Geometry* geometry,
 	else if (tally_type == LEAKAGE_RATE)
 		return new GeometryLeakageRateTally(tally_name, geometry);
     else if (tally_type == INTERCOLLISION_TIME)
-		return new GeometryInterCollisionTimeTally(tally_name, geometry);    
+		return new GeometryInterCollisionTimeTally(tally_name, geometry);    	
+    else if (tally_type == OUTSCATTER_RATE)
+	    return new GeometryOutscatterRateTally(tally_name, geometry);
 	else if (tally_type == COLLISION_RATE)
 		return new GeometryCollisionRateTally(tally_name, geometry);
 	else if (tally_type == ELASTIC_RATE)

@@ -16,14 +16,14 @@
 Tally::Tally(char* tally_name) {
 
 	_tally_name = tally_name;
-    _trigger_type = NONE;
+	_trigger_type = NONE;
 
 	 /* Sets the default delta between bins to zero */
 	_bin_delta = 0;
 
 	/* Sets the default for batch statistics */
 	_num_batches = 0;
-    _num_bins = 0;
+	_num_bins = 0;
 	_computed_statistics = false;
 }
 
@@ -911,6 +911,43 @@ void GeometryElasticRateTally::tally(neutron* neutron) {
 	Tally::tally(neutron, weight);
 	return;
 }
+
+/******************************************************************************/
+/********************** Outscatter Rate Tallying Methods **********************/
+/******************************************************************************/
+/* Outscattering only exists for 2 energy groups; the logic here is that if 
+ * a neutron is not absorbed in this energy group, it must outscatter. */
+void IsotopeOutscatterRateTally::tally(neutron* neutron) {
+	double weight = _isotope->getAbsorptionXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, 1.0 - weight);
+	return;
+}
+
+
+void MaterialOutscatterRateTally::tally(neutron* neutron) {
+	double weight = _material->getAbsorptionMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, 1.0 - weight);
+	return;
+}
+
+
+void RegionOutscatterRateTally::tally(neutron* neutron) {
+	double weight = _region->getAbsorptionMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, 1.0 - weight);
+	return;
+}
+
+
+void GeometryOutscatterRateTally::tally(neutron* neutron) {
+	double weight = neutron->_region->getAbsorptionMicroXS(neutron->_old_energy) 
+														/ neutron->_total_xs;
+	Tally::tally(neutron, 1.0 - weight);
+	return;
+}
+
 
 /******************************************************************************/
 /********************** Absorption Rate Tallying Methods **********************/

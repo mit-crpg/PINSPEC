@@ -32,7 +32,7 @@ typedef enum tallyDomainTypes {
 	MATERIAL,
 	ISOTOPE,
 	REGION,
-    GEOMETRY
+	GEOMETRY
 } tallyDomainType;
 
 
@@ -52,13 +52,14 @@ typedef enum tallyTypes {
 	FLUX,
 	LEAKAGE_RATE,
 	COLLISION_RATE,
-    INTERCOLLISION_TIME,
+	INTERCOLLISION_TIME,
 	ELASTIC_RATE,
 	ABSORPTION_RATE,
 	CAPTURE_RATE,
 	FISSION_RATE,
 	TRANSPORT_RATE,
-	DIFFUSION_RATE
+	DIFFUSION_RATE,
+	OUTSCATTER_RATE
 } tallyType;
 
 
@@ -219,6 +220,51 @@ public:
 	virtual void tally(neutron* neutron) =0;
 };
 
+/******************************************************************************/
+/************************** Outscatter Rate Tallies ***************************/
+/******************************************************************************/
+
+class IsotopeOutscatterRateTally: public IsotopeTally {
+public:
+	IsotopeOutscatterRateTally(char* tally_name, Isotope* isotope)
+			: IsotopeTally(tally_name, isotope) {
+				_tally_type = OUTSCATTER_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class MaterialOutscatterRateTally: public MaterialTally {
+
+public:
+	MaterialOutscatterRateTally(char* tally_name, Material* material)
+			: MaterialTally(tally_name, material) {
+				_tally_type = OUTSCATTER_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class RegionOutscatterRateTally: public RegionTally {
+
+public:
+	RegionOutscatterRateTally(char* tally_name, Region* region)
+			: RegionTally(tally_name, region) {
+				_tally_type = OUTSCATTER_RATE;
+			}
+	void tally(neutron* neutron);
+};
+
+
+class GeometryOutscatterRateTally: public GeometryTally {
+
+public:
+	GeometryOutscatterRateTally(char* tally_name, Geometry* geometry)
+			: GeometryTally(tally_name, geometry) {
+				_tally_type = OUTSCATTER_RATE;
+			}
+	void tally(neutron* neutron);
+};
 
 /******************************************************************************/
 /*************************** Collision Rate Tallies ***************************/
@@ -325,7 +371,6 @@ public:
 /******************************************************************************/
 
 class IsotopeAbsorptionRateTally: public IsotopeTally {
-
 public:
 	IsotopeAbsorptionRateTally(char* tally_name, Isotope* isotope)
 			: IsotopeTally(tally_name, isotope) {
