@@ -682,14 +682,31 @@ void Isotope::setMultigroupFissionXS(double* energies, int num_energies,
  * @return the elastic scattering cross-section (barns)
  */
 float Isotope::getElasticXS(float energy) const {
-
-    if (_elastic_rescaled)
-        return getElasticXS(getEnergyGridIndex(energy));
-	else if (_num_elastic_xs == 0)
-		return 0.0;
-    else 
+    if (_num_elastic_xs != 0) 
+    {
+	if (_elastic_rescaled) 
+	{
+	    int lower_index = getEnergyGridIndex(energy);
+	    double lower_xs = getElasticXS(lower_index);
+	    double upper_xs = getElasticXS(lower_index + 1);
+	    double delta_xs = upper_xs - lower_xs;
+	    double slope = delta_xs / _delta_energy;
+	    double lower_e = _start_energy + _delta_energy * lower_index;
+	    double xs =  lower_xs + slope * (log10(energy) - lower_e);
+	    log_printf(DEBUG, "low = %f, high = %f, xs = %f", lower_xs, 
+			   upper_xs, xs);
+	    return xs;
+	}
+	else
+	{
 	    return linearInterp<float, float, float>(_elastic_xs_energies,
-						     _elastic_xs, _num_elastic_xs, energy);
+						     _elastic_xs, 
+						     _num_elastic_xs, 
+						     energy);
+	}
+    }
+    else
+	return 0.0;
 }
 
 
@@ -719,14 +736,31 @@ float Isotope::getElasticXS(int energy_index) const {
  * @return the absorption cross-section (barns)
  */
 float Isotope::getAbsorptionXS(float energy) const {
-
-    if (_rescaled)
-        return getAbsorptionXS(getEnergyGridIndex(energy));
-	else if (_num_absorb_xs == 0)
-		return 0.0;
-    else
+    if (_num_absorb_xs != 0) 
+    {
+	if (_rescaled) 
+	{
+	    int lower_index = getEnergyGridIndex(energy);
+	    double lower_xs = getAbsorptionXS(lower_index);
+	    double upper_xs = getAbsorptionXS(lower_index + 1);
+	    double delta_xs = upper_xs - lower_xs;
+	    double slope = delta_xs / _delta_energy;
+	    double lower_e = _start_energy + _delta_energy * lower_index;
+	    double xs =  lower_xs + slope * (log10(energy) - lower_e);
+	    log_printf(DEBUG, "low = %f, high = %f, xs = %f", lower_xs, 
+			   upper_xs, xs);
+	    return xs;
+	}
+	else
+	{
 	    return linearInterp<float, float, float>(_absorb_xs_energies,
-								    _absorb_xs, _num_absorb_xs, energy);
+						     _absorb_xs, 
+						     _num_absorb_xs, 
+						     energy);
+	}
+    }
+    else
+	return 0.0;
 }
 
 
@@ -756,14 +790,31 @@ float Isotope::getAbsorptionXS(int energy_index) const {
  * @return the capture cross-section (barns)
  */
 float Isotope::getCaptureXS(float energy) const{
-
-    if (_capture_rescaled)
-        return getCaptureXS(getEnergyGridIndex(energy));
-	else if (_num_capture_xs == 0)
-		return 0.0;
+    if (_num_capture_xs != 0) 
+    {
+	if (_capture_rescaled) 
+	{
+	    int lower_index = getEnergyGridIndex(energy);
+	    double lower_xs = getCaptureXS(lower_index);
+	    double upper_xs = getCaptureXS(lower_index + 1);
+	    double delta_xs = upper_xs - lower_xs;
+	    double slope = delta_xs / _delta_energy;
+	    double lower_e = _start_energy + _delta_energy * lower_index;
+	    double xs =  lower_xs + slope * (log10(energy) - lower_e);
+	    log_printf(DEBUG, "low = %f, high = %f, xs = %f", lower_xs, 
+			   upper_xs, xs);
+	    return xs;
+	}
+	else
+	{
+	    return linearInterp<float, float, float>(_capture_xs_energies,
+						     _capture_xs, 
+						     _num_capture_xs, 
+						     energy);
+	}
+    }
     else
-    	return linearInterp<float, float, float>(_capture_xs_energies,
-								_capture_xs, _num_capture_xs, energy);
+	return 0.0;
 }
 
 
@@ -792,14 +843,31 @@ float Isotope::getCaptureXS(int energy_index) const {
  * @return the fission cross-section (barns)
  */
 float Isotope::getFissionXS(float energy) const{
-
-    if (_fission_rescaled)
-        return getFissionXS(getEnergyGridIndex(energy));
-	else if (_num_fission_xs == 0)
-		return 0.0;
+    if (_num_fission_xs != 0) 
+    {
+	if (_fission_rescaled) 
+	{
+	    int lower_index = getEnergyGridIndex(energy);
+	    double lower_xs = getFissionXS(lower_index);
+	    double upper_xs = getFissionXS(lower_index + 1);
+	    double delta_xs = upper_xs - lower_xs;
+	    double slope = delta_xs / _delta_energy;
+	    double lower_e = _start_energy + _delta_energy * lower_index;
+	    double xs =  lower_xs + slope * (log10(energy) - lower_e);
+	    log_printf(DEBUG, "low = %f, high = %f, xs = %f", lower_xs, 
+			   upper_xs, xs);
+	    return xs;
+	}
+	else
+	{
+	    return linearInterp<float, float, float>(_fission_xs_energies,
+						     _fission_xs, 
+						     _num_fission_xs, 
+						     energy);
+	}
+    }
     else
-    	return linearInterp<float, float, float>(_fission_xs_energies,
-							_fission_xs, _num_fission_xs, energy);
+	return 0.0;
 }
 
 
