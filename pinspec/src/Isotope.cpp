@@ -16,7 +16,7 @@ Isotope::Isotope(char* isotope_name){
 
 	/* Default atomic number and number densities and temperature */
     _isotope_name = isotope_name;
-	parseName();
+    parseName();
 
 	_T = 300;
 	_kB = 8.617332E-5;             /* boltzmann's constant (ev / K) */
@@ -31,7 +31,7 @@ Isotope::Isotope(char* isotope_name){
 	_elastic_rescaled = false;
 	_capture_rescaled = false;
 	_fission_rescaled = false;
-    _rescaled = false;
+	_rescaled = false;
 
 	/* Attempt to load xs for this isotope - if the data 
 	 * exists in the cross-section library */
@@ -41,7 +41,7 @@ Isotope::Isotope(char* isotope_name){
 	_start_energy = 1E-5;
 	_end_energy = 2E7;
 	_num_energies = 100000;
-    rescaleXS(_start_energy, _end_energy, _num_energies);
+	rescaleXS(_start_energy, _end_energy, _num_energies);
  
 	/* By default the thermal scattering cdfs have not been initialized */
 	_use_thermal_scattering = true;
@@ -832,18 +832,32 @@ float Isotope::getTotalXS(float energy) const {
 
 	/* If the total xs has been defined explicitly, use it to
 	 * linearly interpolate to find the total cross-section */
-	if (_num_total_xs != 0) {
-        if (_rescaled)
-            return getTotalXS(getEnergyGridIndex(energy));
-        else
+	if (_num_total_xs != 0) 
+	{
+	    if (_rescaled) 
+	    {
+		int lower_index = getEnergyGridIndex(energy);
+		double lower_xs = getTotalXS(lower_index);
+		double upper_xs = getTotalXS(lower_index + 1);
+		double delta_xs = upper_xs - lower_xs;
+		double slope = delta_xs / _delta_energy;
+		double lower_e = _start_energy + _delta_energy * lower_index;
+		double xs =  lower_xs + slope * (log10(energy) - lower_e);
+		log_printf(DEBUG, "low = %f, high = %f, xs = %f", lower_xs, 
+			   upper_xs, xs);
+		return xs;
+	    }
+	    else
+	    {
     		return linearInterp<float, float, float>(_total_xs_energies,
-									_total_xs, _num_total_xs, energy);
-    }
-        
+							 _total_xs, 
+							 _num_total_xs, energy);
+	    }
+	}
 	/* Otherwise loop over all xs which have been defined and
 	 * add them to a total xs */
-	else {
-
+	else 
+	{
 		float total_xs = 0;
 		total_xs += getAbsorptionXS(energy);
 		total_xs += getElasticXS(energy);
@@ -1250,9 +1264,9 @@ void Isotope::setFissionXS(float* fission_xs, float* fission_xs_energies,
 
 
 void Isotope::rescaleXS(float start_energy, float end_energy,
-													int num_energies) {
+			int num_energies) {
 
-	float* grid;
+    float* grid;
     float* new_energies;
     float* new_xs;
 
