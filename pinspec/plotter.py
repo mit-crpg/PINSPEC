@@ -8,19 +8,23 @@ import os
 # scattering PDFs and CDFs, flux, etc
 
 flux_plot_num = 0
-
-def createDirectory(directory):
-    if not os.path.exists(directory):
-        os.makedirs(directory)
+subdirectory = "/plots/"
     
 
 # Function to plot the microscopic cross section for a
 # given isotope and array of reactions
-def plotMicroXS(isotope, rxns, directory = '.', loglog=True, \
-                    uselegend=True, title='', filename=''):
-
-    createDirectory(directory)
+def plotMicroXS(isotope, rxns, loglog=True, uselegend=True, \
+                                            title='', filename=''):
         
+    global subdirectory
+
+    directory = getOutputDirectory() + subdirectory
+
+    # Make directory if it does not exist
+    if not os.path.exists(directory):
+            os.makedirs(directory)
+
+
     # make figure
     fig = plt.figure()
         
@@ -56,9 +60,9 @@ def plotMicroXS(isotope, rxns, directory = '.', loglog=True, \
         plt.title(title.title())
 
     if filename is '':
-        filename = directory + '/' + isotope.getIsotopeName() + '-micro-xs.png'
+        filename = directory + isotope.getIsotopeName() + '-micro-xs.png'
     else:
-        filename = directory +'/' + filename.replace(' ', '-').lower() + '.png'
+        filename = directory + filename.replace(' ', '-').lower() + '.png'
 
     fig.savefig(filename)
 
@@ -66,11 +70,17 @@ def plotMicroXS(isotope, rxns, directory = '.', loglog=True, \
 
 # function to plot the macroscopic cross section for a
 # given material and arrary of reactions
-def plotMacroXS(material, rxns, directory = '.', loglog=True, \
-                        uselegend=True, title='', filename=''):
-    
-    createDirectory(directory)
-    
+def plotMacroXS(material, rxns, loglog=True, \
+                                    uselegend=True, title='', filename=''):
+
+    global subdirectory
+
+    directory = getOutputDirectory() + subdirectory
+        
+    # Make directory if it does not exist
+    if not os.path.exists(directory):
+            os.makedirs(directory)
+
     # make figure
     fig = plt.figure()
     
@@ -84,9 +94,6 @@ def plotMacroXS(material, rxns, directory = '.', loglog=True, \
         xs = material.retrieveXS(num_energies, rxn)
 
         # plot xs
-        plt.plot(energies, xs, lw=1)
-
-        xs = material.retrieveXS(num_energies, rxn)
         plt.plot(energies, xs, lw=1)
 
     plt.xlabel('Energy [eV]')
@@ -106,23 +113,28 @@ def plotMacroXS(material, rxns, directory = '.', loglog=True, \
         plt.title(title.title())
 
     if filename is '':
-        filename = directory+'/' + material.getMaterialName() + '-macro-xs.png'
+        filename = directory + material.getMaterialName() + '-macro-xs.png'
     else:
-        filename = directory + '/' + filename.replace(' ', '-') + '.png'
+        filename = directory + filename.replace(' ', '-') + '.png'
 
     fig.savefig(filename)
 
 
 
 # Function that plots the flux spectrum
-def plotFlux(flux, directory = '.', loglog=True, title='', filename=''):
+def plotFlux(flux, loglog=True, title='', filename=''):
 
     global flux_plot_num
+    global subdirectory
+
+    directory = getOutputDirectory() + subdirectory
+
+    # Make directory if it does not exist
+    if not os.path.exists(directory):
+            os.makedirs(directory)
 
     if not flux.hasComputedBatchStatistics():
         flux.computeBatchStatistics()
-
-    createDirectory(directory)
 
     fig = plt.figure()
         
@@ -156,12 +168,16 @@ def plotFlux(flux, directory = '.', loglog=True, title='', filename=''):
 
 
 # Function that plots the flux spectrum for several tallies
-def plotFluxes(fluxes, directory = '.', loglog=True, uselegend=True, \
-                                                    filename='', title=''):
+def plotFluxes(fluxes, loglog=True, uselegend=True, filename='', title=''):
 
     global flux_plot_num
+    global subdirectory
 
-    createDirectory(directory)
+    directory = getOutputDirectory() + subdirectory
+
+    # Make directory if it does not exist
+    if not os.path.exists(directory):
+            os.makedirs(directory)
 
     fig = plt.figure()
     legend = []
@@ -197,19 +213,24 @@ def plotFluxes(fluxes, directory = '.', loglog=True, uselegend=True, \
         plt.title(title.title())
 
     if filename is '':
-        filename = directory + '/' + 'flux-' + str(flux_plot_num) + '.png'
+        filename = directory + 'flux-' + str(flux_plot_num) + '.png'
         flux_plot_num += 1
     else:
-        filename = directory + '/'+ filename.replace(' ', '-').lower() + '.png'
+        filename = directory + filename.replace(' ', '-').lower() + '.png'
 
     fig.savefig(filename)
 
 
 # Function to plot the thermal scattering PDFs and CDFs
-def plotThermalScattering(isotope, directory = '.', uselegend=True, \
-                                                title='', filename=''):
+def plotThermalScattering(isotope, uselegend=True, title='', filename=''):
    
-    createDirectory(directory)
+    global subdirectory
+
+    directory = getOutputDirectory() + subdirectory
+
+    # Make directory if it does not exist
+    if not os.path.exists(directory):
+            os.makedirs(directory)
 
     num_bins = isotope.getNumThermalCDFBins()
     num_cdfs = isotope.getNumThermalCDFs()
@@ -241,10 +262,10 @@ def plotThermalScattering(isotope, directory = '.', uselegend=True, \
         plt.title(title.title() + ' Thermal Scattering PDFs')
 
     if filename is '':
-        pdfsfilename = directory + '/' + isotope.getIsotopeName() + \
+        pdfsfilename = directory + isotope.getIsotopeName() + \
                                     '-thermal-scattering-pdfs.png'
     else:
-        pdfsfilename = directory + '/' + filename.replace(' ', '-').lower() + \
+        pdfsfilename = directory + filename.replace(' ', '-').lower() + \
                                     '-thermal-scattering-pdfs.png'
 
     plt.savefig(pdfsfilename)
@@ -269,10 +290,10 @@ def plotThermalScattering(isotope, directory = '.', uselegend=True, \
         plt.title(title.title() + ' Thermal Scattering CDFs')
 
     if filename is '':
-        cdfsfilename = directory + '/' + isotope.getIsotopeName() + \
+        cdfsfilename = directory + isotope.getIsotopeName() + \
                                         '-thermal-scattering-cdfs.png'
     else:
-        cdfsfilename = directory + '/' + filename.replace(' ', '-').lower() + \
+        cdfsfilename = directory + filename.replace(' ', '-').lower() + \
                                         '-thermal-scattering-cdfs.png'
 
     plt.savefig(cdfsfilename)
@@ -280,9 +301,15 @@ def plotThermalScattering(isotope, directory = '.', uselegend=True, \
 
 # Function to plot the fission CDF and sample from the
 # fission CDF to generate a fission spectrum
-def plotFissionSpectrum(directory = '.'):
+def plotFissionSpectrum():
     
-    createDirectory(directory)
+    global subdirectory
+
+    directory = getOutputDirectory() + subdirectory
+
+    # Make directory if it does not exist
+    if not os.path.exists(directory):
+            os.makedirs(directory)
 
     # Generate fission CDF
     fissioner = Fissioner()
@@ -326,9 +353,15 @@ def plotFissionSpectrum(directory = '.'):
     plt.savefig(filename)
     
     
-def plotRI(RI, directory='.', title='', filename=''):
+def plotRI(RI, title='', filename=''):
     
-    createDirectory(directory)
+    global subdirectory
+
+    directory = getOutputDirectory() + subdirectory
+
+    # Make directory if it does not exist
+    if not os.path.exists(directory):
+            os.makedirs(directory)
 
     # Plot Resonance Integrals
     fig = plt.figure()
@@ -344,16 +377,22 @@ def plotRI(RI, directory='.', title='', filename=''):
         plt.title(title.title() + ' Resonance Integrals')
 
     if filename is '':
-        filename = directory + '/RI.png'
+        filename = directory + 'RI.png'
     else:
-        filename = directory+'/'+filename.replace(' ', '-').lower() +'-RI.png'
+        filename = directory + filename.replace(' ', '-').lower() +'-RI.png'
 
     plt.savefig(filename)
 
 
-def plotGroupXS(group_xs, directory='.', title='', filename=''):
+def plotGroupXS(group_xs, title='', filename=''):
     
-    createDirectory(directory)
+    global subdirectory
+
+    directory = getOutputDirectory() + subdirectory
+
+    # Make directory if it does not exist
+    if not os.path.exists(directory):
+            os.makedirs(directory)
 
     # Plot Resonance Integrals
     fig = plt.figure()
@@ -371,7 +410,7 @@ def plotGroupXS(group_xs, directory='.', title='', filename=''):
     if filename is '':
         filename = directory + '/group-xs.png'
     else:
-        filename = directory+'/'+filename.replace(' ', '-').lower() + \
+        filename = directory + filename.replace(' ', '-').lower() + \
                                                         '-group-xs.png'
 
     plt.savefig(filename)

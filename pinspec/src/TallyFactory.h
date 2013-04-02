@@ -30,10 +30,10 @@ public:
 		return &instance;
 	}
 
-	Tally* createTally(char* tally_name, Geometry* geometry, tallyType tally_type); 
-	Tally* createTally(char* tally_name, Region* region, tallyType tally_type);
-	Tally* createTally(char* tally_name, Material* material, tallyType tally_type);
-	Tally* createTally(char* tally_name, Isotope* isotope, tallyType tally_type);
+	Tally* createTally(Geometry* geometry, tallyType tally_type, const char* tally_name=(char*)""); 
+	Tally* createTally(Region* region, tallyType tally_type, const char* tally_name=(char*)"");
+	Tally* createTally(Material* material, tallyType tally_type, const char* tally_name=(char*)"");
+	Tally* createTally(Isotope* isotope, tallyType tally_type, const char* tally_name=(char*)"");
 };
 
 

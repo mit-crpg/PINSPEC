@@ -26,6 +26,14 @@ char* getXSLibDirectory() {
 }
 
 
+int restoreXSLibrary() {
+    std::string cmd = std::string("cp ") + _xs_directory + 
+                                                "/BackupXS/* " + _xs_directory;
+    int ret = system(cmd.c_str());
+    return ret;
+}
+
+
 /**
  * This method parses and input file of cross-section data and loads the
  * energy values (as eV) and the cross-section values (barns) into two

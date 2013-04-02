@@ -1,21 +1,20 @@
+import time
+import matplotlib.pyplot as plt
 import numpy
 from pinspec import *
 import pinspec.SLBW as SLBW
 import pinspec.plotter as plotter
-import pinspec.process as process
 from pinspec.log import *
 
 def main():
-    
+
     # Set main simulation params
-    num_batches = 10
     num_neutrons_per_batch = 100000
-    num_threads = 4
-    setOutputDirectory('infinite')
+    setOutputDirectory('weak-scaling')
 
     log_setlevel(INFO)
 
-    py_printf('TITLE', 'Simulating an infinite medium homogenized pin-cell')
+    py_printf('TITLE', 'Starting a weak scaling multi-threading study')
 
     py_printf('INFO', 'Initializing isotopes...')
 
@@ -51,9 +50,7 @@ def main():
     geometry = Geometry()
     geometry.setSpatialType(INFINITE_HOMOGENEOUS)
     geometry.addRegion(region_mix)
-    geometry.setNumBatches(num_batches)
     geometry.setNeutronsPerBatch(num_neutrons_per_batch)
-    geometry.setNumThreads(num_threads)
 
     py_printf('INFO', 'Initializing flux tally...')
 
@@ -61,36 +58,32 @@ def main():
     flux = TallyFactory.createTally(region_mix, FLUX)
     flux.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC) 
     
-    # Set a precision trigger: tells simulation to run until maximum relative
-    # error is less than the trigger value (2E-2)
-#    flux.setPrecisionTrigger(RELATIVE_ERROR, 2E-2)
-
 	# Register the tallies
     TallyBank.registerTally(flux)
 
-    # Run Monte Carlo simulation
-    geometry.runMonteCarloSimulation();
+    runtimes = numpy.zeros(12)
+    threads = numpy.linspace(1,12,12)
 
-    py_printf('INFO', 'Plotting microscopic and macroscopic cross-sections...')
+    # Run simulation with 1-13 threads
+    for num_threads in threads: 
 
-    # Plot the microscopic cross sections for each isotope
-    plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission'])
-    plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission'])
-    plotter.plotMicroXS(h1, ['capture', 'elastic', 'absorption'])
-    plotter.plotMicroXS(o16, ['capture', 'elastic', 'absorption'])
-    plotter.plotMacroXS(mix, ['capture', 'elastic', 'fission'])
+        geometry.setNumThreads(int(num_threads))
+        geometry.setNumBatches(2*int(num_threads))
 
-    py_printf('INFO', 'Plotting fluxes...')
+	    # Run Monte Carlo simulation
+        start_time = time.time()
+        geometry.runMonteCarloSimulation();
+        end_time = time.time()
+        runtimes[num_threads-1] = (end_time - start_time)
 
-    # Plot flux
-    plotter.plotFlux(flux)
-
-    py_printf('INFO', 'Writing tally batch statistics to output file...')
-
-    # Dump batch statistics to output files to some new directory
-    TallyBank.outputBatchStatistics()
-
-    py_printf('TITLE', 'Finished')
+    # Plot the runtime vs. thread count
+    fig = plt.figure()
+    plt.plot(threads, runtimes)
+    plt.title('Weak Scaling: Runtime vs. Thread Count')
+    plt.xlabel('# Threads')
+    plt.ylabel('Runtime [sec]')
+    plt.grid()
+    plt.savefig(getOutputDirectory() + '/threadscaling.png')
 
 
 if __name__ == '__main__':

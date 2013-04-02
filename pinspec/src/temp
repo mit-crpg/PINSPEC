@@ -1,0 +1,25 @@
+    if (_num_elastic_xs != 0) 
+    {
+	if (_elastic_rescaled) 
+	{
+	    int lower_index = getEnergyGridIndex(energy);
+	    double lower_xs = getElasticXS(lower_index);
+	    double upper_xs = getElasticXS(lower_index + 1);
+	    double delta_xs = upper_xs - lower_xs;
+	    double slope = delta_xs / _delta_energy;
+	    double lower_e = _start_energy + _delta_energy * lower_index;
+	    double xs =  lower_xs + slope * (log10(energy) - lower_e);
+	    log_printf(DEBUG, "low = %f, high = %f, xs = %f", lower_xs, 
+			   upper_xs, xs);
+	    return xs;
+	}
+	else
+	{
+	    return linearInterp<float, float, float>(_elastic_xs_energies,
+						     _elastic_xs, 
+						     _num_elastic_xs, 
+						     energy);
+	}
+    }
+    else
+	return 0.0;

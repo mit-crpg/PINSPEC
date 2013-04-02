@@ -160,6 +160,7 @@ public:
                                 double* fission_xs, int num_xs);
 
 
+    void loadXS(char* xs_type);
     void setA(int A);
     void setAO(float AO);
     void setN(float N);

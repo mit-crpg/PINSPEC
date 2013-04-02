@@ -96,6 +96,17 @@ float Geometry::getBucklingSquared() {
 }
 
 
+float Geometry::getVolume() {
+    if (_spatial_type == INFINITE_HOMOGENEOUS)
+        return _infinite_medium->getVolume();
+    else if (_spatial_type == HOMOGENEOUS_EQUIVALENCE)
+        return _fuel->getVolume() + _moderator->getVolume();
+    else
+        return 1.0;     //FIXME: Update this for heterogeneous case when implemented
+}
+
+
+
 void Geometry::setBucklingSquared(float buckling_squared) {
     _buckling_squared = buckling_squared;
 }
@@ -259,10 +270,11 @@ void Geometry::runMonteCarloSimulation() {
 	TallyBank* tally_bank = TallyBank::Get();
 
 	/* Print report to the screen */
-	log_printf(NORMAL, "Beginning PINSPEC Monte Carlo Simulation...");
+	log_printf(TITLE, "Beginning PINSPEC Monte Carlo Simulation...");
 	log_printf(NORMAL, "# neutrons / batch = %d     # batches = %d     "
                       "# threads = %d", _num_neutrons_per_batch, 
                         _num_batches, _num_threads);
+    log_printf(SEPARATOR, "");
 
     
 	omp_set_num_threads(_num_threads);
@@ -285,7 +297,7 @@ void Geometry::runMonteCarloSimulation() {
 	            #pragma omp for private(curr)
 	        for (int i=start_batch; i < end_batch; i++) {
 
-		        log_printf(NORMAL, "Thread %d/%d running batch %d", 
+		        log_printf(INFO, "Thread %d/%d running batch %d", 
                                         omp_get_thread_num()+1, 
                                         omp_get_num_threads(), i);
 
@@ -368,7 +380,7 @@ void Geometry::runMonteCarloSimulation() {
                #pragma omp for private(curr, p_ff, p_mf, test)
 		        for (int i=start_batch; i < end_batch; i++) {
 
-		            log_printf(NORMAL, "Thread %d/%d running batch %d", 
+		            log_printf(INFO, "Thread %d/%d running batch %d", 
                                   omp_get_thread_num()+1, omp_get_num_threads(), i);
 
 	                curr = initializeNewNeutron();
@@ -408,7 +420,7 @@ void Geometry::runMonteCarloSimulation() {
 					        else {
 
 						        /* If test is larger than p_mf, move to fuel */
-						        if (test > p_mf) {
+						        if (test < p_mf) {
                                     curr->_region = _fuel;
 								    _fuel->collideNeutron(curr);
                                 }
@@ -438,6 +450,10 @@ void Geometry::runMonteCarloSimulation() {
 	/*************************************************************************/
 	/***************************   HETEROGENEOUS *****************************/
 	/*************************************************************************/
+
+    //TODO: Truly heterogeneous geometry is NOT yet implemented!
+    //The following code is simply to stub out what will become
+    //the heterogeneous monte carlo kernel
 
 	/* If we are running homogeneous equivalence spectral calculation */
 	else if (_spatial_type == HETEROGENEOUS) {
@@ -472,7 +488,7 @@ void Geometry::runMonteCarloSimulation() {
         while (precision_triggered) {
 		    for (int i=start_batch; i < end_batch; i++) {
 
-			        log_printf(NORMAL, "Thread %d/%d running batch %d", 
+			        log_printf(INFO, "Thread %d/%d running batch %d", 
                                   omp_get_thread_num()+1, omp_get_num_threads(), i);
 
 			    curr->_batch_num = i;

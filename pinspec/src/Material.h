@@ -27,6 +27,7 @@ private:
 	float _material_atomic_mass;
 
 	float _buckling_squared;
+    float _volume;
 
 	/* Map of number density and isotope pointers */
 	std::map<char*, std::pair<float, Isotope*> > _isotopes;
@@ -46,6 +47,7 @@ public:
 	float getIsotopeNumDensity(char* isotope);
 	bool containsIsotope(Isotope* isotope);
 	float getBucklingSquared();
+    float getVolume();
 
     int getNumXSEnergies(char* xs_type) const;
 
@@ -92,6 +94,7 @@ public:
 	void setNumberDensity(float number_density);
 	void setAtomicMass(float atomic_mass);
 	void setBucklingSquared(float buckling_squared);
+    void incrementVolume(float volume);
 	void addIsotope(Isotope *isotope, float atomic_ratio);
 	Material *clone();
 
