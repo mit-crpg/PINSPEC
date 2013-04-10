@@ -200,7 +200,7 @@ class TestInfinite(unittest.TestCase):
         
         RIs = RI_eff._RI.retrieveTallyMu(8)
         
-        self.assertGreater(.05, abs(41.8-RIs[4])/41.8)
+        self.assertGreater(.10, abs(41.8-RIs[4])/41.8)
 
 
 
