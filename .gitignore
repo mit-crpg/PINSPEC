@@ -26,6 +26,9 @@ sample-input/reinstall.sh
 tutorial/
 pinspec/Geometry_wrap.cpp
 sample-input/Infinite_MC_Statistics/*.txt
+sample-input/Infinite/
+sample-input/infinite/
+*/log
 # this file is being updated everytime we run, so I am ignoring it for now.
 # may need to add back in for the initial release
 xs-lib/U-238-capture.txt 
