@@ -10,7 +10,9 @@
 #ifndef ARRAYCREATOR_H_
 #define ARRAYCREATOR_H_
 
-/* A set of templated helper functions inspired by MATLAB */
+#ifdef __cplusplus
+#include <limits>
+
 
 /**
  * Helper function to generate an array of equally spaced doubles between
@@ -20,7 +22,8 @@
  * @param num_values the number of values to create
  * @return a pointer to the array of points
  */
-#ifdef __cplusplus
+
+
 template <typename T, typename U>
 U* linspace(T start, T end, int num_values) {
 

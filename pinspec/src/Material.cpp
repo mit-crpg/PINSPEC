@@ -13,11 +13,13 @@
 /**
  * Material constructor sets empty default material name
  */
-Material::Material() {
-	_material_name = (char*)"";
+Material::Material(char* material_name) {
+	_material_name = material_name;
 	_material_density = 0.0;
 	_material_number_density = 0.0;
 	_material_atomic_mass = 1.0;
+	_buckling_squared = 0.0;
+    _volume = 0.0;
 }
 
 
@@ -48,52 +50,50 @@ float Material::getMaterialNumberDensity() {
 
 /**
  * This method takes in a character array specifier for an Isotope's
- * name and returns a pointer to the Isotope
- * @param isotope the name of the isotope
- * @return a pointer to the Isotope
- */
-Isotope* Material::getIsotope(char* isotope) {
-	return _isotopes.at(isotope).second;
-}
-
-
-/**
- * This method takes in a character array specifier for an Isotope's
  * name and returns a float for the Isotope's number density in at/cm^3
- * @param isotope the name of hte isotope
+ * @param isotope the name of the isotope
  * @return the isotope's number density
  */
-float Material::getIsotopeNumDensity(char* isotope) {
-	return _isotopes.at(isotope).first;
+float Material::getIsotopeNumDensity(Isotope* isotope) {
+	return _isotopes.at(isotope->getIsotopeName()).first * 1E24;
 }
 
 
-int Material::getNumXSEnergies() const {
+bool Material::containsIsotope(Isotope* isotope) {
+	if(_isotopes.find(isotope->getIsotopeName()) == _isotopes.end())
+		return false;
+	else
+		return true;
+}
+
+
+float Material::getBucklingSquared() {
+	return _buckling_squared;
+}
+
+
+float Material::getVolume() {
+    return _volume;
+}
+
+
+int Material::getNumXSEnergies(char* xs_type) const {
 
     Isotope* isotope;
 
     if (_isotopes.size() == 0) 
-        log_printf(ERROR, "Unable to return the number of xs energies for "
-                    " material %s since it has no isotopes", _material_name);
+        log_printf(ERROR, "Unable to return the number of xs energies "
+                   "for material %s since it has no isotopes", _material_name);
 
     isotope = _isotopes.begin()->second.second;
-    return isotope->getNumXSEnergies();
+
+    return isotope->getNumXSEnergies(xs_type);
+
 }
 
 
-binSpacingType Material::getEnergyGridScaleType() const {
-    
-    if (_isotopes.size() == 0)
-        log_printf(ERROR, "Unable to get the energy grid scale type for "
-                        "Material %s since it does not contain any "
-                        "isotopes yet", _material_name);
-
-    Isotope* isotope = _isotopes.begin()->second.second;
-    return isotope->getEnergyGridScaleType();
-}
-
-
-void Material::retrieveXSEnergies(float* energies, int num_xs) const {
+void Material::retrieveXSEnergies(float* energies, int num_xs, 
+                                                    char* xs_type) const {
 
     Isotope* isotope;
 
@@ -102,7 +102,7 @@ void Material::retrieveXSEnergies(float* energies, int num_xs) const {
                     " material %s since it has no isotopes", _material_name);
 
     isotope = _isotopes.begin()->second.second;
-    isotope->retrieveXSEnergies(energies, num_xs);
+    isotope->retrieveXSEnergies(energies, num_xs, xs_type);
 }
 
 
@@ -370,36 +370,29 @@ float Material::getTransportMacroXS(float energy) {
 }
 
 
-
-
-/**
- * Sets this Material's name as defined by the user
- * @param set the name of this Material
- */
-void Material::setMaterialName(char* name) {
-	_material_name = name;
-}
-
-
 /**
  * Sets this Material's density as defined by the user
  * @param set the density of this Material
  */
-void Material::setDensity(float density, char* unit) {
-	_material_density = density;
-	if (strcmp(unit, "g/cc") != 0) {
-	    log_printf(ERROR, "Cannot set Material %s number density in"
-		       "units %s since PINSPEc only support units in"
-		       "g/cc", _material_name, unit);
-	}    
-}
+void Material::setDensity(float density, const char* unit) {
 
+	if (density <= 0){
+	    log_printf(ERROR, "Density must be a positive number");
+	}
 
-/**
- * Set the number density of this material.
- */
-void Material::setNumberDensity(float number_density) {
-	_material_number_density = number_density;
+	if (strcmp(unit, "g/cc") == 0){
+		_material_density = density;
+		_density_unit = GRAM_CM3;
+	}
+	else if (strcmp(unit, "at/cc") == 0){
+		_material_number_density = density;
+		_density_unit = NUM_CM3;
+	}
+	else{
+	    log_printf(ERROR, "Cannot set Material %s density in"
+		       "units %s since PINSPEC only support units in"
+		       "g/cc and at/cc", _material_name, unit);
+	}
 }
 
 
@@ -409,6 +402,16 @@ void Material::setNumberDensity(float number_density) {
  */
 void Material::setAtomicMass(float atomic_mass) {
 	_material_atomic_mass = atomic_mass;
+}
+
+
+void Material::setBucklingSquared(float buckling_squared) {
+	_buckling_squared = buckling_squared;
+}
+
+
+void Material::incrementVolume(float volume) {
+    _volume += volume;
 }
 
 
@@ -423,15 +426,24 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     std::map<char*, std::pair<float, Isotope*> >::iterator iter;
     std::map<Isotope*, float> ::iterator iter_AO;
 
+    /* Remove prior version of this isotope if it is already in the material */
+    iter = _isotopes.find(isotope->getIsotopeName());
+    if (iter != _isotopes.end())
+        _isotopes.erase(iter);
+
+    iter_AO = _isotopes_AO.find(isotope);
+    if (iter_AO != _isotopes_AO.end())
+        _isotopes_AO.erase(iter_AO);
+
     /* Add isotope and isotope AO to _isotopes_AO map */
     std::pair<Isotope*, float> new_isotope_AO =
    	std::pair<Isotope*, float> (isotope, atomic_ratio);
     _isotopes_AO.insert(new_isotope_AO);
 
     /* Checks to make sure material density is set already */
-    if (_material_density <= 0)
-	log_printf(ERROR, "Unable to add Isotope %s since the number density "
-                       "for Material %s has not yet been set", 
+    if (_material_density == 0.0 && _material_number_density == 0.0)
+    	log_printf(ERROR, "Unable to add Isotope %s since the density and number density"
+                       " for Material %s has not yet been",
                         isotope->getIsotopeName(), _material_name);
 
     /* Increments the material's total atomic mass and number density */
@@ -446,13 +458,14 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Sum the partial contributions to the material atomic mass */
     _material_atomic_mass = 0.0;
     for (iter_AO =_isotopes_AO.begin(); iter_AO != _isotopes_AO.end(); ++iter_AO){
-    	_material_atomic_mass += iter_AO->second / total_AO * iter_AO->first->getA();
+    	_material_atomic_mass += iter_AO->second * iter_AO->first->getA();
     }
 
     /* Calculates the material's number density */
-    /* Notice I am using old_atomic_mass because I update all isotopes at
-     * the end of this function. */
-    _material_number_density = _material_density * N_av / _material_atomic_mass;
+    if (_density_unit == GRAM_CM3)
+    	_material_number_density = _material_density * N_av / _material_atomic_mass;
+    else if (_density_unit == NUM_CM3)
+    	_material_density = _material_number_density / N_av * _material_atomic_mass;
 
     /* Calculates the isotope's number density */
     isotope_number_density = atomic_ratio / total_AO * _material_number_density;
@@ -471,7 +484,10 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Loop over all isotopes: update all the number densities */
     for (iter =_isotopes.begin(); iter != _isotopes.end(); ++iter){
     	/* Update isotope's number density */
-    	iter->second.first = _isotopes_AO.at(iter->second.second) / total_AO * _material_number_density;
+
+    	iter->second.first = _isotopes_AO.at(iter->second.second) * _material_number_density;
+    	log_printf(INFO, "Isotope %s has number density %1.3E in material %s", 
+                        iter->first, iter->second.first*1E24, _material_name);
     }
 
     return;
@@ -485,9 +501,12 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
  * of all isotope's in this Material
  * @return a pointer to the chosen isotope
  */
-Isotope* Material::sampleIsotope(float energy) {
+void Material::sampleIsotope(neutron* neutron) {
 
+	float energy = neutron->_energy;
 	float sigma_t = getTotalMacroXS(energy);
+	neutron->_total_xs = sigma_t;
+	
 	float sigma_t_ratio = 0.0;
 	float new_sigma_t_ratio = 0.0;
 	float test = float(rand()) / RAND_MAX;
@@ -514,8 +533,10 @@ Isotope* Material::sampleIsotope(float energy) {
 		       " new_num_density = %1.20f", 
 		       _material_name, test, new_sigma_t_ratio);
 	}
+	else
+		neutron->_isotope = isotope;
 
-	return isotope;
+	return;
 }
 
 
@@ -534,19 +555,14 @@ float Material::getDensity(){
  * Isotope::collideNeutron(), then tally the event into the appropriate
  * tally classes for that isotope if any. 
  * @param energy the incoming neutron energy (eV)
- * @return the collision type (ELASTIC, CAPTURE, FISSION)
  */
-collisionType Material::collideNeutron(neutron* neut) {
+void Material::collideNeutron(neutron* neutron) {
 
-    float sample = neut->_energy;
-
-    Isotope *isotope;
-    isotope = sampleIsotope(sample);
-    collisionType type = isotope->collideNeutron(neut);
-    log_printf(DEBUG, "Material %s has sampled collision type %d from ",
-	       "isotope %s", _material_name, type, isotope->getIsotopeName());
-
-	return type;
+    sampleIsotope(neutron);
+    log_printf(DEBUG, "Material %s has collided in isotope %s", 
+				_material_name, neutron->_isotope->getIsotopeName());
+	neutron->_isotope->collideNeutron(neutron);
+	return;
 }
 
 
@@ -559,26 +575,26 @@ collisionType Material::collideNeutron(neutron* neut) {
 Material* Material::clone() {
 
 	/* Allocate memory for the clone */
-	Material* new_clone = new Material();
+	Material* new_clone = new Material(_material_name);
+
+	/* Set the clones atomic mass and density */
+    if (_density_unit == GRAM_CM3){
+	    new_clone->setDensity(_material_number_density, (char*)"at/cc");
+	    new_clone->setDensity(_material_density, (char*)"g/cc");
+	}
+	else if (_density_unit == NUM_CM3){
+	    new_clone->setDensity(_material_density, (char*)"g/cc");
+    	new_clone->setDensity(_material_number_density, (char*)"at/cc");
+    }
 
 	/* Loops over all isotopes and add them to the clone */
 	std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 
 	for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter) {
-	    new_clone->addIsotope((iter->second.second)->clone(), iter->second.first);
+	    new_clone->addIsotope(iter->second.second, _isotopes_AO.at(iter->second.second));
 	}
 
-	/* Set the clones isotope name, atomic number, number density */
-	new_clone->setMaterialName(_material_name);
-
-    if (_density_unit == GRAM_CM3)
-	    new_clone->setDensity(_material_density, (char*)"g/cc");
-    else if (_density_unit == NUM_CM3)
-	    new_clone->setDensity(_material_density, (char*)"at/cc");
-
-	new_clone->setNumberDensity(_material_number_density);
 	new_clone->setAtomicMass(_material_atomic_mass);
-
 
 	/* Return a pointer to the cloned Isotope class */
 	return new_clone;

@@ -9,20 +9,27 @@ def py_printf(level, my_str, *args):
     
     if level_val <= get_loglevel:
         if level == 'DEBUG':
-            print '[  DEBUG  ]  ' + my_str % args
+            log_printf(DEBUG, my_str % args)
         elif level == 'INFO':
-            print '[  INFO   ]  ' + my_str % args
+            log_printf(INFO, my_str % args)
         elif level == 'NORMAL':
-            print '[  NORMAL ]  ' + my_str % args
+            log_printf(NORMAL, my_str % args)
+        elif level == 'SEPARATOR':
+            log_printf(SEPARATOR, my_str % args)
+        elif level == 'HEADER':
+            log_printf(HEADER, my_str % args)
+        elif level == 'TITLE':
+            log_printf(TITLE, my_str % args)
         elif level == 'WARNING':
-            print '[ WARNING ]  ' + my_str % args
+            log_printf(WARNING, my_str % args)
         elif level == 'CRITICAL':
-            print '[ CRITICAL]  ' + my_str % args
+            log_printf(CRITICAL, my_str % args)
         elif level == 'RESULT':
-            print '[  RESULT ]  ' + my_str % args
+            log_printf(RESULT, my_str % args)
+        elif level == 'UNITTEST':
+            log_printf(UNITTEST, my_str % args)
         elif level == 'ERROR':
-            print '[  ERROR  ]  ' + my_str % args
-
+            log_printf(ERROR, my_str % args)
 
 
 def assignValue(level):
@@ -33,17 +40,26 @@ def assignValue(level):
         return 1
     elif level == 'NORMAL':
         return 2
-    elif level == 'WARNING':
+    elif level == 'SEPARATOR':
         return 3
-    elif level == 'CRITICAL':
+    elif level == 'HEADER':
         return 4
-    elif level == 'RESULT':
+    elif level == 'TITLE':
         return 5
-    elif level == 'ERROR':
+    elif level == 'WARNING':
         return 6
+    elif level == 'CRITICAL':
+        return 7
+    elif level == 'RESULT':
+        return 8
+    elif level == 'UNITTEST':
+        return 9
+    elif level == 'ERROR':
+        return 10
+    
 
 
-def setLevel(level):
+def py_setlevel(level):
     
     if level == 'DEBUG':
         log_setlevel(DEBUG)
@@ -51,12 +67,20 @@ def setLevel(level):
         log_setlevel(INFO)
     elif level == 'NORMAL':
         log_setlevel(NORMAL)
+    elif level == 'SEPARATOR':
+        log_setlevel(SEPARATOR)
+    elif level == 'HEADER':
+        log_setlevel(HEADER)
+    elif level == 'TITLE':
+        log_setlevel(TITLE)
     elif level == 'WARNING':
         log_setlevel(WARNING)
     elif level == 'CRITICAL':
         log_setlevel(CRITICAL)
     elif level == 'RESULT':
         log_setlevel(RESULT)
+    elif level == 'UNITTEST':
+        log_setlevel(UNITTEST)
     elif level == 'ERROR':
         log_setlevel(ERROR)
     else:

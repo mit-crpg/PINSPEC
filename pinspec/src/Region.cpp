@@ -17,18 +17,19 @@ Region::Region(char* region_name, regionType type) {
 
     _region_name = region_name;
     _region_type = type;
+    _material = NULL;
+
+    /* Default volume */
+    if (_region_type == INFINITE)
+    	_volume = 1.0;
+    else
+        _volume = 0.0;
 
 	/* Default two region pin cell parameters */
-	_volume = 0.0;
 	_fuel_radius = 0.0;
 	_pitch = 0.0;
 	_half_width = 0.0;
-
-	_sigma_e = 0.0;
-	_beta = 0.0;
-	_alpha1 = 0.0;
-	_alpha2 = 0.0;
-
+	_buckling_squared = 0.0;
 }
 
 
@@ -63,6 +64,11 @@ float Region::getVolume() {
  */
 Material* Region::getMaterial() {
 	return _material;
+}
+
+
+bool Region::containsIsotope(Isotope* isotope) {
+	return _material->containsIsotope(isotope);
 }
 
 
@@ -138,6 +144,11 @@ float Region::getPitch() {
 }
 
 
+float Region::getBucklingSquared() {
+	return _buckling_squared;
+}
+
+
 float Region::getTotalMacroXS(float energy) {
     return _material->getTotalMacroXS(energy);
 }
@@ -203,6 +214,9 @@ float Region::getTransportMacroXS(int energy_index) {
  */
 void Region::setVolume(float volume) {
 	_volume = volume;
+
+    if (_material != NULL)
+        _material->incrementVolume(_volume);
 }
 
 
@@ -212,6 +226,7 @@ void Region::setVolume(float volume) {
  */
 void Region::setMaterial(Material* material) {
 	_material = material;
+    _material->incrementVolume(_volume);
 }
 
 
@@ -223,12 +238,15 @@ void Region::setFuelRadius(float radius) {
 
 	_fuel_radius = radius;
 
-    if (_fuel_radius != 0.0) {
+    if (_pitch != 0.0) {
         if (_region_type == MODERATOR)
             _volume = _pitch * _pitch - M_PI * _fuel_radius * _fuel_radius;
         else
             _volume = M_PI * _fuel_radius * _fuel_radius;
     }
+
+    if (_material != NULL)
+        _material->incrementVolume(_volume);
 }
 
 
@@ -246,44 +264,17 @@ void Region::setPitch(float pitch) {
             _volume = _pitch * _pitch - M_PI * _fuel_radius * _fuel_radius;
         else
             _volume = M_PI * _fuel_radius * _fuel_radius;
+
+    if (_material != NULL)
+        _material->incrementVolume(_volume);
     }
 }
 
 
-/**
- * Adds a new fuel ring radius for this Region if it is not INFINITE
- * @param radius a fuel ring radius
- */
-void Region::addFuelRingRadius(float radius) {
-
-	if (_region_type == INFINITE)
-		log_printf(ERROR, "Cannot add a fuel pin ring radius for region %s"
-					" which is INFINITE", _region_name);
-	else if (_region_type == MODERATOR)
-		log_printf(ERROR, "Cannot add a fuel ring radius for region %s"
-					" which is a MODERATOR type region", _region_name);
-
-	_fuel_ring_radii.push_back(radius);
+void Region::setBucklingSquared(float buckling_squared) {
+	_buckling_squared = buckling_squared;
+	_material->setBucklingSquared(_buckling_squared);
 }
-
-
-
-/**
- * Adds a new moderator ring radius for this Region if it is not INFINITE
- * @param radius the fuel pin radius
- */
-void Region::addModeratorRingRadius(float radius) {
-
-	if (_region_type == INFINITE)
-		log_printf(ERROR, "Cannot add a moderator ring radius for region %s"
-					" which is INFINITE", _region_name);
-	else if (_region_type == FUEL)
-		log_printf(ERROR, "Cannot add a moderator ring radius for region %s"
-					" which is a FUEL type region", _region_name);
-
-	_moderator_ring_radii.push_back(radius);
-}
-
 
 
 /**
@@ -292,12 +283,20 @@ void Region::addModeratorRingRadius(float radius) {
  * uses the Region's Material to compute the neutron's 
  * next energy and collision type.
  */
-collisionType Region::collideNeutron(neutron* neut) {
+void Region::collideNeutron(neutron* neutron) {
+
+
+	if (_material == NULL){
+		log_printf(ERROR, "Region %s must have material to"
+				" collide neutron", _region_name);
+
+	}
 
 	/* Collide the neutron in the Region's Material */
-    collisionType type = _material->collideNeutron(neut);
+	neutron->_material = _material;
+    _material->collideNeutron(neutron);
 
-	return type;
+	return;
 }
 
 
@@ -315,7 +314,7 @@ bool Region::contains(neutron* neutron) {
 	if  (_region_type == INFINITE)
 		return true;
 	else {
-		float r = pow(x, 2.0) + pow(y, 2.0);
+		float r = pow((pow(x, 2.0) + pow(y, 2.0)), 0.5);
 		if (_region_type == FUEL && r < _fuel_radius)
 			return true;
 		else if (_region_type == MODERATOR && 
@@ -344,7 +343,7 @@ bool Region::onBoundary(neutron* neutron) {
 		return false;
 	}
 	else {
-		float r = pow(x, 2.0) + pow(y, 2.0);
+		float r = pow((pow(x, 2.0) + pow(y, 2.0)), 0.5);
 		if (fabs(r - _fuel_radius) < 1E-5)
 			return true;
 		else if (fabs(x - _half_width) < 1E-5)

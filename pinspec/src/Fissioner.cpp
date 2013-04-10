@@ -12,8 +12,10 @@
 /* Default constructor for the Fissioner class
  */
 Fissioner::Fissioner() {
-	_num_bins = 0;
+	_num_bins = 100000;
 	_E_max = 20; 	/* Default is 20 MeV */
+	buildCDF();
+
 }
 
 

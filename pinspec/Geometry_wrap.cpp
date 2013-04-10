@@ -2964,35 +2964,77 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_Circle swig_types[0]
-#define SWIGTYPE_p_Fissioner swig_types[1]
-#define SWIGTYPE_p_Geometry swig_types[2]
-#define SWIGTYPE_p_Isotope swig_types[3]
-#define SWIGTYPE_p_Material swig_types[4]
-#define SWIGTYPE_p_Region swig_types[5]
-#define SWIGTYPE_p_Surface swig_types[6]
-#define SWIGTYPE_p_Tally swig_types[7]
-#define SWIGTYPE_p_Timer swig_types[8]
-#define SWIGTYPE_p_XPlane swig_types[9]
-#define SWIGTYPE_p_YPlane swig_types[10]
-#define SWIGTYPE_p_binSpacingTypes swig_types[11]
-#define SWIGTYPE_p_boundaryTypes swig_types[12]
-#define SWIGTYPE_p_char swig_types[13]
-#define SWIGTYPE_p_collisionTypes swig_types[14]
-#define SWIGTYPE_p_densityUnits swig_types[15]
-#define SWIGTYPE_p_double swig_types[16]
-#define SWIGTYPE_p_float swig_types[17]
-#define SWIGTYPE_p_logLevels swig_types[18]
-#define SWIGTYPE_p_neutron swig_types[19]
-#define SWIGTYPE_p_p_double swig_types[20]
-#define SWIGTYPE_p_regionTypes swig_types[21]
-#define SWIGTYPE_p_scatterAngleTypes swig_types[22]
-#define SWIGTYPE_p_spatialTypes swig_types[23]
-#define SWIGTYPE_p_tallyDomainTypes swig_types[24]
-#define SWIGTYPE_p_tallyTypes swig_types[25]
-#define SWIGTYPE_p_timespec swig_types[26]
-#define SWIGTYPE_p_triggerTypes swig_types[27]
-static swig_type_info *swig_types[29];
-static swig_module_info swig_module = {swig_types, 28, 0, 0, 0, 0};
+#define SWIGTYPE_p_DerivedTally swig_types[1]
+#define SWIGTYPE_p_Fissioner swig_types[2]
+#define SWIGTYPE_p_Geometry swig_types[3]
+#define SWIGTYPE_p_GeometryAbsorptionRateTally swig_types[4]
+#define SWIGTYPE_p_GeometryCaptureRateTally swig_types[5]
+#define SWIGTYPE_p_GeometryCollisionRateTally swig_types[6]
+#define SWIGTYPE_p_GeometryDiffusionRateTally swig_types[7]
+#define SWIGTYPE_p_GeometryElasticRateTally swig_types[8]
+#define SWIGTYPE_p_GeometryFissionRateTally swig_types[9]
+#define SWIGTYPE_p_GeometryFluxTally swig_types[10]
+#define SWIGTYPE_p_GeometryInterCollisionTimeTally swig_types[11]
+#define SWIGTYPE_p_GeometryLeakageRateTally swig_types[12]
+#define SWIGTYPE_p_GeometryTally swig_types[13]
+#define SWIGTYPE_p_GeometryTransportRateTally swig_types[14]
+#define SWIGTYPE_p_Isotope swig_types[15]
+#define SWIGTYPE_p_IsotopeAbsorptionRateTally swig_types[16]
+#define SWIGTYPE_p_IsotopeCaptureRateTally swig_types[17]
+#define SWIGTYPE_p_IsotopeCollisionRateTally swig_types[18]
+#define SWIGTYPE_p_IsotopeDiffusionRateTally swig_types[19]
+#define SWIGTYPE_p_IsotopeElasticRateTally swig_types[20]
+#define SWIGTYPE_p_IsotopeFissionRateTally swig_types[21]
+#define SWIGTYPE_p_IsotopeTally swig_types[22]
+#define SWIGTYPE_p_IsotopeTransportRateTally swig_types[23]
+#define SWIGTYPE_p_Material swig_types[24]
+#define SWIGTYPE_p_MaterialAbsorptionRateTally swig_types[25]
+#define SWIGTYPE_p_MaterialCaptureRateTally swig_types[26]
+#define SWIGTYPE_p_MaterialCollisionRateTally swig_types[27]
+#define SWIGTYPE_p_MaterialDiffusionRateTally swig_types[28]
+#define SWIGTYPE_p_MaterialElasticRateTally swig_types[29]
+#define SWIGTYPE_p_MaterialFissionRateTally swig_types[30]
+#define SWIGTYPE_p_MaterialFluxTally swig_types[31]
+#define SWIGTYPE_p_MaterialInterCollisionTimeTally swig_types[32]
+#define SWIGTYPE_p_MaterialLeakageRateTally swig_types[33]
+#define SWIGTYPE_p_MaterialTally swig_types[34]
+#define SWIGTYPE_p_MaterialTransportRateTally swig_types[35]
+#define SWIGTYPE_p_Region swig_types[36]
+#define SWIGTYPE_p_RegionAbsorptionRateTally swig_types[37]
+#define SWIGTYPE_p_RegionCaptureRateTally swig_types[38]
+#define SWIGTYPE_p_RegionCollisionRateTally swig_types[39]
+#define SWIGTYPE_p_RegionDiffusionRateTally swig_types[40]
+#define SWIGTYPE_p_RegionElasticRateTally swig_types[41]
+#define SWIGTYPE_p_RegionFissionRateTally swig_types[42]
+#define SWIGTYPE_p_RegionFluxTally swig_types[43]
+#define SWIGTYPE_p_RegionInterCollisionTimeTally swig_types[44]
+#define SWIGTYPE_p_RegionLeakageRateTally swig_types[45]
+#define SWIGTYPE_p_RegionTally swig_types[46]
+#define SWIGTYPE_p_RegionTransportRateTally swig_types[47]
+#define SWIGTYPE_p_Surface swig_types[48]
+#define SWIGTYPE_p_Tally swig_types[49]
+#define SWIGTYPE_p_TallyBank swig_types[50]
+#define SWIGTYPE_p_Timer swig_types[51]
+#define SWIGTYPE_p_XPlane swig_types[52]
+#define SWIGTYPE_p_YPlane swig_types[53]
+#define SWIGTYPE_p_binSpacingTypes swig_types[54]
+#define SWIGTYPE_p_boundaryTypes swig_types[55]
+#define SWIGTYPE_p_char swig_types[56]
+#define SWIGTYPE_p_densityUnits swig_types[57]
+#define SWIGTYPE_p_double swig_types[58]
+#define SWIGTYPE_p_float swig_types[59]
+#define SWIGTYPE_p_logLevels swig_types[60]
+#define SWIGTYPE_p_neutron swig_types[61]
+#define SWIGTYPE_p_p_double swig_types[62]
+#define SWIGTYPE_p_regionTypes swig_types[63]
+#define SWIGTYPE_p_spatialTypes swig_types[64]
+#define SWIGTYPE_p_std__string swig_types[65]
+#define SWIGTYPE_p_tallyDomainTypes swig_types[66]
+#define SWIGTYPE_p_tallyTypes swig_types[67]
+#define SWIGTYPE_p_timespec swig_types[68]
+#define SWIGTYPE_p_triggerTypes swig_types[69]
+static swig_type_info *swig_types[71];
+static swig_module_info swig_module = {swig_types, 70, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3096,6 +3138,7 @@ namespace swig {
     #include "src/Isotope.h"
     #include "src/Material.h"
     #include "src/Tally.h"
+	#include "src/TallyBank.h"
     #include "src/Neutron.h"
     #include "src/Fissioner.h"
     #include "src/log.h"
@@ -3131,16 +3174,6 @@ SWIGINTERNINLINE PyObject*
   SWIG_From_int  (int value)
 {
   return PyInt_FromLong((long) value);
-}
-
-
-  #define SWIG_From_double   PyFloat_FromDouble 
-
-
-SWIGINTERNINLINE PyObject *
-SWIG_From_float  (float value)
-{    
-  return SWIG_From_double  (value);
 }
 
 
@@ -3286,6 +3319,16 @@ SWIG_AsVal_int (PyObject * obj, int *val)
     }
   }  
   return res;
+}
+
+
+  #define SWIG_From_double   PyFloat_FromDouble 
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_float  (float value)
+{    
+  return SWIG_From_double  (value);
 }
 
 
@@ -3818,17 +3861,76 @@ SWIG_AsVal_bool (PyObject *obj, bool *val)
   return SWIG_OK;
 }
 
+
+SWIGINTERN int
+SWIG_AsCharArray(PyObject * obj, char *val, size_t size)
+{ 
+  char* cptr = 0; size_t csize = 0; int alloc = SWIG_OLDOBJ;
+  int res = SWIG_AsCharPtrAndSize(obj, &cptr, &csize, &alloc);
+  if (SWIG_IsOK(res)) {
+    if ((csize == size + 1) && cptr && !(cptr[csize-1])) --csize;
+    if (csize <= size) {
+      if (val) {
+	if (csize) memcpy(val, cptr, csize*sizeof(char));
+	if (csize < size) memset(val + csize, 0, (size - csize)*sizeof(char));
+      }
+      if (alloc == SWIG_NEWOBJ) {
+	delete[] cptr;
+	res = SWIG_DelNewMask(res);
+      }      
+      return res;
+    }
+    if (alloc == SWIG_NEWOBJ) delete[] cptr;
+  }
+  return SWIG_TypeError;
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_char (PyObject * obj, char *val)
+{    
+  int res = SWIG_AsCharArray(obj, val, 1);
+  if (!SWIG_IsOK(res)) {
+    long v;
+    res = SWIG_AddCast(SWIG_AsVal_long (obj, &v));
+    if (SWIG_IsOK(res)) {
+      if ((CHAR_MIN <= v) && (v <= CHAR_MAX)) {
+	if (val) *val = static_cast< char >(v);
+      } else {
+	res = SWIG_OverflowError;
+      }
+    }
+  }
+  return res;
+}
+
+
+SWIGINTERNINLINE PyObject *
+SWIG_From_char  (char c) 
+{ 
+  return SWIG_FromCharPtrAndSize(&c,1);
+}
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 SWIGINTERN PyObject *_wrap_new_Geometry(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
+  spatialType arg1 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  PyObject * obj0 = 0 ;
   Geometry *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)":new_Geometry")) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:new_Geometry",&obj0)) SWIG_fail;
+  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Geometry" "', argument " "1"" of type '" "spatialType""'");
+  } 
+  arg1 = static_cast< spatialType >(val1);
   {
     try {
-      result = (Geometry *)new Geometry();
+      result = (Geometry *)new Geometry(arg1);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -4028,7 +4130,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Geometry_getBSquare(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Geometry_getBucklingSquared(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Geometry *arg1 = (Geometry *) 0 ;
   void *argp1 = 0 ;
@@ -4036,15 +4138,46 @@ SWIGINTERN PyObject *_wrap_Geometry_getBSquare(PyObject *SWIGUNUSEDPARM(self), P
   PyObject * obj0 = 0 ;
   float result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Geometry_getBSquare",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:Geometry_getBucklingSquared",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getBSquare" "', argument " "1"" of type '" "Geometry *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getBucklingSquared" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
   {
     try {
-      result = (float)(arg1)->getBSquare();
+      result = (float)(arg1)->getBucklingSquared();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Geometry_getVolume(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Geometry_getVolume",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getVolume" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  {
+    try {
+      result = (float)(arg1)->getVolume();
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -4176,45 +4309,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Geometry_setSpatialType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Geometry *arg1 = (Geometry *) 0 ;
-  spatialType arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Geometry_setSpatialType",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_setSpatialType" "', argument " "1"" of type '" "Geometry *""'"); 
-  }
-  arg1 = reinterpret_cast< Geometry * >(argp1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Geometry_setSpatialType" "', argument " "2"" of type '" "spatialType""'");
-  } 
-  arg2 = static_cast< spatialType >(val2);
-  {
-    try {
-      (arg1)->setSpatialType(arg2);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Geometry_setDancoffFactor(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Geometry *arg1 = (Geometry *) 0 ;
@@ -4293,46 +4387,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Geometry_addTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Geometry *arg1 = (Geometry *) 0 ;
-  Tally *arg2 = (Tally *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Geometry_addTally",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_addTally" "', argument " "1"" of type '" "Geometry *""'"); 
-  }
-  arg1 = reinterpret_cast< Geometry * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Geometry_addTally" "', argument " "2"" of type '" "Tally *""'"); 
-  }
-  arg2 = reinterpret_cast< Tally * >(argp2);
-  {
-    try {
-      (arg1)->addTally(arg2);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Geometry_setBSquare(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Geometry_setBucklingSquared(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Geometry *arg1 = (Geometry *) 0 ;
   float arg2 ;
@@ -4343,20 +4398,20 @@ SWIGINTERN PyObject *_wrap_Geometry_setBSquare(PyObject *SWIGUNUSEDPARM(self), P
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:Geometry_setBSquare",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:Geometry_setBucklingSquared",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_setBSquare" "', argument " "1"" of type '" "Geometry *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_setBucklingSquared" "', argument " "1"" of type '" "Geometry *""'"); 
   }
   arg1 = reinterpret_cast< Geometry * >(argp1);
   ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Geometry_setBSquare" "', argument " "2"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Geometry_setBucklingSquared" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
   {
     try {
-      (arg1)->setBSquare(arg2);
+      (arg1)->setBucklingSquared(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -4397,120 +4452,6 @@ SWIGINTERN PyObject *_wrap_Geometry_runMonteCarloSimulation(PyObject *SWIGUNUSED
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Geometry_computeBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Geometry *arg1 = (Geometry *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Geometry_computeBatchStatistics",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_computeBatchStatistics" "', argument " "1"" of type '" "Geometry *""'"); 
-  }
-  arg1 = reinterpret_cast< Geometry * >(argp1);
-  {
-    try {
-      (arg1)->computeBatchStatistics();
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Geometry_computeScaledBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Geometry *arg1 = (Geometry *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Geometry_computeScaledBatchStatistics",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_computeScaledBatchStatistics" "', argument " "1"" of type '" "Geometry *""'"); 
-  }
-  arg1 = reinterpret_cast< Geometry * >(argp1);
-  {
-    try {
-      (arg1)->computeScaledBatchStatistics();
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Geometry_outputBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Geometry *arg1 = (Geometry *) 0 ;
-  char *arg2 = (char *) 0 ;
-  char *arg3 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  int res3 ;
-  char *buf3 = 0 ;
-  int alloc3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:Geometry_outputBatchStatistics",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_outputBatchStatistics" "', argument " "1"" of type '" "Geometry *""'"); 
-  }
-  arg1 = reinterpret_cast< Geometry * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Geometry_outputBatchStatistics" "', argument " "2"" of type '" "char *""'");
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Geometry_outputBatchStatistics" "', argument " "3"" of type '" "char *""'");
-  }
-  arg3 = reinterpret_cast< char * >(buf3);
-  {
-    try {
-      (arg1)->outputBatchStatistics(arg2,arg3);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
   return NULL;
 }
 
@@ -4682,6 +4623,46 @@ SWIGINTERN PyObject *_wrap_Region_getMaterial(PyObject *SWIGUNUSEDPARM(self), Py
     }
   }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_containsIsotope(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  Isotope *arg2 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_containsIsotope",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_containsIsotope" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Region_containsIsotope" "', argument " "2"" of type '" "Isotope *""'"); 
+  }
+  arg2 = reinterpret_cast< Isotope * >(argp2);
+  {
+    try {
+      result = (bool)(arg1)->containsIsotope(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
   return NULL;
@@ -4860,6 +4841,37 @@ SWIGINTERN PyObject *_wrap_Region_getPitch(PyObject *SWIGUNUSEDPARM(self), PyObj
   {
     try {
       result = (float)(arg1)->getPitch();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_getBucklingSquared(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Region_getBucklingSquared",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_getBucklingSquared" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  {
+    try {
+      result = (float)(arg1)->getBucklingSquared();
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -5810,7 +5822,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Region_addFuelRingRadius(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Region_setBucklingSquared(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Region *arg1 = (Region *) 0 ;
   float arg2 ;
@@ -5821,59 +5833,20 @@ SWIGINTERN PyObject *_wrap_Region_addFuelRingRadius(PyObject *SWIGUNUSEDPARM(sel
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:Region_addFuelRingRadius",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_setBucklingSquared",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_addFuelRingRadius" "', argument " "1"" of type '" "Region *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_setBucklingSquared" "', argument " "1"" of type '" "Region *""'"); 
   }
   arg1 = reinterpret_cast< Region * >(argp1);
   ecode2 = SWIG_AsVal_float(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_addFuelRingRadius" "', argument " "2"" of type '" "float""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_setBucklingSquared" "', argument " "2"" of type '" "float""'");
   } 
   arg2 = static_cast< float >(val2);
   {
     try {
-      (arg1)->addFuelRingRadius(arg2);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Region_addModeratorRingRadius(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Region *arg1 = (Region *) 0 ;
-  float arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  float val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Region_addModeratorRingRadius",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_addModeratorRingRadius" "', argument " "1"" of type '" "Region *""'"); 
-  }
-  arg1 = reinterpret_cast< Region * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Region_addModeratorRingRadius" "', argument " "2"" of type '" "float""'");
-  } 
-  arg2 = static_cast< float >(val2);
-  {
-    try {
-      (arg1)->addModeratorRingRadius(arg2);
+      (arg1)->setBucklingSquared(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -5898,7 +5871,6 @@ SWIGINTERN PyObject *_wrap_Region_collideNeutron(PyObject *SWIGUNUSEDPARM(self),
   int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  collisionType result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:Region_collideNeutron",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
@@ -5913,7 +5885,7 @@ SWIGINTERN PyObject *_wrap_Region_collideNeutron(PyObject *SWIGUNUSEDPARM(self),
   arg2 = reinterpret_cast< neutron * >(argp2);
   {
     try {
-      result = (collisionType)(arg1)->collideNeutron(arg2);
+      (arg1)->collideNeutron(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -5921,7 +5893,87 @@ SWIGINTERN PyObject *_wrap_Region_collideNeutron(PyObject *SWIGUNUSEDPARM(self),
       SWIG_exception(SWIG_RuntimeError, e.what()); 
     }
   }
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_contains(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_contains",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_contains" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Region_contains" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      result = (bool)(arg1)->contains(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Region_onBoundary(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Region_onBoundary",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Region_onBoundary" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Region_onBoundary" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      result = (bool)(arg1)->onBoundary(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
   return NULL;
@@ -7264,20 +7316,30 @@ fail:
 SWIGINTERN PyObject *_wrap_Isotope_getNumXSEnergies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Isotope *arg1 = (Isotope *) 0 ;
+  char *arg2 = (char *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
   PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
   int result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Isotope_getNumXSEnergies",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_getNumXSEnergies",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getNumXSEnergies" "', argument " "1"" of type '" "Isotope const *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_getNumXSEnergies" "', argument " "2"" of type '" "char *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
   {
     try {
-      result = (int)((Isotope const *)arg1)->getNumXSEnergies();
+      result = (int)((Isotope const *)arg1)->getNumXSEnergies(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -7286,8 +7348,10 @@ SWIGINTERN PyObject *_wrap_Isotope_getNumXSEnergies(PyObject *SWIGUNUSEDPARM(sel
     }
   }
   resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
 fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return NULL;
 }
 
@@ -7419,37 +7483,6 @@ fail:
     "    Isotope::getElasticXS(float) const\n"
     "    Isotope::getElasticXS(int) const\n");
   return 0;
-}
-
-
-SWIGINTERN PyObject *_wrap_Isotope_getElasticAngleType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Isotope *arg1 = (Isotope *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  scatterAngleType result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Isotope_getElasticAngleType",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getElasticAngleType" "', argument " "1"" of type '" "Isotope const *""'"); 
-  }
-  arg1 = reinterpret_cast< Isotope * >(argp1);
-  {
-    try {
-      result = (scatterAngleType)((Isotope const *)arg1)->getElasticAngleType();
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  return resultobj;
-fail:
-  return NULL;
 }
 
 
@@ -8210,13 +8243,18 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(s
   Isotope *arg1 = (Isotope *) 0 ;
   float *arg2 = (float *) 0 ;
   int arg3 ;
+  char *arg4 = (char *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject *array2 = NULL ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_retrieveXSEnergies",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_retrieveXSEnergies",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_retrieveXSEnergies" "', argument " "1"" of type '" "Isotope const *""'"); 
@@ -8238,9 +8276,14 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(s
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
+  res4 = SWIG_AsCharPtrAndSize(obj2, &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Isotope_retrieveXSEnergies" "', argument " "4"" of type '" "char *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
   {
     try {
-      ((Isotope const *)arg1)->retrieveXSEnergies(arg2,arg3);
+      ((Isotope const *)arg1)->retrieveXSEnergies(arg2,arg3,arg4);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -8252,8 +8295,10 @@ SWIGINTERN PyObject *_wrap_Isotope_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(s
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
   }
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return resultobj;
 fail:
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return NULL;
 }
 
@@ -8323,7 +8368,523 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Isotope_setIsotopeType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Isotope_setElasticXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyArrayObject *array4 = NULL ;
+  int is_new_object4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_setElasticXS",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setElasticXS" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array4 = obj_to_array_contiguous_allow_conversion(obj2, NPY_DOUBLE,
+      &is_new_object4);
+    if (!array4 || !require_dimensions(array4, 1) ||
+      !require_size(array4, size, 1)) SWIG_fail;
+    arg4 = (double*) array_data(array4);
+    arg5 = (int) array_size(array4,0);
+  }
+  {
+    try {
+      (arg1)->setElasticXS(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_setCaptureXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyArrayObject *array4 = NULL ;
+  int is_new_object4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_setCaptureXS",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setCaptureXS" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array4 = obj_to_array_contiguous_allow_conversion(obj2, NPY_DOUBLE,
+      &is_new_object4);
+    if (!array4 || !require_dimensions(array4, 1) ||
+      !require_size(array4, size, 1)) SWIG_fail;
+    arg4 = (double*) array_data(array4);
+    arg5 = (int) array_size(array4,0);
+  }
+  {
+    try {
+      (arg1)->setCaptureXS(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_setFissionXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyArrayObject *array4 = NULL ;
+  int is_new_object4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_setFissionXS",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setFissionXS" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array4 = obj_to_array_contiguous_allow_conversion(obj2, NPY_DOUBLE,
+      &is_new_object4);
+    if (!array4 || !require_dimensions(array4, 1) ||
+      !require_size(array4, size, 1)) SWIG_fail;
+    arg4 = (double*) array_data(array4);
+    arg5 = (int) array_size(array4,0);
+  }
+  {
+    try {
+      (arg1)->setFissionXS(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_setMultigroupElasticXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyArrayObject *array4 = NULL ;
+  int is_new_object4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_setMultigroupElasticXS",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setMultigroupElasticXS" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array4 = obj_to_array_contiguous_allow_conversion(obj2, NPY_DOUBLE,
+      &is_new_object4);
+    if (!array4 || !require_dimensions(array4, 1) ||
+      !require_size(array4, size, 1)) SWIG_fail;
+    arg4 = (double*) array_data(array4);
+    arg5 = (int) array_size(array4,0);
+  }
+  {
+    try {
+      (arg1)->setMultigroupElasticXS(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_setMultigroupCaptureXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyArrayObject *array4 = NULL ;
+  int is_new_object4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_setMultigroupCaptureXS",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setMultigroupCaptureXS" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array4 = obj_to_array_contiguous_allow_conversion(obj2, NPY_DOUBLE,
+      &is_new_object4);
+    if (!array4 || !require_dimensions(array4, 1) ||
+      !require_size(array4, size, 1)) SWIG_fail;
+    arg4 = (double*) array_data(array4);
+    arg5 = (int) array_size(array4,0);
+  }
+  {
+    try {
+      (arg1)->setMultigroupCaptureXS(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_setMultigroupFissionXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyArrayObject *array4 = NULL ;
+  int is_new_object4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Isotope_setMultigroupFissionXS",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setMultigroupFissionXS" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array4 = obj_to_array_contiguous_allow_conversion(obj2, NPY_DOUBLE,
+      &is_new_object4);
+    if (!array4 || !require_dimensions(array4, 1) ||
+      !require_size(array4, size, 1)) SWIG_fail;
+    arg4 = (double*) array_data(array4);
+    arg5 = (int) array_size(array4,0);
+  }
+  {
+    try {
+      (arg1)->setMultigroupFissionXS(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  {
+    if (is_new_object4 && array4)
+    {
+      Py_DECREF(array4); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_loadXS(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Isotope *arg1 = (Isotope *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -8335,20 +8896,20 @@ SWIGINTERN PyObject *_wrap_Isotope_setIsotopeType(PyObject *SWIGUNUSEDPARM(self)
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_setIsotopeType",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_loadXS",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setIsotopeType" "', argument " "1"" of type '" "Isotope *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_loadXS" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
   res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_setIsotopeType" "', argument " "2"" of type '" "char *""'");
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_loadXS" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = reinterpret_cast< char * >(buf2);
   {
     try {
-      (arg1)->setIsotopeType(arg2);
+      (arg1)->loadXS(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -8521,6 +9082,66 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Isotope_neglectThermalScattering(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Isotope_neglectThermalScattering",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_neglectThermalScattering" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    try {
+      (arg1)->neglectThermalScattering();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_useThermalScattering(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Isotope_useThermalScattering",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_useThermalScattering" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    try {
+      (arg1)->useThermalScattering();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Isotope_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Isotope *arg1 = (Isotope *) 0 ;
@@ -8552,32 +9173,31 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Isotope_getCollisionType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Isotope_sampleCollisionType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Isotope *arg1 = (Isotope *) 0 ;
-  float arg2 ;
+  neutron *arg2 = (neutron *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  float val2 ;
-  int ecode2 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  collisionType result;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_getCollisionType",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_sampleCollisionType",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getCollisionType" "', argument " "1"" of type '" "Isotope *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_sampleCollisionType" "', argument " "1"" of type '" "Isotope *""'"); 
   }
   arg1 = reinterpret_cast< Isotope * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_getCollisionType" "', argument " "2"" of type '" "float""'");
-  } 
-  arg2 = static_cast< float >(val2);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Isotope_sampleCollisionType" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
   {
     try {
-      result = (collisionType)(arg1)->getCollisionType(arg2);
+      (arg1)->sampleCollisionType(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -8585,7 +9205,7 @@ SWIGINTERN PyObject *_wrap_Isotope_getCollisionType(PyObject *SWIGUNUSEDPARM(sel
       SWIG_exception(SWIG_RuntimeError, e.what()); 
     }
   }
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -8602,7 +9222,6 @@ SWIGINTERN PyObject *_wrap_Isotope_collideNeutron(PyObject *SWIGUNUSEDPARM(self)
   int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  collisionType result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_collideNeutron",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
@@ -8617,7 +9236,7 @@ SWIGINTERN PyObject *_wrap_Isotope_collideNeutron(PyObject *SWIGUNUSEDPARM(self)
   arg2 = reinterpret_cast< neutron * >(argp2);
   {
     try {
-      result = (collisionType)(arg1)->collideNeutron(arg2);
+      (arg1)->collideNeutron(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -8625,7 +9244,7 @@ SWIGINTERN PyObject *_wrap_Isotope_collideNeutron(PyObject *SWIGUNUSEDPARM(self)
       SWIG_exception(SWIG_RuntimeError, e.what()); 
     }
   }
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -8986,37 +9605,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Isotope_getEnergyGridScaleType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Isotope *arg1 = (Isotope *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  binSpacingTypes result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Isotope_getEnergyGridScaleType",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getEnergyGridScaleType" "', argument " "1"" of type '" "Isotope *""'"); 
-  }
-  arg1 = reinterpret_cast< Isotope * >(argp1);
-  {
-    try {
-      result = (binSpacingTypes)(arg1)->getEnergyGridScaleType();
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *Isotope_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
@@ -9026,12 +9614,22 @@ SWIGINTERN PyObject *Isotope_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObje
 
 SWIGINTERN PyObject *_wrap_new_Material(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  PyObject * obj0 = 0 ;
   Material *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)":new_Material")) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:new_Material",&obj0)) SWIG_fail;
+  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Material" "', argument " "1"" of type '" "char *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
   {
     try {
-      result = (Material *)new Material();
+      result = (Material *)new Material(arg1);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -9040,8 +9638,10 @@ SWIGINTERN PyObject *_wrap_new_Material(PyObject *SWIGUNUSEDPARM(self), PyObject
     }
   }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, SWIG_POINTER_NEW |  0 );
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return resultobj;
 fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
   return NULL;
 }
 
@@ -9070,37 +9670,6 @@ SWIGINTERN PyObject *_wrap_delete_Material(PyObject *SWIGUNUSEDPARM(self), PyObj
     }
   }
   resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Material_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Material *arg1 = (Material *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Material *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Material_clone",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_clone" "', argument " "1"" of type '" "Material *""'"); 
-  }
-  arg1 = reinterpret_cast< Material * >(argp1);
-  {
-    try {
-      result = (Material *)(arg1)->clone();
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -9169,49 +9738,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Material_getIsotope(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Material *arg1 = (Material *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  Isotope *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Material_getIsotope",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getIsotope" "', argument " "1"" of type '" "Material *""'"); 
-  }
-  arg1 = reinterpret_cast< Material * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_getIsotope" "', argument " "2"" of type '" "char *""'");
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  {
-    try {
-      result = (Isotope *)(arg1)->getIsotope(arg2);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Isotope, 0 |  0 );
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Material_getDensity(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Material *arg1 = (Material *) 0 ;
@@ -9246,12 +9772,11 @@ fail:
 SWIGINTERN PyObject *_wrap_Material_getIsotopeNumDensity(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Material *arg1 = (Material *) 0 ;
-  char *arg2 = (char *) 0 ;
+  Isotope *arg2 = (Isotope *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   float result;
@@ -9262,11 +9787,11 @@ SWIGINTERN PyObject *_wrap_Material_getIsotopeNumDensity(PyObject *SWIGUNUSEDPAR
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getIsotopeNumDensity" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Isotope, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_getIsotopeNumDensity" "', argument " "2"" of type '" "char *""'");
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_getIsotopeNumDensity" "', argument " "2"" of type '" "Isotope *""'"); 
   }
-  arg2 = reinterpret_cast< char * >(buf2);
+  arg2 = reinterpret_cast< Isotope * >(argp2);
   {
     try {
       result = (float)(arg1)->getIsotopeNumDensity(arg2);
@@ -9278,10 +9803,110 @@ SWIGINTERN PyObject *_wrap_Material_getIsotopeNumDensity(PyObject *SWIGUNUSEDPAR
     }
   }
   resultobj = SWIG_From_float(static_cast< float >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
 fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_containsIsotope(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  Isotope *arg2 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Material_containsIsotope",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_containsIsotope" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_containsIsotope" "', argument " "2"" of type '" "Isotope *""'"); 
+  }
+  arg2 = reinterpret_cast< Isotope * >(argp2);
+  {
+    try {
+      result = (bool)(arg1)->containsIsotope(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_getBucklingSquared(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Material_getBucklingSquared",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getBucklingSquared" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (float)(arg1)->getBucklingSquared();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_getVolume(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Material_getVolume",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getVolume" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (float)(arg1)->getVolume();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
   return NULL;
 }
 
@@ -9289,20 +9914,30 @@ fail:
 SWIGINTERN PyObject *_wrap_Material_getNumXSEnergies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Material *arg1 = (Material *) 0 ;
+  char *arg2 = (char *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
   PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
   int result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:Material_getNumXSEnergies",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:Material_getNumXSEnergies",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getNumXSEnergies" "', argument " "1"" of type '" "Material const *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_getNumXSEnergies" "', argument " "2"" of type '" "char *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
   {
     try {
-      result = (int)((Material const *)arg1)->getNumXSEnergies();
+      result = (int)((Material const *)arg1)->getNumXSEnergies(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -9311,39 +9946,10 @@ SWIGINTERN PyObject *_wrap_Material_getNumXSEnergies(PyObject *SWIGUNUSEDPARM(se
     }
   }
   resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return resultobj;
 fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Material_getEnergyGridScaleType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Material *arg1 = (Material *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  binSpacingType result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Material_getEnergyGridScaleType",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_getEnergyGridScaleType" "', argument " "1"" of type '" "Material const *""'"); 
-  }
-  arg1 = reinterpret_cast< Material * >(argp1);
-  {
-    try {
-      result = (binSpacingType)((Material const *)arg1)->getEnergyGridScaleType();
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  return resultobj;
-fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return NULL;
 }
 
@@ -10133,13 +10739,18 @@ SWIGINTERN PyObject *_wrap_Material_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(
   Material *arg1 = (Material *) 0 ;
   float *arg2 = (float *) 0 ;
   int arg3 ;
+  char *arg4 = (char *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject *array2 = NULL ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:Material_retrieveXSEnergies",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Material_retrieveXSEnergies",&obj0,&obj1,&obj2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_retrieveXSEnergies" "', argument " "1"" of type '" "Material const *""'"); 
@@ -10161,9 +10772,14 @@ SWIGINTERN PyObject *_wrap_Material_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(
     if (!array2) SWIG_fail;
     arg2 = (float*) array_data(array2);
   }
+  res4 = SWIG_AsCharPtrAndSize(obj2, &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "Material_retrieveXSEnergies" "', argument " "4"" of type '" "char *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
   {
     try {
-      ((Material const *)arg1)->retrieveXSEnergies(arg2,arg3);
+      ((Material const *)arg1)->retrieveXSEnergies(arg2,arg3,arg4);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -10175,8 +10791,10 @@ SWIGINTERN PyObject *_wrap_Material_retrieveXSEnergies(PyObject *SWIGUNUSEDPARM(
   {
     resultobj = SWIG_Python_AppendOutput(resultobj,array2);
   }
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return resultobj;
 fail:
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
   return NULL;
 }
 
@@ -10246,48 +10864,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Material_setMaterialName(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Material *arg1 = (Material *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Material_setMaterialName",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_setMaterialName" "', argument " "1"" of type '" "Material *""'"); 
-  }
-  arg1 = reinterpret_cast< Material * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_setMaterialName" "', argument " "2"" of type '" "char *""'");
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  {
-    try {
-      (arg1)->setMaterialName(arg2);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Material_setDensity(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Material *arg1 = (Material *) 0 ;
@@ -10317,12 +10893,12 @@ SWIGINTERN PyObject *_wrap_Material_setDensity(PyObject *SWIGUNUSEDPARM(self), P
   arg2 = static_cast< float >(val2);
   res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Material_setDensity" "', argument " "3"" of type '" "char *""'");
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Material_setDensity" "', argument " "3"" of type '" "char const *""'");
   }
   arg3 = reinterpret_cast< char * >(buf3);
   {
     try {
-      (arg1)->setDensity(arg2,arg3);
+      (arg1)->setDensity(arg2,(char const *)arg3);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -10335,45 +10911,6 @@ SWIGINTERN PyObject *_wrap_Material_setDensity(PyObject *SWIGUNUSEDPARM(self), P
   return resultobj;
 fail:
   if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Material_setNumberDensity(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Material *arg1 = (Material *) 0 ;
-  float arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  float val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Material_setNumberDensity",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_setNumberDensity" "', argument " "1"" of type '" "Material *""'"); 
-  }
-  arg1 = reinterpret_cast< Material * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_setNumberDensity" "', argument " "2"" of type '" "float""'");
-  } 
-  arg2 = static_cast< float >(val2);
-  {
-    try {
-      (arg1)->setNumberDensity(arg2);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
   return NULL;
 }
 
@@ -10403,6 +10940,84 @@ SWIGINTERN PyObject *_wrap_Material_setAtomicMass(PyObject *SWIGUNUSEDPARM(self)
   {
     try {
       (arg1)->setAtomicMass(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_setBucklingSquared(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Material_setBucklingSquared",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_setBucklingSquared" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_setBucklingSquared" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      (arg1)->setBucklingSquared(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_incrementVolume(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Material_incrementVolume",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_incrementVolume" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_incrementVolume" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      (arg1)->incrementVolume(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -10465,32 +11080,23 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Material_sampleIsotope(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Material_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Material *arg1 = (Material *) 0 ;
-  float arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  float val2 ;
-  int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  Isotope *result = 0 ;
+  Material *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:Material_sampleIsotope",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:Material_clone",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_sampleIsotope" "', argument " "1"" of type '" "Material *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_clone" "', argument " "1"" of type '" "Material *""'"); 
   }
   arg1 = reinterpret_cast< Material * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Material_sampleIsotope" "', argument " "2"" of type '" "float""'");
-  } 
-  arg2 = static_cast< float >(val2);
   {
     try {
-      result = (Isotope *)(arg1)->sampleIsotope(arg2);
+      result = (Material *)(arg1)->clone();
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -10498,7 +11104,46 @@ SWIGINTERN PyObject *_wrap_Material_sampleIsotope(PyObject *SWIGUNUSEDPARM(self)
       SWIG_exception(SWIG_RuntimeError, e.what()); 
     }
   }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Isotope, 0 |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_sampleIsotope(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Material_sampleIsotope",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_sampleIsotope" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_sampleIsotope" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->sampleIsotope(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -10515,7 +11160,6 @@ SWIGINTERN PyObject *_wrap_Material_collideNeutron(PyObject *SWIGUNUSEDPARM(self
   int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  collisionType result;
   
   if (!PyArg_ParseTuple(args,(char *)"OO:Material_collideNeutron",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
@@ -10530,7 +11174,7 @@ SWIGINTERN PyObject *_wrap_Material_collideNeutron(PyObject *SWIGUNUSEDPARM(self
   arg2 = reinterpret_cast< neutron * >(argp2);
   {
     try {
-      result = (collisionType)(arg1)->collideNeutron(arg2);
+      (arg1)->collideNeutron(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -10538,7 +11182,7 @@ SWIGINTERN PyObject *_wrap_Material_collideNeutron(PyObject *SWIGUNUSEDPARM(self
       SWIG_exception(SWIG_RuntimeError, e.what()); 
     }
   }
-  resultobj = SWIG_From_int(static_cast< int >(result));
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -10551,312 +11195,6 @@ SWIGINTERN PyObject *Material_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObj
   SWIG_TypeNewClientData(SWIGTYPE_p_Material, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
-
-SWIGINTERN PyObject *_wrap_new_Tally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  char *arg1 = (char *) 0 ;
-  Isotope *arg2 = (Isotope *) 0 ;
-  tallyType arg3 ;
-  int res1 ;
-  char *buf1 = 0 ;
-  int alloc1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Tally *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:new_Tally",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Tally" "', argument " "1"" of type '" "char *""'");
-  }
-  arg1 = reinterpret_cast< char * >(buf1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Isotope, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_Tally" "', argument " "2"" of type '" "Isotope *""'"); 
-  }
-  arg2 = reinterpret_cast< Isotope * >(argp2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Tally" "', argument " "3"" of type '" "tallyType""'");
-  } 
-  arg3 = static_cast< tallyType >(val3);
-  {
-    try {
-      result = (Tally *)new Tally(arg1,arg2,arg3);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, SWIG_POINTER_NEW |  0 );
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return resultobj;
-fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_Tally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  char *arg1 = (char *) 0 ;
-  Material *arg2 = (Material *) 0 ;
-  tallyType arg3 ;
-  int res1 ;
-  char *buf1 = 0 ;
-  int alloc1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Tally *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:new_Tally",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Tally" "', argument " "1"" of type '" "char *""'");
-  }
-  arg1 = reinterpret_cast< char * >(buf1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Material, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_Tally" "', argument " "2"" of type '" "Material *""'"); 
-  }
-  arg2 = reinterpret_cast< Material * >(argp2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Tally" "', argument " "3"" of type '" "tallyType""'");
-  } 
-  arg3 = static_cast< tallyType >(val3);
-  {
-    try {
-      result = (Tally *)new Tally(arg1,arg2,arg3);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, SWIG_POINTER_NEW |  0 );
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return resultobj;
-fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_Tally__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  char *arg1 = (char *) 0 ;
-  Region *arg2 = (Region *) 0 ;
-  tallyType arg3 ;
-  int res1 ;
-  char *buf1 = 0 ;
-  int alloc1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Tally *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:new_Tally",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Tally" "', argument " "1"" of type '" "char *""'");
-  }
-  arg1 = reinterpret_cast< char * >(buf1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Region, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_Tally" "', argument " "2"" of type '" "Region *""'"); 
-  }
-  arg2 = reinterpret_cast< Region * >(argp2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Tally" "', argument " "3"" of type '" "tallyType""'");
-  } 
-  arg3 = static_cast< tallyType >(val3);
-  {
-    try {
-      result = (Tally *)new Tally(arg1,arg2,arg3);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, SWIG_POINTER_NEW |  0 );
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return resultobj;
-fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_Tally__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  char *arg1 = (char *) 0 ;
-  Geometry *arg2 = (Geometry *) 0 ;
-  tallyType arg3 ;
-  int res1 ;
-  char *buf1 = 0 ;
-  int alloc1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Tally *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:new_Tally",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Tally" "', argument " "1"" of type '" "char *""'");
-  }
-  arg1 = reinterpret_cast< char * >(buf1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Geometry, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_Tally" "', argument " "2"" of type '" "Geometry *""'"); 
-  }
-  arg2 = reinterpret_cast< Geometry * >(argp2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_Tally" "', argument " "3"" of type '" "tallyType""'");
-  } 
-  arg3 = static_cast< tallyType >(val3);
-  {
-    try {
-      result = (Tally *)new Tally(arg1,arg2,arg3);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, SWIG_POINTER_NEW |  0 );
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return resultobj;
-fail:
-  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_Tally(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[4];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
-  for (ii = 0; (ii < 3) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 3) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Isotope, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_new_Tally__SWIG_0(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Material, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_new_Tally__SWIG_1(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Region, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_new_Tally__SWIG_2(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Geometry, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_new_Tally__SWIG_3(self, args);
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_Tally'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    Tally::Tally(char *,Isotope *,tallyType)\n"
-    "    Tally::Tally(char *,Material *,tallyType)\n"
-    "    Tally::Tally(char *,Region *,tallyType)\n"
-    "    Tally::Tally(char *,Geometry *,tallyType)\n");
-  return 0;
-}
-
 
 SWIGINTERN PyObject *_wrap_delete_Tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
@@ -11402,6 +11740,223 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Tally_getMaxMu(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_getMaxMu",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getMaxMu" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      result = (double)(arg1)->getMaxMu();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_getMaxVariance(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_getMaxVariance",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getMaxVariance" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      result = (double)(arg1)->getMaxVariance();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_getMaxStdDev(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_getMaxStdDev",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getMaxStdDev" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      result = (double)(arg1)->getMaxStdDev();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_getMaxRelErr(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_getMaxRelErr",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getMaxRelErr" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      result = (double)(arg1)->getMaxRelErr();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_getTriggerPrecision(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_getTriggerPrecision",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getTriggerPrecision" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      result = (float)(arg1)->getTriggerPrecision();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_getTriggerType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  triggerType result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_getTriggerType",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_getTriggerType" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      result = (triggerType)(arg1)->getTriggerType();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_hasComputedBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_hasComputedBatchStatistics",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_hasComputedBatchStatistics" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      result = (bool)(arg1)->hasComputedBatchStatistics();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Tally_retrieveTallyEdges(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
@@ -11875,6 +12430,84 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Tally_setTallyDomainType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  tallyDomainType arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_setTallyDomainType",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_setTallyDomainType" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_setTallyDomainType" "', argument " "2"" of type '" "tallyDomainType""'");
+  } 
+  arg2 = static_cast< tallyDomainType >(val2);
+  {
+    try {
+      (arg1)->setTallyDomainType(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_setTallyType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  tallyType arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_setTallyType",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_setTallyType" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_setTallyType" "', argument " "2"" of type '" "tallyType""'");
+  } 
+  arg2 = static_cast< tallyType >(val2);
+  {
+    try {
+      (arg1)->setTallyType(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Tally_setBinSpacingType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
@@ -12086,6 +12719,36 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Tally_generateBinCenters(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_generateBinCenters",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_generateBinCenters" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      (arg1)->generateBinCenters();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Tally_setNumBatches(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
@@ -12195,391 +12858,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Tally_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Tally *arg1 = (Tally *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Tally *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Tally_clone",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_clone" "', argument " "1"" of type '" "Tally *""'"); 
-  }
-  arg1 = reinterpret_cast< Tally * >(argp1);
-  {
-    try {
-      result = (Tally *)(arg1)->clone();
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_generateBinCenters(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Tally *arg1 = (Tally *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Tally_generateBinCenters",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_generateBinCenters" "', argument " "1"" of type '" "Tally *""'"); 
-  }
-  arg1 = reinterpret_cast< Tally * >(argp1);
-  {
-    try {
-      (arg1)->generateBinCenters();
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_tally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Tally *arg1 = (Tally *) 0 ;
-  double *arg2 = (double *) 0 ;
-  int arg3 ;
-  int arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:Tally_tally",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_tally" "', argument " "1"" of type '" "Tally *""'"); 
-  }
-  arg1 = reinterpret_cast< Tally * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally_tally" "', argument " "2"" of type '" "double *""'"); 
-  }
-  arg2 = reinterpret_cast< double * >(argp2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_tally" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Tally_tally" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  {
-    try {
-      (arg1)->tally(arg2,arg3,arg4);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_tally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Tally *arg1 = (Tally *) 0 ;
-  double arg2 ;
-  int arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:Tally_tally",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_tally" "', argument " "1"" of type '" "Tally *""'"); 
-  }
-  arg1 = reinterpret_cast< Tally * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_tally" "', argument " "2"" of type '" "double""'");
-  } 
-  arg2 = static_cast< double >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_tally" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  {
-    try {
-      (arg1)->tally(arg2,arg3);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_tally(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[5];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
-  for (ii = 0; (ii < 4) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_double(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          return _wrap_Tally_tally__SWIG_1(self, args);
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      void *vptr = 0;
-      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_double, 0);
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_Tally_tally__SWIG_0(self, args);
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Tally_tally'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    Tally::tally(double *,int,int)\n"
-    "    Tally::tally(double,int)\n");
-  return 0;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_weightedTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Tally *arg1 = (Tally *) 0 ;
-  neutron *arg2 = (neutron *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_weightedTally",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_weightedTally" "', argument " "1"" of type '" "Tally *""'"); 
-  }
-  arg1 = reinterpret_cast< Tally * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally_weightedTally" "', argument " "2"" of type '" "neutron *""'"); 
-  }
-  arg2 = reinterpret_cast< neutron * >(argp2);
-  {
-    try {
-      (arg1)->weightedTally(arg2);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_normalizeTallies__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Tally *arg1 = (Tally *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Tally_normalizeTallies",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_normalizeTallies" "', argument " "1"" of type '" "Tally *""'"); 
-  }
-  arg1 = reinterpret_cast< Tally * >(argp1);
-  {
-    try {
-      (arg1)->normalizeTallies();
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_normalizeTallies__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Tally *arg1 = (Tally *) 0 ;
-  double arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_normalizeTallies",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_normalizeTallies" "', argument " "1"" of type '" "Tally *""'"); 
-  }
-  arg1 = reinterpret_cast< Tally * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_normalizeTallies" "', argument " "2"" of type '" "double""'");
-  } 
-  arg2 = static_cast< double >(val2);
-  {
-    try {
-      (arg1)->normalizeTallies(arg2);
-    } catch (const std::runtime_error &e) {
-      SWIG_exception(SWIG_RuntimeError, err_occurred());
-      return NULL;
-    } catch (const std::exception &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what()); 
-    }
-  }
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Tally_normalizeTallies(PyObject *self, PyObject *args) {
-  int argc;
-  PyObject *argv[3];
-  int ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? (int)PyObject_Length(args) : 0;
-  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 1) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      return _wrap_Tally_normalizeTallies__SWIG_0(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_double(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_Tally_normalizeTallies__SWIG_1(self, args);
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Tally_normalizeTallies'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    Tally::normalizeTallies()\n"
-    "    Tally::normalizeTallies(double)\n");
-  return 0;
-}
-
-
 SWIGINTERN PyObject *_wrap_Tally_computeBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
@@ -12649,6 +12927,36 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Tally_normalizeBatchMu(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_normalizeBatchMu",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_normalizeBatchMu" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      (arg1)->normalizeBatchMu();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Tally_outputBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Tally *arg1 = (Tally *) 0 ;
@@ -12691,10 +12999,11190 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Tally_printTallies__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_printTallies",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_printTallies" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally_printTallies" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  {
+    try {
+      (arg1)->printTallies(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_printTallies__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_printTallies",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_printTallies" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      (arg1)->printTallies();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_printTallies(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_Tally_printTallies__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_bool(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Tally_printTallies__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Tally_printTallies'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Tally::printTallies(bool)\n"
+    "    Tally::printTallies()\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_clone(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Tally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Tally_clone",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_clone" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    try {
+      result = (Tally *)(arg1)->clone();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_tally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  double arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:Tally_tally",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_tally" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  ecode3 = SWIG_AsVal_double(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Tally_tally" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
+  {
+    try {
+      (arg1)->tally(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_tally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_tally" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_tally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[4];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 3) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_neutron, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Tally_tally__SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_neutron, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        {
+          int res = SWIG_AsVal_double(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          return _wrap_Tally_tally__SWIG_0(self, args);
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'Tally_tally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Tally::tally(neutron *,double)\n"
+    "    Tally::tally(neutron *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_addIntegers(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_addIntegers",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_addIntegers" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_INT,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (int*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    try {
+      result = (DerivedTally *)(arg1)->addIntegers((int const *)arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_addFloats(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_addFloats",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_addFloats" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_FLOAT,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    try {
+      result = (DerivedTally *)(arg1)->addFloats((float const *)arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_addDoubles(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_addDoubles",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_addDoubles" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    try {
+      result = (DerivedTally *)(arg1)->addDoubles((double const *)arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_subtractIntegers(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_subtractIntegers",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_subtractIntegers" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_INT,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (int*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    try {
+      result = (DerivedTally *)(arg1)->subtractIntegers((int const *)arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_subtractFloats(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_subtractFloats",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_subtractFloats" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_FLOAT,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    try {
+      result = (DerivedTally *)(arg1)->subtractFloats((float const *)arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_subtractDoubles(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_subtractDoubles",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_subtractDoubles" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    try {
+      result = (DerivedTally *)(arg1)->subtractDoubles((double const *)arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_multiplyIntegers(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_multiplyIntegers",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_multiplyIntegers" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_INT,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (int*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    try {
+      result = (DerivedTally *)(arg1)->multiplyIntegers((int const *)arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_multiplyFloats(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_multiplyFloats",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_multiplyFloats" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_FLOAT,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    try {
+      result = (DerivedTally *)(arg1)->multiplyFloats((float const *)arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_multiplyDoubles(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_multiplyDoubles",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_multiplyDoubles" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    try {
+      result = (DerivedTally *)(arg1)->multiplyDoubles((double const *)arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_divideIntegers(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_divideIntegers",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_divideIntegers" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_INT,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (int*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    try {
+      result = (DerivedTally *)(arg1)->divideIntegers((int const *)arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_divideFloats(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  float *arg2 = (float *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_divideFloats",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_divideFloats" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_FLOAT,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (float*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    try {
+      result = (DerivedTally *)(arg1)->divideFloats((float const *)arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally_divideDoubles(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  double *arg2 = (double *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyArrayObject *array2 = NULL ;
+  int is_new_object2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally_divideDoubles",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally_divideDoubles" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  {
+    npy_intp size[1] = {
+      -1 
+    };
+    array2 = obj_to_array_contiguous_allow_conversion(obj1, NPY_DOUBLE,
+      &is_new_object2);
+    if (!array2 || !require_dimensions(array2, 1) ||
+      !require_size(array2, size, 1)) SWIG_fail;
+    arg2 = (double*) array_data(array2);
+    arg3 = (int) array_size(array2,0);
+  }
+  {
+    try {
+      result = (DerivedTally *)(arg1)->divideDoubles((double const *)arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return resultobj;
+fail:
+  {
+    if (is_new_object2 && array2)
+    {
+      Py_DECREF(array2); 
+    }
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___add____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  Tally *arg2 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___add__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___add__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally___add__" "', argument " "2"" of type '" "Tally *""'"); 
+  }
+  arg2 = reinterpret_cast< Tally * >(argp2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator +(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___sub____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  Tally *arg2 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___sub__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___sub__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally___sub__" "', argument " "2"" of type '" "Tally *""'"); 
+  }
+  arg2 = reinterpret_cast< Tally * >(argp2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator -(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___mul____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  Tally *arg2 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___mul__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___mul__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally___mul__" "', argument " "2"" of type '" "Tally *""'"); 
+  }
+  arg2 = reinterpret_cast< Tally * >(argp2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator *(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___div____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  Tally *arg2 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___div__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___div__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Tally___div__" "', argument " "2"" of type '" "Tally *""'"); 
+  }
+  arg2 = reinterpret_cast< Tally * >(argp2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator /(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___add____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___add__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___add__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally___add__" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator +(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___sub____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___sub__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___sub__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally___sub__" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator -(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___mul____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___mul__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___mul__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally___mul__" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator *(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___div____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___div__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___div__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally___div__" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator /(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___add____SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___add__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___add__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally___add__" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator +(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___sub____SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___sub__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___sub__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally___sub__" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator -(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___mul____SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___mul__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___mul__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally___mul__" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator *(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___div____SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___div__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___div__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally___div__" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator /(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___add____SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  double arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___add__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___add__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally___add__" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator +(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___add__(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Tally, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Tally___add____SWIG_0(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Tally___add____SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Tally___add____SWIG_2(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_double(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Tally___add____SWIG_3(self, args);
+      }
+    }
+  }
+  
+fail:
+  Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___sub____SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  double arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___sub__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___sub__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally___sub__" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator -(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___sub__(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Tally, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Tally___sub____SWIG_0(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Tally___sub____SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Tally___sub____SWIG_2(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_double(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Tally___sub____SWIG_3(self, args);
+      }
+    }
+  }
+  
+fail:
+  Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___mul____SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  double arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___mul__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___mul__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally___mul__" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator *(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___mul__(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Tally, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Tally___mul____SWIG_0(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Tally___mul____SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Tally___mul____SWIG_2(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_double(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Tally___mul____SWIG_3(self, args);
+      }
+    }
+  }
+  
+fail:
+  Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___div____SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Tally *arg1 = (Tally *) 0 ;
+  double arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Tally___div__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Tally___div__" "', argument " "1"" of type '" "Tally *""'"); 
+  }
+  arg1 = reinterpret_cast< Tally * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Tally___div__" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  {
+    try {
+      result = (DerivedTally *)(arg1)->operator /(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Tally___div__(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Tally, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_Tally___div____SWIG_0(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Tally___div____SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_float(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Tally___div____SWIG_2(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Tally, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_double(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_Tally___div____SWIG_3(self, args);
+      }
+    }
+  }
+  
+fail:
+  Py_INCREF(Py_NotImplemented);
+  return Py_NotImplemented;
+}
+
+
 SWIGINTERN PyObject *Tally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
   SWIG_TypeNewClientData(SWIGTYPE_p_Tally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_createTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  tallyType arg2 ;
+  char *arg3 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  Tally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:createTally",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "createTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "createTally" "', argument " "2"" of type '" "tallyType""'");
+  } 
+  arg2 = static_cast< tallyType >(val2);
+  res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "createTally" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  {
+    try {
+      result = (Tally *)createTally(arg1,arg2,(char const *)arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, 0 |  0 );
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_createTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  tallyType arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  Tally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:createTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "createTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "createTally" "', argument " "2"" of type '" "tallyType""'");
+  } 
+  arg2 = static_cast< tallyType >(val2);
+  {
+    try {
+      result = (Tally *)createTally(arg1,arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_createTally__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  tallyType arg2 ;
+  char *arg3 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  Tally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:createTally",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "createTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "createTally" "', argument " "2"" of type '" "tallyType""'");
+  } 
+  arg2 = static_cast< tallyType >(val2);
+  res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "createTally" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  {
+    try {
+      result = (Tally *)createTally(arg1,arg2,(char const *)arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, 0 |  0 );
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_createTally__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  tallyType arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  Tally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:createTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "createTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "createTally" "', argument " "2"" of type '" "tallyType""'");
+  } 
+  arg2 = static_cast< tallyType >(val2);
+  {
+    try {
+      result = (Tally *)createTally(arg1,arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_createTally__SWIG_4(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  tallyType arg2 ;
+  char *arg3 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  Tally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:createTally",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "createTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "createTally" "', argument " "2"" of type '" "tallyType""'");
+  } 
+  arg2 = static_cast< tallyType >(val2);
+  res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "createTally" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  {
+    try {
+      result = (Tally *)createTally(arg1,arg2,(char const *)arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, 0 |  0 );
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_createTally__SWIG_5(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  tallyType arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  Tally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:createTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "createTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "createTally" "', argument " "2"" of type '" "tallyType""'");
+  } 
+  arg2 = static_cast< tallyType >(val2);
+  {
+    try {
+      result = (Tally *)createTally(arg1,arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_createTally__SWIG_6(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  tallyType arg2 ;
+  char *arg3 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  Tally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:createTally",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "createTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "createTally" "', argument " "2"" of type '" "tallyType""'");
+  } 
+  arg2 = static_cast< tallyType >(val2);
+  res3 = SWIG_AsCharPtrAndSize(obj2, &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "createTally" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  {
+    try {
+      result = (Tally *)createTally(arg1,arg2,(char const *)arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, 0 |  0 );
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_createTally__SWIG_7(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  tallyType arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  Tally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:createTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "createTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "createTally" "', argument " "2"" of type '" "tallyType""'");
+  } 
+  arg2 = static_cast< tallyType >(val2);
+  {
+    try {
+      result = (Tally *)createTally(arg1,arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Tally, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_createTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[4];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 3) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_createTally__SWIG_1(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_createTally__SWIG_3(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_createTally__SWIG_5(self, args);
+      }
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_createTally__SWIG_7(self, args);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_createTally__SWIG_4(self, args);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_createTally__SWIG_2(self, args);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_createTally__SWIG_6(self, args);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_int(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        int res = SWIG_AsCharPtrAndSize(argv[2], 0, NULL, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_createTally__SWIG_0(self, args);
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'createTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    createTally(Geometry *,tallyType,char const *)\n"
+    "    createTally(Geometry *,tallyType)\n"
+    "    createTally(Region *,tallyType,char const *)\n"
+    "    createTally(Region *,tallyType)\n"
+    "    createTally(Material *,tallyType,char const *)\n"
+    "    createTally(Material *,tallyType)\n"
+    "    createTally(Isotope *,tallyType,char const *)\n"
+    "    createTally(Isotope *,tallyType)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_IsotopeTally_getIsotope(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeTally *arg1 = (IsotopeTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Isotope *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:IsotopeTally_getIsotope",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IsotopeTally_getIsotope" "', argument " "1"" of type '" "IsotopeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeTally * >(argp1);
+  {
+    try {
+      result = (Isotope *)(arg1)->getIsotope();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Isotope, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_IsotopeTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeTally *arg1 = (IsotopeTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:IsotopeTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IsotopeTally_tally" "', argument " "1"" of type '" "IsotopeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IsotopeTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_IsotopeTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeTally *arg1 = (IsotopeTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_IsotopeTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_IsotopeTally" "', argument " "1"" of type '" "IsotopeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *IsotopeTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_IsotopeTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_MaterialTally_getMaterial(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialTally *arg1 = (MaterialTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Material *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:MaterialTally_getMaterial",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MaterialTally_getMaterial" "', argument " "1"" of type '" "MaterialTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialTally * >(argp1);
+  {
+    try {
+      result = (Material *)(arg1)->getMaterial();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_MaterialTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialTally *arg1 = (MaterialTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MaterialTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MaterialTally_tally" "', argument " "1"" of type '" "MaterialTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MaterialTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MaterialTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialTally *arg1 = (MaterialTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MaterialTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MaterialTally" "', argument " "1"" of type '" "MaterialTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MaterialTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_MaterialTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_RegionTally_getRegion(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionTally *arg1 = (RegionTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Region *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:RegionTally_getRegion",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RegionTally_getRegion" "', argument " "1"" of type '" "RegionTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionTally * >(argp1);
+  {
+    try {
+      result = (Region *)(arg1)->getRegion();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Region, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_RegionTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionTally *arg1 = (RegionTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:RegionTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RegionTally_tally" "', argument " "1"" of type '" "RegionTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RegionTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_RegionTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionTally *arg1 = (RegionTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_RegionTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RegionTally" "', argument " "1"" of type '" "RegionTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *RegionTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_RegionTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_GeometryTally_getGeometry(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryTally *arg1 = (GeometryTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Geometry *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:GeometryTally_getGeometry",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GeometryTally_getGeometry" "', argument " "1"" of type '" "GeometryTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryTally * >(argp1);
+  {
+    try {
+      result = (Geometry *)(arg1)->getGeometry();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Geometry, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GeometryTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryTally *arg1 = (GeometryTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:GeometryTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GeometryTally_tally" "', argument " "1"" of type '" "GeometryTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GeometryTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GeometryTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryTally *arg1 = (GeometryTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_GeometryTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GeometryTally" "', argument " "1"" of type '" "GeometryTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *GeometryTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_GeometryTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_IsotopeCollisionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  IsotopeCollisionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_IsotopeCollisionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_IsotopeCollisionRateTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_IsotopeCollisionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (IsotopeCollisionRateTally *)new IsotopeCollisionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IsotopeCollisionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_IsotopeCollisionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  IsotopeCollisionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_IsotopeCollisionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_IsotopeCollisionRateTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    try {
+      result = (IsotopeCollisionRateTally *)new IsotopeCollisionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IsotopeCollisionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_IsotopeCollisionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_IsotopeCollisionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_IsotopeCollisionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_IsotopeCollisionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    IsotopeCollisionRateTally::IsotopeCollisionRateTally(Isotope *,char const *)\n"
+    "    IsotopeCollisionRateTally::IsotopeCollisionRateTally(Isotope *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_IsotopeCollisionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeCollisionRateTally *arg1 = (IsotopeCollisionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:IsotopeCollisionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeCollisionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IsotopeCollisionRateTally_tally" "', argument " "1"" of type '" "IsotopeCollisionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeCollisionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IsotopeCollisionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_IsotopeCollisionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeCollisionRateTally *arg1 = (IsotopeCollisionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_IsotopeCollisionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeCollisionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_IsotopeCollisionRateTally" "', argument " "1"" of type '" "IsotopeCollisionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeCollisionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *IsotopeCollisionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_IsotopeCollisionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_MaterialCollisionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  MaterialCollisionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_MaterialCollisionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialCollisionRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_MaterialCollisionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (MaterialCollisionRateTally *)new MaterialCollisionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialCollisionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialCollisionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  MaterialCollisionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_MaterialCollisionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialCollisionRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (MaterialCollisionRateTally *)new MaterialCollisionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialCollisionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialCollisionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_MaterialCollisionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_MaterialCollisionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_MaterialCollisionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    MaterialCollisionRateTally::MaterialCollisionRateTally(Material *,char const *)\n"
+    "    MaterialCollisionRateTally::MaterialCollisionRateTally(Material *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_MaterialCollisionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialCollisionRateTally *arg1 = (MaterialCollisionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MaterialCollisionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialCollisionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MaterialCollisionRateTally_tally" "', argument " "1"" of type '" "MaterialCollisionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialCollisionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MaterialCollisionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MaterialCollisionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialCollisionRateTally *arg1 = (MaterialCollisionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MaterialCollisionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialCollisionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MaterialCollisionRateTally" "', argument " "1"" of type '" "MaterialCollisionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialCollisionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MaterialCollisionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_MaterialCollisionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_RegionCollisionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  RegionCollisionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_RegionCollisionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionCollisionRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_RegionCollisionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (RegionCollisionRateTally *)new RegionCollisionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionCollisionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionCollisionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  RegionCollisionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_RegionCollisionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionCollisionRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  {
+    try {
+      result = (RegionCollisionRateTally *)new RegionCollisionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionCollisionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionCollisionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_RegionCollisionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_RegionCollisionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_RegionCollisionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    RegionCollisionRateTally::RegionCollisionRateTally(Region *,char const *)\n"
+    "    RegionCollisionRateTally::RegionCollisionRateTally(Region *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_RegionCollisionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionCollisionRateTally *arg1 = (RegionCollisionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:RegionCollisionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionCollisionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RegionCollisionRateTally_tally" "', argument " "1"" of type '" "RegionCollisionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionCollisionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RegionCollisionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_RegionCollisionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionCollisionRateTally *arg1 = (RegionCollisionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_RegionCollisionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionCollisionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RegionCollisionRateTally" "', argument " "1"" of type '" "RegionCollisionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionCollisionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *RegionCollisionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_RegionCollisionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_GeometryCollisionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  GeometryCollisionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_GeometryCollisionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryCollisionRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_GeometryCollisionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (GeometryCollisionRateTally *)new GeometryCollisionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryCollisionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryCollisionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  GeometryCollisionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_GeometryCollisionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryCollisionRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  {
+    try {
+      result = (GeometryCollisionRateTally *)new GeometryCollisionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryCollisionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryCollisionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_GeometryCollisionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_GeometryCollisionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_GeometryCollisionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    GeometryCollisionRateTally::GeometryCollisionRateTally(Geometry *,char const *)\n"
+    "    GeometryCollisionRateTally::GeometryCollisionRateTally(Geometry *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_GeometryCollisionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryCollisionRateTally *arg1 = (GeometryCollisionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:GeometryCollisionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryCollisionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GeometryCollisionRateTally_tally" "', argument " "1"" of type '" "GeometryCollisionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryCollisionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GeometryCollisionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GeometryCollisionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryCollisionRateTally *arg1 = (GeometryCollisionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_GeometryCollisionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryCollisionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GeometryCollisionRateTally" "', argument " "1"" of type '" "GeometryCollisionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryCollisionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *GeometryCollisionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_GeometryCollisionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_IsotopeElasticRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  IsotopeElasticRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_IsotopeElasticRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_IsotopeElasticRateTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_IsotopeElasticRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (IsotopeElasticRateTally *)new IsotopeElasticRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IsotopeElasticRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_IsotopeElasticRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  IsotopeElasticRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_IsotopeElasticRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_IsotopeElasticRateTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    try {
+      result = (IsotopeElasticRateTally *)new IsotopeElasticRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IsotopeElasticRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_IsotopeElasticRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_IsotopeElasticRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_IsotopeElasticRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_IsotopeElasticRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    IsotopeElasticRateTally::IsotopeElasticRateTally(Isotope *,char const *)\n"
+    "    IsotopeElasticRateTally::IsotopeElasticRateTally(Isotope *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_IsotopeElasticRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeElasticRateTally *arg1 = (IsotopeElasticRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:IsotopeElasticRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeElasticRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IsotopeElasticRateTally_tally" "', argument " "1"" of type '" "IsotopeElasticRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeElasticRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IsotopeElasticRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_IsotopeElasticRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeElasticRateTally *arg1 = (IsotopeElasticRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_IsotopeElasticRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeElasticRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_IsotopeElasticRateTally" "', argument " "1"" of type '" "IsotopeElasticRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeElasticRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *IsotopeElasticRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_IsotopeElasticRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_MaterialElasticRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  MaterialElasticRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_MaterialElasticRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialElasticRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_MaterialElasticRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (MaterialElasticRateTally *)new MaterialElasticRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialElasticRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialElasticRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  MaterialElasticRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_MaterialElasticRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialElasticRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (MaterialElasticRateTally *)new MaterialElasticRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialElasticRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialElasticRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_MaterialElasticRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_MaterialElasticRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_MaterialElasticRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    MaterialElasticRateTally::MaterialElasticRateTally(Material *,char const *)\n"
+    "    MaterialElasticRateTally::MaterialElasticRateTally(Material *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_MaterialElasticRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialElasticRateTally *arg1 = (MaterialElasticRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MaterialElasticRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialElasticRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MaterialElasticRateTally_tally" "', argument " "1"" of type '" "MaterialElasticRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialElasticRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MaterialElasticRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MaterialElasticRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialElasticRateTally *arg1 = (MaterialElasticRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MaterialElasticRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialElasticRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MaterialElasticRateTally" "', argument " "1"" of type '" "MaterialElasticRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialElasticRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MaterialElasticRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_MaterialElasticRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_RegionElasticRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  RegionElasticRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_RegionElasticRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionElasticRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_RegionElasticRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (RegionElasticRateTally *)new RegionElasticRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionElasticRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionElasticRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  RegionElasticRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_RegionElasticRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionElasticRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  {
+    try {
+      result = (RegionElasticRateTally *)new RegionElasticRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionElasticRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionElasticRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_RegionElasticRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_RegionElasticRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_RegionElasticRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    RegionElasticRateTally::RegionElasticRateTally(Region *,char const *)\n"
+    "    RegionElasticRateTally::RegionElasticRateTally(Region *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_RegionElasticRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionElasticRateTally *arg1 = (RegionElasticRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:RegionElasticRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionElasticRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RegionElasticRateTally_tally" "', argument " "1"" of type '" "RegionElasticRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionElasticRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RegionElasticRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_RegionElasticRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionElasticRateTally *arg1 = (RegionElasticRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_RegionElasticRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionElasticRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RegionElasticRateTally" "', argument " "1"" of type '" "RegionElasticRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionElasticRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *RegionElasticRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_RegionElasticRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_GeometryElasticRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  GeometryElasticRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_GeometryElasticRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryElasticRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_GeometryElasticRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (GeometryElasticRateTally *)new GeometryElasticRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryElasticRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryElasticRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  GeometryElasticRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_GeometryElasticRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryElasticRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  {
+    try {
+      result = (GeometryElasticRateTally *)new GeometryElasticRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryElasticRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryElasticRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_GeometryElasticRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_GeometryElasticRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_GeometryElasticRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    GeometryElasticRateTally::GeometryElasticRateTally(Geometry *,char const *)\n"
+    "    GeometryElasticRateTally::GeometryElasticRateTally(Geometry *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_GeometryElasticRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryElasticRateTally *arg1 = (GeometryElasticRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:GeometryElasticRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryElasticRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GeometryElasticRateTally_tally" "', argument " "1"" of type '" "GeometryElasticRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryElasticRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GeometryElasticRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GeometryElasticRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryElasticRateTally *arg1 = (GeometryElasticRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_GeometryElasticRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryElasticRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GeometryElasticRateTally" "', argument " "1"" of type '" "GeometryElasticRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryElasticRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *GeometryElasticRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_GeometryElasticRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_IsotopeAbsorptionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  IsotopeAbsorptionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_IsotopeAbsorptionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_IsotopeAbsorptionRateTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_IsotopeAbsorptionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (IsotopeAbsorptionRateTally *)new IsotopeAbsorptionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IsotopeAbsorptionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_IsotopeAbsorptionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  IsotopeAbsorptionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_IsotopeAbsorptionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_IsotopeAbsorptionRateTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    try {
+      result = (IsotopeAbsorptionRateTally *)new IsotopeAbsorptionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IsotopeAbsorptionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_IsotopeAbsorptionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_IsotopeAbsorptionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_IsotopeAbsorptionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_IsotopeAbsorptionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    IsotopeAbsorptionRateTally::IsotopeAbsorptionRateTally(Isotope *,char const *)\n"
+    "    IsotopeAbsorptionRateTally::IsotopeAbsorptionRateTally(Isotope *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_IsotopeAbsorptionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeAbsorptionRateTally *arg1 = (IsotopeAbsorptionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:IsotopeAbsorptionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeAbsorptionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IsotopeAbsorptionRateTally_tally" "', argument " "1"" of type '" "IsotopeAbsorptionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeAbsorptionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IsotopeAbsorptionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_IsotopeAbsorptionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeAbsorptionRateTally *arg1 = (IsotopeAbsorptionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_IsotopeAbsorptionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeAbsorptionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_IsotopeAbsorptionRateTally" "', argument " "1"" of type '" "IsotopeAbsorptionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeAbsorptionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *IsotopeAbsorptionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_IsotopeAbsorptionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_MaterialAbsorptionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  MaterialAbsorptionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_MaterialAbsorptionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialAbsorptionRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_MaterialAbsorptionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (MaterialAbsorptionRateTally *)new MaterialAbsorptionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialAbsorptionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialAbsorptionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  MaterialAbsorptionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_MaterialAbsorptionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialAbsorptionRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (MaterialAbsorptionRateTally *)new MaterialAbsorptionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialAbsorptionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialAbsorptionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_MaterialAbsorptionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_MaterialAbsorptionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_MaterialAbsorptionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    MaterialAbsorptionRateTally::MaterialAbsorptionRateTally(Material *,char const *)\n"
+    "    MaterialAbsorptionRateTally::MaterialAbsorptionRateTally(Material *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_MaterialAbsorptionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialAbsorptionRateTally *arg1 = (MaterialAbsorptionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MaterialAbsorptionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialAbsorptionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MaterialAbsorptionRateTally_tally" "', argument " "1"" of type '" "MaterialAbsorptionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialAbsorptionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MaterialAbsorptionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MaterialAbsorptionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialAbsorptionRateTally *arg1 = (MaterialAbsorptionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MaterialAbsorptionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialAbsorptionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MaterialAbsorptionRateTally" "', argument " "1"" of type '" "MaterialAbsorptionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialAbsorptionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MaterialAbsorptionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_MaterialAbsorptionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_RegionAbsorptionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  RegionAbsorptionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_RegionAbsorptionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionAbsorptionRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_RegionAbsorptionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (RegionAbsorptionRateTally *)new RegionAbsorptionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionAbsorptionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionAbsorptionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  RegionAbsorptionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_RegionAbsorptionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionAbsorptionRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  {
+    try {
+      result = (RegionAbsorptionRateTally *)new RegionAbsorptionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionAbsorptionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionAbsorptionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_RegionAbsorptionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_RegionAbsorptionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_RegionAbsorptionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    RegionAbsorptionRateTally::RegionAbsorptionRateTally(Region *,char const *)\n"
+    "    RegionAbsorptionRateTally::RegionAbsorptionRateTally(Region *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_RegionAbsorptionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionAbsorptionRateTally *arg1 = (RegionAbsorptionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:RegionAbsorptionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionAbsorptionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RegionAbsorptionRateTally_tally" "', argument " "1"" of type '" "RegionAbsorptionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionAbsorptionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RegionAbsorptionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_RegionAbsorptionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionAbsorptionRateTally *arg1 = (RegionAbsorptionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_RegionAbsorptionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionAbsorptionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RegionAbsorptionRateTally" "', argument " "1"" of type '" "RegionAbsorptionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionAbsorptionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *RegionAbsorptionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_RegionAbsorptionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_GeometryAbsorptionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  GeometryAbsorptionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_GeometryAbsorptionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryAbsorptionRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_GeometryAbsorptionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (GeometryAbsorptionRateTally *)new GeometryAbsorptionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryAbsorptionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryAbsorptionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  GeometryAbsorptionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_GeometryAbsorptionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryAbsorptionRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  {
+    try {
+      result = (GeometryAbsorptionRateTally *)new GeometryAbsorptionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryAbsorptionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryAbsorptionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_GeometryAbsorptionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_GeometryAbsorptionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_GeometryAbsorptionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    GeometryAbsorptionRateTally::GeometryAbsorptionRateTally(Geometry *,char const *)\n"
+    "    GeometryAbsorptionRateTally::GeometryAbsorptionRateTally(Geometry *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_GeometryAbsorptionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryAbsorptionRateTally *arg1 = (GeometryAbsorptionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:GeometryAbsorptionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryAbsorptionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GeometryAbsorptionRateTally_tally" "', argument " "1"" of type '" "GeometryAbsorptionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryAbsorptionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GeometryAbsorptionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GeometryAbsorptionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryAbsorptionRateTally *arg1 = (GeometryAbsorptionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_GeometryAbsorptionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryAbsorptionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GeometryAbsorptionRateTally" "', argument " "1"" of type '" "GeometryAbsorptionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryAbsorptionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *GeometryAbsorptionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_GeometryAbsorptionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_IsotopeCaptureRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  IsotopeCaptureRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_IsotopeCaptureRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_IsotopeCaptureRateTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_IsotopeCaptureRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (IsotopeCaptureRateTally *)new IsotopeCaptureRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IsotopeCaptureRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_IsotopeCaptureRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  IsotopeCaptureRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_IsotopeCaptureRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_IsotopeCaptureRateTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    try {
+      result = (IsotopeCaptureRateTally *)new IsotopeCaptureRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IsotopeCaptureRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_IsotopeCaptureRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_IsotopeCaptureRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_IsotopeCaptureRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_IsotopeCaptureRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    IsotopeCaptureRateTally::IsotopeCaptureRateTally(Isotope *,char const *)\n"
+    "    IsotopeCaptureRateTally::IsotopeCaptureRateTally(Isotope *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_IsotopeCaptureRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeCaptureRateTally *arg1 = (IsotopeCaptureRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:IsotopeCaptureRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeCaptureRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IsotopeCaptureRateTally_tally" "', argument " "1"" of type '" "IsotopeCaptureRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeCaptureRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IsotopeCaptureRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_IsotopeCaptureRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeCaptureRateTally *arg1 = (IsotopeCaptureRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_IsotopeCaptureRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeCaptureRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_IsotopeCaptureRateTally" "', argument " "1"" of type '" "IsotopeCaptureRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeCaptureRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *IsotopeCaptureRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_IsotopeCaptureRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_MaterialCaptureRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  MaterialCaptureRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_MaterialCaptureRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialCaptureRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_MaterialCaptureRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (MaterialCaptureRateTally *)new MaterialCaptureRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialCaptureRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialCaptureRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  MaterialCaptureRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_MaterialCaptureRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialCaptureRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (MaterialCaptureRateTally *)new MaterialCaptureRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialCaptureRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialCaptureRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_MaterialCaptureRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_MaterialCaptureRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_MaterialCaptureRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    MaterialCaptureRateTally::MaterialCaptureRateTally(Material *,char const *)\n"
+    "    MaterialCaptureRateTally::MaterialCaptureRateTally(Material *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_MaterialCaptureRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialCaptureRateTally *arg1 = (MaterialCaptureRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MaterialCaptureRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialCaptureRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MaterialCaptureRateTally_tally" "', argument " "1"" of type '" "MaterialCaptureRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialCaptureRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MaterialCaptureRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MaterialCaptureRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialCaptureRateTally *arg1 = (MaterialCaptureRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MaterialCaptureRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialCaptureRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MaterialCaptureRateTally" "', argument " "1"" of type '" "MaterialCaptureRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialCaptureRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MaterialCaptureRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_MaterialCaptureRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_RegionCaptureRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  RegionCaptureRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_RegionCaptureRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionCaptureRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_RegionCaptureRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (RegionCaptureRateTally *)new RegionCaptureRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionCaptureRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionCaptureRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  RegionCaptureRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_RegionCaptureRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionCaptureRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  {
+    try {
+      result = (RegionCaptureRateTally *)new RegionCaptureRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionCaptureRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionCaptureRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_RegionCaptureRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_RegionCaptureRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_RegionCaptureRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    RegionCaptureRateTally::RegionCaptureRateTally(Region *,char const *)\n"
+    "    RegionCaptureRateTally::RegionCaptureRateTally(Region *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_RegionCaptureRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionCaptureRateTally *arg1 = (RegionCaptureRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:RegionCaptureRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionCaptureRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RegionCaptureRateTally_tally" "', argument " "1"" of type '" "RegionCaptureRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionCaptureRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RegionCaptureRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_RegionCaptureRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionCaptureRateTally *arg1 = (RegionCaptureRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_RegionCaptureRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionCaptureRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RegionCaptureRateTally" "', argument " "1"" of type '" "RegionCaptureRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionCaptureRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *RegionCaptureRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_RegionCaptureRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_GeometryCaptureRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  GeometryCaptureRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_GeometryCaptureRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryCaptureRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_GeometryCaptureRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (GeometryCaptureRateTally *)new GeometryCaptureRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryCaptureRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryCaptureRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  GeometryCaptureRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_GeometryCaptureRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryCaptureRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  {
+    try {
+      result = (GeometryCaptureRateTally *)new GeometryCaptureRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryCaptureRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryCaptureRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_GeometryCaptureRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_GeometryCaptureRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_GeometryCaptureRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    GeometryCaptureRateTally::GeometryCaptureRateTally(Geometry *,char const *)\n"
+    "    GeometryCaptureRateTally::GeometryCaptureRateTally(Geometry *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_GeometryCaptureRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryCaptureRateTally *arg1 = (GeometryCaptureRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:GeometryCaptureRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryCaptureRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GeometryCaptureRateTally_tally" "', argument " "1"" of type '" "GeometryCaptureRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryCaptureRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GeometryCaptureRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GeometryCaptureRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryCaptureRateTally *arg1 = (GeometryCaptureRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_GeometryCaptureRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryCaptureRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GeometryCaptureRateTally" "', argument " "1"" of type '" "GeometryCaptureRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryCaptureRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *GeometryCaptureRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_GeometryCaptureRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_IsotopeFissionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  IsotopeFissionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_IsotopeFissionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_IsotopeFissionRateTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_IsotopeFissionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (IsotopeFissionRateTally *)new IsotopeFissionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IsotopeFissionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_IsotopeFissionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  IsotopeFissionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_IsotopeFissionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_IsotopeFissionRateTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    try {
+      result = (IsotopeFissionRateTally *)new IsotopeFissionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IsotopeFissionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_IsotopeFissionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_IsotopeFissionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_IsotopeFissionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_IsotopeFissionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    IsotopeFissionRateTally::IsotopeFissionRateTally(Isotope *,char const *)\n"
+    "    IsotopeFissionRateTally::IsotopeFissionRateTally(Isotope *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_IsotopeFissionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeFissionRateTally *arg1 = (IsotopeFissionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:IsotopeFissionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeFissionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IsotopeFissionRateTally_tally" "', argument " "1"" of type '" "IsotopeFissionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeFissionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IsotopeFissionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_IsotopeFissionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeFissionRateTally *arg1 = (IsotopeFissionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_IsotopeFissionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeFissionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_IsotopeFissionRateTally" "', argument " "1"" of type '" "IsotopeFissionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeFissionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *IsotopeFissionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_IsotopeFissionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_MaterialFissionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  MaterialFissionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_MaterialFissionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialFissionRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_MaterialFissionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (MaterialFissionRateTally *)new MaterialFissionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialFissionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialFissionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  MaterialFissionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_MaterialFissionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialFissionRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (MaterialFissionRateTally *)new MaterialFissionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialFissionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialFissionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_MaterialFissionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_MaterialFissionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_MaterialFissionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    MaterialFissionRateTally::MaterialFissionRateTally(Material *,char const *)\n"
+    "    MaterialFissionRateTally::MaterialFissionRateTally(Material *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_MaterialFissionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialFissionRateTally *arg1 = (MaterialFissionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MaterialFissionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialFissionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MaterialFissionRateTally_tally" "', argument " "1"" of type '" "MaterialFissionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialFissionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MaterialFissionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MaterialFissionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialFissionRateTally *arg1 = (MaterialFissionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MaterialFissionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialFissionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MaterialFissionRateTally" "', argument " "1"" of type '" "MaterialFissionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialFissionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MaterialFissionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_MaterialFissionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_RegionFissionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  RegionFissionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_RegionFissionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionFissionRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_RegionFissionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (RegionFissionRateTally *)new RegionFissionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionFissionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionFissionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  RegionFissionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_RegionFissionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionFissionRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  {
+    try {
+      result = (RegionFissionRateTally *)new RegionFissionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionFissionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionFissionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_RegionFissionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_RegionFissionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_RegionFissionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    RegionFissionRateTally::RegionFissionRateTally(Region *,char const *)\n"
+    "    RegionFissionRateTally::RegionFissionRateTally(Region *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_RegionFissionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionFissionRateTally *arg1 = (RegionFissionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:RegionFissionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionFissionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RegionFissionRateTally_tally" "', argument " "1"" of type '" "RegionFissionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionFissionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RegionFissionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_RegionFissionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionFissionRateTally *arg1 = (RegionFissionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_RegionFissionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionFissionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RegionFissionRateTally" "', argument " "1"" of type '" "RegionFissionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionFissionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *RegionFissionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_RegionFissionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_GeometryFissionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  GeometryFissionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_GeometryFissionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryFissionRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_GeometryFissionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (GeometryFissionRateTally *)new GeometryFissionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryFissionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryFissionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  GeometryFissionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_GeometryFissionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryFissionRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  {
+    try {
+      result = (GeometryFissionRateTally *)new GeometryFissionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryFissionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryFissionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_GeometryFissionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_GeometryFissionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_GeometryFissionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    GeometryFissionRateTally::GeometryFissionRateTally(Geometry *,char const *)\n"
+    "    GeometryFissionRateTally::GeometryFissionRateTally(Geometry *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_GeometryFissionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryFissionRateTally *arg1 = (GeometryFissionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:GeometryFissionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryFissionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GeometryFissionRateTally_tally" "', argument " "1"" of type '" "GeometryFissionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryFissionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GeometryFissionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GeometryFissionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryFissionRateTally *arg1 = (GeometryFissionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_GeometryFissionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryFissionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GeometryFissionRateTally" "', argument " "1"" of type '" "GeometryFissionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryFissionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *GeometryFissionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_GeometryFissionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_IsotopeTransportRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  IsotopeTransportRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_IsotopeTransportRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_IsotopeTransportRateTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_IsotopeTransportRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (IsotopeTransportRateTally *)new IsotopeTransportRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IsotopeTransportRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_IsotopeTransportRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  IsotopeTransportRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_IsotopeTransportRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_IsotopeTransportRateTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    try {
+      result = (IsotopeTransportRateTally *)new IsotopeTransportRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IsotopeTransportRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_IsotopeTransportRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_IsotopeTransportRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_IsotopeTransportRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_IsotopeTransportRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    IsotopeTransportRateTally::IsotopeTransportRateTally(Isotope *,char const *)\n"
+    "    IsotopeTransportRateTally::IsotopeTransportRateTally(Isotope *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_IsotopeTransportRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeTransportRateTally *arg1 = (IsotopeTransportRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:IsotopeTransportRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeTransportRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IsotopeTransportRateTally_tally" "', argument " "1"" of type '" "IsotopeTransportRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeTransportRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IsotopeTransportRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_IsotopeTransportRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeTransportRateTally *arg1 = (IsotopeTransportRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_IsotopeTransportRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeTransportRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_IsotopeTransportRateTally" "', argument " "1"" of type '" "IsotopeTransportRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeTransportRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *IsotopeTransportRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_IsotopeTransportRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_MaterialTransportRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  MaterialTransportRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_MaterialTransportRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialTransportRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_MaterialTransportRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (MaterialTransportRateTally *)new MaterialTransportRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialTransportRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialTransportRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  MaterialTransportRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_MaterialTransportRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialTransportRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (MaterialTransportRateTally *)new MaterialTransportRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialTransportRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialTransportRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_MaterialTransportRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_MaterialTransportRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_MaterialTransportRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    MaterialTransportRateTally::MaterialTransportRateTally(Material *,char const *)\n"
+    "    MaterialTransportRateTally::MaterialTransportRateTally(Material *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_MaterialTransportRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialTransportRateTally *arg1 = (MaterialTransportRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MaterialTransportRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialTransportRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MaterialTransportRateTally_tally" "', argument " "1"" of type '" "MaterialTransportRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialTransportRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MaterialTransportRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MaterialTransportRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialTransportRateTally *arg1 = (MaterialTransportRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MaterialTransportRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialTransportRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MaterialTransportRateTally" "', argument " "1"" of type '" "MaterialTransportRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialTransportRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MaterialTransportRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_MaterialTransportRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_RegionTransportRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  RegionTransportRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_RegionTransportRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionTransportRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_RegionTransportRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (RegionTransportRateTally *)new RegionTransportRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionTransportRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionTransportRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  RegionTransportRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_RegionTransportRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionTransportRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  {
+    try {
+      result = (RegionTransportRateTally *)new RegionTransportRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionTransportRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionTransportRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_RegionTransportRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_RegionTransportRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_RegionTransportRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    RegionTransportRateTally::RegionTransportRateTally(Region *,char const *)\n"
+    "    RegionTransportRateTally::RegionTransportRateTally(Region *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_RegionTransportRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionTransportRateTally *arg1 = (RegionTransportRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:RegionTransportRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionTransportRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RegionTransportRateTally_tally" "', argument " "1"" of type '" "RegionTransportRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionTransportRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RegionTransportRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_RegionTransportRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionTransportRateTally *arg1 = (RegionTransportRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_RegionTransportRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionTransportRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RegionTransportRateTally" "', argument " "1"" of type '" "RegionTransportRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionTransportRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *RegionTransportRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_RegionTransportRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_GeometryTransportRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  GeometryTransportRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_GeometryTransportRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryTransportRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_GeometryTransportRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (GeometryTransportRateTally *)new GeometryTransportRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryTransportRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryTransportRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  GeometryTransportRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_GeometryTransportRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryTransportRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  {
+    try {
+      result = (GeometryTransportRateTally *)new GeometryTransportRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryTransportRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryTransportRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_GeometryTransportRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_GeometryTransportRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_GeometryTransportRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    GeometryTransportRateTally::GeometryTransportRateTally(Geometry *,char const *)\n"
+    "    GeometryTransportRateTally::GeometryTransportRateTally(Geometry *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_GeometryTransportRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryTransportRateTally *arg1 = (GeometryTransportRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:GeometryTransportRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryTransportRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GeometryTransportRateTally_tally" "', argument " "1"" of type '" "GeometryTransportRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryTransportRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GeometryTransportRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GeometryTransportRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryTransportRateTally *arg1 = (GeometryTransportRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_GeometryTransportRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryTransportRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GeometryTransportRateTally" "', argument " "1"" of type '" "GeometryTransportRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryTransportRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *GeometryTransportRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_GeometryTransportRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_IsotopeDiffusionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  IsotopeDiffusionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_IsotopeDiffusionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_IsotopeDiffusionRateTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_IsotopeDiffusionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (IsotopeDiffusionRateTally *)new IsotopeDiffusionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IsotopeDiffusionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_IsotopeDiffusionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  IsotopeDiffusionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_IsotopeDiffusionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_IsotopeDiffusionRateTally" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    try {
+      result = (IsotopeDiffusionRateTally *)new IsotopeDiffusionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_IsotopeDiffusionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_IsotopeDiffusionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_IsotopeDiffusionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Isotope, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_IsotopeDiffusionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_IsotopeDiffusionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    IsotopeDiffusionRateTally::IsotopeDiffusionRateTally(Isotope *,char const *)\n"
+    "    IsotopeDiffusionRateTally::IsotopeDiffusionRateTally(Isotope *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_IsotopeDiffusionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeDiffusionRateTally *arg1 = (IsotopeDiffusionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:IsotopeDiffusionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeDiffusionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "IsotopeDiffusionRateTally_tally" "', argument " "1"" of type '" "IsotopeDiffusionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeDiffusionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "IsotopeDiffusionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_IsotopeDiffusionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  IsotopeDiffusionRateTally *arg1 = (IsotopeDiffusionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_IsotopeDiffusionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_IsotopeDiffusionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_IsotopeDiffusionRateTally" "', argument " "1"" of type '" "IsotopeDiffusionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< IsotopeDiffusionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *IsotopeDiffusionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_IsotopeDiffusionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_MaterialDiffusionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  MaterialDiffusionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_MaterialDiffusionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialDiffusionRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_MaterialDiffusionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (MaterialDiffusionRateTally *)new MaterialDiffusionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialDiffusionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialDiffusionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  MaterialDiffusionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_MaterialDiffusionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialDiffusionRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (MaterialDiffusionRateTally *)new MaterialDiffusionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialDiffusionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialDiffusionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_MaterialDiffusionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_MaterialDiffusionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_MaterialDiffusionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    MaterialDiffusionRateTally::MaterialDiffusionRateTally(Material *,char const *)\n"
+    "    MaterialDiffusionRateTally::MaterialDiffusionRateTally(Material *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_MaterialDiffusionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialDiffusionRateTally *arg1 = (MaterialDiffusionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MaterialDiffusionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialDiffusionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MaterialDiffusionRateTally_tally" "', argument " "1"" of type '" "MaterialDiffusionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialDiffusionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MaterialDiffusionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MaterialDiffusionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialDiffusionRateTally *arg1 = (MaterialDiffusionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MaterialDiffusionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialDiffusionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MaterialDiffusionRateTally" "', argument " "1"" of type '" "MaterialDiffusionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialDiffusionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MaterialDiffusionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_MaterialDiffusionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_RegionDiffusionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  RegionDiffusionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_RegionDiffusionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionDiffusionRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_RegionDiffusionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (RegionDiffusionRateTally *)new RegionDiffusionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionDiffusionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionDiffusionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  RegionDiffusionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_RegionDiffusionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionDiffusionRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  {
+    try {
+      result = (RegionDiffusionRateTally *)new RegionDiffusionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionDiffusionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionDiffusionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_RegionDiffusionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_RegionDiffusionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_RegionDiffusionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    RegionDiffusionRateTally::RegionDiffusionRateTally(Region *,char const *)\n"
+    "    RegionDiffusionRateTally::RegionDiffusionRateTally(Region *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_RegionDiffusionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionDiffusionRateTally *arg1 = (RegionDiffusionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:RegionDiffusionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionDiffusionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RegionDiffusionRateTally_tally" "', argument " "1"" of type '" "RegionDiffusionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionDiffusionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RegionDiffusionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_RegionDiffusionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionDiffusionRateTally *arg1 = (RegionDiffusionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_RegionDiffusionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionDiffusionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RegionDiffusionRateTally" "', argument " "1"" of type '" "RegionDiffusionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionDiffusionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *RegionDiffusionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_RegionDiffusionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_GeometryDiffusionRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  GeometryDiffusionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_GeometryDiffusionRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryDiffusionRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_GeometryDiffusionRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (GeometryDiffusionRateTally *)new GeometryDiffusionRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryDiffusionRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryDiffusionRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  GeometryDiffusionRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_GeometryDiffusionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryDiffusionRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  {
+    try {
+      result = (GeometryDiffusionRateTally *)new GeometryDiffusionRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryDiffusionRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryDiffusionRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_GeometryDiffusionRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_GeometryDiffusionRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_GeometryDiffusionRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    GeometryDiffusionRateTally::GeometryDiffusionRateTally(Geometry *,char const *)\n"
+    "    GeometryDiffusionRateTally::GeometryDiffusionRateTally(Geometry *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_GeometryDiffusionRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryDiffusionRateTally *arg1 = (GeometryDiffusionRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:GeometryDiffusionRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryDiffusionRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GeometryDiffusionRateTally_tally" "', argument " "1"" of type '" "GeometryDiffusionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryDiffusionRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GeometryDiffusionRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GeometryDiffusionRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryDiffusionRateTally *arg1 = (GeometryDiffusionRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_GeometryDiffusionRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryDiffusionRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GeometryDiffusionRateTally" "', argument " "1"" of type '" "GeometryDiffusionRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryDiffusionRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *GeometryDiffusionRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_GeometryDiffusionRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_MaterialLeakageRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  MaterialLeakageRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_MaterialLeakageRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialLeakageRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_MaterialLeakageRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (MaterialLeakageRateTally *)new MaterialLeakageRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialLeakageRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialLeakageRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  MaterialLeakageRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_MaterialLeakageRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialLeakageRateTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (MaterialLeakageRateTally *)new MaterialLeakageRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialLeakageRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialLeakageRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_MaterialLeakageRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_MaterialLeakageRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_MaterialLeakageRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    MaterialLeakageRateTally::MaterialLeakageRateTally(Material *,char const *)\n"
+    "    MaterialLeakageRateTally::MaterialLeakageRateTally(Material *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_MaterialLeakageRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialLeakageRateTally *arg1 = (MaterialLeakageRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MaterialLeakageRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialLeakageRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MaterialLeakageRateTally_tally" "', argument " "1"" of type '" "MaterialLeakageRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialLeakageRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MaterialLeakageRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MaterialLeakageRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialLeakageRateTally *arg1 = (MaterialLeakageRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MaterialLeakageRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialLeakageRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MaterialLeakageRateTally" "', argument " "1"" of type '" "MaterialLeakageRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialLeakageRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MaterialLeakageRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_MaterialLeakageRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_RegionLeakageRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  RegionLeakageRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_RegionLeakageRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionLeakageRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_RegionLeakageRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (RegionLeakageRateTally *)new RegionLeakageRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionLeakageRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionLeakageRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  RegionLeakageRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_RegionLeakageRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionLeakageRateTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  {
+    try {
+      result = (RegionLeakageRateTally *)new RegionLeakageRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionLeakageRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionLeakageRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_RegionLeakageRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_RegionLeakageRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_RegionLeakageRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    RegionLeakageRateTally::RegionLeakageRateTally(Region *,char const *)\n"
+    "    RegionLeakageRateTally::RegionLeakageRateTally(Region *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_RegionLeakageRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionLeakageRateTally *arg1 = (RegionLeakageRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:RegionLeakageRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionLeakageRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RegionLeakageRateTally_tally" "', argument " "1"" of type '" "RegionLeakageRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionLeakageRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RegionLeakageRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_RegionLeakageRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionLeakageRateTally *arg1 = (RegionLeakageRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_RegionLeakageRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionLeakageRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RegionLeakageRateTally" "', argument " "1"" of type '" "RegionLeakageRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionLeakageRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *RegionLeakageRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_RegionLeakageRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_GeometryLeakageRateTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  GeometryLeakageRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_GeometryLeakageRateTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryLeakageRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_GeometryLeakageRateTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (GeometryLeakageRateTally *)new GeometryLeakageRateTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryLeakageRateTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryLeakageRateTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  GeometryLeakageRateTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_GeometryLeakageRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryLeakageRateTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  {
+    try {
+      result = (GeometryLeakageRateTally *)new GeometryLeakageRateTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryLeakageRateTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryLeakageRateTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_GeometryLeakageRateTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_GeometryLeakageRateTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_GeometryLeakageRateTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    GeometryLeakageRateTally::GeometryLeakageRateTally(Geometry *,char const *)\n"
+    "    GeometryLeakageRateTally::GeometryLeakageRateTally(Geometry *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_GeometryLeakageRateTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryLeakageRateTally *arg1 = (GeometryLeakageRateTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:GeometryLeakageRateTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryLeakageRateTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GeometryLeakageRateTally_tally" "', argument " "1"" of type '" "GeometryLeakageRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryLeakageRateTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GeometryLeakageRateTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GeometryLeakageRateTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryLeakageRateTally *arg1 = (GeometryLeakageRateTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_GeometryLeakageRateTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryLeakageRateTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GeometryLeakageRateTally" "', argument " "1"" of type '" "GeometryLeakageRateTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryLeakageRateTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *GeometryLeakageRateTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_GeometryLeakageRateTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_MaterialFluxTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  MaterialFluxTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_MaterialFluxTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialFluxTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_MaterialFluxTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (MaterialFluxTally *)new MaterialFluxTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialFluxTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialFluxTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  MaterialFluxTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_MaterialFluxTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialFluxTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (MaterialFluxTally *)new MaterialFluxTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialFluxTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialFluxTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_MaterialFluxTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_MaterialFluxTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_MaterialFluxTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    MaterialFluxTally::MaterialFluxTally(Material *,char const *)\n"
+    "    MaterialFluxTally::MaterialFluxTally(Material *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_MaterialFluxTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialFluxTally *arg1 = (MaterialFluxTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MaterialFluxTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialFluxTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MaterialFluxTally_tally" "', argument " "1"" of type '" "MaterialFluxTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialFluxTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MaterialFluxTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MaterialFluxTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialFluxTally *arg1 = (MaterialFluxTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MaterialFluxTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialFluxTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MaterialFluxTally" "', argument " "1"" of type '" "MaterialFluxTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialFluxTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MaterialFluxTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_MaterialFluxTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_RegionFluxTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  RegionFluxTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_RegionFluxTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionFluxTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_RegionFluxTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (RegionFluxTally *)new RegionFluxTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionFluxTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionFluxTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  RegionFluxTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_RegionFluxTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionFluxTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  {
+    try {
+      result = (RegionFluxTally *)new RegionFluxTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionFluxTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionFluxTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_RegionFluxTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_RegionFluxTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_RegionFluxTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    RegionFluxTally::RegionFluxTally(Region *,char const *)\n"
+    "    RegionFluxTally::RegionFluxTally(Region *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_RegionFluxTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionFluxTally *arg1 = (RegionFluxTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:RegionFluxTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionFluxTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RegionFluxTally_tally" "', argument " "1"" of type '" "RegionFluxTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionFluxTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RegionFluxTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_RegionFluxTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionFluxTally *arg1 = (RegionFluxTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_RegionFluxTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionFluxTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RegionFluxTally" "', argument " "1"" of type '" "RegionFluxTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionFluxTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *RegionFluxTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_RegionFluxTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_GeometryFluxTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  GeometryFluxTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_GeometryFluxTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryFluxTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_GeometryFluxTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (GeometryFluxTally *)new GeometryFluxTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryFluxTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryFluxTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  GeometryFluxTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_GeometryFluxTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryFluxTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  {
+    try {
+      result = (GeometryFluxTally *)new GeometryFluxTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryFluxTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryFluxTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_GeometryFluxTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_GeometryFluxTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_GeometryFluxTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    GeometryFluxTally::GeometryFluxTally(Geometry *,char const *)\n"
+    "    GeometryFluxTally::GeometryFluxTally(Geometry *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_GeometryFluxTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryFluxTally *arg1 = (GeometryFluxTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:GeometryFluxTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryFluxTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GeometryFluxTally_tally" "', argument " "1"" of type '" "GeometryFluxTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryFluxTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GeometryFluxTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GeometryFluxTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryFluxTally *arg1 = (GeometryFluxTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_GeometryFluxTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryFluxTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GeometryFluxTally" "', argument " "1"" of type '" "GeometryFluxTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryFluxTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *GeometryFluxTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_GeometryFluxTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_MaterialInterCollisionTimeTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  MaterialInterCollisionTimeTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_MaterialInterCollisionTimeTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialInterCollisionTimeTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_MaterialInterCollisionTimeTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (MaterialInterCollisionTimeTally *)new MaterialInterCollisionTimeTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialInterCollisionTimeTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialInterCollisionTimeTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  MaterialInterCollisionTimeTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_MaterialInterCollisionTimeTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_MaterialInterCollisionTimeTally" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  {
+    try {
+      result = (MaterialInterCollisionTimeTally *)new MaterialInterCollisionTimeTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MaterialInterCollisionTimeTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_MaterialInterCollisionTimeTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_MaterialInterCollisionTimeTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Material, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_MaterialInterCollisionTimeTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_MaterialInterCollisionTimeTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    MaterialInterCollisionTimeTally::MaterialInterCollisionTimeTally(Material *,char const *)\n"
+    "    MaterialInterCollisionTimeTally::MaterialInterCollisionTimeTally(Material *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_MaterialInterCollisionTimeTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialInterCollisionTimeTally *arg1 = (MaterialInterCollisionTimeTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:MaterialInterCollisionTimeTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialInterCollisionTimeTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MaterialInterCollisionTimeTally_tally" "', argument " "1"" of type '" "MaterialInterCollisionTimeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialInterCollisionTimeTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "MaterialInterCollisionTimeTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_MaterialInterCollisionTimeTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  MaterialInterCollisionTimeTally *arg1 = (MaterialInterCollisionTimeTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_MaterialInterCollisionTimeTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MaterialInterCollisionTimeTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MaterialInterCollisionTimeTally" "', argument " "1"" of type '" "MaterialInterCollisionTimeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< MaterialInterCollisionTimeTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *MaterialInterCollisionTimeTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_MaterialInterCollisionTimeTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_RegionInterCollisionTimeTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  RegionInterCollisionTimeTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_RegionInterCollisionTimeTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionInterCollisionTimeTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_RegionInterCollisionTimeTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (RegionInterCollisionTimeTally *)new RegionInterCollisionTimeTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionInterCollisionTimeTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionInterCollisionTimeTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Region *arg1 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  RegionInterCollisionTimeTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_RegionInterCollisionTimeTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_RegionInterCollisionTimeTally" "', argument " "1"" of type '" "Region *""'"); 
+  }
+  arg1 = reinterpret_cast< Region * >(argp1);
+  {
+    try {
+      result = (RegionInterCollisionTimeTally *)new RegionInterCollisionTimeTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_RegionInterCollisionTimeTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_RegionInterCollisionTimeTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_RegionInterCollisionTimeTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Region, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_RegionInterCollisionTimeTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_RegionInterCollisionTimeTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    RegionInterCollisionTimeTally::RegionInterCollisionTimeTally(Region *,char const *)\n"
+    "    RegionInterCollisionTimeTally::RegionInterCollisionTimeTally(Region *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_RegionInterCollisionTimeTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionInterCollisionTimeTally *arg1 = (RegionInterCollisionTimeTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:RegionInterCollisionTimeTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionInterCollisionTimeTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "RegionInterCollisionTimeTally_tally" "', argument " "1"" of type '" "RegionInterCollisionTimeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionInterCollisionTimeTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "RegionInterCollisionTimeTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_RegionInterCollisionTimeTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  RegionInterCollisionTimeTally *arg1 = (RegionInterCollisionTimeTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_RegionInterCollisionTimeTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_RegionInterCollisionTimeTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_RegionInterCollisionTimeTally" "', argument " "1"" of type '" "RegionInterCollisionTimeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< RegionInterCollisionTimeTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *RegionInterCollisionTimeTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_RegionInterCollisionTimeTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_GeometryInterCollisionTimeTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  GeometryInterCollisionTimeTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_GeometryInterCollisionTimeTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryInterCollisionTimeTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_GeometryInterCollisionTimeTally" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (GeometryInterCollisionTimeTally *)new GeometryInterCollisionTimeTally(arg1,(char const *)arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryInterCollisionTimeTally, SWIG_POINTER_NEW |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryInterCollisionTimeTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  GeometryInterCollisionTimeTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_GeometryInterCollisionTimeTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GeometryInterCollisionTimeTally" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  {
+    try {
+      result = (GeometryInterCollisionTimeTally *)new GeometryInterCollisionTimeTally(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_GeometryInterCollisionTimeTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_GeometryInterCollisionTimeTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[3];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 2) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_GeometryInterCollisionTimeTally__SWIG_1(self, args);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_Geometry, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsCharPtrAndSize(argv[1], 0, NULL, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_new_GeometryInterCollisionTimeTally__SWIG_0(self, args);
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_GeometryInterCollisionTimeTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    GeometryInterCollisionTimeTally::GeometryInterCollisionTimeTally(Geometry *,char const *)\n"
+    "    GeometryInterCollisionTimeTally::GeometryInterCollisionTimeTally(Geometry *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_GeometryInterCollisionTimeTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryInterCollisionTimeTally *arg1 = (GeometryInterCollisionTimeTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:GeometryInterCollisionTimeTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryInterCollisionTimeTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GeometryInterCollisionTimeTally_tally" "', argument " "1"" of type '" "GeometryInterCollisionTimeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryInterCollisionTimeTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GeometryInterCollisionTimeTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GeometryInterCollisionTimeTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  GeometryInterCollisionTimeTally *arg1 = (GeometryInterCollisionTimeTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_GeometryInterCollisionTimeTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_GeometryInterCollisionTimeTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GeometryInterCollisionTimeTally" "', argument " "1"" of type '" "GeometryInterCollisionTimeTally *""'"); 
+  }
+  arg1 = reinterpret_cast< GeometryInterCollisionTimeTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *GeometryInterCollisionTimeTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_GeometryInterCollisionTimeTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN PyObject *_wrap_new_DerivedTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  PyObject * obj0 = 0 ;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_DerivedTally",&obj0)) SWIG_fail;
+  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_DerivedTally" "', argument " "1"" of type '" "char const *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  {
+    try {
+      result = (DerivedTally *)new DerivedTally((char const *)arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, SWIG_POINTER_NEW |  0 );
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_DerivedTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  DerivedTally *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_DerivedTally")) SWIG_fail;
+  {
+    try {
+      result = (DerivedTally *)new DerivedTally();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DerivedTally, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_DerivedTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[2];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 1) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 0) {
+    return _wrap_new_DerivedTally__SWIG_1(self, args);
+  }
+  if (argc == 1) {
+    int _v;
+    int res = SWIG_AsCharPtrAndSize(argv[0], 0, NULL, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_DerivedTally__SWIG_0(self, args);
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_DerivedTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    DerivedTally::DerivedTally(char const *)\n"
+    "    DerivedTally::DerivedTally()\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_DerivedTally_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  DerivedTally *arg1 = (DerivedTally *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:DerivedTally_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DerivedTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "DerivedTally_tally" "', argument " "1"" of type '" "DerivedTally *""'"); 
+  }
+  arg1 = reinterpret_cast< DerivedTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "DerivedTally_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_DerivedTally_setTallyName(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  DerivedTally *arg1 = (DerivedTally *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:DerivedTally_setTallyName",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DerivedTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "DerivedTally_setTallyName" "', argument " "1"" of type '" "DerivedTally *""'"); 
+  }
+  arg1 = reinterpret_cast< DerivedTally * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "DerivedTally_setTallyName" "', argument " "2"" of type '" "char *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      (arg1)->setTallyName(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_DerivedTally_setTallies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  DerivedTally *arg1 = (DerivedTally *) 0 ;
+  double **arg2 = (double **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:DerivedTally_setTallies",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DerivedTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "DerivedTally_setTallies" "', argument " "1"" of type '" "DerivedTally *""'"); 
+  }
+  arg1 = reinterpret_cast< DerivedTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "DerivedTally_setTallies" "', argument " "2"" of type '" "double **""'"); 
+  }
+  arg2 = reinterpret_cast< double ** >(argp2);
+  {
+    try {
+      (arg1)->setTallies(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_DerivedTally_setBatchMu(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  DerivedTally *arg1 = (DerivedTally *) 0 ;
+  double *arg2 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:DerivedTally_setBatchMu",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DerivedTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "DerivedTally_setBatchMu" "', argument " "1"" of type '" "DerivedTally *""'"); 
+  }
+  arg1 = reinterpret_cast< DerivedTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "DerivedTally_setBatchMu" "', argument " "2"" of type '" "double *""'"); 
+  }
+  arg2 = reinterpret_cast< double * >(argp2);
+  {
+    try {
+      (arg1)->setBatchMu(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_DerivedTally_setBatchVariance(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  DerivedTally *arg1 = (DerivedTally *) 0 ;
+  double *arg2 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:DerivedTally_setBatchVariance",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DerivedTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "DerivedTally_setBatchVariance" "', argument " "1"" of type '" "DerivedTally *""'"); 
+  }
+  arg1 = reinterpret_cast< DerivedTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "DerivedTally_setBatchVariance" "', argument " "2"" of type '" "double *""'"); 
+  }
+  arg2 = reinterpret_cast< double * >(argp2);
+  {
+    try {
+      (arg1)->setBatchVariance(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_DerivedTally_setBatchStdDev(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  DerivedTally *arg1 = (DerivedTally *) 0 ;
+  double *arg2 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:DerivedTally_setBatchStdDev",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DerivedTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "DerivedTally_setBatchStdDev" "', argument " "1"" of type '" "DerivedTally *""'"); 
+  }
+  arg1 = reinterpret_cast< DerivedTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "DerivedTally_setBatchStdDev" "', argument " "2"" of type '" "double *""'"); 
+  }
+  arg2 = reinterpret_cast< double * >(argp2);
+  {
+    try {
+      (arg1)->setBatchStdDev(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_DerivedTally_setBatchRelErr(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  DerivedTally *arg1 = (DerivedTally *) 0 ;
+  double *arg2 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:DerivedTally_setBatchRelErr",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DerivedTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "DerivedTally_setBatchRelErr" "', argument " "1"" of type '" "DerivedTally *""'"); 
+  }
+  arg1 = reinterpret_cast< DerivedTally * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "DerivedTally_setBatchRelErr" "', argument " "2"" of type '" "double *""'"); 
+  }
+  arg2 = reinterpret_cast< double * >(argp2);
+  {
+    try {
+      (arg1)->setBatchRelErr(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_DerivedTally_setComputedBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  DerivedTally *arg1 = (DerivedTally *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:DerivedTally_setComputedBatchStatistics",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DerivedTally, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "DerivedTally_setComputedBatchStatistics" "', argument " "1"" of type '" "DerivedTally *""'"); 
+  }
+  arg1 = reinterpret_cast< DerivedTally * >(argp1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "DerivedTally_setComputedBatchStatistics" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  {
+    try {
+      (arg1)->setComputedBatchStatistics(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_DerivedTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  DerivedTally *arg1 = (DerivedTally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_DerivedTally",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DerivedTally, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_DerivedTally" "', argument " "1"" of type '" "DerivedTally *""'"); 
+  }
+  arg1 = reinterpret_cast< DerivedTally * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *DerivedTally_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_DerivedTally, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
+SWIGINTERN int Swig_var_output_file_num_set(PyObject *_val) {
+  {
+    int val;
+    int res = SWIG_AsVal_int(_val, &val);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""output_file_num""' of type '""int""'");
+    }
+    output_file_num = static_cast< int >(val);
+  }
+  return 0;
+fail:
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_output_file_num_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_From_int(static_cast< int >(output_file_num));
+  return pyobj;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_TallyBank(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_TallyBank",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_TallyBank" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_Get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":TallyBank_Get")) SWIG_fail;
+  {
+    try {
+      result = (TallyBank *)TallyBank::Get();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_TallyBank, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_registerTally__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  Tally *arg2 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:TallyBank_registerTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_registerTally" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TallyBank_registerTally" "', argument " "2"" of type '" "Tally *""'"); 
+  }
+  arg2 = reinterpret_cast< Tally * >(argp2);
+  {
+    try {
+      (arg1)->registerTally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_registerTally__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  Tally *arg2 = (Tally *) 0 ;
+  Geometry *arg3 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:TallyBank_registerTally",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_registerTally" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TallyBank_registerTally" "', argument " "2"" of type '" "Tally *""'"); 
+  }
+  arg2 = reinterpret_cast< Tally * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "TallyBank_registerTally" "', argument " "3"" of type '" "Geometry *""'"); 
+  }
+  arg3 = reinterpret_cast< Geometry * >(argp3);
+  {
+    try {
+      (arg1)->registerTally(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_registerTally__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  Tally *arg2 = (Tally *) 0 ;
+  Region *arg3 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:TallyBank_registerTally",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_registerTally" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TallyBank_registerTally" "', argument " "2"" of type '" "Tally *""'"); 
+  }
+  arg2 = reinterpret_cast< Tally * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_Region, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "TallyBank_registerTally" "', argument " "3"" of type '" "Region *""'"); 
+  }
+  arg3 = reinterpret_cast< Region * >(argp3);
+  {
+    try {
+      (arg1)->registerTally(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_registerTally__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  Tally *arg2 = (Tally *) 0 ;
+  Material *arg3 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:TallyBank_registerTally",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_registerTally" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TallyBank_registerTally" "', argument " "2"" of type '" "Tally *""'"); 
+  }
+  arg2 = reinterpret_cast< Tally * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "TallyBank_registerTally" "', argument " "3"" of type '" "Material *""'"); 
+  }
+  arg3 = reinterpret_cast< Material * >(argp3);
+  {
+    try {
+      (arg1)->registerTally(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_registerTally__SWIG_4(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  Tally *arg2 = (Tally *) 0 ;
+  Isotope *arg3 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO:TallyBank_registerTally",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_registerTally" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TallyBank_registerTally" "', argument " "2"" of type '" "Tally *""'"); 
+  }
+  arg2 = reinterpret_cast< Tally * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "TallyBank_registerTally" "', argument " "3"" of type '" "Isotope *""'"); 
+  }
+  arg3 = reinterpret_cast< Isotope * >(argp3);
+  {
+    try {
+      (arg1)->registerTally(arg2,arg3);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_registerTally(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[4];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 3) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TallyBank, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Tally, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_TallyBank_registerTally__SWIG_0(self, args);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TallyBank, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Tally, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Geometry, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_TallyBank_registerTally__SWIG_1(self, args);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TallyBank, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Tally, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Region, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_TallyBank_registerTally__SWIG_2(self, args);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TallyBank, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Tally, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Material, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_TallyBank_registerTally__SWIG_3(self, args);
+        }
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_TallyBank, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      void *vptr = 0;
+      int res = SWIG_ConvertPtr(argv[1], &vptr, SWIGTYPE_p_Tally, 0);
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(argv[2], &vptr, SWIGTYPE_p_Isotope, 0);
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_TallyBank_registerTally__SWIG_4(self, args);
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'TallyBank_registerTally'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    TallyBank::registerTally(Tally *)\n"
+    "    TallyBank::registerTally(Tally *,Geometry *)\n"
+    "    TallyBank::registerTally(Tally *,Region *)\n"
+    "    TallyBank::registerTally(Tally *,Material *)\n"
+    "    TallyBank::registerTally(Tally *,Isotope *)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_deregisterTally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  Tally *arg2 = (Tally *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:TallyBank_deregisterTally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_deregisterTally" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Tally, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TallyBank_deregisterTally" "', argument " "2"" of type '" "Tally *""'"); 
+  }
+  arg2 = reinterpret_cast< Tally * >(argp2);
+  {
+    try {
+      (arg1)->deregisterTally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_initializeBatchTallies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:TallyBank_initializeBatchTallies",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_initializeBatchTallies" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "TallyBank_initializeBatchTallies" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      (arg1)->initializeBatchTallies(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_isPrecisionTriggered(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:TallyBank_isPrecisionTriggered",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_isPrecisionTriggered" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  {
+    try {
+      result = (bool)(arg1)->isPrecisionTriggered();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_incrementNumBatches(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:TallyBank_incrementNumBatches",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_incrementNumBatches" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "TallyBank_incrementNumBatches" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      (arg1)->incrementNumBatches(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_computeBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:TallyBank_computeBatchStatistics",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_computeBatchStatistics" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  {
+    try {
+      (arg1)->computeBatchStatistics();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_computeScaledBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:TallyBank_computeScaledBatchStatistics",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_computeScaledBatchStatistics" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "TallyBank_computeScaledBatchStatistics" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      (arg1)->computeScaledBatchStatistics(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_outputBatchStatistics(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:TallyBank_outputBatchStatistics",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_outputBatchStatistics" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  {
+    try {
+      (arg1)->outputBatchStatistics();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_tally(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:TallyBank_tally",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_tally" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "TallyBank_tally" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->tally(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_TallyBank_clearTallies(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  TallyBank *arg1 = (TallyBank *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:TallyBank_clearTallies",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_TallyBank, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "TallyBank_clearTallies" "', argument " "1"" of type '" "TallyBank *""'"); 
+  }
+  arg1 = reinterpret_cast< TallyBank * >(argp1);
+  {
+    try {
+      (arg1)->clearTallies();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *TallyBank_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_TallyBank, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -13322,29 +24810,29 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_neutron__in_fuel_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_neutron__material_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   neutron *arg1 = (neutron *) 0 ;
-  bool arg2 ;
+  Material *arg2 = (Material *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__in_fuel_set",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__material_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__in_fuel_set" "', argument " "1"" of type '" "neutron *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__material_set" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  ecode2 = SWIG_AsVal_bool(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__in_fuel_set" "', argument " "2"" of type '" "bool""'");
-  } 
-  arg2 = static_cast< bool >(val2);
-  if (arg1) (arg1)->_in_fuel = arg2;
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Material, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "neutron__material_set" "', argument " "2"" of type '" "Material *""'"); 
+  }
+  arg2 = reinterpret_cast< Material * >(argp2);
+  if (arg1) (arg1)->_material = arg2;
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -13352,22 +24840,178 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_neutron__in_fuel_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_neutron__material_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   neutron *arg1 = (neutron *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  bool result;
+  Material *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:neutron__in_fuel_get",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:neutron__material_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__in_fuel_get" "', argument " "1"" of type '" "neutron *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__material_get" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (bool) ((arg1)->_in_fuel);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  result = (Material *) ((arg1)->_material);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__isotope_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  Isotope *arg2 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__isotope_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__isotope_set" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Isotope, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "neutron__isotope_set" "', argument " "2"" of type '" "Isotope *""'"); 
+  }
+  arg2 = reinterpret_cast< Isotope * >(argp2);
+  if (arg1) (arg1)->_isotope = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__isotope_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Isotope *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:neutron__isotope_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__isotope_get" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  result = (Isotope *) ((arg1)->_isotope);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Isotope, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__old_energy_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__old_energy_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__old_energy_set" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__old_energy_set" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  if (arg1) (arg1)->_old_energy = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__old_energy_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:neutron__old_energy_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__old_energy_get" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  result = (float) ((arg1)->_old_energy);
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__total_xs_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__total_xs_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__total_xs_set" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__total_xs_set" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  if (arg1) (arg1)->_total_xs = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__total_xs_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:neutron__total_xs_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__total_xs_get" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  result = (float) ((arg1)->_total_xs);
+  resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
   return NULL;
@@ -13894,6 +25538,214 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_setOutputDirectory(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:setOutputDirectory",&obj0)) SWIG_fail;
+  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "setOutputDirectory" "', argument " "1"" of type '" "char *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  {
+    try {
+      setOutputDirectory(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_getOutputDirectory(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":getOutputDirectory")) SWIG_fail;
+  {
+    try {
+      result = (char *)getOutputDirectory();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_setLogfileName(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:setLogfileName",&obj0)) SWIG_fail;
+  res1 = SWIG_AsCharPtrAndSize(obj0, &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "setLogfileName" "', argument " "1"" of type '" "char *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  {
+    try {
+      setLogfileName(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_setSeparatorCharacter(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char arg1 ;
+  char val1 ;
+  int ecode1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:setSeparatorCharacter",&obj0)) SWIG_fail;
+  ecode1 = SWIG_AsVal_char(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "setSeparatorCharacter" "', argument " "1"" of type '" "char""'");
+  } 
+  arg1 = static_cast< char >(val1);
+  {
+    try {
+      setSeparatorCharacter(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_setHeaderCharacter(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char arg1 ;
+  char val1 ;
+  int ecode1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:setHeaderCharacter",&obj0)) SWIG_fail;
+  ecode1 = SWIG_AsVal_char(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "setHeaderCharacter" "', argument " "1"" of type '" "char""'");
+  } 
+  arg1 = static_cast< char >(val1);
+  {
+    try {
+      setHeaderCharacter(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_setTitleCharacter(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  char arg1 ;
+  char val1 ;
+  int ecode1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:setTitleCharacter",&obj0)) SWIG_fail;
+  ecode1 = SWIG_AsVal_char(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "setTitleCharacter" "', argument " "1"" of type '" "char""'");
+  } 
+  arg1 = static_cast< char >(val1);
+  {
+    try {
+      setTitleCharacter(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_setLineLength(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  int arg1 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:setLineLength",&obj0)) SWIG_fail;
+  ecode1 = SWIG_AsVal_int(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "setLineLength" "', argument " "1"" of type '" "int""'");
+  } 
+  arg1 = static_cast< int >(val1);
+  {
+    try {
+      setLineLength(arg1);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_log_setlevel__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   logLevel arg1 ;
@@ -14074,6 +25926,62 @@ SWIGINTERN PyObject *_wrap_log_printf(PyObject *SWIGUNUSEDPARM(self), PyObject *
 }
 
 
+SWIGINTERN PyObject *_wrap_createMultilineMsg(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  std::string arg1 ;
+  std::string arg2 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  std::string result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:createMultilineMsg",&obj0,&obj1)) SWIG_fail;
+  {
+    res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "createMultilineMsg" "', argument " "1"" of type '" "std::string""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "createMultilineMsg" "', argument " "1"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp1);
+      arg1 = *temp;
+      if (SWIG_IsNewObj(res1)) delete temp;
+    }
+  }
+  {
+    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "createMultilineMsg" "', argument " "2"" of type '" "std::string""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "createMultilineMsg" "', argument " "2"" of type '" "std::string""'");
+    } else {
+      std::string * temp = reinterpret_cast< std::string * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  {
+    try {
+      result = createMultilineMsg(arg1,arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_NewPointerObj((new std::string(static_cast< const std::string& >(result))), SWIGTYPE_p_std__string, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN int Swig_var_log_level_set(PyObject *_val) {
   if (sizeof(int) != sizeof(log_level)) {
     SWIG_exception_fail(SWIG_ArgError(SWIG_AttributeError), "in variable '""arch, read-only log_level""' of type '""logLevel""'");
@@ -14097,18 +26005,20 @@ SWIGINTERN PyObject *Swig_var_log_level_get(void) {
 }
 
 
-SWIGINTERN int Swig_var__xs_directory_set(PyObject *_val) {
+SWIGINTERN int Swig_var_logfile_name_set(PyObject *_val) {
   {
-    char *cptr = 0; size_t csize = 0; int alloc = SWIG_NEWOBJ;
-    int res = SWIG_AsCharPtrAndSize(_val, &cptr, &csize, &alloc);
+    void *argp = 0;
+    int res = SWIG_ConvertPtr(_val, &argp, SWIGTYPE_p_std__string,  0  | 0);
     if (!SWIG_IsOK(res)) {
-      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""_xs_directory""' of type '""char *""'");
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""logfile_name""' of type '""std::string""'");
     }
-    if (_xs_directory) delete[] _xs_directory;
-    if (alloc == SWIG_NEWOBJ) {
-      _xs_directory = cptr;
+    if (!argp) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""logfile_name""' of type '""std::string""'");
     } else {
-      _xs_directory = csize ? (char *)reinterpret_cast< char* >(memcpy((new char[csize]), cptr, sizeof(char)*(csize))) : 0;
+      std::string * temp;
+      temp  = reinterpret_cast< std::string * >(argp);
+      logfile_name = *temp;
+      if (SWIG_IsNewObj(res)) delete temp;
     }
   }
   return 0;
@@ -14117,10 +26027,155 @@ fail:
 }
 
 
-SWIGINTERN PyObject *Swig_var__xs_directory_get(void) {
+SWIGINTERN PyObject *Swig_var_logfile_name_get(void) {
   PyObject *pyobj = 0;
   
-  pyobj = SWIG_FromCharPtr(_xs_directory);
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&logfile_name), SWIGTYPE_p_std__string,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_output_directory_set(PyObject *_val) {
+  {
+    void *argp = 0;
+    int res = SWIG_ConvertPtr(_val, &argp, SWIGTYPE_p_std__string,  0  | 0);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""output_directory""' of type '""std::string""'");
+    }
+    if (!argp) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in variable '""output_directory""' of type '""std::string""'");
+    } else {
+      std::string * temp;
+      temp  = reinterpret_cast< std::string * >(argp);
+      output_directory = *temp;
+      if (SWIG_IsNewObj(res)) delete temp;
+    }
+  }
+  return 0;
+fail:
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_output_directory_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_NewPointerObj(SWIG_as_voidptr(&output_directory), SWIGTYPE_p_std__string,  0 );
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_logging_set(PyObject *_val) {
+  {
+    bool val;
+    int res = SWIG_AsVal_bool(_val, &val);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""logging""' of type '""bool""'");
+    }
+    logging = static_cast< bool >(val);
+  }
+  return 0;
+fail:
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_logging_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_From_bool(static_cast< bool >(logging));
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_separator_char_set(PyObject *_val) {
+  {
+    char val;
+    int res = SWIG_AsVal_char(_val, &val);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""separator_char""' of type '""char""'");
+    }
+    separator_char = static_cast< char >(val);
+  }
+  return 0;
+fail:
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_separator_char_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_From_char(static_cast< char >(separator_char));
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_header_char_set(PyObject *_val) {
+  {
+    char val;
+    int res = SWIG_AsVal_char(_val, &val);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""header_char""' of type '""char""'");
+    }
+    header_char = static_cast< char >(val);
+  }
+  return 0;
+fail:
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_header_char_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_From_char(static_cast< char >(header_char));
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_title_char_set(PyObject *_val) {
+  {
+    char val;
+    int res = SWIG_AsVal_char(_val, &val);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""title_char""' of type '""char""'");
+    }
+    title_char = static_cast< char >(val);
+  }
+  return 0;
+fail:
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_title_char_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_From_char(static_cast< char >(title_char));
+  return pyobj;
+}
+
+
+SWIGINTERN int Swig_var_line_length_set(PyObject *_val) {
+  {
+    int val;
+    int res = SWIG_AsVal_int(_val, &val);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in variable '""line_length""' of type '""int""'");
+    }
+    line_length = static_cast< int >(val);
+  }
+  return 0;
+fail:
+  return 1;
+}
+
+
+SWIGINTERN PyObject *Swig_var_line_length_get(void) {
+  PyObject *pyobj = 0;
+  
+  pyobj = SWIG_From_int(static_cast< int >(line_length));
   return pyobj;
 }
 
@@ -14174,6 +26229,28 @@ SWIGINTERN PyObject *_wrap_getXSLibDirectory(PyObject *SWIGUNUSEDPARM(self), PyO
     }
   }
   resultobj = SWIG_FromCharPtr((const char *)result);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_restoreXSLibrary(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)":restoreXSLibrary")) SWIG_fail;
+  {
+    try {
+      result = (int)restoreXSLibrary();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
   return resultobj;
 fail:
   return NULL;
@@ -14622,31 +26699,29 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Geometry_getNumBatches", _wrap_Geometry_getNumBatches, METH_VARARGS, NULL},
 	 { (char *)"Geometry_getNumThreads", _wrap_Geometry_getNumThreads, METH_VARARGS, NULL},
 	 { (char *)"Geometry_getSpatialType", _wrap_Geometry_getSpatialType, METH_VARARGS, NULL},
-	 { (char *)"Geometry_getBSquare", _wrap_Geometry_getBSquare, METH_VARARGS, NULL},
+	 { (char *)"Geometry_getBucklingSquared", _wrap_Geometry_getBucklingSquared, METH_VARARGS, NULL},
+	 { (char *)"Geometry_getVolume", _wrap_Geometry_getVolume, METH_VARARGS, NULL},
 	 { (char *)"Geometry_setNeutronsPerBatch", _wrap_Geometry_setNeutronsPerBatch, METH_VARARGS, NULL},
 	 { (char *)"Geometry_setNumBatches", _wrap_Geometry_setNumBatches, METH_VARARGS, NULL},
 	 { (char *)"Geometry_setNumThreads", _wrap_Geometry_setNumThreads, METH_VARARGS, NULL},
-	 { (char *)"Geometry_setSpatialType", _wrap_Geometry_setSpatialType, METH_VARARGS, NULL},
 	 { (char *)"Geometry_setDancoffFactor", _wrap_Geometry_setDancoffFactor, METH_VARARGS, NULL},
 	 { (char *)"Geometry_addRegion", _wrap_Geometry_addRegion, METH_VARARGS, NULL},
-	 { (char *)"Geometry_addTally", _wrap_Geometry_addTally, METH_VARARGS, NULL},
-	 { (char *)"Geometry_setBSquare", _wrap_Geometry_setBSquare, METH_VARARGS, NULL},
+	 { (char *)"Geometry_setBucklingSquared", _wrap_Geometry_setBucklingSquared, METH_VARARGS, NULL},
 	 { (char *)"Geometry_runMonteCarloSimulation", _wrap_Geometry_runMonteCarloSimulation, METH_VARARGS, NULL},
-	 { (char *)"Geometry_computeBatchStatistics", _wrap_Geometry_computeBatchStatistics, METH_VARARGS, NULL},
-	 { (char *)"Geometry_computeScaledBatchStatistics", _wrap_Geometry_computeScaledBatchStatistics, METH_VARARGS, NULL},
-	 { (char *)"Geometry_outputBatchStatistics", _wrap_Geometry_outputBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Geometry_swigregister", Geometry_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Region", _wrap_new_Region, METH_VARARGS, NULL},
 	 { (char *)"delete_Region", _wrap_delete_Region, METH_VARARGS, NULL},
 	 { (char *)"Region_getRegionName", _wrap_Region_getRegionName, METH_VARARGS, NULL},
 	 { (char *)"Region_getVolume", _wrap_Region_getVolume, METH_VARARGS, NULL},
 	 { (char *)"Region_getMaterial", _wrap_Region_getMaterial, METH_VARARGS, NULL},
+	 { (char *)"Region_containsIsotope", _wrap_Region_containsIsotope, METH_VARARGS, NULL},
 	 { (char *)"Region_getRegionType", _wrap_Region_getRegionType, METH_VARARGS, NULL},
 	 { (char *)"Region_isFuel", _wrap_Region_isFuel, METH_VARARGS, NULL},
 	 { (char *)"Region_isModerator", _wrap_Region_isModerator, METH_VARARGS, NULL},
 	 { (char *)"Region_isInfinite", _wrap_Region_isInfinite, METH_VARARGS, NULL},
 	 { (char *)"Region_getFuelRadius", _wrap_Region_getFuelRadius, METH_VARARGS, NULL},
 	 { (char *)"Region_getPitch", _wrap_Region_getPitch, METH_VARARGS, NULL},
+	 { (char *)"Region_getBucklingSquared", _wrap_Region_getBucklingSquared, METH_VARARGS, NULL},
 	 { (char *)"Region_getTotalMacroXS", _wrap_Region_getTotalMacroXS, METH_VARARGS, NULL},
 	 { (char *)"Region_getElasticMacroXS", _wrap_Region_getElasticMacroXS, METH_VARARGS, NULL},
 	 { (char *)"Region_getAbsorptionMacroXS", _wrap_Region_getAbsorptionMacroXS, METH_VARARGS, NULL},
@@ -14657,9 +26732,10 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Region_setFuelRadius", _wrap_Region_setFuelRadius, METH_VARARGS, NULL},
 	 { (char *)"Region_setPitch", _wrap_Region_setPitch, METH_VARARGS, NULL},
 	 { (char *)"Region_setVolume", _wrap_Region_setVolume, METH_VARARGS, NULL},
-	 { (char *)"Region_addFuelRingRadius", _wrap_Region_addFuelRingRadius, METH_VARARGS, NULL},
-	 { (char *)"Region_addModeratorRingRadius", _wrap_Region_addModeratorRingRadius, METH_VARARGS, NULL},
+	 { (char *)"Region_setBucklingSquared", _wrap_Region_setBucklingSquared, METH_VARARGS, NULL},
 	 { (char *)"Region_collideNeutron", _wrap_Region_collideNeutron, METH_VARARGS, NULL},
+	 { (char *)"Region_contains", _wrap_Region_contains, METH_VARARGS, NULL},
+	 { (char *)"Region_onBoundary", _wrap_Region_onBoundary, METH_VARARGS, NULL},
 	 { (char *)"Region_swigregister", Region_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_Surface", _wrap_delete_Surface, METH_VARARGS, NULL},
 	 { (char *)"Surface_getBoundaryType", _wrap_Surface_getBoundaryType, METH_VARARGS, NULL},
@@ -14706,7 +26782,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_isFissionable", _wrap_Isotope_isFissionable, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getNumXSEnergies", _wrap_Isotope_getNumXSEnergies, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getElasticXS", _wrap_Isotope_getElasticXS, METH_VARARGS, NULL},
-	 { (char *)"Isotope_getElasticAngleType", _wrap_Isotope_getElasticAngleType, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getAbsorptionXS", _wrap_Isotope_getAbsorptionXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getCaptureXS", _wrap_Isotope_getCaptureXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getFissionXS", _wrap_Isotope_getFissionXS, METH_VARARGS, NULL},
@@ -14717,13 +26792,21 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_getEnergyGridIndex", _wrap_Isotope_getEnergyGridIndex, METH_VARARGS, NULL},
 	 { (char *)"Isotope_retrieveXSEnergies", _wrap_Isotope_retrieveXSEnergies, METH_VARARGS, NULL},
 	 { (char *)"Isotope_retrieveXS", _wrap_Isotope_retrieveXS, METH_VARARGS, NULL},
-	 { (char *)"Isotope_setIsotopeType", _wrap_Isotope_setIsotopeType, METH_VARARGS, NULL},
+	 { (char *)"Isotope_setElasticXS", _wrap_Isotope_setElasticXS, METH_VARARGS, NULL},
+	 { (char *)"Isotope_setCaptureXS", _wrap_Isotope_setCaptureXS, METH_VARARGS, NULL},
+	 { (char *)"Isotope_setFissionXS", _wrap_Isotope_setFissionXS, METH_VARARGS, NULL},
+	 { (char *)"Isotope_setMultigroupElasticXS", _wrap_Isotope_setMultigroupElasticXS, METH_VARARGS, NULL},
+	 { (char *)"Isotope_setMultigroupCaptureXS", _wrap_Isotope_setMultigroupCaptureXS, METH_VARARGS, NULL},
+	 { (char *)"Isotope_setMultigroupFissionXS", _wrap_Isotope_setMultigroupFissionXS, METH_VARARGS, NULL},
+	 { (char *)"Isotope_loadXS", _wrap_Isotope_loadXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setA", _wrap_Isotope_setA, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setAO", _wrap_Isotope_setAO, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setN", _wrap_Isotope_setN, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setTemperature", _wrap_Isotope_setTemperature, METH_VARARGS, NULL},
+	 { (char *)"Isotope_neglectThermalScattering", _wrap_Isotope_neglectThermalScattering, METH_VARARGS, NULL},
+	 { (char *)"Isotope_useThermalScattering", _wrap_Isotope_useThermalScattering, METH_VARARGS, NULL},
 	 { (char *)"Isotope_clone", _wrap_Isotope_clone, METH_VARARGS, NULL},
-	 { (char *)"Isotope_getCollisionType", _wrap_Isotope_getCollisionType, METH_VARARGS, NULL},
+	 { (char *)"Isotope_sampleCollisionType", _wrap_Isotope_sampleCollisionType, METH_VARARGS, NULL},
 	 { (char *)"Isotope_collideNeutron", _wrap_Isotope_collideNeutron, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getDistanceTraveled", _wrap_Isotope_getDistanceTraveled, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getThermalScatteringEnergy", _wrap_Isotope_getThermalScatteringEnergy, METH_VARARGS, NULL},
@@ -14733,18 +26816,17 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_retrieveThermalDistributions", _wrap_Isotope_retrieveThermalDistributions, METH_VARARGS, NULL},
 	 { (char *)"Isotope_retrieveEtokT", _wrap_Isotope_retrieveEtokT, METH_VARARGS, NULL},
 	 { (char *)"Isotope_retrieveEprimeToE", _wrap_Isotope_retrieveEprimeToE, METH_VARARGS, NULL},
-	 { (char *)"Isotope_getEnergyGridScaleType", _wrap_Isotope_getEnergyGridScaleType, METH_VARARGS, NULL},
 	 { (char *)"Isotope_swigregister", Isotope_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Material", _wrap_new_Material, METH_VARARGS, NULL},
 	 { (char *)"delete_Material", _wrap_delete_Material, METH_VARARGS, NULL},
-	 { (char *)"Material_clone", _wrap_Material_clone, METH_VARARGS, NULL},
 	 { (char *)"Material_getMaterialName", _wrap_Material_getMaterialName, METH_VARARGS, NULL},
 	 { (char *)"Material_getMaterialNumberDensity", _wrap_Material_getMaterialNumberDensity, METH_VARARGS, NULL},
-	 { (char *)"Material_getIsotope", _wrap_Material_getIsotope, METH_VARARGS, NULL},
 	 { (char *)"Material_getDensity", _wrap_Material_getDensity, METH_VARARGS, NULL},
 	 { (char *)"Material_getIsotopeNumDensity", _wrap_Material_getIsotopeNumDensity, METH_VARARGS, NULL},
+	 { (char *)"Material_containsIsotope", _wrap_Material_containsIsotope, METH_VARARGS, NULL},
+	 { (char *)"Material_getBucklingSquared", _wrap_Material_getBucklingSquared, METH_VARARGS, NULL},
+	 { (char *)"Material_getVolume", _wrap_Material_getVolume, METH_VARARGS, NULL},
 	 { (char *)"Material_getNumXSEnergies", _wrap_Material_getNumXSEnergies, METH_VARARGS, NULL},
-	 { (char *)"Material_getEnergyGridScaleType", _wrap_Material_getEnergyGridScaleType, METH_VARARGS, NULL},
 	 { (char *)"Material_getTotalMacroXS", _wrap_Material_getTotalMacroXS, METH_VARARGS, NULL},
 	 { (char *)"Material_getElasticMacroXS", _wrap_Material_getElasticMacroXS, METH_VARARGS, NULL},
 	 { (char *)"Material_getAbsorptionMacroXS", _wrap_Material_getAbsorptionMacroXS, METH_VARARGS, NULL},
@@ -14753,15 +26835,15 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Material_getTransportMacroXS", _wrap_Material_getTransportMacroXS, METH_VARARGS, NULL},
 	 { (char *)"Material_retrieveXSEnergies", _wrap_Material_retrieveXSEnergies, METH_VARARGS, NULL},
 	 { (char *)"Material_retrieveXS", _wrap_Material_retrieveXS, METH_VARARGS, NULL},
-	 { (char *)"Material_setMaterialName", _wrap_Material_setMaterialName, METH_VARARGS, NULL},
 	 { (char *)"Material_setDensity", _wrap_Material_setDensity, METH_VARARGS, NULL},
-	 { (char *)"Material_setNumberDensity", _wrap_Material_setNumberDensity, METH_VARARGS, NULL},
 	 { (char *)"Material_setAtomicMass", _wrap_Material_setAtomicMass, METH_VARARGS, NULL},
+	 { (char *)"Material_setBucklingSquared", _wrap_Material_setBucklingSquared, METH_VARARGS, NULL},
+	 { (char *)"Material_incrementVolume", _wrap_Material_incrementVolume, METH_VARARGS, NULL},
 	 { (char *)"Material_addIsotope", _wrap_Material_addIsotope, METH_VARARGS, NULL},
+	 { (char *)"Material_clone", _wrap_Material_clone, METH_VARARGS, NULL},
 	 { (char *)"Material_sampleIsotope", _wrap_Material_sampleIsotope, METH_VARARGS, NULL},
 	 { (char *)"Material_collideNeutron", _wrap_Material_collideNeutron, METH_VARARGS, NULL},
 	 { (char *)"Material_swigregister", Material_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_Tally", _wrap_new_Tally, METH_VARARGS, NULL},
 	 { (char *)"delete_Tally", _wrap_delete_Tally, METH_VARARGS, NULL},
 	 { (char *)"Tally_getTallyName", _wrap_Tally_getTallyName, METH_VARARGS, NULL},
 	 { (char *)"Tally_getNumBins", _wrap_Tally_getNumBins, METH_VARARGS, NULL},
@@ -14776,6 +26858,13 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tally_getMaxTally", _wrap_Tally_getMaxTally, METH_VARARGS, NULL},
 	 { (char *)"Tally_getMinTally", _wrap_Tally_getMinTally, METH_VARARGS, NULL},
 	 { (char *)"Tally_getBinIndex", _wrap_Tally_getBinIndex, METH_VARARGS, NULL},
+	 { (char *)"Tally_getMaxMu", _wrap_Tally_getMaxMu, METH_VARARGS, NULL},
+	 { (char *)"Tally_getMaxVariance", _wrap_Tally_getMaxVariance, METH_VARARGS, NULL},
+	 { (char *)"Tally_getMaxStdDev", _wrap_Tally_getMaxStdDev, METH_VARARGS, NULL},
+	 { (char *)"Tally_getMaxRelErr", _wrap_Tally_getMaxRelErr, METH_VARARGS, NULL},
+	 { (char *)"Tally_getTriggerPrecision", _wrap_Tally_getTriggerPrecision, METH_VARARGS, NULL},
+	 { (char *)"Tally_getTriggerType", _wrap_Tally_getTriggerType, METH_VARARGS, NULL},
+	 { (char *)"Tally_hasComputedBatchStatistics", _wrap_Tally_hasComputedBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Tally_retrieveTallyEdges", _wrap_Tally_retrieveTallyEdges, METH_VARARGS, NULL},
 	 { (char *)"Tally_retrieveTallyCenters", _wrap_Tally_retrieveTallyCenters, METH_VARARGS, NULL},
 	 { (char *)"Tally_retrieveTallyMu", _wrap_Tally_retrieveTallyMu, METH_VARARGS, NULL},
@@ -14787,22 +26876,229 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Tally_getBatchVariance", _wrap_Tally_getBatchVariance, METH_VARARGS, NULL},
 	 { (char *)"Tally_getBatchStdDev", _wrap_Tally_getBatchStdDev, METH_VARARGS, NULL},
 	 { (char *)"Tally_getBatchRelativeError", _wrap_Tally_getBatchRelativeError, METH_VARARGS, NULL},
+	 { (char *)"Tally_setTallyDomainType", _wrap_Tally_setTallyDomainType, METH_VARARGS, NULL},
+	 { (char *)"Tally_setTallyType", _wrap_Tally_setTallyType, METH_VARARGS, NULL},
 	 { (char *)"Tally_setBinSpacingType", _wrap_Tally_setBinSpacingType, METH_VARARGS, NULL},
 	 { (char *)"Tally_setBinEdges", _wrap_Tally_setBinEdges, METH_VARARGS, NULL},
 	 { (char *)"Tally_setPrecisionTrigger", _wrap_Tally_setPrecisionTrigger, METH_VARARGS, NULL},
 	 { (char *)"Tally_generateBinEdges", _wrap_Tally_generateBinEdges, METH_VARARGS, NULL},
+	 { (char *)"Tally_generateBinCenters", _wrap_Tally_generateBinCenters, METH_VARARGS, NULL},
 	 { (char *)"Tally_setNumBatches", _wrap_Tally_setNumBatches, METH_VARARGS, NULL},
 	 { (char *)"Tally_incrementNumBatches", _wrap_Tally_incrementNumBatches, METH_VARARGS, NULL},
 	 { (char *)"Tally_isPrecisionTriggered", _wrap_Tally_isPrecisionTriggered, METH_VARARGS, NULL},
-	 { (char *)"Tally_clone", _wrap_Tally_clone, METH_VARARGS, NULL},
-	 { (char *)"Tally_generateBinCenters", _wrap_Tally_generateBinCenters, METH_VARARGS, NULL},
-	 { (char *)"Tally_tally", _wrap_Tally_tally, METH_VARARGS, NULL},
-	 { (char *)"Tally_weightedTally", _wrap_Tally_weightedTally, METH_VARARGS, NULL},
-	 { (char *)"Tally_normalizeTallies", _wrap_Tally_normalizeTallies, METH_VARARGS, NULL},
 	 { (char *)"Tally_computeBatchStatistics", _wrap_Tally_computeBatchStatistics, METH_VARARGS, NULL},
 	 { (char *)"Tally_computeScaledBatchStatistics", _wrap_Tally_computeScaledBatchStatistics, METH_VARARGS, NULL},
+	 { (char *)"Tally_normalizeBatchMu", _wrap_Tally_normalizeBatchMu, METH_VARARGS, NULL},
 	 { (char *)"Tally_outputBatchStatistics", _wrap_Tally_outputBatchStatistics, METH_VARARGS, NULL},
+	 { (char *)"Tally_printTallies", _wrap_Tally_printTallies, METH_VARARGS, NULL},
+	 { (char *)"Tally_clone", _wrap_Tally_clone, METH_VARARGS, NULL},
+	 { (char *)"Tally_tally", _wrap_Tally_tally, METH_VARARGS, NULL},
+	 { (char *)"Tally_addIntegers", _wrap_Tally_addIntegers, METH_VARARGS, NULL},
+	 { (char *)"Tally_addFloats", _wrap_Tally_addFloats, METH_VARARGS, NULL},
+	 { (char *)"Tally_addDoubles", _wrap_Tally_addDoubles, METH_VARARGS, NULL},
+	 { (char *)"Tally_subtractIntegers", _wrap_Tally_subtractIntegers, METH_VARARGS, NULL},
+	 { (char *)"Tally_subtractFloats", _wrap_Tally_subtractFloats, METH_VARARGS, NULL},
+	 { (char *)"Tally_subtractDoubles", _wrap_Tally_subtractDoubles, METH_VARARGS, NULL},
+	 { (char *)"Tally_multiplyIntegers", _wrap_Tally_multiplyIntegers, METH_VARARGS, NULL},
+	 { (char *)"Tally_multiplyFloats", _wrap_Tally_multiplyFloats, METH_VARARGS, NULL},
+	 { (char *)"Tally_multiplyDoubles", _wrap_Tally_multiplyDoubles, METH_VARARGS, NULL},
+	 { (char *)"Tally_divideIntegers", _wrap_Tally_divideIntegers, METH_VARARGS, NULL},
+	 { (char *)"Tally_divideFloats", _wrap_Tally_divideFloats, METH_VARARGS, NULL},
+	 { (char *)"Tally_divideDoubles", _wrap_Tally_divideDoubles, METH_VARARGS, NULL},
+	 { (char *)"Tally___add__", _wrap_Tally___add__, METH_VARARGS, NULL},
+	 { (char *)"Tally___sub__", _wrap_Tally___sub__, METH_VARARGS, NULL},
+	 { (char *)"Tally___mul__", _wrap_Tally___mul__, METH_VARARGS, NULL},
+	 { (char *)"Tally___div__", _wrap_Tally___div__, METH_VARARGS, NULL},
 	 { (char *)"Tally_swigregister", Tally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"createTally", _wrap_createTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeTally_getIsotope", _wrap_IsotopeTally_getIsotope, METH_VARARGS, NULL},
+	 { (char *)"IsotopeTally_tally", _wrap_IsotopeTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_IsotopeTally", _wrap_delete_IsotopeTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeTally_swigregister", IsotopeTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"MaterialTally_getMaterial", _wrap_MaterialTally_getMaterial, METH_VARARGS, NULL},
+	 { (char *)"MaterialTally_tally", _wrap_MaterialTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_MaterialTally", _wrap_delete_MaterialTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialTally_swigregister", MaterialTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"RegionTally_getRegion", _wrap_RegionTally_getRegion, METH_VARARGS, NULL},
+	 { (char *)"RegionTally_tally", _wrap_RegionTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_RegionTally", _wrap_delete_RegionTally, METH_VARARGS, NULL},
+	 { (char *)"RegionTally_swigregister", RegionTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"GeometryTally_getGeometry", _wrap_GeometryTally_getGeometry, METH_VARARGS, NULL},
+	 { (char *)"GeometryTally_tally", _wrap_GeometryTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_GeometryTally", _wrap_delete_GeometryTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryTally_swigregister", GeometryTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_IsotopeCollisionRateTally", _wrap_new_IsotopeCollisionRateTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeCollisionRateTally_tally", _wrap_IsotopeCollisionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_IsotopeCollisionRateTally", _wrap_delete_IsotopeCollisionRateTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeCollisionRateTally_swigregister", IsotopeCollisionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_MaterialCollisionRateTally", _wrap_new_MaterialCollisionRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialCollisionRateTally_tally", _wrap_MaterialCollisionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_MaterialCollisionRateTally", _wrap_delete_MaterialCollisionRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialCollisionRateTally_swigregister", MaterialCollisionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_RegionCollisionRateTally", _wrap_new_RegionCollisionRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionCollisionRateTally_tally", _wrap_RegionCollisionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_RegionCollisionRateTally", _wrap_delete_RegionCollisionRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionCollisionRateTally_swigregister", RegionCollisionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_GeometryCollisionRateTally", _wrap_new_GeometryCollisionRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryCollisionRateTally_tally", _wrap_GeometryCollisionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_GeometryCollisionRateTally", _wrap_delete_GeometryCollisionRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryCollisionRateTally_swigregister", GeometryCollisionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_IsotopeElasticRateTally", _wrap_new_IsotopeElasticRateTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeElasticRateTally_tally", _wrap_IsotopeElasticRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_IsotopeElasticRateTally", _wrap_delete_IsotopeElasticRateTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeElasticRateTally_swigregister", IsotopeElasticRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_MaterialElasticRateTally", _wrap_new_MaterialElasticRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialElasticRateTally_tally", _wrap_MaterialElasticRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_MaterialElasticRateTally", _wrap_delete_MaterialElasticRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialElasticRateTally_swigregister", MaterialElasticRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_RegionElasticRateTally", _wrap_new_RegionElasticRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionElasticRateTally_tally", _wrap_RegionElasticRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_RegionElasticRateTally", _wrap_delete_RegionElasticRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionElasticRateTally_swigregister", RegionElasticRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_GeometryElasticRateTally", _wrap_new_GeometryElasticRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryElasticRateTally_tally", _wrap_GeometryElasticRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_GeometryElasticRateTally", _wrap_delete_GeometryElasticRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryElasticRateTally_swigregister", GeometryElasticRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_IsotopeAbsorptionRateTally", _wrap_new_IsotopeAbsorptionRateTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeAbsorptionRateTally_tally", _wrap_IsotopeAbsorptionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_IsotopeAbsorptionRateTally", _wrap_delete_IsotopeAbsorptionRateTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeAbsorptionRateTally_swigregister", IsotopeAbsorptionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_MaterialAbsorptionRateTally", _wrap_new_MaterialAbsorptionRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialAbsorptionRateTally_tally", _wrap_MaterialAbsorptionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_MaterialAbsorptionRateTally", _wrap_delete_MaterialAbsorptionRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialAbsorptionRateTally_swigregister", MaterialAbsorptionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_RegionAbsorptionRateTally", _wrap_new_RegionAbsorptionRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionAbsorptionRateTally_tally", _wrap_RegionAbsorptionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_RegionAbsorptionRateTally", _wrap_delete_RegionAbsorptionRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionAbsorptionRateTally_swigregister", RegionAbsorptionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_GeometryAbsorptionRateTally", _wrap_new_GeometryAbsorptionRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryAbsorptionRateTally_tally", _wrap_GeometryAbsorptionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_GeometryAbsorptionRateTally", _wrap_delete_GeometryAbsorptionRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryAbsorptionRateTally_swigregister", GeometryAbsorptionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_IsotopeCaptureRateTally", _wrap_new_IsotopeCaptureRateTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeCaptureRateTally_tally", _wrap_IsotopeCaptureRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_IsotopeCaptureRateTally", _wrap_delete_IsotopeCaptureRateTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeCaptureRateTally_swigregister", IsotopeCaptureRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_MaterialCaptureRateTally", _wrap_new_MaterialCaptureRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialCaptureRateTally_tally", _wrap_MaterialCaptureRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_MaterialCaptureRateTally", _wrap_delete_MaterialCaptureRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialCaptureRateTally_swigregister", MaterialCaptureRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_RegionCaptureRateTally", _wrap_new_RegionCaptureRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionCaptureRateTally_tally", _wrap_RegionCaptureRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_RegionCaptureRateTally", _wrap_delete_RegionCaptureRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionCaptureRateTally_swigregister", RegionCaptureRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_GeometryCaptureRateTally", _wrap_new_GeometryCaptureRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryCaptureRateTally_tally", _wrap_GeometryCaptureRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_GeometryCaptureRateTally", _wrap_delete_GeometryCaptureRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryCaptureRateTally_swigregister", GeometryCaptureRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_IsotopeFissionRateTally", _wrap_new_IsotopeFissionRateTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeFissionRateTally_tally", _wrap_IsotopeFissionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_IsotopeFissionRateTally", _wrap_delete_IsotopeFissionRateTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeFissionRateTally_swigregister", IsotopeFissionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_MaterialFissionRateTally", _wrap_new_MaterialFissionRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialFissionRateTally_tally", _wrap_MaterialFissionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_MaterialFissionRateTally", _wrap_delete_MaterialFissionRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialFissionRateTally_swigregister", MaterialFissionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_RegionFissionRateTally", _wrap_new_RegionFissionRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionFissionRateTally_tally", _wrap_RegionFissionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_RegionFissionRateTally", _wrap_delete_RegionFissionRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionFissionRateTally_swigregister", RegionFissionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_GeometryFissionRateTally", _wrap_new_GeometryFissionRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryFissionRateTally_tally", _wrap_GeometryFissionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_GeometryFissionRateTally", _wrap_delete_GeometryFissionRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryFissionRateTally_swigregister", GeometryFissionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_IsotopeTransportRateTally", _wrap_new_IsotopeTransportRateTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeTransportRateTally_tally", _wrap_IsotopeTransportRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_IsotopeTransportRateTally", _wrap_delete_IsotopeTransportRateTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeTransportRateTally_swigregister", IsotopeTransportRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_MaterialTransportRateTally", _wrap_new_MaterialTransportRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialTransportRateTally_tally", _wrap_MaterialTransportRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_MaterialTransportRateTally", _wrap_delete_MaterialTransportRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialTransportRateTally_swigregister", MaterialTransportRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_RegionTransportRateTally", _wrap_new_RegionTransportRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionTransportRateTally_tally", _wrap_RegionTransportRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_RegionTransportRateTally", _wrap_delete_RegionTransportRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionTransportRateTally_swigregister", RegionTransportRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_GeometryTransportRateTally", _wrap_new_GeometryTransportRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryTransportRateTally_tally", _wrap_GeometryTransportRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_GeometryTransportRateTally", _wrap_delete_GeometryTransportRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryTransportRateTally_swigregister", GeometryTransportRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_IsotopeDiffusionRateTally", _wrap_new_IsotopeDiffusionRateTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeDiffusionRateTally_tally", _wrap_IsotopeDiffusionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_IsotopeDiffusionRateTally", _wrap_delete_IsotopeDiffusionRateTally, METH_VARARGS, NULL},
+	 { (char *)"IsotopeDiffusionRateTally_swigregister", IsotopeDiffusionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_MaterialDiffusionRateTally", _wrap_new_MaterialDiffusionRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialDiffusionRateTally_tally", _wrap_MaterialDiffusionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_MaterialDiffusionRateTally", _wrap_delete_MaterialDiffusionRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialDiffusionRateTally_swigregister", MaterialDiffusionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_RegionDiffusionRateTally", _wrap_new_RegionDiffusionRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionDiffusionRateTally_tally", _wrap_RegionDiffusionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_RegionDiffusionRateTally", _wrap_delete_RegionDiffusionRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionDiffusionRateTally_swigregister", RegionDiffusionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_GeometryDiffusionRateTally", _wrap_new_GeometryDiffusionRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryDiffusionRateTally_tally", _wrap_GeometryDiffusionRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_GeometryDiffusionRateTally", _wrap_delete_GeometryDiffusionRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryDiffusionRateTally_swigregister", GeometryDiffusionRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_MaterialLeakageRateTally", _wrap_new_MaterialLeakageRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialLeakageRateTally_tally", _wrap_MaterialLeakageRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_MaterialLeakageRateTally", _wrap_delete_MaterialLeakageRateTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialLeakageRateTally_swigregister", MaterialLeakageRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_RegionLeakageRateTally", _wrap_new_RegionLeakageRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionLeakageRateTally_tally", _wrap_RegionLeakageRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_RegionLeakageRateTally", _wrap_delete_RegionLeakageRateTally, METH_VARARGS, NULL},
+	 { (char *)"RegionLeakageRateTally_swigregister", RegionLeakageRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_GeometryLeakageRateTally", _wrap_new_GeometryLeakageRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryLeakageRateTally_tally", _wrap_GeometryLeakageRateTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_GeometryLeakageRateTally", _wrap_delete_GeometryLeakageRateTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryLeakageRateTally_swigregister", GeometryLeakageRateTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_MaterialFluxTally", _wrap_new_MaterialFluxTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialFluxTally_tally", _wrap_MaterialFluxTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_MaterialFluxTally", _wrap_delete_MaterialFluxTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialFluxTally_swigregister", MaterialFluxTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_RegionFluxTally", _wrap_new_RegionFluxTally, METH_VARARGS, NULL},
+	 { (char *)"RegionFluxTally_tally", _wrap_RegionFluxTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_RegionFluxTally", _wrap_delete_RegionFluxTally, METH_VARARGS, NULL},
+	 { (char *)"RegionFluxTally_swigregister", RegionFluxTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_GeometryFluxTally", _wrap_new_GeometryFluxTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryFluxTally_tally", _wrap_GeometryFluxTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_GeometryFluxTally", _wrap_delete_GeometryFluxTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryFluxTally_swigregister", GeometryFluxTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_MaterialInterCollisionTimeTally", _wrap_new_MaterialInterCollisionTimeTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialInterCollisionTimeTally_tally", _wrap_MaterialInterCollisionTimeTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_MaterialInterCollisionTimeTally", _wrap_delete_MaterialInterCollisionTimeTally, METH_VARARGS, NULL},
+	 { (char *)"MaterialInterCollisionTimeTally_swigregister", MaterialInterCollisionTimeTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_RegionInterCollisionTimeTally", _wrap_new_RegionInterCollisionTimeTally, METH_VARARGS, NULL},
+	 { (char *)"RegionInterCollisionTimeTally_tally", _wrap_RegionInterCollisionTimeTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_RegionInterCollisionTimeTally", _wrap_delete_RegionInterCollisionTimeTally, METH_VARARGS, NULL},
+	 { (char *)"RegionInterCollisionTimeTally_swigregister", RegionInterCollisionTimeTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_GeometryInterCollisionTimeTally", _wrap_new_GeometryInterCollisionTimeTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryInterCollisionTimeTally_tally", _wrap_GeometryInterCollisionTimeTally_tally, METH_VARARGS, NULL},
+	 { (char *)"delete_GeometryInterCollisionTimeTally", _wrap_delete_GeometryInterCollisionTimeTally, METH_VARARGS, NULL},
+	 { (char *)"GeometryInterCollisionTimeTally_swigregister", GeometryInterCollisionTimeTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"new_DerivedTally", _wrap_new_DerivedTally, METH_VARARGS, NULL},
+	 { (char *)"DerivedTally_tally", _wrap_DerivedTally_tally, METH_VARARGS, NULL},
+	 { (char *)"DerivedTally_setTallyName", _wrap_DerivedTally_setTallyName, METH_VARARGS, NULL},
+	 { (char *)"DerivedTally_setTallies", _wrap_DerivedTally_setTallies, METH_VARARGS, NULL},
+	 { (char *)"DerivedTally_setBatchMu", _wrap_DerivedTally_setBatchMu, METH_VARARGS, NULL},
+	 { (char *)"DerivedTally_setBatchVariance", _wrap_DerivedTally_setBatchVariance, METH_VARARGS, NULL},
+	 { (char *)"DerivedTally_setBatchStdDev", _wrap_DerivedTally_setBatchStdDev, METH_VARARGS, NULL},
+	 { (char *)"DerivedTally_setBatchRelErr", _wrap_DerivedTally_setBatchRelErr, METH_VARARGS, NULL},
+	 { (char *)"DerivedTally_setComputedBatchStatistics", _wrap_DerivedTally_setComputedBatchStatistics, METH_VARARGS, NULL},
+	 { (char *)"delete_DerivedTally", _wrap_delete_DerivedTally, METH_VARARGS, NULL},
+	 { (char *)"DerivedTally_swigregister", DerivedTally_swigregister, METH_VARARGS, NULL},
+	 { (char *)"delete_TallyBank", _wrap_delete_TallyBank, METH_VARARGS, NULL},
+	 { (char *)"TallyBank_Get", _wrap_TallyBank_Get, METH_VARARGS, NULL},
+	 { (char *)"TallyBank_registerTally", _wrap_TallyBank_registerTally, METH_VARARGS, NULL},
+	 { (char *)"TallyBank_deregisterTally", _wrap_TallyBank_deregisterTally, METH_VARARGS, NULL},
+	 { (char *)"TallyBank_initializeBatchTallies", _wrap_TallyBank_initializeBatchTallies, METH_VARARGS, NULL},
+	 { (char *)"TallyBank_isPrecisionTriggered", _wrap_TallyBank_isPrecisionTriggered, METH_VARARGS, NULL},
+	 { (char *)"TallyBank_incrementNumBatches", _wrap_TallyBank_incrementNumBatches, METH_VARARGS, NULL},
+	 { (char *)"TallyBank_computeBatchStatistics", _wrap_TallyBank_computeBatchStatistics, METH_VARARGS, NULL},
+	 { (char *)"TallyBank_computeScaledBatchStatistics", _wrap_TallyBank_computeScaledBatchStatistics, METH_VARARGS, NULL},
+	 { (char *)"TallyBank_outputBatchStatistics", _wrap_TallyBank_outputBatchStatistics, METH_VARARGS, NULL},
+	 { (char *)"TallyBank_tally", _wrap_TallyBank_tally, METH_VARARGS, NULL},
+	 { (char *)"TallyBank_clearTallies", _wrap_TallyBank_clearTallies, METH_VARARGS, NULL},
+	 { (char *)"TallyBank_swigregister", TallyBank_swigregister, METH_VARARGS, NULL},
 	 { (char *)"neutron__batch_num_set", _wrap_neutron__batch_num_set, METH_VARARGS, NULL},
 	 { (char *)"neutron__batch_num_get", _wrap_neutron__batch_num_get, METH_VARARGS, NULL},
 	 { (char *)"neutron__x_set", _wrap_neutron__x_set, METH_VARARGS, NULL},
@@ -14827,8 +27123,14 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"neutron__alive_get", _wrap_neutron__alive_get, METH_VARARGS, NULL},
 	 { (char *)"neutron__region_set", _wrap_neutron__region_set, METH_VARARGS, NULL},
 	 { (char *)"neutron__region_get", _wrap_neutron__region_get, METH_VARARGS, NULL},
-	 { (char *)"neutron__in_fuel_set", _wrap_neutron__in_fuel_set, METH_VARARGS, NULL},
-	 { (char *)"neutron__in_fuel_get", _wrap_neutron__in_fuel_get, METH_VARARGS, NULL},
+	 { (char *)"neutron__material_set", _wrap_neutron__material_set, METH_VARARGS, NULL},
+	 { (char *)"neutron__material_get", _wrap_neutron__material_get, METH_VARARGS, NULL},
+	 { (char *)"neutron__isotope_set", _wrap_neutron__isotope_set, METH_VARARGS, NULL},
+	 { (char *)"neutron__isotope_get", _wrap_neutron__isotope_get, METH_VARARGS, NULL},
+	 { (char *)"neutron__old_energy_set", _wrap_neutron__old_energy_set, METH_VARARGS, NULL},
+	 { (char *)"neutron__old_energy_get", _wrap_neutron__old_energy_get, METH_VARARGS, NULL},
+	 { (char *)"neutron__total_xs_set", _wrap_neutron__total_xs_set, METH_VARARGS, NULL},
+	 { (char *)"neutron__total_xs_get", _wrap_neutron__total_xs_get, METH_VARARGS, NULL},
 	 { (char *)"new_neutron", _wrap_new_neutron, METH_VARARGS, NULL},
 	 { (char *)"delete_neutron", _wrap_delete_neutron, METH_VARARGS, NULL},
 	 { (char *)"neutron_swigregister", neutron_swigregister, METH_VARARGS, NULL},
@@ -14846,11 +27148,20 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Fissioner_retrieveCDFEnergies", _wrap_Fissioner_retrieveCDFEnergies, METH_VARARGS, NULL},
 	 { (char *)"Fissioner_swigregister", Fissioner_swigregister, METH_VARARGS, NULL},
 	 { (char *)"set_err", _wrap_set_err, METH_VARARGS, NULL},
+	 { (char *)"setOutputDirectory", _wrap_setOutputDirectory, METH_VARARGS, NULL},
+	 { (char *)"getOutputDirectory", _wrap_getOutputDirectory, METH_VARARGS, NULL},
+	 { (char *)"setLogfileName", _wrap_setLogfileName, METH_VARARGS, NULL},
+	 { (char *)"setSeparatorCharacter", _wrap_setSeparatorCharacter, METH_VARARGS, NULL},
+	 { (char *)"setHeaderCharacter", _wrap_setHeaderCharacter, METH_VARARGS, NULL},
+	 { (char *)"setTitleCharacter", _wrap_setTitleCharacter, METH_VARARGS, NULL},
+	 { (char *)"setLineLength", _wrap_setLineLength, METH_VARARGS, NULL},
 	 { (char *)"log_setlevel", _wrap_log_setlevel, METH_VARARGS, NULL},
 	 { (char *)"get_loglevel", _wrap_get_loglevel, METH_VARARGS, NULL},
 	 { (char *)"log_printf", _wrap_log_printf, METH_VARARGS, NULL},
+	 { (char *)"createMultilineMsg", _wrap_createMultilineMsg, METH_VARARGS, NULL},
 	 { (char *)"setXSLibDirectory", _wrap_setXSLibDirectory, METH_VARARGS, NULL},
 	 { (char *)"getXSLibDirectory", _wrap_getXSLibDirectory, METH_VARARGS, NULL},
+	 { (char *)"restoreXSLibrary", _wrap_restoreXSLibrary, METH_VARARGS, NULL},
 	 { (char *)"parseCrossSections", _wrap_parseCrossSections, METH_VARARGS, NULL},
 	 { (char *)"getNumCrossSectionDataPoints", _wrap_getNumCrossSectionDataPoints, METH_VARARGS, NULL},
 	 { (char *)"new_Timer", _wrap_new_Timer, METH_VARARGS, NULL},
@@ -14879,21 +27190,300 @@ static void *_p_YPlaneTo_p_Surface(void *x, int *SWIGUNUSEDPARM(newmemory)) {
 static void *_p_CircleTo_p_Surface(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Surface *)  ((Circle *) x));
 }
+static void *_p_MaterialInterCollisionTimeTallyTo_p_MaterialTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((MaterialTally *)  ((MaterialInterCollisionTimeTally *) x));
+}
+static void *_p_MaterialCollisionRateTallyTo_p_MaterialTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((MaterialTally *)  ((MaterialCollisionRateTally *) x));
+}
+static void *_p_MaterialElasticRateTallyTo_p_MaterialTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((MaterialTally *)  ((MaterialElasticRateTally *) x));
+}
+static void *_p_MaterialAbsorptionRateTallyTo_p_MaterialTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((MaterialTally *)  ((MaterialAbsorptionRateTally *) x));
+}
+static void *_p_MaterialCaptureRateTallyTo_p_MaterialTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((MaterialTally *)  ((MaterialCaptureRateTally *) x));
+}
+static void *_p_MaterialFissionRateTallyTo_p_MaterialTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((MaterialTally *)  ((MaterialFissionRateTally *) x));
+}
+static void *_p_MaterialTransportRateTallyTo_p_MaterialTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((MaterialTally *)  ((MaterialTransportRateTally *) x));
+}
+static void *_p_MaterialDiffusionRateTallyTo_p_MaterialTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((MaterialTally *)  ((MaterialDiffusionRateTally *) x));
+}
+static void *_p_MaterialLeakageRateTallyTo_p_MaterialTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((MaterialTally *)  ((MaterialLeakageRateTally *) x));
+}
+static void *_p_MaterialFluxTallyTo_p_MaterialTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((MaterialTally *)  ((MaterialFluxTally *) x));
+}
+static void *_p_RegionInterCollisionTimeTallyTo_p_RegionTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((RegionTally *)  ((RegionInterCollisionTimeTally *) x));
+}
+static void *_p_RegionCollisionRateTallyTo_p_RegionTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((RegionTally *)  ((RegionCollisionRateTally *) x));
+}
+static void *_p_RegionElasticRateTallyTo_p_RegionTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((RegionTally *)  ((RegionElasticRateTally *) x));
+}
+static void *_p_RegionAbsorptionRateTallyTo_p_RegionTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((RegionTally *)  ((RegionAbsorptionRateTally *) x));
+}
+static void *_p_RegionCaptureRateTallyTo_p_RegionTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((RegionTally *)  ((RegionCaptureRateTally *) x));
+}
+static void *_p_RegionFissionRateTallyTo_p_RegionTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((RegionTally *)  ((RegionFissionRateTally *) x));
+}
+static void *_p_RegionTransportRateTallyTo_p_RegionTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((RegionTally *)  ((RegionTransportRateTally *) x));
+}
+static void *_p_RegionDiffusionRateTallyTo_p_RegionTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((RegionTally *)  ((RegionDiffusionRateTally *) x));
+}
+static void *_p_RegionLeakageRateTallyTo_p_RegionTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((RegionTally *)  ((RegionLeakageRateTally *) x));
+}
+static void *_p_RegionFluxTallyTo_p_RegionTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((RegionTally *)  ((RegionFluxTally *) x));
+}
+static void *_p_GeometryInterCollisionTimeTallyTo_p_GeometryTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((GeometryTally *)  ((GeometryInterCollisionTimeTally *) x));
+}
+static void *_p_GeometryCollisionRateTallyTo_p_GeometryTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((GeometryTally *)  ((GeometryCollisionRateTally *) x));
+}
+static void *_p_GeometryElasticRateTallyTo_p_GeometryTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((GeometryTally *)  ((GeometryElasticRateTally *) x));
+}
+static void *_p_GeometryAbsorptionRateTallyTo_p_GeometryTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((GeometryTally *)  ((GeometryAbsorptionRateTally *) x));
+}
+static void *_p_GeometryCaptureRateTallyTo_p_GeometryTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((GeometryTally *)  ((GeometryCaptureRateTally *) x));
+}
+static void *_p_GeometryFissionRateTallyTo_p_GeometryTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((GeometryTally *)  ((GeometryFissionRateTally *) x));
+}
+static void *_p_GeometryTransportRateTallyTo_p_GeometryTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((GeometryTally *)  ((GeometryTransportRateTally *) x));
+}
+static void *_p_GeometryDiffusionRateTallyTo_p_GeometryTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((GeometryTally *)  ((GeometryDiffusionRateTally *) x));
+}
+static void *_p_GeometryLeakageRateTallyTo_p_GeometryTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((GeometryTally *)  ((GeometryLeakageRateTally *) x));
+}
+static void *_p_GeometryFluxTallyTo_p_GeometryTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((GeometryTally *)  ((GeometryFluxTally *) x));
+}
+static void *_p_DerivedTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *)  ((DerivedTally *) x));
+}
+static void *_p_MaterialTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *)  ((MaterialTally *) x));
+}
+static void *_p_RegionTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *)  ((RegionTally *) x));
+}
+static void *_p_MaterialInterCollisionTimeTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (MaterialTally *) ((MaterialInterCollisionTimeTally *) x));
+}
+static void *_p_RegionInterCollisionTimeTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (RegionTally *) ((RegionInterCollisionTimeTally *) x));
+}
+static void *_p_GeometryInterCollisionTimeTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (GeometryTally *) ((GeometryInterCollisionTimeTally *) x));
+}
+static void *_p_GeometryTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *)  ((GeometryTally *) x));
+}
+static void *_p_MaterialFluxTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (MaterialTally *) ((MaterialFluxTally *) x));
+}
+static void *_p_RegionFluxTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (RegionTally *) ((RegionFluxTally *) x));
+}
+static void *_p_GeometryFluxTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (GeometryTally *) ((GeometryFluxTally *) x));
+}
+static void *_p_RegionLeakageRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (RegionTally *) ((RegionLeakageRateTally *) x));
+}
+static void *_p_MaterialLeakageRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (MaterialTally *) ((MaterialLeakageRateTally *) x));
+}
+static void *_p_GeometryDiffusionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (GeometryTally *) ((GeometryDiffusionRateTally *) x));
+}
+static void *_p_RegionDiffusionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (RegionTally *) ((RegionDiffusionRateTally *) x));
+}
+static void *_p_MaterialDiffusionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (MaterialTally *) ((MaterialDiffusionRateTally *) x));
+}
+static void *_p_IsotopeDiffusionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (IsotopeTally *) ((IsotopeDiffusionRateTally *) x));
+}
+static void *_p_GeometryTransportRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (GeometryTally *) ((GeometryTransportRateTally *) x));
+}
+static void *_p_RegionTransportRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (RegionTally *) ((RegionTransportRateTally *) x));
+}
+static void *_p_MaterialTransportRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (MaterialTally *) ((MaterialTransportRateTally *) x));
+}
+static void *_p_IsotopeTransportRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (IsotopeTally *) ((IsotopeTransportRateTally *) x));
+}
+static void *_p_GeometryFissionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (GeometryTally *) ((GeometryFissionRateTally *) x));
+}
+static void *_p_RegionFissionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (RegionTally *) ((RegionFissionRateTally *) x));
+}
+static void *_p_MaterialFissionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (MaterialTally *) ((MaterialFissionRateTally *) x));
+}
+static void *_p_IsotopeFissionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (IsotopeTally *) ((IsotopeFissionRateTally *) x));
+}
+static void *_p_GeometryCaptureRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (GeometryTally *) ((GeometryCaptureRateTally *) x));
+}
+static void *_p_RegionCaptureRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (RegionTally *) ((RegionCaptureRateTally *) x));
+}
+static void *_p_MaterialCaptureRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (MaterialTally *) ((MaterialCaptureRateTally *) x));
+}
+static void *_p_IsotopeCaptureRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (IsotopeTally *) ((IsotopeCaptureRateTally *) x));
+}
+static void *_p_GeometryAbsorptionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (GeometryTally *) ((GeometryAbsorptionRateTally *) x));
+}
+static void *_p_RegionAbsorptionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (RegionTally *) ((RegionAbsorptionRateTally *) x));
+}
+static void *_p_IsotopeTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *)  ((IsotopeTally *) x));
+}
+static void *_p_IsotopeCollisionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (IsotopeTally *) ((IsotopeCollisionRateTally *) x));
+}
+static void *_p_MaterialCollisionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (MaterialTally *) ((MaterialCollisionRateTally *) x));
+}
+static void *_p_RegionCollisionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (RegionTally *) ((RegionCollisionRateTally *) x));
+}
+static void *_p_GeometryCollisionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (GeometryTally *) ((GeometryCollisionRateTally *) x));
+}
+static void *_p_IsotopeElasticRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (IsotopeTally *) ((IsotopeElasticRateTally *) x));
+}
+static void *_p_MaterialElasticRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (MaterialTally *) ((MaterialElasticRateTally *) x));
+}
+static void *_p_RegionElasticRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (RegionTally *) ((RegionElasticRateTally *) x));
+}
+static void *_p_GeometryElasticRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (GeometryTally *) ((GeometryElasticRateTally *) x));
+}
+static void *_p_IsotopeAbsorptionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (IsotopeTally *) ((IsotopeAbsorptionRateTally *) x));
+}
+static void *_p_MaterialAbsorptionRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (MaterialTally *) ((MaterialAbsorptionRateTally *) x));
+}
+static void *_p_GeometryLeakageRateTallyTo_p_Tally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Tally *) (GeometryTally *) ((GeometryLeakageRateTally *) x));
+}
+static void *_p_IsotopeCollisionRateTallyTo_p_IsotopeTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IsotopeTally *)  ((IsotopeCollisionRateTally *) x));
+}
+static void *_p_IsotopeElasticRateTallyTo_p_IsotopeTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IsotopeTally *)  ((IsotopeElasticRateTally *) x));
+}
+static void *_p_IsotopeAbsorptionRateTallyTo_p_IsotopeTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IsotopeTally *)  ((IsotopeAbsorptionRateTally *) x));
+}
+static void *_p_IsotopeCaptureRateTallyTo_p_IsotopeTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IsotopeTally *)  ((IsotopeCaptureRateTally *) x));
+}
+static void *_p_IsotopeFissionRateTallyTo_p_IsotopeTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IsotopeTally *)  ((IsotopeFissionRateTally *) x));
+}
+static void *_p_IsotopeTransportRateTallyTo_p_IsotopeTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IsotopeTally *)  ((IsotopeTransportRateTally *) x));
+}
+static void *_p_IsotopeDiffusionRateTallyTo_p_IsotopeTally(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((IsotopeTally *)  ((IsotopeDiffusionRateTally *) x));
+}
 static swig_type_info _swigt__p_Circle = {"_p_Circle", "Circle *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_DerivedTally = {"_p_DerivedTally", "DerivedTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Fissioner = {"_p_Fissioner", "Fissioner *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Geometry = {"_p_Geometry", "Geometry *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_GeometryAbsorptionRateTally = {"_p_GeometryAbsorptionRateTally", "GeometryAbsorptionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_GeometryCaptureRateTally = {"_p_GeometryCaptureRateTally", "GeometryCaptureRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_GeometryCollisionRateTally = {"_p_GeometryCollisionRateTally", "GeometryCollisionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_GeometryDiffusionRateTally = {"_p_GeometryDiffusionRateTally", "GeometryDiffusionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_GeometryElasticRateTally = {"_p_GeometryElasticRateTally", "GeometryElasticRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_GeometryFissionRateTally = {"_p_GeometryFissionRateTally", "GeometryFissionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_GeometryFluxTally = {"_p_GeometryFluxTally", "GeometryFluxTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_GeometryInterCollisionTimeTally = {"_p_GeometryInterCollisionTimeTally", "GeometryInterCollisionTimeTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_GeometryLeakageRateTally = {"_p_GeometryLeakageRateTally", "GeometryLeakageRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_GeometryTally = {"_p_GeometryTally", "GeometryTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_GeometryTransportRateTally = {"_p_GeometryTransportRateTally", "GeometryTransportRateTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Isotope = {"_p_Isotope", "Isotope *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IsotopeAbsorptionRateTally = {"_p_IsotopeAbsorptionRateTally", "IsotopeAbsorptionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IsotopeCaptureRateTally = {"_p_IsotopeCaptureRateTally", "IsotopeCaptureRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IsotopeCollisionRateTally = {"_p_IsotopeCollisionRateTally", "IsotopeCollisionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IsotopeDiffusionRateTally = {"_p_IsotopeDiffusionRateTally", "IsotopeDiffusionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IsotopeElasticRateTally = {"_p_IsotopeElasticRateTally", "IsotopeElasticRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IsotopeFissionRateTally = {"_p_IsotopeFissionRateTally", "IsotopeFissionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IsotopeTally = {"_p_IsotopeTally", "IsotopeTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_IsotopeTransportRateTally = {"_p_IsotopeTransportRateTally", "IsotopeTransportRateTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Material = {"_p_Material", "Material *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MaterialAbsorptionRateTally = {"_p_MaterialAbsorptionRateTally", "MaterialAbsorptionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MaterialCaptureRateTally = {"_p_MaterialCaptureRateTally", "MaterialCaptureRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MaterialCollisionRateTally = {"_p_MaterialCollisionRateTally", "MaterialCollisionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MaterialDiffusionRateTally = {"_p_MaterialDiffusionRateTally", "MaterialDiffusionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MaterialElasticRateTally = {"_p_MaterialElasticRateTally", "MaterialElasticRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MaterialFissionRateTally = {"_p_MaterialFissionRateTally", "MaterialFissionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MaterialFluxTally = {"_p_MaterialFluxTally", "MaterialFluxTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MaterialInterCollisionTimeTally = {"_p_MaterialInterCollisionTimeTally", "MaterialInterCollisionTimeTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MaterialLeakageRateTally = {"_p_MaterialLeakageRateTally", "MaterialLeakageRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MaterialTally = {"_p_MaterialTally", "MaterialTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_MaterialTransportRateTally = {"_p_MaterialTransportRateTally", "MaterialTransportRateTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Region = {"_p_Region", "Region *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RegionAbsorptionRateTally = {"_p_RegionAbsorptionRateTally", "RegionAbsorptionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RegionCaptureRateTally = {"_p_RegionCaptureRateTally", "RegionCaptureRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RegionCollisionRateTally = {"_p_RegionCollisionRateTally", "RegionCollisionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RegionDiffusionRateTally = {"_p_RegionDiffusionRateTally", "RegionDiffusionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RegionElasticRateTally = {"_p_RegionElasticRateTally", "RegionElasticRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RegionFissionRateTally = {"_p_RegionFissionRateTally", "RegionFissionRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RegionFluxTally = {"_p_RegionFluxTally", "RegionFluxTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RegionInterCollisionTimeTally = {"_p_RegionInterCollisionTimeTally", "RegionInterCollisionTimeTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RegionLeakageRateTally = {"_p_RegionLeakageRateTally", "RegionLeakageRateTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RegionTally = {"_p_RegionTally", "RegionTally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_RegionTransportRateTally = {"_p_RegionTransportRateTally", "RegionTransportRateTally *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Surface = {"_p_Surface", "Surface *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Tally = {"_p_Tally", "Tally *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_TallyBank = {"_p_TallyBank", "TallyBank *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Timer = {"_p_Timer", "Timer *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_XPlane = {"_p_XPlane", "XPlane *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_YPlane = {"_p_YPlane", "YPlane *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_binSpacingTypes = {"_p_binSpacingTypes", "binSpacingType *|enum binSpacingTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_boundaryTypes = {"_p_boundaryTypes", "boundaryType *|enum boundaryTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_collisionTypes = {"_p_collisionTypes", "collisionType *|enum collisionTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_densityUnits = {"_p_densityUnits", "densityUnit *|enum densityUnits *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_double = {"_p_double", "double *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_float = {"_p_float", "float *", 0, 0, (void*)0, 0};
@@ -14901,8 +27491,8 @@ static swig_type_info _swigt__p_logLevels = {"_p_logLevels", "enum logLevels *|l
 static swig_type_info _swigt__p_neutron = {"_p_neutron", "neutron *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_double = {"_p_p_double", "double **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_regionTypes = {"_p_regionTypes", "regionType *|enum regionTypes *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_scatterAngleTypes = {"_p_scatterAngleTypes", "scatterAngleType *|enum scatterAngleTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_spatialTypes = {"_p_spatialTypes", "spatialType *|enum spatialTypes *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_tallyDomainTypes = {"_p_tallyDomainTypes", "tallyDomainType *|enum tallyDomainTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_tallyTypes = {"_p_tallyTypes", "tallyType *|enum tallyTypes *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_timespec = {"_p_timespec", "timespec *", 0, 0, (void*)0, 0};
@@ -14910,20 +27500,62 @@ static swig_type_info _swigt__p_triggerTypes = {"_p_triggerTypes", "triggerType 
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Circle,
+  &_swigt__p_DerivedTally,
   &_swigt__p_Fissioner,
   &_swigt__p_Geometry,
+  &_swigt__p_GeometryAbsorptionRateTally,
+  &_swigt__p_GeometryCaptureRateTally,
+  &_swigt__p_GeometryCollisionRateTally,
+  &_swigt__p_GeometryDiffusionRateTally,
+  &_swigt__p_GeometryElasticRateTally,
+  &_swigt__p_GeometryFissionRateTally,
+  &_swigt__p_GeometryFluxTally,
+  &_swigt__p_GeometryInterCollisionTimeTally,
+  &_swigt__p_GeometryLeakageRateTally,
+  &_swigt__p_GeometryTally,
+  &_swigt__p_GeometryTransportRateTally,
   &_swigt__p_Isotope,
+  &_swigt__p_IsotopeAbsorptionRateTally,
+  &_swigt__p_IsotopeCaptureRateTally,
+  &_swigt__p_IsotopeCollisionRateTally,
+  &_swigt__p_IsotopeDiffusionRateTally,
+  &_swigt__p_IsotopeElasticRateTally,
+  &_swigt__p_IsotopeFissionRateTally,
+  &_swigt__p_IsotopeTally,
+  &_swigt__p_IsotopeTransportRateTally,
   &_swigt__p_Material,
+  &_swigt__p_MaterialAbsorptionRateTally,
+  &_swigt__p_MaterialCaptureRateTally,
+  &_swigt__p_MaterialCollisionRateTally,
+  &_swigt__p_MaterialDiffusionRateTally,
+  &_swigt__p_MaterialElasticRateTally,
+  &_swigt__p_MaterialFissionRateTally,
+  &_swigt__p_MaterialFluxTally,
+  &_swigt__p_MaterialInterCollisionTimeTally,
+  &_swigt__p_MaterialLeakageRateTally,
+  &_swigt__p_MaterialTally,
+  &_swigt__p_MaterialTransportRateTally,
   &_swigt__p_Region,
+  &_swigt__p_RegionAbsorptionRateTally,
+  &_swigt__p_RegionCaptureRateTally,
+  &_swigt__p_RegionCollisionRateTally,
+  &_swigt__p_RegionDiffusionRateTally,
+  &_swigt__p_RegionElasticRateTally,
+  &_swigt__p_RegionFissionRateTally,
+  &_swigt__p_RegionFluxTally,
+  &_swigt__p_RegionInterCollisionTimeTally,
+  &_swigt__p_RegionLeakageRateTally,
+  &_swigt__p_RegionTally,
+  &_swigt__p_RegionTransportRateTally,
   &_swigt__p_Surface,
   &_swigt__p_Tally,
+  &_swigt__p_TallyBank,
   &_swigt__p_Timer,
   &_swigt__p_XPlane,
   &_swigt__p_YPlane,
   &_swigt__p_binSpacingTypes,
   &_swigt__p_boundaryTypes,
   &_swigt__p_char,
-  &_swigt__p_collisionTypes,
   &_swigt__p_densityUnits,
   &_swigt__p_double,
   &_swigt__p_float,
@@ -14931,8 +27563,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_neutron,
   &_swigt__p_p_double,
   &_swigt__p_regionTypes,
-  &_swigt__p_scatterAngleTypes,
   &_swigt__p_spatialTypes,
+  &_swigt__p_std__string,
   &_swigt__p_tallyDomainTypes,
   &_swigt__p_tallyTypes,
   &_swigt__p_timespec,
@@ -14940,20 +27572,62 @@ static swig_type_info *swig_type_initial[] = {
 };
 
 static swig_cast_info _swigc__p_Circle[] = {  {&_swigt__p_Circle, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_DerivedTally[] = {  {&_swigt__p_DerivedTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Fissioner[] = {  {&_swigt__p_Fissioner, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Geometry[] = {  {&_swigt__p_Geometry, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_GeometryAbsorptionRateTally[] = {  {&_swigt__p_GeometryAbsorptionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_GeometryCaptureRateTally[] = {  {&_swigt__p_GeometryCaptureRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_GeometryCollisionRateTally[] = {  {&_swigt__p_GeometryCollisionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_GeometryDiffusionRateTally[] = {  {&_swigt__p_GeometryDiffusionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_GeometryElasticRateTally[] = {  {&_swigt__p_GeometryElasticRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_GeometryFissionRateTally[] = {  {&_swigt__p_GeometryFissionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_GeometryFluxTally[] = {  {&_swigt__p_GeometryFluxTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_GeometryInterCollisionTimeTally[] = {  {&_swigt__p_GeometryInterCollisionTimeTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_GeometryLeakageRateTally[] = {  {&_swigt__p_GeometryLeakageRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_GeometryTally[] = {  {&_swigt__p_GeometryTally, 0, 0, 0},  {&_swigt__p_GeometryInterCollisionTimeTally, _p_GeometryInterCollisionTimeTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryCollisionRateTally, _p_GeometryCollisionRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryElasticRateTally, _p_GeometryElasticRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryAbsorptionRateTally, _p_GeometryAbsorptionRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryCaptureRateTally, _p_GeometryCaptureRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryFissionRateTally, _p_GeometryFissionRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryTransportRateTally, _p_GeometryTransportRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryDiffusionRateTally, _p_GeometryDiffusionRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryLeakageRateTally, _p_GeometryLeakageRateTallyTo_p_GeometryTally, 0, 0},  {&_swigt__p_GeometryFluxTally, _p_GeometryFluxTallyTo_p_GeometryTally, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_GeometryTransportRateTally[] = {  {&_swigt__p_GeometryTransportRateTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Isotope[] = {  {&_swigt__p_Isotope, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IsotopeAbsorptionRateTally[] = {  {&_swigt__p_IsotopeAbsorptionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IsotopeCaptureRateTally[] = {  {&_swigt__p_IsotopeCaptureRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IsotopeCollisionRateTally[] = {  {&_swigt__p_IsotopeCollisionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IsotopeDiffusionRateTally[] = {  {&_swigt__p_IsotopeDiffusionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IsotopeElasticRateTally[] = {  {&_swigt__p_IsotopeElasticRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IsotopeFissionRateTally[] = {  {&_swigt__p_IsotopeFissionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IsotopeTally[] = {  {&_swigt__p_IsotopeTally, 0, 0, 0},  {&_swigt__p_IsotopeCollisionRateTally, _p_IsotopeCollisionRateTallyTo_p_IsotopeTally, 0, 0},  {&_swigt__p_IsotopeElasticRateTally, _p_IsotopeElasticRateTallyTo_p_IsotopeTally, 0, 0},  {&_swigt__p_IsotopeAbsorptionRateTally, _p_IsotopeAbsorptionRateTallyTo_p_IsotopeTally, 0, 0},  {&_swigt__p_IsotopeCaptureRateTally, _p_IsotopeCaptureRateTallyTo_p_IsotopeTally, 0, 0},  {&_swigt__p_IsotopeFissionRateTally, _p_IsotopeFissionRateTallyTo_p_IsotopeTally, 0, 0},  {&_swigt__p_IsotopeTransportRateTally, _p_IsotopeTransportRateTallyTo_p_IsotopeTally, 0, 0},  {&_swigt__p_IsotopeDiffusionRateTally, _p_IsotopeDiffusionRateTallyTo_p_IsotopeTally, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_IsotopeTransportRateTally[] = {  {&_swigt__p_IsotopeTransportRateTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Material[] = {  {&_swigt__p_Material, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MaterialAbsorptionRateTally[] = {  {&_swigt__p_MaterialAbsorptionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MaterialCaptureRateTally[] = {  {&_swigt__p_MaterialCaptureRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MaterialCollisionRateTally[] = {  {&_swigt__p_MaterialCollisionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MaterialDiffusionRateTally[] = {  {&_swigt__p_MaterialDiffusionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MaterialElasticRateTally[] = {  {&_swigt__p_MaterialElasticRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MaterialFissionRateTally[] = {  {&_swigt__p_MaterialFissionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MaterialFluxTally[] = {  {&_swigt__p_MaterialFluxTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MaterialInterCollisionTimeTally[] = {  {&_swigt__p_MaterialInterCollisionTimeTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MaterialLeakageRateTally[] = {  {&_swigt__p_MaterialLeakageRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MaterialTally[] = {  {&_swigt__p_MaterialTally, 0, 0, 0},  {&_swigt__p_MaterialInterCollisionTimeTally, _p_MaterialInterCollisionTimeTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialCollisionRateTally, _p_MaterialCollisionRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialElasticRateTally, _p_MaterialElasticRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialAbsorptionRateTally, _p_MaterialAbsorptionRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialCaptureRateTally, _p_MaterialCaptureRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialFissionRateTally, _p_MaterialFissionRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialTransportRateTally, _p_MaterialTransportRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialDiffusionRateTally, _p_MaterialDiffusionRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialLeakageRateTally, _p_MaterialLeakageRateTallyTo_p_MaterialTally, 0, 0},  {&_swigt__p_MaterialFluxTally, _p_MaterialFluxTallyTo_p_MaterialTally, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_MaterialTransportRateTally[] = {  {&_swigt__p_MaterialTransportRateTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Region[] = {  {&_swigt__p_Region, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RegionAbsorptionRateTally[] = {  {&_swigt__p_RegionAbsorptionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RegionCaptureRateTally[] = {  {&_swigt__p_RegionCaptureRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RegionCollisionRateTally[] = {  {&_swigt__p_RegionCollisionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RegionDiffusionRateTally[] = {  {&_swigt__p_RegionDiffusionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RegionElasticRateTally[] = {  {&_swigt__p_RegionElasticRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RegionFissionRateTally[] = {  {&_swigt__p_RegionFissionRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RegionFluxTally[] = {  {&_swigt__p_RegionFluxTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RegionInterCollisionTimeTally[] = {  {&_swigt__p_RegionInterCollisionTimeTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RegionLeakageRateTally[] = {  {&_swigt__p_RegionLeakageRateTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RegionTally[] = {  {&_swigt__p_RegionInterCollisionTimeTally, _p_RegionInterCollisionTimeTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionCollisionRateTally, _p_RegionCollisionRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionElasticRateTally, _p_RegionElasticRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionAbsorptionRateTally, _p_RegionAbsorptionRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionCaptureRateTally, _p_RegionCaptureRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionFissionRateTally, _p_RegionFissionRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionTransportRateTally, _p_RegionTransportRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionDiffusionRateTally, _p_RegionDiffusionRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionLeakageRateTally, _p_RegionLeakageRateTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionFluxTally, _p_RegionFluxTallyTo_p_RegionTally, 0, 0},  {&_swigt__p_RegionTally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_RegionTransportRateTally[] = {  {&_swigt__p_RegionTransportRateTally, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Surface[] = {  {&_swigt__p_XPlane, _p_XPlaneTo_p_Surface, 0, 0},  {&_swigt__p_Surface, 0, 0, 0},  {&_swigt__p_YPlane, _p_YPlaneTo_p_Surface, 0, 0},  {&_swigt__p_Circle, _p_CircleTo_p_Surface, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Tally[] = {  {&_swigt__p_Tally, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Tally[] = {  {&_swigt__p_DerivedTally, _p_DerivedTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialTally, _p_MaterialTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionTally, _p_RegionTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryInterCollisionTimeTally, _p_GeometryInterCollisionTimeTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionInterCollisionTimeTally, _p_RegionInterCollisionTimeTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialInterCollisionTimeTally, _p_MaterialInterCollisionTimeTallyTo_p_Tally, 0, 0},  {&_swigt__p_Tally, 0, 0, 0},  {&_swigt__p_GeometryTally, _p_GeometryTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionFluxTally, _p_RegionFluxTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialFluxTally, _p_MaterialFluxTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryFluxTally, _p_GeometryFluxTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryLeakageRateTally, _p_GeometryLeakageRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryDiffusionRateTally, _p_GeometryDiffusionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryTransportRateTally, _p_GeometryTransportRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryFissionRateTally, _p_GeometryFissionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryCaptureRateTally, _p_GeometryCaptureRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryAbsorptionRateTally, _p_GeometryAbsorptionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryElasticRateTally, _p_GeometryElasticRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_GeometryCollisionRateTally, _p_GeometryCollisionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionLeakageRateTally, _p_RegionLeakageRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionDiffusionRateTally, _p_RegionDiffusionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionTransportRateTally, _p_RegionTransportRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionFissionRateTally, _p_RegionFissionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionCaptureRateTally, _p_RegionCaptureRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionAbsorptionRateTally, _p_RegionAbsorptionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionElasticRateTally, _p_RegionElasticRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_RegionCollisionRateTally, _p_RegionCollisionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialCollisionRateTally, _p_MaterialCollisionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialElasticRateTally, _p_MaterialElasticRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialAbsorptionRateTally, _p_MaterialAbsorptionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialCaptureRateTally, _p_MaterialCaptureRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialFissionRateTally, _p_MaterialFissionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialTransportRateTally, _p_MaterialTransportRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialDiffusionRateTally, _p_MaterialDiffusionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_MaterialLeakageRateTally, _p_MaterialLeakageRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeCollisionRateTally, _p_IsotopeCollisionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeTally, _p_IsotopeTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeElasticRateTally, _p_IsotopeElasticRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeAbsorptionRateTally, _p_IsotopeAbsorptionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeCaptureRateTally, _p_IsotopeCaptureRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeFissionRateTally, _p_IsotopeFissionRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeTransportRateTally, _p_IsotopeTransportRateTallyTo_p_Tally, 0, 0},  {&_swigt__p_IsotopeDiffusionRateTally, _p_IsotopeDiffusionRateTallyTo_p_Tally, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_TallyBank[] = {  {&_swigt__p_TallyBank, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Timer[] = {  {&_swigt__p_Timer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_XPlane[] = {  {&_swigt__p_XPlane, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_YPlane[] = {  {&_swigt__p_YPlane, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_binSpacingTypes[] = {  {&_swigt__p_binSpacingTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_boundaryTypes[] = {  {&_swigt__p_boundaryTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_collisionTypes[] = {  {&_swigt__p_collisionTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_densityUnits[] = {  {&_swigt__p_densityUnits, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_double[] = {  {&_swigt__p_double, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_float[] = {  {&_swigt__p_float, 0, 0, 0},{0, 0, 0, 0}};
@@ -14961,8 +27635,8 @@ static swig_cast_info _swigc__p_logLevels[] = {  {&_swigt__p_logLevels, 0, 0, 0}
 static swig_cast_info _swigc__p_neutron[] = {  {&_swigt__p_neutron, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_double[] = {  {&_swigt__p_p_double, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_regionTypes[] = {  {&_swigt__p_regionTypes, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_scatterAngleTypes[] = {  {&_swigt__p_scatterAngleTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_spatialTypes[] = {  {&_swigt__p_spatialTypes, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_tallyDomainTypes[] = {  {&_swigt__p_tallyDomainTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_tallyTypes[] = {  {&_swigt__p_tallyTypes, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_timespec[] = {  {&_swigt__p_timespec, 0, 0, 0},{0, 0, 0, 0}};
@@ -14970,20 +27644,62 @@ static swig_cast_info _swigc__p_triggerTypes[] = {  {&_swigt__p_triggerTypes, 0,
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Circle,
+  _swigc__p_DerivedTally,
   _swigc__p_Fissioner,
   _swigc__p_Geometry,
+  _swigc__p_GeometryAbsorptionRateTally,
+  _swigc__p_GeometryCaptureRateTally,
+  _swigc__p_GeometryCollisionRateTally,
+  _swigc__p_GeometryDiffusionRateTally,
+  _swigc__p_GeometryElasticRateTally,
+  _swigc__p_GeometryFissionRateTally,
+  _swigc__p_GeometryFluxTally,
+  _swigc__p_GeometryInterCollisionTimeTally,
+  _swigc__p_GeometryLeakageRateTally,
+  _swigc__p_GeometryTally,
+  _swigc__p_GeometryTransportRateTally,
   _swigc__p_Isotope,
+  _swigc__p_IsotopeAbsorptionRateTally,
+  _swigc__p_IsotopeCaptureRateTally,
+  _swigc__p_IsotopeCollisionRateTally,
+  _swigc__p_IsotopeDiffusionRateTally,
+  _swigc__p_IsotopeElasticRateTally,
+  _swigc__p_IsotopeFissionRateTally,
+  _swigc__p_IsotopeTally,
+  _swigc__p_IsotopeTransportRateTally,
   _swigc__p_Material,
+  _swigc__p_MaterialAbsorptionRateTally,
+  _swigc__p_MaterialCaptureRateTally,
+  _swigc__p_MaterialCollisionRateTally,
+  _swigc__p_MaterialDiffusionRateTally,
+  _swigc__p_MaterialElasticRateTally,
+  _swigc__p_MaterialFissionRateTally,
+  _swigc__p_MaterialFluxTally,
+  _swigc__p_MaterialInterCollisionTimeTally,
+  _swigc__p_MaterialLeakageRateTally,
+  _swigc__p_MaterialTally,
+  _swigc__p_MaterialTransportRateTally,
   _swigc__p_Region,
+  _swigc__p_RegionAbsorptionRateTally,
+  _swigc__p_RegionCaptureRateTally,
+  _swigc__p_RegionCollisionRateTally,
+  _swigc__p_RegionDiffusionRateTally,
+  _swigc__p_RegionElasticRateTally,
+  _swigc__p_RegionFissionRateTally,
+  _swigc__p_RegionFluxTally,
+  _swigc__p_RegionInterCollisionTimeTally,
+  _swigc__p_RegionLeakageRateTally,
+  _swigc__p_RegionTally,
+  _swigc__p_RegionTransportRateTally,
   _swigc__p_Surface,
   _swigc__p_Tally,
+  _swigc__p_TallyBank,
   _swigc__p_Timer,
   _swigc__p_XPlane,
   _swigc__p_YPlane,
   _swigc__p_binSpacingTypes,
   _swigc__p_boundaryTypes,
   _swigc__p_char,
-  _swigc__p_collisionTypes,
   _swigc__p_densityUnits,
   _swigc__p_double,
   _swigc__p_float,
@@ -14991,8 +27707,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_neutron,
   _swigc__p_p_double,
   _swigc__p_regionTypes,
-  _swigc__p_scatterAngleTypes,
   _swigc__p_spatialTypes,
+  _swigc__p_std__string,
   _swigc__p_tallyDomainTypes,
   _swigc__p_tallyTypes,
   _swigc__p_timespec,
@@ -15697,44 +28413,54 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "REFLECTIVE",SWIG_From_int(static_cast< int >(REFLECTIVE)));
   SWIG_Python_SetConstant(d, "VACUUM",SWIG_From_int(static_cast< int >(VACUUM)));
   SWIG_Python_SetConstant(d, "INTERFACE",SWIG_From_int(static_cast< int >(INTERFACE)));
-  SWIG_Python_SetConstant(d, "EQUAL",SWIG_From_int(static_cast< int >(EQUAL)));
-  SWIG_Python_SetConstant(d, "LOGARITHMIC",SWIG_From_int(static_cast< int >(LOGARITHMIC)));
-  SWIG_Python_SetConstant(d, "OTHER",SWIG_From_int(static_cast< int >(OTHER)));
-  SWIG_Python_SetConstant(d, "ELASTIC",SWIG_From_int(static_cast< int >(ELASTIC)));
-  SWIG_Python_SetConstant(d, "CAPTURE",SWIG_From_int(static_cast< int >(CAPTURE)));
-  SWIG_Python_SetConstant(d, "FISSION",SWIG_From_int(static_cast< int >(FISSION)));
-  SWIG_Python_SetConstant(d, "LEAKAGE",SWIG_From_int(static_cast< int >(LEAKAGE)));
-  SWIG_Python_SetConstant(d, "ISOTROPIC_CM",SWIG_From_int(static_cast< int >(ISOTROPIC_CM)));
-  SWIG_Python_SetConstant(d, "ISOTROPIC_LAB",SWIG_From_int(static_cast< int >(ISOTROPIC_LAB)));
   SWIG_Python_SetConstant(d, "GRAM_CM3",SWIG_From_int(static_cast< int >(GRAM_CM3)));
   SWIG_Python_SetConstant(d, "NUM_CM3",SWIG_From_int(static_cast< int >(NUM_CM3)));
+  SWIG_Python_SetConstant(d, "NEUTRON_MASS",SWIG_From_int(static_cast< int >(939565378)));
+  SWIG_Python_SetConstant(d, "LIGHT_SPEED",SWIG_From_int(static_cast< int >(299792458)));
   SWIG_Python_SetConstant(d, "MATERIAL",SWIG_From_int(static_cast< int >(MATERIAL)));
   SWIG_Python_SetConstant(d, "ISOTOPE",SWIG_From_int(static_cast< int >(ISOTOPE)));
   SWIG_Python_SetConstant(d, "REGION",SWIG_From_int(static_cast< int >(REGION)));
   SWIG_Python_SetConstant(d, "GEOMETRY",SWIG_From_int(static_cast< int >(GEOMETRY)));
+  SWIG_Python_SetConstant(d, "UNDEFINED",SWIG_From_int(static_cast< int >(UNDEFINED)));
   SWIG_Python_SetConstant(d, "VARIANCE",SWIG_From_int(static_cast< int >(VARIANCE)));
   SWIG_Python_SetConstant(d, "STANDARD_DEVIATION",SWIG_From_int(static_cast< int >(STANDARD_DEVIATION)));
   SWIG_Python_SetConstant(d, "RELATIVE_ERROR",SWIG_From_int(static_cast< int >(RELATIVE_ERROR)));
   SWIG_Python_SetConstant(d, "NONE",SWIG_From_int(static_cast< int >(NONE)));
   SWIG_Python_SetConstant(d, "FLUX",SWIG_From_int(static_cast< int >(FLUX)));
+  SWIG_Python_SetConstant(d, "LEAKAGE_RATE",SWIG_From_int(static_cast< int >(LEAKAGE_RATE)));
   SWIG_Python_SetConstant(d, "COLLISION_RATE",SWIG_From_int(static_cast< int >(COLLISION_RATE)));
+  SWIG_Python_SetConstant(d, "INTERCOLLISION_TIME",SWIG_From_int(static_cast< int >(INTERCOLLISION_TIME)));
   SWIG_Python_SetConstant(d, "ELASTIC_RATE",SWIG_From_int(static_cast< int >(ELASTIC_RATE)));
   SWIG_Python_SetConstant(d, "ABSORPTION_RATE",SWIG_From_int(static_cast< int >(ABSORPTION_RATE)));
   SWIG_Python_SetConstant(d, "CAPTURE_RATE",SWIG_From_int(static_cast< int >(CAPTURE_RATE)));
   SWIG_Python_SetConstant(d, "FISSION_RATE",SWIG_From_int(static_cast< int >(FISSION_RATE)));
   SWIG_Python_SetConstant(d, "TRANSPORT_RATE",SWIG_From_int(static_cast< int >(TRANSPORT_RATE)));
   SWIG_Python_SetConstant(d, "DIFFUSION_RATE",SWIG_From_int(static_cast< int >(DIFFUSION_RATE)));
-  SWIG_Python_SetConstant(d, "LEAKAGE_RATE",SWIG_From_int(static_cast< int >(LEAKAGE_RATE)));
+  SWIG_Python_SetConstant(d, "DERIVED",SWIG_From_int(static_cast< int >(DERIVED)));
+  SWIG_Python_SetConstant(d, "EQUAL",SWIG_From_int(static_cast< int >(EQUAL)));
+  SWIG_Python_SetConstant(d, "LOGARITHMIC",SWIG_From_int(static_cast< int >(LOGARITHMIC)));
+  SWIG_Python_SetConstant(d, "OTHER",SWIG_From_int(static_cast< int >(OTHER)));
+  PyDict_SetItemString(md,(char*)"cvar", SWIG_globals());
+  SWIG_addvarlink(SWIG_globals(),(char*)"output_file_num",Swig_var_output_file_num_get, Swig_var_output_file_num_set);
   SWIG_Python_SetConstant(d, "DEBUG",SWIG_From_int(static_cast< int >(DEBUG)));
   SWIG_Python_SetConstant(d, "INFO",SWIG_From_int(static_cast< int >(INFO)));
   SWIG_Python_SetConstant(d, "NORMAL",SWIG_From_int(static_cast< int >(NORMAL)));
+  SWIG_Python_SetConstant(d, "SEPARATOR",SWIG_From_int(static_cast< int >(SEPARATOR)));
+  SWIG_Python_SetConstant(d, "HEADER",SWIG_From_int(static_cast< int >(HEADER)));
+  SWIG_Python_SetConstant(d, "TITLE",SWIG_From_int(static_cast< int >(TITLE)));
   SWIG_Python_SetConstant(d, "WARNING",SWIG_From_int(static_cast< int >(WARNING)));
   SWIG_Python_SetConstant(d, "CRITICAL",SWIG_From_int(static_cast< int >(CRITICAL)));
   SWIG_Python_SetConstant(d, "RESULT",SWIG_From_int(static_cast< int >(RESULT)));
+  SWIG_Python_SetConstant(d, "UNITTEST",SWIG_From_int(static_cast< int >(UNITTEST)));
   SWIG_Python_SetConstant(d, "ERROR",SWIG_From_int(static_cast< int >(ERROR)));
-  PyDict_SetItemString(md,(char*)"cvar", SWIG_globals());
   SWIG_addvarlink(SWIG_globals(),(char*)"log_level",Swig_var_log_level_get, Swig_var_log_level_set);
-  SWIG_addvarlink(SWIG_globals(),(char*)"_xs_directory",Swig_var__xs_directory_get, Swig_var__xs_directory_set);
+  SWIG_addvarlink(SWIG_globals(),(char*)"logfile_name",Swig_var_logfile_name_get, Swig_var_logfile_name_set);
+  SWIG_addvarlink(SWIG_globals(),(char*)"output_directory",Swig_var_output_directory_get, Swig_var_output_directory_set);
+  SWIG_addvarlink(SWIG_globals(),(char*)"logging",Swig_var_logging_get, Swig_var_logging_set);
+  SWIG_addvarlink(SWIG_globals(),(char*)"separator_char",Swig_var_separator_char_get, Swig_var_separator_char_set);
+  SWIG_addvarlink(SWIG_globals(),(char*)"header_char",Swig_var_header_char_get, Swig_var_header_char_set);
+  SWIG_addvarlink(SWIG_globals(),(char*)"title_char",Swig_var_title_char_get, Swig_var_title_char_set);
+  SWIG_addvarlink(SWIG_globals(),(char*)"line_length",Swig_var_line_length_get, Swig_var_line_length_set);
 #if PY_VERSION_HEX >= 0x03000000
   return m;
 #else

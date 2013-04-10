@@ -12,14 +12,12 @@
 
 #include "Isotope.h"
 
-//class Isotope;
-
 typedef enum densityUnits {
 	GRAM_CM3,
 	NUM_CM3
 } densityUnit;
 
-#ifdef __cplusplus
+
 class Material {
 
 private:
@@ -27,29 +25,28 @@ private:
 	float _material_density;
 	float _material_number_density;
 	float _material_atomic_mass;
+	float _buckling_squared;
+    float _volume;
+    densityUnit _density_unit;
 
 	/* Map of number density and isotope pointers */
 	std::map<char*, std::pair<float, Isotope*> > _isotopes;
 	std::map<Isotope*, float> _isotopes_AO;
 
-	densityUnit _density_unit;
-
-	void clearTallies();
-
 public:
-	Material();
+	Material(char* material_name);
 	virtual ~Material();
-	Material *clone();
 	
 	/* getters */
 	char* getMaterialName();
 	float getMaterialNumberDensity();
-	Isotope* getIsotope(char* isotope);
 	float getDensity();
-	float getIsotopeNumDensity(char* isotope);
-	
-    int getNumXSEnergies() const;
-    binSpacingType getEnergyGridScaleType() const;
+	float getIsotopeNumDensity(Isotope* isotope);
+	bool containsIsotope(Isotope* isotope);
+	float getBucklingSquared();
+    float getVolume();
+
+    int getNumXSEnergies(char* xs_type) const;
 
 	float getTotalMacroXS(float energy);
 	float getTotalMacroXS(int energy_index);
@@ -72,22 +69,21 @@ public:
     /* IMPORTANT: The following two class method prototypes must not be changed
      * without changing Geometry.i to allow for the data arrays to be transformed
      * into numpy arrays */
-    void retrieveXSEnergies(float* energies, int num_xs) const;
+    void retrieveXSEnergies(float* energies, int num_xs, 
+                                    char* xs_type) const;
     void retrieveXS(float* xs, int num_xs, char* xs_type);
 		
 	/* setters */
-	void setMaterialName(char* name);
-	void setDensity(float density, char* unit);
-	void setNumberDensity(float number_density);
+	void setDensity(float density, const char* unit);
 	void setAtomicMass(float atomic_mass);
+	void setBucklingSquared(float buckling_squared);
+    void incrementVolume(float volume);
 	void addIsotope(Isotope *isotope, float atomic_ratio);
+	Material *clone();
 
-	Isotope* sampleIsotope(float energy);
-
-	collisionType collideNeutron(neutron* neut);
-
+	void sampleIsotope(neutron* neutron);
+	void collideNeutron(neutron* neutron);
 };
 
-#endif
 
 #endif /* MATERIAL_H_ */

@@ -1,0 +1,9 @@
+Batch-based tally statistics for PINSPEC
+Tally name: 
+Tally type: COLLISION_RATE Rate
+Tally Domain: Geometry
+User-defined bins
+# batches: 50	, # bins: 2
+Bin center, Mu, Variance, Std Dev, Rel Err
+0.3125000000, 5.7002898715, 0.0000124791, 0.0035325760, 0.0006197187
+5000000.3125000000, 12.7640699169, 0.0000058020, 0.0024087290, 0.0001887117
