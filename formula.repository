@@ -44,11 +44,8 @@
 \form#43:$ \frac{eV}{c^2} $
 \form#44:$ \frac{1}{E} $
 \form#45:$ RI_{eff} $
-\form#46:$ \sigma_{j}(E) \frac{1}{E} $
-\form#47:$ \int\limits_{E_{i-1}}^{E_i} \sigma_{j}(E) \frac{1}{E} $
-\form#48:$ \int\limits_{E_{i-1}}^{E_i} \sigma_{j}(E) \frac{1}{E} \mathrm{d}x $
-\form#49:$ \int\limits_{E_{i-1}}^{E_i} \sigma_{j}(E) \frac{1}{E} \mathrm{d}E $
-\form#50:$E_0$
-\form#51:$\Gamma_n$
-\form#52:$\Gamma_{\gamma}$
-\form#53:$ E_0 > 0 $
+\form#46:$ \int\limits_{E_{i-1}}^{E_i} \sigma_{j}(E) \frac{1}{E} \mathrm{d}E $
+\form#47:$ E_0 > 0 $
+\form#48:$E_0$
+\form#49:$\Gamma_n$
+\form#50:$\Gamma_{\gamma}$
