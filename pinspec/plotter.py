@@ -162,7 +162,6 @@ def plotMacroXS(material, rxns, loglog=True, \
     fig.savefig(filename)
 
 
-
 ##
 # @brief Plots one or more flux tallies by energy.
 # @details This method generates and saves the plot as a *.png in the
@@ -186,6 +185,10 @@ def plotFlux(flux, loglog=True, uselegend=True, title='', filename=''):
 
     directory = getOutputDirectory() + subdirectory
 
+    # Make fluxes a list if it is not already
+    if type(fluxes) is not list:
+        fluxes = [fluxes]
+    
     # Make directory if it does not exist
     if not os.path.exists(directory):
             os.makedirs(directory)

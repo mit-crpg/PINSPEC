@@ -10,6 +10,7 @@ Region::Region(char* region_name, regionType type) {
 
     _region_name = region_name;
     _region_type = type;
+    _material = NULL;
 
     /* Default volume */
     if (_region_type == INFINITE)
@@ -503,6 +504,15 @@ void Region::collideNeutron(neutron* neutron) {
 
     /* Collide the neutron in the Region's Material */
     neutron->_material = _material;
+
+    if (_material == NULL){
+        log_printf(ERROR, "Region %s must have material to"
+			" collide neutron", _region_name);
+
+    }
+
+    /* Collide the neutron in the Region's Material */
+    neutron->_material = _material;
     _material->collideNeutron(neutron);
 
     return;
@@ -520,16 +530,16 @@ bool Region::contains(neutron* neutron) {
     float y = neutron->_y;
 
     if  (_region_type == INFINITE)
-        return true;
+ 	return true;
     else {
-        float r = pow(x, 2.0) + pow(y, 2.0);
+	float r = pow((pow(x, 2.0) + pow(y, 2.0)), 0.5);
 	if (_region_type == FUEL && r < _fuel_radius)
-	    return true;
+  	    return true;
 	else if (_region_type == MODERATOR && 
 		 (fabs(x) < _half_width && fabs(y) < _half_width))
 	    return true;
 	else
-	    return false;			
+	  return false;			
     }
 }
 
@@ -545,12 +555,12 @@ bool Region::onBoundary(neutron* neutron) {
     float y = neutron->_y;
 
     if (_region_type == INFINITE) {
-        log_printf(WARNING, "Unable to compute onBoundary method"
+	log_printf(WARNING, "Unable to compute onBoundary method"
 		   " for region %s since it is INIFINITE", _region_name); 
 	return false;
     }
     else {
-        float r = pow(x, 2.0) + pow(y, 2.0);
+        float r = pow((pow(x, 2.0) + pow(y, 2.0)), 0.5);
 	if (fabs(r - _fuel_radius) < 1E-5)
 	    return true;
 	else if (fabs(x - _half_width) < 1E-5)

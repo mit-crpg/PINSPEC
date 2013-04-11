@@ -1,9 +1,0 @@
-Batch-based tally statistics for PINSPEC
-Tally name: 
-Tally type: DIFFUSION_RATE Reaction Rate
-Tally Domain: Geometry
-User-defined bins
-# batches: 50	, # bins: 2
-Bin center, Mu, Variance, Std Dev, Rel Err
-0.3125000000, 2.1967711267, 0.0000014873, 0.0012195505, 0.0005551559
-5000000.3125000000, 25.8482681071, 0.0308156117, 0.1755437600, 0.0067913161

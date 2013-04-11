@@ -58,16 +58,16 @@ def main():
     
     py_printf('INFO', 'Initializing tallies for the flux, collision rate, etc')
 
-    flux = TallyFactory.createTally(h1_material, FLUX)
+    flux = createTally(h1_material, FLUX)
     flux.generateBinEdges(1E-2, 1E7, 1000, LOGARITHMIC)
 
-    coll_rate_1eV = TallyFactory.createTally(h1_material, COLLISION_RATE)
+    coll_rate_1eV = createTally(h1_material, COLLISION_RATE)
     coll_rate_1eV.generateBinEdges(1E-1, 2E6, 1, EQUAL)
 
-    coll_rate = TallyFactory.createTally(h1_material, COLLISION_RATE)
+    coll_rate = createTally(h1_material, COLLISION_RATE)
     coll_rate.generateBinEdges(1E-7, 2E6, 1, EQUAL)
 
-    times = TallyFactory.createTally(h1_material, INTERCOLLISION_TIME)
+    times = createTally(h1_material, INTERCOLLISION_TIME)
     times.generateBinEdges(1E-7, 2E6, 1, EQUAL)
 
     py_printf('INFO', 'Simulating %d neutrons in H-1...', num_neutrons)

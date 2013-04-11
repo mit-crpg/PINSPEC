@@ -5,7 +5,7 @@
  * @details Sets a default number of neutrons per batch (10,000), number of
  *          batches (10) and number of threads (1).
  */	
-Geometry::Geometry() {
+Geometry::Geometry(spatialType spatial_type) {
 
     /* Set defaults for the number of neutrons, batches, and threads */
     _num_neutrons_per_batch = 10000;
@@ -124,8 +124,6 @@ void Geometry::setNeutronsPerBatch(int num_neutrons_per_batch) {
     _num_neutrons_per_batch = num_neutrons_per_batch;
 }
 
-
-
 /**
  * @brief Sets the number of batches for this simulation.
  * @param num_batches the number of batches
@@ -198,6 +196,7 @@ void Geometry::setSpatialType(spatialType spatial_type) {
  *          (INFINITE, FUEL, MODERATOR) does not conflict with other regions
  *          that have already been added to the geometry
  * @param region the region to add to the geometry
+ * @param a region to add to the Geometry
  */
 void Geometry::addRegion(Region* region) {
 

@@ -1,9 +1,0 @@
-Batch-based tally statistics for PINSPEC
-Tally name: 
-Tally type: Flux
-Tally Domain: Geometry
-User-defined bins
-# batches: 50	, # bins: 2
-Bin center, Mu, Variance, Std Dev, Rel Err
-0.3125000000, 4.2164007634, 0.0000054484, 0.0023341761, 0.0005535945
-5000000.3125000000, 19.6878831572, 0.0000190048, 0.0043594438, 0.0002214278

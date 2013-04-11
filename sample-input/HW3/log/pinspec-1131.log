@@ -423,3 +423,93 @@ Current local time and date: Wed Apr 10 21:01:52 2013
 [  INFO   ]  Thread 4/4 running batch 9
 [  INFO   ]  Thread 3/4 running batch 6
 [  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 14797 neutrons / sec in 67.581121 sec
+[  INFO   ]  Registered tally U/H = 0.1 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 1.214E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 1.214E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 17512 neutrons / sec in 57.104379 sec
+[  INFO   ]  Registered tally U/H = 1.0 with the TallyBank for the geometry
+[  INFO   ]  Isotope H-1 has number density 1.260E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 1.260E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 4
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 4 tallies for 10 batches
+[  INFO   ]  Thread 3/4 running batch 6
+[  INFO   ]  Thread 4/4 running batch 9
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 2/4 running batch 4
+[  INFO   ]  Thread 3/4 running batch 7
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 2/4 running batch 5
+[  INFO   ]  Thread 3/4 running batch 8
+[  INFO   ]  Thread 1/4 running batch 2
+[  NORMAL ]  PINSPEC simulated 34150 neutrons / sec in 29.282491 sec
+[  HEADER ]  ******  Batch Statistics for U238 Abs. / Tot. Abs. Tallies  *******
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu        Mu        Mu        Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  0.374642  1.165098  6.593745  20.09484
+[  RESULT ]  [    1.00 -    6.00 eV ]:  0.023678  0.074134  0.462560  2.592149
+[  RESULT ]  [    6.00 -   10.00 eV ]:  2.028012  3.103825  4.930501  6.858680
+[  RESULT ]  [   10.00 -   25.00 eV ]:  1.073592  1.705333  2.877174  4.886342
+[  RESULT ]  [   25.00 -   50.00 eV ]:  0.677847  1.207341  2.253830  4.105004
+[  RESULT ]  [   50.00 -  100.00 eV ]:  0.201414  0.509774  1.404273  2.711142
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  0.374960  1.119656  5.124525  19.61438
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  *********  Batch Statistics for Temp=1200K Effective RIs  *********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu        Mu        Mu        Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  18.72060  18.69644  18.48182  16.77355
+[  RESULT ]  [    1.00 -    6.00 eV ]:  1.459845  1.456688  1.451623  1.399039
+[  RESULT ]  [    6.00 -   10.00 eV ]:  125.8099  63.32707  16.99346  4.330810
+[  RESULT ]  [   10.00 -   25.00 eV ]:  66.51915  33.03334  8.663639  2.287323
+[  RESULT ]  [   25.00 -   50.00 eV ]:  41.80131  22.86945  6.459525  1.722409
+[  RESULT ]  [   50.00 -  100.00 eV ]:  12.38771  9.446633  3.837466  1.015532
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  2.254566  1.993249  1.252622  0.538695
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  ***********  Batch Statistics for T=300-1200K True RIs  ***********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band             Mu        Mu        Mu        Mu    
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    1.00 eV ]:  229.1643  229.1785  229.1927  229.2069
+[  RESULT ]  [    1.00 -    6.00 eV ]:  1.455785  1.458958  1.462193  1.465492
+[  RESULT ]  [    6.00 -   10.00 eV ]:  126.9687  126.9737  126.9783  126.9828
+[  RESULT ]  [   10.00 -   25.00 eV ]:  66.08343  66.07680  66.07651  66.07750
+[  RESULT ]  [   25.00 -   50.00 eV ]:  41.66303  41.66290  41.66300  41.66333
+[  RESULT ]  [   50.00 -  100.00 eV ]:  12.32138  12.32361  12.32502  12.32597
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  20.88121  20.88897  20.88971  20.89005
+[SEPARATOR]  -------------------------------------------------------------------
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]                               Finished                             
+[  TITLE  ]  *******************************************************************

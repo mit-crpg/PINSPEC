@@ -1,9 +1,0 @@
-Batch-based tally statistics for PINSPEC
-Tally name: 
-Tally type: ELASTIC_RATE Scattering Reaction Rate
-Tally Domain: Geometry
-User-defined bins
-# batches: 50	, # bins: 2
-Bin center, Mu, Variance, Std Dev, Rel Err
-0.3125000000, 5.2563794516, 0.0000102561, 0.0032025133, 0.0006092622
-5000000.3125000000, 12.5697102581, 0.0000048533, 0.0022030242, 0.0001752645

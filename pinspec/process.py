@@ -17,9 +17,6 @@ from pinspec import *
 from log import *
 import scipy.integrate as integrate
 
-'''
-Tally Data Retrieval Methods
-'''
 
 ##
 # @brief Returns an array of the center values for a tally's bins.
@@ -410,11 +407,6 @@ def computeMeanNeutronLifetime(coll_times, num_neutrons):
     return mean_time
 
 
-
-'''
-Resonance Integrals
-'''
-
 ##
 # @class RIEff process.py "pinspec/process.py"
 # @brief An effective resonance integral.
@@ -628,8 +620,8 @@ class RIEff(object):
 
                 
     ##
-    # @brief Prints a formatted table of the effective resonance integrals to the
-    #        screen.
+    # @brief Prints a formatted table of the effective resonance integrals to 
+    #        the screen.
     # @details The resonance integrals and their uncertainties (optional) will
     #          be printed as a formatted table to the screen.
     # @param self the RIEff object pointer
@@ -705,12 +697,14 @@ class RITrue(object):
 
 
     ##
-    # @brief Computes the true resonance integrals for an isotopic reaction rate.
+    # @brief Computes the true resonance integrals for an isotopic reaction 
+    #        rate.
     # @details This method computes an infinite dilute resonance integral for
     #          each of the user-defined energy bands for some isotopic reaction 
     #          rate using numerical integration as follows:
     #
-    #      \f$ \int\limits_{E_{i-1}}^{E_i} \sigma_{j}(E) \frac{1}{E} \mathrm{d}E \f$
+    #      \f$ \int\limits_{E_{i-1}}^{E_i} \sigma_{j}(E) \frac{1}{E} 
+    #      \mathrm{d}E \f$
     #          
     # @param self the RITrue object pointer
     # @param bands an array of the energy bands for each resonance integral
@@ -759,7 +753,8 @@ class RITrue(object):
 
     ##
     # @brief Returns the name of the RITrue object.
-    # @details Returns an empty string if no name has been specified by the user.
+    # @details Returns an empty string if no name has been specified by the 
+    #          user.
     # @param self the RITrue object pointer
     # @return a string with the name of the RITrue
     def getName(self):
@@ -848,16 +843,13 @@ def printRIs(RIs, header=''):
         py_printf('ERROR', 'Unable to print RIs since input is of type %s', \
                                                      str(type(RIs)))
 
-'''
-Group Cross-Sections
-'''
 
 ##
 # @class GroupXS process.py "pinspec/process.py"
 # @brief A multi-group cross-section for a certain reaction rate.
 # @details This class represents a multi-group cross-section with some energy
-#          bands for a certain reaction rate. By default, the group cross-section
-#          is a macroscopic cross-section \f$ (cm^{-1}) \f$.
+#          bands for a certain reaction rate. By default, the group 
+#          cross-section is a macroscopic cross-section \f$ (cm^{-1}) \f$.
 class GroupXS(object):
     
     ##
@@ -877,7 +869,8 @@ class GroupXS(object):
         self._xs=None
         ## The FLUX tally used to compute the multi-group cross-sections
         self._flux=None
-        ## The REACTION_RATE tally used to compute the multi-group cross-sections
+        ## The REACTION_RATE tally used to compute the multi-group 
+        #  cross-sections
         self._rate=None
         ## The number of multi-group cross-sections
         self._num_xs=0
@@ -999,7 +992,8 @@ class GroupXS(object):
 
     ##
     # @brief Returns the name of the GroupXS object.
-    # @details Returns an empty string if no name has been specified by the user.
+    # @details Returns an empty string if no name has been specified by the 
+    #          user.
     # @param self the GroupXS object pointer
     # @return a string with the name of the GroupXS
     def getName(self):
@@ -1051,7 +1045,8 @@ class GroupXS(object):
     # @brief Returns an array of the multi-group cross-section energy 
     #        band centers.
     # @param self the GroupXS object pointer
-    # @return a numpy array of the multi-group cross-section energy band centers    def getEnergyBandsCenters(self):
+    # @return a numpy array of the multi-group cross-section energy band centers
+    def getEnergyBandsCenters(self):
         return getTallyCenters(self._xs)
 
 

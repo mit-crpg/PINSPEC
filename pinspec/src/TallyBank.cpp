@@ -118,7 +118,7 @@ void TallyBank::registerTally(Tally* tally, Geometry* geometry) {
  * @param region a pointer to the region within which we should tally
  */
 void TallyBank::registerTally(Tally* tally, Region* region) {
-	
+
     /* We are unable to track tallies with a GEOMETRY domain for a region */
     if (tally->getTallyDomainType() == GEOMETRY)
 	log_printf(ERROR, "The TallyBank is unable to register tally %s"
@@ -139,7 +139,6 @@ void TallyBank::registerTally(Tally* tally, Region* region) {
 			region->getRegionName(), 
 			region_tally->getRegion()->getRegionName());
     }
-
 
     /* Track tallies with a MATERIAL domain in this region */
     else if (tally->getTallyDomainType() == MATERIAL) {
@@ -176,6 +175,11 @@ void TallyBank::registerTally(Tally* tally, Region* region) {
 		   isotope_tally->getIsotope()->getIsotopeName(),
 		   region->getMaterial()->getMaterialName());
     }
+
+    /* Don't track tallies with UNDEFINED domain (only for DERIVED tallies) */
+    else if (tally->getTallyDomainType() == UNDEFINED)
+        log_printf(ERROR, "Unable to register DERIVED type tally %s with the"
+                        " TallyBank", tally->getTallyName());
 
     /* Don't track tallies of UNDEFINED domain (only for DERIVED tallies) */
     else if (tally->getTallyDomainType() == UNDEFINED)
@@ -727,4 +731,3 @@ void TallyBank::clearTallies() {
     _isotope_tallies.clear();
 
 }
-

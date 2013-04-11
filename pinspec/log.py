@@ -54,6 +54,8 @@ def py_printf(level, my_str, *args):
         log_printf(CRITICAL, my_str % args)
     elif level == 'RESULT':
         log_printf(RESULT, my_str % args)
+    elif level == 'UNITTEST':
+        log_printf(UNITTEST, my_str % args)
     elif level == 'ERROR':
         log_printf(ERROR, my_str % args)
 
@@ -72,6 +74,12 @@ def py_printf(level, my_str, *args):
 #
 # @param level the minimum logging level ('DEBUG', 'INFO', etc)
 def setlevel(level):
+    log_setlevel(level)
+    
+
+
+def py_setlevel(level):
+>>>>>>> dda62ef181b4572b0ac9500a51eedf24088108fa
     
     if level == 'DEBUG':
         log_setlevel(DEBUG)
@@ -91,6 +99,8 @@ def setlevel(level):
         log_setlevel(CRITICAL)
     elif level == 'RESULT':
         log_setlevel(RESULT)
+    elif level == 'UNITTEST':
+        log_setlevel(UNITTEST)
     elif level == 'ERROR':
         log_setlevel(ERROR)
     else:

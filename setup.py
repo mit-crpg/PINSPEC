@@ -21,8 +21,8 @@ os.environ['OPT'] = ' '.join(
     flag for flag in opt.split() if flag != '-Wstrict-prototypes'
 )
 
-#, '/opt/local/lib/gcc47/gcc/x86_64-apple-darwin11/4.7.2/include'
 #, '-L/opt/local/lib/gcc47'
+#, '/opt/local/lib/gcc47/gcc/x86_64-apple-darwin11/4.7.2/include'
 
 # range extension module
 pinspec = Extension('_pinspec',
@@ -31,10 +31,9 @@ pinspec = Extension('_pinspec',
                             'pinspec/src/log.cpp', 'pinspec/src/xsreader.cpp', 
                             'pinspec/src/Isotope.cpp', 'pinspec/src/Material.cpp', 
                             'pinspec/src/Neutron.cpp', 'pinspec/src/Tally.cpp',
-							'pinspec/src/TallyFactory.cpp', 'pinspec/src/TallyBank.cpp', 
-                            'pinspec/src/Fissioner.cpp', 'pinspec/src/Region.cpp', 
-                            'pinspec/src/Timer.cpp', 'pinspec/src/Surface.cpp', 
-                            'pinspec/src/Geometry.cpp'],
+							'pinspec/src/TallyBank.cpp','pinspec/src/Fissioner.cpp',
+                            'pinspec/src/Region.cpp', 'pinspec/src/Timer.cpp',
+                            'pinspec/src/Surface.cpp', 'pinspec/src/Geometry.cpp'],
                    extra_compile_args=['-O3', '-fopenmp',
                                     '-march=native', '-ffast-math'],
                    extra_link_args=['-lstdc++', '-fopenmp', '-lgomp', '-fPI'],

@@ -176,6 +176,7 @@ public:
     float getTotalXS(int energy_index) const;
     float getTransportXS(int energy_index) const;
     float getTransportXS(float energy) const;
+
     bool usesThermalScattering();
     bool isRescaled() const;
     int getEnergyGridIndex(float energy) const;

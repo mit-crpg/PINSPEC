@@ -70,9 +70,6 @@ private:
     /** The squared geometric buckling */
     float _buckling_squared;
 
-    bool contains(neutron* neutron);
-    bool onBoundary(neutron* neutron);
-
 public:
     Region(char* region_name, regionType type);
     virtual ~Region();
@@ -125,6 +122,9 @@ public:
     void setBucklingSquared(float buckling_squared);
 
     void collideNeutron(neutron* neutron);
+
+    bool contains(neutron* neutron);
+    bool onBoundary(neutron* neutron);
 };
 
 

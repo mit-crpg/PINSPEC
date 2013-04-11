@@ -290,6 +290,8 @@ float Material::getTotalMicroXS(int energy_index) {
  * @param energy the energy of interest (eV)
  * @return the total macroscopic elastic scattering cross-section 
  *         \f$ (cm^{-1}) \f$
+ * @param energy energy of interest (eV)
+ * @return the total elastic macroscopic scattering cross-section (cm^-1)
  */
 float Material::getElasticMacroXS(float energy) {
 
@@ -368,6 +370,8 @@ float Material::getElasticMicroXS(int energy_index) {
  *        material at some energy.
  * @param energy the energy of interest (eV)
  * @return the total macroscopic absorption cross-section \f$ (cm^{-1}) \f$
+ * @param energy energy of interest (eV)
+ * @return the total macroscopic absorption cross-section (cm^-1)
  */
 float Material::getAbsorptionMacroXS(float energy) {
 
@@ -445,6 +449,8 @@ float Material::getAbsorptionMicroXS(int energy_index) {
  *        material at some energy (eV).
  * @param energy the energy of interest (eV)
  * @return the total macroscopic capture cross-section \f$ (cm^{-1}) \f$
+ * @param energy energy of interest (eV)
+ * @return the total macroscopic capture cross-section (cm^-1)
  */
 float Material::getCaptureMacroXS(float energy) {
 
@@ -523,6 +529,8 @@ float Material::getCaptureMicroXS(int energy_index) {
  *        at some energy (eV).
  * @param energy the energy of interest (eV)
  * @return the total macroscopic fission cross-section \f$ (cm^{-1}) \f$
+ * @param energy energy of interest (eV)
+ * @return the total macroscopic fission cross-section (cm^-1)
  */
 float Material::getFissionMacroXS(float energy) {
 
@@ -620,6 +628,8 @@ float Material::getTransportMicroXS(float energy) {
  *        at some index into the uniform lethargy grid.
  * @param energy_index the index into the uniform lethargy grid
  * @return the transport macroscopic cross-section \f$ (cm^{-1}) \f$
+ * @param energy energy of interest (eV)
+ * @return the transport macroscopic cross-section (cm^-1)
  */
 float Material::getTransportMacroXS(int energy_index) {
 
@@ -704,6 +714,20 @@ void Material::setDensity(float density, char* unit) {
  */
 void Material::setNumberDensity(float number_density) {
     _material_number_density = number_density;
+
+    if (strcmp(unit, "g/cc") == 0){
+        _material_density = density;
+        _density_unit = GRAM_CM3;
+    }
+    else if (strcmp(unit, "at/cc") == 0){
+	_material_number_density = density;
+	_density_unit = NUM_CM3;
+    }
+    else{
+      log_printf(ERROR, "Cannot set Material %s density in"
+		 "units %s since PINSPEC only support units in"
+		 "g/cc and at/cc", _material_name, unit);
+    }
 }
 
 
@@ -799,7 +823,12 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
         _material_atomic_mass += iter_AO->second * iter_AO->first->getA();
 
     /* Calculates the material's number density */
-    _material_number_density = _material_density * N_av / _material_atomic_mass;
+    if (_density_unit == GRAM_CM3)
+    	_material_number_density = _material_density * N_av / 
+	                          _material_atomic_mass;
+    else if (_density_unit == NUM_CM3)
+    	_material_density = _material_number_density / 
+                             N_av * _material_atomic_mass;
 
     /* Calculates the isotope's number density */
     isotope_number_density = atomic_ratio / total_AO * _material_number_density;
@@ -915,26 +944,25 @@ Material* Material::clone() {
     /* Allocate memory for the clone */
     Material* new_clone = new Material(_material_name);
 
+    /* Set the clones atomic mass and density */
+    if (_density_unit == GRAM_CM3){
+        new_clone->setDensity(_material_number_density, (char*)"at/cc");
+	new_clone->setDensity(_material_density, (char*)"g/cc");
+    }
+    else if (_density_unit == NUM_CM3){
+        new_clone->setDensity(_material_density, (char*)"g/cc");
+        new_clone->setDensity(_material_number_density, (char*)"at/cc");
+    }
+
     /* Loops over all isotopes and add them to the clone */
     std::map<char*, std::pair<float, Isotope*> >::iterator iter;
 
-    /* Add all of the isotopes to the new material */
     for (iter = _isotopes.begin(); iter != _isotopes.end(); ++iter) {
-        new_clone->addIsotope((iter->second.second)->clone(), 
-			      iter->second.first);
+        new_clone->addIsotope(iter->second.second, 
+			      _isotopes_AO.at(iter->second.second));
     }
 
-    /* Set the clones name, atomic number, number density */
-    new_clone->setMaterialName(_material_name);
-
-    if (_density_unit == GRAM_CM3)
-	new_clone->setDensity(_material_density, (char*)"g/cc");
-    else if (_density_unit == NUM_CM3)
-        new_clone->setDensity(_material_density, (char*)"at/cc");
-
-    new_clone->setNumberDensity(_material_number_density);
     new_clone->setAtomicMass(_material_atomic_mass);
-
 
     /* Return a pointer to the cloned Isotope class */
     return new_clone;

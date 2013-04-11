@@ -44,6 +44,7 @@ Tally::~Tally() {
 /**
  * @brief Returns the name of the tally.
  * @return the name of the tally
+ * @return the Tally's name
  */
 char* Tally::getTallyName() {
     return _tally_name;
@@ -425,7 +426,7 @@ bool Tally::isPrecisionTriggered() {
             else {
                 log_printf(INFO, "Tally %s triggered ("
                             "std. dev. < %1.1E) with max std. dev. = %1.1E",
-                            _tally_name, _trigger_precision, getMaxStdDev());       
+                            _tally_name, _trigger_precision, getMaxStdDev());  
                 return true;
             }
         }
@@ -663,10 +664,11 @@ void Tally::setTallyType(tallyType type) {
 
 /**
  * @brief Set a user-defined double array of bin edge values.
- * @details This method is intended to allow PINSPEC users to set tally bin edges
- *          through Python. Although this method prototype seems to require
- *          two arguments - an array of bin edges and the number of edges -
- *          in Python the user only needs to provide the edges array as follows:
+ * @details This method is intended to allow PINSPEC users to set tally bin 
+ *          edges through Python. Although this method prototype seems to 
+ *          require two arguments - an array of bin edges and the number of 
+ *          edges - in Python the user only needs to provide the edges array 
+ *          as follows:
  *
  * @code
  *          edges = numpy.array([0.1, 1., 5., 25., 100.])
@@ -697,7 +699,7 @@ void Tally::setBinEdges(double* edges, int num_edges) {
  * @details By setting a precision trigger, the user instructs a PINSEPC
  *          simulation to continue running until all tallies meet the
  *          precision trigger threshold.
- * @param trigger_type the precision trigger type (VARIANCE, RELATIVE_ERROR, etc)
+ * @param trigger_type the precision trigger type (VARIANCE, etc)
  * @param precision the threshold for the precision trigger
  */
 void Tally::setPrecisionTrigger(triggerType trigger_type, float precision) {
@@ -1355,12 +1357,14 @@ DerivedTally* Tally::operator+(Tally* tally) {
  * @details This overloaded subtraction operator allows the user to
  *          subtract two tallies with each other, if they have the same number 
  *          of tallies. The creates a new DERIVED type tally, loads it with 
- *          the difference of the tally bin averages for the two tally operands, 
+ *          the difference of the tally bin averages for the two tally operands
  *          and computes its batch statistics appropriately. This method is 
  *          intended to allow for simple tally arithmetic in Python.
+ *
  * @code 
  *          new_tally = tally1 - tally2
  * @endcode
+ *
  * @param tally the right operand in the tally product
  * @return a DERIVED type tally with the tally difference
  */
@@ -1477,9 +1481,11 @@ DerivedTally* Tally::operator-(Tally* tally) {
  *          the product of the tally bin averages for the two tally operands, 
  *          and computes its batch statistics appropriately. This method is 
  *          intended to allow for simple tally arithmetic in Python.
+ *
  * @code 
  *          new_tally = tally1 * tally2
  * @endcode
+ *
  * @return a DERIVED type tally with the tally product
  */
 DerivedTally* Tally::operator*(Tally* tally) {
@@ -1597,9 +1603,11 @@ DerivedTally* Tally::operator*(Tally* tally) {
  *          the dividend of the tally bin averages for the two tally operands, 
  *          and computes its batch statistics appropriately. This method is 
  *          intended to allow for simple tally arithmetic in Python.
+ *
  * @code 
  *          new_tally = tally1 / tally2
  * @endcode
+ *
  * @param tally the right operand in the tally division
  * @return a DERIVED type tally with the tally division
  */
@@ -1718,11 +1726,13 @@ DerivedTally* Tally::operator/(Tally* tally) {
  *          add a constant to a tally. The creates a new DERIVED type
  *          tally, loads it with the sum of the tally bin averages and 
  *          the constant, and updates its batch statistics appropriately.
- *          constant, and updates its batch statistics appropriately. This method
- *          is intended to allow for simple tally arithmetic in Python.
+ *          constant, and updates its batch statistics appropriately. This 
+ *          method is intended to allow for simple tally arithmetic in Python.
+ *
  * @code 
  *          new_tally = tally + int(3)
  * @endcode
+ *
  * @param amt the right operand and the constant value to add to the tally
  * @return a DERIVED type tally with the tally sum
  */
@@ -1747,12 +1757,15 @@ DerivedTally* Tally::operator+(int amt) {
  *          subtract a constant from a tally. The creates a new DERIVED type
  *          tally, loads it with the difference of the tally bin averages and 
  *          the constant, and updates its batch statistics appropriately.
- *          constant, and updates its batch statistics appropriately. This method
- *          is intended to allow for simple tally arithmetic in Python.
+ *          constant, and updates its batch statistics appropriately. This 
+ *          method is intended to allow for simple tally arithmetic in Python.
+ *
  * @code 
  *          new_tally = tally - int(3)
  * @endcode
- * @param amt the right operand and the constant value to subtract from the tally
+ *
+ * @param amt the right operand and the constant value to subtract from the
+ *        tally
  * @return a DERIVED type tally with the tally difference
  */
 DerivedTally* Tally::operator-(const int amt) {
@@ -1776,11 +1789,13 @@ DerivedTally* Tally::operator-(const int amt) {
  *          multiply a constant with a tally. The creates a new DERIVED type
  *          tally, loads it with the product of the tally bin averages and the
  *          constant, and updates its batch statistics appropriately.
- *          constant, and updates its batch statistics appropriately. This method
- *          is intended to allow for simple tally arithmetic in Python.
+ *          constant, and updates its batch statistics appropriately. This 
+ *          method is intended to allow for simple tally arithmetic in Python.
+ *
  * @code 
  *          new_tally = tally * int(3)
  * @endcode
+ *
  * @param amt the right operand and the constant value to multiply the tally by
  * @return a DERIVED type tally with the tally product
  */
@@ -1809,11 +1824,13 @@ DerivedTally* Tally::operator*(const int amt) {
  * @details This overloaded division operator allows the user to
  *          divide a tally by a constant. The creates a new DERIVED type
  *          tally, loads it with the dividend of the tally bin averages and the
- *          constant, and updates its batch statistics appropriately. This method
- *          is intended to allow for simple tally arithmetic in Python.
+ *          constant, and updates its batch statistics appropriately. This 
+ *          method is intended to allow for simple tally arithmetic in Python.
+ *
  * @code 
  *          new_tally = tally / int(3)
  * @endcode
+ *
  * @param amt the right operand and the constant value to divide the tally by
  * @return a DERIVED type tally with the tally product
  */
@@ -1844,9 +1861,11 @@ DerivedTally* Tally::operator/(const int amt) {
  *          tally, loads it with the sum of the tally bin averages and 
  *          the constant, and updates its batch statistics appropriately. This
  *          method is intended to allow for simple tally arithmetic in Python.
+ *
  * @code 
  *          new_tally = tally + float(3.5)
  * @endcode
+ *
  * @param amt the right operand and the constant value to add to the tally
  * @return a DERIVED type tally with the tally sum
  */
@@ -1872,10 +1891,13 @@ DerivedTally* Tally::operator+(const float amt) {
  *          tally, loads it with the difference of the tally bin averages and 
  *          the constant, and updates its batch statistics appropriately. This
  *          method is intended to allow for simple tally arithmetic in Python.
+ *
  * @code 
  *          new_tally = tally - float(3.5)
  * @endcode
- * @param amt the right operand and the constant value to subtract from the tally
+ *
+ * @param amt the right operand and the constant value to subtract from the 
+ *        tally
  * @return a DERIVED type tally with the tally difference
  */
 DerivedTally* Tally::operator-(const float amt) {
@@ -1898,11 +1920,13 @@ DerivedTally* Tally::operator-(const float amt) {
  * @details This overloaded subtraction operator allows the user to
  *          multiply a constant with a tally. The creates a new DERIVED type
  *          tally, loads it with the product of the tally bin averages and the
- *          constant, and updates its batch statistics appropriately. This method
- *          is intended to allow for simple tally arithmetic in Python.
+ *          constant, and updates its batch statistics appropriately. This 
+ *          method is intended to allow for simple tally arithmetic in Python.
+ *
  * @code 
  *          new_tally = tally * float(3.5)
  * @endcode
+ *
  * @param amt the right operand and the constant value to multiply the tally by
  * @return a DERIVED type tally with the tally product
  */
@@ -1931,11 +1955,13 @@ DerivedTally* Tally::operator*(const float amt) {
  * @details This overloaded division operator allows the user to
  *          divide a tally by a constant. The creates a new DERIVED type
  *          tally, loads it with the dividend of the tally bin averages and the
- *          constant, and updates its batch statistics appropriately. This method
- *          is intended to allow for simple tally arithmetic in Python.
+ *          constant, and updates its batch statistics appropriately. This 
+ *          method is intended to allow for simple tally arithmetic in Python.
+ *
  * @code 
  *          new_tally = tally / float(3.5)
  * @endcode
+ *
  * @param amt the right operand and the constant value to divide the tally by
  * @return a DERIVED type tally with the tally product
  */
@@ -1966,9 +1992,11 @@ DerivedTally* Tally::operator/(const float amt) {
  *          tally, loads it with the sum of the tally bin averages and 
  *          the constant, and updates its batch statistics appropriately. This
  *          method is intended to allow for simple tally arithmetic in Python.
+ * 
  * @code 
  *          new_tally = tally + double(3.5)
  * @endcode
+ *
  * @param amt the right operand and the constant value to add to the tally
  * @return a DERIVED type tally with the tally sum
  */
@@ -1994,10 +2022,13 @@ DerivedTally* Tally::operator+(const double amt) {
  *          tally, loads it with the difference of the tally bin averages and 
  *          the constant, and updates its batch statistics appropriately. This 
  *          method is intended to allow for simple tally arithmetic in Python.
+ *
  * @code 
  *          new_tally = tally - double(3.5)
  * @endcode
- * @param amt the right operand and the constant value to subtract from the tally
+ *
+ * @param amt the right operand and the constant value to subtract from the 
+ *        tally
  * @return a DERIVED type tally with the tally difference
  */
 DerivedTally* Tally::operator-(const double amt) {
@@ -2020,11 +2051,13 @@ DerivedTally* Tally::operator-(const double amt) {
  * @details This overloaded subtraction operator allows the user to
  *          multiply a constant with a tally. The creates a new DERIVED type
  *          tally, loads it with the product of the tally bin averages and the
- *          constant, and updates its batch statistics appropriately. This method
- *          is intended to allow for simple tally arithmetic in Python.
+ *          constant, and updates its batch statistics appropriately. This 
+ *          method is intended to allow for simple tally arithmetic in Python.
+ *
  * @code 
  *          new_tally = tally * double(3.5)
  * @endcode
+ *
  * @param amt the right operand and the constant value to multiply the tally by
  * @return a DERIVED type tally with the tally product
  */
@@ -2056,9 +2089,11 @@ DerivedTally* Tally::operator*(const double amt) {
  *          constant, and updates its batch statistics appropriately.
  *          array, and updates its batch statistics appropriately. This method
  *          is intended to allow for simple tally arithmetic in Python. 
+ *
  * @code 
  *          new_tally = tally / double(3.5)
  * @endcode
+ *
  * @param amt the right operand and the constant value to divide the tally by
  * @return a DERIVED type tally with the tally product
  */
@@ -2090,7 +2125,7 @@ DerivedTally* Tally::operator/(const double amt) {
  *          tally, loads it with the sum of the tally bin averages and the
  *          array, and updates its batch statistics appropriately. This method
  *          is intended to allow for simple tally arithmetic in Python. 
-*           This method prototype appears to require two operands - the 
+ *           This method prototype appears to require two operands - the 
  *          integer array and the length of the array - but in Python it only
  *          requires the integer array as follows:
  * 
@@ -2136,7 +2171,7 @@ DerivedTally* Tally::addIntegers(const int* amt, const int length) {
  *          tally, loads it with the sum of the tally bin averages and the
  *          array, and updates its batch statistics appropriately. This method
  *          is intended to allow for simple tally arithmetic in Python. 
-*           This method prototype appears to require two operands - the 
+ *           This method prototype appears to require two operands - the 
  *          float array and the length of the array - but in Python it only
  *          requires the integer array as follows:
  * 
@@ -2184,7 +2219,7 @@ DerivedTally* Tally::addFloats(const float* amt, const int length) {
  *          tally, loads it with the sum of the tally bin averages and the
  *          array, and updates its batch statistics appropriately. This method
  *          is intended to allow for simple tally arithmetic in Python. 
-*           This method prototype appears to require two operands - the 
+ *           This method prototype appears to require two operands - the 
  *          double array and the length of the array - but in Python it only
  *          requires the double array as follows:
  * 
@@ -2229,10 +2264,10 @@ DerivedTally* Tally::addDoubles(const double* amt, const int length) {
  * @details This overloaded subtraction operator allows the user to
  *          subtract an array of integers from a tally, if the number of values
  *          equals the number of tally bins. This creates a new DERIVED type
- *          tally, loads it with the difference of the tally bin averages and the
- *          array, and updates its batch statistics appropriately. This method
- *          is intended to allow for simple tally arithmetic in Python. 
-*           This method prototype appears to require two operands - the 
+ *          tally, loads it with the difference of the tally bin averages and
+ *           the array, and updates its batch statistics appropriately. This 
+ *          method is intended to allow for simple tally arithmetic in Python. 
+ *           This method prototype appears to require two operands - the 
  *          integer array and the length of the array - but in Python it only
  *          requires the integer array as follows:
  * 
@@ -2276,10 +2311,10 @@ DerivedTally* Tally::subtractIntegers(const int* amt, const int length) {
  * @details This overloaded subtraction operator allows the user to
  *          subtract an array of floats from a tally, if the number of values
  *          equals the number of tally bins. This creates a new DERIVED type
- *          tally, loads it with the difference of the tally bin averages and the
- *          array, and updates its batch statistics appropriately. This method
- *          is intended to allow for simple tally arithmetic in Python. 
-*           This method prototype appears to require two operands - the 
+ *          tally, loads it with the difference of the tally bin averages and 
+ *          the array, and updates its batch statistics appropriately. This 
+ *          method is intended to allow for simple tally arithmetic in Python. 
+ *           This method prototype appears to require two operands - the 
  *          float array and the length of the array - but in Python it only
  *          requires the float array as follows:
  * 
@@ -2323,10 +2358,10 @@ DerivedTally* Tally::subtractFloats(const float* amt, const int length) {
  * @details This overloaded subtraction operator allows the user to
  *          subtract an array of doubles from a tally, if the number of values
  *          equals the number of tally bins. This creates a new DERIVED type
- *          tally, loads it with the difference of the tally bin averages and the
- *          array, and updates its batch statistics appropriately. This method
- *          is intended to allow for simple tally arithmetic in Python. 
-*           This method prototype appears to require two operands - the 
+ *          tally, loads it with the difference of the tally bin averages and 
+ *          the array, and updates its batch statistics appropriately. This 
+ *          method is intended to allow for simple tally arithmetic in Python. 
+ *           This method prototype appears to require two operands - the 
  *          double array and the length of the array - but in Python it only
  *          requires the double array as follows:
  * 
@@ -2373,7 +2408,7 @@ DerivedTally* Tally::subtractDoubles(const double* amt, const int length) {
  *          tally, loads it with the product of the tally bin averages and the
  *          array, and updates its batch statistics appropriately. This method
  *          is intended to allow for simple tally arithmetic in Python. 
-*           This method prototype appears to require two operands - the 
+ *           This method prototype appears to require two operands - the 
  *          integer array and the length of the array - but in Python it only
  *          requires the integer array as follows:
  * 
@@ -2431,7 +2466,7 @@ DerivedTally* Tally::multiplyIntegers(const int* amt, const int length) {
  *          tally, loads it with the product of the tally bin averages and the
  *          array, and updates its batch statistics appropriately. This method
  *          is intended to allow for simple tally arithmetic in Python. 
-*           This method prototype appears to require two operands - the 
+ *           This method prototype appears to require two operands - the 
  *          float array and the length of the array - but in Python it only
  *          requires the float array as follows:
  * 
@@ -2489,7 +2524,7 @@ DerivedTally* Tally::multiplyFloats(const float* amt, const int length) {
  *          tally, loads it with the product of the tally bin averages and the
  *          array, and updates its batch statistics appropriately. This method
  *          is intended to allow for simple tally arithmetic in Python. 
-*           This method prototype appears to require two operands - the 
+ *           This method prototype appears to require two operands - the 
  *          double array and the length of the array - but in Python it only
  *          requires the double array as follows:
  * 
@@ -2547,7 +2582,7 @@ DerivedTally* Tally::multiplyDoubles(const double* amt, const int length) {
  *          tally, loads it with the product of the tally bin averages and the
  *          array, and updates its batch statistics appropriately. This method
  *          is intended to allow for simple tally arithmetic in Python. 
-*           This method prototype appears to require two operands - the 
+ *           This method prototype appears to require two operands - the 
  *          integer array and the length of the array - but in Python it only
  *          requires the integer array as follows:
  * 
@@ -2606,7 +2641,7 @@ DerivedTally* Tally::divideIntegers(const int* amt, const int length) {
  *          tally, loads it with the product of the tally bin averages and the
  *          array, and updates its batch statistics appropriately. This method
  *          is intended to allow for simple tally arithmetic in Python. 
-*           This method prototype appears to require two operands - the 
+ *           This method prototype appears to require two operands - the 
  *          float array and the length of the array - but in Python it only
  *          requires the float array as follows:
  * 
@@ -2665,7 +2700,7 @@ DerivedTally* Tally::divideFloats(const float* amt, const int length) {
  *          tally, loads it with the product of the tally bin averages and the
  *          array, and updates its batch statistics appropriately. This method
  *          is intended to allow for simple tally arithmetic in Python. 
-*           This method prototype appears to require two operands - the 
+ *           This method prototype appears to require two operands - the 
  *          double array and the length of the array - but in Python it only
  *          requires the double array as follows:
  * 
@@ -2713,6 +2748,169 @@ DerivedTally* Tally::divideDoubles(const double* amt, const int length) {
     static_cast<DerivedTally*>(new_tally)->setComputedBatchStatistics(true);
 
     return static_cast<DerivedTally*>(new_tally);
+}
+
+
+
+/*****************************************************************************/
+/************************** Tally Creator Methods ****************************/
+/*****************************************************************************/
+
+
+/**
+ * @brief Method to create a tally for some tally type within an 
+ *        isotope.
+ * @param isotope a pointer to the isotope to tally
+ * @param tally_type the type of tally (ie, FLUX, CAPTURE_RATE, etc.)
+ * @param tally_name a character array for the name of the tally
+ * @return a pointer to the newly created tally
+ */
+Tally* createTally(Isotope* isotope, tallyType tally_type,
+                                                  const char* tally_name) {
+    if (tally_type == FLUX)
+	log_printf(ERROR, "Unable to create a FLUX type Tally for an "
+			"Isotope. FLUX tallies are only supported for "
+                 "materials, regions and the geometry.");
+    if (tally_type == LEAKAGE_RATE)
+	log_printf(ERROR, "Unable to create a LEAKAGE_RATE type tally "
+	   "for an Isotope. LEAKAGE_RATE tallies are only "
+	   "supported for materials, regions and the geometry.");
+    if (tally_type == INTERCOLLISION_TIME)
+	log_printf(ERROR, "Unable to create an INTERCOLLISION_TIME type "
+                "tally for an Isotope. INTERCOLLISION_TIME tallies are only "
+                "supported for materials, regions and the geometry.");
+    if (tally_type == DERIVED)
+        log_printf(ERROR, "DERIVED type tallies cannot be created by the "
+                                                        " TallyFactory.");
+
+    if (tally_type == COLLISION_RATE)
+	return new IsotopeCollisionRateTally(isotope, tally_name);
+    else if (tally_type == ELASTIC_RATE)
+	return new IsotopeElasticRateTally(isotope, tally_name);
+    else if (tally_type == ABSORPTION_RATE)
+        return new IsotopeAbsorptionRateTally(isotope, tally_name);
+    else if (tally_type == CAPTURE_RATE)
+        return new IsotopeCaptureRateTally(isotope, tally_name);
+    else if (tally_type == FISSION_RATE)
+        return new IsotopeFissionRateTally(isotope, tally_name);
+    else if (tally_type == TRANSPORT_RATE)
+        return new IsotopeTransportRateTally(isotope, tally_name);
+    else
+        return new IsotopeDiffusionRateTally(isotope, tally_name);
+}
+
+
+/**
+ * @brief Method to create a tally for some tally type within a material.
+ * @param material a pointer to the material within which to tally
+ * @param tally_type the type of tally (ie, FLUX, CAPTURE_RATE, etc.)
+ * @param tally_name a character array for the name of the tally
+ * @return a pointer to the newly created tally
+ */
+Tally* createTally(Material* material, tallyType tally_type,
+                                                  const char* tally_name) {
+
+    if (tally_type == DERIVED)
+        log_printf(ERROR, "DERIVED type tallies cannot be created by the "
+                                                        " TallyFactory.");
+
+    if (tally_type == FLUX)
+        return new MaterialFluxTally(material, tally_name);
+    else if (tally_type == LEAKAGE_RATE)
+        return new MaterialLeakageRateTally(material, tally_name);
+    else if (tally_type == INTERCOLLISION_TIME)
+        return new MaterialInterCollisionTimeTally(material, tally_name);
+    else if (tally_type == COLLISION_RATE)
+        return new MaterialCollisionRateTally(material, tally_name);
+    else if (tally_type == ELASTIC_RATE)
+        return new MaterialElasticRateTally(material, tally_name);
+    else if (tally_type == ABSORPTION_RATE)
+        return new MaterialAbsorptionRateTally(material, tally_name);
+    else if (tally_type == CAPTURE_RATE)
+        return new MaterialCaptureRateTally(material, tally_name);
+    else if (tally_type == FISSION_RATE)
+        return new MaterialFissionRateTally(material, tally_name);
+    else if (tally_type == TRANSPORT_RATE)
+        return new MaterialTransportRateTally(material, tally_name);
+    else
+        return new MaterialDiffusionRateTally(material, tally_name);
+}
+
+
+/**
+ * @brief Method to create a tally for some tally type within a region.
+ * @param region a pointer to the region within which to tally
+ * @param tally_type the type of tally (ie, FLUX, CAPTURE_RATE, etc.)
+ * @param tally_name a character array for the name of the tally
+ * @return a pointer to the newly created tally
+ */
+Tally* createTally(Region* region, tallyType tally_type,
+                                                  const char* tally_name) {
+
+    if (tally_type == DERIVED)
+        log_printf(ERROR, "DERIVED type tallies cannot be created by the "
+                                                        " TallyFactory.");
+
+    if (tally_type == FLUX)
+        return new RegionFluxTally(region, tally_name);
+    else if (tally_type == LEAKAGE_RATE)
+        return new RegionLeakageRateTally(region, tally_name);
+    else if (tally_type == INTERCOLLISION_TIME)
+        return new RegionInterCollisionTimeTally(region, tally_name);
+    else if (tally_type == COLLISION_RATE)
+        return new RegionCollisionRateTally(region, tally_name);
+    else if (tally_type == ELASTIC_RATE)
+        return new RegionElasticRateTally(region, tally_name);
+    else if (tally_type == ABSORPTION_RATE)
+        return new RegionAbsorptionRateTally(region, tally_name);
+    else if (tally_type == CAPTURE_RATE)
+        return new RegionCaptureRateTally(region, tally_name);
+    else if (tally_type == FISSION_RATE)
+        return new RegionFissionRateTally(region, tally_name);
+    else if (tally_type == TRANSPORT_RATE)
+        return new RegionTransportRateTally(region, tally_name);
+    else
+        return new RegionDiffusionRateTally(region, tally_name);
+}
+
+
+/**
+ * @brief Method to create a tally for some tally type within the geometry.
+ * @param geometry a pointer to the geometry within which to tally
+ * @param tally_type the type of tally (ie, FLUX, CAPTURE_RATE, etc.)
+ * @param tally_name a character array for the name of the tally
+ * @return a pointer to the newly created tally
+ */
+Tally* createTally(Geometry* geometry, tallyType tally_type,
+                                                  const char* tally_name) {
+
+    if (tally_type == DERIVED)
+        log_printf(ERROR, "DERIVED type tallies cannot be created by the "
+                                                        " TallyFactory.");
+
+    Tally* tally;
+
+    if (tally_type == FLUX)
+    	return new GeometryFluxTally(geometry, tally_name);
+	else if (tally_type == LEAKAGE_RATE)
+		return new GeometryLeakageRateTally(geometry, tally_name);
+    else if (tally_type == INTERCOLLISION_TIME)
+		return new GeometryInterCollisionTimeTally(geometry, 
+							   tally_name);
+    else if (tally_type == COLLISION_RATE)
+        return new GeometryCollisionRateTally(geometry, tally_name);
+    else if (tally_type == ELASTIC_RATE)
+        return new GeometryElasticRateTally(geometry, tally_name);
+    else if (tally_type == ABSORPTION_RATE)
+        return new GeometryAbsorptionRateTally(geometry, tally_name);
+    else if (tally_type == CAPTURE_RATE)
+        return new GeometryCaptureRateTally(geometry, tally_name);
+    else if (tally_type == FISSION_RATE)
+        return new GeometryFissionRateTally(geometry, tally_name);
+    else if (tally_type == TRANSPORT_RATE)
+        return new GeometryTransportRateTally(geometry, tally_name);
+    else
+        return new GeometryDiffusionRateTally(geometry, tally_name);
 }
 
 

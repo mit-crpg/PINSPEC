@@ -14,8 +14,9 @@ static std::string xs_directory = "pinspec/xs-lib/";
  * @brief Sets the directory for the cross-section library.
  * @param directory character array for the cross-section library directory
  */
-void setXSLibDirectory(const char* directory) {
-    xs_directory = directory;
+void setXSLibDirectory(char* xs_directory) {
+
+    _xs_directory = xs_directory;
     log_printf(INFO, "Set the cross-section library directory "
                         "to: %s", xs_directory.c_str());
     return;

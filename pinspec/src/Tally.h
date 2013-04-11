@@ -16,6 +16,7 @@
 #include "log.h"
 #include "arraycreator.h"
 #include "Neutron.h"
+#include "Region.h"
 #include "Material.h"
 #include "Isotope.h"
 #include "Region.h"
@@ -321,6 +322,18 @@ public:
  *          The IsotopeTally is an abstract class and must be implemented for
  *          each tallyType.
  */
+
+/* functions for creating tallies */
+Tally* createTally(Geometry* geometry, tallyType tally_type, 
+		   const char* tally_name=(char*)"");
+Tally* createTally(Region* region, tallyType tally_type, 
+		   const char* tally_name=(char*)"");
+Tally* createTally(Material* material, tallyType tally_type, 
+		   const char* tally_name=(char*)"");
+Tally* createTally(Isotope* isotope, tallyType tally_type, 
+		   const char* tally_name=(char*)"");
+
+
 class IsotopeTally: public Tally {
 
 protected:

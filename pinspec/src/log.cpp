@@ -215,6 +215,9 @@ void log_setlevel(logLevel newlevel) {
     case RESULT:
         log_printf(INFO, "Logging level set to RESULT");
         break;
+    case UNITTEST:
+        log_printf(INFO, "Logging level set to UNITTEST");
+        break;
     case ERROR:
         log_printf(INFO, "Logging level set to ERROR");
         break;
@@ -264,6 +267,10 @@ void log_setlevel(const char* newlevel) {
     else if (strcmp("RESULT", newlevel) == 0) {
         log_level = RESULT;
         log_printf(INFO, "Logging level set to RESULT");
+    }
+    else if (strcmp("UNITTEST", newlevel) == 0) {
+        log_level = UNITTEST;
+        log_printf(INFO, "Logging level set to UNITTEST");
     }
     else if (strcmp("ERROR", newlevel) == 0) {
         log_level = ERROR;
@@ -416,14 +423,31 @@ void log_printf(logLevel level, const char *format, ...) {
             }
 	    case (RESULT):
                 msg_string = std::string("[  RESULT ]  ") + message + "\n";
-	         break;
-	    case (ERROR):
-	            va_start(args, format);
-	            vsprintf(message, format, args);
- 	            va_end(args);
+                break;
+	    case (UNITTEST):
+            {
+                std::string msg = std::string(message);
+                std::string level_prefix = "[ UNITTEST]  ";
+
+                /* If message is too long for a line, split into many lines */
+                if (int(msg.length()) > line_length)
+                    msg_string = createMultilineMsg(level_prefix, msg);
+
+                /* Puts message on single line */
+                else
+                    msg_string = level_prefix + msg + "\n";
+
+	            break;
+            }
+            case (ERROR):
+	    {
+                va_start(args, format);
+                vsprintf(message, format, args);
+                va_end(args);
                 set_err(message);
                 throw std::runtime_error(message);
                 break;
+	    }
           }
 
 
