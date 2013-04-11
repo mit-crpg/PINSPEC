@@ -127,9 +127,11 @@ float Fissioner::emitNeutroneV() {
  *          a numpy array to this function. For example, a user may use this 
  *          function in Python as follows:
  * 
+ * @code
  *     num_cdf_bins = fissioner.getNumBins()
  *     numpy_cdf = numpy.zeros(num_cdf_bins)
  *     fissioner.retrieveCDF(numpy_cdf)
+ * @endcode
  *     
  * @param cdf an array of the same length as the Fissioner's CDF
  * @param num_bins the length of the input array for the CDF
@@ -156,9 +158,11 @@ void Fissioner::retrieveCDF(float* cdf, int num_bins) {
  *          to this function. For example, a user may use this function in 
  *          Python as follows:
  * 
+ * @code
  *     num_cdf_energies = fissioner.getNumBins()
  *     numpy_cdf_energies = numpy.zeros(num_cdf_energies)
  *     fissioner.retrieveCDF(numpy_cdf_energies)
+ * @endcode
  *     
  * @param cdf_energies an array of the same length as the Fissioner's CDF
  * @param num_bins the length of the input array for the CDF

@@ -27,7 +27,7 @@
  *          the "Fundamentals of Nuclear Reactor Physics", E. E. Lewis is
  *          used to generate the CDF:
  *          
- *          \f$ \chi = 0.453 * exp(-1.036E) * sinh(sqrt(2.29E)) \f$
+ *          \f$ \chi = 0.453 * exp(-1.036E) * sinh(\sqrt(2.29E)) \f$
  */
 class Fissioner {
 
