@@ -3,7 +3,6 @@ var searchData=
   ['generateabsorptionxs',['generateAbsorptionXS',['../classIsotope.html#a5411a983742a91714f984360baf07613',1,'Isotope']]],
   ['generatebincenters',['generateBinCenters',['../classTally.html#af51fb1949401345e6bf1c49ca9081282',1,'Tally']]],
   ['generatebinedges',['generateBinEdges',['../classTally.html#afffe72eb37c973de5841b58ff25f39f8',1,'Tally']]],
-  ['generatepotentialscattering',['generatePotentialScattering',['../namespacepinspec_1_1slbw.html#a7ebd0410cdcdcfbdc9bb26d6d456cbdf',1,'pinspec::slbw']]],
   ['generatetotalxs',['generateTotalXS',['../classIsotope.html#a5b68d64fbb0f9692d068a63e2e047910',1,'Isotope']]],
   ['geometry',['Geometry',['../classGeometry.html',1,'Geometry'],['../classGeometry.html#ad2146d68260c035d7236de7638c036de',1,'Geometry::Geometry()'],['../Tally_8h.html#ada80c8cd6f43d1b9d2cc2c365bd12cb7ac9aaa20273366c49f183d2cc226b20bd',1,'GEOMETRY():&#160;Tally.h']]],
   ['geometry_2eh',['Geometry.h',['../Geometry_8h.html',1,'']]],

@@ -56,8 +56,6 @@ var searchData=
   ['sety0',['setY0',['../classCircle.html#aa8a2aabeb95db6b8f7665e2ce21af7ff',1,'Circle']]],
   ['simpsons',['SIMPSONS',['../integrate_8h.html#a4bd85a3f1a50940978504c3e4e43b04daae47caa042f20199c0f74b03c7596b3e',1,'integrate.h']]],
   ['simpsons38',['SIMPSONS38',['../integrate_8h.html#a4bd85a3f1a50940978504c3e4e43b04dace15dccf7da34ce361e6aede1c120cbc',1,'integrate.h']]],
-  ['slbw_2epy',['slbw.py',['../slbw_8py.html',1,'']]],
-  ['slbwxs',['SLBWXS',['../namespacepinspec_1_1slbw.html#a4aafba8dacef99e07de3143d25345244',1,'pinspec::slbw']]],
   ['spatialtype',['spatialType',['../Geometry_8h.html#af321382c4a8d9fdb71c83382f82fac00',1,'Geometry.h']]],
   ['spatialtypes',['spatialTypes',['../Geometry_8h.html#ab8a71cfbb692cd5df3176bc4888e6b62',1,'Geometry.h']]],
   ['standard_5fdeviation',['STANDARD_DEVIATION',['../Tally_8h.html#a077779edd257c16613a1980f56a1d645a0300bc08cee254b47cf10eabb320f3eb',1,'Tally.h']]],

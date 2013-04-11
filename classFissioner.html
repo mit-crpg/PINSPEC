@@ -153,7 +153,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classFissioner.html" title="The Fissioner represents the physics of fission neutron emission.">Fissioner</a> represents the physics of fission neutron emission. </p>
 <p>The <a class="el" href="classFissioner.html" title="The Fissioner represents the physics of fission neutron emission.">Fissioner</a> class contains a cumulative distribution function (CDF) for the chi spectrum of fission neutron energies. The <a class="el" href="classFissioner.html" title="The Fissioner represents the physics of fission neutron emission.">Fissioner</a> can stochastically sample from the CDF to generate the neutron fission emisson spectrum. The Watt spectrum given in the "Fundamentals of Nuclear Reactor Physics", E. E. Lewis is used to generate the CDF:</p>
-<p><img class="formulaInl" alt="$ \chi = 0.453 * exp(-1.036E) * sinh(sqrt(2.29E)) $" src="form_1.png"/> </p>
+<p><img class="formulaInl" alt="$ \chi = 0.453 * exp(-1.036E) * sinh(\sqrt(2.29E)) $" src="form_51.png"/> </p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="afcd97a27d994cf3fefb474c9f5887e79"></a>
 <div class="memitem">
@@ -256,8 +256,10 @@ Private Attributes</h2></td></tr>
 
 <p>Fills an input array with the <a class="el" href="classFissioner.html" title="The Fissioner represents the physics of fission neutron emission.">Fissioner</a>'s CDF values. </p>
 <p>This class method is a helper function to allow the user to access the CDF array through in Python via SWIG by inputting a numpy array to this function. For example, a user may use this function in Python as follows:</p>
-<p>num_cdf_bins = fissioner.getNumBins() numpy_cdf = numpy.zeros(num_cdf_bins) fissioner.retrieveCDF(numpy_cdf)</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<div class="fragment"><div class="line">num_cdf_bins = fissioner.getNumBins()</div>
+<div class="line">numpy_cdf = numpy.zeros(num_cdf_bins)</div>
+<div class="line">fissioner.retrieveCDF(numpy_cdf)</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cdf</td><td>an array of the same length as the <a class="el" href="classFissioner.html" title="The Fissioner represents the physics of fission neutron emission.">Fissioner</a>'s CDF </td></tr>
     <tr><td class="paramname">num_bins</td><td>the length of the input array for the CDF </td></tr>
@@ -293,8 +295,10 @@ Private Attributes</h2></td></tr>
 
 <p>Fills an input array with the <a class="el" href="classFissioner.html" title="The Fissioner represents the physics of fission neutron emission.">Fissioner</a>'s CDF energies. </p>
 <p>This class method is a helper function to allow the user to access the CDF array through in Python via SWIG by inputting a numpy array to this function. For example, a user may use this function in Python as follows:</p>
-<p>num_cdf_energies = fissioner.getNumBins() numpy_cdf_energies = numpy.zeros(num_cdf_energies) fissioner.retrieveCDF(numpy_cdf_energies)</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<div class="fragment"><div class="line">num_cdf_energies = fissioner.getNumBins()</div>
+<div class="line">numpy_cdf_energies = numpy.zeros(num_cdf_energies)</div>
+<div class="line">fissioner.retrieveCDF(numpy_cdf_energies)</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cdf_energies</td><td>an array of the same length as the <a class="el" href="classFissioner.html" title="The Fissioner represents the physics of fission neutron emission.">Fissioner</a>'s CDF </td></tr>
     <tr><td class="paramname">num_bins</td><td>the length of the input array for the CDF </td></tr>
@@ -472,7 +476,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classFissioner.html">Fissioner</a></li>
-    <li class="footer">Generated on Thu Apr 11 2013 18:09:26 by
+    <li class="footer">Generated on Thu Apr 11 2013 19:02:11 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

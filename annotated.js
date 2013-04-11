@@ -3,8 +3,7 @@ var annotated =
     [ "pinspec", null, [
       [ "log", "namespacepinspec_1_1log.html", null ],
       [ "plotter", "namespacepinspec_1_1plotter.html", null ],
-      [ "process", "namespacepinspec_1_1process.html", "namespacepinspec_1_1process" ],
-      [ "slbw", "namespacepinspec_1_1slbw.html", null ]
+      [ "process", "namespacepinspec_1_1process.html", "namespacepinspec_1_1process" ]
     ] ],
     [ "Circle", "classCircle.html", "classCircle" ],
     [ "DerivedTally", "classDerivedTally.html", "classDerivedTally" ],

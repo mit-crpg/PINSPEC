@@ -53,7 +53,6 @@ var searchData=
   ['setxslibdirectory',['setXSLibDirectory',['../xsreader_8h.html#a0395358dcff5b26488118cbdca23a7d2',1,'xsreader.cpp']]],
   ['sety',['setY',['../classYPlane.html#a3acd886aef57f239f49abdf5004c0df0',1,'YPlane']]],
   ['sety0',['setY0',['../classCircle.html#aa8a2aabeb95db6b8f7665e2ce21af7ff',1,'Circle']]],
-  ['slbwxs',['SLBWXS',['../namespacepinspec_1_1slbw.html#a4aafba8dacef99e07de3143d25345244',1,'pinspec::slbw']]],
   ['start',['start',['../classTimer.html#a3a8b5272198d029779dc9302a54305a8',1,'Timer']]],
   ['stop',['stop',['../classTimer.html#a63f0eb44b27402196590a03781515dba',1,'Timer']]],
   ['subtractdoubles',['subtractDoubles',['../classTally.html#ad6055bb7f1fc7dc711d6373511be9863',1,'Tally']]],
