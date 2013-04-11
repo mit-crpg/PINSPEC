@@ -1,0 +1,84 @@
+\hypertarget{namespacepinspec_1_1log}{\section{pinspec.\-log Namespace Reference}
+\label{namespacepinspec_1_1log}\index{pinspec.\-log@{pinspec.\-log}}
+}
+
+
+Utility functions for writing log messages to the screen.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacepinspec_1_1log_a541e006b2440f460574f9f3017279a1d}{py\-\_\-printf}
+\begin{DoxyCompactList}\small\item\em Function to print a log message to the screen. \end{DoxyCompactList}\item 
+def \hyperlink{namespacepinspec_1_1log_aa886f707adb88128a27972d949cb526f}{setlevel}
+\begin{DoxyCompactList}\small\item\em Assigns the lowest level logging message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Utility functions for writing log messages to the screen. This module includes a set of wrapper functions for the logging routines provided by P\-I\-N\-S\-P\-E\-C's C++ source code. These Python methods provide an interface for creating formatted log messages using level-\/based loggin and to print them to the screen as well as a logfile. \begin{DoxyAuthor}{Author}
+Samuel Shaner 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+March 15, 2013 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespacepinspec_1_1log_a541e006b2440f460574f9f3017279a1d}{\index{pinspec\-::log@{pinspec\-::log}!py\-\_\-printf@{py\-\_\-printf}}
+\index{py\-\_\-printf@{py\-\_\-printf}!pinspec::log@{pinspec\-::log}}
+\subsubsection[{py\-\_\-printf}]{\setlength{\rightskip}{0pt plus 5cm}def pinspec.\-log.\-py\-\_\-printf (
+\begin{DoxyParamCaption}
+\item[{}]{level, }
+\item[{}]{my\-\_\-str, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)}}\label{namespacepinspec_1_1log_a541e006b2440f460574f9f3017279a1d}
+
+
+Function to print a log message to the screen. 
+
+This method is a wrapper to the log\-\_\-printf C++ routine. It allows for formatted messages to be printed to the screen in a similar fashion to the C/\-C++ printf method, but with additional formatting provided by the P\-I\-N\-S\-P\-E\-C logging utilities. An example of how this might be used in a P\-I\-N\-S\-P\-E\-C Python script is as follows\-:
+
+
+\begin{DoxyCode}
+value1 = 25
+value2 = 26.0
+log.py\_printf(\textcolor{stringliteral}{'NORMAL'}, \textcolor{stringliteral}{'My name is Will and I am %d going on'}\(\backslash\)
+                     \textcolor{stringliteral}{' %f years of age'}, value1, value2)
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & the logging level for this message \\
+\hline
+{\em my\-\_\-str} & the string to print to the screen \\
+\hline
+{\em $\ast$args} & a variable length list of values for the message string \\
+\hline
+\end{DoxyParams}
+\hypertarget{namespacepinspec_1_1log_aa886f707adb88128a27972d949cb526f}{\index{pinspec\-::log@{pinspec\-::log}!setlevel@{setlevel}}
+\index{setlevel@{setlevel}!pinspec::log@{pinspec\-::log}}
+\subsubsection[{setlevel}]{\setlength{\rightskip}{0pt plus 5cm}def pinspec.\-log.\-setlevel (
+\begin{DoxyParamCaption}
+\item[{}]{level}
+\end{DoxyParamCaption}
+)}}\label{namespacepinspec_1_1log_aa886f707adb88128a27972d949cb526f}
+
+
+Assigns the lowest level logging message. 
+
+Sets the lowest level logging message to print to the screen. This controls the lowest level for both logging messages in the C++ source code as well as the user's P\-I\-N\-S\-P\-E\-C Python input file. This function would be called at the beginning of the input file as follows\-:
+
+
+\begin{DoxyCode}
+log.setlevel(\textcolor{stringliteral}{'INFO'})
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & the minimum logging level ('D\-E\-B\-U\-G', 'I\-N\-F\-O', etc) \\
+\hline
+\end{DoxyParams}

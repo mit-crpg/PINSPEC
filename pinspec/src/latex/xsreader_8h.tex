@@ -1,0 +1,121 @@
+\hypertarget{xsreader_8h}{\section{xsreader.\-h File Reference}
+\label{xsreader_8h}\index{xsreader.\-h@{xsreader.\-h}}
+}
+
+
+Utility functions to parse in E\-N\-D\-F cross-\/sections from text files into data arrays.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{xsreader_8h_a0395358dcff5b26488118cbdca23a7d2}{set\-X\-S\-Lib\-Directory} (const char $\ast$directory)
+\begin{DoxyCompactList}\small\item\em Sets the directory for the cross-\/section library. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{xsreader_8h_afd5ca20dba7e58dcab7f523d8c56d678}{get\-X\-S\-Lib\-Directory} ()
+\begin{DoxyCompactList}\small\item\em Returns the directory for the cross-\/section library directory. \end{DoxyCompactList}\item 
+int \hyperlink{xsreader_8h_a7e45e26a4340918ca9410507727bed39}{restore\-X\-S\-Library} ()
+\begin{DoxyCompactList}\small\item\em Restores the cross-\/section library to its original, installed state. \end{DoxyCompactList}\item 
+int \hyperlink{xsreader_8h_ac6e921d203d9d3612bdf131f061aa987}{parse\-Cross\-Sections} (const char $\ast$file, float $\ast$energies, float $\ast$xs\-\_\-values)
+\begin{DoxyCompactList}\small\item\em Parses an input file of cross-\/section data. \end{DoxyCompactList}\item 
+int \hyperlink{xsreader_8h_a7cb6ea48b232c63987a680626e8e0df1}{get\-Num\-Cross\-Section\-Data\-Points} (const char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Counts the number of lines in an cross-\/section input file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Utility functions to parse in E\-N\-D\-F cross-\/sections from text files into data arrays. \begin{DoxyAuthor}{Author}
+William Boyd (\href{mailto:wboyd@mit.edu}{\tt wboyd@mit.\-edu}) 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+March 20, 2012 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{xsreader_8h_a7cb6ea48b232c63987a680626e8e0df1}{\index{xsreader.\-h@{xsreader.\-h}!get\-Num\-Cross\-Section\-Data\-Points@{get\-Num\-Cross\-Section\-Data\-Points}}
+\index{get\-Num\-Cross\-Section\-Data\-Points@{get\-Num\-Cross\-Section\-Data\-Points}!xsreader.h@{xsreader.\-h}}
+\subsubsection[{get\-Num\-Cross\-Section\-Data\-Points}]{\setlength{\rightskip}{0pt plus 5cm}int get\-Num\-Cross\-Section\-Data\-Points (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}}\label{xsreader_8h_a7cb6ea48b232c63987a680626e8e0df1}
+
+
+Counts the number of lines in an cross-\/section input file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & the file of interest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of lines in the file 
+\end{DoxyReturn}
+\hypertarget{xsreader_8h_afd5ca20dba7e58dcab7f523d8c56d678}{\index{xsreader.\-h@{xsreader.\-h}!get\-X\-S\-Lib\-Directory@{get\-X\-S\-Lib\-Directory}}
+\index{get\-X\-S\-Lib\-Directory@{get\-X\-S\-Lib\-Directory}!xsreader.h@{xsreader.\-h}}
+\subsubsection[{get\-X\-S\-Lib\-Directory}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ get\-X\-S\-Lib\-Directory (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{xsreader_8h_afd5ca20dba7e58dcab7f523d8c56d678}
+
+
+Returns the directory for the cross-\/section library directory. 
+
+\begin{DoxyReturn}{Returns}
+a character array with the cross-\/section library directory 
+\end{DoxyReturn}
+\hypertarget{xsreader_8h_ac6e921d203d9d3612bdf131f061aa987}{\index{xsreader.\-h@{xsreader.\-h}!parse\-Cross\-Sections@{parse\-Cross\-Sections}}
+\index{parse\-Cross\-Sections@{parse\-Cross\-Sections}!xsreader.h@{xsreader.\-h}}
+\subsubsection[{parse\-Cross\-Sections}]{\setlength{\rightskip}{0pt plus 5cm}int parse\-Cross\-Sections (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{file, }
+\item[{float $\ast$}]{energies, }
+\item[{float $\ast$}]{xs\-\_\-values}
+\end{DoxyParamCaption}
+)}}\label{xsreader_8h_ac6e921d203d9d3612bdf131f061aa987}
+
+
+Parses an input file of cross-\/section data. 
+
+Loads the energy values (as e\-V) and the cross-\/section values (barns) into two float arrays. It takes in the energies in Me\-V since that is the most typical unit for E\-N\-D\-F nuclear data, but converts the values into e\-V during parsing. 
+\begin{DoxyParams}{Parameters}
+{\em file} & the filename for the data \\
+\hline
+{\em energies} & a pointer to a float array for the energies (Me\-V) \\
+\hline
+{\em xs\-\_\-values} & a pointer to a float array fo the xs values (barns) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of data points 
+\end{DoxyReturn}
+\hypertarget{xsreader_8h_a7e45e26a4340918ca9410507727bed39}{\index{xsreader.\-h@{xsreader.\-h}!restore\-X\-S\-Library@{restore\-X\-S\-Library}}
+\index{restore\-X\-S\-Library@{restore\-X\-S\-Library}!xsreader.h@{xsreader.\-h}}
+\subsubsection[{restore\-X\-S\-Library}]{\setlength{\rightskip}{0pt plus 5cm}int restore\-X\-S\-Library (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{xsreader_8h_a7e45e26a4340918ca9410507727bed39}
+
+
+Restores the cross-\/section library to its original, installed state. 
+
+This function copies the original cross-\/section data files installed with P\-I\-N\-S\-P\-E\-C from the pinspec/xs-\/lib/\-Backup\-X\-S folder into the main cross-\/section library directory pinspec/xs-\/lib. This function is primarily when a user is using P\-I\-N\-S\-P\-E\-C's S\-L\-B\-W module to create artifical cross-\/sections from Reich-\/\-Moore date. This function is called anytime the python pinspec module is imported. \begin{DoxyReturn}{Returns}
+returns an int representing whether or not the copy was successful 
+\end{DoxyReturn}
+\hypertarget{xsreader_8h_a0395358dcff5b26488118cbdca23a7d2}{\index{xsreader.\-h@{xsreader.\-h}!set\-X\-S\-Lib\-Directory@{set\-X\-S\-Lib\-Directory}}
+\index{set\-X\-S\-Lib\-Directory@{set\-X\-S\-Lib\-Directory}!xsreader.h@{xsreader.\-h}}
+\subsubsection[{set\-X\-S\-Lib\-Directory}]{\setlength{\rightskip}{0pt plus 5cm}void set\-X\-S\-Lib\-Directory (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{directory}
+\end{DoxyParamCaption}
+)}}\label{xsreader_8h_a0395358dcff5b26488118cbdca23a7d2}
+
+
+Sets the directory for the cross-\/section library. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em directory} & character array for the cross-\/section library directory \\
+\hline
+\end{DoxyParams}

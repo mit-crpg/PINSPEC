@@ -1,10 +1,10 @@
-/*
- * xsreader.h
+/**
+ * @file xsreader.h
+ * @brief Utility functions to parse in ENDF cross-sections from text files
+ *        into data arrays.
+ * @author William Boyd (wboyd@mit.edu)
+ * @date March 20, 2012
  *
- *  Created on: Mar 20, 2012
- *      Author: William Boyd
- *				MIT, Course 22
- *              wboyd@mit.edu
  */
 
 #ifndef XSREADER_H_
@@ -18,15 +18,14 @@
 #include <stdlib.h>
 #include <string>
 #include "log.h"
+#endif
 
 
-void setXSLibDirectory(char* xs_directory);
-char* getXSLibDirectory();
+void setXSLibDirectory(const char* directory);
+const char* getXSLibDirectory();
 int restoreXSLibrary();
 int parseCrossSections(const char* file, float* energies, float* xs_values);
-int getNumCrossSectionDataPoints(const char* file);
+int getNumCrossSectionDataPoints(const char* filename);
 
-
-#endif
 
 #endif /* XSREADER_H_ */

@@ -1,0 +1,71 @@
+.TH "pinspec/src/Geometry.h" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pinspec/src/Geometry.h \- 
+.PP
+The \fBGeometry\fP class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBGeometry\fP"
+.br
+.RI "\fIThe \fBGeometry\fP represents the highest level entity in which a neutron may reside during a PINSPEC simulaiton\&. The geometry consists of one or more regions and controls the highest level Monte Carlo kernel\&. \fP"
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef enum \fBspatialTypes\fP \fBspatialType\fP"
+.br
+.RI "\fIA spatial type for the geometry\&. \fP"
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBspatialTypes\fP { \fBINFINITE_HOMOGENEOUS\fP, \fBHOMOGENEOUS_EQUIVALENCE\fP, \fBHETEROGENEOUS\fP }"
+.br
+.RI "\fIThe spatial types for the geometry\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBGeometry\fP class\&. 
+
+\fBAuthor:\fP
+.RS 4
+William Boyd (wboyd@mit.edu) 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+March 6, 2013\&. 
+.RE
+.PP
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBspatialTypes\fP"
+
+.PP
+The spatial types for the geometry\&. 
+.PP
+\fBEnumerator: \fP
+.in +1c
+.TP
+\fB\fIINFINITE_HOMOGENEOUS \fP\fP
+An infinite homogeneous medium 
+.TP
+\fB\fIHOMOGENEOUS_EQUIVALENCE \fP\fP
+A heterogeneous-homogeneous equivalent geometry 
+.TP
+\fB\fIHETEROGENEOUS \fP\fP
+A heterogenous geometry built of regions and surfaces 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

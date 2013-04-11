@@ -1,0 +1,66 @@
+.TH "pinspec/plotter.py" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pinspec/plotter.py \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBpinspec\&.plotter\fP"
+.br
+.RI "\fIThe plotter module provides utility functions to plot data from PINSPEC's C++ classes, in particular, tally data and cross-sections, thermal scattering PDFs/CDFs, etc\&. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBpinspec\&.plotter\&.plotMicroXS\fP"
+.br
+.RI "\fIPlots the microscopoic cross-section(s) for one or more reaction rates for an isotope\&. \fP"
+.ti -1c
+.RI "def \fBpinspec\&.plotter\&.plotMacroXS\fP"
+.br
+.RI "\fIPlots the macroscopic cross-section(s) for one or more reaction rates for a material\&. \fP"
+.ti -1c
+.RI "def \fBpinspec\&.plotter\&.plotFlux\fP"
+.br
+.RI "\fIPlots one or more flux tallies by energy\&. \fP"
+.ti -1c
+.RI "def \fBpinspec\&.plotter\&.plotThermalScattering\fP"
+.br
+.RI "\fIPlots the thermal scattering PDFs and CDFs for an isotope\&. \fP"
+.ti -1c
+.RI "def \fBpinspec\&.plotter\&.plotFissionSpectrum\fP"
+.br
+.RI "\fIPlots the fission spectrum PDF and CDF\&. \fP"
+.ti -1c
+.RI "def \fBpinspec\&.plotter\&.plotRI\fP"
+.br
+.RI "\fIPlots a resonance integral (RIEff or RITrue) as a step function\&. \fP"
+.ti -1c
+.RI "def \fBpinspec\&.plotter\&.plotGroupXS\fP"
+.br
+.RI "\fIPlots a multi-group cross-section as a step function\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBpinspec\&.plotter\&.flux_plot_num\fP = 0"
+.br
+.RI "\fIA static variable to auto-generate unique filenames for flux plots\&. \fP"
+.ti -1c
+.RI "string \fBpinspec\&.plotter\&.subdirectory\fP = '/plots/'"
+.br
+.RI "\fIA static variable for the output directory in which to save plots\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

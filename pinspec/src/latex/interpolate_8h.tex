@@ -1,0 +1,80 @@
+\hypertarget{interpolate_8h}{\section{interpolate.\-h File Reference}
+\label{interpolate_8h}\index{interpolate.\-h@{interpolate.\-h}}
+}
+
+
+Utility functions for linear interpolation of 1\-D functions.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , typename U $>$ }\\int \hyperlink{interpolate_8h_a374510395d2534cace365a7f324e8dfd}{find\-Upper\-Index} (T $\ast$x, int upper\-\_\-bound, int lower\-\_\-bound, U pt)
+\begin{DoxyCompactList}\small\item\em This function finds the index of the first element in an array that is greater than the given parameter value. This is a recursive function and it uses the binary search algorithm to find the upper bound index. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , typename U , typename P $>$ }\\P \hyperlink{interpolate_8h_a97a62c8e74871861af5dfce758d2caba}{linear\-Interp} (T $\ast$x, T $\ast$y, int length, U pt)
+\begin{DoxyCompactList}\small\item\em This function takes in the x and y values of a 1\-D function and returns the linearly interpolated y value at a particular x-\/coordinate (pt). It assumes that the values given in x are ordered from least to greatest. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Utility functions for linear interpolation of 1\-D functions. \begin{DoxyAuthor}{Author}
+William Boyd (\href{mailto:wboyd@mit.edu}{\tt wboyd@mit.\-edu}) 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+March 13, 2012 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{interpolate_8h_a374510395d2534cace365a7f324e8dfd}{\index{interpolate.\-h@{interpolate.\-h}!find\-Upper\-Index@{find\-Upper\-Index}}
+\index{find\-Upper\-Index@{find\-Upper\-Index}!interpolate.h@{interpolate.\-h}}
+\subsubsection[{find\-Upper\-Index}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T , typename U $>$ int find\-Upper\-Index (
+\begin{DoxyParamCaption}
+\item[{T $\ast$}]{x, }
+\item[{int}]{upper\-\_\-bound, }
+\item[{int}]{lower\-\_\-bound, }
+\item[{U}]{pt}
+\end{DoxyParamCaption}
+)}}\label{interpolate_8h_a374510395d2534cace365a7f324e8dfd}
+
+
+This function finds the index of the first element in an array that is greater than the given parameter value. This is a recursive function and it uses the binary search algorithm to find the upper bound index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & array of values to search \\
+\hline
+{\em upper\-\_\-bound} & the current upper bound at this level of recursion \\
+\hline
+{\em lower\-\_\-bound} & the current lower bound at this level of recursion \\
+\hline
+{\em pt} & the value to search for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the index of the first element in x which is greater than pt 
+\end{DoxyReturn}
+\hypertarget{interpolate_8h_a97a62c8e74871861af5dfce758d2caba}{\index{interpolate.\-h@{interpolate.\-h}!linear\-Interp@{linear\-Interp}}
+\index{linear\-Interp@{linear\-Interp}!interpolate.h@{interpolate.\-h}}
+\subsubsection[{linear\-Interp}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T , typename U , typename P $>$ P linear\-Interp (
+\begin{DoxyParamCaption}
+\item[{T $\ast$}]{x, }
+\item[{T $\ast$}]{y, }
+\item[{int}]{length, }
+\item[{U}]{pt}
+\end{DoxyParamCaption}
+)}}\label{interpolate_8h_a97a62c8e74871861af5dfce758d2caba}
+
+
+This function takes in the x and y values of a 1\-D function and returns the linearly interpolated y value at a particular x-\/coordinate (pt). It assumes that the values given in x are ordered from least to greatest. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & vector of x values \\
+\hline
+{\em y} & vector of y values \\
+\hline
+{\em length} & the number of x and y \\
+\hline
+{\em pt} & x-\/coordinate we wish to interpolate \\
+\hline
+\end{DoxyParams}

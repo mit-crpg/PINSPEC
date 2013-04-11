@@ -1,0 +1,61 @@
+.TH "IsotopeFissionRateTally" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+IsotopeFissionRateTally \- 
+.PP
+A class for tallying the fission rate for an isotope\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include 'pinspec/src/Tally\&.h'\fP
+.PP
+Inherits \fBIsotopeTally\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBIsotopeFissionRateTally\fP (\fBIsotope\fP *isotope, const char *tally_name=(char *)'')"
+.br
+.RI "\fI\fBIsotopeFissionRateTally\fP constructor calls the \fBIsotopeTally\fP constructor and \fBTally\fP constructors and sets the tally type to FISSION_RATE\&. \fP"
+.ti -1c
+.RI "void \fBtally\fP (\fBneutron\fP *\fBneutron\fP)"
+.br
+.RI "\fI\fBTally\fP the isotope fission rate by incrementing the tally by $ \frac{\sigma_f}{\Sigma_t} $ at the neutron's energy\&. \fP"
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+A class for tallying the fission rate for an isotope\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "IsotopeFissionRateTally::IsotopeFissionRateTally (\fBIsotope\fP *isotope, const char *tally_name = \fC(char*)''\fP)\fC [inline]\fP"
+
+.PP
+\fBIsotopeFissionRateTally\fP constructor calls the \fBIsotopeTally\fP constructor and \fBTally\fP constructors and sets the tally type to FISSION_RATE\&. \fBParameters:\fP
+.RS 4
+\fIisotope\fP a pointer to the isotope within which to tally 
+.br
+\fItally_name\fP a character array for the tally name (optional) 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void IsotopeFissionRateTally::tally (\fBneutron\fP *neutron)\fC [virtual]\fP"
+
+.PP
+\fBTally\fP the isotope fission rate by incrementing the tally by $ \frac{\sigma_f}{\Sigma_t} $ at the neutron's energy\&. \fBParameters:\fP
+.RS 4
+\fIneutron\fP the neutron of interest 
+.RE
+.PP
+
+.PP
+Implements \fBIsotopeTally\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

@@ -1,0 +1,322 @@
+\hypertarget{integrate_8h}{\section{pinspec/src/integrate.h File Reference}
+\label{integrate_8h}\index{pinspec/src/integrate.\-h@{pinspec/src/integrate.\-h}}
+}
+
+
+Utility functions for numerical integration of 1\-D functions.  
+
+
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{integrate_8h_aa160402da29525855473b83b57814f1b}{typedef enum \hyperlink{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04d}{integration\-Schemes} \hyperlink{integrate_8h_aa160402da29525855473b83b57814f1b}{integration\-Scheme}}\label{integrate_8h_aa160402da29525855473b83b57814f1b}
+
+\begin{DoxyCompactList}\small\item\em Numerical integration methods. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04d}{integration\-Schemes} \{ \\*
+\hyperlink{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04dafc2a7695ad9bb18a55fb67de858e97f1}{R\-I\-E\-M\-A\-N\-N\-\_\-\-L\-E\-F\-T}, 
+\hyperlink{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04da881bbba9969e1dd00c92f0d0531285ab}{R\-I\-E\-M\-A\-N\-N\-\_\-\-R\-I\-G\-H\-T}, 
+\hyperlink{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04daceaf3f038b41d438fe877b6a804e1274}{R\-I\-E\-M\-A\-N\-N\-\_\-\-C\-E\-N\-T\-E\-R}, 
+\hyperlink{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04da492124afa39e48a6ceb6b989957e8e65}{T\-R\-A\-P\-E\-Z\-O\-I\-D\-A\-L}, 
+\\*
+\hyperlink{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04daae47caa042f20199c0f74b03c7596b3e}{S\-I\-M\-P\-S\-O\-N\-S}, 
+\hyperlink{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04dace15dccf7da34ce361e6aede1c120cbc}{S\-I\-M\-P\-S\-O\-N\-S38}, 
+\hyperlink{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04daef4dd4bf91b70773492df324d5769f58}{B\-O\-O\-L\-E\-S}
+ \}
+\begin{DoxyCompactList}\small\item\em Numerical integration methods. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , typename U $>$ }\\void \hyperlink{integrate_8h_a6986dcb4f4d8dce75ba3a907b9da75aa}{cumulative\-Integral} (T $\ast$x, T $\ast$y, U $\ast$cdf, int length, \hyperlink{integrate_8h_aa160402da29525855473b83b57814f1b}{integration\-Scheme} scheme)
+\begin{DoxyCompactList}\small\item\em Performs a cumulative numerical integral over arrays of x and y values using the specificed integration method. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\double \hyperlink{integrate_8h_a6343365f0d65a315eae7cc641f2732af}{compute\-Riemann\-Left} (T $\ast$x, T $\ast$y, int length)
+\begin{DoxyCompactList}\small\item\em Performs a numerical integral using the left-\/centered Riemann numerical integration method. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\double \hyperlink{integrate_8h_af71a2826d64f1615a6e7c8e01688b675}{compute\-Riemann\-Right} (T $\ast$x, T $\ast$y, int length)
+\begin{DoxyCompactList}\small\item\em Performs a numerical integral using the right-\/centered Riemann numerical integration method. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\double \hyperlink{integrate_8h_ad4dfff0713192e61bd14a825ec198af7}{compute\-Riemann\-Center} (T $\ast$x, T $\ast$y, int length)
+\begin{DoxyCompactList}\small\item\em Performs a numerical integral using the midpoint-\/centered Riemann numerical integration method. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\double \hyperlink{integrate_8h_a7b5a20ca959bc8a9b55c41c5f1dffcca}{compute\-Trapezoidal} (T $\ast$x, T $\ast$y, int length)
+\begin{DoxyCompactList}\small\item\em Performs a numerical integral using the trapezoidal numerical integration method. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\double \hyperlink{integrate_8h_ac5a99a2d09d82e7c531868271bdb532f}{compute\-Simpsons} (T $\ast$x, T $\ast$y, int length)
+\begin{DoxyCompactList}\small\item\em Performs a numerical integral using the Simpson's numerical integration method. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\double \hyperlink{integrate_8h_a24c3c46489d761340e9e1685925b110c}{compute\-Simpsons38} (T $\ast$x, T $\ast$y, int length)
+\begin{DoxyCompactList}\small\item\em Performs a numerical integral using the Simpson's 3/8ths numerical integration method. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\double \hyperlink{integrate_8h_ae98eaa91a738695a69473f278b4e8b14}{compute\-Booles} (T $\ast$x, T $\ast$y, int length)
+\begin{DoxyCompactList}\small\item\em Performs a numerical integral using the Boole's numerical integration method. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\double \hyperlink{integrate_8h_a4b658e4034d56348ca7dd65aee07d64a}{integrate} (T $\ast$x, T $\ast$y, int length, \hyperlink{integrate_8h_aa160402da29525855473b83b57814f1b}{integration\-Scheme} scheme)
+\begin{DoxyCompactList}\small\item\em Performs a 1\-D numerical integral over arrays of x and y values using the specified integration scheme. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Utility functions for numerical integration of 1\-D functions. This module provides a set of templated integration methods for both normal numerical integration and cumulative numerical integration. It implements the Riemann integration method with left-\/aligned, right-\/aligned and midpoint methods, the trapezoidal integration, and higher-\/order Simpsons, Simpson's 3/8ths and Boole's methods. \begin{DoxyAuthor}{Author}
+William Boyd (\href{mailto:wboyd@mit.edu}{\tt wboyd@mit.\-edu}) 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+February 9, 2012 
+\end{DoxyDate}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04d}{\index{integrate.\-h@{integrate.\-h}!integration\-Schemes@{integration\-Schemes}}
+\index{integration\-Schemes@{integration\-Schemes}!integrate.h@{integrate.\-h}}
+\subsubsection[{integration\-Schemes}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf integration\-Schemes}}}\label{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04d}
+
+
+Numerical integration methods. 
+
+\begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{R\-I\-E\-M\-A\-N\-N\-\_\-\-L\-E\-F\-T@{R\-I\-E\-M\-A\-N\-N\-\_\-\-L\-E\-F\-T}!integrate.\-h@{integrate.\-h}}\index{integrate.\-h@{integrate.\-h}!R\-I\-E\-M\-A\-N\-N\-\_\-\-L\-E\-F\-T@{R\-I\-E\-M\-A\-N\-N\-\_\-\-L\-E\-F\-T}}\item[{\em 
+\hypertarget{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04dafc2a7695ad9bb18a55fb67de858e97f1}{R\-I\-E\-M\-A\-N\-N\-\_\-\-L\-E\-F\-T}\label{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04dafc2a7695ad9bb18a55fb67de858e97f1}
+}]Left-\/aligned Riemann integration method \index{R\-I\-E\-M\-A\-N\-N\-\_\-\-R\-I\-G\-H\-T@{R\-I\-E\-M\-A\-N\-N\-\_\-\-R\-I\-G\-H\-T}!integrate.\-h@{integrate.\-h}}\index{integrate.\-h@{integrate.\-h}!R\-I\-E\-M\-A\-N\-N\-\_\-\-R\-I\-G\-H\-T@{R\-I\-E\-M\-A\-N\-N\-\_\-\-R\-I\-G\-H\-T}}\item[{\em 
+\hypertarget{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04da881bbba9969e1dd00c92f0d0531285ab}{R\-I\-E\-M\-A\-N\-N\-\_\-\-R\-I\-G\-H\-T}\label{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04da881bbba9969e1dd00c92f0d0531285ab}
+}]Right-\/aligned Riemann integration method \index{R\-I\-E\-M\-A\-N\-N\-\_\-\-C\-E\-N\-T\-E\-R@{R\-I\-E\-M\-A\-N\-N\-\_\-\-C\-E\-N\-T\-E\-R}!integrate.\-h@{integrate.\-h}}\index{integrate.\-h@{integrate.\-h}!R\-I\-E\-M\-A\-N\-N\-\_\-\-C\-E\-N\-T\-E\-R@{R\-I\-E\-M\-A\-N\-N\-\_\-\-C\-E\-N\-T\-E\-R}}\item[{\em 
+\hypertarget{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04daceaf3f038b41d438fe877b6a804e1274}{R\-I\-E\-M\-A\-N\-N\-\_\-\-C\-E\-N\-T\-E\-R}\label{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04daceaf3f038b41d438fe877b6a804e1274}
+}]Midpoint Riemann integration method \index{T\-R\-A\-P\-E\-Z\-O\-I\-D\-A\-L@{T\-R\-A\-P\-E\-Z\-O\-I\-D\-A\-L}!integrate.\-h@{integrate.\-h}}\index{integrate.\-h@{integrate.\-h}!T\-R\-A\-P\-E\-Z\-O\-I\-D\-A\-L@{T\-R\-A\-P\-E\-Z\-O\-I\-D\-A\-L}}\item[{\em 
+\hypertarget{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04da492124afa39e48a6ceb6b989957e8e65}{T\-R\-A\-P\-E\-Z\-O\-I\-D\-A\-L}\label{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04da492124afa39e48a6ceb6b989957e8e65}
+}]Trapezoidal integration method \index{S\-I\-M\-P\-S\-O\-N\-S@{S\-I\-M\-P\-S\-O\-N\-S}!integrate.\-h@{integrate.\-h}}\index{integrate.\-h@{integrate.\-h}!S\-I\-M\-P\-S\-O\-N\-S@{S\-I\-M\-P\-S\-O\-N\-S}}\item[{\em 
+\hypertarget{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04daae47caa042f20199c0f74b03c7596b3e}{S\-I\-M\-P\-S\-O\-N\-S}\label{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04daae47caa042f20199c0f74b03c7596b3e}
+}]Simpson's integration method \index{S\-I\-M\-P\-S\-O\-N\-S38@{S\-I\-M\-P\-S\-O\-N\-S38}!integrate.\-h@{integrate.\-h}}\index{integrate.\-h@{integrate.\-h}!S\-I\-M\-P\-S\-O\-N\-S38@{S\-I\-M\-P\-S\-O\-N\-S38}}\item[{\em 
+\hypertarget{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04dace15dccf7da34ce361e6aede1c120cbc}{S\-I\-M\-P\-S\-O\-N\-S38}\label{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04dace15dccf7da34ce361e6aede1c120cbc}
+}]Simpson's 3/8ths integration method \index{B\-O\-O\-L\-E\-S@{B\-O\-O\-L\-E\-S}!integrate.\-h@{integrate.\-h}}\index{integrate.\-h@{integrate.\-h}!B\-O\-O\-L\-E\-S@{B\-O\-O\-L\-E\-S}}\item[{\em 
+\hypertarget{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04daef4dd4bf91b70773492df324d5769f58}{B\-O\-O\-L\-E\-S}\label{integrate_8h_a4bd85a3f1a50940978504c3e4e43b04daef4dd4bf91b70773492df324d5769f58}
+}]Boole's integration method \end{description}
+\end{Desc}
+
+
+
+\subsection{Function Documentation}
+\hypertarget{integrate_8h_ae98eaa91a738695a69473f278b4e8b14}{\index{integrate.\-h@{integrate.\-h}!compute\-Booles@{compute\-Booles}}
+\index{compute\-Booles@{compute\-Booles}!integrate.h@{integrate.\-h}}
+\subsubsection[{compute\-Booles}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ double compute\-Booles (
+\begin{DoxyParamCaption}
+\item[{T $\ast$}]{x, }
+\item[{T $\ast$}]{y, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{integrate_8h_ae98eaa91a738695a69473f278b4e8b14}
+
+
+Performs a numerical integral using the Boole's numerical integration method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the the x values \\
+\hline
+{\em y} & the y values \\
+\hline
+{\em length} & the length of the x and y arrays \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the integral value 
+\end{DoxyReturn}
+\hypertarget{integrate_8h_ad4dfff0713192e61bd14a825ec198af7}{\index{integrate.\-h@{integrate.\-h}!compute\-Riemann\-Center@{compute\-Riemann\-Center}}
+\index{compute\-Riemann\-Center@{compute\-Riemann\-Center}!integrate.h@{integrate.\-h}}
+\subsubsection[{compute\-Riemann\-Center}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ double compute\-Riemann\-Center (
+\begin{DoxyParamCaption}
+\item[{T $\ast$}]{x, }
+\item[{T $\ast$}]{y, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{integrate_8h_ad4dfff0713192e61bd14a825ec198af7}
+
+
+Performs a numerical integral using the midpoint-\/centered Riemann numerical integration method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the the x values \\
+\hline
+{\em y} & the y values \\
+\hline
+{\em length} & the length of the x and y arrays \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the integral value 
+\end{DoxyReturn}
+\hypertarget{integrate_8h_a6343365f0d65a315eae7cc641f2732af}{\index{integrate.\-h@{integrate.\-h}!compute\-Riemann\-Left@{compute\-Riemann\-Left}}
+\index{compute\-Riemann\-Left@{compute\-Riemann\-Left}!integrate.h@{integrate.\-h}}
+\subsubsection[{compute\-Riemann\-Left}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ double compute\-Riemann\-Left (
+\begin{DoxyParamCaption}
+\item[{T $\ast$}]{x, }
+\item[{T $\ast$}]{y, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{integrate_8h_a6343365f0d65a315eae7cc641f2732af}
+
+
+Performs a numerical integral using the left-\/centered Riemann numerical integration method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the the x values \\
+\hline
+{\em y} & the y values \\
+\hline
+{\em length} & the length of the x and y arrays \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the integral value 
+\end{DoxyReturn}
+\hypertarget{integrate_8h_af71a2826d64f1615a6e7c8e01688b675}{\index{integrate.\-h@{integrate.\-h}!compute\-Riemann\-Right@{compute\-Riemann\-Right}}
+\index{compute\-Riemann\-Right@{compute\-Riemann\-Right}!integrate.h@{integrate.\-h}}
+\subsubsection[{compute\-Riemann\-Right}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ double compute\-Riemann\-Right (
+\begin{DoxyParamCaption}
+\item[{T $\ast$}]{x, }
+\item[{T $\ast$}]{y, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{integrate_8h_af71a2826d64f1615a6e7c8e01688b675}
+
+
+Performs a numerical integral using the right-\/centered Riemann numerical integration method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the the x values \\
+\hline
+{\em y} & the y values \\
+\hline
+{\em length} & the length of the x and y arrays \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the integral value 
+\end{DoxyReturn}
+\hypertarget{integrate_8h_ac5a99a2d09d82e7c531868271bdb532f}{\index{integrate.\-h@{integrate.\-h}!compute\-Simpsons@{compute\-Simpsons}}
+\index{compute\-Simpsons@{compute\-Simpsons}!integrate.h@{integrate.\-h}}
+\subsubsection[{compute\-Simpsons}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ double compute\-Simpsons (
+\begin{DoxyParamCaption}
+\item[{T $\ast$}]{x, }
+\item[{T $\ast$}]{y, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{integrate_8h_ac5a99a2d09d82e7c531868271bdb532f}
+
+
+Performs a numerical integral using the Simpson's numerical integration method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the the x values \\
+\hline
+{\em y} & the y values \\
+\hline
+{\em length} & the length of the x and y arrays \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the integral value 
+\end{DoxyReturn}
+\hypertarget{integrate_8h_a24c3c46489d761340e9e1685925b110c}{\index{integrate.\-h@{integrate.\-h}!compute\-Simpsons38@{compute\-Simpsons38}}
+\index{compute\-Simpsons38@{compute\-Simpsons38}!integrate.h@{integrate.\-h}}
+\subsubsection[{compute\-Simpsons38}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ double compute\-Simpsons38 (
+\begin{DoxyParamCaption}
+\item[{T $\ast$}]{x, }
+\item[{T $\ast$}]{y, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{integrate_8h_a24c3c46489d761340e9e1685925b110c}
+
+
+Performs a numerical integral using the Simpson's 3/8ths numerical integration method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the the x values \\
+\hline
+{\em y} & the y values \\
+\hline
+{\em length} & the length of the x and y arrays \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the integral value 
+\end{DoxyReturn}
+\hypertarget{integrate_8h_a7b5a20ca959bc8a9b55c41c5f1dffcca}{\index{integrate.\-h@{integrate.\-h}!compute\-Trapezoidal@{compute\-Trapezoidal}}
+\index{compute\-Trapezoidal@{compute\-Trapezoidal}!integrate.h@{integrate.\-h}}
+\subsubsection[{compute\-Trapezoidal}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ double compute\-Trapezoidal (
+\begin{DoxyParamCaption}
+\item[{T $\ast$}]{x, }
+\item[{T $\ast$}]{y, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{integrate_8h_a7b5a20ca959bc8a9b55c41c5f1dffcca}
+
+
+Performs a numerical integral using the trapezoidal numerical integration method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the the x values \\
+\hline
+{\em y} & the y values \\
+\hline
+{\em length} & the length of the x and y arrays \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the integral value 
+\end{DoxyReturn}
+\hypertarget{integrate_8h_a6986dcb4f4d8dce75ba3a907b9da75aa}{\index{integrate.\-h@{integrate.\-h}!cumulative\-Integral@{cumulative\-Integral}}
+\index{cumulative\-Integral@{cumulative\-Integral}!integrate.h@{integrate.\-h}}
+\subsubsection[{cumulative\-Integral}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T , typename U $>$ void cumulative\-Integral (
+\begin{DoxyParamCaption}
+\item[{T $\ast$}]{x, }
+\item[{T $\ast$}]{y, }
+\item[{U $\ast$}]{cdf, }
+\item[{int}]{length, }
+\item[{{\bf integration\-Scheme}}]{scheme}
+\end{DoxyParamCaption}
+)}}\label{integrate_8h_a6986dcb4f4d8dce75ba3a907b9da75aa}
+
+
+Performs a cumulative numerical integral over arrays of x and y values using the specificed integration method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the the x values \\
+\hline
+{\em y} & the y values \\
+\hline
+{\em cdf} & the array of cdf values at each value of x and y \\
+\hline
+{\em length} & the length of the x and y arrays \\
+\hline
+{\em scheme} & the integration scheme \\
+\hline
+\end{DoxyParams}
+\hypertarget{integrate_8h_a4b658e4034d56348ca7dd65aee07d64a}{\index{integrate.\-h@{integrate.\-h}!integrate@{integrate}}
+\index{integrate@{integrate}!integrate.h@{integrate.\-h}}
+\subsubsection[{integrate}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ double integrate (
+\begin{DoxyParamCaption}
+\item[{T $\ast$}]{x, }
+\item[{T $\ast$}]{y, }
+\item[{int}]{length, }
+\item[{{\bf integration\-Scheme}}]{scheme}
+\end{DoxyParamCaption}
+)}}\label{integrate_8h_a4b658e4034d56348ca7dd65aee07d64a}
+
+
+Performs a 1\-D numerical integral over arrays of x and y values using the specified integration scheme. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the the x values \\
+\hline
+{\em y} & the y values \\
+\hline
+{\em length} & the length of the x and y arrays \\
+\hline
+{\em scheme} & integration scheme \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the integral value 
+\end{DoxyReturn}

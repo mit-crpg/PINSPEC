@@ -3,6 +3,6 @@ Tally name:
 Tally type: FISSION_RATE Reaction Rate
 Tally Domain: Geometry
 Equally spaced bins with width = 10000000.000000
-# batches: 10	, # bins: 1
+# batches: 50	, # bins: 1
 Bin center, Mu, Variance, Std Dev, Rel Err
-5000000.0000000000, 0.3519299003, 0.0000013357, 0.0011557386, 0.0032840022
+5000000.0000000000, 0.3517596268, 0.0000000239, 0.0001546276, 0.0004395832

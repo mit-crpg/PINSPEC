@@ -1,0 +1,80 @@
+\hypertarget{classGeometryCaptureRateTally}{\section{Geometry\-Capture\-Rate\-Tally Class Reference}
+\label{classGeometryCaptureRateTally}\index{Geometry\-Capture\-Rate\-Tally@{Geometry\-Capture\-Rate\-Tally}}
+}
+
+
+A class for tallying the capture rate within the geometry.  
+
+
+
+
+{\ttfamily \#include \char`\"{}pinspec/src/\-Tally.\-h\char`\"{}}
+
+Inheritance diagram for Geometry\-Capture\-Rate\-Tally\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classGeometryCaptureRateTally}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGeometryCaptureRateTally_a72f1cd00b35302766fbe074c00d4403c}{Geometry\-Capture\-Rate\-Tally} (\hyperlink{classGeometry}{Geometry} $\ast$geometry, const char $\ast$tally\-\_\-name=(char $\ast$)\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classGeometryCaptureRateTally}{Geometry\-Capture\-Rate\-Tally} constructor calls the \hyperlink{classGeometryTally}{Geometry\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to C\-A\-P\-T\-U\-R\-E\-\_\-\-R\-A\-T\-E. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometryCaptureRateTally_a18b5cb68008c52ab416ee7f5b73ac2a5}{tally} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classTally}{Tally} the geometry capture rate by incrementing the tally by $ \frac{\Sigma_c}{\Sigma_t} $ at the neutron's energy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A class for tallying the capture rate within the geometry. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGeometryCaptureRateTally_a72f1cd00b35302766fbe074c00d4403c}{\index{Geometry\-Capture\-Rate\-Tally@{Geometry\-Capture\-Rate\-Tally}!Geometry\-Capture\-Rate\-Tally@{Geometry\-Capture\-Rate\-Tally}}
+\index{Geometry\-Capture\-Rate\-Tally@{Geometry\-Capture\-Rate\-Tally}!GeometryCaptureRateTally@{Geometry\-Capture\-Rate\-Tally}}
+\subsubsection[{Geometry\-Capture\-Rate\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\-Capture\-Rate\-Tally\-::\-Geometry\-Capture\-Rate\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Geometry} $\ast$}]{geometry, }
+\item[{const char $\ast$}]{tally\-\_\-name = {\ttfamily (char$\ast$)\char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGeometryCaptureRateTally_a72f1cd00b35302766fbe074c00d4403c}
+
+
+\hyperlink{classGeometryCaptureRateTally}{Geometry\-Capture\-Rate\-Tally} constructor calls the \hyperlink{classGeometryTally}{Geometry\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to C\-A\-P\-T\-U\-R\-E\-\_\-\-R\-A\-T\-E. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em geometry} & a pointer to the geometry within which to tally \\
+\hline
+{\em tally\-\_\-name} & a character array for the tally name (optional) \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGeometryCaptureRateTally_a18b5cb68008c52ab416ee7f5b73ac2a5}{\index{Geometry\-Capture\-Rate\-Tally@{Geometry\-Capture\-Rate\-Tally}!tally@{tally}}
+\index{tally@{tally}!GeometryCaptureRateTally@{Geometry\-Capture\-Rate\-Tally}}
+\subsubsection[{tally}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\-Capture\-Rate\-Tally\-::tally (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classGeometryCaptureRateTally_a18b5cb68008c52ab416ee7f5b73ac2a5}
+
+
+\hyperlink{classTally}{Tally} the geometry capture rate by incrementing the tally by $ \frac{\Sigma_c}{\Sigma_t} $ at the neutron's energy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neutron} & the neutron of interest \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classGeometryTally_a3f79423e0c1e1eb87109c6937bdfa5c8}{Geometry\-Tally}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Tally_8h}{Tally.\-h}\item 
+Tally.\-cpp\end{DoxyCompactItemize}

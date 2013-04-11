@@ -1,28 +1,76 @@
-/*
- * log.cpp
- *
- *  Created on: Jan 22, 2012
- *      Author: William Boyd
- *				MIT, Course 22
- *              wboyd@mit.edu
- */
+#ifdef __cplusplus
+#include "log.h"
+#endif
 
 #define LOG_C
 
-#include "log.h"
+
+/**
+ * @var log_level
+ * @brief Minimum level of logging messages printed to the screen and log file.
+ *        Default logging level is NORMAL.
+ */
+static logLevel log_level = NORMAL;
+
+/**
+ * @var logfile_name
+ * @brief The name of the output logfile. By default this is an empty.
+ *        and must be set for messages to be redirected to a logfile.
+ */
+static std::string logfile_name = "";
 
 
-/* Default logging level is the lowest (most verbose) level */
-logLevel log_level = NORMAL;
-std::string logfile_name = "";
-std::string output_directory = ".";
-bool logging = false;
-char separator_char = '-';
-char header_char = '*';
-char title_char = '*';
-int line_length = 67;           /* Must account for log level prefix */
+/**
+ * @var output_directory
+ * @brief The directory in which a "log" folder will be created for logfiles.
+ * @details By default this is the same directory as that where the logger
+ *          is invoked by an input file.
+ */
+static std::string output_directory = ".";
 
 
+/**
+ * @var logging
+ * @brief A switch which is set to true once the first message is logged. 
+ * @details The logging switch is needed to indicate whether the output 
+ *          logfile has been created or not.
+ */
+static bool logging = false;
+
+
+/**
+ * @var separator_char
+ * @brief The character to use for SEPARATOR log messages. The default is "-".
+ */
+static char separator_char = '-';
+
+/**
+ * @var header_char
+ * @brief The character to use for HEADER log messages. The default is "*".
+ */
+static char header_char = '*';
+
+
+/**
+ * @var title_char
+ * @brief The character to use for TITLE log messages. The default is "*".
+ */
+static char title_char = '*';
+
+/**
+ * @var line_length
+ * @brief The maximum line length for a log message. 
+ * @details The default is 67 which adds to the standard 80 characters when 
+ *          accounting for the log level prepended to each log message.
+ */
+static int line_length = 67;
+
+
+/**
+ * @brief Sets the output directory for log files. 
+ * @details If the directory does not exist, it creates it for the user.
+ * @param directory a character array for the log file directory
+ */
 void setOutputDirectory(char* directory) {
 
     output_directory = std::string(directory);
@@ -40,125 +88,186 @@ void setOutputDirectory(char* directory) {
 }
 
 
+/**
+ * @brief Returns the output directory for log files.
+ * @return a character array for the log file directory
+ */
 const char* getOutputDirectory() {
     return output_directory.c_str();
 }
 
 
+/**
+ * @brief Sets the name for the log file.
+ * @param filename a character array for log filename
+ */
 void setLogfileName(char* filename) {
     logfile_name = output_directory + "/" + filename;
 }
 
 
+/**
+ * @brief Returns the log filename.
+ * @return a character array for the log filename
+ */
+const char* getLogfileName() {
+    return logfile_name.c_str();
+}
+
+
+/**
+ * @brief Sets the character to be used when printing SEPARATOR type log messages.
+ * @param c the character for SEPARATOR type log messages
+ */
 void setSeparatorCharacter(char c) {
     separator_char = c;
 }
 
 
+/**
+ * @brief Returns the character used to format SEPARATOR type log messages.
+ * @return the character used for SEPARATOR type log messages
+ */
+const char getSeparatorCharacter() {
+    return separator_char;
+}
+
+/**
+ * @brief Sets the character to be used when printing HEADER type log messages.
+ * @param c the character for HEADER type log messages
+ */
 void setHeaderCharacter(char c) {
     header_char = c;
 }
 
 
+/**
+ * @brief Returns the character used to format HEADER type log messages.
+ * @return the character used for HEADER type log messages
+ */
+const char getHeaderCharacter() {
+    return header_char;
+}
+
+
+/**
+ * @brief Sets the character to be used when printing TITLE type log messages.
+ * @param c the character for TITLE type log messages
+ */
 void setTitleCharacter(char c) {
     title_char = c;
 }
 
 
+/**
+ * @brief Returns the character used to format TITLE type log messages.
+ * @return the character used for TITLE type log messages
+ */
+const char getTitleCharacter() {
+    return title_char;
+}
+
+
+/**
+ * @brief Sets the maximum line length for log messages. 
+ * @details Messages longer than this amount will be broken up into 
+            multiline messages.
+ * @param length the maximum log message line length in characters
+ */
 void setLineLength(int length) {
     line_length = length;
 }
 
 
 /**
- * Set the minimum level which will be printed to the console
- * @param newlevel the logging level
+ * @brief Sets the minimum log message level which will be printed to the 
+ *        console and to the log file.
+ * @param newlevel the minimum logging level
  */
 void log_setlevel(logLevel newlevel) {
     log_level = newlevel;
 
     switch (newlevel) {
     case DEBUG:
-	    log_printf(INFO, "Logging level set to DEBUG");
-	    break;
+        log_printf(INFO, "Logging level set to DEBUG");
+        break;
     case INFO:
-	    log_printf(INFO, "Logging level set to INFO");
-	    break;
+        log_printf(INFO, "Logging level set to INFO");
+        break;
     case NORMAL:
-	    log_printf(INFO, "Logging level set to NORMAL");
-	    break;
+        log_printf(INFO, "Logging level set to NORMAL");
+        break;
     case SEPARATOR:
-	    log_printf(INFO, "Logging level set to SEPARATOR");
+        log_printf(INFO, "Logging level set to SEPARATOR");
         break;
     case HEADER:
-	    log_printf(INFO, "Logging level set to HEADER");
+        log_printf(INFO, "Logging level set to HEADER");
         break;
     case TITLE:
-	    log_printf(INFO, "Logging level set to TITLE");
+        log_printf(INFO, "Logging level set to TITLE");
         break;
     case WARNING:
-	    log_printf(INFO, "Logging level set to WARNING");
-	    break;
+        log_printf(INFO, "Logging level set to WARNING");
+        break;
     case CRITICAL:
-	    log_printf(INFO, "Logging level set to CRITICAL");
-	    break;
+        log_printf(INFO, "Logging level set to CRITICAL");
+        break;
     case RESULT:
-	    log_printf(INFO, "Logging level set to RESULT");
-	    break;
+        log_printf(INFO, "Logging level set to RESULT");
+        break;
     case ERROR:
-	    log_printf(INFO, "Logging level set to ERROR");
-	    break;
+        log_printf(INFO, "Logging level set to ERROR");
+        break;
     }
 }
 
 
 /**
- * Set the logging level from a character string which must correspond
- * to one of the logLevel enum types (NORMAL, INFO, CRITICAL, WARNING,
- * ERROR, DEBUG, RESULT)
- * @param newlevel a character string loglevel
+ * @brief Sets the minimum log message level which will be printed to the 
+ *        console and to the log file.
+ * @param newlevel the minimum logging level
  */
 void log_setlevel(const char* newlevel) {
 
     if (strcmp("DEBUG", newlevel) == 0) {
-	    log_level = DEBUG;
-	    log_printf(INFO, "Logging level set to DEBUG");
+        log_level = DEBUG;
+        log_printf(INFO, "Logging level set to DEBUG");
     }
     else if (strcmp("INFO", newlevel) == 0) {
-	    log_level = INFO;
-	    log_printf(INFO, "Logging level set to INFO");
+        log_level = INFO;
+        log_printf(INFO, "Logging level set to INFO");
     }
     else if (strcmp("NORMAL", newlevel) == 0) {
-	    log_level = NORMAL;
-	    log_printf(INFO, "Logging level set to NORMAL");
+        log_level = NORMAL;
+        log_printf(INFO, "Logging level set to NORMAL");
     }
     else if (strcmp("SEPARATOR", newlevel) == 0) {
-	    log_level = HEADER;
-	    log_printf(INFO, "Logging level set to SEPARATOR");
+        log_level = HEADER;
+        log_printf(INFO, "Logging level set to SEPARATOR");
     }
     else if (strcmp("HEADER", newlevel) == 0) {
-	    log_level = HEADER;
-	    log_printf(INFO, "Logging level set to HEADER");
+        log_level = HEADER;
+        log_printf(INFO, "Logging level set to HEADER");
     }
     else if (strcmp("TITLE", newlevel) == 0) {
-	    log_level = TITLE;
-	    log_printf(INFO, "Logging level set to TITLE");
+        log_level = TITLE;
+        log_printf(INFO, "Logging level set to TITLE");
     }
     else if (strcmp("WARNING", newlevel) == 0) {
-	    log_level = WARNING;
-	    log_printf(INFO, "Logging level set to WARNING");
+        log_level = WARNING;
+        log_printf(INFO, "Logging level set to WARNING");
     }
     else if (strcmp("CRITICAL", newlevel) == 0) {
-	    log_level = CRITICAL;
-	    log_printf(INFO, "Logging level set to CRITICAL");
+        log_level = CRITICAL;
+        log_printf(INFO, "Logging level set to CRITICAL");
     }
     else if (strcmp("RESULT", newlevel) == 0) {
-	    log_level = RESULT;
-	    log_printf(INFO, "Logging level set to RESULT");
+        log_level = RESULT;
+        log_printf(INFO, "Logging level set to RESULT");
     }
     else if (strcmp("ERROR", newlevel) == 0) {
-	    log_level = ERROR;
-	    log_printf(INFO, "Logging level set to ERROR");
+        log_level = ERROR;
+        log_printf(INFO, "Logging level set to ERROR");
     }
 
     return;
@@ -166,10 +275,20 @@ void log_setlevel(const char* newlevel) {
 
 
 /**
- * Print a formatted message to the console. If logging level is
- * ERROR, this function will end the program
+ * @brief Return the minimum level for log messages printed to the screen.
+ * @return the minimum level for log messages
+ */
+int get_loglevel(){
+     return log_level;
+}
+
+
+/**
+ * @brief Print a formatted message to the console. 
+ * @details If logging level is ERROR, this function will throw a
+ *          runtime exception
  * @param level the logging level for this message
- * @param *format variable list of C++ formatted i/o
+ * @param *format variable list of C++ formatted arguments
  */
 void log_printf(logLevel level, const char *format, ...) {
 
@@ -185,7 +304,7 @@ void log_printf(logLevel level, const char *format, ...) {
 
     	/* Append the log level to the message */
     	switch (level) {
-	        case (DEBUG):
+            case (DEBUG):
             {
                 std::string msg = std::string(message);
                 std::string level_prefix = "[  DEBUG  ]  ";
@@ -198,9 +317,9 @@ void log_printf(logLevel level, const char *format, ...) {
                 else
                     msg_string = level_prefix + msg + "\n";
 
-	            break;
+	        break;
             }
-	        case (INFO):
+	    case (INFO):
             {
                 std::string msg = std::string(message);
                 std::string level_prefix = "[  INFO   ]  ";
@@ -213,9 +332,9 @@ void log_printf(logLevel level, const char *format, ...) {
                 else
                     msg_string = level_prefix + msg + "\n";
 
-	            break;
+	        break;
             }
-	        case (NORMAL):
+	    case (NORMAL):
             {
                 std::string msg = std::string(message);
                 std::string level_prefix = "[  NORMAL ]  ";
@@ -228,18 +347,18 @@ void log_printf(logLevel level, const char *format, ...) {
                 else
                     msg_string = level_prefix + msg + "\n";
 
-	            break;
+	        break;
             }
-	        case (SEPARATOR):
+	    case (SEPARATOR):
             {
                 std::string pad = std::string(line_length, separator_char);
                 std::string prefix = std::string("[SEPARATOR]  ");
                 std::stringstream ss;
                 ss << prefix << pad << "\n";
                 msg_string = ss.str();
-	            break;
+	        break;
             }
-	        case (HEADER):
+	    case (HEADER):
             {
                 int size = strlen(message);
                 int halfpad = (line_length - 4 - size) / 2;
@@ -250,9 +369,9 @@ void log_printf(logLevel level, const char *format, ...) {
                 std::stringstream ss;
                 ss << prefix << pad1 << "  " << message << "  " << pad2 << "\n";
                 msg_string = ss.str();
-	            break;
+	        break;
             }
-	        case (TITLE):
+	    case (TITLE):
             {
                 int size = strlen(message);
                 int halfpad = (line_length - size) / 2;
@@ -263,9 +382,9 @@ void log_printf(logLevel level, const char *format, ...) {
                 ss << prefix << pad << message << pad << "\n";
                 ss << prefix << std::string(line_length, title_char) << "\n";
                 msg_string = ss.str();
-	            break;
+	        break;
             }
-	        case (WARNING):
+	    case (WARNING):
             {
                 std::string msg = std::string(message);
                 std::string level_prefix = "[ WARNING ]  ";
@@ -278,9 +397,9 @@ void log_printf(logLevel level, const char *format, ...) {
                 else
                     msg_string = level_prefix + msg + "\n";
 
-	            break;
+	        break;
             }
-	        case (CRITICAL):
+	    case (CRITICAL):
             {
                 std::string msg = std::string(message);
                 std::string level_prefix = "[ CRITICAL]  ";
@@ -293,18 +412,18 @@ void log_printf(logLevel level, const char *format, ...) {
                 else
                     msg_string = level_prefix + msg + "\n";
 
-	            break;
+	        break;
             }
-	        case (RESULT):
+	    case (RESULT):
                 msg_string = std::string("[  RESULT ]  ") + message + "\n";
-	            break;
-	        case (ERROR):
+	         break;
+	    case (ERROR):
 	            va_start(args, format);
 	            vsprintf(message, format, args);
  	            va_end(args);
                 set_err(message);
                 throw std::runtime_error(message);
-	            break;
+                break;
           }
 
 
@@ -346,6 +465,15 @@ void log_printf(logLevel level, const char *format, ...) {
 }
 
 
+/**
+ * @brief Breaks up a message which is too long for a single line into a 
+ *        multiline message. 
+ * @details This is an internal function which is called by log_printf and 
+ *          should not be called directly by the user.
+ * @param level a string containing log level prefix
+ * @param message a string containing the log message 
+ * @return a string with a formatted multiline message
+ */
 std::string createMultilineMsg(std::string level, std::string message) {
 
     int size = message.length();
@@ -396,13 +524,3 @@ std::string createMultilineMsg(std::string level, std::string message) {
 
     return msg_string;
 }
-
-
-/**
- * Return the log_level
- * @return log_level
- */
-int get_loglevel(){
-	return log_level;
-}
-

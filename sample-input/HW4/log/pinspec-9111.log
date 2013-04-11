@@ -1,0 +1,176 @@
+Current local time and date: Wed Apr 10 17:23:45 2013
+[  INFO   ]  Logging level set to INFO
+[  INFO   ]  Loading H-1-elastic.txt for isotope H-1
+[  INFO   ]  Loading H-1-capture.txt for isotope H-1
+[  INFO   ]  Loading O-16-elastic.txt for isotope O-16
+[  INFO   ]  Loading O-16-capture.txt for isotope O-16
+[  INFO   ]  Loading U-235-elastic.txt for isotope U-235
+[  INFO   ]  Loading U-235-capture.txt for isotope U-235
+[  INFO   ]  Loading U-235-fission.txt for isotope U-235
+[  INFO   ]  Loading U-238-elastic.txt for isotope U-238
+[  INFO   ]  Loading U-238-capture.txt for isotope U-238
+[  INFO   ]  Loading U-238-fission.txt for isotope U-238
+[  INFO   ]  Loading Zr-90-elastic.txt for isotope Zr-90
+[  INFO   ]  Loading Zr-90-capture.txt for isotope Zr-90
+[  INFO   ]  Setting 1-group elastic xs for isotope U-235
+[  INFO   ]  Setting 1-group elastic xs for isotope U-238
+[  INFO   ]  Setting 1-group capture xs for isotope Zr-90
+[  INFO   ]  Setting 1-group capture xs for isotope O-16
+[  INFO   ]  Isotope H-1 has number density 1.093E+24 in material moderator
+[  INFO   ]  Isotope H-1 has number density 1.215E+23 in material moderator
+[  INFO   ]  Isotope O-16 has number density 6.074E+22 in material moderator
+[  INFO   ]  Isotope H-1 has number density 5.526E+22 in material moderator
+[  INFO   ]  Isotope O-16 has number density 2.763E+22 in material moderator
+[  INFO   ]  Isotope Zr-90 has number density 6.621E+21 in material moderator
+[  INFO   ]  Isotope U-235 has number density 2.614E+22 in material fuel
+[  INFO   ]  Isotope U-235 has number density 7.837E+20 in material fuel
+[  INFO   ]  Isotope U-238 has number density 2.504E+22 in material fuel
+[  INFO   ]  Isotope O-16 has number density 4.552E+22 in material fuel
+[  INFO   ]  Isotope U-235 has number density 6.908E+20 in material fuel
+[  INFO   ]  Isotope U-238 has number density 2.207E+22 in material fuel
+[  INFO   ]  Registered tally total with the TallyBank for the geometry
+[  INFO   ]  Registered tally moderator with the TallyBank for material moderato
+[  INFO   ]  Registered tally fuel with the TallyBank for material fuel
+[  INFO   ]  Registered tally Fuel Flux with the TallyBank for material fuel
+[  INFO   ]  Registered tally Moderator Flux with the TallyBank for material
+[  INFO   ]  ... moderator
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  INFO   ]  Registered tally  with the TallyBank for the geometry
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 50     # threads = 4
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 15 tallies for 50 batches
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 2/4 running batch 13
+[  INFO   ]  Thread 4/4 running batch 39
+[  INFO   ]  Thread 3/4 running batch 26
+[  INFO   ]  Thread 1/4 running batch 1
+[  INFO   ]  Thread 4/4 running batch 40
+[  INFO   ]  Thread 2/4 running batch 14
+[  INFO   ]  Thread 3/4 running batch 27
+[  INFO   ]  Thread 4/4 running batch 41
+[  INFO   ]  Thread 2/4 running batch 15
+[  INFO   ]  Thread 3/4 running batch 28
+[  INFO   ]  Thread 1/4 running batch 2
+[  INFO   ]  Thread 2/4 running batch 16
+[  INFO   ]  Thread 4/4 running batch 42
+[  INFO   ]  Thread 3/4 running batch 29
+[  INFO   ]  Thread 1/4 running batch 3
+[  INFO   ]  Thread 2/4 running batch 17
+[  INFO   ]  Thread 4/4 running batch 43
+[  INFO   ]  Thread 3/4 running batch 30
+[  INFO   ]  Thread 1/4 running batch 4
+[  INFO   ]  Thread 2/4 running batch 18
+[  INFO   ]  Thread 4/4 running batch 44
+[  INFO   ]  Thread 3/4 running batch 31
+[  INFO   ]  Thread 1/4 running batch 5
+[  INFO   ]  Thread 2/4 running batch 19
+[  INFO   ]  Thread 4/4 running batch 45
+[  INFO   ]  Thread 3/4 running batch 32
+[  INFO   ]  Thread 1/4 running batch 6
+[  INFO   ]  Thread 2/4 running batch 20
+[  INFO   ]  Thread 4/4 running batch 46
+[  INFO   ]  Thread 3/4 running batch 33
+[  INFO   ]  Thread 1/4 running batch 7
+[  INFO   ]  Thread 2/4 running batch 21
+[  INFO   ]  Thread 4/4 running batch 47
+[  INFO   ]  Thread 3/4 running batch 34
+[  INFO   ]  Thread 1/4 running batch 8
+[  INFO   ]  Thread 2/4 running batch 22
+[  INFO   ]  Thread 4/4 running batch 48
+[  INFO   ]  Thread 3/4 running batch 35
+[  INFO   ]  Thread 1/4 running batch 9
+[  INFO   ]  Thread 2/4 running batch 23
+[  INFO   ]  Thread 4/4 running batch 49
+[  INFO   ]  Thread 3/4 running batch 36
+[  INFO   ]  Thread 1/4 running batch 10
+[  INFO   ]  Thread 2/4 running batch 24
+[  INFO   ]  Thread 3/4 running batch 37
+[  INFO   ]  Thread 1/4 running batch 11
+[  INFO   ]  Thread 3/4 running batch 38
+[  INFO   ]  Thread 2/4 running batch 25
+[  INFO   ]  Thread 1/4 running batch 12
+[  NORMAL ]  PINSPEC simulated 10958 neutrons / sec in 456.297874 sec
+[  HEADER ]  **********  Batch Statistics for Tally Elastic Group XS  **********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.62 eV ]:  1.246847  1.27E-06  1.13E-03  9.04E-04
+[  RESULT ]  [    0.62 - 1.0E+07 eV ]:  0.638535  2.72E-08  1.65E-04  2.58E-04
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  **********  Batch Statistics for Tally Capture Group XS  **********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.62 eV ]:  0.032333  7.31E-10  2.70E-05  8.36E-04
+[  RESULT ]  [    0.62 - 1.0E+07 eV ]:  7.24E-03  2.46E-11  4.96E-06  6.85E-04
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  **********  Batch Statistics for Tally Fission Group XS  **********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.62 eV ]:  0.071302  3.48E-09  5.90E-05  8.27E-04
+[  RESULT ]  [    0.62 - 1.0E+07 eV ]:  2.60E-03  2.24E-12  1.50E-06  5.75E-04
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  ********  Batch Statistics for Tally Absorption Group XS  *********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.62 eV ]:  0.103635  7.36E-09  8.58E-05  8.28E-04
+[  RESULT ]  [    0.62 - 1.0E+07 eV ]:  9.84E-03  2.73E-11  5.22E-06  5.31E-04
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  *********  Batch Statistics for Tally Transport Group XS  *********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.62 eV ]:  0.667844  3.33E-07  5.77E-04  8.64E-04
+[  RESULT ]  [    0.62 - 1.0E+07 eV ]:  0.363248  9.13E-09  9.56E-05  2.63E-04
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  **********  Batch Statistics for Tally Diffusion Coeff.  **********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.62 eV ]:  0.520963  2.01E-07  4.48E-04  8.60E-04
+[  RESULT ]  [    0.62 - 1.0E+07 eV ]:  1.312805  7.71E-05  8.78E-03  6.69E-03
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  ***********  Batch Statistics for Tally Total Group XS  ***********
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.62 eV ]:  1.350478  1.45E-06  1.21E-03  8.93E-04
+[  RESULT ]  [    0.62 - 1.0E+07 eV ]:  0.648329  2.77E-08  1.67E-04  2.57E-04
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  *************  Batch Statistics for Tally k-infinity  *************
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 - 1.0E+07 eV ]:  1.366861  7.06E-07  8.40E-04  6.15E-04
+[SEPARATOR]  -------------------------------------------------------------------
+[  HEADER ]  ***  Batch Statistics for Tally Moderator-to-Fuel Flux Ratios  ****
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]         Energy Band            Mu     Variance  Std. Dev. Rel. Err.
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]  [    0.00 -    0.10 eV ]:  1.249789  1.54E-06  1.24E-03  9.94E-04
+[  RESULT ]  [    0.10 -    0.50 eV ]:  1.098280  1.44E-06  1.20E-03  1.09E-03
+[  RESULT ]  [    0.50 -    1.00 eV ]:  1.031571  4.41E-06  2.10E-03  2.04E-03
+[  RESULT ]  [    1.00 -    6.00 eV ]:  1.022498  1.71E-06  1.31E-03  1.28E-03
+[  RESULT ]  [    6.00 -   10.00 eV ]:  1.182765  8.90E-06  2.98E-03  2.52E-03
+[  RESULT ]  [   10.00 -   25.00 eV ]:  1.072571  2.92E-06  1.71E-03  1.59E-03
+[  RESULT ]  [   25.00 -   50.00 eV ]:  1.067637  3.63E-06  1.91E-03  1.79E-03
+[  RESULT ]  [   50.00 -  100.00 eV ]:  1.042705  3.48E-06  1.87E-03  1.79E-03
+[  RESULT ]  [  100.00 - 1000.00 eV ]:  1.036321  1.17E-06  1.08E-03  1.04E-03
+[  RESULT ]  [ 1000.00 - 1.0E+04 eV ]:  1.013768  8.48E-07  9.21E-04  9.08E-04
+[  RESULT ]  [ 1.0E+04 - 1.0E+05 eV ]:  0.997394  8.72E-07  9.34E-04  9.36E-04
+[  RESULT ]  [ 1.0E+05 - 5.0E+05 eV ]:  0.993290  5.63E-07  7.50E-04  7.56E-04
+[  RESULT ]  [ 5.0E+05 - 1.0E+07 eV ]:  1.270058  7.42E-07  8.61E-04  6.78E-04
+[SEPARATOR]  -------------------------------------------------------------------

@@ -1,0 +1,61 @@
+.TH "RegionFluxTally" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RegionFluxTally \- 
+.PP
+A class for tallying the flux for a region\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include 'pinspec/src/Tally\&.h'\fP
+.PP
+Inherits \fBRegionTally\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRegionFluxTally\fP (\fBRegion\fP *region, const char *tally_name=(char *)'')"
+.br
+.RI "\fI\fBRegionFluxTally\fP constructor calls the \fBRegionTally\fP constructor and \fBTally\fP constructors and sets the tally type to FLUX\&. \fP"
+.ti -1c
+.RI "void \fBtally\fP (\fBneutron\fP *\fBneutron\fP)"
+.br
+.RI "\fI\fBTally\fP the region flux by incrementing the tally by $ \frac{1}{\Sigma_t} $ at the neutron's energy\&. \fP"
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+A class for tallying the flux for a region\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "RegionFluxTally::RegionFluxTally (\fBRegion\fP *region, const char *tally_name = \fC(char*)''\fP)\fC [inline]\fP"
+
+.PP
+\fBRegionFluxTally\fP constructor calls the \fBRegionTally\fP constructor and \fBTally\fP constructors and sets the tally type to FLUX\&. \fBParameters:\fP
+.RS 4
+\fIregion\fP a pointer to the region within which to tally 
+.br
+\fItally_name\fP a character array for the tally name (optional) 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void RegionFluxTally::tally (\fBneutron\fP *neutron)\fC [virtual]\fP"
+
+.PP
+\fBTally\fP the region flux by incrementing the tally by $ \frac{1}{\Sigma_t} $ at the neutron's energy\&. \fBParameters:\fP
+.RS 4
+\fIneutron\fP the neutron of interest 
+.RE
+.PP
+
+.PP
+Implements \fBRegionTally\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

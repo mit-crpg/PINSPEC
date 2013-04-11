@@ -1,0 +1,80 @@
+\hypertarget{classGeometryLeakageRateTally}{\section{Geometry\-Leakage\-Rate\-Tally Class Reference}
+\label{classGeometryLeakageRateTally}\index{Geometry\-Leakage\-Rate\-Tally@{Geometry\-Leakage\-Rate\-Tally}}
+}
+
+
+A class for tallying the leakage rate for the geometry.  
+
+
+
+
+{\ttfamily \#include \char`\"{}pinspec/src/\-Tally.\-h\char`\"{}}
+
+Inheritance diagram for Geometry\-Leakage\-Rate\-Tally\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classGeometryLeakageRateTally}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGeometryLeakageRateTally_a3fd9dfc7a6b11686d6941d922fbfdb56}{Geometry\-Leakage\-Rate\-Tally} (\hyperlink{classGeometry}{Geometry} $\ast$geometry, const char $\ast$tally\-\_\-name=(char $\ast$)\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classGeometryLeakageRateTally}{Geometry\-Leakage\-Rate\-Tally} constructor calls the \hyperlink{classGeometryTally}{Geometry\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to L\-E\-A\-K\-A\-G\-E\-\_\-\-R\-A\-T\-E. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometryLeakageRateTally_a19498479ed8c16606515fa47bf45a726}{tally} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classTally}{Tally} the geometry leakage rate by incrementing the tally by $ DB^2 $ at the neutron's energy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A class for tallying the leakage rate for the geometry. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGeometryLeakageRateTally_a3fd9dfc7a6b11686d6941d922fbfdb56}{\index{Geometry\-Leakage\-Rate\-Tally@{Geometry\-Leakage\-Rate\-Tally}!Geometry\-Leakage\-Rate\-Tally@{Geometry\-Leakage\-Rate\-Tally}}
+\index{Geometry\-Leakage\-Rate\-Tally@{Geometry\-Leakage\-Rate\-Tally}!GeometryLeakageRateTally@{Geometry\-Leakage\-Rate\-Tally}}
+\subsubsection[{Geometry\-Leakage\-Rate\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\-Leakage\-Rate\-Tally\-::\-Geometry\-Leakage\-Rate\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Geometry} $\ast$}]{geometry, }
+\item[{const char $\ast$}]{tally\-\_\-name = {\ttfamily (char$\ast$)\char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGeometryLeakageRateTally_a3fd9dfc7a6b11686d6941d922fbfdb56}
+
+
+\hyperlink{classGeometryLeakageRateTally}{Geometry\-Leakage\-Rate\-Tally} constructor calls the \hyperlink{classGeometryTally}{Geometry\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to L\-E\-A\-K\-A\-G\-E\-\_\-\-R\-A\-T\-E. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em geometry} & a pointer to the geometry within which to tally \\
+\hline
+{\em tally\-\_\-name} & a character array for the tally name (optional) \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGeometryLeakageRateTally_a19498479ed8c16606515fa47bf45a726}{\index{Geometry\-Leakage\-Rate\-Tally@{Geometry\-Leakage\-Rate\-Tally}!tally@{tally}}
+\index{tally@{tally}!GeometryLeakageRateTally@{Geometry\-Leakage\-Rate\-Tally}}
+\subsubsection[{tally}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\-Leakage\-Rate\-Tally\-::tally (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classGeometryLeakageRateTally_a19498479ed8c16606515fa47bf45a726}
+
+
+\hyperlink{classTally}{Tally} the geometry leakage rate by incrementing the tally by $ DB^2 $ at the neutron's energy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neutron} & the neutron of interest \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classGeometryTally_a3f79423e0c1e1eb87109c6937bdfa5c8}{Geometry\-Tally}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+pinspec/src/\hyperlink{Tally_8h}{Tally.\-h}\item 
+pinspec/src/Tally.\-cpp\end{DoxyCompactItemize}

@@ -1,18 +1,44 @@
+##
+# @file plotter.py
+# @package pinspec.plotter
+# @brief The plotter module provides utility functions to plot data from
+#        PINSPEC's C++ classes, in particular, tally data and cross-sections,
+#        thermal scattering PDFs/CDFs, etc.
+#
+# @author Samuel Shaner (shaner@mit.edu)
+# @author William Boyd (wboyd@mit.edu
+# @date March 10, 2013
+
+
 import matplotlib.pyplot as plt
 import numpy as np
 from pinspec import *
 from process import *
 import os
 
-# Series of functions use to plot XS data (energy, xs), thermal
-# scattering PDFs and CDFs, flux, etc
-
+## A static variable to auto-generate unique filenames for flux plots
 flux_plot_num = 0
+## A static variable for the output directory in which to save plots
 subdirectory = "/plots/"
     
 
-# Function to plot the microscopic cross section for a
-# given isotope and array of reactions
+##
+# @brief Plots the microscopoic cross-section(s) for one or more reaction
+#        rates for an isotope.
+# @details This method generates and saves the plot as a *.png in the
+#          plotting output directory. A user may invoke this function from
+#          a PINSPEC Python file as follows:
+#
+# @code
+#         pinspec.plotter.plotMicroXS(my_isotope, 'capture')
+# @endcode
+#
+# @param isotope the isotope of interest
+# @param rxns an array of reaction rate types (ie, ['capture, 'elastic'])
+# @param loglog an optional argument to use a log-log scale
+# @param uselegend an optional argument boolean to include a legend
+# @param title an optional argument string with the plot title
+# @param filename an optional argument string with the plot filename
 def plotMicroXS(isotope, rxns, loglog=True, uselegend=True, \
                                             title='', filename=''):
         
@@ -31,9 +57,10 @@ def plotMicroXS(isotope, rxns, loglog=True, uselegend=True, \
     # loop over rxns and plot
     num_energies = 0
 
+    # Loop over all reaction rate types
     for rxn in rxns:
 
-	    # retrieve xs and xsenergies
+        # retrieve xs and xsenergies
         num_energies = isotope.getNumXSEnergies(rxn)
         energies = isotope.retrieveXSEnergies(num_energies, rxn)
         xs = isotope.retrieveXS(num_energies, rxn)
@@ -68,8 +95,23 @@ def plotMicroXS(isotope, rxns, loglog=True, uselegend=True, \
 
 
 
-# function to plot the macroscopic cross section for a
-# given material and arrary of reactions
+##
+# @brief Plots the macroscopic cross-section(s) for one or more reaction
+#        rates for a material.
+# @details This method generates and saves the plot as a *.png in the
+#          plotting output directory. A user may invoke this function from
+#          a PINSPEC Python file as follows:
+#
+# @code
+#         pinspec.plotter.plotMacroXS(my_material, 'capture')
+# @endcode
+#
+# @param material the material of interest
+# @param rxns an array of reaction rate types (ie, ['capture, 'elastic'])
+# @param loglog an optional argument to use a log-log scale
+# @param uselegend an optional argument boolean to include a legend
+# @param title an optional argument string with the plot title
+# @param filename an optional argument string with the plot filename
 def plotMacroXS(material, rxns, loglog=True, \
                                     uselegend=True, title='', filename=''):
 
@@ -88,7 +130,7 @@ def plotMacroXS(material, rxns, loglog=True, \
     num_energies = 0
     for rxn in rxns:
 
-	    # retrieve xs and xs energies
+        # retrieve xs and xs energies
         num_energies = material.getNumXSEnergies(rxn)
         energies = material.retrieveXSEnergies(num_energies, rxn)
         xs = material.retrieveXS(num_energies, rxn)
@@ -121,8 +163,23 @@ def plotMacroXS(material, rxns, loglog=True, \
 
 
 
-# Function that plots the flux spectrum
-def plotFlux(flux, loglog=True, title='', filename=''):
+##
+# @brief Plots one or more flux tallies by energy.
+# @details This method generates and saves the plot as a *.png in the
+#          plotting output directory. A user may invoke this function from
+#          a PINSPEC Python file as follows:
+#
+# @code
+#         pinspec.plotter.plotFlux(my_flux, title='one flux')
+#         pinspec.plotter.plotFlux([flux1, flux2], title='two fluxes')
+# @endcode
+#
+# @param flux the flux tall(ies) of interest
+# @param loglog an optional argument boolean to use a log-log scale
+# @param uselegend an optional argument boolean to include a legend
+# @param title an optional argument string with the plot title
+# @param filename an optional argument string with the plot filename
+def plotFlux(flux, loglog=True, uselegend=True, title='', filename=''):
 
     global flux_plot_num
     global subdirectory
@@ -133,68 +190,37 @@ def plotFlux(flux, loglog=True, title='', filename=''):
     if not os.path.exists(directory):
             os.makedirs(directory)
 
-    if not flux.hasComputedBatchStatistics():
-        flux.computeBatchStatistics()
-
-    fig = plt.figure()
-        
-    num_bins = flux.getNumBins()
-    flux_bin_centers = flux.retrieveTallyCenters(num_bins)
-    flux_mu = flux.retrieveTallyMu(num_bins)
-
-    # Plot the flux
-    plt.plot(flux_bin_centers, flux_mu, lw=1)
-
-    plt.xlabel('Energy [eV]')
-    plt.ylabel('Flux')
-    plt.grid()
-
-    if (loglog):
-        plt.xscale('log')
-        plt.yscale('log')
-
-    if title is '':
-        plt.title('Batch-Averaged Flux')
-    else:
-        plt.title(title.title())
-
-    if filename is '':
-        filename = directory + '/' + 'flux-' + str(flux_plot_num) + '.png'
-        flux_plot_num += 1
-    else:
-        filename = directory + '/' + filename.replace(' ', '-') + '.png'
-
-    fig.savefig(filename)
-
-
-# Function that plots the flux spectrum for several tallies
-def plotFluxes(fluxes, loglog=True, uselegend=True, filename='', title=''):
-
-    global flux_plot_num
-    global subdirectory
-
-    directory = getOutputDirectory() + subdirectory
-
-    # Make directory if it does not exist
-    if not os.path.exists(directory):
-            os.makedirs(directory)
-
-    fig = plt.figure()
     legend = []
+    fig = plt.figure()
 
-    for flux in fluxes:
+    # If only one flux tally was passed in as an argument
+    if isinstance(flux, Tally):
 
         if not flux.hasComputedBatchStatistics():
             flux.computeBatchStatistics()
-
+        
         num_bins = flux.getNumBins()
         flux_bin_centers = flux.retrieveTallyCenters(num_bins)
         flux_mu = flux.retrieveTallyMu(num_bins)
 
         # Plot the flux
         plt.plot(flux_bin_centers, flux_mu, lw=1)
-        legend.append(flux.getTallyName())
+    
+    # If more than one flux tallies were passed in as an argument
+    if type(flux) is list:
+        fluxes = flux
+        for flux in fluxes:
 
+            if not flux.hasComputedBatchStatistics():
+                flux.computeBatchStatistics()
+
+            num_bins = flux.getNumBins()
+            flux_bin_centers = flux.retrieveTallyCenters(num_bins)
+            flux_mu = flux.retrieveTallyMu(num_bins)
+
+            # Plot the flux
+            plt.plot(flux_bin_centers, flux_mu, lw=1)
+            legend.append(flux.getTallyName())
 
     plt.xlabel('Energy [eV]')
     plt.ylabel('Flux')
@@ -213,15 +239,28 @@ def plotFluxes(fluxes, loglog=True, uselegend=True, filename='', title=''):
         plt.title(title.title())
 
     if filename is '':
-        filename = directory + 'flux-' + str(flux_plot_num) + '.png'
+        filename = directory + '/' + 'flux-' + str(flux_plot_num) + '.png'
         flux_plot_num += 1
     else:
-        filename = directory + filename.replace(' ', '-').lower() + '.png'
+        filename = directory + '/' + filename.replace(' ', '-') + '.png'
 
     fig.savefig(filename)
 
 
-# Function to plot the thermal scattering PDFs and CDFs
+##
+# @brief Plots the thermal scattering PDFs and CDFs for an isotope.
+# @details This method generates and saves the plot as a *.png in the
+#          plotting output directory. A user may invoke this function from
+#          a PINSPEC Python file as follows:
+#
+# @code
+#         pinspec.plotter.plotThermalScattering(my_isotope)
+# @endcode
+#
+# @param isotope the isotope of interest
+# @param uselegend an optional argument boolean to include a legend
+# @param title an optional argument string with the plot title
+# @param filename an optional argument string with the plot filename
 def plotThermalScattering(isotope, uselegend=True, title='', filename=''):
    
     global subdirectory
@@ -239,7 +278,7 @@ def plotThermalScattering(isotope, uselegend=True, title='', filename=''):
 
     cdfs = isotope.retrieveThermalCDFs(num_cdfs*num_bins)
     cdfs = np.reshape(cdfs, [num_cdfs, num_bins])   # reshape 1D array to 2D
-    dist = isotope.retrieveThermalDistributions(num_cdfs*num_bins)
+    dist = isotope.retrieveThermalPDFs(num_cdfs*num_bins)
     dist = np.reshape(dist, [num_cdfs, num_bins])   # reshape 1D array to 2D
 
     # Plot the PDFs
@@ -299,8 +338,15 @@ def plotThermalScattering(isotope, uselegend=True, title='', filename=''):
     plt.savefig(cdfsfilename)
 
 
-# Function to plot the fission CDF and sample from the
-# fission CDF to generate a fission spectrum
+##
+# @brief Plots the fission spectrum PDF and CDF.
+# @details This method generates and saves the plot as a *.png in the
+#          plotting output directory. A user may invoke this function from
+#          a PINSPEC Python file as follows:
+#
+# @code
+#         pinspec.plotter.plotFissionSpectrum()
+# @endcode
 def plotFissionSpectrum():
     
     global subdirectory
@@ -337,7 +383,8 @@ def plotFissionSpectrum():
         emitted_energies[i] = fissioner.emitNeutronMeV()
 
     # Bin the samples    
-    binned_samples, bin_edges = np.histogram(emitted_energies, bins=1000, density=True)
+    binned_samples, bin_edges = np.histogram(emitted_energies, bins=1000, 
+                                             density=True)
     bin_centers = np.zeros(bin_edges.size-1)
     for i in range(bin_edges.size-1):
         bin_centers[i] = (bin_edges[i] + bin_edges[i+1]) / 2.0
@@ -353,6 +400,15 @@ def plotFissionSpectrum():
     plt.savefig(filename)
     
     
+##
+# @brief Plots a resonance integral (RIEff or RITrue) as a step function.
+# @details This method generates and saves the plot as a *.png in the
+#          plotting output directory. A user may invoke this function from
+#          a PINSPEC Python file as follows:
+#
+# @code
+#         pinspec.plotter.plotRI(my_resonance_integral)
+# @endcode
 def plotRI(RI, title='', filename=''):
     
     global subdirectory
@@ -384,6 +440,15 @@ def plotRI(RI, title='', filename=''):
     plt.savefig(filename)
 
 
+##
+# @brief Plots a multi-group cross-section as a step function.
+# @details This method generates and saves the plot as a *.png in the
+#          plotting output directory. A user may invoke this function from
+#          a PINSPEC Python file as follows:
+#
+# @code
+#         pinspec.plotter.plotGroupXS(my_group_xs)
+# @endcode
 def plotGroupXS(group_xs, title='', filename=''):
     
     global subdirectory

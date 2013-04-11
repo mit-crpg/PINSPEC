@@ -1,0 +1,80 @@
+\hypertarget{classIsotopeFissionRateTally}{\section{Isotope\-Fission\-Rate\-Tally Class Reference}
+\label{classIsotopeFissionRateTally}\index{Isotope\-Fission\-Rate\-Tally@{Isotope\-Fission\-Rate\-Tally}}
+}
+
+
+A class for tallying the fission rate for an isotope.  
+
+
+
+
+{\ttfamily \#include \char`\"{}pinspec/src/\-Tally.\-h\char`\"{}}
+
+Inheritance diagram for Isotope\-Fission\-Rate\-Tally\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classIsotopeFissionRateTally}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classIsotopeFissionRateTally_a3fc1712cbad1343b8580560e152442c1}{Isotope\-Fission\-Rate\-Tally} (\hyperlink{classIsotope}{Isotope} $\ast$isotope, const char $\ast$tally\-\_\-name=(char $\ast$)\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classIsotopeFissionRateTally}{Isotope\-Fission\-Rate\-Tally} constructor calls the \hyperlink{classIsotopeTally}{Isotope\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to F\-I\-S\-S\-I\-O\-N\-\_\-\-R\-A\-T\-E. \end{DoxyCompactList}\item 
+void \hyperlink{classIsotopeFissionRateTally_aeeed9917e1134a1a37ed58a5f94dd569}{tally} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classTally}{Tally} the isotope fission rate by incrementing the tally by $ \frac{\sigma_f}{\Sigma_t} $ at the neutron's energy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A class for tallying the fission rate for an isotope. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classIsotopeFissionRateTally_a3fc1712cbad1343b8580560e152442c1}{\index{Isotope\-Fission\-Rate\-Tally@{Isotope\-Fission\-Rate\-Tally}!Isotope\-Fission\-Rate\-Tally@{Isotope\-Fission\-Rate\-Tally}}
+\index{Isotope\-Fission\-Rate\-Tally@{Isotope\-Fission\-Rate\-Tally}!IsotopeFissionRateTally@{Isotope\-Fission\-Rate\-Tally}}
+\subsubsection[{Isotope\-Fission\-Rate\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}Isotope\-Fission\-Rate\-Tally\-::\-Isotope\-Fission\-Rate\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Isotope} $\ast$}]{isotope, }
+\item[{const char $\ast$}]{tally\-\_\-name = {\ttfamily (char$\ast$)\char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIsotopeFissionRateTally_a3fc1712cbad1343b8580560e152442c1}
+
+
+\hyperlink{classIsotopeFissionRateTally}{Isotope\-Fission\-Rate\-Tally} constructor calls the \hyperlink{classIsotopeTally}{Isotope\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to F\-I\-S\-S\-I\-O\-N\-\_\-\-R\-A\-T\-E. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em isotope} & a pointer to the isotope within which to tally \\
+\hline
+{\em tally\-\_\-name} & a character array for the tally name (optional) \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classIsotopeFissionRateTally_aeeed9917e1134a1a37ed58a5f94dd569}{\index{Isotope\-Fission\-Rate\-Tally@{Isotope\-Fission\-Rate\-Tally}!tally@{tally}}
+\index{tally@{tally}!IsotopeFissionRateTally@{Isotope\-Fission\-Rate\-Tally}}
+\subsubsection[{tally}]{\setlength{\rightskip}{0pt plus 5cm}void Isotope\-Fission\-Rate\-Tally\-::tally (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classIsotopeFissionRateTally_aeeed9917e1134a1a37ed58a5f94dd569}
+
+
+\hyperlink{classTally}{Tally} the isotope fission rate by incrementing the tally by $ \frac{\sigma_f}{\Sigma_t} $ at the neutron's energy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neutron} & the neutron of interest \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classIsotopeTally_a8a5b190e244c630ee7cda35f70287530}{Isotope\-Tally}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Tally_8h}{Tally.\-h}\item 
+Tally.\-cpp\end{DoxyCompactItemize}

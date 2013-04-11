@@ -1,11 +1,9 @@
-/*
- * Geometry.h
- *
- *  Created on: Mar 6, 2013
- *      Author: William Boyd
- *				MIT, Course 22
- *              wboyd@mit.edu
- */	
+/**
+ * @file Geometry.h
+ * @brief The Geometry class.
+ * @author William Boyd (wboyd@mit.edu)
+ * @date March 6, 2013.
+ */
 
 #ifndef GEOMETRY_H_
 #define GEOMETRY_H_
@@ -18,101 +16,139 @@
 #include "Fissioner.h"
 #include "TallyBank.h"
 #include "Timer.h"
+#endif
 
 
+/**
+ * @enum spatialTypes
+ * @brief The spatial types for the geometry
+ */
+
+/**
+ * @var spatialType
+ * @brief A spatial type for the geometry
+ */
 typedef enum spatialTypes {
-	INFINITE_HOMOGENEOUS,
-	HOMOGENEOUS_EQUIVALENCE,
-	HETEROGENEOUS,
+    /** An infinite homogeneous medium */
+    INFINITE_HOMOGENEOUS,
+    /** A heterogeneous-homogeneous equivalent geometry */
+    HOMOGENEOUS_EQUIVALENCE,
+    /** A heterogenous geometry built of regions and surfaces */
+    HETEROGENEOUS,
 } spatialType;
 
 
+/**
+ * @class Geometry Geometry.h "pinspec/src/Geometry.h"
+ * @brief The Geometry represents the highest level entity in which a neutron
+ *        may reside during a PINSPEC simulaiton. The geometry consists of
+ *        one or more regions and controls the highest level Monte Carlo
+ *        kernel.
+ */
 class Geometry {
 
 private:
 
-	int _num_neutrons_per_batch;
-	int _num_batches;
-	int _num_threads;
+    /** The number of neutrons per batch */
+    int _num_neutrons_per_batch;
+    /** The number of batches */
+    int _num_batches;
+    /** The number of threads */
+    int _num_threads;
 
-	spatialType _spatial_type;
-	Region* _infinite_medium;
-	Region* _fuel;
-	Region* _moderator;
-	neutron* _neutrons;
-	Fissioner* _fissioner;
+    /** The spatial type for the geometry */
+    spatialType _spatial_type;
+    /** INFINITE type region if the geometery is INFINITE_HOMOGENEOUS */
+    Region* _infinite_medium;
+    /** FUEL type region if the geometry is HETEROGENEOUS or 
+     *  HOMOGENEOUS_EQUIVALANCE */
+    Region* _fuel;
+    /** MODERATOR type region if the geometry is HETEROGENEOUS or 
+     *  HOMOGENEOUS_EQUIVALANCE */
+    Region* _moderator;
+    /** An array of neutrons */
+    neutron* _neutrons;
+    /** The fissioner used to sample new neutron fission emission energies */
+    Fissioner* _fissioner;
 
-	float _dancoff;
-	float _sigma_e;
-	float _beta;
-	float _alpha1;
-	float _alpha2;
+    /** The user-specified dancoff factor */    
+    float _dancoff;
+    /** The user-specified escape cross-section */
+    float _sigma_e;
+    /** The user-specified beta value for Carlvik's rational approximation */
+    float _beta;
+    /** The user-specified alpha1 value for Carlvik's rational approximation */
+    float _alpha1;
+    /** The user-specified alpha2 value for Carlvik's rational approximation */
+    float _alpha2;
 
-	float _buckling_squared;
+    /** The square of the geometric buckling */
+    float _buckling_squared;
 
-    /* Ratio of sigam_f * vol_f / sigma_m * vol_m */
-    /* Compute ratios ahead of time as an optimization */
+    /** The number of moderator to fuel cross-section ratios */
     int _num_ratios;
+    /** An array of the moderator to fuel cross-section ratios */
     float* _pmf_ratios;
-	binSpacingTypes _scale_type;
-	float _start_energy;
-	float _end_energy;
-	float _delta_energy;
+    /** The spacing type between bins (EQUAL, LOGARITHMIC, OTHER) */
+    binSpacingTypes _scale_type;
+    /** Lowest energy for the moderator to fuel cross-section ratios */
+    float _start_energy;
+    /** Highest energy for the moderator to fuel cross-section ratios */
+    float _end_energy;
+    /** Space between energies for the moderator to fuel cross-section ratios */
+    float _delta_energy;
 
     void initializeProbModFuelRatios();
-	int getEnergyGridIndex(float energy) const;
+    int getEnergyGridIndex(float energy) const;
     float computeFuelFuelCollisionProb(neutron* neutron);
     float computeModeratorFuelCollisionProb(neutron* neutron);
 
 public:
-	Geometry();
-	virtual ~Geometry();
+    Geometry();
+    virtual ~Geometry();
 	
-	/* getters */
-	int getNumNeutronsPerBatch();
-	int getTotalNumNeutrons();
-	int getNumBatches();
-	int getNumThreads();
-	spatialType getSpatialType();
-	float getBucklingSquared();
+    int getNumNeutronsPerBatch();
+    int getTotalNumNeutrons();
+    int getNumBatches();
+    int getNumThreads();
+    spatialType getSpatialType();
+    float getBucklingSquared();
     float getVolume();
 			
-	/* setters */
-	void setNeutronsPerBatch(int num_neutrons_per_batch);
-	void setNumBatches(int num_batches);
-	void setNumThreads(int num_threads);
-	void setSpatialType(spatialType spatial_type);
-	void setDancoffFactor(float dancoff);
-	void addRegion(Region* region);
-	void setBucklingSquared(float buckling_squared);
+    void setNeutronsPerBatch(int num_neutrons_per_batch);
+    void setNumBatches(int num_batches);
+    void setNumThreads(int num_threads);
+    void setSpatialType(spatialType spatial_type);
+    void setDancoffFactor(float dancoff);
+    void addRegion(Region* region);
+    void setBucklingSquared(float buckling_squared);
 
-	/* Monte Carlo kernel */
-	void runMonteCarloSimulation();
+    void runMonteCarloSimulation();
 };
 
 
 /**
- * This method returns the index for a certain energy (eV) into
- * the uniform lethargy grid of the Geometry's Pmf ratios
+ * @brief This method returns the index for a certain energy (eV) into
+ *        the uniform lethargy grid of the geometry's first flight
+ *        probability of travel from moderator to fuel \f$ p_{mf} \f$ ratios
  * @param energy the energy (eV) of interest
  * @return the index into the uniform lethargy grid
  */
 inline int Geometry::getEnergyGridIndex(float energy) const {
 
-	int index;
+    int index;
 
-	energy = log10(energy);
+    energy = log10(energy);
 
-	if (energy > _end_energy)
-		index = _num_ratios - 1;
-	else if (energy < _start_energy)
-		index = 0;
-	else
-		index = int(floor((energy - _start_energy) / _delta_energy));
+    if (energy > _end_energy)
+        index = _num_ratios - 1;
+    else if (energy < _start_energy)
+        index = 0;
+    else
+        index = int(floor((energy - _start_energy) / _delta_energy));
 
-	return index;
+    return index;
 }
 
-#endif
 
 #endif /* GEOMETRY_H_ */

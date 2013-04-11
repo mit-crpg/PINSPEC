@@ -1,0 +1,86 @@
+.TH "pinspec.log" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pinspec.log \- 
+.PP
+Utility functions for writing log messages to the screen\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBpy_printf\fP"
+.br
+.RI "\fIFunction to print a log message to the screen\&. \fP"
+.ti -1c
+.RI "def \fBsetlevel\fP"
+.br
+.RI "\fIAssigns the lowest level logging message\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Utility functions for writing log messages to the screen\&. 
+
+This module includes a set of wrapper functions for the logging routines provided by PINSPEC's C++ source code\&. These Python methods provide an interface for creating formatted log messages using level-based loggin and to print them to the screen as well as a logfile\&. 
+.PP
+\fBAuthor:\fP
+.RS 4
+Samuel Shaner 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+March 15, 2013 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "def pinspec\&.log\&.py_printf (level, my_str, args)"
+
+.PP
+Function to print a log message to the screen\&. This method is a wrapper to the log_printf C++ routine\&. It allows for formatted messages to be printed to the screen in a similar fashion to the C/C++ printf method, but with additional formatting provided by the PINSPEC logging utilities\&. An example of how this might be used in a PINSPEC Python script is as follows:
+.PP
+.PP
+.nf
+value1 = 25
+value2 = 26\&.0
+log\&.py_printf('NORMAL', 'My name is Will and I am %d going on'\
+                     ' %f years of age', value1, value2)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlevel\fP the logging level for this message 
+.br
+\fImy_str\fP the string to print to the screen 
+.br
+\fI*args\fP a variable length list of values for the message string 
+.RE
+.PP
+
+.SS "def pinspec\&.log\&.setlevel (level)"
+
+.PP
+Assigns the lowest level logging message\&. Sets the lowest level logging message to print to the screen\&. This controls the lowest level for both logging messages in the C++ source code as well as the user's PINSPEC Python input file\&. This function would be called at the beginning of the input file as follows:
+.PP
+.PP
+.nf
+log\&.setlevel('INFO')
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlevel\fP the minimum logging level ('DEBUG', 'INFO', etc) 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

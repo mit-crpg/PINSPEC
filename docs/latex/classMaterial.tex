@@ -1,0 +1,1045 @@
+\hypertarget{classMaterial}{\section{Material Class Reference}
+\label{classMaterial}\index{Material@{Material}}
+}
+
+
+The \hyperlink{classMaterial}{Material} class represents a collection of isotope objects.  
+
+
+
+
+{\ttfamily \#include \char`\"{}pinspec/src/\-Material.\-h\char`\"{}}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMaterial_a85e8dd8a94aa483bd7af567142452069}{Material} (char $\ast$material\-\_\-name)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMaterial}{Material} constructor. \end{DoxyCompactList}\item 
+virtual \hyperlink{classMaterial_a2c19452d71f54075df8f5405b03129f4}{$\sim$\-Material} ()
+\begin{DoxyCompactList}\small\item\em Mterial destructor. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{classMaterial_ab27870f1a05a25a77c0c17959c5386b6}{get\-Material\-Name} ()
+\begin{DoxyCompactList}\small\item\em Returns the material name. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a8ec68452133cc891a57db98c66753096}{get\-Material\-Number\-Density} ()
+\begin{DoxyCompactList}\small\item\em Returns the total number density for all isotopes within the material. \end{DoxyCompactList}\item 
+\hyperlink{classIsotope}{Isotope} $\ast$ \hyperlink{classMaterial_ae05e89d49010885dc05648cbeb94f787}{get\-Isotope} (char $\ast$isotope)
+\begin{DoxyCompactList}\small\item\em This method takes in a character array specifier for an isotope's name and returns a pointer to the \hyperlink{classIsotope}{Isotope}. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a40740dabb21cc8ba24b168935e10b06f}{get\-Density} ()
+\begin{DoxyCompactList}\small\item\em Returns the material's density. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_ad1e6d2015b73498a21f83783d8cf8266}{get\-Isotope\-Num\-Density} (char $\ast$isotope)
+\begin{DoxyCompactList}\small\item\em This method takes in a character array specifier for an isotope's name and returns a float for the \hyperlink{classIsotope}{Isotope}'s number density in $ \frac{at}{cm^3} $. \end{DoxyCompactList}\item 
+bool \hyperlink{classMaterial_a00b943e8ec54fc37f9a7d5ce0405234d}{contains\-Isotope} (\hyperlink{classIsotope}{Isotope} $\ast$isotope)
+\begin{DoxyCompactList}\small\item\em This method checks if the material contains a given isotope. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a017adfe40f5395a14cc92bb22e07740c}{get\-Buckling\-Squared} ()
+\begin{DoxyCompactList}\small\item\em Returns the geometric buckling squared for the geometry. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_ab88c88c9d5f7638d2c4029c3cf589aae}{get\-Volume} ()
+\begin{DoxyCompactList}\small\item\em Returns the total volume of all regions containing this material. \end{DoxyCompactList}\item 
+int \hyperlink{classMaterial_a292d37ee63031928c8f2bcdc5f7d90cb}{get\-Num\-X\-S\-Energies} (char $\ast$xs\-\_\-type)
+\begin{DoxyCompactList}\small\item\em Returns the total number of energies for which cross-\/sections are defined for one of the material's cross-\/section types. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a019bd7d8dc5cb655a84747bb6e3016dc}{get\-Total\-Macro\-X\-S} (float energy)
+\begin{DoxyCompactList}\small\item\em Returns the total macroscopic cross-\/section for the material at some energy (e\-V). \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a29d36e8d41af9cbc254bb31edbc06d53}{get\-Total\-Macro\-X\-S} (int energy\-\_\-index)
+\begin{DoxyCompactList}\small\item\em Returns the total macroscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a03326f0dddaf1affd6395c075f5ccf9f}{get\-Total\-Micro\-X\-S} (float energy)
+\begin{DoxyCompactList}\small\item\em Returns the total microscopic cross-\/section for the material at some energy (e\-V). \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_ae3ab3e334dbf390c2c60f048b679a348}{get\-Total\-Micro\-X\-S} (int energy\-\_\-index)
+\begin{DoxyCompactList}\small\item\em Returns the total microscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a2bad3888c55b8a5ab7260f459b49200c}{get\-Elastic\-Macro\-X\-S} (float energy)
+\begin{DoxyCompactList}\small\item\em Returns the total macroscopic elastic scattering cross-\/section for the material at some energy (e\-V). \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_abfa583941d2611f3f1a73dee015551e9}{get\-Elastic\-Macro\-X\-S} (int energy\-\_\-index)
+\begin{DoxyCompactList}\small\item\em Returns the elastic macroscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a35e410264efd36f267fac02719bab902}{get\-Elastic\-Micro\-X\-S} (float energy)
+\begin{DoxyCompactList}\small\item\em Returns the total macroscopic elastic scattering cross-\/section for the material at some energy (e\-V). \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a3dfbbc8b65a0f4e1f9aaa4a5c1ab50bd}{get\-Elastic\-Micro\-X\-S} (int energy\-\_\-index)
+\begin{DoxyCompactList}\small\item\em Returns the elastic microscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a310a3275a51710b8654bdaf46f61a801}{get\-Absorption\-Macro\-X\-S} (float energy)
+\begin{DoxyCompactList}\small\item\em Returns the total macroscopic absorption cross-\/section for the material at some energy. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a7538c8c5e94afc9ade32d68e4fef274b}{get\-Absorption\-Macro\-X\-S} (int energy\-\_\-index)
+\begin{DoxyCompactList}\small\item\em Returns the absorption macroscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a012882c863ee0c8c850cbfc29f175528}{get\-Absorption\-Micro\-X\-S} (float energy)
+\begin{DoxyCompactList}\small\item\em Returns the total microscopic absorption cross-\/section for the material at some energy (e\-V). \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a1c5813f4c10fe648e4d7399e4fa3c46e}{get\-Absorption\-Micro\-X\-S} (int energy\-\_\-index)
+\begin{DoxyCompactList}\small\item\em Returns the absorption microscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_aa7c68ddfd303f5b93e391a9f7c8bc525}{get\-Capture\-Macro\-X\-S} (float energy)
+\begin{DoxyCompactList}\small\item\em Returns the total macroscopic capture cross-\/section within this material at some energy (e\-V). \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a3c78a51474dfde84489f8b60f7c46fc0}{get\-Capture\-Macro\-X\-S} (int energy\-\_\-index)
+\begin{DoxyCompactList}\small\item\em Returns the capture macroscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a977da465b8165936e8e1847289334d0c}{get\-Capture\-Micro\-X\-S} (float energy)
+\begin{DoxyCompactList}\small\item\em Returns the total microscopic capture cross-\/section for the material at some energy (e\-V) \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_ad6b27638e6fb249552475702e33b789e}{get\-Capture\-Micro\-X\-S} (int energy\-\_\-index)
+\begin{DoxyCompactList}\small\item\em Returns the capture microscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_aeb48f420c8334d454e805fa62c8d0f51}{get\-Fission\-Macro\-X\-S} (float energy)
+\begin{DoxyCompactList}\small\item\em Returns the total macroscopic fission cross-\/section for the material at some energy (e\-V). \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a1aef50eaf3e67ecd125269110c69882f}{get\-Fission\-Macro\-X\-S} (int energy\-\_\-index)
+\begin{DoxyCompactList}\small\item\em Returns the fission macroscopic cross-\/section within the \hyperlink{classMaterial}{Material} at some index into the uniform lethargy grid of cross-\/section data. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_af1fb57ffc386213ff118c1571c25987c}{get\-Fission\-Micro\-X\-S} (float energy)
+\begin{DoxyCompactList}\small\item\em Returns the total microscopic fission cross-\/section for the \hyperlink{classMaterial}{Material} at some energy (e\-V). \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a2249bd57b535844828cb9acca839ee9d}{get\-Fission\-Micro\-X\-S} (int energy\-\_\-index)
+\begin{DoxyCompactList}\small\item\em Returns the fission microscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_acdad422a1e93337d5245af481463ed68}{get\-Transport\-Micro\-X\-S} (float energy)
+\begin{DoxyCompactList}\small\item\em Returns the total microscopic transport cross-\/section for the material at some energy (e\-V) \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a144a311226154eaea56631fdbea5d0e4}{get\-Transport\-Micro\-X\-S} (int energy\-\_\-index)
+\begin{DoxyCompactList}\small\item\em Returns the transport microscopic cross-\/section for the material at some index into the uniform lethargy grid. \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_ad9c8e9aee38dc558f389d5711c55035b}{get\-Transport\-Macro\-X\-S} (float energy)
+\begin{DoxyCompactList}\small\item\em Returns the total macroscopic transport cross-\/section for the material at some energy (e\-V) \end{DoxyCompactList}\item 
+float \hyperlink{classMaterial_a6d8003082a563689412ce6416da2b45f}{get\-Transport\-Macro\-X\-S} (int energy\-\_\-index)
+\begin{DoxyCompactList}\small\item\em Returns the transport macroscopic cross-\/section for the material at some index into the uniform lethargy grid. \end{DoxyCompactList}\item 
+void \hyperlink{classMaterial_a01e69f371011e7c80b1f8ba9c3b57204}{retrieve\-X\-S\-Energies} (float $\ast$energies, int num\-\_\-xs, char $\ast$xs\-\_\-type)
+\begin{DoxyCompactList}\small\item\em Fills an array with cross-\/section energy values. \end{DoxyCompactList}\item 
+void \hyperlink{classMaterial_ab5b5e2078eddb057841b77ccd4110071}{retrieve\-X\-S} (float $\ast$xs, int num\-\_\-xs, char $\ast$xs\-\_\-type)
+\begin{DoxyCompactList}\small\item\em Fills an array with macroscopic cross-\/section values. \end{DoxyCompactList}\item 
+void \hyperlink{classMaterial_a89e56bc82fcefcd2c73ab4a525a00129}{set\-Material\-Name} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Sets the name for the material. \end{DoxyCompactList}\item 
+void \hyperlink{classMaterial_a24c5b8d61359fd8a9843c3e71f286e01}{set\-Density} (float density, char $\ast$unit)
+\begin{DoxyCompactList}\small\item\em Sets this material's density. \end{DoxyCompactList}\item 
+void \hyperlink{classMaterial_a49b4d4fb7a51ef75cebffdd52d8c6931}{set\-Number\-Density} (float number\-\_\-density)
+\begin{DoxyCompactList}\small\item\em Sets the material's number density. \end{DoxyCompactList}\item 
+void \hyperlink{classMaterial_a25785b407a07d9509458cdd342aef877}{set\-Atomic\-Mass} (float atomic\-\_\-mass)
+\begin{DoxyCompactList}\small\item\em Sets the material's total atomic mass. \end{DoxyCompactList}\item 
+void \hyperlink{classMaterial_aeebedf71fc23735ed99c5ab3f5728b25}{set\-Buckling\-Squared} (float buckling\-\_\-squared)
+\begin{DoxyCompactList}\small\item\em Sets the squared geomtric buckling for the geometry in which this material resides. \end{DoxyCompactList}\item 
+void \hyperlink{classMaterial_affdd4a5887ae6cfb3772c7ebe6181a57}{increment\-Volume} (float volume)
+\begin{DoxyCompactList}\small\item\em Increments the volume occupied by this material in the geometry. \end{DoxyCompactList}\item 
+void \hyperlink{classMaterial_a397c579dfabdd309348de2b5875f74f9}{add\-Isotope} (\hyperlink{classIsotope}{Isotope} $\ast$isotope, float atomic\-\_\-ratio)
+\begin{DoxyCompactList}\small\item\em Adds a new isotope to this material with a given atomic ratio. \end{DoxyCompactList}\item 
+\hyperlink{classMaterial}{Material} $\ast$ \hyperlink{classMaterial_a417cf6f7c2cc82c04599e5a29b620a64}{clone} ()
+\begin{DoxyCompactList}\small\item\em This method clones a given material object by executing a deep copy of all of the material's class attributes and giving them to a new material class object. \end{DoxyCompactList}\item 
+void \hyperlink{classMaterial_a45bc347522e5f10ffdf05e0c6a68001f}{sample\-Isotope} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em Samples an isotope for a collision. \end{DoxyCompactList}\item 
+void \hyperlink{classMaterial_a3edcd9cac4f7e663499c4f6645aefa8c}{collide\-Neutron} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em Samples an isotope and a reaction rate for a neutron. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{classMaterial_a5fae14afcfee32144bea316d57ffaa91}{\-\_\-material\-\_\-name}
+\item 
+float \hyperlink{classMaterial_a43b7af8a6d0db91f87ba6fc4bc444296}{\-\_\-material\-\_\-density}
+\item 
+float \hyperlink{classMaterial_ae8d6d883253ee2c7ac6b2ec30dcafcf3}{\-\_\-material\-\_\-number\-\_\-density}
+\item 
+float \hyperlink{classMaterial_aa34fea9db30d4154bd405266452997d7}{\-\_\-material\-\_\-atomic\-\_\-mass}
+\item 
+float \hyperlink{classMaterial_a21f5e5ca63cd04c60095868d57baf3a4}{\-\_\-buckling\-\_\-squared}
+\item 
+float \hyperlink{classMaterial_a78d416095f5ae1235cbe6a39526deca6}{\-\_\-volume}
+\item 
+std\-::map$<$ char $\ast$, std\-::pair\\*
+$<$ float, \hyperlink{classIsotope}{Isotope} $\ast$ $>$ $>$ \hyperlink{classMaterial_a4d5279bd3412ccc933feca7b79488787}{\-\_\-isotopes}
+\item 
+std\-::map$<$ \hyperlink{classIsotope}{Isotope} $\ast$, float $>$ \hyperlink{classMaterial_aba125e44b2b55657a2977e05fbfe879b}{\-\_\-isotopes\-\_\-\-A\-O}
+\item 
+\hyperlink{Material_8h_a4851e68a0f78301ca873499ec041202a}{density\-Unit} \hyperlink{classMaterial_ae21ca778e0138e02a3aa81a726dc8a94}{\-\_\-density\-\_\-unit}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classMaterial}{Material} class represents a collection of isotope objects. 
+
+The \hyperlink{classMaterial}{Material} class represents a collection of isotope objects and samples isotopes for collisions with neutrons. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classMaterial_a85e8dd8a94aa483bd7af567142452069}{\index{Material@{Material}!Material@{Material}}
+\index{Material@{Material}!Material@{Material}}
+\subsubsection[{Material}]{\setlength{\rightskip}{0pt plus 5cm}Material\-::\-Material (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{material\-\_\-name}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a85e8dd8a94aa483bd7af567142452069}
+
+
+\hyperlink{classMaterial}{Material} constructor. 
+
+Sets the user-\/defined name along with default values for the material density (0), material number density (0), material atomic mass (1), buckling (0) and volume (0). \hypertarget{classMaterial_a2c19452d71f54075df8f5405b03129f4}{\index{Material@{Material}!$\sim$\-Material@{$\sim$\-Material}}
+\index{$\sim$\-Material@{$\sim$\-Material}!Material@{Material}}
+\subsubsection[{$\sim$\-Material}]{\setlength{\rightskip}{0pt plus 5cm}Material\-::$\sim$\-Material (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMaterial_a2c19452d71f54075df8f5405b03129f4}
+
+
+Mterial destructor. 
+
+\hyperlink{classMaterial}{Material} does not need to delete its isotopes since S\-W\-I\-G handles garbage collection. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classMaterial_a397c579dfabdd309348de2b5875f74f9}{\index{Material@{Material}!add\-Isotope@{add\-Isotope}}
+\index{add\-Isotope@{add\-Isotope}!Material@{Material}}
+\subsubsection[{add\-Isotope}]{\setlength{\rightskip}{0pt plus 5cm}void Material\-::add\-Isotope (
+\begin{DoxyParamCaption}
+\item[{{\bf Isotope} $\ast$}]{isotope, }
+\item[{float}]{atomic\-\_\-ratio}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a397c579dfabdd309348de2b5875f74f9}
+
+
+Adds a new isotope to this material with a given atomic ratio. 
+
+The atomic ratio is the number of atoms of this isotope per equivalent molecule of the material. For example, for a material of U\-O2 one would add uranium and oxygen isotopes as follows\-:
+
+
+\begin{DoxyCode}
+uo2.addIsotope(u235, 1.)
+uo2.addIsotope(o16, 2.)
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em isotope} & a pointer to the isotope \\
+\hline
+{\em atomic\-\_\-ratio} & the atomic ratio of the isotope within the material \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMaterial_a417cf6f7c2cc82c04599e5a29b620a64}{\index{Material@{Material}!clone@{clone}}
+\index{clone@{clone}!Material@{Material}}
+\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Material} $\ast$ Material\-::clone (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a417cf6f7c2cc82c04599e5a29b620a64}
+
+
+This method clones a given material object by executing a deep copy of all of the material's class attributes and giving them to a new material class object. 
+
+\begin{DoxyReturn}{Returns}
+a pointer to the new cloned material class object 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a3edcd9cac4f7e663499c4f6645aefa8c}{\index{Material@{Material}!collide\-Neutron@{collide\-Neutron}}
+\index{collide\-Neutron@{collide\-Neutron}!Material@{Material}}
+\subsubsection[{collide\-Neutron}]{\setlength{\rightskip}{0pt plus 5cm}void Material\-::collide\-Neutron (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a3edcd9cac4f7e663499c4f6645aefa8c}
+
+
+Samples an isotope and a reaction rate for a neutron. 
+
+For a given energy, this method calls \hyperlink{classMaterial_a45bc347522e5f10ffdf05e0c6a68001f}{sample\-Isotope()} to sample an isotope, then samples a reaction type in that isotope by using \hyperlink{classIsotope_afc161538a2b6d971cb355f616880125b}{Isotope\-::collide\-Neutron()} method. After this method returns, the neutron's outgoing collision energy has been updated and the neutron has been killed if it was absorbed. 
+\begin{DoxyParams}{Parameters}
+{\em neutron} & the neutron to collide within the material \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMaterial_a00b943e8ec54fc37f9a7d5ce0405234d}{\index{Material@{Material}!contains\-Isotope@{contains\-Isotope}}
+\index{contains\-Isotope@{contains\-Isotope}!Material@{Material}}
+\subsubsection[{contains\-Isotope}]{\setlength{\rightskip}{0pt plus 5cm}bool Material\-::contains\-Isotope (
+\begin{DoxyParamCaption}
+\item[{{\bf Isotope} $\ast$}]{isotope}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a00b943e8ec54fc37f9a7d5ce0405234d}
+
+
+This method checks if the material contains a given isotope. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em isotope} & a pointer to the isotope of interest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the material contains the isotope; otherwise false 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a310a3275a51710b8654bdaf46f61a801}{\index{Material@{Material}!get\-Absorption\-Macro\-X\-S@{get\-Absorption\-Macro\-X\-S}}
+\index{get\-Absorption\-Macro\-X\-S@{get\-Absorption\-Macro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Absorption\-Macro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Absorption\-Macro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{float}]{energy}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a310a3275a51710b8654bdaf46f61a801}
+
+
+Returns the total macroscopic absorption cross-\/section for the material at some energy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & the energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total macroscopic absorption cross-\/section $ (cm^{-1}) $ 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a7538c8c5e94afc9ade32d68e4fef274b}{\index{Material@{Material}!get\-Absorption\-Macro\-X\-S@{get\-Absorption\-Macro\-X\-S}}
+\index{get\-Absorption\-Macro\-X\-S@{get\-Absorption\-Macro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Absorption\-Macro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Absorption\-Macro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{int}]{energy\-\_\-index}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a7538c8c5e94afc9ade32d68e4fef274b}
+
+
+Returns the absorption macroscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy\-\_\-index} & the index into the uniform lethargy grid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the absorption macroscopic cross-\/section $ (cm^{-1}) $ 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a012882c863ee0c8c850cbfc29f175528}{\index{Material@{Material}!get\-Absorption\-Micro\-X\-S@{get\-Absorption\-Micro\-X\-S}}
+\index{get\-Absorption\-Micro\-X\-S@{get\-Absorption\-Micro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Absorption\-Micro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Absorption\-Micro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{float}]{energy}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a012882c863ee0c8c850cbfc29f175528}
+
+
+Returns the total microscopic absorption cross-\/section for the material at some energy (e\-V). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & the energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total microscopic absorption cross-\/section 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a1c5813f4c10fe648e4d7399e4fa3c46e}{\index{Material@{Material}!get\-Absorption\-Micro\-X\-S@{get\-Absorption\-Micro\-X\-S}}
+\index{get\-Absorption\-Micro\-X\-S@{get\-Absorption\-Micro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Absorption\-Micro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Absorption\-Micro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{int}]{energy\-\_\-index}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a1c5813f4c10fe648e4d7399e4fa3c46e}
+
+
+Returns the absorption microscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy\-\_\-index} & the index into the uniform lethargy grid. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the absorption microscopic cross-\/section 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a017adfe40f5395a14cc92bb22e07740c}{\index{Material@{Material}!get\-Buckling\-Squared@{get\-Buckling\-Squared}}
+\index{get\-Buckling\-Squared@{get\-Buckling\-Squared}!Material@{Material}}
+\subsubsection[{get\-Buckling\-Squared}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Buckling\-Squared (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a017adfe40f5395a14cc92bb22e07740c}
+
+
+Returns the geometric buckling squared for the geometry. 
+
+\begin{DoxyReturn}{Returns}
+the geometric buckling squared 
+\end{DoxyReturn}
+\hypertarget{classMaterial_aa7c68ddfd303f5b93e391a9f7c8bc525}{\index{Material@{Material}!get\-Capture\-Macro\-X\-S@{get\-Capture\-Macro\-X\-S}}
+\index{get\-Capture\-Macro\-X\-S@{get\-Capture\-Macro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Capture\-Macro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Capture\-Macro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{float}]{energy}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_aa7c68ddfd303f5b93e391a9f7c8bc525}
+
+
+Returns the total macroscopic capture cross-\/section within this material at some energy (e\-V). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & the energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total macroscopic capture cross-\/section $ (cm^{-1}) $ 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a3c78a51474dfde84489f8b60f7c46fc0}{\index{Material@{Material}!get\-Capture\-Macro\-X\-S@{get\-Capture\-Macro\-X\-S}}
+\index{get\-Capture\-Macro\-X\-S@{get\-Capture\-Macro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Capture\-Macro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Capture\-Macro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{int}]{energy\-\_\-index}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a3c78a51474dfde84489f8b60f7c46fc0}
+
+
+Returns the capture macroscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy\-\_\-index} & the index into the uniform lethargy grid. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the capture macroscopic cross-\/section $ (cm^{-1}) $ 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a977da465b8165936e8e1847289334d0c}{\index{Material@{Material}!get\-Capture\-Micro\-X\-S@{get\-Capture\-Micro\-X\-S}}
+\index{get\-Capture\-Micro\-X\-S@{get\-Capture\-Micro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Capture\-Micro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Capture\-Micro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{float}]{energy}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a977da465b8165936e8e1847289334d0c}
+
+
+Returns the total microscopic capture cross-\/section for the material at some energy (e\-V) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & the energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total microscopic capture cross-\/section 
+\end{DoxyReturn}
+\hypertarget{classMaterial_ad6b27638e6fb249552475702e33b789e}{\index{Material@{Material}!get\-Capture\-Micro\-X\-S@{get\-Capture\-Micro\-X\-S}}
+\index{get\-Capture\-Micro\-X\-S@{get\-Capture\-Micro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Capture\-Micro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Capture\-Micro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{int}]{energy\-\_\-index}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_ad6b27638e6fb249552475702e33b789e}
+
+
+Returns the capture microscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy\-\_\-index} & the inex into the uniform lethargy grid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the capture microscopic cross-\/section 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a40740dabb21cc8ba24b168935e10b06f}{\index{Material@{Material}!get\-Density@{get\-Density}}
+\index{get\-Density@{get\-Density}!Material@{Material}}
+\subsubsection[{get\-Density}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Density (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a40740dabb21cc8ba24b168935e10b06f}
+
+
+Returns the material's density. 
+
+\begin{DoxyReturn}{Returns}
+the material's density 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a2bad3888c55b8a5ab7260f459b49200c}{\index{Material@{Material}!get\-Elastic\-Macro\-X\-S@{get\-Elastic\-Macro\-X\-S}}
+\index{get\-Elastic\-Macro\-X\-S@{get\-Elastic\-Macro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Elastic\-Macro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Elastic\-Macro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{float}]{energy}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a2bad3888c55b8a5ab7260f459b49200c}
+
+
+Returns the total macroscopic elastic scattering cross-\/section for the material at some energy (e\-V). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & the energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total macroscopic elastic scattering cross-\/section $ (cm^{-1}) $ 
+\end{DoxyReturn}
+\hypertarget{classMaterial_abfa583941d2611f3f1a73dee015551e9}{\index{Material@{Material}!get\-Elastic\-Macro\-X\-S@{get\-Elastic\-Macro\-X\-S}}
+\index{get\-Elastic\-Macro\-X\-S@{get\-Elastic\-Macro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Elastic\-Macro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Elastic\-Macro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{int}]{energy\-\_\-index}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_abfa583941d2611f3f1a73dee015551e9}
+
+
+Returns the elastic macroscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy\-\_\-index} & the index into the uniform lethargy grid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the elastic macroscopic cross-\/section $ (cm^{-1}) $ 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a35e410264efd36f267fac02719bab902}{\index{Material@{Material}!get\-Elastic\-Micro\-X\-S@{get\-Elastic\-Micro\-X\-S}}
+\index{get\-Elastic\-Micro\-X\-S@{get\-Elastic\-Micro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Elastic\-Micro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Elastic\-Micro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{float}]{energy}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a35e410264efd36f267fac02719bab902}
+
+
+Returns the total macroscopic elastic scattering cross-\/section for the material at some energy (e\-V). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & the energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total elastic microscopic scattering cross-\/section 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a3dfbbc8b65a0f4e1f9aaa4a5c1ab50bd}{\index{Material@{Material}!get\-Elastic\-Micro\-X\-S@{get\-Elastic\-Micro\-X\-S}}
+\index{get\-Elastic\-Micro\-X\-S@{get\-Elastic\-Micro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Elastic\-Micro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Elastic\-Micro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{int}]{energy\-\_\-index}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a3dfbbc8b65a0f4e1f9aaa4a5c1ab50bd}
+
+
+Returns the elastic microscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy\-\_\-index} & the index into the uniform lethargy grid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the elastic microscopic cross-\/section 
+\end{DoxyReturn}
+\hypertarget{classMaterial_aeb48f420c8334d454e805fa62c8d0f51}{\index{Material@{Material}!get\-Fission\-Macro\-X\-S@{get\-Fission\-Macro\-X\-S}}
+\index{get\-Fission\-Macro\-X\-S@{get\-Fission\-Macro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Fission\-Macro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Fission\-Macro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{float}]{energy}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_aeb48f420c8334d454e805fa62c8d0f51}
+
+
+Returns the total macroscopic fission cross-\/section for the material at some energy (e\-V). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & the energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total macroscopic fission cross-\/section $ (cm^{-1}) $ 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a1aef50eaf3e67ecd125269110c69882f}{\index{Material@{Material}!get\-Fission\-Macro\-X\-S@{get\-Fission\-Macro\-X\-S}}
+\index{get\-Fission\-Macro\-X\-S@{get\-Fission\-Macro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Fission\-Macro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Fission\-Macro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{int}]{energy\-\_\-index}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a1aef50eaf3e67ecd125269110c69882f}
+
+
+Returns the fission macroscopic cross-\/section within the \hyperlink{classMaterial}{Material} at some index into the uniform lethargy grid of cross-\/section data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy\-\_\-index} & index into the uniform lethargy grid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the fission macroscopic cross-\/section $ (cm^{-1}) $ 
+\end{DoxyReturn}
+\hypertarget{classMaterial_af1fb57ffc386213ff118c1571c25987c}{\index{Material@{Material}!get\-Fission\-Micro\-X\-S@{get\-Fission\-Micro\-X\-S}}
+\index{get\-Fission\-Micro\-X\-S@{get\-Fission\-Micro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Fission\-Micro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Fission\-Micro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{float}]{energy}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_af1fb57ffc386213ff118c1571c25987c}
+
+
+Returns the total microscopic fission cross-\/section for the \hyperlink{classMaterial}{Material} at some energy (e\-V). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & the energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total microscopic fission cross-\/section 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a2249bd57b535844828cb9acca839ee9d}{\index{Material@{Material}!get\-Fission\-Micro\-X\-S@{get\-Fission\-Micro\-X\-S}}
+\index{get\-Fission\-Micro\-X\-S@{get\-Fission\-Micro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Fission\-Micro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Fission\-Micro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{int}]{energy\-\_\-index}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a2249bd57b535844828cb9acca839ee9d}
+
+
+Returns the fission microscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy\-\_\-index} & the index into the uniform lethargy grid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the fission microscopic cross-\/section 
+\end{DoxyReturn}
+\hypertarget{classMaterial_ae05e89d49010885dc05648cbeb94f787}{\index{Material@{Material}!get\-Isotope@{get\-Isotope}}
+\index{get\-Isotope@{get\-Isotope}!Material@{Material}}
+\subsubsection[{get\-Isotope}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Isotope} $\ast$ Material\-::get\-Isotope (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{isotope}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_ae05e89d49010885dc05648cbeb94f787}
+
+
+This method takes in a character array specifier for an isotope's name and returns a pointer to the \hyperlink{classIsotope}{Isotope}. 
+
+An example of how this would be called in python is as follows\-:
+
+
+\begin{DoxyCode}
+h1 = material.getIsotope(\textcolor{stringliteral}{'H-1'})
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em isotope} & the name of the isotope \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the \hyperlink{classIsotope}{Isotope} 
+\end{DoxyReturn}
+\hypertarget{classMaterial_ad1e6d2015b73498a21f83783d8cf8266}{\index{Material@{Material}!get\-Isotope\-Num\-Density@{get\-Isotope\-Num\-Density}}
+\index{get\-Isotope\-Num\-Density@{get\-Isotope\-Num\-Density}!Material@{Material}}
+\subsubsection[{get\-Isotope\-Num\-Density}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Isotope\-Num\-Density (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{isotope}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_ad1e6d2015b73498a21f83783d8cf8266}
+
+
+This method takes in a character array specifier for an isotope's name and returns a float for the \hyperlink{classIsotope}{Isotope}'s number density in $ \frac{at}{cm^3} $. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em isotope} & the name of the isotope \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the isotope's number density 
+\end{DoxyReturn}
+\hypertarget{classMaterial_ab27870f1a05a25a77c0c17959c5386b6}{\index{Material@{Material}!get\-Material\-Name@{get\-Material\-Name}}
+\index{get\-Material\-Name@{get\-Material\-Name}!Material@{Material}}
+\subsubsection[{get\-Material\-Name}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ Material\-::get\-Material\-Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_ab27870f1a05a25a77c0c17959c5386b6}
+
+
+Returns the material name. 
+
+\begin{DoxyReturn}{Returns}
+the name of this material 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a8ec68452133cc891a57db98c66753096}{\index{Material@{Material}!get\-Material\-Number\-Density@{get\-Material\-Number\-Density}}
+\index{get\-Material\-Number\-Density@{get\-Material\-Number\-Density}!Material@{Material}}
+\subsubsection[{get\-Material\-Number\-Density}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Material\-Number\-Density (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a8ec68452133cc891a57db98c66753096}
+
+
+Returns the total number density for all isotopes within the material. 
+
+\begin{DoxyReturn}{Returns}
+the total number density $ \frac{at}{cm^3} $. 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a292d37ee63031928c8f2bcdc5f7d90cb}{\index{Material@{Material}!get\-Num\-X\-S\-Energies@{get\-Num\-X\-S\-Energies}}
+\index{get\-Num\-X\-S\-Energies@{get\-Num\-X\-S\-Energies}!Material@{Material}}
+\subsubsection[{get\-Num\-X\-S\-Energies}]{\setlength{\rightskip}{0pt plus 5cm}int Material\-::get\-Num\-X\-S\-Energies (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{xs\-\_\-type}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a292d37ee63031928c8f2bcdc5f7d90cb}
+
+
+Returns the total number of energies for which cross-\/sections are defined for one of the material's cross-\/section types. 
+
+This method assumes that each isotope contains cross-\/sections defined on a uniform lethargy grid (100,000 points by default). The method queries the first isotope in the material's collection of isotopes to determine the number of cross-\/sections. The method will return the number of values for 'capture', 'elastic', 'fission', 'absorption' and 'total' cross-\/section types. 
+\begin{DoxyParams}{Parameters}
+{\em xs\-\_\-type} & a character array for the cross-\/section type of interest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+then number of cross-\/section values 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a019bd7d8dc5cb655a84747bb6e3016dc}{\index{Material@{Material}!get\-Total\-Macro\-X\-S@{get\-Total\-Macro\-X\-S}}
+\index{get\-Total\-Macro\-X\-S@{get\-Total\-Macro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Total\-Macro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Total\-Macro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{float}]{energy}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a019bd7d8dc5cb655a84747bb6e3016dc}
+
+
+Returns the total macroscopic cross-\/section for the material at some energy (e\-V). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total macroscopic cross-\/section $ (cm^{-1}) $ 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a29d36e8d41af9cbc254bb31edbc06d53}{\index{Material@{Material}!get\-Total\-Macro\-X\-S@{get\-Total\-Macro\-X\-S}}
+\index{get\-Total\-Macro\-X\-S@{get\-Total\-Macro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Total\-Macro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Total\-Macro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{int}]{energy\-\_\-index}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a29d36e8d41af9cbc254bb31edbc06d53}
+
+
+Returns the total macroscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy\-\_\-index} & the index into the uniform lethargy grid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total macroscopic cross-\/section $ (cm^{-1}) $ 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a03326f0dddaf1affd6395c075f5ccf9f}{\index{Material@{Material}!get\-Total\-Micro\-X\-S@{get\-Total\-Micro\-X\-S}}
+\index{get\-Total\-Micro\-X\-S@{get\-Total\-Micro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Total\-Micro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Total\-Micro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{float}]{energy}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a03326f0dddaf1affd6395c075f5ccf9f}
+
+
+Returns the total microscopic cross-\/section for the material at some energy (e\-V). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total microscopic cross-\/section 
+\end{DoxyReturn}
+\hypertarget{classMaterial_ae3ab3e334dbf390c2c60f048b679a348}{\index{Material@{Material}!get\-Total\-Micro\-X\-S@{get\-Total\-Micro\-X\-S}}
+\index{get\-Total\-Micro\-X\-S@{get\-Total\-Micro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Total\-Micro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Total\-Micro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{int}]{energy\-\_\-index}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_ae3ab3e334dbf390c2c60f048b679a348}
+
+
+Returns the total microscopic cross-\/section for the material at some index into the uniform lethargy grid of cross-\/section data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy\-\_\-index} & index into the uniform lethargy grid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total microscopic cross-\/section 
+\end{DoxyReturn}
+\hypertarget{classMaterial_ad9c8e9aee38dc558f389d5711c55035b}{\index{Material@{Material}!get\-Transport\-Macro\-X\-S@{get\-Transport\-Macro\-X\-S}}
+\index{get\-Transport\-Macro\-X\-S@{get\-Transport\-Macro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Transport\-Macro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Transport\-Macro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{float}]{energy}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_ad9c8e9aee38dc558f389d5711c55035b}
+
+
+Returns the total macroscopic transport cross-\/section for the material at some energy (e\-V) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & the energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total macroscopic transport cross-\/section $ (cm^{-1}) $ 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a6d8003082a563689412ce6416da2b45f}{\index{Material@{Material}!get\-Transport\-Macro\-X\-S@{get\-Transport\-Macro\-X\-S}}
+\index{get\-Transport\-Macro\-X\-S@{get\-Transport\-Macro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Transport\-Macro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Transport\-Macro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{int}]{energy\-\_\-index}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a6d8003082a563689412ce6416da2b45f}
+
+
+Returns the transport macroscopic cross-\/section for the material at some index into the uniform lethargy grid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy\-\_\-index} & the index into the uniform lethargy grid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the transport macroscopic cross-\/section $ (cm^{-1}) $ 
+\end{DoxyReturn}
+\hypertarget{classMaterial_acdad422a1e93337d5245af481463ed68}{\index{Material@{Material}!get\-Transport\-Micro\-X\-S@{get\-Transport\-Micro\-X\-S}}
+\index{get\-Transport\-Micro\-X\-S@{get\-Transport\-Micro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Transport\-Micro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Transport\-Micro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{float}]{energy}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_acdad422a1e93337d5245af481463ed68}
+
+
+Returns the total microscopic transport cross-\/section for the material at some energy (e\-V) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & the energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total microscopic transport cross-\/section 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a144a311226154eaea56631fdbea5d0e4}{\index{Material@{Material}!get\-Transport\-Micro\-X\-S@{get\-Transport\-Micro\-X\-S}}
+\index{get\-Transport\-Micro\-X\-S@{get\-Transport\-Micro\-X\-S}!Material@{Material}}
+\subsubsection[{get\-Transport\-Micro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Transport\-Micro\-X\-S (
+\begin{DoxyParamCaption}
+\item[{int}]{energy\-\_\-index}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a144a311226154eaea56631fdbea5d0e4}
+
+
+Returns the transport microscopic cross-\/section for the material at some index into the uniform lethargy grid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy\-\_\-index} & the index into the uniform lethargy grid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the transport microscopic cross-\/section 
+\end{DoxyReturn}
+\hypertarget{classMaterial_ab88c88c9d5f7638d2c4029c3cf589aae}{\index{Material@{Material}!get\-Volume@{get\-Volume}}
+\index{get\-Volume@{get\-Volume}!Material@{Material}}
+\subsubsection[{get\-Volume}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Volume (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_ab88c88c9d5f7638d2c4029c3cf589aae}
+
+
+Returns the total volume of all regions containing this material. 
+
+\begin{DoxyReturn}{Returns}
+the total volume defined by this material 
+\end{DoxyReturn}
+\hypertarget{classMaterial_affdd4a5887ae6cfb3772c7ebe6181a57}{\index{Material@{Material}!increment\-Volume@{increment\-Volume}}
+\index{increment\-Volume@{increment\-Volume}!Material@{Material}}
+\subsubsection[{increment\-Volume}]{\setlength{\rightskip}{0pt plus 5cm}void Material\-::increment\-Volume (
+\begin{DoxyParamCaption}
+\item[{float}]{volume}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_affdd4a5887ae6cfb3772c7ebe6181a57}
+
+
+Increments the volume occupied by this material in the geometry. 
+
+This is used when a material is added to more than one region, as is the case for a heterogeneous pin cell with multiple radial regions of the same material. 
+\begin{DoxyParams}{Parameters}
+{\em volume} & the volume to add to the total material volume \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMaterial_ab5b5e2078eddb057841b77ccd4110071}{\index{Material@{Material}!retrieve\-X\-S@{retrieve\-X\-S}}
+\index{retrieve\-X\-S@{retrieve\-X\-S}!Material@{Material}}
+\subsubsection[{retrieve\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}void Material\-::retrieve\-X\-S (
+\begin{DoxyParamCaption}
+\item[{float $\ast$}]{xs, }
+\item[{int}]{num\-\_\-xs, }
+\item[{char $\ast$}]{xs\-\_\-type}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_ab5b5e2078eddb057841b77ccd4110071}
+
+
+Fills an array with macroscopic cross-\/section values. 
+
+This method is a helper function to allow P\-I\-N\-S\-P\-E\-C users to get access to the material's nuclear data in Python. A user must initialize a numpy array of the correct size (ie, a float64 array the length of the number of cross-\/section values) as input to this function. This function then fills the numpy array with the data values for one of the isotope's cross-\/sections. An example of how this function might be called in Python is as follows\-:
+
+
+\begin{DoxyCode}
+num\_xs = material.getNumXSEnergies()
+xs = numpy.zeros(num\_xs)          
+material.retrieveXS(xs, num\_xs, \textcolor{stringliteral}{'capture'})
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em xs} & an array to fill with the macroscopic cross-\/section data \\
+\hline
+{\em num\-\_\-xs} & the number of cross-\/section values \\
+\hline
+{\em xs\-\_\-type} & the type of cross-\/section \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMaterial_a01e69f371011e7c80b1f8ba9c3b57204}{\index{Material@{Material}!retrieve\-X\-S\-Energies@{retrieve\-X\-S\-Energies}}
+\index{retrieve\-X\-S\-Energies@{retrieve\-X\-S\-Energies}!Material@{Material}}
+\subsubsection[{retrieve\-X\-S\-Energies}]{\setlength{\rightskip}{0pt plus 5cm}void Material\-::retrieve\-X\-S\-Energies (
+\begin{DoxyParamCaption}
+\item[{float $\ast$}]{energies, }
+\item[{int}]{num\-\_\-xs, }
+\item[{char $\ast$}]{xs\-\_\-type}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a01e69f371011e7c80b1f8ba9c3b57204}
+
+
+Fills an array with cross-\/section energy values. 
+
+This method is a helper function to allow P\-I\-N\-S\-P\-E\-C users to get access to the material's nuclear data in Python. A user must initialize a numpy array of the correct size (ie, a float64 array the length of the number of cross-\/section values) as input to this function. This function then fills the numpy array with the energy values for the isotope's cross-\/section data. An example of how this function might be called in Python is as follows\-:
+
+
+\begin{DoxyCode}
+num\_energies = material.getNumXSEnergies()
+energies = numpy.zeros(num\_energies)          
+material.retrieveXSEnergies(energies, num\_energies, \textcolor{stringliteral}{'capture'})
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em energies} & an array to fill with the cross-\/section energies \\
+\hline
+{\em num\-\_\-xs} & the number of cross-\/section values \\
+\hline
+{\em xs\-\_\-type} & the type of cross-\/section \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMaterial_a45bc347522e5f10ffdf05e0c6a68001f}{\index{Material@{Material}!sample\-Isotope@{sample\-Isotope}}
+\index{sample\-Isotope@{sample\-Isotope}!Material@{Material}}
+\subsubsection[{sample\-Isotope}]{\setlength{\rightskip}{0pt plus 5cm}void Material\-::sample\-Isotope (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a45bc347522e5f10ffdf05e0c6a68001f}
+
+
+Samples an isotope for a collision. 
+
+The probability for collision with an isotope isbased on the ratios of each isotope's total cross-\/section to the total cross-\/section of all isotope's in this \hyperlink{classMaterial}{Material}. \begin{DoxyReturn}{Returns}
+a pointer to the sampled isotope 
+\end{DoxyReturn}
+\hypertarget{classMaterial_a25785b407a07d9509458cdd342aef877}{\index{Material@{Material}!set\-Atomic\-Mass@{set\-Atomic\-Mass}}
+\index{set\-Atomic\-Mass@{set\-Atomic\-Mass}!Material@{Material}}
+\subsubsection[{set\-Atomic\-Mass}]{\setlength{\rightskip}{0pt plus 5cm}void Material\-::set\-Atomic\-Mass (
+\begin{DoxyParamCaption}
+\item[{float}]{atomic\-\_\-mass}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a25785b407a07d9509458cdd342aef877}
+
+
+Sets the material's total atomic mass. 
+
+If the material is a molecule this is equivalent to setting the molecular mass. For example, for U\-O2, the material atomic mass would be $ 235 + 16 + 16 = 267 $. 
+\begin{DoxyParams}{Parameters}
+{\em atomic\-\_\-mass} & the material's total atomic mass \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMaterial_aeebedf71fc23735ed99c5ab3f5728b25}{\index{Material@{Material}!set\-Buckling\-Squared@{set\-Buckling\-Squared}}
+\index{set\-Buckling\-Squared@{set\-Buckling\-Squared}!Material@{Material}}
+\subsubsection[{set\-Buckling\-Squared}]{\setlength{\rightskip}{0pt plus 5cm}void Material\-::set\-Buckling\-Squared (
+\begin{DoxyParamCaption}
+\item[{float}]{buckling\-\_\-squared}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_aeebedf71fc23735ed99c5ab3f5728b25}
+
+
+Sets the squared geomtric buckling for the geometry in which this material resides. 
+
+This is used such that leakage can be sampled within isotopes in the same way as all other reaction rates. 
+\begin{DoxyParams}{Parameters}
+{\em buckling\-\_\-squared} & the squared geometric buckling for the geometry \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMaterial_a24c5b8d61359fd8a9843c3e71f286e01}{\index{Material@{Material}!set\-Density@{set\-Density}}
+\index{set\-Density@{set\-Density}!Material@{Material}}
+\subsubsection[{set\-Density}]{\setlength{\rightskip}{0pt plus 5cm}void Material\-::set\-Density (
+\begin{DoxyParamCaption}
+\item[{float}]{density, }
+\item[{char $\ast$}]{unit}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a24c5b8d61359fd8a9843c3e71f286e01}
+
+
+Sets this material's density. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em density} & the density of the material \\
+\hline
+{\em unit} & the density units ('g/cc' or 'at/cc') \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMaterial_a89e56bc82fcefcd2c73ab4a525a00129}{\index{Material@{Material}!set\-Material\-Name@{set\-Material\-Name}}
+\index{set\-Material\-Name@{set\-Material\-Name}!Material@{Material}}
+\subsubsection[{set\-Material\-Name}]{\setlength{\rightskip}{0pt plus 5cm}void Material\-::set\-Material\-Name (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a89e56bc82fcefcd2c73ab4a525a00129}
+
+
+Sets the name for the material. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & a character array for the material's name \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMaterial_a49b4d4fb7a51ef75cebffdd52d8c6931}{\index{Material@{Material}!set\-Number\-Density@{set\-Number\-Density}}
+\index{set\-Number\-Density@{set\-Number\-Density}!Material@{Material}}
+\subsubsection[{set\-Number\-Density}]{\setlength{\rightskip}{0pt plus 5cm}void Material\-::set\-Number\-Density (
+\begin{DoxyParamCaption}
+\item[{float}]{number\-\_\-density}
+\end{DoxyParamCaption}
+)}}\label{classMaterial_a49b4d4fb7a51ef75cebffdd52d8c6931}
+
+
+Sets the material's number density. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number\-\_\-density} & the number density of material (at/cc) \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classMaterial_a21f5e5ca63cd04c60095868d57baf3a4}{\index{Material@{Material}!\-\_\-buckling\-\_\-squared@{\-\_\-buckling\-\_\-squared}}
+\index{\-\_\-buckling\-\_\-squared@{\-\_\-buckling\-\_\-squared}!Material@{Material}}
+\subsubsection[{\-\_\-buckling\-\_\-squared}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::\-\_\-buckling\-\_\-squared\hspace{0.3cm}{\ttfamily [private]}}}\label{classMaterial_a21f5e5ca63cd04c60095868d57baf3a4}
+The geometric buckling squared -\/ used to sample leakage \hypertarget{classMaterial_ae21ca778e0138e02a3aa81a726dc8a94}{\index{Material@{Material}!\-\_\-density\-\_\-unit@{\-\_\-density\-\_\-unit}}
+\index{\-\_\-density\-\_\-unit@{\-\_\-density\-\_\-unit}!Material@{Material}}
+\subsubsection[{\-\_\-density\-\_\-unit}]{\setlength{\rightskip}{0pt plus 5cm}{\bf density\-Unit} Material\-::\-\_\-density\-\_\-unit\hspace{0.3cm}{\ttfamily [private]}}}\label{classMaterial_ae21ca778e0138e02a3aa81a726dc8a94}
+The units for the material's density (ie, 'g/cc' or 'at/cc') \hypertarget{classMaterial_a4d5279bd3412ccc933feca7b79488787}{\index{Material@{Material}!\-\_\-isotopes@{\-\_\-isotopes}}
+\index{\-\_\-isotopes@{\-\_\-isotopes}!Material@{Material}}
+\subsubsection[{\-\_\-isotopes}]{\setlength{\rightskip}{0pt plus 5cm}std\-::map$<$char$\ast$, std\-::pair$<$float, {\bf Isotope}$\ast$$>$ $>$ Material\-::\-\_\-isotopes\hspace{0.3cm}{\ttfamily [private]}}}\label{classMaterial_a4d5279bd3412ccc933feca7b79488787}
+Map relating isotope name to number density / isotope pairs \hypertarget{classMaterial_aba125e44b2b55657a2977e05fbfe879b}{\index{Material@{Material}!\-\_\-isotopes\-\_\-\-A\-O@{\-\_\-isotopes\-\_\-\-A\-O}}
+\index{\-\_\-isotopes\-\_\-\-A\-O@{\-\_\-isotopes\-\_\-\-A\-O}!Material@{Material}}
+\subsubsection[{\-\_\-isotopes\-\_\-\-A\-O}]{\setlength{\rightskip}{0pt plus 5cm}std\-::map$<${\bf Isotope}$\ast$, float$>$ Material\-::\-\_\-isotopes\-\_\-\-A\-O\hspace{0.3cm}{\ttfamily [private]}}}\label{classMaterial_aba125e44b2b55657a2977e05fbfe879b}
+Map relating isotope pointers to atomic ratios within the material \hypertarget{classMaterial_aa34fea9db30d4154bd405266452997d7}{\index{Material@{Material}!\-\_\-material\-\_\-atomic\-\_\-mass@{\-\_\-material\-\_\-atomic\-\_\-mass}}
+\index{\-\_\-material\-\_\-atomic\-\_\-mass@{\-\_\-material\-\_\-atomic\-\_\-mass}!Material@{Material}}
+\subsubsection[{\-\_\-material\-\_\-atomic\-\_\-mass}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::\-\_\-material\-\_\-atomic\-\_\-mass\hspace{0.3cm}{\ttfamily [private]}}}\label{classMaterial_aa34fea9db30d4154bd405266452997d7}
+The material atomic mass (sum of all isotope masses according to their abundance in the material \hypertarget{classMaterial_a43b7af8a6d0db91f87ba6fc4bc444296}{\index{Material@{Material}!\-\_\-material\-\_\-density@{\-\_\-material\-\_\-density}}
+\index{\-\_\-material\-\_\-density@{\-\_\-material\-\_\-density}!Material@{Material}}
+\subsubsection[{\-\_\-material\-\_\-density}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::\-\_\-material\-\_\-density\hspace{0.3cm}{\ttfamily [private]}}}\label{classMaterial_a43b7af8a6d0db91f87ba6fc4bc444296}
+The material density in g/cc \hypertarget{classMaterial_a5fae14afcfee32144bea316d57ffaa91}{\index{Material@{Material}!\-\_\-material\-\_\-name@{\-\_\-material\-\_\-name}}
+\index{\-\_\-material\-\_\-name@{\-\_\-material\-\_\-name}!Material@{Material}}
+\subsubsection[{\-\_\-material\-\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ Material\-::\-\_\-material\-\_\-name\hspace{0.3cm}{\ttfamily [private]}}}\label{classMaterial_a5fae14afcfee32144bea316d57ffaa91}
+The name of the material arbitrarily defined by the user \hypertarget{classMaterial_ae8d6d883253ee2c7ac6b2ec30dcafcf3}{\index{Material@{Material}!\-\_\-material\-\_\-number\-\_\-density@{\-\_\-material\-\_\-number\-\_\-density}}
+\index{\-\_\-material\-\_\-number\-\_\-density@{\-\_\-material\-\_\-number\-\_\-density}!Material@{Material}}
+\subsubsection[{\-\_\-material\-\_\-number\-\_\-density}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::\-\_\-material\-\_\-number\-\_\-density\hspace{0.3cm}{\ttfamily [private]}}}\label{classMaterial_ae8d6d883253ee2c7ac6b2ec30dcafcf3}
+The material number density in num/cc \hypertarget{classMaterial_a78d416095f5ae1235cbe6a39526deca6}{\index{Material@{Material}!\-\_\-volume@{\-\_\-volume}}
+\index{\-\_\-volume@{\-\_\-volume}!Material@{Material}}
+\subsubsection[{\-\_\-volume}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::\-\_\-volume\hspace{0.3cm}{\ttfamily [private]}}}\label{classMaterial_a78d416095f5ae1235cbe6a39526deca6}
+The total volume of all regions containing this material 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+pinspec/src/\hyperlink{Material_8h}{Material.\-h}\item 
+pinspec/src/Material.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,118 @@
+.TH "pinspec/src/xsreader.h" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pinspec/src/xsreader.h \- 
+.PP
+Utility functions to parse in ENDF cross-sections from text files into data arrays\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsetXSLibDirectory\fP (const char *directory)"
+.br
+.RI "\fISets the directory for the cross-section library\&. \fP"
+.ti -1c
+.RI "const char * \fBgetXSLibDirectory\fP ()"
+.br
+.RI "\fIReturns the directory for the cross-section library directory\&. \fP"
+.ti -1c
+.RI "int \fBrestoreXSLibrary\fP ()"
+.br
+.RI "\fIRestores the cross-section library to its original, installed state\&. \fP"
+.ti -1c
+.RI "int \fBparseCrossSections\fP (const char *file, float *energies, float *xs_values)"
+.br
+.RI "\fIParses an input file of cross-section data\&. \fP"
+.ti -1c
+.RI "int \fBgetNumCrossSectionDataPoints\fP (const char *filename)"
+.br
+.RI "\fICounts the number of lines in an cross-section input file\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Utility functions to parse in ENDF cross-sections from text files into data arrays\&. 
+
+\fBAuthor:\fP
+.RS 4
+William Boyd (wboyd@mit.edu) 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+March 20, 2012 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int getNumCrossSectionDataPoints (const char *filename)"
+
+.PP
+Counts the number of lines in an cross-section input file\&. \fBParameters:\fP
+.RS 4
+\fIfilename\fP the file of interest 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the number of lines in the file 
+.RE
+.PP
+
+.SS "const char* getXSLibDirectory ()"
+
+.PP
+Returns the directory for the cross-section library directory\&. \fBReturns:\fP
+.RS 4
+a character array with the cross-section library directory 
+.RE
+.PP
+
+.SS "int parseCrossSections (const char *file, float *energies, float *xs_values)"
+
+.PP
+Parses an input file of cross-section data\&. Loads the energy values (as eV) and the cross-section values (barns) into two float arrays\&. It takes in the energies in MeV since that is the most typical unit for ENDF nuclear data, but converts the values into eV during parsing\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfile\fP the filename for the data 
+.br
+\fIenergies\fP a pointer to a float array for the energies (MeV) 
+.br
+\fIxs_values\fP a pointer to a float array fo the xs values (barns) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the number of data points 
+.RE
+.PP
+
+.SS "int restoreXSLibrary ()"
+
+.PP
+Restores the cross-section library to its original, installed state\&. This function copies the original cross-section data files installed with PINSPEC from the pinspec/xs-lib/BackupXS folder into the main cross-section library directory pinspec/xs-lib\&. This function is primarily when a user is using PINSPEC's SLBW module to create artifical cross-sections from Reich-Moore date\&. This function is called anytime the python pinspec module is imported\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+returns an int representing whether or not the copy was successful 
+.RE
+.PP
+
+.SS "void setXSLibDirectory (const char *directory)"
+
+.PP
+Sets the directory for the cross-section library\&. \fBParameters:\fP
+.RS 4
+\fIdirectory\fP character array for the cross-section library directory 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

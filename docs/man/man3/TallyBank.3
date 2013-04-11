@@ -1,0 +1,290 @@
+.TH "TallyBank" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TallyBank \- 
+.PP
+The \fBTallyBank\fP contains all tallies for a simulation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include 'pinspec/src/TallyBank\&.h'\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB~TallyBank\fP ()"
+.br
+.RI "\fI\fBTallyBank\fP destructor\&. \fP"
+.ti -1c
+.RI "void \fBregisterTally\fP (\fBTally\fP *\fBtally\fP)"
+.br
+.RI "\fIRegister a \fBTally\fP for the \fBTally\fP's domain\&. \fP"
+.ti -1c
+.RI "void \fBregisterTally\fP (\fBTally\fP *\fBtally\fP, \fBGeometry\fP *geometry)"
+.br
+.RI "\fIRegister a \fBTally\fP for the geometry\&. \fP"
+.ti -1c
+.RI "void \fBregisterTally\fP (\fBTally\fP *\fBtally\fP, \fBRegion\fP *region)"
+.br
+.RI "\fIRegister a \fBTally\fP for a region\&. \fP"
+.ti -1c
+.RI "void \fBregisterTally\fP (\fBTally\fP *\fBtally\fP, \fBMaterial\fP *material)"
+.br
+.RI "\fIRegister a \fBTally\fP for a material\&. \fP"
+.ti -1c
+.RI "void \fBregisterTally\fP (\fBTally\fP *\fBtally\fP, \fBIsotope\fP *isotope)"
+.br
+.RI "\fIRegister a \fBTally\fP for an isotope\&. \fP"
+.ti -1c
+.RI "void \fBderegisterTally\fP (\fBTally\fP *\fBtally\fP)"
+.br
+.RI "\fIUn-registers a \fBTally\fP from the \fBTallyBank\fP\&. \fP"
+.ti -1c
+.RI "void \fBinitializeBatchTallies\fP (int num_batches)"
+.br
+.RI "\fIInitializes each registered tally with some number of batches for batch-based statistics\&. \fP"
+.ti -1c
+.RI "bool \fBisPrecisionTriggered\fP ()"
+.br
+.RI "\fIChecks whether a tally in the \fBTallyBank\fP contains a precision trigger * *\&. \fP"
+.ti -1c
+.RI "void \fBincrementNumBatches\fP (int num_batches)"
+.br
+.RI "\fIIncrement the total number of batches for batch-based statistics for each registered \fBTally\fP object\&. \fP"
+.ti -1c
+.RI "void \fBcomputeBatchStatistics\fP ()"
+.br
+.RI "\fICompute batch statistics for all registered tallies\&. \fP"
+.ti -1c
+.RI "void \fBcomputeScaledBatchStatistics\fP (float scale_factor)"
+.br
+.RI "\fICompute scaled batch statistics for all registered tallies\&. \fP"
+.ti -1c
+.RI "void \fBoutputBatchStatistics\fP ()"
+.br
+.RI "\fICalls each of the \fBTally\fP class objects in the simulation to output their tallies and statistics to output files\&. \fP"
+.ti -1c
+.RI "void \fBtally\fP (\fBneutron\fP *\fBneutron\fP)"
+.br
+.RI "\fITallies a neutron in all appropriate \fBTally\fP objects\&. \fP"
+.ti -1c
+.RI "void \fBclearTallies\fP ()"
+.br
+.RI "\fIDelete all containers (vectors and maps) of \fBTally\fP objects\&. \fP"
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBTallyBank\fP * \fBGet\fP ()"
+.br
+.RI "\fIGets an instance pointer to this static class\&. \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTallyBank\fP ()"
+.br
+.RI "\fI\fBTallyBank\fP constructor\&. \fP"
+.ti -1c
+.RI "\fBTallyBank\fP & \fBoperator=\fP (const \fBTallyBank\fP &)"
+.br
+.RI "\fIAn overloaded assignment function to allow for static referencing of the \fBTallyBank\fP class\&. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::set< \fBTally\fP * > \fB_all_tallies\fP"
+.br
+.ti -1c
+.RI "std::map< \fBGeometry\fP *, std::set
+.br
+< \fBTally\fP * > * > \fB_geometry_tallies\fP"
+.br
+.ti -1c
+.RI "std::map< \fBRegion\fP *, std::set
+.br
+< \fBTally\fP * > * > \fB_region_tallies\fP"
+.br
+.ti -1c
+.RI "std::map< \fBMaterial\fP *, std::set
+.br
+< \fBTally\fP * > * > \fB_material_tallies\fP"
+.br
+.ti -1c
+.RI "std::map< \fBIsotope\fP *, std::set
+.br
+< \fBTally\fP * > * > \fB_isotope_tallies\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBTallyBank\fP contains all tallies for a simulation\&. 
+
+The \fBTallyBank\fP ensures accurate error checking for tallies used in a simulation\&. The \fBTallyBank\fP stores tallies in the appropriate hash table with keys corresponding to the isotope, material, region and/or geometry in which a tally is to be applied\&. The \fBTallyBank\fP can iterate through all of the approrpirate tallies for a neutron and make a tally in each one, in addition to providing other functionality to the main Monte Carlo kernel\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void TallyBank::computeScaledBatchStatistics (floatscale_factor)"
+
+.PP
+Compute scaled batch statistics for all registered tallies\&. \fBParameters:\fP
+.RS 4
+\fIscale_factor\fP the value to scaled all of the batch statistics by 
+.RE
+.PP
+
+.SS "void TallyBank::deregisterTally (\fBTally\fP *tally)"
+
+.PP
+Un-registers a \fBTally\fP from the \fBTallyBank\fP\&. Deregisters a tally to be used whenever a collision occurs anywhere within the tally's domain of geometry, region, material or isotope\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the tally to deregister 
+.RE
+.PP
+
+.SS "static \fBTallyBank\fP* TallyBank::Get ()\fC [inline]\fP, \fC [static]\fP"
+
+.PP
+Gets an instance pointer to this static class\&. \fBReturns:\fP
+.RS 4
+Returns a pointer to the static \fBTallyBank\fP class object\&. 
+.RE
+.PP
+
+.SS "void TallyBank::incrementNumBatches (intnum_batches)"
+
+.PP
+Increment the total number of batches for batch-based statistics for each registered \fBTally\fP object\&. \fBParameters:\fP
+.RS 4
+\fInum_batches\fP the number of batches we wish to increment by 
+.RE
+.PP
+
+.SS "void TallyBank::initializeBatchTallies (intnum_batches)"
+
+.PP
+Initializes each registered tally with some number of batches for batch-based statistics\&. \fBParameters:\fP
+.RS 4
+\fInum_batches\fP the total number of batches 
+.RE
+.PP
+
+.SS "bool TallyBank::isPrecisionTriggered ()"
+
+.PP
+Checks whether a tally in the \fBTallyBank\fP contains a precision trigger * *\&. This method iterates over all tallies which are registered with the \fBTallyBank\fP to see if any precision triggers remain\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Returns true if an active presicion trigger remains 
+.RE
+.PP
+
+.SS "\fBTallyBank\fP& TallyBank::operator= (const \fBTallyBank\fP &)\fC [inline]\fP, \fC [private]\fP"
+
+.PP
+An overloaded assignment function to allow for static referencing of the \fBTallyBank\fP class\&. \fBReturns:\fP
+.RS 4
+a pointer to the static \fBTallyBank\fP class 
+.RE
+.PP
+
+.SS "void TallyBank::outputBatchStatistics ()"
+
+.PP
+Calls each of the \fBTally\fP class objects in the simulation to output their tallies and statistics to output files\&. If a user asks to output the files to a directory which does not exist, this method will create the directory\&. 
+.SS "void TallyBank::registerTally (\fBTally\fP *tally)"
+
+.PP
+Register a \fBTally\fP for the \fBTally\fP's domain\&. Registers a tally to be used for any collision within the \fBTally\fP's domain (ie, ISOTOPE, MATERIAL, REGION, GEOMETRY)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the tally to register 
+.RE
+.PP
+
+.SS "void TallyBank::registerTally (\fBTally\fP *tally, \fBGeometry\fP *geometry)"
+
+.PP
+Register a \fBTally\fP for the geometry\&. Registers a tally to be used whenever a collision occurs anywhere within the geometry\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the tally to register 
+.br
+\fIgeometry\fP a pointer to geometry object within which we should tally 
+.RE
+.PP
+
+.SS "void TallyBank::registerTally (\fBTally\fP *tally, \fBRegion\fP *region)"
+
+.PP
+Register a \fBTally\fP for a region\&. Registers a tally to be used whenever a collision occurs anywhere within the user-specified region\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the tally to register 
+.br
+\fIregion\fP a pointer to the region within which we should tally 
+.RE
+.PP
+
+.SS "void TallyBank::registerTally (\fBTally\fP *tally, \fBMaterial\fP *material)"
+
+.PP
+Register a \fBTally\fP for a material\&. Registers a tally to be used whenever a collision occurs anywhere within the material\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the tally to register 
+.br
+\fImaterial\fP a pointer to the material object within which we should tally 
+.RE
+.PP
+
+.SS "void TallyBank::registerTally (\fBTally\fP *tally, \fBIsotope\fP *isotope)"
+
+.PP
+Register a \fBTally\fP for an isotope\&. Registers a tally to be used whenever a collision occurs anywhere within the geometry but using only the isotope's microscopic cross-section data\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the tally to register 
+.br
+\fIisotope\fP the isotope object within which we should tally 
+.RE
+.PP
+
+.SS "void TallyBank::tally (\fBneutron\fP *neutron)"
+
+.PP
+Tallies a neutron in all appropriate \fBTally\fP objects\&. \fBParameters:\fP
+.RS 4
+\fIneutron\fP the neutron we wish to tally 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "std::set<\fBTally\fP*> TallyBank::_all_tallies\fC [private]\fP"
+Container of all registered tallies 
+.SS "std::map< \fBGeometry\fP*, std::set<\fBTally\fP*>* > TallyBank::_geometry_tallies\fC [private]\fP"
+Hash table of all tallies registered for the geometry 
+.SS "std::map< \fBIsotope\fP*, std::set<\fBTally\fP*>* > TallyBank::_isotope_tallies\fC [private]\fP"
+Hash map of all tallies registered for an isotope 
+.SS "std::map< \fBMaterial\fP*, std::set<\fBTally\fP*>* > TallyBank::_material_tallies\fC [private]\fP"
+Hash map of all tallies registered for a material 
+.SS "std::map< \fBRegion\fP*, std::set<\fBTally\fP*>* > TallyBank::_region_tallies\fC [private]\fP"
+Hash table of all tallies registered for a region 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

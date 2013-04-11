@@ -1,0 +1,88 @@
+\hypertarget{classIsotopeTally}{\section{Isotope\-Tally Class Reference}
+\label{classIsotopeTally}\index{Isotope\-Tally@{Isotope\-Tally}}
+}
+
+
+An abstract class for tallies with I\-S\-O\-T\-O\-P\-E domain type.  
+
+
+
+
+{\ttfamily \#include \char`\"{}pinspec/src/\-Tally.\-h\char`\"{}}
+
+Inheritance diagram for Isotope\-Tally\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.387283cm]{classIsotopeTally}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classIsotopeTally_a99b6c5ff93bcab9176d9cd7bc561617e}{Isotope\-Tally} (\hyperlink{classIsotope}{Isotope} $\ast$isotope, const char $\ast$tally\-\_\-name=(char $\ast$)\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classIsotopeTally}{Isotope\-Tally} constructor calls the \hyperlink{classTally}{Tally} constructor and sets the tally domain to I\-S\-O\-T\-O\-P\-E. \end{DoxyCompactList}\item 
+\hyperlink{classIsotope}{Isotope} $\ast$ \hyperlink{classIsotopeTally_a7dbed38017c97998a9f3bd1560ecf750}{get\-Isotope} ()
+\begin{DoxyCompactList}\small\item\em Returns the isotope for this tally. \end{DoxyCompactList}\item 
+\hypertarget{classIsotopeTally_a8a5b190e244c630ee7cda35f70287530}{virtual void \hyperlink{classIsotopeTally_a8a5b190e244c630ee7cda35f70287530}{tally} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})=0}\label{classIsotopeTally_a8a5b190e244c630ee7cda35f70287530}
+
+\begin{DoxyCompactList}\small\item\em A method to tally a neutron to be implemented by subclasses. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classIsotope}{Isotope} $\ast$ \hyperlink{classIsotopeTally_a18a3c41c4553300828f2e7f51496adf0}{\-\_\-isotope}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An abstract class for tallies with I\-S\-O\-T\-O\-P\-E domain type. 
+
+An \hyperlink{classIsotopeTally}{Isotope\-Tally} is for tallying a specific reaction rate for an isotope within a material, region or the geometry. \hyperlink{classIsotope}{Isotope} tallies are especially useful for computing resonance integrals. The \hyperlink{classIsotopeTally}{Isotope\-Tally} is an abstract class and must be implemented for each tally\-Type. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classIsotopeTally_a99b6c5ff93bcab9176d9cd7bc561617e}{\index{Isotope\-Tally@{Isotope\-Tally}!Isotope\-Tally@{Isotope\-Tally}}
+\index{Isotope\-Tally@{Isotope\-Tally}!IsotopeTally@{Isotope\-Tally}}
+\subsubsection[{Isotope\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}Isotope\-Tally\-::\-Isotope\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Isotope} $\ast$}]{isotope, }
+\item[{const char $\ast$}]{tally\-\_\-name = {\ttfamily (char$\ast$)\char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIsotopeTally_a99b6c5ff93bcab9176d9cd7bc561617e}
+
+
+\hyperlink{classIsotopeTally}{Isotope\-Tally} constructor calls the \hyperlink{classTally}{Tally} constructor and sets the tally domain to I\-S\-O\-T\-O\-P\-E. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em isotope} & a pointer to the isotope to tally \\
+\hline
+{\em tally\-\_\-name} & a character array for the tally name (optional) \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classIsotopeTally_a7dbed38017c97998a9f3bd1560ecf750}{\index{Isotope\-Tally@{Isotope\-Tally}!get\-Isotope@{get\-Isotope}}
+\index{get\-Isotope@{get\-Isotope}!IsotopeTally@{Isotope\-Tally}}
+\subsubsection[{get\-Isotope}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Isotope}$\ast$ Isotope\-Tally\-::get\-Isotope (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIsotopeTally_a7dbed38017c97998a9f3bd1560ecf750}
+
+
+Returns the isotope for this tally. 
+
+\begin{DoxyReturn}{Returns}
+a pointer to the isotope 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classIsotopeTally_a18a3c41c4553300828f2e7f51496adf0}{\index{Isotope\-Tally@{Isotope\-Tally}!\-\_\-isotope@{\-\_\-isotope}}
+\index{\-\_\-isotope@{\-\_\-isotope}!IsotopeTally@{Isotope\-Tally}}
+\subsubsection[{\-\_\-isotope}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Isotope}$\ast$ Isotope\-Tally\-::\-\_\-isotope\hspace{0.3cm}{\ttfamily [protected]}}}\label{classIsotopeTally_a18a3c41c4553300828f2e7f51496adf0}
+A pointer to the isotope for this tally 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Tally_8h}{Tally.\-h}\end{DoxyCompactItemize}

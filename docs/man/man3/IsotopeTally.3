@@ -1,0 +1,77 @@
+.TH "IsotopeTally" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+IsotopeTally \- 
+.PP
+An abstract class for tallies with ISOTOPE domain type\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include 'pinspec/src/Tally\&.h'\fP
+.PP
+Inherits \fBTally\fP\&.
+.PP
+Inherited by \fBIsotopeAbsorptionRateTally\fP, \fBIsotopeCaptureRateTally\fP, \fBIsotopeCollisionRateTally\fP, \fBIsotopeDiffusionRateTally\fP, \fBIsotopeElasticRateTally\fP, \fBIsotopeFissionRateTally\fP, and \fBIsotopeTransportRateTally\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBIsotopeTally\fP (\fBIsotope\fP *isotope, const char *tally_name=(char *)'')"
+.br
+.RI "\fI\fBIsotopeTally\fP constructor calls the \fBTally\fP constructor and sets the tally domain to ISOTOPE\&. \fP"
+.ti -1c
+.RI "\fBIsotope\fP * \fBgetIsotope\fP ()"
+.br
+.RI "\fIReturns the isotope for this tally\&. \fP"
+.ti -1c
+.RI "virtual void \fBtally\fP (\fBneutron\fP *\fBneutron\fP)=0"
+.br
+.RI "\fIA method to tally a neutron to be implemented by subclasses\&. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBIsotope\fP * \fB_isotope\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+An abstract class for tallies with ISOTOPE domain type\&. 
+
+An \fBIsotopeTally\fP is for tallying a specific reaction rate for an isotope within a material, region or the geometry\&. \fBIsotope\fP tallies are especially useful for computing resonance integrals\&. The \fBIsotopeTally\fP is an abstract class and must be implemented for each tallyType\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "IsotopeTally::IsotopeTally (\fBIsotope\fP *isotope, const char *tally_name = \fC(char*)''\fP)\fC [inline]\fP"
+
+.PP
+\fBIsotopeTally\fP constructor calls the \fBTally\fP constructor and sets the tally domain to ISOTOPE\&. \fBParameters:\fP
+.RS 4
+\fIisotope\fP a pointer to the isotope to tally 
+.br
+\fItally_name\fP a character array for the tally name (optional) 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBIsotope\fP* IsotopeTally::getIsotope ()\fC [inline]\fP"
+
+.PP
+Returns the isotope for this tally\&. \fBReturns:\fP
+.RS 4
+a pointer to the isotope 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBIsotope\fP* IsotopeTally::_isotope\fC [protected]\fP"
+A pointer to the isotope for this tally 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

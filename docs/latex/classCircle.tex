@@ -1,0 +1,229 @@
+\hypertarget{classCircle}{\section{Circle Class Reference}
+\label{classCircle}\index{Circle@{Circle}}
+}
+
+
+The \hyperlink{classCircle}{Circle} is the locus of a point equidistant from a fixed point.  
+
+
+
+
+{\ttfamily \#include \char`\"{}pinspec/src/\-Surface.\-h\char`\"{}}
+
+Inheritance diagram for Circle\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classCircle}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classCircle_ad1ecfcfc7bf34529c6a6d6c448bf70fe}{Circle} ()
+\begin{DoxyCompactList}\small\item\em The \hyperlink{classCircle}{Circle} constructor. \end{DoxyCompactList}\item 
+\hypertarget{classCircle_ae3f30436e645d73e368e8ee55f8d1650}{virtual \hyperlink{classCircle_ae3f30436e645d73e368e8ee55f8d1650}{$\sim$\-Circle} ()}\label{classCircle_ae3f30436e645d73e368e8ee55f8d1650}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classCircle}{Circle} destructor. \end{DoxyCompactList}\item 
+float \hyperlink{classCircle_a58d56d258764265600e8c27ecf5c02df}{get\-X0} ()
+\begin{DoxyCompactList}\small\item\em Returns the x-\/coordinate of the circle's center. \end{DoxyCompactList}\item 
+float \hyperlink{classCircle_ae75c0d7cabbfdd09546ca467ae8a8497}{get\-Y0} ()
+\begin{DoxyCompactList}\small\item\em Returns the y-\/coordinate of the circle's center. \end{DoxyCompactList}\item 
+float \hyperlink{classCircle_af31f99d2b0d545a0daa936384f5abf6b}{get\-Radius} ()
+\begin{DoxyCompactList}\small\item\em Returns the radius of the circle. \end{DoxyCompactList}\item 
+void \hyperlink{classCircle_a26f477fd0b422f630d291e7dd1f01d4e}{set\-X0} (float x0)
+\begin{DoxyCompactList}\small\item\em Sets the x-\/coordinate of the circle's center. \end{DoxyCompactList}\item 
+void \hyperlink{classCircle_aa8a2aabeb95db6b8f7665e2ce21af7ff}{set\-Y0} (float y0)
+\begin{DoxyCompactList}\small\item\em Sets the y-\/coordinate of the circle's center. \end{DoxyCompactList}\item 
+void \hyperlink{classCircle_af2e568fbc6274720cade0c11521f8fa1}{set\-Radius} (float r)
+\begin{DoxyCompactList}\small\item\em Sets the radius of the circle's center. \end{DoxyCompactList}\item 
+float \hyperlink{classCircle_a566afb2538f5cae0b863ab3cf6e1f1ab}{compute\-Nearest\-Distance} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em Computes the nearest distance to the \hyperlink{classCircle}{Circle} along a neutron's trajectory. \end{DoxyCompactList}\item 
+bool \hyperlink{classCircle_a129caa61e522c6f0abbbfe5d5d4e7534}{on\-Surface} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em Checks whether a neutron is on the \hyperlink{classCircle}{Circle}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classCircle_abe7a680302ea0124535814e97e952fb2}{\-\_\-r}
+\item 
+float \hyperlink{classCircle_a3ecf4a7fff01cf51ee5416041f0695dc}{\-\_\-r\-\_\-squared}
+\item 
+float \hyperlink{classCircle_a59739a0da9f81d73cf9b4c380f73320f}{\-\_\-x0}
+\item 
+float \hyperlink{classCircle_af69cb8c32169429fbe856e701ce14ab5}{\-\_\-y0}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classCircle}{Circle} is the locus of a point equidistant from a fixed point. 
+
+The \hyperlink{classCircle}{Circle} represents a set of points within a given distance from a point in the xy-\/plane called the circle's center. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classCircle_ad1ecfcfc7bf34529c6a6d6c448bf70fe}{\index{Circle@{Circle}!Circle@{Circle}}
+\index{Circle@{Circle}!Circle@{Circle}}
+\subsubsection[{Circle}]{\setlength{\rightskip}{0pt plus 5cm}Circle\-::\-Circle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCircle_ad1ecfcfc7bf34529c6a6d6c448bf70fe}
+
+
+The \hyperlink{classCircle}{Circle} constructor. 
+
+Assigns default values for the center of the circle (x=0, y=0) and a radius of 0. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classCircle_a566afb2538f5cae0b863ab3cf6e1f1ab}{\index{Circle@{Circle}!compute\-Nearest\-Distance@{compute\-Nearest\-Distance}}
+\index{compute\-Nearest\-Distance@{compute\-Nearest\-Distance}!Circle@{Circle}}
+\subsubsection[{compute\-Nearest\-Distance}]{\setlength{\rightskip}{0pt plus 5cm}float Circle\-::compute\-Nearest\-Distance (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classCircle_a566afb2538f5cae0b863ab3cf6e1f1ab}
+
+
+Computes the nearest distance to the \hyperlink{classCircle}{Circle} along a neutron's trajectory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neutron} & a pointer to a Neutron struct \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classSurface_a3d33dd138200489112a2369eab0b2083}{Surface}.
+
+\hypertarget{classCircle_af31f99d2b0d545a0daa936384f5abf6b}{\index{Circle@{Circle}!get\-Radius@{get\-Radius}}
+\index{get\-Radius@{get\-Radius}!Circle@{Circle}}
+\subsubsection[{get\-Radius}]{\setlength{\rightskip}{0pt plus 5cm}float Circle\-::get\-Radius (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCircle_af31f99d2b0d545a0daa936384f5abf6b}
+
+
+Returns the radius of the circle. 
+
+\begin{DoxyReturn}{Returns}
+the circle radius 
+\end{DoxyReturn}
+\hypertarget{classCircle_a58d56d258764265600e8c27ecf5c02df}{\index{Circle@{Circle}!get\-X0@{get\-X0}}
+\index{get\-X0@{get\-X0}!Circle@{Circle}}
+\subsubsection[{get\-X0}]{\setlength{\rightskip}{0pt plus 5cm}float Circle\-::get\-X0 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCircle_a58d56d258764265600e8c27ecf5c02df}
+
+
+Returns the x-\/coordinate of the circle's center. 
+
+\begin{DoxyReturn}{Returns}
+the x-\/coordinate of the circle center 
+\end{DoxyReturn}
+\hypertarget{classCircle_ae75c0d7cabbfdd09546ca467ae8a8497}{\index{Circle@{Circle}!get\-Y0@{get\-Y0}}
+\index{get\-Y0@{get\-Y0}!Circle@{Circle}}
+\subsubsection[{get\-Y0}]{\setlength{\rightskip}{0pt plus 5cm}float Circle\-::get\-Y0 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCircle_ae75c0d7cabbfdd09546ca467ae8a8497}
+
+
+Returns the y-\/coordinate of the circle's center. 
+
+\begin{DoxyReturn}{Returns}
+the y-\/coordinate of the circle center 
+\end{DoxyReturn}
+\hypertarget{classCircle_a129caa61e522c6f0abbbfe5d5d4e7534}{\index{Circle@{Circle}!on\-Surface@{on\-Surface}}
+\index{on\-Surface@{on\-Surface}!Circle@{Circle}}
+\subsubsection[{on\-Surface}]{\setlength{\rightskip}{0pt plus 5cm}bool Circle\-::on\-Surface (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classCircle_a129caa61e522c6f0abbbfe5d5d4e7534}
+
+
+Checks whether a neutron is on the \hyperlink{classCircle}{Circle}. 
+
+The threshold used to compute whether or not a neutron is on the on the neutron is 1\-E-\/6 for the difference between the distance between the neutron and the circle center and the radius of the circle. 
+\begin{DoxyParams}{Parameters}
+{\em neutron} & the neutron of interest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if on the \hyperlink{classXPlane}{X\-Plane}, otherwise false 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classSurface_acdf69fa01f522393ab504b331d88821a}{Surface}.
+
+\hypertarget{classCircle_af2e568fbc6274720cade0c11521f8fa1}{\index{Circle@{Circle}!set\-Radius@{set\-Radius}}
+\index{set\-Radius@{set\-Radius}!Circle@{Circle}}
+\subsubsection[{set\-Radius}]{\setlength{\rightskip}{0pt plus 5cm}void Circle\-::set\-Radius (
+\begin{DoxyParamCaption}
+\item[{float}]{r}
+\end{DoxyParamCaption}
+)}}\label{classCircle_af2e568fbc6274720cade0c11521f8fa1}
+
+
+Sets the radius of the circle's center. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & the circle's radius \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCircle_a26f477fd0b422f630d291e7dd1f01d4e}{\index{Circle@{Circle}!set\-X0@{set\-X0}}
+\index{set\-X0@{set\-X0}!Circle@{Circle}}
+\subsubsection[{set\-X0}]{\setlength{\rightskip}{0pt plus 5cm}void Circle\-::set\-X0 (
+\begin{DoxyParamCaption}
+\item[{float}]{x0}
+\end{DoxyParamCaption}
+)}}\label{classCircle_a26f477fd0b422f630d291e7dd1f01d4e}
+
+
+Sets the x-\/coordinate of the circle's center. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x0} & the x-\/coordinate of the circle center \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCircle_aa8a2aabeb95db6b8f7665e2ce21af7ff}{\index{Circle@{Circle}!set\-Y0@{set\-Y0}}
+\index{set\-Y0@{set\-Y0}!Circle@{Circle}}
+\subsubsection[{set\-Y0}]{\setlength{\rightskip}{0pt plus 5cm}void Circle\-::set\-Y0 (
+\begin{DoxyParamCaption}
+\item[{float}]{y0}
+\end{DoxyParamCaption}
+)}}\label{classCircle_aa8a2aabeb95db6b8f7665e2ce21af7ff}
+
+
+Sets the y-\/coordinate of the circle's center. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em y0} & the y-\/coordinate of the circle center \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classCircle_abe7a680302ea0124535814e97e952fb2}{\index{Circle@{Circle}!\-\_\-r@{\-\_\-r}}
+\index{\-\_\-r@{\-\_\-r}!Circle@{Circle}}
+\subsubsection[{\-\_\-r}]{\setlength{\rightskip}{0pt plus 5cm}float Circle\-::\-\_\-r\hspace{0.3cm}{\ttfamily [protected]}}}\label{classCircle_abe7a680302ea0124535814e97e952fb2}
+The circle's radius \hypertarget{classCircle_a3ecf4a7fff01cf51ee5416041f0695dc}{\index{Circle@{Circle}!\-\_\-r\-\_\-squared@{\-\_\-r\-\_\-squared}}
+\index{\-\_\-r\-\_\-squared@{\-\_\-r\-\_\-squared}!Circle@{Circle}}
+\subsubsection[{\-\_\-r\-\_\-squared}]{\setlength{\rightskip}{0pt plus 5cm}float Circle\-::\-\_\-r\-\_\-squared\hspace{0.3cm}{\ttfamily [protected]}}}\label{classCircle_a3ecf4a7fff01cf51ee5416041f0695dc}
+The square of the circle's radius \hypertarget{classCircle_a59739a0da9f81d73cf9b4c380f73320f}{\index{Circle@{Circle}!\-\_\-x0@{\-\_\-x0}}
+\index{\-\_\-x0@{\-\_\-x0}!Circle@{Circle}}
+\subsubsection[{\-\_\-x0}]{\setlength{\rightskip}{0pt plus 5cm}float Circle\-::\-\_\-x0\hspace{0.3cm}{\ttfamily [protected]}}}\label{classCircle_a59739a0da9f81d73cf9b4c380f73320f}
+The x-\/coordinate of the circle's center \hypertarget{classCircle_af69cb8c32169429fbe856e701ce14ab5}{\index{Circle@{Circle}!\-\_\-y0@{\-\_\-y0}}
+\index{\-\_\-y0@{\-\_\-y0}!Circle@{Circle}}
+\subsubsection[{\-\_\-y0}]{\setlength{\rightskip}{0pt plus 5cm}float Circle\-::\-\_\-y0\hspace{0.3cm}{\ttfamily [protected]}}}\label{classCircle_af69cb8c32169429fbe856e701ce14ab5}
+The y-\/coordinate of the circle's center 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+pinspec/src/\hyperlink{Surface_8h}{Surface.\-h}\item 
+pinspec/src/Surface.\-cpp\end{DoxyCompactItemize}

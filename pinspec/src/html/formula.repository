@@ -1,0 +1,44 @@
+\form#0:$cos(\theta)$
+\form#1:$\mu = cos(\theta)$
+\form#2:$\theta$
+\form#3:$\phi$
+\form#4:$cm^{-1}$
+\form#5:$\chi$
+\form#6:$ \chi = 0.453 * exp(-1.036E) * sinh(sqrt(2.29E)) $
+\form#7:$ \frac{\pi}{2}$
+\form#8:$ \frac{3\pi}{2}$
+\form#9:$ 2\pi $
+\form#10:$ \alpha = ((A-1)/(A+1))^2 $
+\form#11:$ \left<\mu\right> = \frac{2}{3A} $
+\form#12:$ \sigma_{tr} = \sigma_t - \left<\mu\right>\sigma_s $
+\form#13:$ \alpha = \left(\frac{A-1}{A+1}\right)^2 $
+\form#14:$ \eta = \left(\frac{A+1}{2\sqrt{A}}\right)^2 $
+\form#15:$ \rho = \left(\frac{A-1}{2\sqrt{A}}\right)^2 $
+\form#16:$ \alpha = \left(\frac{A-1}{A+1}\right)^2$
+\form#17:$ \eta = \left(\frac{A+1}{2\sqrt{A}}\right)^2 */ float _eta; /** $
+\form#18:$ \frac{E}{kT} $
+\form#19:$ \frac{E'}{E} $
+\form#20:$ E' $
+\form#21:$ \frac{at}{cm^3} $
+\form#22:$ (cm^{-1}) $
+\form#23:$ 235 + 16 + 16 = 267 $
+\form#24:$ \frac{eV}{c^2} $
+\form#25:$ \frac{\sigma_s}{\Sigma_t} $
+\form#26:$ \frac{\Sigma_s}{\Sigma_t} $
+\form#27:$ \frac{\sigma_a}{\Sigma_t} $
+\form#28:$ \frac{\Sigma_a}{\Sigma_t} $
+\form#29:$ \frac{\sigma_c}{\Sigma_t} $
+\form#30:$ \frac{\Sigma_c}{\Sigma_t} $
+\form#31:$ \frac{\sigma_f}{\Sigma_t} $
+\form#32:$ \frac{\Sigma_f}{\Sigma_t} $
+\form#33:$ \frac{\sigma_tr}{\Sigma_t} $
+\form#34:$ \frac{\Sigma_tr}{\Sigma_t} $
+\form#35:$ \frac{\frac{1}{3\sigma_tr}}{\Sigma_t} $
+\form#36:$ \frac{\frac{1}{3\Sigma_tr}}{\Sigma_t} $
+\form#37:$ DB^2 $
+\form#38:$ \frac{1}{\Sigma_t} $
+\form#39:$ d = \frac{1}{\Sigma_t} $
+\form#40:$ v = c\sqrt{2Em_n} $
+\form#41:$ time = \frac{d}{v} $
+\form#42:$ (cm^3) $
+\form#43:$ p_{mf} $

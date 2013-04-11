@@ -1,0 +1,487 @@
+\hypertarget{classGeometry}{\section{Geometry Class Reference}
+\label{classGeometry}\index{Geometry@{Geometry}}
+}
+
+
+The \hyperlink{classGeometry}{Geometry} represents the highest level entity in which a neutron may reside during a P\-I\-N\-S\-P\-E\-C simulaiton. The geometry consists of one or more regions and controls the highest level Monte Carlo kernel.  
+
+
+
+
+{\ttfamily \#include \char`\"{}pinspec/src/\-Geometry.\-h\char`\"{}}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGeometry_a4c301c163c63d21ed08c17b0f4e131d3}{Geometry} ()
+\begin{DoxyCompactList}\small\item\em Geomtery constructor. \end{DoxyCompactList}\item 
+\hypertarget{classGeometry_ad55e832122ab3a2833dcaa6507867678}{virtual \hyperlink{classGeometry_ad55e832122ab3a2833dcaa6507867678}{$\sim$\-Geometry} ()}\label{classGeometry_ad55e832122ab3a2833dcaa6507867678}
+
+\begin{DoxyCompactList}\small\item\em Destructor deletes the \hyperlink{classFissioner}{Fissioner} and lets S\-W\-I\-G delete the regions, materials, isotopes and allies during garbage collection. \end{DoxyCompactList}\item 
+int \hyperlink{classGeometry_add8ce27223fdd5f038cbbaa4f552a2c1}{get\-Num\-Neutrons\-Per\-Batch} ()
+\begin{DoxyCompactList}\small\item\em Returns the number of neutrons per batch for this simulation. \end{DoxyCompactList}\item 
+int \hyperlink{classGeometry_a1110957b5b8e1eafdd6f34ffa233d4d1}{get\-Total\-Num\-Neutrons} ()
+\begin{DoxyCompactList}\small\item\em Returns the total number of neutrons for this simulation. \end{DoxyCompactList}\item 
+int \hyperlink{classGeometry_af45e47614fc0b25fffd16528d17b296c}{get\-Num\-Batches} ()
+\begin{DoxyCompactList}\small\item\em Returns the number of batches of neutrons for this simulation. \end{DoxyCompactList}\item 
+int \hyperlink{classGeometry_a254abef4b1f2a48e6b75001856e4c233}{get\-Num\-Threads} ()
+\begin{DoxyCompactList}\small\item\em Returns the number of parallel threads for this simulation. \end{DoxyCompactList}\item 
+\hyperlink{Geometry_8h_af321382c4a8d9fdb71c83382f82fac00}{spatial\-Type} \hyperlink{classGeometry_ac64b1e5ebf43a9538952b20eaf07ef3b}{get\-Spatial\-Type} ()
+\begin{DoxyCompactList}\small\item\em Return the spatial type of \hyperlink{classGeometry}{Geometry} (I\-N\-F\-I\-N\-I\-T\-E\-\_\-\-H\-O\-M\-O\-G\-E\-N\-E\-O\-U\-S, H\-O\-M\-O\-G\-E\-N\-E\-O\-U\-S\-\_\-\-E\-Q\-U\-I\-V\-A\-L\-E\-N\-C\-E or H\-E\-T\-E\-R\-O\-G\-E\-N\-E\-O\-U\-S). \end{DoxyCompactList}\item 
+float \hyperlink{classGeometry_a662e458bc59ac8390e0c07cea3ab0be8}{get\-Buckling\-Squared} ()
+\begin{DoxyCompactList}\small\item\em Returns the square of the geometric buckling for this geometry. \end{DoxyCompactList}\item 
+float \hyperlink{classGeometry_a982427d7ad500c703b5348f455b7dced}{get\-Volume} ()
+\begin{DoxyCompactList}\small\item\em Returns the total volume occuppied by the geometry. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometry_a0160e8eef8ecd7655dc2ddc8f7a46391}{set\-Neutrons\-Per\-Batch} (int num\-\_\-neutrons\-\_\-per\-\_\-batch)
+\begin{DoxyCompactList}\small\item\em Sets the number of neutrons per batch for this simulation. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometry_ab78e778d1362e38dd9e02514e7ee7019}{set\-Num\-Batches} (int num\-\_\-batches)
+\begin{DoxyCompactList}\small\item\em Sets the number of batches for this simulation. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometry_a657cb04b0e42bc9a1574a9120c5a6e67}{set\-Num\-Threads} (int num\-\_\-threads)
+\begin{DoxyCompactList}\small\item\em Sets the number of batches for this simulation. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometry_a52ab88674bf4f90db4fab0899f326a58}{set\-Spatial\-Type} (\hyperlink{Geometry_8h_af321382c4a8d9fdb71c83382f82fac00}{spatial\-Type} spatial\-\_\-type)
+\begin{DoxyCompactList}\small\item\em Set the geometry's spatial type (I\-N\-F\-I\-N\-I\-T\-E\-\_\-\-H\-O\-M\-O\-G\-E\-N\-E\-O\-U\-S, H\-O\-M\-O\-G\-E\-N\-E\-O\-U\-S\-\_\-\-E\-Q\-U\-I\-V\-A\-L\-E\-N\-C\-E or H\-E\-T\-E\-R\-O\-G\-E\-N\-E\-O\-U\-S). \end{DoxyCompactList}\item 
+void \hyperlink{classGeometry_a0ef3fcbefaf7079ee1667adc3d0dbe54}{set\-Dancoff\-Factor} (float dancoff)
+\begin{DoxyCompactList}\small\item\em Sets the dancoff factor and computes the escape cross-\/section, beta, alpha1 and alpha2 parameters used for a two region heterogeneous-\/homogeneous pin cell simulation. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometry_a68b1626c22c75914eafdcee252406b62}{add\-Region} (\hyperlink{classRegion}{Region} $\ast$region)
+\begin{DoxyCompactList}\small\item\em Adds a new region to the geometry. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometry_a81f067e09349731a0b90bdda98b83594}{set\-Buckling\-Squared} (float buckling\-\_\-squared)
+\begin{DoxyCompactList}\small\item\em Sets the square of the geometric buckling for the geometry. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometry_a32ac1087eeb0f71d4f36b751e65cfe9d}{run\-Monte\-Carlo\-Simulation} ()
+\begin{DoxyCompactList}\small\item\em The primary Monte Carlo kernel for a P\-I\-N\-S\-P\-E\-C simulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classGeometry_a8cff9ffc1cdeff81b79b1be44bc07727}{initialize\-Prob\-Mod\-Fuel\-Ratios} ()
+\begin{DoxyCompactList}\small\item\em Initializes a pre-\/computed array of moderator to fuel first flight probability ratios. \end{DoxyCompactList}\item 
+int \hyperlink{classGeometry_a83068853767cd0ac581250f7e2e38981}{get\-Energy\-Grid\-Index} (float energy) const 
+\begin{DoxyCompactList}\small\item\em This method returns the index for a certain energy (e\-V) into the uniform lethargy grid of the geometry's first flight probability of travel from moderator to fuel $ p_{mf} $ ratios. \end{DoxyCompactList}\item 
+float \hyperlink{classGeometry_aee0db385712e2bc3800028159d61d1ab}{compute\-Fuel\-Fuel\-Collision\-Prob} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em This function computes the two-\/region fuel-\/to-\/fuel collision probability for a two-\/region pin cell simulation. It uses Carlvik's two-\/term rational model. \end{DoxyCompactList}\item 
+float \hyperlink{classGeometry_a1d6e3070b59ce33b1c25d04635889dfb}{compute\-Moderator\-Fuel\-Collision\-Prob} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em This function computes the two-\/region moderator-\/to-\/fuel collision probability for a two-\/region pin cell simulation. It uses Carlvik's two-\/term rational model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classGeometry_ab2f62b285fd3ebc06114db10a3f50167}{\-\_\-num\-\_\-neutrons\-\_\-per\-\_\-batch}
+\item 
+int \hyperlink{classGeometry_a600fda86b7f3951331ae486548306407}{\-\_\-num\-\_\-batches}
+\item 
+int \hyperlink{classGeometry_af78593ff6416ad7fc318e4b8692ed77e}{\-\_\-num\-\_\-threads}
+\item 
+\hyperlink{Geometry_8h_af321382c4a8d9fdb71c83382f82fac00}{spatial\-Type} \hyperlink{classGeometry_a2e9b473e54caa2c7742b4f676bedf91e}{\-\_\-spatial\-\_\-type}
+\item 
+\hyperlink{classRegion}{Region} $\ast$ \hyperlink{classGeometry_aad96c277327aa2fb1f512f4678af94f0}{\-\_\-infinite\-\_\-medium}
+\item 
+\hyperlink{classRegion}{Region} $\ast$ \hyperlink{classGeometry_afca54e88b6d937055fc9ca124db1e17e}{\-\_\-fuel}
+\item 
+\hyperlink{classRegion}{Region} $\ast$ \hyperlink{classGeometry_a023855a68edb163698d88da928935c4b}{\-\_\-moderator}
+\item 
+\hyperlink{structneutron}{neutron} $\ast$ \hyperlink{classGeometry_aae2651151b89d9b82c434eaa83edc477}{\-\_\-neutrons}
+\item 
+\hyperlink{classFissioner}{Fissioner} $\ast$ \hyperlink{classGeometry_a5947cd1c6029329ed188ce4b8a8d4e28}{\-\_\-fissioner}
+\item 
+float \hyperlink{classGeometry_aedfa5e190e5e87f0a0d84ca48278e019}{\-\_\-dancoff}
+\item 
+float \hyperlink{classGeometry_a161dd81342c2018dc6af5db732385b67}{\-\_\-sigma\-\_\-e}
+\item 
+float \hyperlink{classGeometry_a20733d493193d7c75ad9afb454046324}{\-\_\-beta}
+\item 
+float \hyperlink{classGeometry_a29007358759f00d89a8544539bfb7b75}{\-\_\-alpha1}
+\item 
+float \hyperlink{classGeometry_a36642c1914426a3bdbcb291497e2c7f8}{\-\_\-alpha2}
+\item 
+float \hyperlink{classGeometry_aa4c62b0931b1a51effdec42a28e9088f}{\-\_\-buckling\-\_\-squared}
+\item 
+int \hyperlink{classGeometry_a67baa59c9ac0e8819e5844bcef85442d}{\-\_\-num\-\_\-ratios}
+\item 
+float $\ast$ \hyperlink{classGeometry_a4bb0c2db80028191a363a79669e2508b}{\-\_\-pmf\-\_\-ratios}
+\item 
+\hyperlink{Tally_8h_ab7d4ad30f44e9abe7178a76b03887909}{bin\-Spacing\-Types} \hyperlink{classGeometry_a603f3cc50a03607fb94f4ce019235b5a}{\-\_\-scale\-\_\-type}
+\item 
+float \hyperlink{classGeometry_a274a1e1973986b23507d7c11fb30ea76}{\-\_\-start\-\_\-energy}
+\item 
+float \hyperlink{classGeometry_a00b1350cc678173b76e8ad06b4916288}{\-\_\-end\-\_\-energy}
+\item 
+float \hyperlink{classGeometry_a19f967291b5e54888033a1a52a8fc6a5}{\-\_\-delta\-\_\-energy}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classGeometry}{Geometry} represents the highest level entity in which a neutron may reside during a P\-I\-N\-S\-P\-E\-C simulaiton. The geometry consists of one or more regions and controls the highest level Monte Carlo kernel. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGeometry_a4c301c163c63d21ed08c17b0f4e131d3}{\index{Geometry@{Geometry}!Geometry@{Geometry}}
+\index{Geometry@{Geometry}!Geometry@{Geometry}}
+\subsubsection[{Geometry}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\-::\-Geometry (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_a4c301c163c63d21ed08c17b0f4e131d3}
+
+
+Geomtery constructor. 
+
+Sets a default number of neutrons per batch (10,000), number of batches (10) and number of threads (1). 
+
+\subsection{Member Function Documentation}
+\hypertarget{classGeometry_a68b1626c22c75914eafdcee252406b62}{\index{Geometry@{Geometry}!add\-Region@{add\-Region}}
+\index{add\-Region@{add\-Region}!Geometry@{Geometry}}
+\subsubsection[{add\-Region}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\-::add\-Region (
+\begin{DoxyParamCaption}
+\item[{{\bf Region} $\ast$}]{region}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_a68b1626c22c75914eafdcee252406b62}
+
+
+Adds a new region to the geometry. 
+
+Checks to make sure that the region type (I\-N\-F\-I\-N\-I\-T\-E, F\-U\-E\-L, M\-O\-D\-E\-R\-A\-T\-O\-R) does not conflict with other regions that have already been added to the geometry 
+\begin{DoxyParams}{Parameters}
+{\em region} & the region to add to the geometry \\
+\hline
+\end{DoxyParams}
+\hypertarget{classGeometry_aee0db385712e2bc3800028159d61d1ab}{\index{Geometry@{Geometry}!compute\-Fuel\-Fuel\-Collision\-Prob@{compute\-Fuel\-Fuel\-Collision\-Prob}}
+\index{compute\-Fuel\-Fuel\-Collision\-Prob@{compute\-Fuel\-Fuel\-Collision\-Prob}!Geometry@{Geometry}}
+\subsubsection[{compute\-Fuel\-Fuel\-Collision\-Prob}]{\setlength{\rightskip}{0pt plus 5cm}float Geometry\-::compute\-Fuel\-Fuel\-Collision\-Prob (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_aee0db385712e2bc3800028159d61d1ab}
+
+
+This function computes the two-\/region fuel-\/to-\/fuel collision probability for a two-\/region pin cell simulation. It uses Carlvik's two-\/term rational model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neutron} & the neutron of interest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the fuel-\/to-\/fuel collision probability at the neutron's energy 
+\end{DoxyReturn}
+\hypertarget{classGeometry_a1d6e3070b59ce33b1c25d04635889dfb}{\index{Geometry@{Geometry}!compute\-Moderator\-Fuel\-Collision\-Prob@{compute\-Moderator\-Fuel\-Collision\-Prob}}
+\index{compute\-Moderator\-Fuel\-Collision\-Prob@{compute\-Moderator\-Fuel\-Collision\-Prob}!Geometry@{Geometry}}
+\subsubsection[{compute\-Moderator\-Fuel\-Collision\-Prob}]{\setlength{\rightskip}{0pt plus 5cm}float Geometry\-::compute\-Moderator\-Fuel\-Collision\-Prob (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a1d6e3070b59ce33b1c25d04635889dfb}
+
+
+This function computes the two-\/region moderator-\/to-\/fuel collision probability for a two-\/region pin cell simulation. It uses Carlvik's two-\/term rational model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neutron} & the neutron of interest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the moderator-\/to-\/fuel collision probability at the neutron's energy 
+\end{DoxyReturn}
+\hypertarget{classGeometry_a662e458bc59ac8390e0c07cea3ab0be8}{\index{Geometry@{Geometry}!get\-Buckling\-Squared@{get\-Buckling\-Squared}}
+\index{get\-Buckling\-Squared@{get\-Buckling\-Squared}!Geometry@{Geometry}}
+\subsubsection[{get\-Buckling\-Squared}]{\setlength{\rightskip}{0pt plus 5cm}float Geometry\-::get\-Buckling\-Squared (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_a662e458bc59ac8390e0c07cea3ab0be8}
+
+
+Returns the square of the geometric buckling for this geometry. 
+
+\begin{DoxyReturn}{Returns}
+the square of the geometric buckling 
+\end{DoxyReturn}
+\hypertarget{classGeometry_a83068853767cd0ac581250f7e2e38981}{\index{Geometry@{Geometry}!get\-Energy\-Grid\-Index@{get\-Energy\-Grid\-Index}}
+\index{get\-Energy\-Grid\-Index@{get\-Energy\-Grid\-Index}!Geometry@{Geometry}}
+\subsubsection[{get\-Energy\-Grid\-Index}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\-::get\-Energy\-Grid\-Index (
+\begin{DoxyParamCaption}
+\item[{float}]{energy}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}}\label{classGeometry_a83068853767cd0ac581250f7e2e38981}
+
+
+This method returns the index for a certain energy (e\-V) into the uniform lethargy grid of the geometry's first flight probability of travel from moderator to fuel $ p_{mf} $ ratios. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & the energy (e\-V) of interest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the index into the uniform lethargy grid 
+\end{DoxyReturn}
+\hypertarget{classGeometry_af45e47614fc0b25fffd16528d17b296c}{\index{Geometry@{Geometry}!get\-Num\-Batches@{get\-Num\-Batches}}
+\index{get\-Num\-Batches@{get\-Num\-Batches}!Geometry@{Geometry}}
+\subsubsection[{get\-Num\-Batches}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\-::get\-Num\-Batches (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_af45e47614fc0b25fffd16528d17b296c}
+
+
+Returns the number of batches of neutrons for this simulation. 
+
+\begin{DoxyReturn}{Returns}
+the number of batches 
+\end{DoxyReturn}
+\hypertarget{classGeometry_add8ce27223fdd5f038cbbaa4f552a2c1}{\index{Geometry@{Geometry}!get\-Num\-Neutrons\-Per\-Batch@{get\-Num\-Neutrons\-Per\-Batch}}
+\index{get\-Num\-Neutrons\-Per\-Batch@{get\-Num\-Neutrons\-Per\-Batch}!Geometry@{Geometry}}
+\subsubsection[{get\-Num\-Neutrons\-Per\-Batch}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\-::get\-Num\-Neutrons\-Per\-Batch (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_add8ce27223fdd5f038cbbaa4f552a2c1}
+
+
+Returns the number of neutrons per batch for this simulation. 
+
+\begin{DoxyReturn}{Returns}
+the number of neutrons per batch 
+\end{DoxyReturn}
+\hypertarget{classGeometry_a254abef4b1f2a48e6b75001856e4c233}{\index{Geometry@{Geometry}!get\-Num\-Threads@{get\-Num\-Threads}}
+\index{get\-Num\-Threads@{get\-Num\-Threads}!Geometry@{Geometry}}
+\subsubsection[{get\-Num\-Threads}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\-::get\-Num\-Threads (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_a254abef4b1f2a48e6b75001856e4c233}
+
+
+Returns the number of parallel threads for this simulation. 
+
+\begin{DoxyReturn}{Returns}
+the number of threads 
+\end{DoxyReturn}
+\hypertarget{classGeometry_ac64b1e5ebf43a9538952b20eaf07ef3b}{\index{Geometry@{Geometry}!get\-Spatial\-Type@{get\-Spatial\-Type}}
+\index{get\-Spatial\-Type@{get\-Spatial\-Type}!Geometry@{Geometry}}
+\subsubsection[{get\-Spatial\-Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf spatial\-Type} Geometry\-::get\-Spatial\-Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_ac64b1e5ebf43a9538952b20eaf07ef3b}
+
+
+Return the spatial type of \hyperlink{classGeometry}{Geometry} (I\-N\-F\-I\-N\-I\-T\-E\-\_\-\-H\-O\-M\-O\-G\-E\-N\-E\-O\-U\-S, H\-O\-M\-O\-G\-E\-N\-E\-O\-U\-S\-\_\-\-E\-Q\-U\-I\-V\-A\-L\-E\-N\-C\-E or H\-E\-T\-E\-R\-O\-G\-E\-N\-E\-O\-U\-S). 
+
+\begin{DoxyReturn}{Returns}
+the spatial type 
+\end{DoxyReturn}
+\hypertarget{classGeometry_a1110957b5b8e1eafdd6f34ffa233d4d1}{\index{Geometry@{Geometry}!get\-Total\-Num\-Neutrons@{get\-Total\-Num\-Neutrons}}
+\index{get\-Total\-Num\-Neutrons@{get\-Total\-Num\-Neutrons}!Geometry@{Geometry}}
+\subsubsection[{get\-Total\-Num\-Neutrons}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\-::get\-Total\-Num\-Neutrons (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_a1110957b5b8e1eafdd6f34ffa233d4d1}
+
+
+Returns the total number of neutrons for this simulation. 
+
+\begin{DoxyReturn}{Returns}
+the total number of neutrons for this simulation 
+\end{DoxyReturn}
+\hypertarget{classGeometry_a982427d7ad500c703b5348f455b7dced}{\index{Geometry@{Geometry}!get\-Volume@{get\-Volume}}
+\index{get\-Volume@{get\-Volume}!Geometry@{Geometry}}
+\subsubsection[{get\-Volume}]{\setlength{\rightskip}{0pt plus 5cm}float Geometry\-::get\-Volume (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_a982427d7ad500c703b5348f455b7dced}
+
+
+Returns the total volume occuppied by the geometry. 
+
+\begin{DoxyReturn}{Returns}
+The total volume for the geometry 
+\end{DoxyReturn}
+\hypertarget{classGeometry_a8cff9ffc1cdeff81b79b1be44bc07727}{\index{Geometry@{Geometry}!initialize\-Prob\-Mod\-Fuel\-Ratios@{initialize\-Prob\-Mod\-Fuel\-Ratios}}
+\index{initialize\-Prob\-Mod\-Fuel\-Ratios@{initialize\-Prob\-Mod\-Fuel\-Ratios}!Geometry@{Geometry}}
+\subsubsection[{initialize\-Prob\-Mod\-Fuel\-Ratios}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\-::initialize\-Prob\-Mod\-Fuel\-Ratios (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a8cff9ffc1cdeff81b79b1be44bc07727}
+
+
+Initializes a pre-\/computed array of moderator to fuel first flight probability ratios. 
+
+The pre-\/computaiton of the ratios is an optimization to save time for the homogeneous-\/heterogeneous equivalence geometry type. \hypertarget{classGeometry_a32ac1087eeb0f71d4f36b751e65cfe9d}{\index{Geometry@{Geometry}!run\-Monte\-Carlo\-Simulation@{run\-Monte\-Carlo\-Simulation}}
+\index{run\-Monte\-Carlo\-Simulation@{run\-Monte\-Carlo\-Simulation}!Geometry@{Geometry}}
+\subsubsection[{run\-Monte\-Carlo\-Simulation}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\-::run\-Monte\-Carlo\-Simulation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_a32ac1087eeb0f71d4f36b751e65cfe9d}
+
+
+The primary Monte Carlo kernel for a P\-I\-N\-S\-P\-E\-C simulation. 
+
+This method executes an appropriate Monte Carlo kernel depending on the geometry's spatial type. This method loops over batches and neutrons and collides each neutron in the appropriate region until it is absorbed, while tallying all user-\/specific quanties throughout. \hypertarget{classGeometry_a81f067e09349731a0b90bdda98b83594}{\index{Geometry@{Geometry}!set\-Buckling\-Squared@{set\-Buckling\-Squared}}
+\index{set\-Buckling\-Squared@{set\-Buckling\-Squared}!Geometry@{Geometry}}
+\subsubsection[{set\-Buckling\-Squared}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\-::set\-Buckling\-Squared (
+\begin{DoxyParamCaption}
+\item[{float}]{buckling\-\_\-squared}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_a81f067e09349731a0b90bdda98b83594}
+
+
+Sets the square of the geometric buckling for the geometry. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buckling\-\_\-squared} & the square of the geometric buckling \\
+\hline
+\end{DoxyParams}
+\hypertarget{classGeometry_a0ef3fcbefaf7079ee1667adc3d0dbe54}{\index{Geometry@{Geometry}!set\-Dancoff\-Factor@{set\-Dancoff\-Factor}}
+\index{set\-Dancoff\-Factor@{set\-Dancoff\-Factor}!Geometry@{Geometry}}
+\subsubsection[{set\-Dancoff\-Factor}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\-::set\-Dancoff\-Factor (
+\begin{DoxyParamCaption}
+\item[{float}]{dancoff}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_a0ef3fcbefaf7079ee1667adc3d0dbe54}
+
+
+Sets the dancoff factor and computes the escape cross-\/section, beta, alpha1 and alpha2 parameters used for a two region heterogeneous-\/homogeneous pin cell simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dancoff} & the dancoff factor \\
+\hline
+\end{DoxyParams}
+\hypertarget{classGeometry_a0160e8eef8ecd7655dc2ddc8f7a46391}{\index{Geometry@{Geometry}!set\-Neutrons\-Per\-Batch@{set\-Neutrons\-Per\-Batch}}
+\index{set\-Neutrons\-Per\-Batch@{set\-Neutrons\-Per\-Batch}!Geometry@{Geometry}}
+\subsubsection[{set\-Neutrons\-Per\-Batch}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\-::set\-Neutrons\-Per\-Batch (
+\begin{DoxyParamCaption}
+\item[{int}]{num\-\_\-neutrons\-\_\-per\-\_\-batch}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_a0160e8eef8ecd7655dc2ddc8f7a46391}
+
+
+Sets the number of neutrons per batch for this simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\-\_\-neutrons\-\_\-per\-\_\-batch} & the number of neutrons per batch \\
+\hline
+\end{DoxyParams}
+\hypertarget{classGeometry_ab78e778d1362e38dd9e02514e7ee7019}{\index{Geometry@{Geometry}!set\-Num\-Batches@{set\-Num\-Batches}}
+\index{set\-Num\-Batches@{set\-Num\-Batches}!Geometry@{Geometry}}
+\subsubsection[{set\-Num\-Batches}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\-::set\-Num\-Batches (
+\begin{DoxyParamCaption}
+\item[{int}]{num\-\_\-batches}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_ab78e778d1362e38dd9e02514e7ee7019}
+
+
+Sets the number of batches for this simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\-\_\-batches} & the number of batches \\
+\hline
+\end{DoxyParams}
+\hypertarget{classGeometry_a657cb04b0e42bc9a1574a9120c5a6e67}{\index{Geometry@{Geometry}!set\-Num\-Threads@{set\-Num\-Threads}}
+\index{set\-Num\-Threads@{set\-Num\-Threads}!Geometry@{Geometry}}
+\subsubsection[{set\-Num\-Threads}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\-::set\-Num\-Threads (
+\begin{DoxyParamCaption}
+\item[{int}]{num\-\_\-threads}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_a657cb04b0e42bc9a1574a9120c5a6e67}
+
+
+Sets the number of batches for this simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\-\_\-threads} & the number of batches \\
+\hline
+\end{DoxyParams}
+\hypertarget{classGeometry_a52ab88674bf4f90db4fab0899f326a58}{\index{Geometry@{Geometry}!set\-Spatial\-Type@{set\-Spatial\-Type}}
+\index{set\-Spatial\-Type@{set\-Spatial\-Type}!Geometry@{Geometry}}
+\subsubsection[{set\-Spatial\-Type}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\-::set\-Spatial\-Type (
+\begin{DoxyParamCaption}
+\item[{{\bf spatial\-Type}}]{spatial\-\_\-type}
+\end{DoxyParamCaption}
+)}}\label{classGeometry_a52ab88674bf4f90db4fab0899f326a58}
+
+
+Set the geometry's spatial type (I\-N\-F\-I\-N\-I\-T\-E\-\_\-\-H\-O\-M\-O\-G\-E\-N\-E\-O\-U\-S, H\-O\-M\-O\-G\-E\-N\-E\-O\-U\-S\-\_\-\-E\-Q\-U\-I\-V\-A\-L\-E\-N\-C\-E or H\-E\-T\-E\-R\-O\-G\-E\-N\-E\-O\-U\-S). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spatial\-\_\-type} & the spatial type \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classGeometry_a29007358759f00d89a8544539bfb7b75}{\index{Geometry@{Geometry}!\-\_\-alpha1@{\-\_\-alpha1}}
+\index{\-\_\-alpha1@{\-\_\-alpha1}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-alpha1}]{\setlength{\rightskip}{0pt plus 5cm}float Geometry\-::\-\_\-alpha1\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a29007358759f00d89a8544539bfb7b75}
+The user-\/specified alpha1 value for Carlvik's rational approximation \hypertarget{classGeometry_a36642c1914426a3bdbcb291497e2c7f8}{\index{Geometry@{Geometry}!\-\_\-alpha2@{\-\_\-alpha2}}
+\index{\-\_\-alpha2@{\-\_\-alpha2}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-alpha2}]{\setlength{\rightskip}{0pt plus 5cm}float Geometry\-::\-\_\-alpha2\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a36642c1914426a3bdbcb291497e2c7f8}
+The user-\/specified alpha2 value for Carlvik's rational approximation \hypertarget{classGeometry_a20733d493193d7c75ad9afb454046324}{\index{Geometry@{Geometry}!\-\_\-beta@{\-\_\-beta}}
+\index{\-\_\-beta@{\-\_\-beta}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-beta}]{\setlength{\rightskip}{0pt plus 5cm}float Geometry\-::\-\_\-beta\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a20733d493193d7c75ad9afb454046324}
+The user-\/specified beta value for Carlvik's rational approximation \hypertarget{classGeometry_aa4c62b0931b1a51effdec42a28e9088f}{\index{Geometry@{Geometry}!\-\_\-buckling\-\_\-squared@{\-\_\-buckling\-\_\-squared}}
+\index{\-\_\-buckling\-\_\-squared@{\-\_\-buckling\-\_\-squared}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-buckling\-\_\-squared}]{\setlength{\rightskip}{0pt plus 5cm}float Geometry\-::\-\_\-buckling\-\_\-squared\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_aa4c62b0931b1a51effdec42a28e9088f}
+The square of the geometric buckling \hypertarget{classGeometry_aedfa5e190e5e87f0a0d84ca48278e019}{\index{Geometry@{Geometry}!\-\_\-dancoff@{\-\_\-dancoff}}
+\index{\-\_\-dancoff@{\-\_\-dancoff}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-dancoff}]{\setlength{\rightskip}{0pt plus 5cm}float Geometry\-::\-\_\-dancoff\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_aedfa5e190e5e87f0a0d84ca48278e019}
+The user-\/specified dancoff factor \hypertarget{classGeometry_a19f967291b5e54888033a1a52a8fc6a5}{\index{Geometry@{Geometry}!\-\_\-delta\-\_\-energy@{\-\_\-delta\-\_\-energy}}
+\index{\-\_\-delta\-\_\-energy@{\-\_\-delta\-\_\-energy}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-delta\-\_\-energy}]{\setlength{\rightskip}{0pt plus 5cm}float Geometry\-::\-\_\-delta\-\_\-energy\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a19f967291b5e54888033a1a52a8fc6a5}
+Space between energies for the moderator to fuel cross-\/section ratios \hypertarget{classGeometry_a00b1350cc678173b76e8ad06b4916288}{\index{Geometry@{Geometry}!\-\_\-end\-\_\-energy@{\-\_\-end\-\_\-energy}}
+\index{\-\_\-end\-\_\-energy@{\-\_\-end\-\_\-energy}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-end\-\_\-energy}]{\setlength{\rightskip}{0pt plus 5cm}float Geometry\-::\-\_\-end\-\_\-energy\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a00b1350cc678173b76e8ad06b4916288}
+Highest energy for the moderator to fuel cross-\/section ratios \hypertarget{classGeometry_a5947cd1c6029329ed188ce4b8a8d4e28}{\index{Geometry@{Geometry}!\-\_\-fissioner@{\-\_\-fissioner}}
+\index{\-\_\-fissioner@{\-\_\-fissioner}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-fissioner}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Fissioner}$\ast$ Geometry\-::\-\_\-fissioner\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a5947cd1c6029329ed188ce4b8a8d4e28}
+The fissioner used to sample new neutron fission emission energies \hypertarget{classGeometry_afca54e88b6d937055fc9ca124db1e17e}{\index{Geometry@{Geometry}!\-\_\-fuel@{\-\_\-fuel}}
+\index{\-\_\-fuel@{\-\_\-fuel}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-fuel}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Region}$\ast$ Geometry\-::\-\_\-fuel\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_afca54e88b6d937055fc9ca124db1e17e}
+F\-U\-E\-L type region if the geometry is H\-E\-T\-E\-R\-O\-G\-E\-N\-E\-O\-U\-S or H\-O\-M\-O\-G\-E\-N\-E\-O\-U\-S\-\_\-\-E\-Q\-U\-I\-V\-A\-L\-A\-N\-C\-E \hypertarget{classGeometry_aad96c277327aa2fb1f512f4678af94f0}{\index{Geometry@{Geometry}!\-\_\-infinite\-\_\-medium@{\-\_\-infinite\-\_\-medium}}
+\index{\-\_\-infinite\-\_\-medium@{\-\_\-infinite\-\_\-medium}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-infinite\-\_\-medium}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Region}$\ast$ Geometry\-::\-\_\-infinite\-\_\-medium\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_aad96c277327aa2fb1f512f4678af94f0}
+I\-N\-F\-I\-N\-I\-T\-E type region if the geometery is I\-N\-F\-I\-N\-I\-T\-E\-\_\-\-H\-O\-M\-O\-G\-E\-N\-E\-O\-U\-S \hypertarget{classGeometry_a023855a68edb163698d88da928935c4b}{\index{Geometry@{Geometry}!\-\_\-moderator@{\-\_\-moderator}}
+\index{\-\_\-moderator@{\-\_\-moderator}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-moderator}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Region}$\ast$ Geometry\-::\-\_\-moderator\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a023855a68edb163698d88da928935c4b}
+M\-O\-D\-E\-R\-A\-T\-O\-R type region if the geometry is H\-E\-T\-E\-R\-O\-G\-E\-N\-E\-O\-U\-S or H\-O\-M\-O\-G\-E\-N\-E\-O\-U\-S\-\_\-\-E\-Q\-U\-I\-V\-A\-L\-A\-N\-C\-E \hypertarget{classGeometry_aae2651151b89d9b82c434eaa83edc477}{\index{Geometry@{Geometry}!\-\_\-neutrons@{\-\_\-neutrons}}
+\index{\-\_\-neutrons@{\-\_\-neutrons}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-neutrons}]{\setlength{\rightskip}{0pt plus 5cm}{\bf neutron}$\ast$ Geometry\-::\-\_\-neutrons\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_aae2651151b89d9b82c434eaa83edc477}
+An array of neutrons \hypertarget{classGeometry_a600fda86b7f3951331ae486548306407}{\index{Geometry@{Geometry}!\-\_\-num\-\_\-batches@{\-\_\-num\-\_\-batches}}
+\index{\-\_\-num\-\_\-batches@{\-\_\-num\-\_\-batches}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-num\-\_\-batches}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\-::\-\_\-num\-\_\-batches\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a600fda86b7f3951331ae486548306407}
+The number of batches \hypertarget{classGeometry_ab2f62b285fd3ebc06114db10a3f50167}{\index{Geometry@{Geometry}!\-\_\-num\-\_\-neutrons\-\_\-per\-\_\-batch@{\-\_\-num\-\_\-neutrons\-\_\-per\-\_\-batch}}
+\index{\-\_\-num\-\_\-neutrons\-\_\-per\-\_\-batch@{\-\_\-num\-\_\-neutrons\-\_\-per\-\_\-batch}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-num\-\_\-neutrons\-\_\-per\-\_\-batch}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\-::\-\_\-num\-\_\-neutrons\-\_\-per\-\_\-batch\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_ab2f62b285fd3ebc06114db10a3f50167}
+The number of neutrons per batch \hypertarget{classGeometry_a67baa59c9ac0e8819e5844bcef85442d}{\index{Geometry@{Geometry}!\-\_\-num\-\_\-ratios@{\-\_\-num\-\_\-ratios}}
+\index{\-\_\-num\-\_\-ratios@{\-\_\-num\-\_\-ratios}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-num\-\_\-ratios}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\-::\-\_\-num\-\_\-ratios\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a67baa59c9ac0e8819e5844bcef85442d}
+The number of moderator to fuel cross-\/section ratios \hypertarget{classGeometry_af78593ff6416ad7fc318e4b8692ed77e}{\index{Geometry@{Geometry}!\-\_\-num\-\_\-threads@{\-\_\-num\-\_\-threads}}
+\index{\-\_\-num\-\_\-threads@{\-\_\-num\-\_\-threads}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-num\-\_\-threads}]{\setlength{\rightskip}{0pt plus 5cm}int Geometry\-::\-\_\-num\-\_\-threads\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_af78593ff6416ad7fc318e4b8692ed77e}
+The number of threads \hypertarget{classGeometry_a4bb0c2db80028191a363a79669e2508b}{\index{Geometry@{Geometry}!\-\_\-pmf\-\_\-ratios@{\-\_\-pmf\-\_\-ratios}}
+\index{\-\_\-pmf\-\_\-ratios@{\-\_\-pmf\-\_\-ratios}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-pmf\-\_\-ratios}]{\setlength{\rightskip}{0pt plus 5cm}float$\ast$ Geometry\-::\-\_\-pmf\-\_\-ratios\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a4bb0c2db80028191a363a79669e2508b}
+An array of the moderator to fuel cross-\/section ratios \hypertarget{classGeometry_a603f3cc50a03607fb94f4ce019235b5a}{\index{Geometry@{Geometry}!\-\_\-scale\-\_\-type@{\-\_\-scale\-\_\-type}}
+\index{\-\_\-scale\-\_\-type@{\-\_\-scale\-\_\-type}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-scale\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf bin\-Spacing\-Types} Geometry\-::\-\_\-scale\-\_\-type\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a603f3cc50a03607fb94f4ce019235b5a}
+The spacing type between bins (E\-Q\-U\-A\-L, L\-O\-G\-A\-R\-I\-T\-H\-M\-I\-C, O\-T\-H\-E\-R) \hypertarget{classGeometry_a161dd81342c2018dc6af5db732385b67}{\index{Geometry@{Geometry}!\-\_\-sigma\-\_\-e@{\-\_\-sigma\-\_\-e}}
+\index{\-\_\-sigma\-\_\-e@{\-\_\-sigma\-\_\-e}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-sigma\-\_\-e}]{\setlength{\rightskip}{0pt plus 5cm}float Geometry\-::\-\_\-sigma\-\_\-e\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a161dd81342c2018dc6af5db732385b67}
+The user-\/specified escape cross-\/section \hypertarget{classGeometry_a2e9b473e54caa2c7742b4f676bedf91e}{\index{Geometry@{Geometry}!\-\_\-spatial\-\_\-type@{\-\_\-spatial\-\_\-type}}
+\index{\-\_\-spatial\-\_\-type@{\-\_\-spatial\-\_\-type}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-spatial\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf spatial\-Type} Geometry\-::\-\_\-spatial\-\_\-type\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a2e9b473e54caa2c7742b4f676bedf91e}
+The spatial type for the geometry \hypertarget{classGeometry_a274a1e1973986b23507d7c11fb30ea76}{\index{Geometry@{Geometry}!\-\_\-start\-\_\-energy@{\-\_\-start\-\_\-energy}}
+\index{\-\_\-start\-\_\-energy@{\-\_\-start\-\_\-energy}!Geometry@{Geometry}}
+\subsubsection[{\-\_\-start\-\_\-energy}]{\setlength{\rightskip}{0pt plus 5cm}float Geometry\-::\-\_\-start\-\_\-energy\hspace{0.3cm}{\ttfamily [private]}}}\label{classGeometry_a274a1e1973986b23507d7c11fb30ea76}
+Lowest energy for the moderator to fuel cross-\/section ratios 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+pinspec/src/\hyperlink{Geometry_8h}{Geometry.\-h}\item 
+pinspec/src/Geometry.\-cpp\end{DoxyCompactItemize}

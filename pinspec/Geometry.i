@@ -8,8 +8,8 @@
     #include "src/Isotope.h"
     #include "src/Material.h"
     #include "src/Tally.h"
-	#include "src/TallyBank.h"
-	#include "src/TallyFactory.h"
+    #include "src/TallyBank.h"
+    #include "src/TallyFactory.h"
     #include "src/Neutron.h"
     #include "src/Fissioner.h"
     #include "src/log.h"
@@ -68,7 +68,7 @@
 %apply (float* ARGOUT_ARRAY1, int DIM1) {(float* cdfs, int num_values)}
 %apply (float* ARGOUT_ARRAY1, int DIM1) {(float* Eprime_to_E, int num_bins)}
 %apply (float* ARGOUT_ARRAY1, int DIM1) {(float* E_to_kT, int num_cdfs)}
-%apply (float* ARGOUT_ARRAY1, int DIM1) {(float* dist, int num_values)}
+%apply (float* ARGOUT_ARRAY1, int DIM1) {(float* pdfs, int num_values)}
 %apply (double* IN_ARRAY1, int DIM1) {(double* energies, int num_energies), (double* elastic_xs, int num_xs)}
 %apply (double* IN_ARRAY1, int DIM1) {(double* energies, int num_energies), (double* capture_xs, int num_xs)}
 %apply (double* IN_ARRAY1, int DIM1) {(double* energies, int num_energies), (double* fission_xs, int num_xs)}

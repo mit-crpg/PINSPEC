@@ -1,0 +1,1674 @@
+.TH "Tally" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Tally \- 
+.PP
+A \fBTally\fP reprsents a set of bins for tallying some quantity\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include 'pinspec/src/Tally\&.h'\fP
+.PP
+Inherited by \fBDerivedTally\fP, \fBGeometryTally\fP, \fBIsotopeTally\fP, \fBMaterialTally\fP, and \fBRegionTally\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTally\fP (const char *tally_name=(char *)'')"
+.br
+.RI "\fI\fBTally\fP constructor\&. \fP"
+.ti -1c
+.RI "virtual \fB~Tally\fP ()"
+.br
+.RI "\fI\fBTally\fP destructor deletes memory for tallies, number of tallies, bin centers and bin edges (if they have been created)\&. \fP"
+.ti -1c
+.RI "char * \fBgetTallyName\fP ()"
+.br
+.RI "\fIReturns the name of the tally\&. \fP"
+.ti -1c
+.RI "int \fBgetNumBins\fP ()"
+.br
+.RI "\fIReturns the number of tally bins\&. \fP"
+.ti -1c
+.RI "double * \fBgetBinEdges\fP ()"
+.br
+.RI "\fIReturns a double array of bin edge values\&. \fP"
+.ti -1c
+.RI "double * \fBgetBinCenters\fP ()"
+.br
+.RI "\fIReturns a double array of bin center values\&. \fP"
+.ti -1c
+.RI "double \fBgetBinDelta\fP ()"
+.br
+.RI "\fIReturns the delta spacing between bins\&. NOTE: this value is only non-zero for EQUAL and LOGARITHMIC bin types\&. \fP"
+.ti -1c
+.RI "double \fBgetBinDelta\fP (double sample)"
+.br
+.RI "\fIReturns the delta spacing between the bin edges sandwiching a given sample value\&. \fP"
+.ti -1c
+.RI "\fBbinSpacingType\fP \fBgetBinSpacingType\fP ()"
+.br
+.RI "\fIReturns the bin spacing type (EQUAL, LOGARITHMIC, OTHER)\&. \fP"
+.ti -1c
+.RI "\fBtallyDomainType\fP \fBgetTallyDomainType\fP ()"
+.br
+.RI "\fIReturns the type of tally for these bins (ISOTOPE, MATERIAL, REGION)\&. \fP"
+.ti -1c
+.RI "\fBtallyType\fP \fBgetTallyType\fP ()"
+.br
+.RI "\fIReturns the type of tally for these bins (FLUX, COLLISION_RATE, etc)\&. \fP"
+.ti -1c
+.RI "double ** \fBgetTallies\fP ()"
+.br
+.RI "\fIReturns a double array of the tallies within each bin\&. \fP"
+.ti -1c
+.RI "double \fBgetTally\fP (int bin_index, int batch_num)"
+.br
+.RI "\fIReturns a specific tally for a specific bin and batch\&. \fP"
+.ti -1c
+.RI "double \fBgetMaxTally\fP ()"
+.br
+.RI "\fIReturns the maximum tally value among all bins and batches\&. \fP"
+.ti -1c
+.RI "double \fBgetMinTally\fP ()"
+.br
+.RI "\fIReturns the maximum tally value among all bins and batches\&. \fP"
+.ti -1c
+.RI "int \fBgetBinIndex\fP (double sample)"
+.br
+.RI "\fIFinds the bin index for a sample in a set of bins\&. If the samples is outside the bounds of all bins, it returns infinity\&. \fP"
+.ti -1c
+.RI "double \fBgetMaxMu\fP ()"
+.br
+.RI "\fIReturns the maximum average tally over batches\&. \fP"
+.ti -1c
+.RI "double \fBgetMaxVariance\fP ()"
+.br
+.RI "\fIReturns the maximum tally variance over batches\&. \fP"
+.ti -1c
+.RI "double \fBgetMaxStdDev\fP ()"
+.br
+.RI "\fIReturns the maximum tally standard deviatoin\&. \fP"
+.ti -1c
+.RI "double \fBgetMaxRelErr\fP ()"
+.br
+.RI "\fIReturns the maximum tally relative error\&. \fP"
+.ti -1c
+.RI "float \fBgetTriggerPrecision\fP ()"
+.br
+.RI "\fIReturns the trigger precision for this tally\&. \fP"
+.ti -1c
+.RI "\fBtriggerType\fP \fBgetTriggerType\fP ()"
+.br
+.RI "\fIReturns the precision trigger type (VARIANCE, STANDARD_DEVIATION, RELATIVE_ERROR, or NONE)\&. \fP"
+.ti -1c
+.RI "bool \fBhasComputedBatchStatistics\fP ()"
+.br
+.RI "\fIReturns whether or not the tally has computed batch statistics\&. \fP"
+.ti -1c
+.RI "void \fBretrieveTallyEdges\fP (double *data, int num_bins)"
+.br
+.RI "\fIThis method fills an array with the tally bin edges\&. \fP"
+.ti -1c
+.RI "void \fBretrieveTallyCenters\fP (double *data, int num_bins)"
+.br
+.RI "\fIThis method fills an array with the tally bin centers\&. \fP"
+.ti -1c
+.RI "void \fBretrieveTallyMu\fP (double *data, int num_bins)"
+.br
+.RI "\fIThis method fills an array with the average tally values\&. \fP"
+.ti -1c
+.RI "void \fBretrieveTallyVariance\fP (double *data, int num_bins)"
+.br
+.RI "\fIThis method fills an array with the tally variances\&. \fP"
+.ti -1c
+.RI "void \fBretrieveTallyStdDev\fP (double *data, int num_bins)"
+.br
+.RI "\fIThis method fills an array with the tally standard deviations\&. \fP"
+.ti -1c
+.RI "void \fBretrieveTallyRelErr\fP (double *data, int num_bins)"
+.br
+.RI "\fIThis method fills an array with the tally relative errors\&. \fP"
+.ti -1c
+.RI "int \fBgetNumBatches\fP ()"
+.br
+.RI "\fIReturns the number of batches for this tally\&. \fP"
+.ti -1c
+.RI "double * \fBgetBatchMu\fP ()"
+.br
+.RI "\fIReturns a pointer to an array of tally batch averages if they have been computed\&. \fP"
+.ti -1c
+.RI "double * \fBgetBatchVariance\fP ()"
+.br
+.RI "\fIReturns a pointer to an array of tally batch variances if they have been computed\&. \fP"
+.ti -1c
+.RI "double * \fBgetBatchStdDev\fP ()"
+.br
+.RI "\fIReturns a pointer to an array of tally batch standard deviations if they have been computed\&. \fP"
+.ti -1c
+.RI "double * \fBgetBatchRelativeError\fP ()"
+.br
+.RI "\fIReturns a pointer to an array of tally batch relative errors if they have been computed\&. \fP"
+.ti -1c
+.RI "void \fBsetTallyDomainType\fP (\fBtallyDomainType\fP type)"
+.br
+.RI "\fISet the tally domain type (MATERIAL, REGION, etc\&.)\&. \fP"
+.ti -1c
+.RI "void \fBsetTallyType\fP (\fBtallyType\fP type)"
+.br
+.RI "\fISet the tally type (FLUX, CAPTURE_RATE, etc\&.)\&. \fP"
+.ti -1c
+.RI "void \fBsetBinSpacingType\fP (\fBbinSpacingType\fP type)"
+.br
+.RI "\fISet the bin spacing type for this \fBTally\fP (EQUAL, LOGARITHMIC, OTHER)\&. \fP"
+.ti -1c
+.RI "void \fBsetBinEdges\fP (double *edges, int num_edges)"
+.br
+.RI "\fISet a user-defined double array of bin edge values\&. \fP"
+.ti -1c
+.RI "void \fBsetPrecisionTrigger\fP (\fBtriggerType\fP trigger_type, float precision)"
+.br
+.RI "\fISets a precision trigger for this tally\&. \fP"
+.ti -1c
+.RI "void \fBgenerateBinEdges\fP (double start, double end, int num_bins, \fBbinSpacingType\fP type)"
+.br
+.RI "\fIGenerate edges between bins defined by a start and end point\&. \fP"
+.ti -1c
+.RI "void \fBgenerateBinCenters\fP ()"
+.br
+.RI "\fICompute the center points between bin edges for this \fBTally\fP's bins\&. \fP"
+.ti -1c
+.RI "void \fBsetNumBatches\fP (int num_batches)"
+.br
+.RI "\fISet the number of batches for this \fBTally\fP\&. \fP"
+.ti -1c
+.RI "void \fBincrementNumBatches\fP (int num_batches)"
+.br
+.RI "\fIIncrements the number of batches for this tally\&. \fP"
+.ti -1c
+.RI "bool \fBisPrecisionTriggered\fP ()"
+.br
+.RI "\fIReturns whether or not the tally precision meets the precision trigger threshold, if a trigger exists\&. \fP"
+.ti -1c
+.RI "void \fBcomputeBatchStatistics\fP ()"
+.br
+.RI "\fIComputes average, variance, standard deviation and relative error for each bin over the set of batches\&. \fP"
+.ti -1c
+.RI "void \fBcomputeScaledBatchStatistics\fP (double scale_factor)"
+.br
+.RI "\fIComputes average, variance, standard deviation and relative error for each bin over the set of batches\&. \fP"
+.ti -1c
+.RI "void \fBnormalizeBatchMu\fP ()"
+.br
+.RI "\fIDivide each tally by the maximum tally value\&. \fP"
+.ti -1c
+.RI "void \fBoutputBatchStatistics\fP (const char *filename)"
+.br
+.RI "\fIOutputs the batch statistics (if they have been computed) to an ASCII file\&. \fP"
+.ti -1c
+.RI "void \fBprintTallies\fP (bool uncertainties=false)"
+.br
+.RI "\fIPrint the tally values to the screen\&. \fP"
+.ti -1c
+.RI "\fBTally\fP * \fBclone\fP ()"
+.br
+.RI "\fICreates a new version of this tally with identical data\&. \fP"
+.ti -1c
+.RI "void \fBtally\fP (\fBneutron\fP *\fBneutron\fP, double weight)"
+.br
+.RI "\fIThis method tallies a particular weight for a neutron\&. \fP"
+.ti -1c
+.RI "virtual void \fBtally\fP (\fBneutron\fP *\fBneutron\fP)=0"
+.br
+.RI "\fIA virtual method to tally a neutron which must be implemented by \fBTally\fP subclasses\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBaddIntegers\fP (const int *amt, const int length)"
+.br
+.RI "\fI\fBTally\fP addition with an array of integers\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBaddFloats\fP (const float *amt, const int length)"
+.br
+.RI "\fI\fBTally\fP addition with an array of floats\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBaddDoubles\fP (const double *amt, const int length)"
+.br
+.RI "\fI\fBTally\fP addition with an array of doubles\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBsubtractIntegers\fP (const int *amt, const int length)"
+.br
+.RI "\fI\fBTally\fP subtraction with an array of integers\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBsubtractFloats\fP (const float *amt, const int length)"
+.br
+.RI "\fI\fBTally\fP subtraction with an array of floats\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBsubtractDoubles\fP (const double *amt, const int length)"
+.br
+.RI "\fI\fBTally\fP subtraction with an array of doubles\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBmultiplyIntegers\fP (const int *amt, const int length)"
+.br
+.RI "\fI\fBTally\fP multiplication with an array of integers\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBmultiplyFloats\fP (const float *amt, const int length)"
+.br
+.RI "\fI\fBTally\fP multiplication with an array of floats\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBmultiplyDoubles\fP (const double *amt, const int length)"
+.br
+.RI "\fI\fBTally\fP multiplication with an array of doubles\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBdivideIntegers\fP (const int *amt, const int length)"
+.br
+.RI "\fI\fBTally\fP division with an array of integers\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBdivideFloats\fP (const float *amt, const int length)"
+.br
+.RI "\fI\fBTally\fP division with an array of floats\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBdivideDoubles\fP (const double *amt, const int length)"
+.br
+.RI "\fI\fBTally\fP division with an array of doubles\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator+\fP (\fBTally\fP *\fBtally\fP)"
+.br
+.RI "\fI\fBTally\fP addition operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator-\fP (\fBTally\fP *\fBtally\fP)"
+.br
+.RI "\fI\fBTally\fP subtraction operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator*\fP (\fBTally\fP *\fBtally\fP)"
+.br
+.RI "\fI\fBTally\fP multiplication operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator/\fP (\fBTally\fP *\fBtally\fP)"
+.br
+.RI "\fI\fBTally\fP division operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator+\fP (const int amt)"
+.br
+.RI "\fI\fBTally\fP addition with a constant operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator-\fP (const int amt)"
+.br
+.RI "\fI\fBTally\fP subtraction with a constant operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator*\fP (const int amt)"
+.br
+.RI "\fI\fBTally\fP multiplication with a constant operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator/\fP (const int amt)"
+.br
+.RI "\fI\fBTally\fP division with a constant operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator+\fP (const float amt)"
+.br
+.RI "\fI\fBTally\fP addition with a constant operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator-\fP (const float amt)"
+.br
+.RI "\fI\fBTally\fP subtraction with a constant operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator*\fP (const float amt)"
+.br
+.RI "\fI\fBTally\fP multiplication with a constant operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator/\fP (const float amt)"
+.br
+.RI "\fI\fBTally\fP division with a constant operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator+\fP (const double amt)"
+.br
+.RI "\fI\fBTally\fP addition with a constant operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator-\fP (const double amt)"
+.br
+.RI "\fI\fBTally\fP subtraction with a constant operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator*\fP (const double amt)"
+.br
+.RI "\fI\fBTally\fP multiplication with a constant operator\&. \fP"
+.ti -1c
+.RI "\fBDerivedTally\fP * \fBoperator/\fP (const double amt)"
+.br
+.RI "\fI\fBTally\fP division with a constant operator\&. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "char * \fB_tally_name\fP"
+.br
+.ti -1c
+.RI "int \fB_num_bins\fP"
+.br
+.ti -1c
+.RI "double * \fB_edges\fP"
+.br
+.ti -1c
+.RI "double * \fB_centers\fP"
+.br
+.ti -1c
+.RI "double ** \fB_tallies\fP"
+.br
+.ti -1c
+.RI "double \fB_bin_delta\fP"
+.br
+.ti -1c
+.RI "\fBbinSpacingType\fP \fB_bin_spacing\fP"
+.br
+.ti -1c
+.RI "\fBtallyDomainType\fP \fB_tally_domain\fP"
+.br
+.ti -1c
+.RI "\fBtallyType\fP \fB_tally_type\fP"
+.br
+.ti -1c
+.RI "\fBtriggerType\fP \fB_trigger_type\fP"
+.br
+.ti -1c
+.RI "float \fB_trigger_precision\fP"
+.br
+.ti -1c
+.RI "int \fB_num_batches\fP"
+.br
+.ti -1c
+.RI "double * \fB_batch_mu\fP"
+.br
+.ti -1c
+.RI "double * \fB_batch_variance\fP"
+.br
+.ti -1c
+.RI "double * \fB_batch_std_dev\fP"
+.br
+.ti -1c
+.RI "double * \fB_batch_rel_err\fP"
+.br
+.ti -1c
+.RI "bool \fB_computed_statistics\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A \fBTally\fP reprsents a set of bins for tallying some quantity\&. 
+
+This class represents a set of tallies\&. A set of values define the edges between bins for each tally\&. This class holds the edges, the centers between bins\&. It also allows for tallies to be made within each bin\&.
+.PP
+A set of values define the edges between bins for each tally\&. This class holds the edges, the centers between bins and the tallies within each bin\&. The \fBTally\fP class knows how to compute batch-based statistics for each tally bin\&. The \fBTally\fP class is an abstract class and must be implemented for each specific type of \fBTally\fP the developer might wish to define\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Tally::Tally (const char *tally_name = \fC(char*)''\fP)"
+
+.PP
+\fBTally\fP constructor\&. Assigns a default number of batches (0) and tally bins (0)\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBDerivedTally\fP * Tally::addDoubles (const double *amt, const intlength)"
+
+.PP
+\fBTally\fP addition with an array of doubles\&. This overloaded division operator allows the user to add a tally to an array of doubles, if the number of values equals the number of tally bins\&. This creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. This method prototype appears to require two operands - the double array and the length of the array - but in Python it only requires the double array as follows:
+.PP
+.PP
+.nf
+array = numpy\&.array([1\&.2, 3\&.5, 4\&.7, 8\&.2], numpy\&.dtype=float64)
+new_tally = tally\&.addDoubles(array)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the array to add to the tally 
+.br
+\fIlength\fP the length of the array 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally sum 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::addFloats (const float *amt, const intlength)"
+
+.PP
+\fBTally\fP addition with an array of floats\&. This overloaded division operator allows the user to add a tally by an array of floats, if the number of values equals the number of tally bins\&. This creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. This method prototype appears to require two operands - the float array and the length of the array - but in Python it only requires the integer array as follows:
+.PP
+.PP
+.nf
+array = numpy\&.array([1\&.2, 3\&.5, 4\&.7, 8\&.2], numpy\&.dtype=float32)
+new_tally = tally\&.addFloats(array)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the array to add to the tally 
+.br
+\fIlength\fP the length of the array 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally sum 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::addIntegers (const int *amt, const intlength)"
+
+.PP
+\fBTally\fP addition with an array of integers\&. This overloaded division operator allows the user to ad a tally by an array of integers, if the number of values equals the number of tally bins\&. This creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. This method prototype appears to require two operands - the integer array and the length of the array - but in Python it only requires the integer array as follows:
+.PP
+.PP
+.nf
+array = numpy\&.array([1\&.2, 3\&.5, 4\&.7, 8\&.2])
+new_tally = tally\&.addIntegers(array)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the the array to add to the tally 
+.br
+\fIlength\fP the length of the array 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally sum 
+.RE
+.PP
+
+.SS "\fBTally\fP * Tally::clone ()"
+
+.PP
+Creates a new version of this tally with identical data\&. The clone method makes a deep copy of all of this tally's data and loads it into a new tally class object\&. 
+.SS "void Tally::computeBatchStatistics ()"
+
+.PP
+Computes average, variance, standard deviation and relative error for each bin over the set of batches\&. This method populates private class attribute arrays with the batch statistics\&. 
+.SS "void Tally::computeScaledBatchStatistics (doublescale_factor)"
+
+.PP
+Computes average, variance, standard deviation and relative error for each bin over the set of batches\&. This method scales each bin value by a scaling factor\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIscale_factor\fP the factor to scale each bin value by 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::divideDoubles (const double *amt, const intlength)"
+
+.PP
+\fBTally\fP division with an array of doubles\&. This overloaded multiplication operator allows the user to divide a tally by an array of doubles, if the number of values equals the number of tally bins\&. This creates a new DERIVED type tally, loads it with the product of the tally bin averages and the array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. This method prototype appears to require two operands - the double array and the length of the array - but in Python it only requires the double array as follows:
+.PP
+.PP
+.nf
+array = numpy\&.array([1\&.2, 3\&.5, 4\&.7, 8\&.2], dtype=numpy\&.float64)
+new_tally = tally\&.divideDoubles(array)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the array to divide the tally by 
+.br
+\fIlength\fP the length of the array 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally dividend 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::divideFloats (const float *amt, const intlength)"
+
+.PP
+\fBTally\fP division with an array of floats\&. This overloaded multiplication operator allows the user to divide a tally by an array of floats, if the number of values equals the number of tally bins\&. This creates a new DERIVED type tally, loads it with the product of the tally bin averages and the array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. This method prototype appears to require two operands - the float array and the length of the array - but in Python it only requires the float array as follows:
+.PP
+.PP
+.nf
+array = numpy\&.array([1\&.2, 3\&.5, 4\&.7, 8\&.2], dtype=numpy\&.float32)
+new_tally = tally\&.divideFloats(array)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the array to divide the tally by 
+.br
+\fIlength\fP the length of the array 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally dividend 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::divideIntegers (const int *amt, const intlength)"
+
+.PP
+\fBTally\fP division with an array of integers\&. This overloaded multiplication operator allows the user to divide a tally by an array of integers, if the number of values equals the number of tally bins\&. This creates a new DERIVED type tally, loads it with the product of the tally bin averages and the array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. This method prototype appears to require two operands - the integer array and the length of the array - but in Python it only requires the integer array as follows:
+.PP
+.PP
+.nf
+array = numpy\&.array([1\&.2, 3\&.5, 4\&.7, 8\&.2], dtype=numpy\&.int32)
+new_tally = tally\&.divideIntegers(array)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the array to divide the tally by 
+.br
+\fIlength\fP the length of the array 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally dividend 
+.RE
+.PP
+
+.SS "void Tally::generateBinCenters ()"
+
+.PP
+Compute the center points between bin edges for this \fBTally\fP's bins\&. This method populates a private class attribute array with the bin center values\&. 
+.SS "void Tally::generateBinEdges (doublestart, doubleend, intnum_bins, \fBbinSpacingType\fPtype)"
+
+.PP
+Generate edges between bins defined by a start and end point\&. \fBParameters:\fP
+.RS 4
+\fIstart\fP first bin edge value 
+.br
+\fIend\fP last bin edge value 
+.br
+\fInum_bins\fP the number of bins to be created 
+.br
+\fItype\fP the type of bins (EQUAL or LOGARITHMIC) 
+.RE
+.PP
+
+.SS "double * Tally::getBatchMu ()"
+
+.PP
+Returns a pointer to an array of tally batch averages if they have been computed\&. \fBReturns:\fP
+.RS 4
+a double array of batch averages for each bin 
+.RE
+.PP
+
+.SS "double * Tally::getBatchRelativeError ()"
+
+.PP
+Returns a pointer to an array of tally batch relative errors if they have been computed\&. \fBReturns:\fP
+.RS 4
+a double array of batch relative errors for each bin 
+.RE
+.PP
+
+.SS "double * Tally::getBatchStdDev ()"
+
+.PP
+Returns a pointer to an array of tally batch standard deviations if they have been computed\&. \fBReturns:\fP
+.RS 4
+a double array of batch standard deviations for each bin 
+.RE
+.PP
+
+.SS "double * Tally::getBatchVariance ()"
+
+.PP
+Returns a pointer to an array of tally batch variances if they have been computed\&. \fBReturns:\fP
+.RS 4
+a double array of batch variances for each bin 
+.RE
+.PP
+
+.SS "double * Tally::getBinCenters ()"
+
+.PP
+Returns a double array of bin center values\&. \fBReturns:\fP
+.RS 4
+array of bin center values 
+.RE
+.PP
+
+.SS "double Tally::getBinDelta ()"
+
+.PP
+Returns the delta spacing between bins\&. NOTE: this value is only non-zero for EQUAL and LOGARITHMIC bin types\&. \fBReturns:\fP
+.RS 4
+the spacing between bins 
+.RE
+.PP
+
+.SS "double Tally::getBinDelta (doublesample)"
+
+.PP
+Returns the delta spacing between the bin edges sandwiching a given sample value\&. \fBParameters:\fP
+.RS 4
+\fIsample\fP the value of interest 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the spacing between bin edges 
+.RE
+.PP
+
+.SS "double * Tally::getBinEdges ()"
+
+.PP
+Returns a double array of bin edge values\&. \fBReturns:\fP
+.RS 4
+array of bin edge values 
+.RE
+.PP
+
+.SS "int Tally::getBinIndex (doublesample)\fC [inline]\fP"
+
+.PP
+Finds the bin index for a sample in a set of bins\&. If the samples is outside the bounds of all bins, it returns infinity\&. \fBParameters:\fP
+.RS 4
+\fIsample\fP the sample value of interest 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the bin index for the sample 
+.RE
+.PP
+
+.SS "\fBbinSpacingType\fP Tally::getBinSpacingType ()"
+
+.PP
+Returns the bin spacing type (EQUAL, LOGARITHMIC, OTHER)\&. \fBReturns:\fP
+.RS 4
+the bin spacing type 
+.RE
+.PP
+
+.SS "double Tally::getMaxMu ()"
+
+.PP
+Returns the maximum average tally over batches\&. \fBReturns:\fP
+.RS 4
+the maximum average tally 
+.RE
+.PP
+
+.SS "double Tally::getMaxRelErr ()"
+
+.PP
+Returns the maximum tally relative error\&. \fBReturns:\fP
+.RS 4
+the maximum relative error 
+.RE
+.PP
+
+.SS "double Tally::getMaxStdDev ()"
+
+.PP
+Returns the maximum tally standard deviatoin\&. \fBReturns:\fP
+.RS 4
+the maximum standard deviation 
+.RE
+.PP
+
+.SS "double Tally::getMaxTally ()"
+
+.PP
+Returns the maximum tally value among all bins and batches\&. \fBReturns:\fP
+.RS 4
+the maximum tally value 
+.RE
+.PP
+
+.SS "double Tally::getMaxVariance ()"
+
+.PP
+Returns the maximum tally variance over batches\&. \fBReturns:\fP
+.RS 4
+the maximum tally variance 
+.RE
+.PP
+
+.SS "double Tally::getMinTally ()"
+
+.PP
+Returns the maximum tally value among all bins and batches\&. \fBReturns:\fP
+.RS 4
+the maximum tally value 
+.RE
+.PP
+
+.SS "int Tally::getNumBatches ()"
+
+.PP
+Returns the number of batches for this tally\&. \fBReturns:\fP
+.RS 4
+the number of batches 
+.RE
+.PP
+
+.SS "int Tally::getNumBins ()"
+
+.PP
+Returns the number of tally bins\&. \fBReturns:\fP
+.RS 4
+the number of bins 
+.RE
+.PP
+
+.SS "double ** Tally::getTallies ()"
+
+.PP
+Returns a double array of the tallies within each bin\&. \fBReturns:\fP
+.RS 4
+an array of 
+.RE
+.PP
+
+.SS "double Tally::getTally (intbatch_num, intbin_index)"
+
+.PP
+Returns a specific tally for a specific bin and batch\&. \fBParameters:\fP
+.RS 4
+\fIbatch_num\fP the batch of interest 
+.br
+\fIbin_index\fP the index for the bin of interest 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the tally within that bin 
+.RE
+.PP
+
+.SS "\fBtallyDomainType\fP Tally::getTallyDomainType ()"
+
+.PP
+Returns the type of tally for these bins (ISOTOPE, MATERIAL, REGION)\&. \fBReturns:\fP
+.RS 4
+the tally type 
+.RE
+.PP
+
+.SS "char * Tally::getTallyName ()"
+
+.PP
+Returns the name of the tally\&. \fBReturns:\fP
+.RS 4
+the name of the tally 
+.RE
+.PP
+
+.SS "\fBtallyType\fP Tally::getTallyType ()"
+
+.PP
+Returns the type of tally for these bins (FLUX, COLLISION_RATE, etc)\&. \fBReturns:\fP
+.RS 4
+the tally type 
+.RE
+.PP
+
+.SS "float Tally::getTriggerPrecision ()"
+
+.PP
+Returns the trigger precision for this tally\&. The trigger precision is the threshold value which must be met for all of this tally's values before the PINSPEC simulation will complete\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+the trigger precision 
+.RE
+.PP
+
+.SS "\fBtriggerType\fP Tally::getTriggerType ()"
+
+.PP
+Returns the precision trigger type (VARIANCE, STANDARD_DEVIATION, RELATIVE_ERROR, or NONE)\&. \fBReturns:\fP
+.RS 4
+the trigger precision type\&. 
+.RE
+.PP
+
+.SS "bool Tally::hasComputedBatchStatistics ()"
+
+.PP
+Returns whether or not the tally has computed batch statistics\&. \fBReturns:\fP
+.RS 4
+true if the tally has computed batch statistics; otherwise false 
+.RE
+.PP
+
+.SS "void Tally::incrementNumBatches (intnum_batches)"
+
+.PP
+Increments the number of batches for this tally\&. \fBParameters:\fP
+.RS 4
+\fInum_batches\fP number of batches to add to the total number of batches\&. 
+.RE
+.PP
+
+.SS "bool Tally::isPrecisionTriggered ()"
+
+.PP
+Returns whether or not the tally precision meets the precision trigger threshold, if a trigger exists\&. \fBReturns:\fP
+.RS 4
+true if the precision meets the threshold; otherwise false 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::multiplyDoubles (const double *amt, const intlength)"
+
+.PP
+\fBTally\fP multiplication with an array of doubles\&. This overloaded multiplication operator allows the user to multiply an array of doubles with a tally, if the number of values equals the number of tally bins\&. This creates a new DERIVED type tally, loads it with the product of the tally bin averages and the array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. This method prototype appears to require two operands - the double array and the length of the array - but in Python it only requires the double array as follows:
+.PP
+.PP
+.nf
+array = numpy\&.array([1\&.2, 3\&.5, 4\&.7, 8\&.2], dtype=numpy\&.float64)
+new_tally = tally\&.multiplyDoubles(array)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the array to multiply with the tally 
+.br
+\fIlength\fP the length of the array 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally product 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::multiplyFloats (const float *amt, const intlength)"
+
+.PP
+\fBTally\fP multiplication with an array of floats\&. This overloaded multiplication operator allows the user to multiply an array of floats with a tally, if the number of values equals the number of tally bins\&. This creates a new DERIVED type tally, loads it with the product of the tally bin averages and the array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. This method prototype appears to require two operands - the float array and the length of the array - but in Python it only requires the float array as follows:
+.PP
+.PP
+.nf
+array = numpy\&.array([1\&.2, 3\&.5, 4\&.7, 8\&.2], dtype=numpy\&.float32)
+new_tally = tally\&.multiplyFloats(array)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the array to multiply with the tally 
+.br
+\fIlength\fP the length of the array 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally product 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::multiplyIntegers (const int *amt, const intlength)"
+
+.PP
+\fBTally\fP multiplication with an array of integers\&. This overloaded multiplication operator allows the user to multiply an array of integers with a tally, if the number of values equals the number of tally bins\&. This creates a new DERIVED type tally, loads it with the product of the tally bin averages and the array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. This method prototype appears to require two operands - the integer array and the length of the array - but in Python it only requires the integer array as follows:
+.PP
+.PP
+.nf
+array = numpy\&.array([1\&.2, 3\&.5, 4\&.7, 8\&.2], dtype=numpy\&.int32)
+new_tally = tally\&.multiplyIntegers(array)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the array to multiply with the tally 
+.br
+\fIlength\fP the length of the array 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally product 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator* (\fBTally\fP *tally)"
+
+.PP
+\fBTally\fP multiplication operator\&. This overloaded multiplication operator allows the user to multiply two tallies with each other, if they have the same number of tallies\&. The creates a new DERIVED type tally, loads it with the product of the tally bin averages for the two tally operands, and computes its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally1 * tally2
+
+.fi
+.PP
+ 
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally product 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator* (const intamt)"
+
+.PP
+\fBTally\fP multiplication with a constant operator\&. This overloaded subtraction operator allows the user to multiply a constant with a tally\&. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately\&. constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally * int(3)
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the constant value to multiply the tally by 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally product 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator* (const floatamt)"
+
+.PP
+\fBTally\fP multiplication with a constant operator\&. This overloaded subtraction operator allows the user to multiply a constant with a tally\&. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally * float(3\&.5)
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the constant value to multiply the tally by 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally product 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator* (const doubleamt)"
+
+.PP
+\fBTally\fP multiplication with a constant operator\&. This overloaded subtraction operator allows the user to multiply a constant with a tally\&. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally * double(3\&.5)
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the constant value to multiply the tally by 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally product 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator+ (\fBTally\fP *tally)"
+
+.PP
+\fBTally\fP addition operator\&. This overloaded addition operator allows the user to add two tallies with each other, if they have the same number of tallies\&. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages for the two tally operands, and computes its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally1 + tally2
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the right operand in the tally summation 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally sum 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator+ (const intamt)"
+
+.PP
+\fBTally\fP addition with a constant operator\&. This overloaded addition operator allows the user to add a constant to a tally\&. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately\&. constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally + int(3)
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the constant value to add to the tally 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally sum 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator+ (const floatamt)"
+
+.PP
+\fBTally\fP addition with a constant operator\&. This overloaded addition operator allows the user to add a constant to a tally\&. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally + float(3\&.5)
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the constant value to add to the tally 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally sum 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator+ (const doubleamt)"
+
+.PP
+\fBTally\fP addition with a constant operator\&. This overloaded addition operator allows the user to add a constant to a tally\&. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally + double(3\&.5)
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the constant value to add to the tally 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally sum 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator- (\fBTally\fP *tally)"
+
+.PP
+\fBTally\fP subtraction operator\&. This overloaded subtraction operator allows the user to subtract two tallies with each other, if they have the same number of tallies\&. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages for the two tally operands, and computes its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally1 - tally2
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the right operand in the tally product 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally difference 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator- (const intamt)"
+
+.PP
+\fBTally\fP subtraction with a constant operator\&. This overloaded subtraction operator allows the user to subtract a constant from a tally\&. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately\&. constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally - int(3)
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the constant value to subtract from the tally 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally difference 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator- (const floatamt)"
+
+.PP
+\fBTally\fP subtraction with a constant operator\&. This overloaded subtraction operator allows the user to subtract a constant from a tally\&. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally - float(3\&.5)
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the constant value to subtract from the tally 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally difference 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator- (const doubleamt)"
+
+.PP
+\fBTally\fP subtraction with a constant operator\&. This overloaded subtraction operator allows the user to subtract a constant from a tally\&. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally - double(3\&.5)
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the constant value to subtract from the tally 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally difference 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator/ (\fBTally\fP *tally)"
+
+.PP
+\fBTally\fP division operator\&. This overloaded division operator allows the user to divide two tallies with each other, if they have the same number of tallies\&. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages for the two tally operands, and computes its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally1 / tally2
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the right operand in the tally division 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally division 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator/ (const intamt)"
+
+.PP
+\fBTally\fP division with a constant operator\&. This overloaded division operator allows the user to divide a tally by a constant\&. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally / int(3)
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the constant value to divide the tally by 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally product 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator/ (const floatamt)"
+
+.PP
+\fBTally\fP division with a constant operator\&. This overloaded division operator allows the user to divide a tally by a constant\&. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally / float(3\&.5)
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the constant value to divide the tally by 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally product 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::operator/ (const doubleamt)"
+
+.PP
+\fBTally\fP division with a constant operator\&. This overloaded division operator allows the user to divide a tally by a constant\&. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately\&. array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+.PP
+.nf
+new_tally = tally / double(3\&.5)
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the constant value to divide the tally by 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally product 
+.RE
+.PP
+
+.SS "void Tally::outputBatchStatistics (const char *filename)"
+
+.PP
+Outputs the batch statistics (if they have been computed) to an ASCII file\&. \fBParameters:\fP
+.RS 4
+\fIfilename\fP the output filename (optional) 
+.RE
+.PP
+
+.SS "void Tally::printTallies (booluncertainties = \fCfalse\fP)"
+
+.PP
+Print the tally values to the screen\&. This method will print the tally results, including bin edges tally averages, and if a user requests, even tally batch statistics\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIuncertainties\fP a boolean representing whether or not to print tally statistics 
+.RE
+.PP
+
+.SS "void Tally::retrieveTallyCenters (double *data, intnum_bins)"
+
+.PP
+This method fills an array with the tally bin centers\&. This method is a utility function for users to access PINSPEC data in Python\&. The method prototype may seem to require two arguments
+.IP "\(bu" 2
+the array to fill and the number of tally bins - but in Python the user must only supply the data array as follows:
+.PP
+.PP
+.PP
+.nf
+num_bins = tally\&.getNumBins()
+bin_centers = numpy\&.zeros(num_bins)
+tally\&.retrieveTallyCenters(bin_centers)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdata\fP the data array to fill with bin center values 
+.br
+\fInum_bins\fP the number of tally bins 
+.RE
+.PP
+
+.SS "void Tally::retrieveTallyEdges (double *data, intnum_bins)"
+
+.PP
+This method fills an array with the tally bin edges\&. This method is a utility function for users to access PINSPEC data in Python\&. The method prototype may seem to require two arguments
+.IP "\(bu" 2
+the array to fill and the number of tally bins - but in Python the user must only supply the data array as follows:
+.PP
+.PP
+.PP
+.nf
+num_bins = tally\&.getNumBins()
+bin_edges = numpy\&.zeros(num_bins)
+tally\&.retrieveTallyEdges(bin_edges)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdata\fP the data array to fill with bin edge values 
+.br
+\fInum_bins\fP the number of tally bins 
+.RE
+.PP
+
+.SS "void Tally::retrieveTallyMu (double *data, intnum_bins)"
+
+.PP
+This method fills an array with the average tally values\&. This method is a utility function for users to access PINSPEC data in Python\&. The method prototype may seem to require two arguments
+.IP "\(bu" 2
+the array to fill and the number of tally bins - but in Python the user must only supply the data array as follows:
+.PP
+.PP
+.PP
+.nf
+num_bins = tally\&.getNumBins()
+tally_averages = numpy\&.zeros(num_bins)
+tally\&.retrieveTallyMu(tally_averages)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdata\fP the data array to fill with tally average values 
+.br
+\fInum_bins\fP the number of tally bins 
+.RE
+.PP
+
+.SS "void Tally::retrieveTallyRelErr (double *data, intnum_bins)"
+
+.PP
+This method fills an array with the tally relative errors\&. This method is a utility function for users to access PINSPEC data in Python\&. The method prototype may seem to require two arguments - the array to fill and the number of tally bins - but in Python the user must only supply the data array as follows:
+.PP
+.PP
+.nf
+num_bins = tally\&.getNumBins()
+rel_err = numpy\&.zeros(num_bins)
+tally\&.retrieveTallyRelErr(rel_err)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdata\fP the data array to fill with tally relative errors 
+.br
+\fInum_bins\fP the number of tally bins 
+.RE
+.PP
+
+.SS "void Tally::retrieveTallyStdDev (double *data, intnum_bins)"
+
+.PP
+This method fills an array with the tally standard deviations\&. This method is a utility function for users to access PINSPEC data in Python\&. The method prototype may seem to require two arguments - the array to fill and the number of tally bins - but in Python the user must only supply the data array as follows:
+.PP
+.PP
+.nf
+num_bins = tally\&.getNumBins()
+std_dev = numpy\&.zeros(num_bins)
+tally\&.retrieveTallyStdDev(std_dev)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdata\fP the data array to fill with tally standard deviations 
+.br
+\fInum_bins\fP the number of tally bins 
+.RE
+.PP
+
+.SS "void Tally::retrieveTallyVariance (double *data, intnum_bins)"
+
+.PP
+This method fills an array with the tally variances\&. This method is a utility function for users to access PINSPEC data in Python\&. The method prototype may seem to require two arguments
+.IP "\(bu" 2
+the array to fill and the number of tally bins - but in Python the user must only supply the data array as follows:
+.PP
+.PP
+.PP
+.nf
+num_bins = tally\&.getNumBins()
+variances = numpy\&.zeros(num_bins)
+tally\&.retrieveTallyVariance(variances)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdata\fP the data array to fill with tally variances 
+.br
+\fInum_bins\fP the number of tally bins 
+.RE
+.PP
+
+.SS "void Tally::setBinEdges (double *edges, intnum_edges)"
+
+.PP
+Set a user-defined double array of bin edge values\&. This method is intended to allow PINSPEC users to set tally bin edges through Python\&. Although this method prototype seems to require two arguments - an array of bin edges and the number of edges - in Python the user only needs to provide the edges array as follows:
+.PP
+.PP
+.nf
+edges = numpy\&.array([0\&.1, 1\&., 5\&., 25\&., 100\&.])
+tally\&.setBinEdges(edges)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIedges\fP the array of bin edges 
+.br
+\fInum_edges\fP the number of bin edges 
+.RE
+.PP
+
+.SS "void Tally::setBinSpacingType (\fBbinSpacingType\fPtype)"
+
+.PP
+Set the bin spacing type for this \fBTally\fP (EQUAL, LOGARITHMIC, OTHER)\&. \fBParameters:\fP
+.RS 4
+\fItype\fP the bin spacing type 
+.RE
+.PP
+
+.SS "void Tally::setNumBatches (intnum_batches)"
+
+.PP
+Set the number of batches for this \fBTally\fP\&. This method also allocates memory for the tallies and batch statistics arrays\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInum_batches\fP the number of batches 
+.RE
+.PP
+
+.SS "void Tally::setPrecisionTrigger (\fBtriggerType\fPtrigger_type, floatprecision)"
+
+.PP
+Sets a precision trigger for this tally\&. By setting a precision trigger, the user instructs a PINSEPC simulation to continue running until all tallies meet the precision trigger threshold\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItrigger_type\fP the precision trigger type (VARIANCE, RELATIVE_ERROR, etc) 
+.br
+\fIprecision\fP the threshold for the precision trigger 
+.RE
+.PP
+
+.SS "void Tally::setTallyDomainType (\fBtallyDomainType\fPtype)"
+
+.PP
+Set the tally domain type (MATERIAL, REGION, etc\&.)\&. \fBParameters:\fP
+.RS 4
+\fItype\fP the tally domain type 
+.RE
+.PP
+
+.SS "void Tally::setTallyType (\fBtallyType\fPtype)"
+
+.PP
+Set the tally type (FLUX, CAPTURE_RATE, etc\&.)\&. \fBParameters:\fP
+.RS 4
+\fItype\fP the tally type 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::subtractDoubles (const double *amt, const intlength)"
+
+.PP
+\fBTally\fP subtraction with an array of doubles\&. This overloaded subtraction operator allows the user to subtract an array of doubles from a tally, if the number of values equals the number of tally bins\&. This creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. This method prototype appears to require two operands - the double array and the length of the array - but in Python it only requires the double array as follows:
+.PP
+.PP
+.nf
+array = numpy\&.array([1\&.2, 3\&.5, 4\&.7, 8\&.2], dtype=numpy\&.float64)
+new_tally = tally\&.subtractIntegers(array)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the array to subtract from the tally 
+.br
+\fIlength\fP the length of the array 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally difference 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::subtractFloats (const float *amt, const intlength)"
+
+.PP
+\fBTally\fP subtraction with an array of floats\&. This overloaded subtraction operator allows the user to subtract an array of floats from a tally, if the number of values equals the number of tally bins\&. This creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. This method prototype appears to require two operands - the float array and the length of the array - but in Python it only requires the float array as follows:
+.PP
+.PP
+.nf
+array = numpy\&.array([1\&.2, 3\&.5, 4\&.7, 8\&.2], dtype=numpy\&.float32)
+new_tally = tally\&.subtractFloats(array)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the array to subtract from the tally 
+.br
+\fIlength\fP the length of the array 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally difference 
+.RE
+.PP
+
+.SS "\fBDerivedTally\fP * Tally::subtractIntegers (const int *amt, const intlength)"
+
+.PP
+\fBTally\fP subtraction with an array of integers\&. This overloaded subtraction operator allows the user to subtract an array of integers from a tally, if the number of values equals the number of tally bins\&. This creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. This method prototype appears to require two operands - the integer array and the length of the array - but in Python it only requires the integer array as follows:
+.PP
+.PP
+.nf
+array = numpy\&.array([1\&.2, 3\&.5, 4\&.7, 8\&.2], dtype=numpy\&.integer)
+new_tally = tally\&.subtractIntegers(array)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fIamt\fP the right operand and the array to subtract from the tally 
+.br
+\fIlength\fP the length of the array 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a DERIVED type tally with the tally difference 
+.RE
+.PP
+
+.SS "void Tally::tally (\fBneutron\fP *neutron, doubleweight)"
+
+.PP
+This method tallies a particular weight for a neutron\&. The method determines which tally bin to use based on the neutron's energy\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIneutron\fP the neutron we are tallying 
+.br
+\fIweight\fP the weight to increment tally by 
+.RE
+.PP
+
+.SS "virtual void Tally::tally (\fBneutron\fP *neutron)\fC [pure virtual]\fP"
+
+.PP
+A virtual method to tally a neutron which must be implemented by \fBTally\fP subclasses\&. \fBParameters:\fP
+.RS 4
+\fIneutron\fP the neutron of interest 
+.RE
+.PP
+
+.PP
+Implemented in \fBDerivedTally\fP, \fBGeometryInterCollisionTimeTally\fP, \fBRegionInterCollisionTimeTally\fP, \fBMaterialInterCollisionTimeTally\fP, \fBGeometryFluxTally\fP, \fBRegionFluxTally\fP, \fBMaterialFluxTally\fP, \fBGeometryLeakageRateTally\fP, \fBRegionLeakageRateTally\fP, \fBMaterialLeakageRateTally\fP, \fBGeometryDiffusionRateTally\fP, \fBRegionDiffusionRateTally\fP, \fBMaterialDiffusionRateTally\fP, \fBIsotopeDiffusionRateTally\fP, \fBGeometryTransportRateTally\fP, \fBRegionTransportRateTally\fP, \fBMaterialTransportRateTally\fP, \fBIsotopeTransportRateTally\fP, \fBGeometryFissionRateTally\fP, \fBRegionFissionRateTally\fP, \fBMaterialFissionRateTally\fP, \fBIsotopeFissionRateTally\fP, \fBGeometryCaptureRateTally\fP, \fBRegionCaptureRateTally\fP, \fBMaterialCaptureRateTally\fP, \fBIsotopeCaptureRateTally\fP, \fBGeometryAbsorptionRateTally\fP, \fBRegionAbsorptionRateTally\fP, \fBMaterialAbsorptionRateTally\fP, \fBIsotopeAbsorptionRateTally\fP, \fBGeometryElasticRateTally\fP, \fBRegionElasticRateTally\fP, \fBMaterialElasticRateTally\fP, \fBIsotopeElasticRateTally\fP, \fBGeometryCollisionRateTally\fP, \fBRegionCollisionRateTally\fP, \fBMaterialCollisionRateTally\fP, \fBIsotopeCollisionRateTally\fP, \fBGeometryTally\fP, \fBRegionTally\fP, \fBMaterialTally\fP, and \fBIsotopeTally\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "double* Tally::_batch_mu\fC [protected]\fP"
+The batch average for each tally bin 
+.SS "double* Tally::_batch_rel_err\fC [protected]\fP"
+The batch relative error for each tally bin 
+.SS "double* Tally::_batch_std_dev\fC [protected]\fP"
+The batch standard deviation for each tally bin 
+.SS "double* Tally::_batch_variance\fC [protected]\fP"
+The batch variance for each tally bin 
+.SS "double Tally::_bin_delta\fC [protected]\fP"
+Equal / logarithmic spacing between bins if defined on a uniform grid 
+.SS "\fBbinSpacingType\fP Tally::_bin_spacing\fC [protected]\fP"
+The spacing type between bins 
+.SS "double* Tally::_centers\fC [protected]\fP"
+The array of bin center values 
+.SS "bool Tally::_computed_statistics\fC [protected]\fP"
+Whether or not batch statistics have been computed 
+.SS "double* Tally::_edges\fC [protected]\fP"
+The array of bin edges between tally bins 
+.SS "int Tally::_num_batches\fC [protected]\fP"
+The number of batches in the PINSPEC simulation 
+.SS "int Tally::_num_bins\fC [protected]\fP"
+The number of tally bins 
+.SS "double** Tally::_tallies\fC [protected]\fP"
+A 2D array of tallies for each bin and each batch 
+.SS "\fBtallyDomainType\fP Tally::_tally_domain\fC [protected]\fP"
+The domain in which this tally resides 
+.SS "char* Tally::_tally_name\fC [protected]\fP"
+The user-specified name for the tally 
+.SS "\fBtallyType\fP Tally::_tally_type\fC [protected]\fP"
+The type of tally 
+.SS "float Tally::_trigger_precision\fC [protected]\fP"
+The trigger precision for this tally 
+.SS "\fBtriggerType\fP Tally::_trigger_type\fC [protected]\fP"
+The precision trigger for this tally 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

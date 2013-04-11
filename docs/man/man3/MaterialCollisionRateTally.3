@@ -1,0 +1,61 @@
+.TH "MaterialCollisionRateTally" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MaterialCollisionRateTally \- 
+.PP
+A class for tallying the collision rate within a material\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include 'pinspec/src/Tally\&.h'\fP
+.PP
+Inherits \fBMaterialTally\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMaterialCollisionRateTally\fP (\fBMaterial\fP *material, const char *tally_name=(char *)'')"
+.br
+.RI "\fI\fBMaterialCollisionRateTally\fP constructor calls the \fBMaterialTally\fP constructor and \fBTally\fP constructors and sets the tally type to COLLISION_RATE\&. \fP"
+.ti -1c
+.RI "void \fBtally\fP (\fBneutron\fP *\fBneutron\fP)"
+.br
+.RI "\fI\fBTally\fP the material collision rate by incrementing the tally by 1\&.0 at the neutron's energy\&. \fP"
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+A class for tallying the collision rate within a material\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "MaterialCollisionRateTally::MaterialCollisionRateTally (\fBMaterial\fP *material, const char *tally_name = \fC(char*)''\fP)\fC [inline]\fP"
+
+.PP
+\fBMaterialCollisionRateTally\fP constructor calls the \fBMaterialTally\fP constructor and \fBTally\fP constructors and sets the tally type to COLLISION_RATE\&. \fBParameters:\fP
+.RS 4
+\fImaterial\fP a pointer to the material within which to tally 
+.br
+\fItally_name\fP a character array for the tally name (optional) 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void MaterialCollisionRateTally::tally (\fBneutron\fP *neutron)\fC [virtual]\fP"
+
+.PP
+\fBTally\fP the material collision rate by incrementing the tally by 1\&.0 at the neutron's energy\&. \fBParameters:\fP
+.RS 4
+\fIneutron\fP the neutron of interest 
+.RE
+.PP
+
+.PP
+Implements \fBMaterialTally\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

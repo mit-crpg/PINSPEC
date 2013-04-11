@@ -1,0 +1,205 @@
+.TH "Fissioner" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Fissioner \- 
+.PP
+The \fBFissioner\fP represents the physics of fission neutron emission\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include 'pinspec/src/Fissioner\&.h'\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBFissioner\fP ()"
+.br
+.RI "\fIDefault \fBFissioner\fP constructor\&. \fP"
+.ti -1c
+.RI "virtual \fB~Fissioner\fP ()"
+.br
+.RI "\fI\fBFissioner\fP destructor deallocates memory for CDF arrays\&. \fP"
+.ti -1c
+.RI "int \fBgetNumBins\fP ()"
+.br
+.RI "\fIReturns the number of bins that the \fBFissioner\fP uses for the CDF\&. \fP"
+.ti -1c
+.RI "void \fBsetNumBins\fP (int num_bins)"
+.br
+.RI "\fISets the number of bins that we wish to use for the CDF\&. \fP"
+.ti -1c
+.RI "void \fBsetEMax\fP (float E_max)"
+.br
+.RI "\fISets the maximum energy value for the CDF\&. \fP"
+.ti -1c
+.RI "void \fBbuildCDF\fP ()"
+.br
+.RI "\fIBuilds the CDF of the Watt Spectrum\&. \fP"
+.ti -1c
+.RI "float \fBwattSpectrum\fP (float energy)"
+.br
+.RI "\fIReturns the chi value for a given energy from the Watt spectrum\&. \fP"
+.ti -1c
+.RI "float \fBemitNeutronMeV\fP ()"
+.br
+.RI "\fISample the \fBFissioner\fP's CDF and return a neutron energy from fission\&. \fP"
+.ti -1c
+.RI "float \fBemitNeutroneV\fP ()"
+.br
+.RI "\fISample the \fBFissioner\fP's CDF and return a neutron energy from fission\&. \fP"
+.ti -1c
+.RI "void \fBretrieveCDF\fP (float *cdf, int num_bins)"
+.br
+.RI "\fIFills an input array with the \fBFissioner\fP's CDF values\&. \fP"
+.ti -1c
+.RI "void \fBretrieveCDFEnergies\fP (float *cdf_energies, int num_bins)"
+.br
+.RI "\fIFills an input array with the \fBFissioner\fP's CDF energies\&. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fB_num_bins\fP"
+.br
+.ti -1c
+.RI "float * \fB_cdf\fP"
+.br
+.ti -1c
+.RI "float * \fB_cdf_energies\fP"
+.br
+.ti -1c
+.RI "float \fB_E_max\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBFissioner\fP represents the physics of fission neutron emission\&. 
+
+The \fBFissioner\fP class contains a cumulative distribution function (CDF) for the chi spectrum of fission neutron energies\&. The \fBFissioner\fP can stochastically sample from the CDF to generate the neutron fission emisson spectrum\&. The Watt spectrum given in the 'Fundamentals of Nuclear Reactor Physics', E\&. E\&. Lewis is used to generate the CDF:
+.PP
+$ \chi = 0.453 * exp(-1.036E) * sinh(sqrt(2.29E)) $ 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Fissioner::Fissioner ()"
+
+.PP
+Default \fBFissioner\fP constructor\&. Initializes the \fBFissioner\fP with 1E5 bins and a maximum emission energy of 20 MeV\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "float Fissioner::emitNeutroneV ()"
+
+.PP
+Sample the \fBFissioner\fP's CDF and return a neutron energy from fission\&. \fBReturns:\fP
+.RS 4
+a neutron energy in eV 
+.RE
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBFissioner::emitNeutronMeV()\fP 
+.RE
+.PP
+
+.SS "float Fissioner::emitNeutronMeV ()"
+
+.PP
+Sample the \fBFissioner\fP's CDF and return a neutron energy from fission\&. \fBReturns:\fP
+.RS 4
+a neutron energy in MeV 
+.RE
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBFissioner::emitNeutroneV()\fP 
+.RE
+.PP
+
+.SS "int Fissioner::getNumBins ()"
+
+.PP
+Returns the number of bins that the \fBFissioner\fP uses for the CDF\&. \fBReturns:\fP
+.RS 4
+the number of CDF bins 
+.RE
+.PP
+
+.SS "void Fissioner::retrieveCDF (float *cdf, intnum_bins)"
+
+.PP
+Fills an input array with the \fBFissioner\fP's CDF values\&. This class method is a helper function to allow the user to access the CDF array through in Python via SWIG by inputting a numpy array to this function\&. For example, a user may use this function in Python as follows:
+.PP
+num_cdf_bins = fissioner\&.getNumBins() numpy_cdf = numpy\&.zeros(num_cdf_bins) fissioner\&.retrieveCDF(numpy_cdf)
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcdf\fP an array of the same length as the \fBFissioner\fP's CDF 
+.br
+\fInum_bins\fP the length of the input array for the CDF 
+.RE
+.PP
+
+.SS "void Fissioner::retrieveCDFEnergies (float *cdf_energies, intnum_bins)"
+
+.PP
+Fills an input array with the \fBFissioner\fP's CDF energies\&. This class method is a helper function to allow the user to access the CDF array through in Python via SWIG by inputting a numpy array to this function\&. For example, a user may use this function in Python as follows:
+.PP
+num_cdf_energies = fissioner\&.getNumBins() numpy_cdf_energies = numpy\&.zeros(num_cdf_energies) fissioner\&.retrieveCDF(numpy_cdf_energies)
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcdf_energies\fP an array of the same length as the \fBFissioner\fP's CDF 
+.br
+\fInum_bins\fP the length of the input array for the CDF 
+.RE
+.PP
+
+.SS "void Fissioner::setEMax (floatE_max)"
+
+.PP
+Sets the maximum energy value for the CDF\&. \fBParameters:\fP
+.RS 4
+\fIE_max\fP the maximum CDF energy value in MeV 
+.RE
+.PP
+
+.SS "void Fissioner::setNumBins (intnum_bins)"
+
+.PP
+Sets the number of bins that we wish to use for the CDF\&. \fBParameters:\fP
+.RS 4
+\fInum_bins\fP the number of CDF bins 
+.RE
+.PP
+
+.SS "float Fissioner::wattSpectrum (floatenergy)"
+
+.PP
+Returns the chi value for a given energy from the Watt spectrum\&. \fBParameters:\fP
+.RS 4
+\fIenergy\fP a fission energy value in MeV 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the value of chi $\chi$ at that energy 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "float* Fissioner::_cdf\fC [private]\fP"
+The array of CDF values 
+.SS "float* Fissioner::_cdf_energies\fC [private]\fP"
+The array of CDF energies 
+.SS "float Fissioner::_E_max\fC [private]\fP"
+The maximum fission emission energy in MeV for the CDF 
+.SS "int Fissioner::_num_bins\fC [private]\fP"
+The number of Watt spectrum CDF bins 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

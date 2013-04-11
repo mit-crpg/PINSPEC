@@ -1,0 +1,63 @@
+.TH "RegionInterCollisionTimeTally" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RegionInterCollisionTimeTally \- 
+.PP
+A class for tallying the time between collisions for the region\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include 'pinspec/src/Tally\&.h'\fP
+.PP
+Inherits \fBRegionTally\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRegionInterCollisionTimeTally\fP (\fBRegion\fP *region, const char *tally_name=(char *)'')"
+.br
+.RI "\fI\fBRegionInterCollisionTimeTally\fP constructor calls the \fBRegionTally\fP constructor and \fBTally\fP constructors and sets the tally type to INTERCOLLISION_TIME\&. \fP"
+.ti -1c
+.RI "void \fBtally\fP (\fBneutron\fP *\fBneutron\fP)"
+.br
+.RI "\fI\fBTally\fP the time between collisions by incrementing the tally with the travel time spent by this neutron to reach this collision: \fP"
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+A class for tallying the time between collisions for the region\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "RegionInterCollisionTimeTally::RegionInterCollisionTimeTally (\fBRegion\fP *region, const char *tally_name = \fC(char*)''\fP)\fC [inline]\fP"
+
+.PP
+\fBRegionInterCollisionTimeTally\fP constructor calls the \fBRegionTally\fP constructor and \fBTally\fP constructors and sets the tally type to INTERCOLLISION_TIME\&. \fBParameters:\fP
+.RS 4
+\fIregion\fP a pointer to the region within which to tally 
+.br
+\fItally_name\fP a character array for the tally name (optional) 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void RegionInterCollisionTimeTally::tally (\fBneutron\fP *neutron)\fC [virtual]\fP"
+
+.PP
+\fBTally\fP the time between collisions by incrementing the tally with the travel time spent by this neutron to reach this collision: $ d = \frac{1}{\Sigma_t} $ $ v = c\sqrt{2Em_n} $ $ time = \frac{d}{v} $ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIneutron\fP the neutron of interest 
+.RE
+.PP
+
+.PP
+Implements \fBRegionTally\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

@@ -1,0 +1,409 @@
+.TH "Geometry" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Geometry \- 
+.PP
+The \fBGeometry\fP represents the highest level entity in which a neutron may reside during a PINSPEC simulaiton\&. The geometry consists of one or more regions and controls the highest level Monte Carlo kernel\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include 'pinspec/src/Geometry\&.h'\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBGeometry\fP ()"
+.br
+.RI "\fIGeomtery constructor\&. \fP"
+.ti -1c
+.RI "virtual \fB~Geometry\fP ()"
+.br
+.RI "\fIDestructor deletes the \fBFissioner\fP and lets SWIG delete the regions, materials, isotopes and allies during garbage collection\&. \fP"
+.ti -1c
+.RI "int \fBgetNumNeutronsPerBatch\fP ()"
+.br
+.RI "\fIReturns the number of neutrons per batch for this simulation\&. \fP"
+.ti -1c
+.RI "int \fBgetTotalNumNeutrons\fP ()"
+.br
+.RI "\fIReturns the total number of neutrons for this simulation\&. \fP"
+.ti -1c
+.RI "int \fBgetNumBatches\fP ()"
+.br
+.RI "\fIReturns the number of batches of neutrons for this simulation\&. \fP"
+.ti -1c
+.RI "int \fBgetNumThreads\fP ()"
+.br
+.RI "\fIReturns the number of parallel threads for this simulation\&. \fP"
+.ti -1c
+.RI "\fBspatialType\fP \fBgetSpatialType\fP ()"
+.br
+.RI "\fIReturn the spatial type of \fBGeometry\fP (INFINITE_HOMOGENEOUS, HOMOGENEOUS_EQUIVALENCE or HETEROGENEOUS)\&. \fP"
+.ti -1c
+.RI "float \fBgetBucklingSquared\fP ()"
+.br
+.RI "\fIReturns the square of the geometric buckling for this geometry\&. \fP"
+.ti -1c
+.RI "float \fBgetVolume\fP ()"
+.br
+.RI "\fIReturns the total volume occuppied by the geometry\&. \fP"
+.ti -1c
+.RI "void \fBsetNeutronsPerBatch\fP (int num_neutrons_per_batch)"
+.br
+.RI "\fISets the number of neutrons per batch for this simulation\&. \fP"
+.ti -1c
+.RI "void \fBsetNumBatches\fP (int num_batches)"
+.br
+.RI "\fISets the number of batches for this simulation\&. \fP"
+.ti -1c
+.RI "void \fBsetNumThreads\fP (int num_threads)"
+.br
+.RI "\fISets the number of batches for this simulation\&. \fP"
+.ti -1c
+.RI "void \fBsetSpatialType\fP (\fBspatialType\fP spatial_type)"
+.br
+.RI "\fISet the geometry's spatial type (INFINITE_HOMOGENEOUS, HOMOGENEOUS_EQUIVALENCE or HETEROGENEOUS)\&. \fP"
+.ti -1c
+.RI "void \fBsetDancoffFactor\fP (float dancoff)"
+.br
+.RI "\fISets the dancoff factor and computes the escape cross-section, beta, alpha1 and alpha2 parameters used for a two region heterogeneous-homogeneous pin cell simulation\&. \fP"
+.ti -1c
+.RI "void \fBaddRegion\fP (\fBRegion\fP *region)"
+.br
+.RI "\fIAdds a new region to the geometry\&. \fP"
+.ti -1c
+.RI "void \fBsetBucklingSquared\fP (float buckling_squared)"
+.br
+.RI "\fISets the square of the geometric buckling for the geometry\&. \fP"
+.ti -1c
+.RI "void \fBrunMonteCarloSimulation\fP ()"
+.br
+.RI "\fIThe primary Monte Carlo kernel for a PINSPEC simulation\&. \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinitializeProbModFuelRatios\fP ()"
+.br
+.RI "\fIInitializes a pre-computed array of moderator to fuel first flight probability ratios\&. \fP"
+.ti -1c
+.RI "int \fBgetEnergyGridIndex\fP (float energy) const "
+.br
+.RI "\fIThis method returns the index for a certain energy (eV) into the uniform lethargy grid of the geometry's first flight probability of travel from moderator to fuel $ p_{mf} $ ratios\&. \fP"
+.ti -1c
+.RI "float \fBcomputeFuelFuelCollisionProb\fP (\fBneutron\fP *\fBneutron\fP)"
+.br
+.RI "\fIThis function computes the two-region fuel-to-fuel collision probability for a two-region pin cell simulation\&. It uses Carlvik's two-term rational model\&. \fP"
+.ti -1c
+.RI "float \fBcomputeModeratorFuelCollisionProb\fP (\fBneutron\fP *\fBneutron\fP)"
+.br
+.RI "\fIThis function computes the two-region moderator-to-fuel collision probability for a two-region pin cell simulation\&. It uses Carlvik's two-term rational model\&. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fB_num_neutrons_per_batch\fP"
+.br
+.ti -1c
+.RI "int \fB_num_batches\fP"
+.br
+.ti -1c
+.RI "int \fB_num_threads\fP"
+.br
+.ti -1c
+.RI "\fBspatialType\fP \fB_spatial_type\fP"
+.br
+.ti -1c
+.RI "\fBRegion\fP * \fB_infinite_medium\fP"
+.br
+.ti -1c
+.RI "\fBRegion\fP * \fB_fuel\fP"
+.br
+.ti -1c
+.RI "\fBRegion\fP * \fB_moderator\fP"
+.br
+.ti -1c
+.RI "\fBneutron\fP * \fB_neutrons\fP"
+.br
+.ti -1c
+.RI "\fBFissioner\fP * \fB_fissioner\fP"
+.br
+.ti -1c
+.RI "float \fB_dancoff\fP"
+.br
+.ti -1c
+.RI "float \fB_sigma_e\fP"
+.br
+.ti -1c
+.RI "float \fB_beta\fP"
+.br
+.ti -1c
+.RI "float \fB_alpha1\fP"
+.br
+.ti -1c
+.RI "float \fB_alpha2\fP"
+.br
+.ti -1c
+.RI "float \fB_buckling_squared\fP"
+.br
+.ti -1c
+.RI "int \fB_num_ratios\fP"
+.br
+.ti -1c
+.RI "float * \fB_pmf_ratios\fP"
+.br
+.ti -1c
+.RI "\fBbinSpacingTypes\fP \fB_scale_type\fP"
+.br
+.ti -1c
+.RI "float \fB_start_energy\fP"
+.br
+.ti -1c
+.RI "float \fB_end_energy\fP"
+.br
+.ti -1c
+.RI "float \fB_delta_energy\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBGeometry\fP represents the highest level entity in which a neutron may reside during a PINSPEC simulaiton\&. The geometry consists of one or more regions and controls the highest level Monte Carlo kernel\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Geometry::Geometry ()"
+
+.PP
+Geomtery constructor\&. Sets a default number of neutrons per batch (10,000), number of batches (10) and number of threads (1)\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void Geometry::addRegion (\fBRegion\fP *region)"
+
+.PP
+Adds a new region to the geometry\&. Checks to make sure that the region type (INFINITE, FUEL, MODERATOR) does not conflict with other regions that have already been added to the geometry 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIregion\fP the region to add to the geometry 
+.RE
+.PP
+
+.SS "float Geometry::computeFuelFuelCollisionProb (\fBneutron\fP *neutron)\fC [private]\fP"
+
+.PP
+This function computes the two-region fuel-to-fuel collision probability for a two-region pin cell simulation\&. It uses Carlvik's two-term rational model\&. \fBParameters:\fP
+.RS 4
+\fIneutron\fP the neutron of interest 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the fuel-to-fuel collision probability at the neutron's energy 
+.RE
+.PP
+
+.SS "float Geometry::computeModeratorFuelCollisionProb (\fBneutron\fP *neutron)\fC [private]\fP"
+
+.PP
+This function computes the two-region moderator-to-fuel collision probability for a two-region pin cell simulation\&. It uses Carlvik's two-term rational model\&. \fBParameters:\fP
+.RS 4
+\fIneutron\fP the neutron of interest 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the moderator-to-fuel collision probability at the neutron's energy 
+.RE
+.PP
+
+.SS "float Geometry::getBucklingSquared ()"
+
+.PP
+Returns the square of the geometric buckling for this geometry\&. \fBReturns:\fP
+.RS 4
+the square of the geometric buckling 
+.RE
+.PP
+
+.SS "int Geometry::getEnergyGridIndex (floatenergy) const\fC [inline]\fP, \fC [private]\fP"
+
+.PP
+This method returns the index for a certain energy (eV) into the uniform lethargy grid of the geometry's first flight probability of travel from moderator to fuel $ p_{mf} $ ratios\&. \fBParameters:\fP
+.RS 4
+\fIenergy\fP the energy (eV) of interest 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the index into the uniform lethargy grid 
+.RE
+.PP
+
+.SS "int Geometry::getNumBatches ()"
+
+.PP
+Returns the number of batches of neutrons for this simulation\&. \fBReturns:\fP
+.RS 4
+the number of batches 
+.RE
+.PP
+
+.SS "int Geometry::getNumNeutronsPerBatch ()"
+
+.PP
+Returns the number of neutrons per batch for this simulation\&. \fBReturns:\fP
+.RS 4
+the number of neutrons per batch 
+.RE
+.PP
+
+.SS "int Geometry::getNumThreads ()"
+
+.PP
+Returns the number of parallel threads for this simulation\&. \fBReturns:\fP
+.RS 4
+the number of threads 
+.RE
+.PP
+
+.SS "\fBspatialType\fP Geometry::getSpatialType ()"
+
+.PP
+Return the spatial type of \fBGeometry\fP (INFINITE_HOMOGENEOUS, HOMOGENEOUS_EQUIVALENCE or HETEROGENEOUS)\&. \fBReturns:\fP
+.RS 4
+the spatial type 
+.RE
+.PP
+
+.SS "int Geometry::getTotalNumNeutrons ()"
+
+.PP
+Returns the total number of neutrons for this simulation\&. \fBReturns:\fP
+.RS 4
+the total number of neutrons for this simulation 
+.RE
+.PP
+
+.SS "float Geometry::getVolume ()"
+
+.PP
+Returns the total volume occuppied by the geometry\&. \fBReturns:\fP
+.RS 4
+The total volume for the geometry 
+.RE
+.PP
+
+.SS "void Geometry::initializeProbModFuelRatios ()\fC [private]\fP"
+
+.PP
+Initializes a pre-computed array of moderator to fuel first flight probability ratios\&. The pre-computaiton of the ratios is an optimization to save time for the homogeneous-heterogeneous equivalence geometry type\&. 
+.SS "void Geometry::runMonteCarloSimulation ()"
+
+.PP
+The primary Monte Carlo kernel for a PINSPEC simulation\&. This method executes an appropriate Monte Carlo kernel depending on the geometry's spatial type\&. This method loops over batches and neutrons and collides each neutron in the appropriate region until it is absorbed, while tallying all user-specific quanties throughout\&. 
+.SS "void Geometry::setBucklingSquared (floatbuckling_squared)"
+
+.PP
+Sets the square of the geometric buckling for the geometry\&. \fBParameters:\fP
+.RS 4
+\fIbuckling_squared\fP the square of the geometric buckling 
+.RE
+.PP
+
+.SS "void Geometry::setDancoffFactor (floatdancoff)"
+
+.PP
+Sets the dancoff factor and computes the escape cross-section, beta, alpha1 and alpha2 parameters used for a two region heterogeneous-homogeneous pin cell simulation\&. \fBParameters:\fP
+.RS 4
+\fIdancoff\fP the dancoff factor 
+.RE
+.PP
+
+.SS "void Geometry::setNeutronsPerBatch (intnum_neutrons_per_batch)"
+
+.PP
+Sets the number of neutrons per batch for this simulation\&. \fBParameters:\fP
+.RS 4
+\fInum_neutrons_per_batch\fP the number of neutrons per batch 
+.RE
+.PP
+
+.SS "void Geometry::setNumBatches (intnum_batches)"
+
+.PP
+Sets the number of batches for this simulation\&. \fBParameters:\fP
+.RS 4
+\fInum_batches\fP the number of batches 
+.RE
+.PP
+
+.SS "void Geometry::setNumThreads (intnum_threads)"
+
+.PP
+Sets the number of batches for this simulation\&. \fBParameters:\fP
+.RS 4
+\fInum_threads\fP the number of batches 
+.RE
+.PP
+
+.SS "void Geometry::setSpatialType (\fBspatialType\fPspatial_type)"
+
+.PP
+Set the geometry's spatial type (INFINITE_HOMOGENEOUS, HOMOGENEOUS_EQUIVALENCE or HETEROGENEOUS)\&. \fBParameters:\fP
+.RS 4
+\fIspatial_type\fP the spatial type 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "float Geometry::_alpha1\fC [private]\fP"
+The user-specified alpha1 value for Carlvik's rational approximation 
+.SS "float Geometry::_alpha2\fC [private]\fP"
+The user-specified alpha2 value for Carlvik's rational approximation 
+.SS "float Geometry::_beta\fC [private]\fP"
+The user-specified beta value for Carlvik's rational approximation 
+.SS "float Geometry::_buckling_squared\fC [private]\fP"
+The square of the geometric buckling 
+.SS "float Geometry::_dancoff\fC [private]\fP"
+The user-specified dancoff factor 
+.SS "float Geometry::_delta_energy\fC [private]\fP"
+Space between energies for the moderator to fuel cross-section ratios 
+.SS "float Geometry::_end_energy\fC [private]\fP"
+Highest energy for the moderator to fuel cross-section ratios 
+.SS "\fBFissioner\fP* Geometry::_fissioner\fC [private]\fP"
+The fissioner used to sample new neutron fission emission energies 
+.SS "\fBRegion\fP* Geometry::_fuel\fC [private]\fP"
+FUEL type region if the geometry is HETEROGENEOUS or HOMOGENEOUS_EQUIVALANCE 
+.SS "\fBRegion\fP* Geometry::_infinite_medium\fC [private]\fP"
+INFINITE type region if the geometery is INFINITE_HOMOGENEOUS 
+.SS "\fBRegion\fP* Geometry::_moderator\fC [private]\fP"
+MODERATOR type region if the geometry is HETEROGENEOUS or HOMOGENEOUS_EQUIVALANCE 
+.SS "\fBneutron\fP* Geometry::_neutrons\fC [private]\fP"
+An array of neutrons 
+.SS "int Geometry::_num_batches\fC [private]\fP"
+The number of batches 
+.SS "int Geometry::_num_neutrons_per_batch\fC [private]\fP"
+The number of neutrons per batch 
+.SS "int Geometry::_num_ratios\fC [private]\fP"
+The number of moderator to fuel cross-section ratios 
+.SS "int Geometry::_num_threads\fC [private]\fP"
+The number of threads 
+.SS "float* Geometry::_pmf_ratios\fC [private]\fP"
+An array of the moderator to fuel cross-section ratios 
+.SS "\fBbinSpacingTypes\fP Geometry::_scale_type\fC [private]\fP"
+The spacing type between bins (EQUAL, LOGARITHMIC, OTHER) 
+.SS "float Geometry::_sigma_e\fC [private]\fP"
+The user-specified escape cross-section 
+.SS "\fBspatialType\fP Geometry::_spatial_type\fC [private]\fP"
+The spatial type for the geometry 
+.SS "float Geometry::_start_energy\fC [private]\fP"
+Lowest energy for the moderator to fuel cross-section ratios 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

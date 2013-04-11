@@ -1,11 +1,11 @@
-/*
- * log.h
+/**
+ * @file log.h
+ * @brief Utility functions for writing log messages to the screen
+ * @details Applies level-based logging to print formatted messages
+ *          to the screen and to a log file. 
+ * @author William Boyd (wboyd@mit.edu)
+ * @date January 22, 2012
  *
- *  Created on: Jan 22, 2012
- *      Author: William Boyd
- *				MIT, Course 22
- *              wboyd@mit.edu
- *  Level-based logging module
  */
 
 #ifndef LOG_H_
@@ -25,31 +25,62 @@
 #include <math.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#endif
 
-extern void set_err(const char *msg);
 
+/**
+ * @enum logLevels
+ * @brief Logging levels characterize an ordered set of message types
+ *        which may be printed to the screen.
+ */
 
+/**
+ * @var logLevel
+ * @brief Logging levels characterize an ordered set of message types
+ *        which may be printed to the screen.
+ */
 typedef enum logLevels {
-	DEBUG,
-	INFO,
-	NORMAL,
+    /** A debugging message */
+    DEBUG,
+    /** An informational but verbose message */
+    INFO,
+    /** A brief progress update on run progress */
+    NORMAL,
+    /** A message of a single line of characters */
     SEPARATOR,
+    /** A message centered within a line of characters */
     HEADER,
+    /** A message sandwiched between two lines of characters */
     TITLE,
-	WARNING,
-	CRITICAL,
-	RESULT,
-	ERROR
+    /** A message for to warn the user */
+    WARNING,
+    /** A message to warn of critical program conditions */
+    CRITICAL,
+    /** A message containing program results */
+    RESULT,
+    /** A message reporting error conditions */
+    ERROR
 } logLevel;
 
+
+/**
+ * @brief A function stub used to convert C++ exceptions into Python exceptions
+ *        through SWIG.
+ * @param msg a character array for the exception message
+ */
+extern void set_err(const char *msg);
 
 void setOutputDirectory(char* directory);
 const char* getOutputDirectory();
 void setLogfileName(char* filename);
+const char* getLogfileName();
 
 void setSeparatorCharacter(char c);
+const char getSeparatorCharacter();
 void setHeaderCharacter(char c);
+const char getHeaderCharacter();
 void setTitleCharacter(char c);
+const char getTitleCharacter();
 void setLineLength(int length);
 
 void log_setlevel(logLevel newlevel);
@@ -59,17 +90,5 @@ int get_loglevel();
 void log_printf(logLevel level, const char *format, ...);
 std::string createMultilineMsg(std::string level, std::string message);
 
-#ifndef LOG_C
-	extern logLevel log_level;
-    extern std::string logfile_name;
-    extern std::string output_directory;
-    extern bool logging;
-    extern char separator_char;
-    extern char header_char;
-    extern char title_char;
-    extern int line_length;
-#endif
-
-#endif
 
 #endif /* LOG_H_ */

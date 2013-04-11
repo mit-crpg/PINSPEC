@@ -1,0 +1,8 @@
+Current local time and date: Wed Apr 10 20:07:29 2013
+[  INFO   ]  Logging level set to INFO
+[  INFO   ]  Loading H-1-elastic.txt for isotope H-1
+[  INFO   ]  Loading H-1-capture.txt for isotope H-1
+[  INFO   ]  Loading C-12-elastic.txt for isotope C-12
+[  INFO   ]  Loading C-12-capture.txt for isotope C-12
+[  INFO   ]  Setting capture xs for isotope H-1
+[  INFO   ]  Isotope H-1 has number density 4.685E+22 in material H-1

@@ -1,7 +1,6 @@
 import numpy
 import math
 from pinspec import *
-import pinspec.SLBW as SLBW
 import pinspec.plotter as plotter
 import pinspec.process as process
 from pinspec.log import *
@@ -19,7 +18,7 @@ def main():
     num_threads = 4
     nu = 2.45
     setOutputDirectory('HW4')
-    log_setlevel(INFO)
+    setlevel('INFO')
 
     py_printf('TITLE', 'Simulation of homework 4 for 2012 22.211')
 
@@ -233,7 +232,7 @@ def main():
     TallyBank.outputBatchStatistics()
 
     py_printf('INFO', 'Plotting fluxes...')
-    plotter.plotFluxes([total_flux, moderator_flux, fuel_flux])
+    plotter.plotFlux([total_flux, moderator_flux, fuel_flux])
 
     py_printf('INFO', 'Plotting microscopic and macroscopic cross-sections...')
     plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission'])

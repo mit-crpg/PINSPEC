@@ -1,0 +1,80 @@
+\hypertarget{classRegionDiffusionRateTally}{\section{Region\-Diffusion\-Rate\-Tally Class Reference}
+\label{classRegionDiffusionRateTally}\index{Region\-Diffusion\-Rate\-Tally@{Region\-Diffusion\-Rate\-Tally}}
+}
+
+
+A class for tallying the diffusion rate within a region.  
+
+
+
+
+{\ttfamily \#include \char`\"{}pinspec/src/\-Tally.\-h\char`\"{}}
+
+Inheritance diagram for Region\-Diffusion\-Rate\-Tally\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classRegionDiffusionRateTally}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classRegionDiffusionRateTally_a64dc61a22189a60f052cf349615d3463}{Region\-Diffusion\-Rate\-Tally} (\hyperlink{classRegion}{Region} $\ast$region, const char $\ast$tally\-\_\-name=(char $\ast$)\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classRegionDiffusionRateTally}{Region\-Diffusion\-Rate\-Tally} constructor calls the \hyperlink{classRegionTally}{Region\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to D\-I\-F\-F\-U\-S\-I\-O\-N\-\_\-\-R\-A\-T\-E. \end{DoxyCompactList}\item 
+void \hyperlink{classRegionDiffusionRateTally_a0c581304fc724c57632ed00b5f2e5e0f}{tally} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classTally}{Tally} the region diffusion rate by incrementing the tally by $ \frac{\frac{1}{3\Sigma_tr}}{\Sigma_t} $ at the neutron's energy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A class for tallying the diffusion rate within a region. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classRegionDiffusionRateTally_a64dc61a22189a60f052cf349615d3463}{\index{Region\-Diffusion\-Rate\-Tally@{Region\-Diffusion\-Rate\-Tally}!Region\-Diffusion\-Rate\-Tally@{Region\-Diffusion\-Rate\-Tally}}
+\index{Region\-Diffusion\-Rate\-Tally@{Region\-Diffusion\-Rate\-Tally}!RegionDiffusionRateTally@{Region\-Diffusion\-Rate\-Tally}}
+\subsubsection[{Region\-Diffusion\-Rate\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}Region\-Diffusion\-Rate\-Tally\-::\-Region\-Diffusion\-Rate\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Region} $\ast$}]{region, }
+\item[{const char $\ast$}]{tally\-\_\-name = {\ttfamily (char$\ast$)\char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classRegionDiffusionRateTally_a64dc61a22189a60f052cf349615d3463}
+
+
+\hyperlink{classRegionDiffusionRateTally}{Region\-Diffusion\-Rate\-Tally} constructor calls the \hyperlink{classRegionTally}{Region\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to D\-I\-F\-F\-U\-S\-I\-O\-N\-\_\-\-R\-A\-T\-E. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em region} & a pointer to the region within which to tally \\
+\hline
+{\em tally\-\_\-name} & a character array for the tally name (optional) \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classRegionDiffusionRateTally_a0c581304fc724c57632ed00b5f2e5e0f}{\index{Region\-Diffusion\-Rate\-Tally@{Region\-Diffusion\-Rate\-Tally}!tally@{tally}}
+\index{tally@{tally}!RegionDiffusionRateTally@{Region\-Diffusion\-Rate\-Tally}}
+\subsubsection[{tally}]{\setlength{\rightskip}{0pt plus 5cm}void Region\-Diffusion\-Rate\-Tally\-::tally (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classRegionDiffusionRateTally_a0c581304fc724c57632ed00b5f2e5e0f}
+
+
+\hyperlink{classTally}{Tally} the region diffusion rate by incrementing the tally by $ \frac{\frac{1}{3\Sigma_tr}}{\Sigma_t} $ at the neutron's energy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neutron} & the neutron of interest \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classRegionTally_ae146fd937e34306fdd5cc4aac44a3856}{Region\-Tally}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Tally_8h}{Tally.\-h}\item 
+Tally.\-cpp\end{DoxyCompactItemize}

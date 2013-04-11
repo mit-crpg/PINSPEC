@@ -1,0 +1,322 @@
+.TH "pinspec.process" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pinspec.process \- 
+.PP
+The process module provides utility functions to retrieve data from PINSPEC's C++ classes, in particular, tally data\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBRIEff\fP"
+.br
+.RI "\fIAn effective resonance integral\&. \fP"
+.ti -1c
+.RI "class \fBRITrue\fP"
+.br
+.RI "\fIA true resonance integral\&. \fP"
+.ti -1c
+.RI "class \fBGroupXS\fP"
+.br
+.RI "\fIA multi-group cross-section for a certain reaction rate\&. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBgetTallyCenters\fP"
+.br
+.RI "\fIReturns an array of the center values for a tally's bins\&. \fP"
+.ti -1c
+.RI "def \fBgetTallyEdges\fP"
+.br
+.RI "\fIReturns an array of the bin edge values for a tally's bins\&. \fP"
+.ti -1c
+.RI "def \fBgetTallyBatchMu\fP"
+.br
+.RI "\fIReturns an array of the batch averages for the tally's bins\&. \fP"
+.ti -1c
+.RI "def \fBgetTallyBatchVariances\fP"
+.br
+.RI "\fIReturns an array of the batch variances for a tally's bins\&. \fP"
+.ti -1c
+.RI "def \fBgetTallyBatchStdDev\fP"
+.br
+.RI "\fIReturns an array of the batch standard deviations for a tally's bins\&. \fP"
+.ti -1c
+.RI "def \fBgetTallyBatchRelErr\fP"
+.br
+.RI "\fIReturns an array of the batch relative errors for a tally's bins\&. \fP"
+.ti -1c
+.RI "def \fBgetTallyBatchStatistics\fP"
+.br
+.RI "\fIReturns a 2D array of the tally's batch statistics\&. \fP"
+.ti -1c
+.RI "def \fBprintTallies\fP"
+.br
+.RI "\fIPrints formatted tally batch-averaged data to the screen as a table\&. \fP"
+.ti -1c
+.RI "def \fBcomputeMeanNumCollisions\fP"
+.br
+.RI "\fIComputes the mean number of collisions for a neutron before absorption\&. \fP"
+.ti -1c
+.RI "def \fBcomputeMeanNeutronLifetime\fP"
+.br
+.RI "\fIComputes the mean neutron lifetime (seconds) before absorption\&. \fP"
+.ti -1c
+.RI "def \fBprintRIs\fP"
+.br
+.RI "\fIPrints a formatted table for an array of true and/or effectrive resonance integrals to the screen\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+The process module provides utility functions to retrieve data from PINSPEC's C++ classes, in particular, tally data\&. 
+
+In addition, the process module includes routines to use tallies to compute resonance integrals and group cross-sections and to print the results to the screen\&.
+.PP
+\fBAuthor:\fP
+.RS 4
+William Boyd (wboyd@mit.edu) 
+.PP
+Samuel Shaner (shaner@mit.edu) 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+March 25, 2013 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "def pinspec\&.process\&.computeMeanNeutronLifetime (coll_times, num_neutrons)"
+
+.PP
+Computes the mean neutron lifetime (seconds) before absorption\&. \fBParameters:\fP
+.RS 4
+\fIcoll_times\fP INTERCOLLISION_TIME tally 
+.br
+\fInum_neutrons\fP the number of neutrons per batch 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the mean neutron lifetime (seconds) before absoprtion 
+.RE
+.PP
+
+.SS "def pinspec\&.process\&.computeMeanNumCollisions (coll_rate, num_neutrons)"
+
+.PP
+Computes the mean number of collisions for a neutron before absorption\&. \fBParameters:\fP
+.RS 4
+\fIcoll_rate\fP a COLLISION_RATE tally 
+.br
+\fInum_neutrons\fP the number of neutrons per batch 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the mean number of collisions per neutron before absorption 
+.RE
+.PP
+
+.SS "def pinspec\&.process\&.getTallyBatchMu (tally)"
+
+.PP
+Returns an array of the batch averages for the tally's bins\&. A wrapper function to make it easier to access a tally's tallies data array through SWIG\&. This would be invoked a PINSPEC Python input file as follows:
+.PP
+.PP
+.nf
+tally_averages = pinspec\&.process\&.getTallyBatchMu(tally)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the tally of interest 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a numpy array with the tally batch averages 
+.RE
+.PP
+
+.SS "def pinspec\&.process\&.getTallyBatchRelErr (tally)"
+
+.PP
+Returns an array of the batch relative errors for a tally's bins\&. A wrapper function to make it easier to access a tally's relative errors data array through SWIG\&. This would be invoked a PINSPEC Python input file as follows:
+.PP
+.PP
+.nf
+tally_rel_err = pinspec\&.process\&.getTallyBatchRelErr(tally)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the tally of interest 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a numpy array with the tally batch relative errors 
+.RE
+.PP
+
+.SS "def pinspec\&.process\&.getTallyBatchStatistics (tally)"
+
+.PP
+Returns a 2D array of the tally's batch statistics\&. This is a wrapper function to make it easier to access a tally's batch-based statistical data through SWIG\&. The array returned contains the tally bin centers, averages, variances, standard deviations, and relative errors, in that order\&. This would be invoked a PINSPEC Python input file as follows:
+.PP
+.PP
+.nf
+tally_data = pinspec\&.process\&.getTallyBatchStatistics(tally)
+bin_centers = tally_data[0][:]
+tally_avareages = tally_data[1][:]
+tally_variances = tally_data[2][:]
+tally_std_dev = tally_data[3][:]
+tally_rel_err = tally_data[4][:]
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the tally of interest 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a 2D numpy array with the tally batch statistical data 
+.RE
+.PP
+
+.SS "def pinspec\&.process\&.getTallyBatchStdDev (tally)"
+
+.PP
+Returns an array of the batch standard deviations for a tally's bins\&. A wrapper function to make it easier to access a tally's standard deviations data array through SWIG\&. This would be invoked a PINSPEC Python input file as follows:
+.PP
+.PP
+.nf
+tally_std_dev = pinspec\&.process\&.getTallyBatchStdDev(tally)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the tally of interest 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a numpy array with the tally batch standard deviations 
+.RE
+.PP
+
+.SS "def pinspec\&.process\&.getTallyBatchVariances (tally)"
+
+.PP
+Returns an array of the batch variances for a tally's bins\&. A wrapper function to make it easier to access a tally's variances data array through SWIG\&. This would be invoked a PINSPEC Python input file as follows:
+.PP
+.PP
+.nf
+tally_variances = pinspec\&.process\&.getTallyBatchVariances(tally)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the tally of interest 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a numpy array with the tally batch variances 
+.RE
+.PP
+
+.SS "def pinspec\&.process\&.getTallyCenters (tally)"
+
+.PP
+Returns an array of the center values for a tally's bins\&. A wrapper function to make it easier to access a tally's bin center data array through SWIG\&. This would be invoked a PINSPEC Python input file as follows:
+.PP
+.PP
+.nf
+bin_center_array = pinspec\&.process\&.getTallyCenters(tally)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the tally of interest 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a numpy array with the tally bin centers 
+.RE
+.PP
+
+.SS "def pinspec\&.process\&.getTallyEdges (tally)"
+
+.PP
+Returns an array of the bin edge values for a tally's bins\&. A wrapper function to make it easier to access a tally's bin edges data array through SWIG\&. This would be invoked a PINSPEC Python input file as follows:
+.PP
+.PP
+.nf
+bin_edges_array = pinspec\&.process\&.getTallyEdges(tally)
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fItally\fP the tally of interest 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a numpy array with the tally bin edges 
+.RE
+.PP
+
+.SS "def pinspec\&.process\&.printRIs (RIs, header = \fC''\fP)"
+
+.PP
+Prints a formatted table for an array of true and/or effectrive resonance integrals to the screen\&. \fBParameters:\fP
+.RS 4
+\fIRIs\fP a list of resonance integrals (\fBRIEff\fP or \fBRITrue\fP objects) 
+.br
+\fIheader\fP an optional argument string for the table title 
+.RE
+.PP
+
+.SS "def pinspec\&.process\&.printTallies (tallies, header = \fC''\fP, types = \fC'Tallies'\fP)"
+
+.PP
+Prints formatted tally batch-averaged data to the screen as a table\&. Prints a formatted table of tally data to the screen and can be used for a single tally or for a list of tallies\&. Since \fBRIEff\fP objects are simply Python wrappers for an underlying DERIVED type tally, this method can also be used to print lists of \fBRIEff\fP objects\&. It also works for \fBRITrue\fP objects, though \fBRITrue\fP objects are not stored as tallies\&. A user may invoke this function from a PINSPEC Python input file as follows:
+.PP
+.PP
+.nf
+printTallies([flux1, flux2, flux3], header='Flux Tallies')
+.fi
+.PP
+.PP
+\fBParameters:\fP
+.RS 4
+\fItallies\fP a list of the tallies to print to the screen 
+.br
+\fIheader\fP an optional string to prepend to the title of table\&. 
+.br
+\fItypes\fP an optional string of the tally types for the table title 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

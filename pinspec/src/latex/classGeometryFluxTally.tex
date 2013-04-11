@@ -1,0 +1,80 @@
+\hypertarget{classGeometryFluxTally}{\section{Geometry\-Flux\-Tally Class Reference}
+\label{classGeometryFluxTally}\index{Geometry\-Flux\-Tally@{Geometry\-Flux\-Tally}}
+}
+
+
+A class for tallying the flux for the geometry.  
+
+
+
+
+{\ttfamily \#include \char`\"{}pinspec/src/\-Tally.\-h\char`\"{}}
+
+Inheritance diagram for Geometry\-Flux\-Tally\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classGeometryFluxTally}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGeometryFluxTally_afe633b1d646dfe7bbf3232cb49095356}{Geometry\-Flux\-Tally} (\hyperlink{classGeometry}{Geometry} $\ast$geometry, const char $\ast$tally\-\_\-name=(char $\ast$)\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classGeometryFluxTally}{Geometry\-Flux\-Tally} constructor calls the \hyperlink{classGeometryTally}{Geometry\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to F\-L\-U\-X. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometryFluxTally_a2c7d83a4577cff56a1cecf8a339db547}{tally} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classTally}{Tally} the geomety flux by incrementing the tally by $ \frac{1}{\Sigma_t} $ at the neutron's energy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A class for tallying the flux for the geometry. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGeometryFluxTally_afe633b1d646dfe7bbf3232cb49095356}{\index{Geometry\-Flux\-Tally@{Geometry\-Flux\-Tally}!Geometry\-Flux\-Tally@{Geometry\-Flux\-Tally}}
+\index{Geometry\-Flux\-Tally@{Geometry\-Flux\-Tally}!GeometryFluxTally@{Geometry\-Flux\-Tally}}
+\subsubsection[{Geometry\-Flux\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\-Flux\-Tally\-::\-Geometry\-Flux\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Geometry} $\ast$}]{geometry, }
+\item[{const char $\ast$}]{tally\-\_\-name = {\ttfamily (char$\ast$)\char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGeometryFluxTally_afe633b1d646dfe7bbf3232cb49095356}
+
+
+\hyperlink{classGeometryFluxTally}{Geometry\-Flux\-Tally} constructor calls the \hyperlink{classGeometryTally}{Geometry\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to F\-L\-U\-X. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em geometry} & a pointer to the geometry within which to tally \\
+\hline
+{\em tally\-\_\-name} & a character array for the tally name (optional) \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGeometryFluxTally_a2c7d83a4577cff56a1cecf8a339db547}{\index{Geometry\-Flux\-Tally@{Geometry\-Flux\-Tally}!tally@{tally}}
+\index{tally@{tally}!GeometryFluxTally@{Geometry\-Flux\-Tally}}
+\subsubsection[{tally}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\-Flux\-Tally\-::tally (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classGeometryFluxTally_a2c7d83a4577cff56a1cecf8a339db547}
+
+
+\hyperlink{classTally}{Tally} the geomety flux by incrementing the tally by $ \frac{1}{\Sigma_t} $ at the neutron's energy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neutron} & the neutron of interest \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classGeometryTally_a3f79423e0c1e1eb87109c6937bdfa5c8}{Geometry\-Tally}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Tally_8h}{Tally.\-h}\item 
+Tally.\-cpp\end{DoxyCompactItemize}

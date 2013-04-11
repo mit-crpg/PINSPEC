@@ -1,0 +1,330 @@
+.TH "pinspec/src/log.h" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pinspec/src/log.h \- 
+.PP
+Utility functions for writing log messages to the screen\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef enum \fBlogLevels\fP \fBlogLevel\fP"
+.br
+.RI "\fILogging levels characterize an ordered set of message types which may be printed to the screen\&. \fP"
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBlogLevels\fP { \fBDEBUG\fP, \fBINFO\fP, \fBNORMAL\fP, \fBSEPARATOR\fP, \fBHEADER\fP, \fBTITLE\fP, \fBWARNING\fP, \fBCRITICAL\fP, \fBRESULT\fP, \fBERROR\fP }"
+.br
+.RI "\fILogging levels characterize an ordered set of message types which may be printed to the screen\&. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBset_err\fP (const char *msg)"
+.br
+.RI "\fIA function stub used to convert C++ exceptions into Python exceptions through SWIG\&. \fP"
+.ti -1c
+.RI "void \fBsetOutputDirectory\fP (char *directory)"
+.br
+.RI "\fISets the output directory for log files\&. \fP"
+.ti -1c
+.RI "const char * \fBgetOutputDirectory\fP ()"
+.br
+.RI "\fIReturns the output directory for log files\&. \fP"
+.ti -1c
+.RI "void \fBsetLogfileName\fP (char *filename)"
+.br
+.RI "\fISets the name for the log file\&. \fP"
+.ti -1c
+.RI "const char * \fBgetLogfileName\fP ()"
+.br
+.RI "\fIReturns the log filename\&. \fP"
+.ti -1c
+.RI "void \fBsetSeparatorCharacter\fP (char c)"
+.br
+.RI "\fISets the character to be used when printing SEPARATOR type log messages\&. \fP"
+.ti -1c
+.RI "const char \fBgetSeparatorCharacter\fP ()"
+.br
+.RI "\fIReturns the character used to format SEPARATOR type log messages\&. \fP"
+.ti -1c
+.RI "void \fBsetHeaderCharacter\fP (char c)"
+.br
+.RI "\fISets the character to be used when printing HEADER type log messages\&. \fP"
+.ti -1c
+.RI "const char \fBgetHeaderCharacter\fP ()"
+.br
+.RI "\fIReturns the character used to format HEADER type log messages\&. \fP"
+.ti -1c
+.RI "void \fBsetTitleCharacter\fP (char c)"
+.br
+.RI "\fISets the character to be used when printing TITLE type log messages\&. \fP"
+.ti -1c
+.RI "const char \fBgetTitleCharacter\fP ()"
+.br
+.RI "\fIReturns the character used to format TITLE type log messages\&. \fP"
+.ti -1c
+.RI "void \fBsetLineLength\fP (int length)"
+.br
+.RI "\fISets the maximum line length for log messages\&. \fP"
+.ti -1c
+.RI "void \fBlog_setlevel\fP (\fBlogLevel\fP newlevel)"
+.br
+.RI "\fISets the minimum log message level which will be printed to the console and to the log file\&. \fP"
+.ti -1c
+.RI "void \fBlog_setlevel\fP (const char *newlevel)"
+.br
+.RI "\fISets the minimum log message level which will be printed to the console and to the log file\&. \fP"
+.ti -1c
+.RI "int \fBget_loglevel\fP ()"
+.br
+.RI "\fIReturn the minimum level for log messages printed to the screen\&. \fP"
+.ti -1c
+.RI "void \fBlog_printf\fP (\fBlogLevel\fP level, const char *format,\&.\&.\&.)"
+.br
+.RI "\fIPrint a formatted message to the console\&. \fP"
+.ti -1c
+.RI "std::string \fBcreateMultilineMsg\fP (std::string level, std::string message)"
+.br
+.RI "\fIBreaks up a message which is too long for a single line into a multiline message\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Utility functions for writing log messages to the screen\&. 
+
+Applies level-based logging to print formatted messages to the screen and to a log file\&. 
+.PP
+\fBAuthor:\fP
+.RS 4
+William Boyd (wboyd@mit.edu) 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+January 22, 2012 
+.RE
+.PP
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBlogLevels\fP"
+
+.PP
+Logging levels characterize an ordered set of message types which may be printed to the screen\&. 
+.PP
+\fBEnumerator: \fP
+.in +1c
+.TP
+\fB\fIDEBUG \fP\fP
+A debugging message 
+.TP
+\fB\fIINFO \fP\fP
+An informational but verbose message 
+.TP
+\fB\fINORMAL \fP\fP
+A brief progress update on run progress 
+.TP
+\fB\fISEPARATOR \fP\fP
+A message of a single line of characters 
+.TP
+\fB\fIHEADER \fP\fP
+A message centered within a line of characters 
+.TP
+\fB\fITITLE \fP\fP
+A message sandwiched between two lines of characters 
+.TP
+\fB\fIWARNING \fP\fP
+A message for to warn the user 
+.TP
+\fB\fICRITICAL \fP\fP
+A message to warn of critical program conditions 
+.TP
+\fB\fIRESULT \fP\fP
+A message containing program results 
+.TP
+\fB\fIERROR \fP\fP
+A message reporting error conditions 
+.SH "Function Documentation"
+.PP 
+.SS "std::string createMultilineMsg (std::stringlevel, std::stringmessage)"
+
+.PP
+Breaks up a message which is too long for a single line into a multiline message\&. This is an internal function which is called by log_printf and should not be called directly by the user\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlevel\fP a string containing log level prefix 
+.br
+\fImessage\fP a string containing the log message 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a string with a formatted multiline message 
+.RE
+.PP
+
+.SS "int get_loglevel ()"
+
+.PP
+Return the minimum level for log messages printed to the screen\&. \fBReturns:\fP
+.RS 4
+the minimum level for log messages 
+.RE
+.PP
+
+.SS "const char getHeaderCharacter ()"
+
+.PP
+Returns the character used to format HEADER type log messages\&. \fBReturns:\fP
+.RS 4
+the character used for HEADER type log messages 
+.RE
+.PP
+
+.SS "const char* getLogfileName ()"
+
+.PP
+Returns the log filename\&. \fBReturns:\fP
+.RS 4
+a character array for the log filename 
+.RE
+.PP
+
+.SS "const char* getOutputDirectory ()"
+
+.PP
+Returns the output directory for log files\&. \fBReturns:\fP
+.RS 4
+a character array for the log file directory 
+.RE
+.PP
+
+.SS "const char getSeparatorCharacter ()"
+
+.PP
+Returns the character used to format SEPARATOR type log messages\&. \fBReturns:\fP
+.RS 4
+the character used for SEPARATOR type log messages 
+.RE
+.PP
+
+.SS "const char getTitleCharacter ()"
+
+.PP
+Returns the character used to format TITLE type log messages\&. \fBReturns:\fP
+.RS 4
+the character used for TITLE type log messages 
+.RE
+.PP
+
+.SS "void log_printf (\fBlogLevel\fPlevel, const char *format, \&.\&.\&.)"
+
+.PP
+Print a formatted message to the console\&. If logging level is ERROR, this function will throw a runtime exception 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlevel\fP the logging level for this message 
+.br
+\fI*format\fP variable list of C++ formatted arguments 
+.RE
+.PP
+
+.SS "void log_setlevel (\fBlogLevel\fPnewlevel)"
+
+.PP
+Sets the minimum log message level which will be printed to the console and to the log file\&. \fBParameters:\fP
+.RS 4
+\fInewlevel\fP the minimum logging level 
+.RE
+.PP
+
+.SS "void log_setlevel (const char *newlevel)"
+
+.PP
+Sets the minimum log message level which will be printed to the console and to the log file\&. \fBParameters:\fP
+.RS 4
+\fInewlevel\fP the minimum logging level 
+.RE
+.PP
+
+.SS "void set_err (const char *msg)"
+
+.PP
+A function stub used to convert C++ exceptions into Python exceptions through SWIG\&. \fBParameters:\fP
+.RS 4
+\fImsg\fP a character array for the exception message 
+.RE
+.PP
+
+.SS "void setHeaderCharacter (charc)"
+
+.PP
+Sets the character to be used when printing HEADER type log messages\&. \fBParameters:\fP
+.RS 4
+\fIc\fP the character for HEADER type log messages 
+.RE
+.PP
+
+.SS "void setLineLength (intlength)"
+
+.PP
+Sets the maximum line length for log messages\&. Messages longer than this amount will be broken up into multiline messages\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlength\fP the maximum log message line length in characters 
+.RE
+.PP
+
+.SS "void setLogfileName (char *filename)"
+
+.PP
+Sets the name for the log file\&. \fBParameters:\fP
+.RS 4
+\fIfilename\fP a character array for log filename 
+.RE
+.PP
+
+.SS "void setOutputDirectory (char *directory)"
+
+.PP
+Sets the output directory for log files\&. If the directory does not exist, it creates it for the user\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdirectory\fP a character array for the log file directory 
+.RE
+.PP
+
+.SS "void setSeparatorCharacter (charc)"
+
+.PP
+Sets the character to be used when printing SEPARATOR type log messages\&. \fBParameters:\fP
+.RS 4
+\fIc\fP the character for SEPARATOR type log messages 
+.RE
+.PP
+
+.SS "void setTitleCharacter (charc)"
+
+.PP
+Sets the character to be used when printing TITLE type log messages\&. \fBParameters:\fP
+.RS 4
+\fIc\fP the character for TITLE type log messages 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

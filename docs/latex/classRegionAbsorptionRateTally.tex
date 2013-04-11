@@ -1,0 +1,80 @@
+\hypertarget{classRegionAbsorptionRateTally}{\section{Region\-Absorption\-Rate\-Tally Class Reference}
+\label{classRegionAbsorptionRateTally}\index{Region\-Absorption\-Rate\-Tally@{Region\-Absorption\-Rate\-Tally}}
+}
+
+
+A class for tallying the absorption rate within a region.  
+
+
+
+
+{\ttfamily \#include \char`\"{}pinspec/src/\-Tally.\-h\char`\"{}}
+
+Inheritance diagram for Region\-Absorption\-Rate\-Tally\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classRegionAbsorptionRateTally}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classRegionAbsorptionRateTally_a660ea8cbb625cad4ecb5a64e963a0682}{Region\-Absorption\-Rate\-Tally} (\hyperlink{classRegion}{Region} $\ast$region, const char $\ast$tally\-\_\-name=(char $\ast$)\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classRegionAbsorptionRateTally}{Region\-Absorption\-Rate\-Tally} constructor calls the \hyperlink{classRegionTally}{Region\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to A\-B\-S\-O\-R\-P\-T\-I\-O\-N\-\_\-\-R\-A\-T\-E. \end{DoxyCompactList}\item 
+void \hyperlink{classRegionAbsorptionRateTally_ac4b4c57159d65550e1e67dfb2037fd09}{tally} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classTally}{Tally} the region absorption rate by incrementing the tally by $ \frac{\Sigma_a}{\Sigma_t} $ at the neutron's energy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A class for tallying the absorption rate within a region. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classRegionAbsorptionRateTally_a660ea8cbb625cad4ecb5a64e963a0682}{\index{Region\-Absorption\-Rate\-Tally@{Region\-Absorption\-Rate\-Tally}!Region\-Absorption\-Rate\-Tally@{Region\-Absorption\-Rate\-Tally}}
+\index{Region\-Absorption\-Rate\-Tally@{Region\-Absorption\-Rate\-Tally}!RegionAbsorptionRateTally@{Region\-Absorption\-Rate\-Tally}}
+\subsubsection[{Region\-Absorption\-Rate\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}Region\-Absorption\-Rate\-Tally\-::\-Region\-Absorption\-Rate\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Region} $\ast$}]{region, }
+\item[{const char $\ast$}]{tally\-\_\-name = {\ttfamily (char$\ast$)\char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classRegionAbsorptionRateTally_a660ea8cbb625cad4ecb5a64e963a0682}
+
+
+\hyperlink{classRegionAbsorptionRateTally}{Region\-Absorption\-Rate\-Tally} constructor calls the \hyperlink{classRegionTally}{Region\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to A\-B\-S\-O\-R\-P\-T\-I\-O\-N\-\_\-\-R\-A\-T\-E. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em region} & a pointer to the region within which to tally \\
+\hline
+{\em tally\-\_\-name} & a character array for the tally name (optional) \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classRegionAbsorptionRateTally_ac4b4c57159d65550e1e67dfb2037fd09}{\index{Region\-Absorption\-Rate\-Tally@{Region\-Absorption\-Rate\-Tally}!tally@{tally}}
+\index{tally@{tally}!RegionAbsorptionRateTally@{Region\-Absorption\-Rate\-Tally}}
+\subsubsection[{tally}]{\setlength{\rightskip}{0pt plus 5cm}void Region\-Absorption\-Rate\-Tally\-::tally (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classRegionAbsorptionRateTally_ac4b4c57159d65550e1e67dfb2037fd09}
+
+
+\hyperlink{classTally}{Tally} the region absorption rate by incrementing the tally by $ \frac{\Sigma_a}{\Sigma_t} $ at the neutron's energy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neutron} & the neutron of interest \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classRegionTally_ae146fd937e34306fdd5cc4aac44a3856}{Region\-Tally}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+pinspec/src/\hyperlink{Tally_8h}{Tally.\-h}\item 
+pinspec/src/Tally.\-cpp\end{DoxyCompactItemize}

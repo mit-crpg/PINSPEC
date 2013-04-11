@@ -1,0 +1,80 @@
+\hypertarget{classIsotopeElasticRateTally}{\section{Isotope\-Elastic\-Rate\-Tally Class Reference}
+\label{classIsotopeElasticRateTally}\index{Isotope\-Elastic\-Rate\-Tally@{Isotope\-Elastic\-Rate\-Tally}}
+}
+
+
+A class for tallying the elastic scattering rate for an isotope.  
+
+
+
+
+{\ttfamily \#include \char`\"{}pinspec/src/\-Tally.\-h\char`\"{}}
+
+Inheritance diagram for Isotope\-Elastic\-Rate\-Tally\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classIsotopeElasticRateTally}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classIsotopeElasticRateTally_a4f590fce6ac4136240fb5ddadfbcc3c0}{Isotope\-Elastic\-Rate\-Tally} (\hyperlink{classIsotope}{Isotope} $\ast$isotope, const char $\ast$tally\-\_\-name=(char $\ast$)\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classIsotopeElasticRateTally}{Isotope\-Elastic\-Rate\-Tally} constructor calls the \hyperlink{classIsotopeTally}{Isotope\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to E\-L\-A\-S\-T\-I\-C\-\_\-\-R\-A\-T\-E. \end{DoxyCompactList}\item 
+void \hyperlink{classIsotopeElasticRateTally_a641673a78be89eec1f1be4d424f0e078}{tally} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classTally}{Tally} the isotope elastic scattering rate by incrementing the tally by $ \frac{\sigma_s}{\Sigma_t} $ at the neutron's energy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A class for tallying the elastic scattering rate for an isotope. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classIsotopeElasticRateTally_a4f590fce6ac4136240fb5ddadfbcc3c0}{\index{Isotope\-Elastic\-Rate\-Tally@{Isotope\-Elastic\-Rate\-Tally}!Isotope\-Elastic\-Rate\-Tally@{Isotope\-Elastic\-Rate\-Tally}}
+\index{Isotope\-Elastic\-Rate\-Tally@{Isotope\-Elastic\-Rate\-Tally}!IsotopeElasticRateTally@{Isotope\-Elastic\-Rate\-Tally}}
+\subsubsection[{Isotope\-Elastic\-Rate\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}Isotope\-Elastic\-Rate\-Tally\-::\-Isotope\-Elastic\-Rate\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Isotope} $\ast$}]{isotope, }
+\item[{const char $\ast$}]{tally\-\_\-name = {\ttfamily (char$\ast$)\char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIsotopeElasticRateTally_a4f590fce6ac4136240fb5ddadfbcc3c0}
+
+
+\hyperlink{classIsotopeElasticRateTally}{Isotope\-Elastic\-Rate\-Tally} constructor calls the \hyperlink{classIsotopeTally}{Isotope\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to E\-L\-A\-S\-T\-I\-C\-\_\-\-R\-A\-T\-E. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em isotope} & a pointer to the isotope for which to tally \\
+\hline
+{\em tally\-\_\-name} & a character array for the tally name (optional) \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classIsotopeElasticRateTally_a641673a78be89eec1f1be4d424f0e078}{\index{Isotope\-Elastic\-Rate\-Tally@{Isotope\-Elastic\-Rate\-Tally}!tally@{tally}}
+\index{tally@{tally}!IsotopeElasticRateTally@{Isotope\-Elastic\-Rate\-Tally}}
+\subsubsection[{tally}]{\setlength{\rightskip}{0pt plus 5cm}void Isotope\-Elastic\-Rate\-Tally\-::tally (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classIsotopeElasticRateTally_a641673a78be89eec1f1be4d424f0e078}
+
+
+\hyperlink{classTally}{Tally} the isotope elastic scattering rate by incrementing the tally by $ \frac{\sigma_s}{\Sigma_t} $ at the neutron's energy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neutron} & the neutron of interest \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classIsotopeTally_a8a5b190e244c630ee7cda35f70287530}{Isotope\-Tally}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+pinspec/src/\hyperlink{Tally_8h}{Tally.\-h}\item 
+pinspec/src/Tally.\-cpp\end{DoxyCompactItemize}

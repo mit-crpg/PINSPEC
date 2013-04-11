@@ -1,6 +1,5 @@
 import numpy
 from pinspec import *
-import pinspec.SLBW as SLBW
 import pinspec.plotter as plotter
 import pinspec.process as process
 from pinspec.log import *
@@ -14,7 +13,7 @@ def main():
     # Set main simulation params
     num_neutrons = 1000000
     setOutputDirectory('HW2');
-    log_setlevel(INFO)
+    setlevel('INFO')
 
     py_printf('TITLE', 'Simulation of homework 2 for 2012 22.211')
     py_printf('INFO', 'Initializing isotopes...')

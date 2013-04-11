@@ -1,6 +1,6 @@
 import numpy
 from pinspec import *
-import pinspec.SLBW as SLBW
+import pinspec.slbw as slbw
 import pinspec.plotter as plotter
 import pinspec.process as process
 from pinspec.log import *
@@ -16,7 +16,7 @@ def main():
     num_neutrons_per_batch = 100000
     num_threads = 4
     setOutputDirectory('HW3');
-    log_setlevel(INFO)
+    setlevel('INFO')
 
     py_printf('TITLE', 'Simulation of homework 3 for 2012 22.211')
     py_printf('INFO', 'Initializing isotopes...')
@@ -119,7 +119,7 @@ def main():
         Eff_RIs.append([])
         abs_rate_ratios.append([])
 
-        SLBW.SLBWXS('U-238', temps[temp], 'capture')
+        slbw.SLBWXS('U-238', temps[temp], 'capture')
         u238.loadXS('capture')
         RI = process.RITrue(u238, abs_rate_bin_edges, reaction='capture')
         RI.setName('True RI (Temp=%dK)' % temps[temp])
@@ -152,7 +152,7 @@ def main():
             TallyBank.deregisterTally(fluxes[u_h_ratio])
 
         # Plot fluxes
-        plotter.plotFluxes(fluxes,title='Flux for Temp = ' + str(temps[temp]) \
+        plotter.plotFlux(fluxes,title='Flux for Temp = ' + str(temps[temp]) \
                             + 'K', filename='flux-temp-'+str(temps[temp])+'K')
 
         # print the reaction rate ratios and resonance integrals to the shell

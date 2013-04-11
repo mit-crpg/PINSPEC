@@ -1,0 +1,143 @@
+.TH "pinspec.slbw" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pinspec.slbw \- 
+.PP
+The slbw module provides utility functions to generate resonant cross-sections using the Single-Level Breit-Wigner formalism\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBSLBWXS\fP"
+.br
+.RI "\fIFunction to create resonant capture and scatter cross-sections\&. \fP"
+.ti -1c
+.RI "def \fBconvert\fP"
+.br
+.RI "\fIFunction to convert a string into a float\&. \fP"
+.ti -1c
+.RI "def \fBparse\fP"
+.br
+.RI "\fIFunction to parse a string and convert into resonance parameters\&. \fP"
+.ti -1c
+.RI "def \fBgeneratePotentialScattering\fP"
+.br
+.RI "\fIFunction to generate a potential scattering cross-section for an isotope based on data in a resonance parameters file\&. \fP"
+.ti -1c
+.RI "def \fBcompareXS\fP"
+.br
+.RI "\fIFunction to generate a plot of the SLBW generated cross-section along with the ENDF-VII version of the cross-section for comparison\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+The slbw module provides utility functions to generate resonant cross-sections using the Single-Level Breit-Wigner formalism\&. 
+
+This is most helpful for PINSPEC applications which are temperature- dependent and require doppler broadening effects to be treated for resonant absorbers\&. 
+.PP
+\fBAuthor:\fP
+.RS 4
+Jessica Hunter 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+February 25, 2013 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "def pinspec\&.slbw\&.compareXS (isotope, XStype = \fC'capture'\fP, RI = \fC'no'\fP, dir = \fC'\&.'\fP)"
+
+.PP
+Function to generate a plot of the SLBW generated cross-section along with the ENDF-VII version of the cross-section for comparison\&. \fBParameters:\fP
+.RS 4
+\fIisotope\fP the isotope of interest 
+.br
+\fIXStype\fP 
+.br
+\fIRI\fP 
+.br
+\fIdir\fP 
+.RE
+.PP
+
+.SS "def pinspec\&.slbw\&.convert (string)"
+
+.PP
+Function to convert a string into a float\&. \fBParameters:\fP
+.RS 4
+\fIstring\fP the string we wish to convert 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the float version of the input string 
+.RE
+.PP
+
+.SS "def pinspec\&.slbw\&.generatePotentialScattering (isotope, Emin = \fC1e-5\fP, finalEcut = \fC20E6\fP)"
+
+.PP
+Function to generate a potential scattering cross-section for an isotope based on data in a resonance parameters file\&. \fBParameters:\fP
+.RS 4
+\fIisotope\fP the isotope of interest 
+.br
+\fIEmin\fP 
+.br
+\fIfinalEcut\fP 
+.RE
+.PP
+
+.SS "def pinspec\&.slbw\&.parse (string)"
+
+.PP
+Function to parse a string and convert into resonance parameters\&. Function to parse a resonance parameter string into $E_0$, $\Gamma_n$, and $\Gamma_{\gamma}$\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstring\fP the string of interest 
+.RE
+.PP
+
+.SS "def pinspec\&.slbw\&.SLBWXS (isotope, T, typeXS = \fC'capture'\fP, numberofpositiveresonances = \fC14\fP, Emin = \fC1e-5\fP, Ecut = \fC1000\&.0\fP, Ebnwdth = \fC0\&.075\fP, resspacing = \fC25\fP, idntclfakereslb = \fC300\fP, gamg = \fC0\&.023\fP, flatxs = \fC0\&.1\fP, finalEcut = \fC20E6\fP)"
+
+.PP
+Function to create resonant capture and scatter cross-sections\&. Generates the cross-section at some temperature using resonance data and the Single-Level Breit-Wigner formalism\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIisotope\fP the isotope of interest 
+.br
+\fIT\fP the temperature in degrees Kelvin 
+.br
+\fItypeXS\fP an optional argument string for the cross-section type 
+.br
+\fInumberofpositiveresonances\fP the number of resonance to use with $ E_0 > 0 $ 
+.br
+\fIEmin\fP the minimum energy at which to generate the cross-section (eV) 
+.br
+\fIEcut\fP 
+.br
+\fIEbnwdth\fP 
+.br
+\fIresspacing\fP 
+.br
+\fIidntclfakereslb\fP 
+.br
+\fIgamg\fP 
+.br
+\fIflatxs\fP 
+.br
+\fIfinalEcut\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

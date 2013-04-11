@@ -1,0 +1,387 @@
+\hypertarget{log_8h}{\section{log.\-h File Reference}
+\label{log_8h}\index{log.\-h@{log.\-h}}
+}
+
+
+Utility functions for writing log messages to the screen.  
+
+
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{log_8h_a474fc5e1d06d669823896ac6258fbc0d}{typedef enum \hyperlink{log_8h_a5096002e05063d13577205e0bc5f0564}{log\-Levels} \hyperlink{log_8h_a474fc5e1d06d669823896ac6258fbc0d}{log\-Level}}\label{log_8h_a474fc5e1d06d669823896ac6258fbc0d}
+
+\begin{DoxyCompactList}\small\item\em Logging levels characterize an ordered set of message types which may be printed to the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{log_8h_a5096002e05063d13577205e0bc5f0564}{log\-Levels} \{ \\*
+\hyperlink{log_8h_a5096002e05063d13577205e0bc5f0564a0593585da9181e972974c1274d8f2b4f}{D\-E\-B\-U\-G}, 
+\hyperlink{log_8h_a5096002e05063d13577205e0bc5f0564a748005382152808a72b1a9177d9dc806}{I\-N\-F\-O}, 
+\hyperlink{log_8h_a5096002e05063d13577205e0bc5f0564a50d1448013c6f17125caee18aa418af7}{N\-O\-R\-M\-A\-L}, 
+\hyperlink{log_8h_a5096002e05063d13577205e0bc5f0564ac22e1a44f0ddbc929cfea45e49d20f84}{S\-E\-P\-A\-R\-A\-T\-O\-R}, 
+\\*
+\hyperlink{log_8h_a5096002e05063d13577205e0bc5f0564a2e57918a09d25b07a664e505d50a97f6}{H\-E\-A\-D\-E\-R}, 
+\hyperlink{log_8h_a5096002e05063d13577205e0bc5f0564a0a041e18d712f7b239eac5375daf4a05}{T\-I\-T\-L\-E}, 
+\hyperlink{log_8h_a5096002e05063d13577205e0bc5f0564a984de77c680eaff141ec910e25568a81}{W\-A\-R\-N\-I\-N\-G}, 
+\hyperlink{log_8h_a5096002e05063d13577205e0bc5f0564acda21a4a072f2261f6d4ab596599f8b0}{C\-R\-I\-T\-I\-C\-A\-L}, 
+\\*
+\hyperlink{log_8h_a5096002e05063d13577205e0bc5f0564a7186ecefe792fdae9fec0a42f105ad6b}{R\-E\-S\-U\-L\-T}, 
+\hyperlink{log_8h_a5096002e05063d13577205e0bc5f0564a2fd6f336d08340583bd620a7f5694c90}{E\-R\-R\-O\-R}
+ \}
+\begin{DoxyCompactList}\small\item\em Logging levels characterize an ordered set of message types which may be printed to the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{log_8h_a940ee8efe959af1453430dfb17a69b52}{set\-\_\-err} (const char $\ast$msg)
+\begin{DoxyCompactList}\small\item\em A function stub used to convert C++ exceptions into Python exceptions through S\-W\-I\-G. \end{DoxyCompactList}\item 
+void \hyperlink{log_8h_a5ef1ed8ce52cd43ae7f8512d09971618}{set\-Output\-Directory} (char $\ast$directory)
+\begin{DoxyCompactList}\small\item\em Sets the output directory for log files. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{log_8h_ad1b5c174ca035cd931dc69347919d168}{get\-Output\-Directory} ()
+\begin{DoxyCompactList}\small\item\em Returns the output directory for log files. \end{DoxyCompactList}\item 
+void \hyperlink{log_8h_a465a60dcbab8eedbf8c943daba80d2e3}{set\-Logfile\-Name} (char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Sets the name for the log file. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{log_8h_a4f377faa39c40a2d692c86d1486450df}{get\-Logfile\-Name} ()
+\begin{DoxyCompactList}\small\item\em Returns the log filename. \end{DoxyCompactList}\item 
+void \hyperlink{log_8h_a280c959b5b23ffdf907c1727c690dd04}{set\-Separator\-Character} (char c)
+\begin{DoxyCompactList}\small\item\em Sets the character to be used when printing S\-E\-P\-A\-R\-A\-T\-O\-R type log messages. \end{DoxyCompactList}\item 
+const char \hyperlink{log_8h_a69a6bb48d843c0d2dcf6201997666078}{get\-Separator\-Character} ()
+\begin{DoxyCompactList}\small\item\em Returns the character used to format S\-E\-P\-A\-R\-A\-T\-O\-R type log messages. \end{DoxyCompactList}\item 
+void \hyperlink{log_8h_ad883b9386585911a94d98135f061c228}{set\-Header\-Character} (char c)
+\begin{DoxyCompactList}\small\item\em Sets the character to be used when printing H\-E\-A\-D\-E\-R type log messages. \end{DoxyCompactList}\item 
+const char \hyperlink{log_8h_a5240ded8a1b9c82d390fc9095b735abc}{get\-Header\-Character} ()
+\begin{DoxyCompactList}\small\item\em Returns the character used to format H\-E\-A\-D\-E\-R type log messages. \end{DoxyCompactList}\item 
+void \hyperlink{log_8h_aa0c94033f57bfb548aec9f8a9a7a39f3}{set\-Title\-Character} (char c)
+\begin{DoxyCompactList}\small\item\em Sets the character to be used when printing T\-I\-T\-L\-E type log messages. \end{DoxyCompactList}\item 
+const char \hyperlink{log_8h_a2adac3e7a84ac420c29dc0b7ed133225}{get\-Title\-Character} ()
+\begin{DoxyCompactList}\small\item\em Returns the character used to format T\-I\-T\-L\-E type log messages. \end{DoxyCompactList}\item 
+void \hyperlink{log_8h_ac3008464681b34c10540b78d408e4db6}{set\-Line\-Length} (int length)
+\begin{DoxyCompactList}\small\item\em Sets the maximum line length for log messages. \end{DoxyCompactList}\item 
+void \hyperlink{log_8h_a724708377dbf7b5f7dd4b921a7ed2090}{log\-\_\-setlevel} (\hyperlink{log_8h_a474fc5e1d06d669823896ac6258fbc0d}{log\-Level} newlevel)
+\begin{DoxyCompactList}\small\item\em Sets the minimum log message level which will be printed to the console and to the log file. \end{DoxyCompactList}\item 
+void \hyperlink{log_8h_a27f488f0b416d90636b23d8a21bbbf65}{log\-\_\-setlevel} (const char $\ast$newlevel)
+\begin{DoxyCompactList}\small\item\em Sets the minimum log message level which will be printed to the console and to the log file. \end{DoxyCompactList}\item 
+int \hyperlink{log_8h_aa219436a7e8f4367959ccd68f76cde36}{get\-\_\-loglevel} ()
+\begin{DoxyCompactList}\small\item\em Return the minimum level for log messages printed to the screen. \end{DoxyCompactList}\item 
+void \hyperlink{log_8h_a8abbd12e44a829a8d7a041636b170fde}{log\-\_\-printf} (\hyperlink{log_8h_a474fc5e1d06d669823896ac6258fbc0d}{log\-Level} level, const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em Print a formatted message to the console. \end{DoxyCompactList}\item 
+std\-::string \hyperlink{log_8h_ab42a0de70fdb518ab616d1c61ce7a1a0}{create\-Multiline\-Msg} (std\-::string level, std\-::string message)
+\begin{DoxyCompactList}\small\item\em Breaks up a message which is too long for a single line into a multiline message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Utility functions for writing log messages to the screen. Applies level-\/based logging to print formatted messages to the screen and to a log file. \begin{DoxyAuthor}{Author}
+William Boyd (\href{mailto:wboyd@mit.edu}{\tt wboyd@mit.\-edu}) 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+January 22, 2012 
+\end{DoxyDate}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{log_8h_a5096002e05063d13577205e0bc5f0564}{\index{log.\-h@{log.\-h}!log\-Levels@{log\-Levels}}
+\index{log\-Levels@{log\-Levels}!log.h@{log.\-h}}
+\subsubsection[{log\-Levels}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf log\-Levels}}}\label{log_8h_a5096002e05063d13577205e0bc5f0564}
+
+
+Logging levels characterize an ordered set of message types which may be printed to the screen. 
+
+\begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{D\-E\-B\-U\-G@{D\-E\-B\-U\-G}!log.\-h@{log.\-h}}\index{log.\-h@{log.\-h}!D\-E\-B\-U\-G@{D\-E\-B\-U\-G}}\item[{\em 
+\hypertarget{log_8h_a5096002e05063d13577205e0bc5f0564a0593585da9181e972974c1274d8f2b4f}{D\-E\-B\-U\-G}\label{log_8h_a5096002e05063d13577205e0bc5f0564a0593585da9181e972974c1274d8f2b4f}
+}]A debugging message \index{I\-N\-F\-O@{I\-N\-F\-O}!log.\-h@{log.\-h}}\index{log.\-h@{log.\-h}!I\-N\-F\-O@{I\-N\-F\-O}}\item[{\em 
+\hypertarget{log_8h_a5096002e05063d13577205e0bc5f0564a748005382152808a72b1a9177d9dc806}{I\-N\-F\-O}\label{log_8h_a5096002e05063d13577205e0bc5f0564a748005382152808a72b1a9177d9dc806}
+}]An informational but verbose message \index{N\-O\-R\-M\-A\-L@{N\-O\-R\-M\-A\-L}!log.\-h@{log.\-h}}\index{log.\-h@{log.\-h}!N\-O\-R\-M\-A\-L@{N\-O\-R\-M\-A\-L}}\item[{\em 
+\hypertarget{log_8h_a5096002e05063d13577205e0bc5f0564a50d1448013c6f17125caee18aa418af7}{N\-O\-R\-M\-A\-L}\label{log_8h_a5096002e05063d13577205e0bc5f0564a50d1448013c6f17125caee18aa418af7}
+}]A brief progress update on run progress \index{S\-E\-P\-A\-R\-A\-T\-O\-R@{S\-E\-P\-A\-R\-A\-T\-O\-R}!log.\-h@{log.\-h}}\index{log.\-h@{log.\-h}!S\-E\-P\-A\-R\-A\-T\-O\-R@{S\-E\-P\-A\-R\-A\-T\-O\-R}}\item[{\em 
+\hypertarget{log_8h_a5096002e05063d13577205e0bc5f0564ac22e1a44f0ddbc929cfea45e49d20f84}{S\-E\-P\-A\-R\-A\-T\-O\-R}\label{log_8h_a5096002e05063d13577205e0bc5f0564ac22e1a44f0ddbc929cfea45e49d20f84}
+}]A message of a single line of characters \index{H\-E\-A\-D\-E\-R@{H\-E\-A\-D\-E\-R}!log.\-h@{log.\-h}}\index{log.\-h@{log.\-h}!H\-E\-A\-D\-E\-R@{H\-E\-A\-D\-E\-R}}\item[{\em 
+\hypertarget{log_8h_a5096002e05063d13577205e0bc5f0564a2e57918a09d25b07a664e505d50a97f6}{H\-E\-A\-D\-E\-R}\label{log_8h_a5096002e05063d13577205e0bc5f0564a2e57918a09d25b07a664e505d50a97f6}
+}]A message centered within a line of characters \index{T\-I\-T\-L\-E@{T\-I\-T\-L\-E}!log.\-h@{log.\-h}}\index{log.\-h@{log.\-h}!T\-I\-T\-L\-E@{T\-I\-T\-L\-E}}\item[{\em 
+\hypertarget{log_8h_a5096002e05063d13577205e0bc5f0564a0a041e18d712f7b239eac5375daf4a05}{T\-I\-T\-L\-E}\label{log_8h_a5096002e05063d13577205e0bc5f0564a0a041e18d712f7b239eac5375daf4a05}
+}]A message sandwiched between two lines of characters \index{W\-A\-R\-N\-I\-N\-G@{W\-A\-R\-N\-I\-N\-G}!log.\-h@{log.\-h}}\index{log.\-h@{log.\-h}!W\-A\-R\-N\-I\-N\-G@{W\-A\-R\-N\-I\-N\-G}}\item[{\em 
+\hypertarget{log_8h_a5096002e05063d13577205e0bc5f0564a984de77c680eaff141ec910e25568a81}{W\-A\-R\-N\-I\-N\-G}\label{log_8h_a5096002e05063d13577205e0bc5f0564a984de77c680eaff141ec910e25568a81}
+}]A message for to warn the user \index{C\-R\-I\-T\-I\-C\-A\-L@{C\-R\-I\-T\-I\-C\-A\-L}!log.\-h@{log.\-h}}\index{log.\-h@{log.\-h}!C\-R\-I\-T\-I\-C\-A\-L@{C\-R\-I\-T\-I\-C\-A\-L}}\item[{\em 
+\hypertarget{log_8h_a5096002e05063d13577205e0bc5f0564acda21a4a072f2261f6d4ab596599f8b0}{C\-R\-I\-T\-I\-C\-A\-L}\label{log_8h_a5096002e05063d13577205e0bc5f0564acda21a4a072f2261f6d4ab596599f8b0}
+}]A message to warn of critical program conditions \index{R\-E\-S\-U\-L\-T@{R\-E\-S\-U\-L\-T}!log.\-h@{log.\-h}}\index{log.\-h@{log.\-h}!R\-E\-S\-U\-L\-T@{R\-E\-S\-U\-L\-T}}\item[{\em 
+\hypertarget{log_8h_a5096002e05063d13577205e0bc5f0564a7186ecefe792fdae9fec0a42f105ad6b}{R\-E\-S\-U\-L\-T}\label{log_8h_a5096002e05063d13577205e0bc5f0564a7186ecefe792fdae9fec0a42f105ad6b}
+}]A message containing program results \index{E\-R\-R\-O\-R@{E\-R\-R\-O\-R}!log.\-h@{log.\-h}}\index{log.\-h@{log.\-h}!E\-R\-R\-O\-R@{E\-R\-R\-O\-R}}\item[{\em 
+\hypertarget{log_8h_a5096002e05063d13577205e0bc5f0564a2fd6f336d08340583bd620a7f5694c90}{E\-R\-R\-O\-R}\label{log_8h_a5096002e05063d13577205e0bc5f0564a2fd6f336d08340583bd620a7f5694c90}
+}]A message reporting error conditions \end{description}
+\end{Desc}
+
+
+
+\subsection{Function Documentation}
+\hypertarget{log_8h_ab42a0de70fdb518ab616d1c61ce7a1a0}{\index{log.\-h@{log.\-h}!create\-Multiline\-Msg@{create\-Multiline\-Msg}}
+\index{create\-Multiline\-Msg@{create\-Multiline\-Msg}!log.h@{log.\-h}}
+\subsubsection[{create\-Multiline\-Msg}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string create\-Multiline\-Msg (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{level, }
+\item[{std\-::string}]{message}
+\end{DoxyParamCaption}
+)}}\label{log_8h_ab42a0de70fdb518ab616d1c61ce7a1a0}
+
+
+Breaks up a message which is too long for a single line into a multiline message. 
+
+This is an internal function which is called by log\-\_\-printf and should not be called directly by the user. 
+\begin{DoxyParams}{Parameters}
+{\em level} & a string containing log level prefix \\
+\hline
+{\em message} & a string containing the log message \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a string with a formatted multiline message 
+\end{DoxyReturn}
+\hypertarget{log_8h_aa219436a7e8f4367959ccd68f76cde36}{\index{log.\-h@{log.\-h}!get\-\_\-loglevel@{get\-\_\-loglevel}}
+\index{get\-\_\-loglevel@{get\-\_\-loglevel}!log.h@{log.\-h}}
+\subsubsection[{get\-\_\-loglevel}]{\setlength{\rightskip}{0pt plus 5cm}int get\-\_\-loglevel (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{log_8h_aa219436a7e8f4367959ccd68f76cde36}
+
+
+Return the minimum level for log messages printed to the screen. 
+
+\begin{DoxyReturn}{Returns}
+the minimum level for log messages 
+\end{DoxyReturn}
+\hypertarget{log_8h_a5240ded8a1b9c82d390fc9095b735abc}{\index{log.\-h@{log.\-h}!get\-Header\-Character@{get\-Header\-Character}}
+\index{get\-Header\-Character@{get\-Header\-Character}!log.h@{log.\-h}}
+\subsubsection[{get\-Header\-Character}]{\setlength{\rightskip}{0pt plus 5cm}const char get\-Header\-Character (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{log_8h_a5240ded8a1b9c82d390fc9095b735abc}
+
+
+Returns the character used to format H\-E\-A\-D\-E\-R type log messages. 
+
+\begin{DoxyReturn}{Returns}
+the character used for H\-E\-A\-D\-E\-R type log messages 
+\end{DoxyReturn}
+\hypertarget{log_8h_a4f377faa39c40a2d692c86d1486450df}{\index{log.\-h@{log.\-h}!get\-Logfile\-Name@{get\-Logfile\-Name}}
+\index{get\-Logfile\-Name@{get\-Logfile\-Name}!log.h@{log.\-h}}
+\subsubsection[{get\-Logfile\-Name}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ get\-Logfile\-Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{log_8h_a4f377faa39c40a2d692c86d1486450df}
+
+
+Returns the log filename. 
+
+\begin{DoxyReturn}{Returns}
+a character array for the log filename 
+\end{DoxyReturn}
+\hypertarget{log_8h_ad1b5c174ca035cd931dc69347919d168}{\index{log.\-h@{log.\-h}!get\-Output\-Directory@{get\-Output\-Directory}}
+\index{get\-Output\-Directory@{get\-Output\-Directory}!log.h@{log.\-h}}
+\subsubsection[{get\-Output\-Directory}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ get\-Output\-Directory (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{log_8h_ad1b5c174ca035cd931dc69347919d168}
+
+
+Returns the output directory for log files. 
+
+\begin{DoxyReturn}{Returns}
+a character array for the log file directory 
+\end{DoxyReturn}
+\hypertarget{log_8h_a69a6bb48d843c0d2dcf6201997666078}{\index{log.\-h@{log.\-h}!get\-Separator\-Character@{get\-Separator\-Character}}
+\index{get\-Separator\-Character@{get\-Separator\-Character}!log.h@{log.\-h}}
+\subsubsection[{get\-Separator\-Character}]{\setlength{\rightskip}{0pt plus 5cm}const char get\-Separator\-Character (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{log_8h_a69a6bb48d843c0d2dcf6201997666078}
+
+
+Returns the character used to format S\-E\-P\-A\-R\-A\-T\-O\-R type log messages. 
+
+\begin{DoxyReturn}{Returns}
+the character used for S\-E\-P\-A\-R\-A\-T\-O\-R type log messages 
+\end{DoxyReturn}
+\hypertarget{log_8h_a2adac3e7a84ac420c29dc0b7ed133225}{\index{log.\-h@{log.\-h}!get\-Title\-Character@{get\-Title\-Character}}
+\index{get\-Title\-Character@{get\-Title\-Character}!log.h@{log.\-h}}
+\subsubsection[{get\-Title\-Character}]{\setlength{\rightskip}{0pt plus 5cm}const char get\-Title\-Character (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{log_8h_a2adac3e7a84ac420c29dc0b7ed133225}
+
+
+Returns the character used to format T\-I\-T\-L\-E type log messages. 
+
+\begin{DoxyReturn}{Returns}
+the character used for T\-I\-T\-L\-E type log messages 
+\end{DoxyReturn}
+\hypertarget{log_8h_a8abbd12e44a829a8d7a041636b170fde}{\index{log.\-h@{log.\-h}!log\-\_\-printf@{log\-\_\-printf}}
+\index{log\-\_\-printf@{log\-\_\-printf}!log.h@{log.\-h}}
+\subsubsection[{log\-\_\-printf}]{\setlength{\rightskip}{0pt plus 5cm}void log\-\_\-printf (
+\begin{DoxyParamCaption}
+\item[{{\bf log\-Level}}]{level, }
+\item[{const char $\ast$}]{format, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{log_8h_a8abbd12e44a829a8d7a041636b170fde}
+
+
+Print a formatted message to the console. 
+
+If logging level is E\-R\-R\-O\-R, this function will throw a runtime exception 
+\begin{DoxyParams}{Parameters}
+{\em level} & the logging level for this message \\
+\hline
+{\em $\ast$format} & variable list of C++ formatted arguments \\
+\hline
+\end{DoxyParams}
+\hypertarget{log_8h_a724708377dbf7b5f7dd4b921a7ed2090}{\index{log.\-h@{log.\-h}!log\-\_\-setlevel@{log\-\_\-setlevel}}
+\index{log\-\_\-setlevel@{log\-\_\-setlevel}!log.h@{log.\-h}}
+\subsubsection[{log\-\_\-setlevel}]{\setlength{\rightskip}{0pt plus 5cm}void log\-\_\-setlevel (
+\begin{DoxyParamCaption}
+\item[{{\bf log\-Level}}]{newlevel}
+\end{DoxyParamCaption}
+)}}\label{log_8h_a724708377dbf7b5f7dd4b921a7ed2090}
+
+
+Sets the minimum log message level which will be printed to the console and to the log file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em newlevel} & the minimum logging level \\
+\hline
+\end{DoxyParams}
+\hypertarget{log_8h_a27f488f0b416d90636b23d8a21bbbf65}{\index{log.\-h@{log.\-h}!log\-\_\-setlevel@{log\-\_\-setlevel}}
+\index{log\-\_\-setlevel@{log\-\_\-setlevel}!log.h@{log.\-h}}
+\subsubsection[{log\-\_\-setlevel}]{\setlength{\rightskip}{0pt plus 5cm}void log\-\_\-setlevel (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{newlevel}
+\end{DoxyParamCaption}
+)}}\label{log_8h_a27f488f0b416d90636b23d8a21bbbf65}
+
+
+Sets the minimum log message level which will be printed to the console and to the log file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em newlevel} & the minimum logging level \\
+\hline
+\end{DoxyParams}
+\hypertarget{log_8h_a940ee8efe959af1453430dfb17a69b52}{\index{log.\-h@{log.\-h}!set\-\_\-err@{set\-\_\-err}}
+\index{set\-\_\-err@{set\-\_\-err}!log.h@{log.\-h}}
+\subsubsection[{set\-\_\-err}]{\setlength{\rightskip}{0pt plus 5cm}void set\-\_\-err (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}}\label{log_8h_a940ee8efe959af1453430dfb17a69b52}
+
+
+A function stub used to convert C++ exceptions into Python exceptions through S\-W\-I\-G. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & a character array for the exception message \\
+\hline
+\end{DoxyParams}
+\hypertarget{log_8h_ad883b9386585911a94d98135f061c228}{\index{log.\-h@{log.\-h}!set\-Header\-Character@{set\-Header\-Character}}
+\index{set\-Header\-Character@{set\-Header\-Character}!log.h@{log.\-h}}
+\subsubsection[{set\-Header\-Character}]{\setlength{\rightskip}{0pt plus 5cm}void set\-Header\-Character (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}}\label{log_8h_ad883b9386585911a94d98135f061c228}
+
+
+Sets the character to be used when printing H\-E\-A\-D\-E\-R type log messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & the character for H\-E\-A\-D\-E\-R type log messages \\
+\hline
+\end{DoxyParams}
+\hypertarget{log_8h_ac3008464681b34c10540b78d408e4db6}{\index{log.\-h@{log.\-h}!set\-Line\-Length@{set\-Line\-Length}}
+\index{set\-Line\-Length@{set\-Line\-Length}!log.h@{log.\-h}}
+\subsubsection[{set\-Line\-Length}]{\setlength{\rightskip}{0pt plus 5cm}void set\-Line\-Length (
+\begin{DoxyParamCaption}
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{log_8h_ac3008464681b34c10540b78d408e4db6}
+
+
+Sets the maximum line length for log messages. 
+
+Messages longer than this amount will be broken up into multiline messages. 
+\begin{DoxyParams}{Parameters}
+{\em length} & the maximum log message line length in characters \\
+\hline
+\end{DoxyParams}
+\hypertarget{log_8h_a465a60dcbab8eedbf8c943daba80d2e3}{\index{log.\-h@{log.\-h}!set\-Logfile\-Name@{set\-Logfile\-Name}}
+\index{set\-Logfile\-Name@{set\-Logfile\-Name}!log.h@{log.\-h}}
+\subsubsection[{set\-Logfile\-Name}]{\setlength{\rightskip}{0pt plus 5cm}void set\-Logfile\-Name (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}}\label{log_8h_a465a60dcbab8eedbf8c943daba80d2e3}
+
+
+Sets the name for the log file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & a character array for log filename \\
+\hline
+\end{DoxyParams}
+\hypertarget{log_8h_a5ef1ed8ce52cd43ae7f8512d09971618}{\index{log.\-h@{log.\-h}!set\-Output\-Directory@{set\-Output\-Directory}}
+\index{set\-Output\-Directory@{set\-Output\-Directory}!log.h@{log.\-h}}
+\subsubsection[{set\-Output\-Directory}]{\setlength{\rightskip}{0pt plus 5cm}void set\-Output\-Directory (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{directory}
+\end{DoxyParamCaption}
+)}}\label{log_8h_a5ef1ed8ce52cd43ae7f8512d09971618}
+
+
+Sets the output directory for log files. 
+
+If the directory does not exist, it creates it for the user. 
+\begin{DoxyParams}{Parameters}
+{\em directory} & a character array for the log file directory \\
+\hline
+\end{DoxyParams}
+\hypertarget{log_8h_a280c959b5b23ffdf907c1727c690dd04}{\index{log.\-h@{log.\-h}!set\-Separator\-Character@{set\-Separator\-Character}}
+\index{set\-Separator\-Character@{set\-Separator\-Character}!log.h@{log.\-h}}
+\subsubsection[{set\-Separator\-Character}]{\setlength{\rightskip}{0pt plus 5cm}void set\-Separator\-Character (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}}\label{log_8h_a280c959b5b23ffdf907c1727c690dd04}
+
+
+Sets the character to be used when printing S\-E\-P\-A\-R\-A\-T\-O\-R type log messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & the character for S\-E\-P\-A\-R\-A\-T\-O\-R type log messages \\
+\hline
+\end{DoxyParams}
+\hypertarget{log_8h_aa0c94033f57bfb548aec9f8a9a7a39f3}{\index{log.\-h@{log.\-h}!set\-Title\-Character@{set\-Title\-Character}}
+\index{set\-Title\-Character@{set\-Title\-Character}!log.h@{log.\-h}}
+\subsubsection[{set\-Title\-Character}]{\setlength{\rightskip}{0pt plus 5cm}void set\-Title\-Character (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}}\label{log_8h_aa0c94033f57bfb548aec9f8a9a7a39f3}
+
+
+Sets the character to be used when printing T\-I\-T\-L\-E type log messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & the character for T\-I\-T\-L\-E type log messages \\
+\hline
+\end{DoxyParams}

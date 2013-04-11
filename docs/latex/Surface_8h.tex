@@ -1,0 +1,93 @@
+\hypertarget{Surface_8h}{\section{pinspec/src/\-Surface.h File Reference}
+\label{Surface_8h}\index{pinspec/src/\-Surface.\-h@{pinspec/src/\-Surface.\-h}}
+}
+
+
+The \hyperlink{classSurface}{Surface} class.  
+
+
+{\ttfamily \#include $<$limits$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}Neutron.\-h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classSurface}{Surface}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{classSurface}{Surface} represents a quadratic surface in the xy-\/plane. \end{DoxyCompactList}\item 
+class \hyperlink{classXPlane}{X\-Plane}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{classXPlane}{X\-Plane} is a plane perpendicular to the y-\/axis. \end{DoxyCompactList}\item 
+class \hyperlink{classYPlane}{Y\-Plane}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{classYPlane}{Y\-Plane} is a a plane perpendicular to the y-\/axis. \end{DoxyCompactList}\item 
+class \hyperlink{classCircle}{Circle}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{classCircle}{Circle} is the locus of a point equidistant from a fixed point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{Surface_8h_adadbae7d9856635bbacdc4c9f546ef81}{P\-I\-\_\-\-O\-V\-E\-R\-\_\-\-T\-W\-O}~1.\-57079633
+\item 
+\#define \hyperlink{Surface_8h_a10b8b2d0d73c09f411c0e67416fd10e4}{T\-H\-R\-E\-E\-\_\-\-P\-I\-\_\-\-O\-V\-E\-R\-\_\-\-T\-W\-O}~4.\-71238898
+\item 
+\#define \hyperlink{Surface_8h_a3b947f4b635461030ff2d87833e5049e}{T\-W\-O\-\_\-\-P\-I}~6.\-28318531
+\item 
+\#define \hyperlink{Surface_8h_a481c7dad5dc2bb9070235752daa421c6}{T\-I\-N\-Y\-\_\-\-M\-O\-V\-E}~1\-E-\/3
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{Surface_8h_a94f2bdaf8e1769faec72dbd9e7486341}{typedef enum \hyperlink{Surface_8h_abb822ff7806f2c6ef918ca198e0358c3}{boundary\-Types} \hyperlink{Surface_8h_a94f2bdaf8e1769faec72dbd9e7486341}{boundary\-Type}}\label{Surface_8h_a94f2bdaf8e1769faec72dbd9e7486341}
+
+\begin{DoxyCompactList}\small\item\em Boundary condition type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{Surface_8h_abb822ff7806f2c6ef918ca198e0358c3}{boundary\-Types} \{ \hyperlink{Surface_8h_abb822ff7806f2c6ef918ca198e0358c3a45e171c3bba46047336203d2aed3775d}{R\-E\-F\-L\-E\-C\-T\-I\-V\-E}, 
+\hyperlink{Surface_8h_abb822ff7806f2c6ef918ca198e0358c3a227181ec341c2ea61382da6028f2754f}{V\-A\-C\-U\-U\-M}, 
+\hyperlink{Surface_8h_abb822ff7806f2c6ef918ca198e0358c3a56690e5e62dbaca19fd78dcfe5d78544}{I\-N\-T\-E\-R\-F\-A\-C\-E}
+ \}
+\begin{DoxyCompactList}\small\item\em Boundary condition types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classSurface}{Surface} class. \begin{DoxyAuthor}{Author}
+William Boyd (\href{mailto:wboyd@mit.edu}{\tt wboyd@mit.\-edu}) 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+March 15, 2012 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{Surface_8h_adadbae7d9856635bbacdc4c9f546ef81}{\index{Surface.\-h@{Surface.\-h}!P\-I\-\_\-\-O\-V\-E\-R\-\_\-\-T\-W\-O@{P\-I\-\_\-\-O\-V\-E\-R\-\_\-\-T\-W\-O}}
+\index{P\-I\-\_\-\-O\-V\-E\-R\-\_\-\-T\-W\-O@{P\-I\-\_\-\-O\-V\-E\-R\-\_\-\-T\-W\-O}!Surface.h@{Surface.\-h}}
+\subsubsection[{P\-I\-\_\-\-O\-V\-E\-R\-\_\-\-T\-W\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-I\-\_\-\-O\-V\-E\-R\-\_\-\-T\-W\-O~1.\-57079633}}\label{Surface_8h_adadbae7d9856635bbacdc4c9f546ef81}
+$ \frac{\pi}{2}$ \hypertarget{Surface_8h_a10b8b2d0d73c09f411c0e67416fd10e4}{\index{Surface.\-h@{Surface.\-h}!T\-H\-R\-E\-E\-\_\-\-P\-I\-\_\-\-O\-V\-E\-R\-\_\-\-T\-W\-O@{T\-H\-R\-E\-E\-\_\-\-P\-I\-\_\-\-O\-V\-E\-R\-\_\-\-T\-W\-O}}
+\index{T\-H\-R\-E\-E\-\_\-\-P\-I\-\_\-\-O\-V\-E\-R\-\_\-\-T\-W\-O@{T\-H\-R\-E\-E\-\_\-\-P\-I\-\_\-\-O\-V\-E\-R\-\_\-\-T\-W\-O}!Surface.h@{Surface.\-h}}
+\subsubsection[{T\-H\-R\-E\-E\-\_\-\-P\-I\-\_\-\-O\-V\-E\-R\-\_\-\-T\-W\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-H\-R\-E\-E\-\_\-\-P\-I\-\_\-\-O\-V\-E\-R\-\_\-\-T\-W\-O~4.\-71238898}}\label{Surface_8h_a10b8b2d0d73c09f411c0e67416fd10e4}
+$ \frac{3\pi}{2}$ \hypertarget{Surface_8h_a481c7dad5dc2bb9070235752daa421c6}{\index{Surface.\-h@{Surface.\-h}!T\-I\-N\-Y\-\_\-\-M\-O\-V\-E@{T\-I\-N\-Y\-\_\-\-M\-O\-V\-E}}
+\index{T\-I\-N\-Y\-\_\-\-M\-O\-V\-E@{T\-I\-N\-Y\-\_\-\-M\-O\-V\-E}!Surface.h@{Surface.\-h}}
+\subsubsection[{T\-I\-N\-Y\-\_\-\-M\-O\-V\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-N\-Y\-\_\-\-M\-O\-V\-E~1\-E-\/3}}\label{Surface_8h_a481c7dad5dc2bb9070235752daa421c6}
+A small move to push a particle across a \hyperlink{classSurface}{Surface} into a new \hyperlink{classRegion}{Region} \hypertarget{Surface_8h_a3b947f4b635461030ff2d87833e5049e}{\index{Surface.\-h@{Surface.\-h}!T\-W\-O\-\_\-\-P\-I@{T\-W\-O\-\_\-\-P\-I}}
+\index{T\-W\-O\-\_\-\-P\-I@{T\-W\-O\-\_\-\-P\-I}!Surface.h@{Surface.\-h}}
+\subsubsection[{T\-W\-O\-\_\-\-P\-I}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-W\-O\-\_\-\-P\-I~6.\-28318531}}\label{Surface_8h_a3b947f4b635461030ff2d87833e5049e}
+$ 2\pi $ 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{Surface_8h_abb822ff7806f2c6ef918ca198e0358c3}{\index{Surface.\-h@{Surface.\-h}!boundary\-Types@{boundary\-Types}}
+\index{boundary\-Types@{boundary\-Types}!Surface.h@{Surface.\-h}}
+\subsubsection[{boundary\-Types}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf boundary\-Types}}}\label{Surface_8h_abb822ff7806f2c6ef918ca198e0358c3}
+
+
+Boundary condition types. 
+
+\begin{Desc}
+\item[Enumerator\-: ]\par
+\begin{description}
+\index{R\-E\-F\-L\-E\-C\-T\-I\-V\-E@{R\-E\-F\-L\-E\-C\-T\-I\-V\-E}!Surface.\-h@{Surface.\-h}}\index{Surface.\-h@{Surface.\-h}!R\-E\-F\-L\-E\-C\-T\-I\-V\-E@{R\-E\-F\-L\-E\-C\-T\-I\-V\-E}}\item[{\em 
+\hypertarget{Surface_8h_abb822ff7806f2c6ef918ca198e0358c3a45e171c3bba46047336203d2aed3775d}{R\-E\-F\-L\-E\-C\-T\-I\-V\-E}\label{Surface_8h_abb822ff7806f2c6ef918ca198e0358c3a45e171c3bba46047336203d2aed3775d}
+}]Reflective boundary conditions \index{V\-A\-C\-U\-U\-M@{V\-A\-C\-U\-U\-M}!Surface.\-h@{Surface.\-h}}\index{Surface.\-h@{Surface.\-h}!V\-A\-C\-U\-U\-M@{V\-A\-C\-U\-U\-M}}\item[{\em 
+\hypertarget{Surface_8h_abb822ff7806f2c6ef918ca198e0358c3a227181ec341c2ea61382da6028f2754f}{V\-A\-C\-U\-U\-M}\label{Surface_8h_abb822ff7806f2c6ef918ca198e0358c3a227181ec341c2ea61382da6028f2754f}
+}]Vacuum boundary conditions \index{I\-N\-T\-E\-R\-F\-A\-C\-E@{I\-N\-T\-E\-R\-F\-A\-C\-E}!Surface.\-h@{Surface.\-h}}\index{Surface.\-h@{Surface.\-h}!I\-N\-T\-E\-R\-F\-A\-C\-E@{I\-N\-T\-E\-R\-F\-A\-C\-E}}\item[{\em 
+\hypertarget{Surface_8h_abb822ff7806f2c6ef918ca198e0358c3a56690e5e62dbaca19fd78dcfe5d78544}{I\-N\-T\-E\-R\-F\-A\-C\-E}\label{Surface_8h_abb822ff7806f2c6ef918ca198e0358c3a56690e5e62dbaca19fd78dcfe5d78544}
+}]Interface boundary conditions \end{description}
+\end{Desc}
+

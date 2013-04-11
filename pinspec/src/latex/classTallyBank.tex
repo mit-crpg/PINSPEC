@@ -1,0 +1,275 @@
+\hypertarget{classTallyBank}{\section{Tally\-Bank Class Reference}
+\label{classTallyBank}\index{Tally\-Bank@{Tally\-Bank}}
+}
+
+
+The \hyperlink{classTallyBank}{Tally\-Bank} contains all tallies for a simulation.  
+
+
+
+
+{\ttfamily \#include \char`\"{}pinspec/src/\-Tally\-Bank.\-h\char`\"{}}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classTallyBank_a90ee52a423f9957f92c6727f7fe4d549}{register\-Tally} (\hyperlink{classTally}{Tally} $\ast$\hyperlink{classTallyBank_a929908afec2f18a4321b29beb52877f2}{tally})
+\begin{DoxyCompactList}\small\item\em Register a \hyperlink{classTally}{Tally} for the \hyperlink{classTally}{Tally}'s domain. \end{DoxyCompactList}\item 
+void \hyperlink{classTallyBank_a91534dfefd753e4a5d907edc97eb35d1}{register\-Tally} (\hyperlink{classTally}{Tally} $\ast$\hyperlink{classTallyBank_a929908afec2f18a4321b29beb52877f2}{tally}, \hyperlink{classGeometry}{Geometry} $\ast$geometry)
+\begin{DoxyCompactList}\small\item\em Register a \hyperlink{classTally}{Tally} for the geometry. \end{DoxyCompactList}\item 
+void \hyperlink{classTallyBank_a796fc4a2a42ea1065743d2bf51b5d69c}{register\-Tally} (\hyperlink{classTally}{Tally} $\ast$\hyperlink{classTallyBank_a929908afec2f18a4321b29beb52877f2}{tally}, \hyperlink{classRegion}{Region} $\ast$region)
+\begin{DoxyCompactList}\small\item\em Register a \hyperlink{classTally}{Tally} for a region. \end{DoxyCompactList}\item 
+void \hyperlink{classTallyBank_a66e05cdee146e7740b211c6037672226}{register\-Tally} (\hyperlink{classTally}{Tally} $\ast$\hyperlink{classTallyBank_a929908afec2f18a4321b29beb52877f2}{tally}, \hyperlink{classMaterial}{Material} $\ast$material)
+\begin{DoxyCompactList}\small\item\em Register a \hyperlink{classTally}{Tally} for a material. \end{DoxyCompactList}\item 
+void \hyperlink{classTallyBank_afa78d302d6665bdbe407f2c126f218ce}{register\-Tally} (\hyperlink{classTally}{Tally} $\ast$\hyperlink{classTallyBank_a929908afec2f18a4321b29beb52877f2}{tally}, \hyperlink{classIsotope}{Isotope} $\ast$isotope)
+\begin{DoxyCompactList}\small\item\em Register a \hyperlink{classTally}{Tally} for an isotope. \end{DoxyCompactList}\item 
+void \hyperlink{classTallyBank_aff3fd46f3afb08f88f6baf1dec94da51}{deregister\-Tally} (\hyperlink{classTally}{Tally} $\ast$\hyperlink{classTallyBank_a929908afec2f18a4321b29beb52877f2}{tally})
+\begin{DoxyCompactList}\small\item\em Un-\/registers a \hyperlink{classTally}{Tally} from the \hyperlink{classTallyBank}{Tally\-Bank}. \end{DoxyCompactList}\item 
+void \hyperlink{classTallyBank_af968ec74da43d04da68c39cb6d69c5ca}{initialize\-Batch\-Tallies} (int num\-\_\-batches)
+\begin{DoxyCompactList}\small\item\em Initializes each registered tally with some number of batches for batch-\/based statistics. \end{DoxyCompactList}\item 
+bool \hyperlink{classTallyBank_adea9d4feafcbed060abc21d24d81c990}{is\-Precision\-Triggered} ()
+\begin{DoxyCompactList}\small\item\em Checks whether a tally in the \hyperlink{classTallyBank}{Tally\-Bank} contains a precision trigger $\ast$ $\ast$. \end{DoxyCompactList}\item 
+void \hyperlink{classTallyBank_af9e829d18a91b2ffa3196bad35db4d73}{increment\-Num\-Batches} (int num\-\_\-batches)
+\begin{DoxyCompactList}\small\item\em Increment the total number of batches for batch-\/based statistics for each registered \hyperlink{classTally}{Tally} object. \end{DoxyCompactList}\item 
+\hypertarget{classTallyBank_af3de613ba9ec0fd23c4c459b6fdda7f4}{void \hyperlink{classTallyBank_af3de613ba9ec0fd23c4c459b6fdda7f4}{compute\-Batch\-Statistics} ()}\label{classTallyBank_af3de613ba9ec0fd23c4c459b6fdda7f4}
+
+\begin{DoxyCompactList}\small\item\em Compute batch statistics for all registered tallies. \end{DoxyCompactList}\item 
+void \hyperlink{classTallyBank_a26bdf7c7f02b528c552ee44f0d014af1}{compute\-Scaled\-Batch\-Statistics} (float scale\-\_\-factor)
+\begin{DoxyCompactList}\small\item\em Compute scaled batch statistics for all registered tallies. \end{DoxyCompactList}\item 
+void \hyperlink{classTallyBank_abf05a2ab1390f0703cf550b1c312f191}{output\-Batch\-Statistics} ()
+\begin{DoxyCompactList}\small\item\em Calls each of the \hyperlink{classTally}{Tally} class objects in the simulation to output their tallies and statistics to output files. \end{DoxyCompactList}\item 
+void \hyperlink{classTallyBank_a929908afec2f18a4321b29beb52877f2}{tally} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em Tallies a neutron in all appropriate \hyperlink{classTally}{Tally} objects. \end{DoxyCompactList}\item 
+\hypertarget{classTallyBank_a0e3309a94c772eedd2e0f6f4d6003f7d}{void \hyperlink{classTallyBank_a0e3309a94c772eedd2e0f6f4d6003f7d}{clear\-Tallies} ()}\label{classTallyBank_a0e3309a94c772eedd2e0f6f4d6003f7d}
+
+\begin{DoxyCompactList}\small\item\em Delete all containers (vectors and maps) of \hyperlink{classTally}{Tally} objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classTallyBank}{Tally\-Bank} $\ast$ \hyperlink{classTallyBank_aa1d0673d8b28528416e5862e30c63aa2}{Get} ()
+\begin{DoxyCompactList}\small\item\em Gets an instance pointer to this static class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classTallyBank}{Tally\-Bank} contains all tallies for a simulation. 
+
+The \hyperlink{classTallyBank}{Tally\-Bank} ensures accurate error checking for tallies used in a simulation. The \hyperlink{classTallyBank}{Tally\-Bank} stores tallies in the appropriate hash table with keys corresponding to the isotope, material, region and/or geometry in which a tally is to be applied. The \hyperlink{classTallyBank}{Tally\-Bank} can iterate through all of the approrpirate tallies for a neutron and make a tally in each one, in addition to providing other functionality to the main Monte Carlo kernel. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classTallyBank_a26bdf7c7f02b528c552ee44f0d014af1}{\index{Tally\-Bank@{Tally\-Bank}!compute\-Scaled\-Batch\-Statistics@{compute\-Scaled\-Batch\-Statistics}}
+\index{compute\-Scaled\-Batch\-Statistics@{compute\-Scaled\-Batch\-Statistics}!TallyBank@{Tally\-Bank}}
+\subsubsection[{compute\-Scaled\-Batch\-Statistics}]{\setlength{\rightskip}{0pt plus 5cm}void Tally\-Bank\-::compute\-Scaled\-Batch\-Statistics (
+\begin{DoxyParamCaption}
+\item[{float}]{scale\-\_\-factor}
+\end{DoxyParamCaption}
+)}}\label{classTallyBank_a26bdf7c7f02b528c552ee44f0d014af1}
+
+
+Compute scaled batch statistics for all registered tallies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scale\-\_\-factor} & the value to scaled all of the batch statistics by \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTallyBank_aff3fd46f3afb08f88f6baf1dec94da51}{\index{Tally\-Bank@{Tally\-Bank}!deregister\-Tally@{deregister\-Tally}}
+\index{deregister\-Tally@{deregister\-Tally}!TallyBank@{Tally\-Bank}}
+\subsubsection[{deregister\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}void Tally\-Bank\-::deregister\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Tally} $\ast$}]{tally}
+\end{DoxyParamCaption}
+)}}\label{classTallyBank_aff3fd46f3afb08f88f6baf1dec94da51}
+
+
+Un-\/registers a \hyperlink{classTally}{Tally} from the \hyperlink{classTallyBank}{Tally\-Bank}. 
+
+Deregisters a tally to be used whenever a collision occurs anywhere within the tally's domain of geometry, region, material or isotope. 
+\begin{DoxyParams}{Parameters}
+{\em tally} & the tally to deregister \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTallyBank_aa1d0673d8b28528416e5862e30c63aa2}{\index{Tally\-Bank@{Tally\-Bank}!Get@{Get}}
+\index{Get@{Get}!TallyBank@{Tally\-Bank}}
+\subsubsection[{Get}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Tally\-Bank}$\ast$ Tally\-Bank\-::\-Get (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classTallyBank_aa1d0673d8b28528416e5862e30c63aa2}
+
+
+Gets an instance pointer to this static class. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the static \hyperlink{classTallyBank}{Tally\-Bank} class object. 
+\end{DoxyReturn}
+\hypertarget{classTallyBank_af9e829d18a91b2ffa3196bad35db4d73}{\index{Tally\-Bank@{Tally\-Bank}!increment\-Num\-Batches@{increment\-Num\-Batches}}
+\index{increment\-Num\-Batches@{increment\-Num\-Batches}!TallyBank@{Tally\-Bank}}
+\subsubsection[{increment\-Num\-Batches}]{\setlength{\rightskip}{0pt plus 5cm}void Tally\-Bank\-::increment\-Num\-Batches (
+\begin{DoxyParamCaption}
+\item[{int}]{num\-\_\-batches}
+\end{DoxyParamCaption}
+)}}\label{classTallyBank_af9e829d18a91b2ffa3196bad35db4d73}
+
+
+Increment the total number of batches for batch-\/based statistics for each registered \hyperlink{classTally}{Tally} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\-\_\-batches} & the number of batches we wish to increment by \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTallyBank_af968ec74da43d04da68c39cb6d69c5ca}{\index{Tally\-Bank@{Tally\-Bank}!initialize\-Batch\-Tallies@{initialize\-Batch\-Tallies}}
+\index{initialize\-Batch\-Tallies@{initialize\-Batch\-Tallies}!TallyBank@{Tally\-Bank}}
+\subsubsection[{initialize\-Batch\-Tallies}]{\setlength{\rightskip}{0pt plus 5cm}void Tally\-Bank\-::initialize\-Batch\-Tallies (
+\begin{DoxyParamCaption}
+\item[{int}]{num\-\_\-batches}
+\end{DoxyParamCaption}
+)}}\label{classTallyBank_af968ec74da43d04da68c39cb6d69c5ca}
+
+
+Initializes each registered tally with some number of batches for batch-\/based statistics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\-\_\-batches} & the total number of batches \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTallyBank_adea9d4feafcbed060abc21d24d81c990}{\index{Tally\-Bank@{Tally\-Bank}!is\-Precision\-Triggered@{is\-Precision\-Triggered}}
+\index{is\-Precision\-Triggered@{is\-Precision\-Triggered}!TallyBank@{Tally\-Bank}}
+\subsubsection[{is\-Precision\-Triggered}]{\setlength{\rightskip}{0pt plus 5cm}bool Tally\-Bank\-::is\-Precision\-Triggered (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTallyBank_adea9d4feafcbed060abc21d24d81c990}
+
+
+Checks whether a tally in the \hyperlink{classTallyBank}{Tally\-Bank} contains a precision trigger $\ast$ $\ast$. 
+
+This method iterates over all tallies which are registered with the \hyperlink{classTallyBank}{Tally\-Bank} to see if any precision triggers remain. \begin{DoxyReturn}{Returns}
+Returns true if an active presicion trigger remains 
+\end{DoxyReturn}
+\hypertarget{classTallyBank_abf05a2ab1390f0703cf550b1c312f191}{\index{Tally\-Bank@{Tally\-Bank}!output\-Batch\-Statistics@{output\-Batch\-Statistics}}
+\index{output\-Batch\-Statistics@{output\-Batch\-Statistics}!TallyBank@{Tally\-Bank}}
+\subsubsection[{output\-Batch\-Statistics}]{\setlength{\rightskip}{0pt plus 5cm}void Tally\-Bank\-::output\-Batch\-Statistics (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTallyBank_abf05a2ab1390f0703cf550b1c312f191}
+
+
+Calls each of the \hyperlink{classTally}{Tally} class objects in the simulation to output their tallies and statistics to output files. 
+
+If a user asks to output the files to a directory which does not exist, this method will create the directory. \hypertarget{classTallyBank_a90ee52a423f9957f92c6727f7fe4d549}{\index{Tally\-Bank@{Tally\-Bank}!register\-Tally@{register\-Tally}}
+\index{register\-Tally@{register\-Tally}!TallyBank@{Tally\-Bank}}
+\subsubsection[{register\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}void Tally\-Bank\-::register\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Tally} $\ast$}]{tally}
+\end{DoxyParamCaption}
+)}}\label{classTallyBank_a90ee52a423f9957f92c6727f7fe4d549}
+
+
+Register a \hyperlink{classTally}{Tally} for the \hyperlink{classTally}{Tally}'s domain. 
+
+Registers a tally to be used for any collision within the \hyperlink{classTally}{Tally}'s domain (ie, I\-S\-O\-T\-O\-P\-E, M\-A\-T\-E\-R\-I\-A\-L, R\-E\-G\-I\-O\-N, G\-E\-O\-M\-E\-T\-R\-Y). 
+\begin{DoxyParams}{Parameters}
+{\em tally} & the tally to register \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTallyBank_a91534dfefd753e4a5d907edc97eb35d1}{\index{Tally\-Bank@{Tally\-Bank}!register\-Tally@{register\-Tally}}
+\index{register\-Tally@{register\-Tally}!TallyBank@{Tally\-Bank}}
+\subsubsection[{register\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}void Tally\-Bank\-::register\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Tally} $\ast$}]{tally, }
+\item[{{\bf Geometry} $\ast$}]{geometry}
+\end{DoxyParamCaption}
+)}}\label{classTallyBank_a91534dfefd753e4a5d907edc97eb35d1}
+
+
+Register a \hyperlink{classTally}{Tally} for the geometry. 
+
+Registers a tally to be used whenever a collision occurs anywhere within the geometry. 
+\begin{DoxyParams}{Parameters}
+{\em tally} & the tally to register \\
+\hline
+{\em geometry} & a pointer to geometry object within which we should tally \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTallyBank_a796fc4a2a42ea1065743d2bf51b5d69c}{\index{Tally\-Bank@{Tally\-Bank}!register\-Tally@{register\-Tally}}
+\index{register\-Tally@{register\-Tally}!TallyBank@{Tally\-Bank}}
+\subsubsection[{register\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}void Tally\-Bank\-::register\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Tally} $\ast$}]{tally, }
+\item[{{\bf Region} $\ast$}]{region}
+\end{DoxyParamCaption}
+)}}\label{classTallyBank_a796fc4a2a42ea1065743d2bf51b5d69c}
+
+
+Register a \hyperlink{classTally}{Tally} for a region. 
+
+Registers a tally to be used whenever a collision occurs anywhere within the user-\/specified region. 
+\begin{DoxyParams}{Parameters}
+{\em tally} & the tally to register \\
+\hline
+{\em region} & a pointer to the region within which we should tally \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTallyBank_a66e05cdee146e7740b211c6037672226}{\index{Tally\-Bank@{Tally\-Bank}!register\-Tally@{register\-Tally}}
+\index{register\-Tally@{register\-Tally}!TallyBank@{Tally\-Bank}}
+\subsubsection[{register\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}void Tally\-Bank\-::register\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Tally} $\ast$}]{tally, }
+\item[{{\bf Material} $\ast$}]{material}
+\end{DoxyParamCaption}
+)}}\label{classTallyBank_a66e05cdee146e7740b211c6037672226}
+
+
+Register a \hyperlink{classTally}{Tally} for a material. 
+
+Registers a tally to be used whenever a collision occurs anywhere within the material. 
+\begin{DoxyParams}{Parameters}
+{\em tally} & the tally to register \\
+\hline
+{\em material} & a pointer to the material object within which we should tally \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTallyBank_afa78d302d6665bdbe407f2c126f218ce}{\index{Tally\-Bank@{Tally\-Bank}!register\-Tally@{register\-Tally}}
+\index{register\-Tally@{register\-Tally}!TallyBank@{Tally\-Bank}}
+\subsubsection[{register\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}void Tally\-Bank\-::register\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Tally} $\ast$}]{tally, }
+\item[{{\bf Isotope} $\ast$}]{isotope}
+\end{DoxyParamCaption}
+)}}\label{classTallyBank_afa78d302d6665bdbe407f2c126f218ce}
+
+
+Register a \hyperlink{classTally}{Tally} for an isotope. 
+
+Registers a tally to be used whenever a collision occurs anywhere within the geometry but using only the isotope's microscopic cross-\/section data. 
+\begin{DoxyParams}{Parameters}
+{\em tally} & the tally to register \\
+\hline
+{\em isotope} & the isotope object within which we should tally \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTallyBank_a929908afec2f18a4321b29beb52877f2}{\index{Tally\-Bank@{Tally\-Bank}!tally@{tally}}
+\index{tally@{tally}!TallyBank@{Tally\-Bank}}
+\subsubsection[{tally}]{\setlength{\rightskip}{0pt plus 5cm}void Tally\-Bank\-::tally (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)}}\label{classTallyBank_a929908afec2f18a4321b29beb52877f2}
+
+
+Tallies a neutron in all appropriate \hyperlink{classTally}{Tally} objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neutron} & the neutron we wish to tally \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{TallyBank_8h}{Tally\-Bank.\-h}\item 
+Tally\-Bank.\-cpp\end{DoxyCompactItemize}

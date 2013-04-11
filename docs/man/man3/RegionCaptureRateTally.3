@@ -1,0 +1,61 @@
+.TH "RegionCaptureRateTally" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RegionCaptureRateTally \- 
+.PP
+A class for tallying the capture rate within a region\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include 'pinspec/src/Tally\&.h'\fP
+.PP
+Inherits \fBRegionTally\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRegionCaptureRateTally\fP (\fBRegion\fP *region, const char *tally_name=(char *)'')"
+.br
+.RI "\fI\fBRegionCaptureRateTally\fP constructor calls the \fBRegionTally\fP constructor and \fBTally\fP constructors and sets the tally type to CAPTURE_RATE\&. \fP"
+.ti -1c
+.RI "void \fBtally\fP (\fBneutron\fP *\fBneutron\fP)"
+.br
+.RI "\fI\fBTally\fP the region capture rate by incrementing the tally by $ \frac{\Sigma_c}{\Sigma_t} $ at the neutron's energy\&. \fP"
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+A class for tallying the capture rate within a region\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "RegionCaptureRateTally::RegionCaptureRateTally (\fBRegion\fP *region, const char *tally_name = \fC(char*)''\fP)\fC [inline]\fP"
+
+.PP
+\fBRegionCaptureRateTally\fP constructor calls the \fBRegionTally\fP constructor and \fBTally\fP constructors and sets the tally type to CAPTURE_RATE\&. \fBParameters:\fP
+.RS 4
+\fIregion\fP a pointer to the region within which to tally 
+.br
+\fItally_name\fP a character array for the tally name (optional) 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void RegionCaptureRateTally::tally (\fBneutron\fP *neutron)\fC [virtual]\fP"
+
+.PP
+\fBTally\fP the region capture rate by incrementing the tally by $ \frac{\Sigma_c}{\Sigma_t} $ at the neutron's energy\&. \fBParameters:\fP
+.RS 4
+\fIneutron\fP the neutron of interest 
+.RE
+.PP
+
+.PP
+Implements \fBRegionTally\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

@@ -1,0 +1,116 @@
+.TH "pinspec/src/Surface.h" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pinspec/src/Surface.h \- 
+.PP
+The \fBSurface\fP class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <limits>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include 'Neutron\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBSurface\fP"
+.br
+.RI "\fIThe \fBSurface\fP represents a quadratic surface in the xy-plane\&. \fP"
+.ti -1c
+.RI "class \fBXPlane\fP"
+.br
+.RI "\fIThe \fBXPlane\fP is a plane perpendicular to the y-axis\&. \fP"
+.ti -1c
+.RI "class \fBYPlane\fP"
+.br
+.RI "\fIThe \fBYPlane\fP is a a plane perpendicular to the y-axis\&. \fP"
+.ti -1c
+.RI "class \fBCircle\fP"
+.br
+.RI "\fIThe \fBCircle\fP is the locus of a point equidistant from a fixed point\&. \fP"
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBPI_OVER_TWO\fP   1\&.57079633"
+.br
+.ti -1c
+.RI "#define \fBTHREE_PI_OVER_TWO\fP   4\&.71238898"
+.br
+.ti -1c
+.RI "#define \fBTWO_PI\fP   6\&.28318531"
+.br
+.ti -1c
+.RI "#define \fBTINY_MOVE\fP   1E-3"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef enum \fBboundaryTypes\fP \fBboundaryType\fP"
+.br
+.RI "\fIBoundary condition type\&. \fP"
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBboundaryTypes\fP { \fBREFLECTIVE\fP, \fBVACUUM\fP, \fBINTERFACE\fP }"
+.br
+.RI "\fIBoundary condition types\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBSurface\fP class\&. 
+
+\fBAuthor:\fP
+.RS 4
+William Boyd (wboyd@mit.edu) 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+March 15, 2012 
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define PI_OVER_TWO   1\&.57079633"
+$ \frac{\pi}{2}$ 
+.SS "#define THREE_PI_OVER_TWO   4\&.71238898"
+$ \frac{3\pi}{2}$ 
+.SS "#define TINY_MOVE   1E-3"
+A small move to push a particle across a \fBSurface\fP into a new \fBRegion\fP 
+.SS "#define TWO_PI   6\&.28318531"
+$ 2\pi $ 
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBboundaryTypes\fP"
+
+.PP
+Boundary condition types\&. 
+.PP
+\fBEnumerator: \fP
+.in +1c
+.TP
+\fB\fIREFLECTIVE \fP\fP
+Reflective boundary conditions 
+.TP
+\fB\fIVACUUM \fP\fP
+Vacuum boundary conditions 
+.TP
+\fB\fIINTERFACE \fP\fP
+Interface boundary conditions 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

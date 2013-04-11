@@ -1,0 +1,80 @@
+\hypertarget{classGeometryTransportRateTally}{\section{Geometry\-Transport\-Rate\-Tally Class Reference}
+\label{classGeometryTransportRateTally}\index{Geometry\-Transport\-Rate\-Tally@{Geometry\-Transport\-Rate\-Tally}}
+}
+
+
+A class for tallying the transport rate within the geometry.  
+
+
+
+
+{\ttfamily \#include \char`\"{}pinspec/src/\-Tally.\-h\char`\"{}}
+
+Inheritance diagram for Geometry\-Transport\-Rate\-Tally\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classGeometryTransportRateTally}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGeometryTransportRateTally_a04cb0a51c0a30bfb90966ea9f35c687c}{Geometry\-Transport\-Rate\-Tally} (\hyperlink{classGeometry}{Geometry} $\ast$geometry, const char $\ast$tally\-\_\-name=(char $\ast$)\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classGeometryTransportRateTally}{Geometry\-Transport\-Rate\-Tally} constructor calls the \hyperlink{classGeometryTally}{Geometry\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to T\-R\-A\-N\-S\-P\-O\-R\-T\-\_\-\-R\-A\-T\-E. \end{DoxyCompactList}\item 
+void \hyperlink{classGeometryTransportRateTally_ab634a607b837e7e4a8637af0d7ab5d74}{tally} (\hyperlink{structneutron}{neutron} $\ast$\hyperlink{structneutron}{neutron})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classTally}{Tally} the geometry transport rate by incrementing the tally by $ \frac{\Sigma_tr}{\Sigma_t} $ at the neutron's energy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A class for tallying the transport rate within the geometry. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGeometryTransportRateTally_a04cb0a51c0a30bfb90966ea9f35c687c}{\index{Geometry\-Transport\-Rate\-Tally@{Geometry\-Transport\-Rate\-Tally}!Geometry\-Transport\-Rate\-Tally@{Geometry\-Transport\-Rate\-Tally}}
+\index{Geometry\-Transport\-Rate\-Tally@{Geometry\-Transport\-Rate\-Tally}!GeometryTransportRateTally@{Geometry\-Transport\-Rate\-Tally}}
+\subsubsection[{Geometry\-Transport\-Rate\-Tally}]{\setlength{\rightskip}{0pt plus 5cm}Geometry\-Transport\-Rate\-Tally\-::\-Geometry\-Transport\-Rate\-Tally (
+\begin{DoxyParamCaption}
+\item[{{\bf Geometry} $\ast$}]{geometry, }
+\item[{const char $\ast$}]{tally\-\_\-name = {\ttfamily (char$\ast$)\char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classGeometryTransportRateTally_a04cb0a51c0a30bfb90966ea9f35c687c}
+
+
+\hyperlink{classGeometryTransportRateTally}{Geometry\-Transport\-Rate\-Tally} constructor calls the \hyperlink{classGeometryTally}{Geometry\-Tally} constructor and \hyperlink{classTally}{Tally} constructors and sets the tally type to T\-R\-A\-N\-S\-P\-O\-R\-T\-\_\-\-R\-A\-T\-E. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em geometry} & a pointer to the geometry within which to tally \\
+\hline
+{\em tally\-\_\-name} & a character array for the tally name (optional) \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGeometryTransportRateTally_ab634a607b837e7e4a8637af0d7ab5d74}{\index{Geometry\-Transport\-Rate\-Tally@{Geometry\-Transport\-Rate\-Tally}!tally@{tally}}
+\index{tally@{tally}!GeometryTransportRateTally@{Geometry\-Transport\-Rate\-Tally}}
+\subsubsection[{tally}]{\setlength{\rightskip}{0pt plus 5cm}void Geometry\-Transport\-Rate\-Tally\-::tally (
+\begin{DoxyParamCaption}
+\item[{{\bf neutron} $\ast$}]{neutron}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classGeometryTransportRateTally_ab634a607b837e7e4a8637af0d7ab5d74}
+
+
+\hyperlink{classTally}{Tally} the geometry transport rate by incrementing the tally by $ \frac{\Sigma_tr}{\Sigma_t} $ at the neutron's energy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em neutron} & the neutron of interest \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classGeometryTally_a3f79423e0c1e1eb87109c6937bdfa5c8}{Geometry\-Tally}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+pinspec/src/\hyperlink{Tally_8h}{Tally.\-h}\item 
+pinspec/src/Tally.\-cpp\end{DoxyCompactItemize}

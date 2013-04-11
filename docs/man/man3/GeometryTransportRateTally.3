@@ -1,0 +1,61 @@
+.TH "GeometryTransportRateTally" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GeometryTransportRateTally \- 
+.PP
+A class for tallying the transport rate within the geometry\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include 'pinspec/src/Tally\&.h'\fP
+.PP
+Inherits \fBGeometryTally\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBGeometryTransportRateTally\fP (\fBGeometry\fP *geometry, const char *tally_name=(char *)'')"
+.br
+.RI "\fI\fBGeometryTransportRateTally\fP constructor calls the \fBGeometryTally\fP constructor and \fBTally\fP constructors and sets the tally type to TRANSPORT_RATE\&. \fP"
+.ti -1c
+.RI "void \fBtally\fP (\fBneutron\fP *\fBneutron\fP)"
+.br
+.RI "\fI\fBTally\fP the geometry transport rate by incrementing the tally by $ \frac{\Sigma_tr}{\Sigma_t} $ at the neutron's energy\&. \fP"
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+A class for tallying the transport rate within the geometry\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "GeometryTransportRateTally::GeometryTransportRateTally (\fBGeometry\fP *geometry, const char *tally_name = \fC(char*)''\fP)\fC [inline]\fP"
+
+.PP
+\fBGeometryTransportRateTally\fP constructor calls the \fBGeometryTally\fP constructor and \fBTally\fP constructors and sets the tally type to TRANSPORT_RATE\&. \fBParameters:\fP
+.RS 4
+\fIgeometry\fP a pointer to the geometry within which to tally 
+.br
+\fItally_name\fP a character array for the tally name (optional) 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void GeometryTransportRateTally::tally (\fBneutron\fP *neutron)\fC [virtual]\fP"
+
+.PP
+\fBTally\fP the geometry transport rate by incrementing the tally by $ \frac{\Sigma_tr}{\Sigma_t} $ at the neutron's energy\&. \fBParameters:\fP
+.RS 4
+\fIneutron\fP the neutron of interest 
+.RE
+.PP
+
+.PP
+Implements \fBGeometryTally\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

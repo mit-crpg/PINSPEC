@@ -1,0 +1,148 @@
+.TH "Timer" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Timer \- 
+.PP
+The \fBTimer\fP represents a simulation stopwatch\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include 'pinspec/src/Timer\&.h'\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTimer\fP ()"
+.br
+.RI "\fI\fBTimer\fP class constructor\&. \fP"
+.ti -1c
+.RI "virtual \fB~Timer\fP ()"
+.br
+.RI "\fIDefault \fBTimer\fP destructor\&. \fP"
+.ti -1c
+.RI "void \fBstart\fP ()"
+.br
+.RI "\fIStarts the \fBTimer\fP in a similar fashion to starting a stopwatch\&. \fP"
+.ti -1c
+.RI "void \fBstop\fP ()"
+.br
+.RI "\fIStops the timer in a similar fashion to stopping a stopwatch\&. \fP"
+.ti -1c
+.RI "void \fBrestart\fP ()"
+.br
+.RI "\fIRestarts the timer\&. \fP"
+.ti -1c
+.RI "void \fBreset\fP ()"
+.br
+.RI "\fIResets the timer in a similar fashion to resetting a stopwatch\&. \fP"
+.ti -1c
+.RI "void \fBrecordSplit\fP (const char *msg)"
+.br
+.RI "\fIRecords a message corresponding to a given time recorded by the timer\&. \fP"
+.ti -1c
+.RI "double \fBgetTime\fP ()"
+.br
+.RI "\fIReturns the amount of time elapsed from start to stop of the timer\&. \fP"
+.ti -1c
+.RI "double \fBdiff\fP (timespec \fBstart\fP, timespec end)"
+.br
+.RI "\fIHelper function which computes the time between the values of two timespec structs\&. \fP"
+.ti -1c
+.RI "void \fBprintSplits\fP ()"
+.br
+.RI "\fIPrints the \fBTimer\fP's splits to the console\&. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "timespec \fB_start_time\fP"
+.br
+.ti -1c
+.RI "timespec \fB_end_time\fP"
+.br
+.ti -1c
+.RI "double \fB_elapsed_time\fP"
+.br
+.ti -1c
+.RI "bool \fB_running\fP"
+.br
+.ti -1c
+.RI "std::vector< std::pair< double, 
+.br
+const char * > > \fB_timer_splits\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBTimer\fP represents a simulation stopwatch\&. 
+
+The timer class is for profiling code\&. It outputs running time in seconds but has resolution of microseconds on OSX and nanoseconds on Linux machines\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Timer::Timer ()"
+
+.PP
+\fBTimer\fP class constructor\&. Sets the default elapsed time to 0\&.0 and the stopwatch running attribute to false\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "double Timer::diff (timespecstart, timespecend)"
+
+.PP
+Helper function which computes the time between the values of two timespec structs\&. \fBParameters:\fP
+.RS 4
+\fIstart\fP the start time timespec struct 
+.br
+\fIend\fP the end time timespec struct 
+.RE
+.PP
+
+.SS "double Timer::getTime ()"
+
+.PP
+Returns the amount of time elapsed from start to stop of the timer\&. If the timer is currently runnning, returns the time from the timer start to the present time\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+the elapsed time 
+.RE
+.PP
+
+.SS "void Timer::printSplits ()"
+
+.PP
+Prints the \fBTimer\fP's splits to the console\&. This method will loop through all of the \fBTimer\fP's splits and print a formatted message string (80 characters in length) to the console with the message and the time corresponding to that message 
+.SS "void Timer::recordSplit (const char *msg)"
+
+.PP
+Records a message corresponding to a given time recorded by the timer\&. When this method is called it assumes that the timer has been stopped and has the current time for the process corresponding to the message\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImsg\fP a msg corresponding to this timer split 
+.RE
+.PP
+
+.SS "void Timer::restart ()"
+
+.PP
+Restarts the timer\&. The elapsed time will accumulate along with the previous time(s) the timer was running\&. If the timer was already running, this function does nothing\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "double Timer::_elapsed_time\fC [protected]\fP"
+The elapsed time between start and stop for a split 
+.SS "timespec Timer::_end_time\fC [protected]\fP"
+The end time of a timer split 
+.SS "bool Timer::_running\fC [protected]\fP"
+Boolean representing whether or not the time is presently running 
+.SS "timespec Timer::_start_time\fC [protected]\fP"
+The start time of a timer split 
+.SS "std::vector< std::pair<double, const char*> > Timer::_timer_splits\fC [protected]\fP"
+A container of times corresponding to messages for each split 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

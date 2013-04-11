@@ -1,0 +1,282 @@
+.TH "pinspec/src/integrate.h" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pinspec/src/integrate.h \- 
+.PP
+Utility functions for numerical integration of 1D functions\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef enum \fBintegrationSchemes\fP \fBintegrationScheme\fP"
+.br
+.RI "\fINumerical integration methods\&. \fP"
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBintegrationSchemes\fP { \fBRIEMANN_LEFT\fP, \fBRIEMANN_RIGHT\fP, \fBRIEMANN_CENTER\fP, \fBTRAPEZOIDAL\fP, \fBSIMPSONS\fP, \fBSIMPSONS38\fP, \fBBOOLES\fP }"
+.br
+.RI "\fINumerical integration methods\&. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename T , typename U > void \fBcumulativeIntegral\fP (T *x, T *y, U *cdf, int length, \fBintegrationScheme\fP scheme)"
+.br
+.RI "\fIPerforms a cumulative numerical integral over arrays of x and y values using the specificed integration method\&. \fP"
+.ti -1c
+.RI "template<typename T > double \fBcomputeRiemannLeft\fP (T *x, T *y, int length)"
+.br
+.RI "\fIPerforms a numerical integral using the left-centered Riemann numerical integration method\&. \fP"
+.ti -1c
+.RI "template<typename T > double \fBcomputeRiemannRight\fP (T *x, T *y, int length)"
+.br
+.RI "\fIPerforms a numerical integral using the right-centered Riemann numerical integration method\&. \fP"
+.ti -1c
+.RI "template<typename T > double \fBcomputeRiemannCenter\fP (T *x, T *y, int length)"
+.br
+.RI "\fIPerforms a numerical integral using the midpoint-centered Riemann numerical integration method\&. \fP"
+.ti -1c
+.RI "template<typename T > double \fBcomputeTrapezoidal\fP (T *x, T *y, int length)"
+.br
+.RI "\fIPerforms a numerical integral using the trapezoidal numerical integration method\&. \fP"
+.ti -1c
+.RI "template<typename T > double \fBcomputeSimpsons\fP (T *x, T *y, int length)"
+.br
+.RI "\fIPerforms a numerical integral using the Simpson's numerical integration method\&. \fP"
+.ti -1c
+.RI "template<typename T > double \fBcomputeSimpsons38\fP (T *x, T *y, int length)"
+.br
+.RI "\fIPerforms a numerical integral using the Simpson's 3/8ths numerical integration method\&. \fP"
+.ti -1c
+.RI "template<typename T > double \fBcomputeBooles\fP (T *x, T *y, int length)"
+.br
+.RI "\fIPerforms a numerical integral using the Boole's numerical integration method\&. \fP"
+.ti -1c
+.RI "template<typename T > double \fBintegrate\fP (T *x, T *y, int length, \fBintegrationScheme\fP scheme)"
+.br
+.RI "\fIPerforms a 1D numerical integral over arrays of x and y values using the specified integration scheme\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Utility functions for numerical integration of 1D functions\&. 
+
+This module provides a set of templated integration methods for both normal numerical integration and cumulative numerical integration\&. It implements the Riemann integration method with left-aligned, right-aligned and midpoint methods, the trapezoidal integration, and higher-order Simpsons, Simpson's 3/8ths and Boole's methods\&. 
+.PP
+\fBAuthor:\fP
+.RS 4
+William Boyd (wboyd@mit.edu) 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+February 9, 2012 
+.RE
+.PP
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBintegrationSchemes\fP"
+
+.PP
+Numerical integration methods\&. 
+.PP
+\fBEnumerator: \fP
+.in +1c
+.TP
+\fB\fIRIEMANN_LEFT \fP\fP
+Left-aligned Riemann integration method 
+.TP
+\fB\fIRIEMANN_RIGHT \fP\fP
+Right-aligned Riemann integration method 
+.TP
+\fB\fIRIEMANN_CENTER \fP\fP
+Midpoint Riemann integration method 
+.TP
+\fB\fITRAPEZOIDAL \fP\fP
+Trapezoidal integration method 
+.TP
+\fB\fISIMPSONS \fP\fP
+Simpson's integration method 
+.TP
+\fB\fISIMPSONS38 \fP\fP
+Simpson's 3/8ths integration method 
+.TP
+\fB\fIBOOLES \fP\fP
+Boole's integration method 
+.SH "Function Documentation"
+.PP 
+.SS "template<typename T > double computeBooles (T *x, T *y, intlength)"
+
+.PP
+Performs a numerical integral using the Boole's numerical integration method\&. \fBParameters:\fP
+.RS 4
+\fIx\fP the the x values 
+.br
+\fIy\fP the y values 
+.br
+\fIlength\fP the length of the x and y arrays 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the integral value 
+.RE
+.PP
+
+.SS "template<typename T > double computeRiemannCenter (T *x, T *y, intlength)"
+
+.PP
+Performs a numerical integral using the midpoint-centered Riemann numerical integration method\&. \fBParameters:\fP
+.RS 4
+\fIx\fP the the x values 
+.br
+\fIy\fP the y values 
+.br
+\fIlength\fP the length of the x and y arrays 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the integral value 
+.RE
+.PP
+
+.SS "template<typename T > double computeRiemannLeft (T *x, T *y, intlength)"
+
+.PP
+Performs a numerical integral using the left-centered Riemann numerical integration method\&. \fBParameters:\fP
+.RS 4
+\fIx\fP the the x values 
+.br
+\fIy\fP the y values 
+.br
+\fIlength\fP the length of the x and y arrays 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the integral value 
+.RE
+.PP
+
+.SS "template<typename T > double computeRiemannRight (T *x, T *y, intlength)"
+
+.PP
+Performs a numerical integral using the right-centered Riemann numerical integration method\&. \fBParameters:\fP
+.RS 4
+\fIx\fP the the x values 
+.br
+\fIy\fP the y values 
+.br
+\fIlength\fP the length of the x and y arrays 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the integral value 
+.RE
+.PP
+
+.SS "template<typename T > double computeSimpsons (T *x, T *y, intlength)"
+
+.PP
+Performs a numerical integral using the Simpson's numerical integration method\&. \fBParameters:\fP
+.RS 4
+\fIx\fP the the x values 
+.br
+\fIy\fP the y values 
+.br
+\fIlength\fP the length of the x and y arrays 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the integral value 
+.RE
+.PP
+
+.SS "template<typename T > double computeSimpsons38 (T *x, T *y, intlength)"
+
+.PP
+Performs a numerical integral using the Simpson's 3/8ths numerical integration method\&. \fBParameters:\fP
+.RS 4
+\fIx\fP the the x values 
+.br
+\fIy\fP the y values 
+.br
+\fIlength\fP the length of the x and y arrays 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the integral value 
+.RE
+.PP
+
+.SS "template<typename T > double computeTrapezoidal (T *x, T *y, intlength)"
+
+.PP
+Performs a numerical integral using the trapezoidal numerical integration method\&. \fBParameters:\fP
+.RS 4
+\fIx\fP the the x values 
+.br
+\fIy\fP the y values 
+.br
+\fIlength\fP the length of the x and y arrays 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the integral value 
+.RE
+.PP
+
+.SS "template<typename T , typename U > void cumulativeIntegral (T *x, T *y, U *cdf, intlength, \fBintegrationScheme\fPscheme)"
+
+.PP
+Performs a cumulative numerical integral over arrays of x and y values using the specificed integration method\&. \fBParameters:\fP
+.RS 4
+\fIx\fP the the x values 
+.br
+\fIy\fP the y values 
+.br
+\fIcdf\fP the array of cdf values at each value of x and y 
+.br
+\fIlength\fP the length of the x and y arrays 
+.br
+\fIscheme\fP the integration scheme 
+.RE
+.PP
+
+.SS "template<typename T > double integrate (T *x, T *y, intlength, \fBintegrationScheme\fPscheme)"
+
+.PP
+Performs a 1D numerical integral over arrays of x and y values using the specified integration scheme\&. \fBParameters:\fP
+.RS 4
+\fIx\fP the the x values 
+.br
+\fIy\fP the y values 
+.br
+\fIlength\fP the length of the x and y arrays 
+.br
+\fIscheme\fP integration scheme 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the integral value 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

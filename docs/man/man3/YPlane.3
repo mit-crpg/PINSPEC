@@ -1,0 +1,119 @@
+.TH "YPlane" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+YPlane \- 
+.PP
+The \fBYPlane\fP is a a plane perpendicular to the y-axis\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include 'pinspec/src/Surface\&.h'\fP
+.PP
+Inherits \fBSurface\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBYPlane\fP ()"
+.br
+.RI "\fIThe \fBYPlane\fP constructor\&. \fP"
+.ti -1c
+.RI "virtual \fB~YPlane\fP ()"
+.br
+.RI "\fI\fBYPlane\fP destructor\&. \fP"
+.ti -1c
+.RI "float \fBgetY\fP ()"
+.br
+.RI "\fIReturns the y-coordinate of the plane's intersection point with the y-axis\&. \fP"
+.ti -1c
+.RI "void \fBsetY\fP (float y)"
+.br
+.RI "\fISets the x-coordinate of the plane's intersection point with the y-axis\&. \fP"
+.ti -1c
+.RI "float \fBcomputeNearestDistance\fP (\fBneutron\fP *\fBneutron\fP)"
+.br
+.RI "\fIComputes the nearest distance to the \fBYPlane\fP along a neutron's trajectory\&. \fP"
+.ti -1c
+.RI "bool \fBonSurface\fP (\fBneutron\fP *\fBneutron\fP)"
+.br
+.RI "\fIChecks whether a neutron is on the \fBYPlane\fP\&. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "float \fB_y\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+The \fBYPlane\fP is a a plane perpendicular to the y-axis\&. 
+
+The \fBYPlane\fP represents planes perpendicular to the y-axis using the quadratic surface formulation\&. The \fBYPlane\fP is a \fBSurface\fP subclass\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "YPlane::YPlane ()"
+
+.PP
+The \fBYPlane\fP constructor\&. Assigns a default value of y=0 for the y-axis intersection point\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "float YPlane::computeNearestDistance (\fBneutron\fP *neutron)\fC [virtual]\fP"
+
+.PP
+Computes the nearest distance to the \fBYPlane\fP along a neutron's trajectory\&. \fBParameters:\fP
+.RS 4
+\fIneutron\fP a pointer to a Neutron struct 
+.RE
+.PP
+
+.PP
+Implements \fBSurface\fP\&.
+.SS "float YPlane::getY ()"
+
+.PP
+Returns the y-coordinate of the plane's intersection point with the y-axis\&. \fBReturns:\fP
+.RS 4
+the y-coordinate of the intersection point 
+.RE
+.PP
+
+.SS "bool YPlane::onSurface (\fBneutron\fP *neutron)\fC [virtual]\fP"
+
+.PP
+Checks whether a neutron is on the \fBYPlane\fP\&. The threshold used to compute whether or not a neutron is on the on the \fBYPlane\fP is 1E-6 for the difference between the y-coordinate of the neutron's position and the location of the \fBYPlane\fP 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIneutron\fP the neutron of interest to check 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true if on the \fBYPlane\fP, otherwise false 
+.RE
+.PP
+
+.PP
+Implements \fBSurface\fP\&.
+.SS "void YPlane::setY (floaty)"
+
+.PP
+Sets the x-coordinate of the plane's intersection point with the y-axis\&. \fBParameters:\fP
+.RS 4
+\fIy\fP the y-coordinate of the intersectiont point 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "float YPlane::_y\fC [private]\fP"
+The location of the plane's intersection with the y-axis 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for PINSPEC from the source code\&.

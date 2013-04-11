@@ -1,0 +1,170 @@
+\hypertarget{classTimer}{\section{Timer Class Reference}
+\label{classTimer}\index{Timer@{Timer}}
+}
+
+
+The \hyperlink{classTimer}{Timer} represents a simulation stopwatch.  
+
+
+
+
+{\ttfamily \#include \char`\"{}pinspec/src/\-Timer.\-h\char`\"{}}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTimer_a5f16e8da27d2a5a5242dead46de05d97}{Timer} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classTimer}{Timer} class constructor. \end{DoxyCompactList}\item 
+\hypertarget{classTimer_a14fa469c4c295c5fa6e66a4ad1092146}{virtual \hyperlink{classTimer_a14fa469c4c295c5fa6e66a4ad1092146}{$\sim$\-Timer} ()}\label{classTimer_a14fa469c4c295c5fa6e66a4ad1092146}
+
+\begin{DoxyCompactList}\small\item\em Default \hyperlink{classTimer}{Timer} destructor. \end{DoxyCompactList}\item 
+\hypertarget{classTimer_a3a8b5272198d029779dc9302a54305a8}{void \hyperlink{classTimer_a3a8b5272198d029779dc9302a54305a8}{start} ()}\label{classTimer_a3a8b5272198d029779dc9302a54305a8}
+
+\begin{DoxyCompactList}\small\item\em Starts the \hyperlink{classTimer}{Timer} in a similar fashion to starting a stopwatch. \end{DoxyCompactList}\item 
+\hypertarget{classTimer_a63f0eb44b27402196590a03781515dba}{void \hyperlink{classTimer_a63f0eb44b27402196590a03781515dba}{stop} ()}\label{classTimer_a63f0eb44b27402196590a03781515dba}
+
+\begin{DoxyCompactList}\small\item\em Stops the timer in a similar fashion to stopping a stopwatch. \end{DoxyCompactList}\item 
+void \hyperlink{classTimer_aa3f7871196bb56202af2bc982bfbfff6}{restart} ()
+\begin{DoxyCompactList}\small\item\em Restarts the timer. \end{DoxyCompactList}\item 
+\hypertarget{classTimer_a9020542d73357a4eef512eefaf57524b}{void \hyperlink{classTimer_a9020542d73357a4eef512eefaf57524b}{reset} ()}\label{classTimer_a9020542d73357a4eef512eefaf57524b}
+
+\begin{DoxyCompactList}\small\item\em Resets the timer in a similar fashion to resetting a stopwatch. \end{DoxyCompactList}\item 
+void \hyperlink{classTimer_a613c775ca0b0b08f7cf1a6c165a6b6f7}{record\-Split} (const char $\ast$msg)
+\begin{DoxyCompactList}\small\item\em Records a message corresponding to a given time recorded by the timer. \end{DoxyCompactList}\item 
+double \hyperlink{classTimer_a490604efc23a4ff9bef8d1f9f418ecb2}{get\-Time} ()
+\begin{DoxyCompactList}\small\item\em Returns the amount of time elapsed from start to stop of the timer. \end{DoxyCompactList}\item 
+double \hyperlink{classTimer_a9130267572cd7f17aef6c37d1c55257f}{diff} (timespec \hyperlink{classTimer_a3a8b5272198d029779dc9302a54305a8}{start}, timespec end)
+\begin{DoxyCompactList}\small\item\em Helper function which computes the time between the values of two timespec structs. \end{DoxyCompactList}\item 
+void \hyperlink{classTimer_a38dd3a8f7acae35cc31490173c8c27f0}{print\-Splits} ()
+\begin{DoxyCompactList}\small\item\em Prints the \hyperlink{classTimer}{Timer}'s splits to the console. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+timespec \hyperlink{classTimer_a6f90c97bbab6f9f68249027e5705e7f0}{\-\_\-start\-\_\-time}
+\item 
+timespec \hyperlink{classTimer_a8263ea8a07c2e7b18fcc2a14ba6975e6}{\-\_\-end\-\_\-time}
+\item 
+double \hyperlink{classTimer_ab03f4401286530b40bdc8ec65e98b5cf}{\-\_\-elapsed\-\_\-time}
+\item 
+bool \hyperlink{classTimer_a0e92367e8b9f4fe50e7395d01db259af}{\-\_\-running}
+\item 
+std\-::vector$<$ std\-::pair$<$ double, \\*
+const char $\ast$ $>$ $>$ \hyperlink{classTimer_a92ba53954cd01cbd9afe2e397e529d35}{\-\_\-timer\-\_\-splits}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classTimer}{Timer} represents a simulation stopwatch. 
+
+The timer class is for profiling code. It outputs running time in seconds but has resolution of microseconds on O\-S\-X and nanoseconds on Linux machines. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classTimer_a5f16e8da27d2a5a5242dead46de05d97}{\index{Timer@{Timer}!Timer@{Timer}}
+\index{Timer@{Timer}!Timer@{Timer}}
+\subsubsection[{Timer}]{\setlength{\rightskip}{0pt plus 5cm}Timer\-::\-Timer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTimer_a5f16e8da27d2a5a5242dead46de05d97}
+
+
+\hyperlink{classTimer}{Timer} class constructor. 
+
+Sets the default elapsed time to 0.\-0 and the stopwatch running attribute to false. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classTimer_a9130267572cd7f17aef6c37d1c55257f}{\index{Timer@{Timer}!diff@{diff}}
+\index{diff@{diff}!Timer@{Timer}}
+\subsubsection[{diff}]{\setlength{\rightskip}{0pt plus 5cm}double Timer\-::diff (
+\begin{DoxyParamCaption}
+\item[{timespec}]{start, }
+\item[{timespec}]{end}
+\end{DoxyParamCaption}
+)}}\label{classTimer_a9130267572cd7f17aef6c37d1c55257f}
+
+
+Helper function which computes the time between the values of two timespec structs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & the start time timespec struct \\
+\hline
+{\em end} & the end time timespec struct \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTimer_a490604efc23a4ff9bef8d1f9f418ecb2}{\index{Timer@{Timer}!get\-Time@{get\-Time}}
+\index{get\-Time@{get\-Time}!Timer@{Timer}}
+\subsubsection[{get\-Time}]{\setlength{\rightskip}{0pt plus 5cm}double Timer\-::get\-Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTimer_a490604efc23a4ff9bef8d1f9f418ecb2}
+
+
+Returns the amount of time elapsed from start to stop of the timer. 
+
+If the timer is currently runnning, returns the time from the timer start to the present time. \begin{DoxyReturn}{Returns}
+the elapsed time 
+\end{DoxyReturn}
+\hypertarget{classTimer_a38dd3a8f7acae35cc31490173c8c27f0}{\index{Timer@{Timer}!print\-Splits@{print\-Splits}}
+\index{print\-Splits@{print\-Splits}!Timer@{Timer}}
+\subsubsection[{print\-Splits}]{\setlength{\rightskip}{0pt plus 5cm}void Timer\-::print\-Splits (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTimer_a38dd3a8f7acae35cc31490173c8c27f0}
+
+
+Prints the \hyperlink{classTimer}{Timer}'s splits to the console. 
+
+This method will loop through all of the \hyperlink{classTimer}{Timer}'s splits and print a formatted message string (80 characters in length) to the console with the message and the time corresponding to that message \hypertarget{classTimer_a613c775ca0b0b08f7cf1a6c165a6b6f7}{\index{Timer@{Timer}!record\-Split@{record\-Split}}
+\index{record\-Split@{record\-Split}!Timer@{Timer}}
+\subsubsection[{record\-Split}]{\setlength{\rightskip}{0pt plus 5cm}void Timer\-::record\-Split (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classTimer_a613c775ca0b0b08f7cf1a6c165a6b6f7}
+
+
+Records a message corresponding to a given time recorded by the timer. 
+
+When this method is called it assumes that the timer has been stopped and has the current time for the process corresponding to the message. 
+\begin{DoxyParams}{Parameters}
+{\em msg} & a msg corresponding to this timer split \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTimer_aa3f7871196bb56202af2bc982bfbfff6}{\index{Timer@{Timer}!restart@{restart}}
+\index{restart@{restart}!Timer@{Timer}}
+\subsubsection[{restart}]{\setlength{\rightskip}{0pt plus 5cm}void Timer\-::restart (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTimer_aa3f7871196bb56202af2bc982bfbfff6}
+
+
+Restarts the timer. 
+
+The elapsed time will accumulate along with the previous time(s) the timer was running. If the timer was already running, this function does nothing. 
+
+\subsection{Member Data Documentation}
+\hypertarget{classTimer_ab03f4401286530b40bdc8ec65e98b5cf}{\index{Timer@{Timer}!\-\_\-elapsed\-\_\-time@{\-\_\-elapsed\-\_\-time}}
+\index{\-\_\-elapsed\-\_\-time@{\-\_\-elapsed\-\_\-time}!Timer@{Timer}}
+\subsubsection[{\-\_\-elapsed\-\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}double Timer\-::\-\_\-elapsed\-\_\-time\hspace{0.3cm}{\ttfamily [protected]}}}\label{classTimer_ab03f4401286530b40bdc8ec65e98b5cf}
+The elapsed time between start and stop for a split \hypertarget{classTimer_a8263ea8a07c2e7b18fcc2a14ba6975e6}{\index{Timer@{Timer}!\-\_\-end\-\_\-time@{\-\_\-end\-\_\-time}}
+\index{\-\_\-end\-\_\-time@{\-\_\-end\-\_\-time}!Timer@{Timer}}
+\subsubsection[{\-\_\-end\-\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}timespec Timer\-::\-\_\-end\-\_\-time\hspace{0.3cm}{\ttfamily [protected]}}}\label{classTimer_a8263ea8a07c2e7b18fcc2a14ba6975e6}
+The end time of a timer split \hypertarget{classTimer_a0e92367e8b9f4fe50e7395d01db259af}{\index{Timer@{Timer}!\-\_\-running@{\-\_\-running}}
+\index{\-\_\-running@{\-\_\-running}!Timer@{Timer}}
+\subsubsection[{\-\_\-running}]{\setlength{\rightskip}{0pt plus 5cm}bool Timer\-::\-\_\-running\hspace{0.3cm}{\ttfamily [protected]}}}\label{classTimer_a0e92367e8b9f4fe50e7395d01db259af}
+Boolean representing whether or not the time is presently running \hypertarget{classTimer_a6f90c97bbab6f9f68249027e5705e7f0}{\index{Timer@{Timer}!\-\_\-start\-\_\-time@{\-\_\-start\-\_\-time}}
+\index{\-\_\-start\-\_\-time@{\-\_\-start\-\_\-time}!Timer@{Timer}}
+\subsubsection[{\-\_\-start\-\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}timespec Timer\-::\-\_\-start\-\_\-time\hspace{0.3cm}{\ttfamily [protected]}}}\label{classTimer_a6f90c97bbab6f9f68249027e5705e7f0}
+The start time of a timer split \hypertarget{classTimer_a92ba53954cd01cbd9afe2e397e529d35}{\index{Timer@{Timer}!\-\_\-timer\-\_\-splits@{\-\_\-timer\-\_\-splits}}
+\index{\-\_\-timer\-\_\-splits@{\-\_\-timer\-\_\-splits}!Timer@{Timer}}
+\subsubsection[{\-\_\-timer\-\_\-splits}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ std\-::pair$<$double, const char$\ast$$>$ $>$ Timer\-::\-\_\-timer\-\_\-splits\hspace{0.3cm}{\ttfamily [protected]}}}\label{classTimer_a92ba53954cd01cbd9afe2e397e529d35}
+A container of times corresponding to messages for each split 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Timer_8h}{Timer.\-h}\item 
+Timer.\-cpp\end{DoxyCompactItemize}
