@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>PINSPEC: pinspec.log Namespace Reference</title>
+<title>pinspec.log Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,12 +26,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
-   <div id="projectname">PINSPEC
-   &#160;<span id="projectnumber">0.1</span>
-   </div>
-   <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
-  </td>
+  <td id="projectlogo"><img alt="Logo" src="logo-small.png"/></td>
+    <td style="padding-left: 0.5em;">
+    <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
+    </td>
  </tr>
  </tbody>
 </table>
@@ -116,8 +114,8 @@ $(document).ready(function(){initNavTree('namespacepinspec_1_1log.html','');});
 Functions</h2></td></tr>
 <tr class="memitem:a541e006b2440f460574f9f3017279a1d"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepinspec_1_1log.html#a541e006b2440f460574f9f3017279a1d">py_printf</a></td></tr>
 <tr class="memdesc:a541e006b2440f460574f9f3017279a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to print a log message to the screen.  <a href="#a541e006b2440f460574f9f3017279a1d"></a><br/></td></tr>
-<tr class="memitem:aa886f707adb88128a27972d949cb526f"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepinspec_1_1log.html#aa886f707adb88128a27972d949cb526f">setlevel</a></td></tr>
-<tr class="memdesc:aa886f707adb88128a27972d949cb526f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns the lowest level logging message.  <a href="#aa886f707adb88128a27972d949cb526f"></a><br/></td></tr>
+<tr class="memitem:a4a96627ffacfa0a93779f42222ecff22"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepinspec_1_1log.html#a4a96627ffacfa0a93779f42222ecff22">py_setlevel</a></td></tr>
+<tr class="memdesc:a4a96627ffacfa0a93779f42222ecff22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns the lowest level logging message.  <a href="#a4a96627ffacfa0a93779f42222ecff22"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Utility functions for writing log messages to the screen. </p>
@@ -172,12 +170,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa886f707adb88128a27972d949cb526f"></a>
+<a class="anchor" id="a4a96627ffacfa0a93779f42222ecff22"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">def pinspec.log.setlevel </td>
+          <td class="memname">def pinspec.log.py_setlevel </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>level</em></td><td>)</td>
@@ -188,7 +186,7 @@ Functions</h2></td></tr>
 
 <p>Assigns the lowest level logging message. </p>
 <p>Sets the lowest level logging message to print to the screen. This controls the lowest level for both logging messages in the C++ source code as well as the user's PINSPEC Python input file. This function would be called at the beginning of the input file as follows:</p>
-<div class="fragment"><div class="line">log.setlevel(<span class="stringliteral">&#39;INFO&#39;</span>)</div>
+<div class="fragment"><div class="line">log.py_setlevel(<span class="stringliteral">&#39;INFO&#39;</span>)</div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">level</td><td>the minimum logging level ('DEBUG', 'INFO', etc) </td></tr>
@@ -204,7 +202,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pinspec</b></li><li class="navelem"><a class="el" href="namespacepinspec_1_1log.html">log</a></li>
-    <li class="footer">Generated on Wed Apr 10 2013 21:11:50 for PINSPEC by
+    <li class="footer">Generated on Thu Apr 11 2013 12:43:16 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

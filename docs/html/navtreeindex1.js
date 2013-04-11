@@ -1,5 +1,9 @@
 var NAVTREEINDEX1 =
 {
+"classIsotope.html#a6f0664722f1697f821f39e9a2dac0523":[2,0,16,93],
+"classIsotope.html#a7108414f5f312b4dd4373faf7edeb01e":[2,0,16,27],
+"classIsotope.html#a721d2479a71910c0b49b4620cecb3ac6":[2,0,16,76],
+"classIsotope.html#a73170c5a731744a3579daa7f12c72a16":[2,0,16,63],
 "classIsotope.html#a75f6f039420234ae8d2fd8ee54e5592d":[2,0,16,95],
 "classIsotope.html#a7916d1aa6ff21cdc92bf7d50fe007ab3":[2,0,16,49],
 "classIsotope.html#a7b22935e0ade348ee513733eeda1fa23":[2,0,16,1],
@@ -101,6 +105,7 @@ var NAVTREEINDEX1 =
 "classMaterial.html#a2bad3888c55b8a5ab7260f459b49200c":[2,0,25,16],
 "classMaterial.html#a2c19452d71f54075df8f5405b03129f4":[2,0,25,1],
 "classMaterial.html#a310a3275a51710b8654bdaf46f61a801":[2,0,25,6],
+"classMaterial.html#a32dbf4399d348901aefc4721a891337b":[2,0,25,46],
 "classMaterial.html#a35e410264efd36f267fac02719bab902":[2,0,25,18],
 "classMaterial.html#a397c579dfabdd309348de2b5875f74f9":[2,0,25,2],
 "classMaterial.html#a3c78a51474dfde84489f8b60f7c46fc0":[2,0,25,12],
@@ -110,7 +115,6 @@ var NAVTREEINDEX1 =
 "classMaterial.html#a417cf6f7c2cc82c04599e5a29b620a64":[2,0,25,3],
 "classMaterial.html#a43b7af8a6d0db91f87ba6fc4bc444296":[2,0,25,52],
 "classMaterial.html#a45bc347522e5f10ffdf05e0c6a68001f":[2,0,25,41],
-"classMaterial.html#a49b4d4fb7a51ef75cebffdd52d8c6931":[2,0,25,46],
 "classMaterial.html#a4d5279bd3412ccc933feca7b79488787":[2,0,25,49],
 "classMaterial.html#a5fae14afcfee32144bea316d57ffaa91":[2,0,25,53],
 "classMaterial.html#a6d8003082a563689412ce6416da2b45f":[2,0,25,34],
@@ -245,9 +249,5 @@ var NAVTREEINDEX1 =
 "classRegionElasticRateTally.html#aab82cda6914a01240b7fdfe01ca08b33":[2,0,43,0],
 "classRegionFissionRateTally.html":[2,0,44],
 "classRegionFissionRateTally.html#a1d6e8da254f83a462de8ccf5226f1fee":[2,0,44,1],
-"classRegionFissionRateTally.html#af3344001e9ba2ac13119191e49111d3d":[2,0,44,0],
-"classRegionFluxTally.html":[2,0,45],
-"classRegionFluxTally.html#a318a32edcb4f2866574194cd74ddd04f":[2,0,45,1],
-"classRegionFluxTally.html#afeb527c4b8deafc6cff68594ad95a9c8":[2,0,45,0],
-"classRegionInterCollisionTimeTally.html":[2,0,46]
+"classRegionFissionRateTally.html#af3344001e9ba2ac13119191e49111d3d":[2,0,44,0]
 };

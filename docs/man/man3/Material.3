@@ -1,4 +1,4 @@
-.TH "Material" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.TH "Material" 3 "Thu Apr 11 2013" "Version v0.1" "Doxygen" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -171,7 +171,7 @@ The \fBMaterial\fP class represents a collection of isotope objects\&.
 .br
 .RI "\fISets this material's density\&. \fP"
 .ti -1c
-.RI "void \fBsetNumberDensity\fP (float number_density)"
+.RI "void \fBsetNumberDensity\fP (float number_density, const char *unit)"
 .br
 .RI "\fISets the material's number density\&. \fP"
 .ti -1c
@@ -320,6 +320,16 @@ Returns the total macroscopic absorption cross-section for the material at some 
 the total macroscopic absorption cross-section $ (cm^{-1}) $ 
 .RE
 .PP
+\fBParameters:\fP
+.RS 4
+\fIenergy\fP energy of interest (eV) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the total macroscopic absorption cross-section (cm^-1) 
+.RE
+.PP
 
 .SS "float Material::getAbsorptionMacroXS (intenergy_index)"
 
@@ -383,6 +393,16 @@ Returns the total macroscopic capture cross-section within this material at some
 \fBReturns:\fP
 .RS 4
 the total macroscopic capture cross-section $ (cm^{-1}) $ 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIenergy\fP energy of interest (eV) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the total macroscopic capture cross-section (cm^-1) 
 .RE
 .PP
 
@@ -450,6 +470,16 @@ Returns the total macroscopic elastic scattering cross-section for the material 
 the total macroscopic elastic scattering cross-section $ (cm^{-1}) $ 
 .RE
 .PP
+\fBParameters:\fP
+.RS 4
+\fIenergy\fP energy of interest (eV) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the total elastic macroscopic scattering cross-section (cm^-1) 
+.RE
+.PP
 
 .SS "float Material::getElasticMacroXS (intenergy_index)"
 
@@ -504,6 +534,16 @@ Returns the total macroscopic fission cross-section for the material at some ene
 \fBReturns:\fP
 .RS 4
 the total macroscopic fission cross-section $ (cm^{-1}) $ 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIenergy\fP energy of interest (eV) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the total macroscopic fission cross-section (cm^-1) 
 .RE
 .PP
 
@@ -850,12 +890,14 @@ Sets the name for the material\&. \fBParameters:\fP
 .RE
 .PP
 
-.SS "void Material::setNumberDensity (floatnumber_density)"
+.SS "void Material::setNumberDensity (floatnumber_density, const char *unit)"
 
 .PP
 Sets the material's number density\&. \fBParameters:\fP
 .RS 4
 \fInumber_density\fP the number density of material (at/cc) 
+.br
+\fIunit\fP the density units ('g/cc' or 'at/cc') 
 .RE
 .PP
 
@@ -882,4 +924,4 @@ The total volume of all regions containing this material
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PINSPEC from the source code\&.
+Generated automatically by Doxygen from the source code\&.

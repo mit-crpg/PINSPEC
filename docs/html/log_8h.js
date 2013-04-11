@@ -11,6 +11,7 @@ var log_8h =
       [ "WARNING", "log_8h.html#a5096002e05063d13577205e0bc5f0564a984de77c680eaff141ec910e25568a81", null ],
       [ "CRITICAL", "log_8h.html#a5096002e05063d13577205e0bc5f0564acda21a4a072f2261f6d4ab596599f8b0", null ],
       [ "RESULT", "log_8h.html#a5096002e05063d13577205e0bc5f0564a7186ecefe792fdae9fec0a42f105ad6b", null ],
+      [ "UNITTEST", "log_8h.html#a5096002e05063d13577205e0bc5f0564a7d4213bd412f92318544af232a0481e6", null ],
       [ "ERROR", "log_8h.html#a5096002e05063d13577205e0bc5f0564a2fd6f336d08340583bd620a7f5694c90", null ]
     ] ],
     [ "createMultilineMsg", "log_8h.html#ab42a0de70fdb518ab616d1c61ce7a1a0", null ],

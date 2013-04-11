@@ -1,6 +1,6 @@
 var NAVTREE =
 [
-  [ "PINSPEC", "index.html", [
+  [ "Main Page", "index.html", [
     [ "PINSPEC", "md_README.html", null ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", null ],
@@ -38,9 +38,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"classIsotope.html#a75f6f039420234ae8d2fd8ee54e5592d",
-"classRegionInterCollisionTimeTally.html#a389dd158a3a10b959fa444d12a8cb752",
-"functions_0x66.html"
+"classIsotope.html#a6f0664722f1697f821f39e9a2dac0523",
+"classRegionFluxTally.html",
+"functions.html"
 ];
 
 var navTreeSubIndices = new Array();

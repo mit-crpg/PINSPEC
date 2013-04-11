@@ -1,4 +1,4 @@
-.TH "Region" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.TH "Region" 3 "Thu Apr 11 2013" "Version v0.1" "Doxygen" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -186,10 +186,6 @@ The region class represents a region in 2D space\&.
 .RI "void \fBcollideNeutron\fP (\fBneutron\fP *\fBneutron\fP)"
 .br
 .RI "\fIThis method collides a neutron within the region\&. \fP"
-.in -1c
-.SS "Private Member Functions"
-
-.in +1c
 .ti -1c
 .RI "bool \fBcontains\fP (\fBneutron\fP *\fBneutron\fP)"
 .br
@@ -264,7 +260,7 @@ This method collides a neutron within the region\&. This method encapsulates all
 .RE
 .PP
 
-.SS "bool Region::contains (\fBneutron\fP *neutron)\fC [private]\fP"
+.SS "bool Region::contains (\fBneutron\fP *neutron)"
 
 .PP
 Check if this region contains a neutron at some 2D location\&. \fBParameters:\fP
@@ -718,7 +714,7 @@ true if moderator, false otherwise
 .RE
 .PP
 
-.SS "bool Region::onBoundary (\fBneutron\fP *neutron)\fC [private]\fP"
+.SS "bool Region::onBoundary (\fBneutron\fP *neutron)"
 
 .PP
 Checks if a neutron at some 2D location is on the region boundary\&. \fBParameters:\fP
@@ -802,4 +798,4 @@ The volume occupied by the region in 2D space
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PINSPEC from the source code\&.
+Generated automatically by Doxygen from the source code\&.

@@ -3,22 +3,22 @@
 #endif
 
 /**
- * @var xs_directory
+ * @var _xs_directory
  * @brief A character array with the cross-section library directory.
  * @details By default this is in the xs-lib folder
  */
-static std::string xs_directory = "pinspec/xs-lib/";
+static std::string _xs_directory = "pinspec/xs-lib/";
 
 
 /**
  * @brief Sets the directory for the cross-section library.
- * @param directory character array for the cross-section library directory
+ * @param xs_directory character array for the cross-section library directory
  */
-void setXSLibDirectory(char* xs_directory) {
+void setXSLibDirectory(const char* xs_directory) {
 
     _xs_directory = xs_directory;
     log_printf(INFO, "Set the cross-section library directory "
-                        "to: %s", xs_directory.c_str());
+                        "to: %s", _xs_directory.c_str());
     return;
 }
 
@@ -28,7 +28,7 @@ void setXSLibDirectory(char* xs_directory) {
  * @return a character array with the cross-section library directory
  */
 const char* getXSLibDirectory() {
-    return xs_directory.c_str();
+    return _xs_directory.c_str();
 }
 
 
@@ -43,8 +43,8 @@ const char* getXSLibDirectory() {
  * @return returns an int representing whether or not the copy was successful
  */
 int restoreXSLibrary() {
-    std::string cmd = std::string("cp ") + xs_directory + 
-                                                "/BackupXS/* " + xs_directory;
+    std::string cmd = std::string("cp ") + _xs_directory + 
+                                                "/BackupXS/* " + _xs_directory;
     int ret = system(cmd.c_str());
     return ret;
 }

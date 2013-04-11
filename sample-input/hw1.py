@@ -12,7 +12,7 @@ def main():
     # Set main simulation params
     num_neutrons = 1000000
     setOutputDirectory('HW1');
-    setlevel('INFO')
+    py_setlevel('INFO')
 
     py_printf('TITLE', 'Simulation of homework 1 for 2012 22.211')
     py_printf('INFO', 'Initializing isotopes...')
@@ -67,7 +67,7 @@ def main():
 
     for i in range(num_neutrons):
 
-        neutron._energy = max_energy				# initialize energy to 2 MeV
+        neutron._energy = max_energy	     # initialize energy to 2 MeV
 
         for j in range(num_generations):
             h1.collideNeutron(neutron)
@@ -115,7 +115,7 @@ def main():
     py_printf('INFO', '# neutrons = %d\t\t# generations = %d', 
                                                 num_neutrons, num_generations)
     for i in range(num_neutrons):	
-        neutron._energy = max_energy			# initialize energy to 2 MeV
+        neutron._energy = max_energy	     # initialize energy to 2 MeV
 
         for j in range(num_generations):
 

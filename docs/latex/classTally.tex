@@ -827,6 +827,8 @@ Returns the name of the tally.
 
 \begin{DoxyReturn}{Returns}
 the name of the tally 
+
+the \hyperlink{classTally}{Tally}'s name 
 \end{DoxyReturn}
 \hypertarget{classTally_aa64325bb650b284d06921a446fca69d0}{\index{Tally@{Tally}!get\-Tally\-Type@{get\-Tally\-Type}}
 \index{get\-Tally\-Type@{get\-Tally\-Type}!Tally@{Tally}}
@@ -1018,11 +1020,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally product
 
 \hyperlink{classTally}{Tally} multiplication operator. 
 
-This overloaded multiplication operator allows the user to multiply two tallies with each other, if they have the same number of tallies. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the product of the tally bin averages for the two tally operands, and computes its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded multiplication operator allows the user to multiply two tallies with each other, if they have the same number of tallies. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the product of the tally bin averages for the two tally operands, and computes its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = tally1 * tally2
 \end{DoxyCode}
- \begin{DoxyReturn}{Returns}
+
+
+\begin{DoxyReturn}{Returns}
 a D\-E\-R\-I\-V\-E\-D type tally with the tally product 
 \end{DoxyReturn}
 \hypertarget{classTally_a4a495bfff886e894a06f3741ef47b0a2}{\index{Tally@{Tally}!operator$\ast$@{operator$\ast$}}
@@ -1036,11 +1042,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally product
 
 \hyperlink{classTally}{Tally} multiplication with a constant operator. 
 
-This overloaded subtraction operator allows the user to multiply a constant with a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately. constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded subtraction operator allows the user to multiply a constant with a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately. constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = \hyperlink{classTally_a50c7919393799145f1ab23457d47b02b}{tally} * int(3)
 \end{DoxyCode}
- 
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em amt} & the right operand and the constant value to multiply the tally by \\
 \hline
@@ -1059,11 +1069,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally product
 
 \hyperlink{classTally}{Tally} multiplication with a constant operator. 
 
-This overloaded subtraction operator allows the user to multiply a constant with a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded subtraction operator allows the user to multiply a constant with a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = \hyperlink{classTally_a50c7919393799145f1ab23457d47b02b}{tally} * float(3.5)
 \end{DoxyCode}
- 
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em amt} & the right operand and the constant value to multiply the tally by \\
 \hline
@@ -1082,11 +1096,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally product
 
 \hyperlink{classTally}{Tally} multiplication with a constant operator. 
 
-This overloaded subtraction operator allows the user to multiply a constant with a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded subtraction operator allows the user to multiply a constant with a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = \hyperlink{classTally_a50c7919393799145f1ab23457d47b02b}{tally} * double(3.5)
 \end{DoxyCode}
- 
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em amt} & the right operand and the constant value to multiply the tally by \\
 \hline
@@ -1128,11 +1146,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally sum
 
 \hyperlink{classTally}{Tally} addition with a constant operator. 
 
-This overloaded addition operator allows the user to add a constant to a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately. constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded addition operator allows the user to add a constant to a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately. constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = \hyperlink{classTally_a50c7919393799145f1ab23457d47b02b}{tally} + int(3)
 \end{DoxyCode}
- 
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em amt} & the right operand and the constant value to add to the tally \\
 \hline
@@ -1151,11 +1173,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally sum
 
 \hyperlink{classTally}{Tally} addition with a constant operator. 
 
-This overloaded addition operator allows the user to add a constant to a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded addition operator allows the user to add a constant to a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = \hyperlink{classTally_a50c7919393799145f1ab23457d47b02b}{tally} + float(3.5)
 \end{DoxyCode}
- 
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em amt} & the right operand and the constant value to add to the tally \\
 \hline
@@ -1174,11 +1200,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally sum
 
 \hyperlink{classTally}{Tally} addition with a constant operator. 
 
-This overloaded addition operator allows the user to add a constant to a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded addition operator allows the user to add a constant to a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = \hyperlink{classTally_a50c7919393799145f1ab23457d47b02b}{tally} + double(3.5)
 \end{DoxyCode}
- 
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em amt} & the right operand and the constant value to add to the tally \\
 \hline
@@ -1197,11 +1227,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally sum
 
 \hyperlink{classTally}{Tally} subtraction operator. 
 
-This overloaded subtraction operator allows the user to subtract two tallies with each other, if they have the same number of tallies. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the difference of the tally bin averages for the two tally operands, and computes its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded subtraction operator allows the user to subtract two tallies with each other, if they have the same number of tallies. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the difference of the tally bin averages for the two tally operands and computes its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = tally1 - tally2
 \end{DoxyCode}
- 
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em tally} & the right operand in the tally product \\
 \hline
@@ -1220,11 +1254,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally difference
 
 \hyperlink{classTally}{Tally} subtraction with a constant operator. 
 
-This overloaded subtraction operator allows the user to subtract a constant from a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately. constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded subtraction operator allows the user to subtract a constant from a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately. constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = \hyperlink{classTally_a50c7919393799145f1ab23457d47b02b}{tally} - int(3)
 \end{DoxyCode}
- 
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em amt} & the right operand and the constant value to subtract from the tally \\
 \hline
@@ -1243,11 +1281,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally difference
 
 \hyperlink{classTally}{Tally} subtraction with a constant operator. 
 
-This overloaded subtraction operator allows the user to subtract a constant from a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded subtraction operator allows the user to subtract a constant from a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = \hyperlink{classTally_a50c7919393799145f1ab23457d47b02b}{tally} - float(3.5)
 \end{DoxyCode}
- 
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em amt} & the right operand and the constant value to subtract from the tally \\
 \hline
@@ -1266,11 +1308,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally difference
 
 \hyperlink{classTally}{Tally} subtraction with a constant operator. 
 
-This overloaded subtraction operator allows the user to subtract a constant from a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded subtraction operator allows the user to subtract a constant from a tally. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = \hyperlink{classTally_a50c7919393799145f1ab23457d47b02b}{tally} - double(3.5)
 \end{DoxyCode}
- 
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em amt} & the right operand and the constant value to subtract from the tally \\
 \hline
@@ -1289,11 +1335,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally difference
 
 \hyperlink{classTally}{Tally} division operator. 
 
-This overloaded division operator allows the user to divide two tallies with each other, if they have the same number of tallies. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the dividend of the tally bin averages for the two tally operands, and computes its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded division operator allows the user to divide two tallies with each other, if they have the same number of tallies. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the dividend of the tally bin averages for the two tally operands, and computes its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = tally1 / tally2
 \end{DoxyCode}
- 
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em tally} & the right operand in the tally division \\
 \hline
@@ -1312,11 +1362,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally division
 
 \hyperlink{classTally}{Tally} division with a constant operator. 
 
-This overloaded division operator allows the user to divide a tally by a constant. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded division operator allows the user to divide a tally by a constant. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = \hyperlink{classTally_a50c7919393799145f1ab23457d47b02b}{tally} / int(3)
 \end{DoxyCode}
- 
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em amt} & the right operand and the constant value to divide the tally by \\
 \hline
@@ -1335,11 +1389,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally product
 
 \hyperlink{classTally}{Tally} division with a constant operator. 
 
-This overloaded division operator allows the user to divide a tally by a constant. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded division operator allows the user to divide a tally by a constant. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = \hyperlink{classTally_a50c7919393799145f1ab23457d47b02b}{tally} / float(3.5)
 \end{DoxyCode}
- 
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em amt} & the right operand and the constant value to divide the tally by \\
 \hline
@@ -1358,11 +1416,15 @@ a D\-E\-R\-I\-V\-E\-D type tally with the tally product
 
 \hyperlink{classTally}{Tally} division with a constant operator. 
 
-This overloaded division operator allows the user to divide a tally by a constant. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately. array, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. 
+This overloaded division operator allows the user to divide a tally by a constant. The creates a new D\-E\-R\-I\-V\-E\-D type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately. array, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.
+
+
 \begin{DoxyCode}
 new\_tally = \hyperlink{classTally_a50c7919393799145f1ab23457d47b02b}{tally} / double(3.5)
 \end{DoxyCode}
- 
+
+
+
 \begin{DoxyParams}{Parameters}
 {\em amt} & the right operand and the constant value to divide the tally by \\
 \hline
@@ -1662,7 +1724,7 @@ Sets a precision trigger for this tally.
 
 By setting a precision trigger, the user instructs a P\-I\-N\-S\-E\-P\-C simulation to continue running until all tallies meet the precision trigger threshold. 
 \begin{DoxyParams}{Parameters}
-{\em trigger\-\_\-type} & the precision trigger type (V\-A\-R\-I\-A\-N\-C\-E, R\-E\-L\-A\-T\-I\-V\-E\-\_\-\-E\-R\-R\-O\-R, etc) \\
+{\em trigger\-\_\-type} & the precision trigger type (V\-A\-R\-I\-A\-N\-C\-E, etc) \\
 \hline
 {\em precision} & the threshold for the precision trigger \\
 \hline

@@ -12,7 +12,7 @@ def main():
     num_neutrons_per_batch = 100000
     setOutputDirectory('weak-scaling')
 
-    log_setlevel(INFO)
+    py_setlevel('INFO')
 
     py_printf('TITLE', 'Starting a weak scaling multi-threading study')
 
@@ -47,18 +47,17 @@ def main():
     py_printf('INFO', 'Initializing the geometry...')
 
     # Define geometry
-    geometry = Geometry()
-    geometry.setSpatialType(INFINITE_HOMOGENEOUS)
+    geometry = Geometry(INFINITE_HOMOGENEOUS)
     geometry.addRegion(region_mix)
     geometry.setNeutronsPerBatch(num_neutrons_per_batch)
 
     py_printf('INFO', 'Initializing flux tally...')
 
     # Create a tally for the flux
-    flux = TallyFactory.createTally(region_mix, FLUX)
+    flux = createTally(region_mix, FLUX)
     flux.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC) 
     
-	# Register the tallies
+    # Register the tallies
     TallyBank.registerTally(flux)
 
     runtimes = numpy.zeros(12)

@@ -58,7 +58,9 @@ static \hyperlink{classTallyBank}{Tally\-Bank} $\ast$ \hyperlink{classTallyBank_
 
 \begin{DoxyCompactList}\small\item\em \hyperlink{classTallyBank}{Tally\-Bank} constructor. \end{DoxyCompactList}\item 
 \hyperlink{classTallyBank}{Tally\-Bank} \& \hyperlink{classTallyBank_a17f7549e89865f3841fccd876f7c62f7}{operator=} (const \hyperlink{classTallyBank}{Tally\-Bank} \&)
-\begin{DoxyCompactList}\small\item\em An overloaded assignment function to allow for static referencing of the \hyperlink{classTallyBank}{Tally\-Bank} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em An overloaded assignment function to allow for static referencing of the \hyperlink{classTallyBank}{Tally\-Bank} class. \end{DoxyCompactList}\item 
+\hyperlink{classTallyBank_a336e3deb888c9f7b3a1e6d92aabb78cf}{Tally\-Bank} (const \hyperlink{classTallyBank}{Tally\-Bank} \&)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classTallyBank}{Tally\-Bank} constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -82,6 +84,25 @@ $<$ \hyperlink{classTally}{Tally} $\ast$ $>$ $\ast$ $>$ \hyperlink{classTallyBan
 The \hyperlink{classTallyBank}{Tally\-Bank} contains all tallies for a simulation. 
 
 The \hyperlink{classTallyBank}{Tally\-Bank} ensures accurate error checking for tallies used in a simulation. The \hyperlink{classTallyBank}{Tally\-Bank} stores tallies in the appropriate hash table with keys corresponding to the isotope, material, region and/or geometry in which a tally is to be applied. The \hyperlink{classTallyBank}{Tally\-Bank} can iterate through all of the approrpirate tallies for a neutron and make a tally in each one, in addition to providing other functionality to the main Monte Carlo kernel. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classTallyBank_a336e3deb888c9f7b3a1e6d92aabb78cf}{\index{Tally\-Bank@{Tally\-Bank}!Tally\-Bank@{Tally\-Bank}}
+\index{Tally\-Bank@{Tally\-Bank}!TallyBank@{Tally\-Bank}}
+\subsubsection[{Tally\-Bank}]{\setlength{\rightskip}{0pt plus 5cm}Tally\-Bank\-::\-Tally\-Bank (
+\begin{DoxyParamCaption}
+\item[{const {\bf Tally\-Bank} \&}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}}\label{classTallyBank_a336e3deb888c9f7b3a1e6d92aabb78cf}
+
+
+\hyperlink{classTallyBank}{Tally\-Bank} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&} & The \hyperlink{classTallyBank}{Tally\-Bank} static reference pointer. \\
+\hline
+\end{DoxyParams}
+
 
 \subsection{Member Function Documentation}
 \hypertarget{classTallyBank_a26bdf7c7f02b528c552ee44f0d014af1}{\index{Tally\-Bank@{Tally\-Bank}!compute\-Scaled\-Batch\-Statistics@{compute\-Scaled\-Batch\-Statistics}}

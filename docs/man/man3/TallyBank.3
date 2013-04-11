@@ -1,4 +1,4 @@
-.TH "TallyBank" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.TH "TallyBank" 3 "Thu Apr 11 2013" "Version v0.1" "Doxygen" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -94,6 +94,10 @@ The \fBTallyBank\fP contains all tallies for a simulation\&.
 .RI "\fBTallyBank\fP & \fBoperator=\fP (const \fBTallyBank\fP &)"
 .br
 .RI "\fIAn overloaded assignment function to allow for static referencing of the \fBTallyBank\fP class\&. \fP"
+.ti -1c
+.RI "\fBTallyBank\fP (const \fBTallyBank\fP &)"
+.br
+.RI "\fI\fBTallyBank\fP constructor\&. \fP"
 .in -1c
 .SS "Private Attributes"
 
@@ -127,6 +131,17 @@ The \fBTallyBank\fP contains all tallies for a simulation\&.
 The \fBTallyBank\fP contains all tallies for a simulation\&. 
 
 The \fBTallyBank\fP ensures accurate error checking for tallies used in a simulation\&. The \fBTallyBank\fP stores tallies in the appropriate hash table with keys corresponding to the isotope, material, region and/or geometry in which a tally is to be applied\&. The \fBTallyBank\fP can iterate through all of the approrpirate tallies for a neutron and make a tally in each one, in addition to providing other functionality to the main Monte Carlo kernel\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "TallyBank::TallyBank (const \fBTallyBank\fP &)\fC [inline]\fP, \fC [private]\fP"
+
+.PP
+\fBTallyBank\fP constructor\&. \fBParameters:\fP
+.RS 4
+\fI&\fP The \fBTallyBank\fP static reference pointer\&. 
+.RE
+.PP
+
 .SH "Member Function Documentation"
 .PP 
 .SS "void TallyBank::computeScaledBatchStatistics (floatscale_factor)"
@@ -287,4 +302,4 @@ Hash table of all tallies registered for a region
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PINSPEC from the source code\&.
+Generated automatically by Doxygen from the source code\&.

@@ -1,4 +1,4 @@
-.TH "Tally" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.TH "Tally" 3 "Thu Apr 11 2013" "Version v0.1" "Doxygen" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -807,6 +807,8 @@ the tally type
 Returns the name of the tally\&. \fBReturns:\fP
 .RS 4
 the name of the tally 
+.PP
+the \fBTally\fP's name 
 .RE
 .PP
 
@@ -944,14 +946,13 @@ a DERIVED type tally with the tally product
 .SS "\fBDerivedTally\fP * Tally::operator* (\fBTally\fP *tally)"
 
 .PP
-\fBTally\fP multiplication operator\&. This overloaded multiplication operator allows the user to multiply two tallies with each other, if they have the same number of tallies\&. The creates a new DERIVED type tally, loads it with the product of the tally bin averages for the two tally operands, and computes its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP multiplication operator\&. This overloaded multiplication operator allows the user to multiply two tallies with each other, if they have the same number of tallies\&. The creates a new DERIVED type tally, loads it with the product of the tally bin averages for the two tally operands, and computes its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally1 * tally2
-
 .fi
 .PP
- 
 .PP
 \fBReturns:\fP
 .RS 4
@@ -962,14 +963,13 @@ a DERIVED type tally with the tally product
 .SS "\fBDerivedTally\fP * Tally::operator* (const intamt)"
 
 .PP
-\fBTally\fP multiplication with a constant operator\&. This overloaded subtraction operator allows the user to multiply a constant with a tally\&. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately\&. constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP multiplication with a constant operator\&. This overloaded subtraction operator allows the user to multiply a constant with a tally\&. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately\&. constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally * int(3)
-
 .fi
 .PP
- 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -985,14 +985,13 @@ a DERIVED type tally with the tally product
 .SS "\fBDerivedTally\fP * Tally::operator* (const floatamt)"
 
 .PP
-\fBTally\fP multiplication with a constant operator\&. This overloaded subtraction operator allows the user to multiply a constant with a tally\&. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP multiplication with a constant operator\&. This overloaded subtraction operator allows the user to multiply a constant with a tally\&. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally * float(3\&.5)
-
 .fi
 .PP
- 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -1008,14 +1007,13 @@ a DERIVED type tally with the tally product
 .SS "\fBDerivedTally\fP * Tally::operator* (const doubleamt)"
 
 .PP
-\fBTally\fP multiplication with a constant operator\&. This overloaded subtraction operator allows the user to multiply a constant with a tally\&. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP multiplication with a constant operator\&. This overloaded subtraction operator allows the user to multiply a constant with a tally\&. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally * double(3\&.5)
-
 .fi
 .PP
- 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -1054,14 +1052,13 @@ a DERIVED type tally with the tally sum
 .SS "\fBDerivedTally\fP * Tally::operator+ (const intamt)"
 
 .PP
-\fBTally\fP addition with a constant operator\&. This overloaded addition operator allows the user to add a constant to a tally\&. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately\&. constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP addition with a constant operator\&. This overloaded addition operator allows the user to add a constant to a tally\&. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately\&. constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally + int(3)
-
 .fi
 .PP
- 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -1077,14 +1074,13 @@ a DERIVED type tally with the tally sum
 .SS "\fBDerivedTally\fP * Tally::operator+ (const floatamt)"
 
 .PP
-\fBTally\fP addition with a constant operator\&. This overloaded addition operator allows the user to add a constant to a tally\&. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP addition with a constant operator\&. This overloaded addition operator allows the user to add a constant to a tally\&. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally + float(3\&.5)
-
 .fi
 .PP
- 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -1100,14 +1096,13 @@ a DERIVED type tally with the tally sum
 .SS "\fBDerivedTally\fP * Tally::operator+ (const doubleamt)"
 
 .PP
-\fBTally\fP addition with a constant operator\&. This overloaded addition operator allows the user to add a constant to a tally\&. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP addition with a constant operator\&. This overloaded addition operator allows the user to add a constant to a tally\&. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally + double(3\&.5)
-
 .fi
 .PP
- 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -1123,14 +1118,13 @@ a DERIVED type tally with the tally sum
 .SS "\fBDerivedTally\fP * Tally::operator- (\fBTally\fP *tally)"
 
 .PP
-\fBTally\fP subtraction operator\&. This overloaded subtraction operator allows the user to subtract two tallies with each other, if they have the same number of tallies\&. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages for the two tally operands, and computes its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP subtraction operator\&. This overloaded subtraction operator allows the user to subtract two tallies with each other, if they have the same number of tallies\&. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages for the two tally operands and computes its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally1 - tally2
-
 .fi
 .PP
- 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -1146,14 +1140,13 @@ a DERIVED type tally with the tally difference
 .SS "\fBDerivedTally\fP * Tally::operator- (const intamt)"
 
 .PP
-\fBTally\fP subtraction with a constant operator\&. This overloaded subtraction operator allows the user to subtract a constant from a tally\&. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately\&. constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP subtraction with a constant operator\&. This overloaded subtraction operator allows the user to subtract a constant from a tally\&. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately\&. constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally - int(3)
-
 .fi
 .PP
- 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -1169,14 +1162,13 @@ a DERIVED type tally with the tally difference
 .SS "\fBDerivedTally\fP * Tally::operator- (const floatamt)"
 
 .PP
-\fBTally\fP subtraction with a constant operator\&. This overloaded subtraction operator allows the user to subtract a constant from a tally\&. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP subtraction with a constant operator\&. This overloaded subtraction operator allows the user to subtract a constant from a tally\&. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally - float(3\&.5)
-
 .fi
 .PP
- 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -1192,14 +1184,13 @@ a DERIVED type tally with the tally difference
 .SS "\fBDerivedTally\fP * Tally::operator- (const doubleamt)"
 
 .PP
-\fBTally\fP subtraction with a constant operator\&. This overloaded subtraction operator allows the user to subtract a constant from a tally\&. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP subtraction with a constant operator\&. This overloaded subtraction operator allows the user to subtract a constant from a tally\&. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally - double(3\&.5)
-
 .fi
 .PP
- 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -1215,14 +1206,13 @@ a DERIVED type tally with the tally difference
 .SS "\fBDerivedTally\fP * Tally::operator/ (\fBTally\fP *tally)"
 
 .PP
-\fBTally\fP division operator\&. This overloaded division operator allows the user to divide two tallies with each other, if they have the same number of tallies\&. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages for the two tally operands, and computes its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP division operator\&. This overloaded division operator allows the user to divide two tallies with each other, if they have the same number of tallies\&. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages for the two tally operands, and computes its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally1 / tally2
-
 .fi
 .PP
- 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -1238,14 +1228,13 @@ a DERIVED type tally with the tally division
 .SS "\fBDerivedTally\fP * Tally::operator/ (const intamt)"
 
 .PP
-\fBTally\fP division with a constant operator\&. This overloaded division operator allows the user to divide a tally by a constant\&. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP division with a constant operator\&. This overloaded division operator allows the user to divide a tally by a constant\&. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally / int(3)
-
 .fi
 .PP
- 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -1261,14 +1250,13 @@ a DERIVED type tally with the tally product
 .SS "\fBDerivedTally\fP * Tally::operator/ (const floatamt)"
 
 .PP
-\fBTally\fP division with a constant operator\&. This overloaded division operator allows the user to divide a tally by a constant\&. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP division with a constant operator\&. This overloaded division operator allows the user to divide a tally by a constant\&. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally / float(3\&.5)
-
 .fi
 .PP
- 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -1284,14 +1272,13 @@ a DERIVED type tally with the tally product
 .SS "\fBDerivedTally\fP * Tally::operator/ (const doubleamt)"
 
 .PP
-\fBTally\fP division with a constant operator\&. This overloaded division operator allows the user to divide a tally by a constant\&. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately\&. array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&. 
+\fBTally\fP division with a constant operator\&. This overloaded division operator allows the user to divide a tally by a constant\&. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately\&. array, and updates its batch statistics appropriately\&. This method is intended to allow for simple tally arithmetic in Python\&.
+.PP
 .PP
 .nf
 new_tally = tally / double(3\&.5)
-
 .fi
 .PP
- 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -1509,7 +1496,7 @@ Sets a precision trigger for this tally\&. By setting a precision trigger, the u
 .PP
 \fBParameters:\fP
 .RS 4
-\fItrigger_type\fP the precision trigger type (VARIANCE, RELATIVE_ERROR, etc) 
+\fItrigger_type\fP the precision trigger type (VARIANCE, etc) 
 .br
 \fIprecision\fP the threshold for the precision trigger 
 .RE
@@ -1671,4 +1658,4 @@ The precision trigger for this tally
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PINSPEC from the source code\&.
+Generated automatically by Doxygen from the source code\&.

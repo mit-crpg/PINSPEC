@@ -173,57 +173,42 @@ def plotMacroXS(material, rxns, loglog=True, \
 #         pinspec.plotter.plotFlux([flux1, flux2], title='two fluxes')
 # @endcode
 #
-# @param flux the flux tall(ies) of interest
+# @param fluxes the flux tall(ies) of interest
 # @param loglog an optional argument boolean to use a log-log scale
 # @param uselegend an optional argument boolean to include a legend
 # @param title an optional argument string with the plot title
 # @param filename an optional argument string with the plot filename
-def plotFlux(flux, loglog=True, uselegend=True, title='', filename=''):
+def plotFlux(fluxes, loglog=True, uselegend=True, title='', filename=''):
 
     global flux_plot_num
     global subdirectory
 
     directory = getOutputDirectory() + subdirectory
 
+    # Make directory if it does not exist
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
     # Make fluxes a list if it is not already
     if type(fluxes) is not list:
         fluxes = [fluxes]
     
-    # Make directory if it does not exist
-    if not os.path.exists(directory):
-            os.makedirs(directory)
-
     legend = []
     fig = plt.figure()
 
-    # If only one flux tally was passed in as an argument
-    if isinstance(flux, Tally):
+
+    for flux in fluxes:
 
         if not flux.hasComputedBatchStatistics():
             flux.computeBatchStatistics()
-        
+
         num_bins = flux.getNumBins()
         flux_bin_centers = flux.retrieveTallyCenters(num_bins)
         flux_mu = flux.retrieveTallyMu(num_bins)
 
         # Plot the flux
         plt.plot(flux_bin_centers, flux_mu, lw=1)
-    
-    # If more than one flux tallies were passed in as an argument
-    if type(flux) is list:
-        fluxes = flux
-        for flux in fluxes:
-
-            if not flux.hasComputedBatchStatistics():
-                flux.computeBatchStatistics()
-
-            num_bins = flux.getNumBins()
-            flux_bin_centers = flux.retrieveTallyCenters(num_bins)
-            flux_mu = flux.retrieveTallyMu(num_bins)
-
-            # Plot the flux
-            plt.plot(flux_bin_centers, flux_mu, lw=1)
-            legend.append(flux.getTallyName())
+        legend.append(flux.getTallyName())
 
     plt.xlabel('Energy [eV]')
     plt.ylabel('Flux')

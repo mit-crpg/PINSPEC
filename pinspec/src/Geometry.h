@@ -104,7 +104,7 @@ private:
     float computeModeratorFuelCollisionProb(neutron* neutron);
 
 public:
-    Geometry();
+    Geometry(spatialType spatial_type);
     virtual ~Geometry();
 	
     int getNumNeutronsPerBatch();

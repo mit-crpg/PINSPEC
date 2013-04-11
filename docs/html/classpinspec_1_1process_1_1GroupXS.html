@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>PINSPEC: pinspec.process.GroupXS Class Reference</title>
+<title>pinspec.process.GroupXS Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,12 +26,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
-   <div id="projectname">PINSPEC
-   &#160;<span id="projectnumber">0.1</span>
-   </div>
-   <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
-  </td>
+  <td id="projectlogo"><img alt="Logo" src="logo-small.png"/></td>
+    <td style="padding-left: 0.5em;">
+    <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
+    </td>
  </tr>
  </tbody>
 </table>
@@ -138,8 +136,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af74a0da1fab21995e6105762aa21eed9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an array of the multi-group cross-section standard deviations.  <a href="#af74a0da1fab21995e6105762aa21eed9"></a><br/></td></tr>
 <tr class="memitem:a0adae8d5005d0534ccb3dcb3302bef6c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpinspec_1_1process_1_1GroupXS.html#a0adae8d5005d0534ccb3dcb3302bef6c">getRelativeError</a></td></tr>
 <tr class="memdesc:a0adae8d5005d0534ccb3dcb3302bef6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an array of the multi-group cross-section relative errors.  <a href="#a0adae8d5005d0534ccb3dcb3302bef6c"></a><br/></td></tr>
+<tr class="memitem:a757870124674de6a5ddff4f26df6c0c6"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpinspec_1_1process_1_1GroupXS.html#a757870124674de6a5ddff4f26df6c0c6">getEnergyBandsCenters</a></td></tr>
+<tr class="memdesc:a757870124674de6a5ddff4f26df6c0c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an array of the multi-group cross-section energy band centers.  <a href="#a757870124674de6a5ddff4f26df6c0c6"></a><br/></td></tr>
 <tr class="memitem:a9a56a3b63e126b65ce191ca7dbdcda32"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpinspec_1_1process_1_1GroupXS.html#a9a56a3b63e126b65ce191ca7dbdcda32">getEnergyBands</a></td></tr>
-<tr class="memdesc:a9a56a3b63e126b65ce191ca7dbdcda32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an array of the multi-group cross-section energy band centers.  <a href="#a9a56a3b63e126b65ce191ca7dbdcda32"></a><br/></td></tr>
+<tr class="memdesc:a9a56a3b63e126b65ce191ca7dbdcda32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an array of the multi-group cross-section energy band values.  <a href="#a9a56a3b63e126b65ce191ca7dbdcda32"></a><br/></td></tr>
 <tr class="memitem:aee3cc4641d6f9709c25cfa4e6fbbba08"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpinspec_1_1process_1_1GroupXS.html#aee3cc4641d6f9709c25cfa4e6fbbba08">getGroupXS</a></td></tr>
 <tr class="memdesc:aee3cc4641d6f9709c25cfa4e6fbbba08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to this <a class="el" href="classpinspec_1_1process_1_1GroupXS.html" title="A multi-group cross-section for a certain reaction rate.">GroupXS</a> object.  <a href="#aee3cc4641d6f9709c25cfa4e6fbbba08"></a><br/></td></tr>
 <tr class="memitem:a2918792badce34f95584a70d89aa71f7"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpinspec_1_1process_1_1GroupXS.html#a2918792badce34f95584a70d89aa71f7">printXS</a></td></tr>
@@ -277,14 +277,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns an array of the multi-group cross-section energy band centers. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">self</td><td>the <a class="el" href="classpinspec_1_1process_1_1GroupXS.html" title="A multi-group cross-section for a certain reaction rate.">GroupXS</a> object pointer </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>a numpy array of the multi-group cross-section energy band centers def getEnergyBandsCenters(self): Returns an array of the multi-group cross-section energy band values. </dd></dl>
+<p>Returns an array of the multi-group cross-section energy band values. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">self</td><td>the <a class="el" href="classpinspec_1_1process_1_1GroupXS.html" title="A multi-group cross-section for a certain reaction rate.">GroupXS</a> object pointer </td></tr>
@@ -292,6 +285,31 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a numpy array of the multi-group cross-section energy band values </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a757870124674de6a5ddff4f26df6c0c6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def pinspec.process.GroupXS.getEnergyBandsCenters </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns an array of the multi-group cross-section energy band centers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>the <a class="el" href="classpinspec_1_1process_1_1GroupXS.html" title="A multi-group cross-section for a certain reaction rate.">GroupXS</a> object pointer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a numpy array of the multi-group cross-section energy band centers </dd></dl>
 
 </div>
 </div>
@@ -589,7 +607,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>pinspec</b></li><li class="navelem"><a class="el" href="namespacepinspec_1_1process.html">process</a></li><li class="navelem"><a class="el" href="classpinspec_1_1process_1_1GroupXS.html">GroupXS</a></li>
-    <li class="footer">Generated on Wed Apr 10 2013 21:11:50 for PINSPEC by
+    <li class="footer">Generated on Thu Apr 11 2013 12:43:16 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

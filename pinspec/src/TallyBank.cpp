@@ -697,8 +697,8 @@ void TallyBank::initializeBatchTallies(int num_batches) {
     for (iter = _all_tallies.begin(); iter != _all_tallies.end(); iter ++)
         (*iter)->setNumBatches(num_batches);
 
-	log_printf(INFO, "TallyBank has initialized %d tallies for %d batches", 
-                     _all_tallies.size(), num_batches);
+    log_printf(INFO, "TallyBank has initialized %d tallies for %d batches", 
+	       _all_tallies.size(), num_batches);
 }
 
 

@@ -46,7 +46,7 @@ var classMaterial =
     [ "setBucklingSquared", "classMaterial.html#aeebedf71fc23735ed99c5ab3f5728b25", null ],
     [ "setDensity", "classMaterial.html#a24c5b8d61359fd8a9843c3e71f286e01", null ],
     [ "setMaterialName", "classMaterial.html#a89e56bc82fcefcd2c73ab4a525a00129", null ],
-    [ "setNumberDensity", "classMaterial.html#a49b4d4fb7a51ef75cebffdd52d8c6931", null ],
+    [ "setNumberDensity", "classMaterial.html#a32dbf4399d348901aefc4721a891337b", null ],
     [ "_buckling_squared", "classMaterial.html#a21f5e5ca63cd04c60095868d57baf3a4", null ],
     [ "_density_unit", "classMaterial.html#ae21ca778e0138e02a3aa81a726dc8a94", null ],
     [ "_isotopes", "classMaterial.html#a4d5279bd3412ccc933feca7b79488787", null ],

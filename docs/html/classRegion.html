@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>PINSPEC: Region Class Reference</title>
+<title>Region Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,12 +26,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
-   <div id="projectname">PINSPEC
-   &#160;<span id="projectnumber">0.1</span>
-   </div>
-   <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
-  </td>
+  <td id="projectlogo"><img alt="Logo" src="logo-small.png"/></td>
+    <td style="padding-left: 0.5em;">
+    <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
+    </td>
  </tr>
  </tbody>
 </table>
@@ -106,7 +104,6 @@ $(document).ready(function(){initNavTree('classRegion.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classRegion-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -207,9 +204,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:afeed8677dff0c9fe1eefae1fb9acd66c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the squared geometric buckling for the geometry.  <a href="#afeed8677dff0c9fe1eefae1fb9acd66c"></a><br/></td></tr>
 <tr class="memitem:aa1dcade90f26be22436ce940f22b5b32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#aa1dcade90f26be22436ce940f22b5b32">collideNeutron</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
 <tr class="memdesc:aa1dcade90f26be22436ce940f22b5b32"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method collides a neutron within the region.  <a href="#aa1dcade90f26be22436ce940f22b5b32"></a><br/></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
 <tr class="memitem:a056e2c3e94253b54b7715d6232c6fade"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a056e2c3e94253b54b7715d6232c6fade">contains</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
 <tr class="memdesc:a056e2c3e94253b54b7715d6232c6fade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if this region contains a neutron at some 2D location.  <a href="#a056e2c3e94253b54b7715d6232c6fade"></a><br/></td></tr>
 <tr class="memitem:a725dd2c9786f1b0df1a4eb66b00cc0f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a725dd2c9786f1b0df1a4eb66b00cc0f2">onBoundary</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
@@ -321,9 +315,6 @@ Private Attributes</h2></td></tr>
 <a class="anchor" id="a056e2c3e94253b54b7715d6232c6fade"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool Region::contains </td>
@@ -333,11 +324,6 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Check if this region contains a neutron at some 2D location. </p>
@@ -1159,9 +1145,6 @@ Private Attributes</h2></td></tr>
 <a class="anchor" id="a725dd2c9786f1b0df1a4eb66b00cc0f2"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool Region::onBoundary </td>
@@ -1171,11 +1154,6 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Checks if a neutron at some 2D location is on the region boundary. </p>
@@ -1490,7 +1468,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classRegion.html">Region</a></li>
-    <li class="footer">Generated on Wed Apr 10 2013 21:11:47 for PINSPEC by
+    <li class="footer">Generated on Thu Apr 11 2013 12:43:13 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

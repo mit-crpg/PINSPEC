@@ -1,4 +1,4 @@
-.TH "pinspec.log" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.TH "pinspec.log" 3 "Thu Apr 11 2013" "Version v0.1" "Doxygen" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -17,7 +17,7 @@ Utility functions for writing log messages to the screen\&.
 .br
 .RI "\fIFunction to print a log message to the screen\&. \fP"
 .ti -1c
-.RI "def \fBsetlevel\fP"
+.RI "def \fBpy_setlevel\fP"
 .br
 .RI "\fIAssigns the lowest level logging message\&. \fP"
 .in -1c
@@ -64,14 +64,14 @@ log\&.py_printf('NORMAL', 'My name is Will and I am %d going on'\
 .RE
 .PP
 
-.SS "def pinspec\&.log\&.setlevel (level)"
+.SS "def pinspec\&.log\&.py_setlevel (level)"
 
 .PP
 Assigns the lowest level logging message\&. Sets the lowest level logging message to print to the screen\&. This controls the lowest level for both logging messages in the C++ source code as well as the user's PINSPEC Python input file\&. This function would be called at the beginning of the input file as follows:
 .PP
 .PP
 .nf
-log\&.setlevel('INFO')
+log\&.py_setlevel('INFO')
 .fi
 .PP
 .PP
@@ -83,4 +83,4 @@ log\&.setlevel('INFO')
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PINSPEC from the source code\&.
+Generated automatically by Doxygen from the source code\&.

@@ -1,4 +1,4 @@
-.TH "pinspec.process.GroupXS" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.TH "pinspec.process.GroupXS" 3 "Thu Apr 11 2013" "Version v0.1" "Doxygen" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -51,9 +51,13 @@ A multi-group cross-section for a certain reaction rate\&.
 .br
 .RI "\fIReturns an array of the multi-group cross-section relative errors\&. \fP"
 .ti -1c
-.RI "def \fBgetEnergyBands\fP"
+.RI "def \fBgetEnergyBandsCenters\fP"
 .br
 .RI "\fIReturns an array of the multi-group cross-section energy band centers\&. \fP"
+.ti -1c
+.RI "def \fBgetEnergyBands\fP"
+.br
+.RI "\fIReturns an array of the multi-group cross-section energy band values\&. \fP"
 .ti -1c
 .RI "def \fBgetGroupXS\fP"
 .br
@@ -139,17 +143,7 @@ sigma_groups = reaction_rate / flux
 .SS "def pinspec\&.process\&.GroupXS\&.getEnergyBands (self)"
 
 .PP
-Returns an array of the multi-group cross-section energy band centers\&. \fBParameters:\fP
-.RS 4
-\fIself\fP the \fBGroupXS\fP object pointer 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-a numpy array of the multi-group cross-section energy band centers def getEnergyBandsCenters(self): Returns an array of the multi-group cross-section energy band values\&. 
-.RE
-.PP
-\fBParameters:\fP
+Returns an array of the multi-group cross-section energy band values\&. \fBParameters:\fP
 .RS 4
 \fIself\fP the \fBGroupXS\fP object pointer 
 .RE
@@ -157,6 +151,20 @@ a numpy array of the multi-group cross-section energy band centers def getEnergy
 \fBReturns:\fP
 .RS 4
 a numpy array of the multi-group cross-section energy band values 
+.RE
+.PP
+
+.SS "def pinspec\&.process\&.GroupXS\&.getEnergyBandsCenters (self)"
+
+.PP
+Returns an array of the multi-group cross-section energy band centers\&. \fBParameters:\fP
+.RS 4
+\fIself\fP the \fBGroupXS\fP object pointer 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a numpy array of the multi-group cross-section energy band centers 
 .RE
 .PP
 
@@ -307,4 +315,4 @@ Sets the name of this group cross-section\&. This is useful when one wishes to p
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PINSPEC from the source code\&.
+Generated automatically by Doxygen from the source code\&.

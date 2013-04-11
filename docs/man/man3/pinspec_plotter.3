@@ -1,4 +1,4 @@
-.TH "pinspec.plotter" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.TH "pinspec.plotter" 3 "Thu Apr 11 2013" "Version v0.1" "Doxygen" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -83,7 +83,7 @@ pinspec\&.plotter\&.plotFissionSpectrum()
 .fi
 .PP
  
-.SS "def pinspec\&.plotter\&.plotFlux (flux, loglog = \fCTrue\fP, uselegend = \fCTrue\fP, title = \fC''\fP, filename = \fC''\fP)"
+.SS "def pinspec\&.plotter\&.plotFlux (fluxes, loglog = \fCTrue\fP, uselegend = \fCTrue\fP, title = \fC''\fP, filename = \fC''\fP)"
 
 .PP
 Plots one or more flux tallies by energy\&. This method generates and saves the plot as a *\&.png in the plotting output directory\&. A user may invoke this function from a PINSPEC Python file as follows:
@@ -97,7 +97,7 @@ pinspec\&.plotter\&.plotFlux([flux1, flux2], title='two fluxes')
 .PP
 \fBParameters:\fP
 .RS 4
-\fIflux\fP the flux tall(ies) of interest 
+\fIfluxes\fP the flux tall(ies) of interest 
 .br
 \fIloglog\fP an optional argument boolean to use a log-log scale 
 .br
@@ -210,4 +210,4 @@ pinspec\&.plotter\&.plotThermalScattering(my_isotope)
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PINSPEC from the source code\&.
+Generated automatically by Doxygen from the source code\&.

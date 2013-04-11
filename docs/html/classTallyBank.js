@@ -1,6 +1,7 @@
 var classTallyBank =
 [
     [ "TallyBank", "classTallyBank.html#a9bfccb9be181dd2f293ba43428923d1c", null ],
+    [ "TallyBank", "classTallyBank.html#a336e3deb888c9f7b3a1e6d92aabb78cf", null ],
     [ "~TallyBank", "classTallyBank.html#ac5fa620ccaee14fe52f95a82a832f6fb", null ],
     [ "clearTallies", "classTallyBank.html#a0e3309a94c772eedd2e0f6f4d6003f7d", null ],
     [ "computeBatchStatistics", "classTallyBank.html#af3de613ba9ec0fd23c4c459b6fdda7f4", null ],

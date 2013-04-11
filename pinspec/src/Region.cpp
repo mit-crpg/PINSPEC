@@ -502,14 +502,9 @@ void Region::setBucklingSquared(float buckling_squared) {
  */
 void Region::collideNeutron(neutron* neutron) {
 
-    /* Collide the neutron in the Region's Material */
-    neutron->_material = _material;
-
-    if (_material == NULL){
+    if (_material == NULL)
         log_printf(ERROR, "Region %s must have material to"
 			" collide neutron", _region_name);
-
-    }
 
     /* Collide the neutron in the Region's Material */
     neutron->_material = _material;

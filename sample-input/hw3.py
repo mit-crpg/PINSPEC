@@ -16,7 +16,7 @@ def main():
     num_neutrons_per_batch = 100000
     num_threads = 4
     setOutputDirectory('HW3');
-    setlevel('INFO')
+    py_setlevel('INFO')
 
     py_printf('TITLE', 'Simulation of homework 3 for 2012 22.211')
     py_printf('INFO', 'Initializing isotopes...')
@@ -62,8 +62,7 @@ def main():
     py_printf('INFO', 'Creating the geometry...')
  
     # Define geometry
-    geometry = Geometry()
-    geometry.setSpatialType(INFINITE_HOMOGENEOUS)
+    geometry = Geometry(INFINITE_HOMOGENEOUS)
     geometry.addRegion(region_mix)
     geometry.setNumBatches(num_batches)
     geometry.setNeutronsPerBatch(num_neutrons_per_batch)
@@ -72,10 +71,10 @@ def main():
     py_printf('INFO', 'Initializing tallies for flux and absorption rates...')
 
     # Create a tally for the flux
-    flux1 = TallyFactory.createTally(geometry, FLUX, 'U/H = 1E-6')
-    flux2 = TallyFactory.createTally(geometry, FLUX, 'U/H = 0.01')
-    flux3 = TallyFactory.createTally(geometry, FLUX, 'U/H = 0.1')
-    flux4 = TallyFactory.createTally(geometry, FLUX, 'U/H = 1.0')
+    flux1 = createTally(geometry, FLUX, 'U/H = 1E-6')
+    flux2 = createTally(geometry, FLUX, 'U/H = 0.01')
+    flux3 = createTally(geometry, FLUX, 'U/H = 0.1')
+    flux4 = createTally(geometry, FLUX, 'U/H = 1.0')
     flux1.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
     flux2.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
     flux3.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
@@ -83,9 +82,9 @@ def main():
     fluxes = [flux1, flux2, flux3, flux4]
 
     # Create tallies to compute absorption in u238 and the material
-    u238_abs_rate = TallyFactory.createTally(u238, ABSORPTION_RATE, 'u238 abs')
-    tot_abs_rate = TallyFactory.createTally(region_mix, ABSORPTION_RATE, 'tot abs')
-    abs_rate_flux = TallyFactory.createTally(region_mix, FLUX)
+    u238_abs_rate = createTally(u238, ABSORPTION_RATE, 'u238 abs')
+    tot_abs_rate =  createTally(region_mix, ABSORPTION_RATE, 'tot abs')
+    abs_rate_flux = createTally(region_mix, FLUX)
 
     abs_rate_bin_edges = numpy.array([1E-5, 1., 6., 10., 25., 50., 100., 1000.])
     tot_abs_rate.generateBinEdges(1E-7, 2E7, 1, EQUAL)

@@ -1,0 +1,313 @@
+Current local time and date: Wed Apr 10 23:45:15 2013
+[  INFO   ]  Logging level set to INFO
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]             Starting a weak scaling multi-threading study           
+[  TITLE  ]  *******************************************************************
+[  INFO   ]  Initializing isotopes...
+[  INFO   ]  Loading isotope H-1
+[  INFO   ]  Loading H-1-elastic.txt for isotope H-1
+[  INFO   ]  Loading H-1-capture.txt for isotope H-1
+[  INFO   ]  Loading isotope B-10
+[  INFO   ]  Loading B-10-elastic.txt for isotope B-10
+[  INFO   ]  Loading B-10-capture.txt for isotope B-10
+[  INFO   ]  Loading isotope O-16
+[  INFO   ]  Loading O-16-elastic.txt for isotope O-16
+[  INFO   ]  Loading O-16-capture.txt for isotope O-16
+[  INFO   ]  Loading isotope U-235
+[  INFO   ]  Loading U-235-elastic.txt for isotope U-235
+[  INFO   ]  Loading U-235-capture.txt for isotope U-235
+[  INFO   ]  Loading U-235-fission.txt for isotope U-235
+[  INFO   ]  Loading isotope U-238
+[  INFO   ]  Loading U-238-elastic.txt for isotope U-238
+[  INFO   ]  Loading U-238-capture.txt for isotope U-238
+[  INFO   ]  Loading U-238-fission.txt for isotope U-238
+[  INFO   ]  Loading isotope Zr-90
+[  INFO   ]  Loading Zr-90-elastic.txt for isotope Zr-90
+[  INFO   ]  Loading Zr-90-capture.txt for isotope Zr-90
+[  INFO   ]  Initializing fuel-moderator mix material...
+[  INFO   ]  Isotope B-10 has number density 3.011E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope B-10 has number density 1.882E+16 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope O-16 has number density 1.882E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope H-1 has number density 1.771E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope B-10 has number density 1.771E+16 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope O-16 has number density 1.771E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope H-1 has number density 1.554E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope B-10 has number density 1.554E+16 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope O-16 has number density 1.554E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 1.554E+21 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope H-1 has number density 1.508E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope B-10 has number density 1.508E+16 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope O-16 has number density 1.508E+23 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-235 has number density 3.771E+20 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 1.508E+21 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope H-1 has number density 8.763E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope B-10 has number density 8.763E+15 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope O-16 has number density 8.763E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-235 has number density 2.191E+20 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope U-238 has number density 8.763E+20 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Isotope Zr-90 has number density 1.402E+22 in material Fuel
+[  INFO   ]  ... Moderator Mix
+[  INFO   ]  Initializing fuel-moderator mix region...
+[  INFO   ]  Initializing the geometry...
+[  INFO   ]  Initializing flux tally...
+[  INFO   ]  Registered tally  with the TallyBank for region infinite medium
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 2     # threads = 1
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 1 tallies for 2 batches
+[  INFO   ]  Thread 1/1 running batch 0
+[  INFO   ]  Thread 1/1 running batch 1
+[  NORMAL ]  PINSPEC simulated 9562 neutrons / sec in 20.915694 sec
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 4     # threads = 2
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 1 tallies for 4 batches
+[  INFO   ]  Thread 1/2 running batch 0
+[  INFO   ]  Thread 2/2 running batch 2
+[  INFO   ]  Thread 2/2 running batch 3
+[  INFO   ]  Thread 1/2 running batch 1
+[  NORMAL ]  PINSPEC simulated 16293 neutrons / sec in 24.550341 sec
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 6     # threads = 3
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 1 tallies for 6 batches
+[  INFO   ]  Thread 1/3 running batch 0
+[  INFO   ]  Thread 2/3 running batch 2
+[  INFO   ]  Thread 3/3 running batch 4
+[  INFO   ]  Thread 2/3 running batch 3
+[  INFO   ]  Thread 1/3 running batch 1
+[  INFO   ]  Thread 3/3 running batch 5
+[  NORMAL ]  PINSPEC simulated 16090 neutrons / sec in 37.291324 sec
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 8     # threads = 4
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 1 tallies for 8 batches
+[  INFO   ]  Thread 2/4 running batch 2
+[  INFO   ]  Thread 1/4 running batch 0
+[  INFO   ]  Thread 3/4 running batch 4
+[  INFO   ]  Thread 4/4 running batch 6
+[  INFO   ]  Thread 3/4 running batch 5
+[  INFO   ]  Thread 2/4 running batch 3
+[  INFO   ]  Thread 4/4 running batch 7
+[  INFO   ]  Thread 1/4 running batch 1
+[  NORMAL ]  PINSPEC simulated 10441 neutrons / sec in 76.624340 sec
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 10     # threads = 5
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 1 tallies for 10 batches
+[  INFO   ]  Thread 4/5 running batch 6
+[  INFO   ]  Thread 2/5 running batch 2
+[  INFO   ]  Thread 1/5 running batch 0
+[  INFO   ]  Thread 3/5 running batch 4
+[  INFO   ]  Thread 5/5 running batch 8
+[  INFO   ]  Thread 3/5 running batch 5
+[  INFO   ]  Thread 2/5 running batch 3
+[  INFO   ]  Thread 4/5 running batch 7
+[  INFO   ]  Thread 5/5 running batch 9
+[  INFO   ]  Thread 1/5 running batch 1
+[  NORMAL ]  PINSPEC simulated 13752 neutrons / sec in 72.717416 sec
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 12     # threads = 6
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 1 tallies for 12 batches
+[  INFO   ]  Thread 4/6 running batch 6
+[  INFO   ]  Thread 3/6 running batch 4
+[  INFO   ]  Thread 2/6 running batch 2
+[  INFO   ]  Thread 5/6 running batch 8
+[  INFO   ]  Thread 1/6 running batch 0
+[  INFO   ]  Thread 6/6 running batch 10
+[  INFO   ]  Thread 2/6 running batch 3
+[  INFO   ]  Thread 3/6 running batch 5
+[  INFO   ]  Thread 4/6 running batch 7
+[  INFO   ]  Thread 6/6 running batch 11
+[  INFO   ]  Thread 5/6 running batch 9
+[  INFO   ]  Thread 1/6 running batch 1
+[  NORMAL ]  PINSPEC simulated 14503 neutrons / sec in 82.739780 sec
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 14     # threads = 7
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 1 tallies for 14 batches
+[  INFO   ]  Thread 3/7 running batch 4
+[  INFO   ]  Thread 4/7 running batch 6
+[  INFO   ]  Thread 2/7 running batch 2
+[  INFO   ]  Thread 5/7 running batch 8
+[  INFO   ]  Thread 6/7 running batch 10
+[  INFO   ]  Thread 1/7 running batch 0
+[  INFO   ]  Thread 7/7 running batch 12
+[  INFO   ]  Thread 4/7 running batch 7
+[  INFO   ]  Thread 3/7 running batch 5
+[  INFO   ]  Thread 2/7 running batch 3
+[  INFO   ]  Thread 5/7 running batch 9
+[  INFO   ]  Thread 6/7 running batch 11
+[  INFO   ]  Thread 1/7 running batch 1
+[  INFO   ]  Thread 7/7 running batch 13
+[  NORMAL ]  PINSPEC simulated 15736 neutrons / sec in 88.966603 sec
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 16     # threads = 8
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 1 tallies for 16 batches
+[  INFO   ]  Thread 4/8 running batch 6
+[  INFO   ]  Thread 3/8 running batch 4
+[  INFO   ]  Thread 5/8 running batch 8
+[  INFO   ]  Thread 7/8 running batch 12
+[  INFO   ]  Thread 2/8 running batch 2
+[  INFO   ]  Thread 6/8 running batch 10
+[  INFO   ]  Thread 1/8 running batch 0
+[  INFO   ]  Thread 8/8 running batch 14
+[  INFO   ]  Thread 3/8 running batch 5
+[  INFO   ]  Thread 4/8 running batch 7
+[  INFO   ]  Thread 2/8 running batch 3
+[  INFO   ]  Thread 7/8 running batch 13
+[  INFO   ]  Thread 6/8 running batch 11
+[  INFO   ]  Thread 8/8 running batch 15
+[  INFO   ]  Thread 5/8 running batch 9
+[  INFO   ]  Thread 1/8 running batch 1
+[  NORMAL ]  PINSPEC simulated 15311 neutrons / sec in 104.501070 sec
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 18     # threads = 9
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 1 tallies for 18 batches
+[  INFO   ]  Thread 5/9 running batch 8
+[  INFO   ]  Thread 3/9 running batch 4
+[  INFO   ]  Thread 7/9 running batch 12
+[  INFO   ]  Thread 4/9 running batch 6
+[  INFO   ]  Thread 6/9 running batch 10
+[  INFO   ]  Thread 2/9 running batch 2
+[  INFO   ]  Thread 1/9 running batch 0
+[  INFO   ]  Thread 8/9 running batch 14
+[  INFO   ]  Thread 9/9 running batch 16
+[  INFO   ]  Thread 4/9 running batch 7
+[  INFO   ]  Thread 2/9 running batch 3
+[  INFO   ]  Thread 3/9 running batch 5
+[  INFO   ]  Thread 8/9 running batch 15
+[  INFO   ]  Thread 5/9 running batch 9
+[  INFO   ]  Thread 7/9 running batch 13
+[  INFO   ]  Thread 6/9 running batch 11
+[  INFO   ]  Thread 9/9 running batch 17
+[  INFO   ]  Thread 1/9 running batch 1
+[  NORMAL ]  PINSPEC simulated 15337 neutrons / sec in 117.359558 sec
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 20     # threads = 10
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 1 tallies for 20 batches
+[  INFO   ]  Thread 3/10 running batch 4
+[  INFO   ]  Thread 4/10 running batch 6
+[  INFO   ]  Thread 2/10 running batch 2
+[  INFO   ]  Thread 8/10 running batch 14
+[  INFO   ]  Thread 6/10 running batch 10
+[  INFO   ]  Thread 9/10 running batch 16
+[  INFO   ]  Thread 7/10 running batch 12
+[  INFO   ]  Thread 5/10 running batch 8
+[  INFO   ]  Thread 1/10 running batch 0
+[  INFO   ]  Thread 10/10 running batch 18
+[  INFO   ]  Thread 3/10 running batch 5
+[  INFO   ]  Thread 4/10 running batch 7
+[  INFO   ]  Thread 2/10 running batch 3
+[  INFO   ]  Thread 6/10 running batch 11
+[  INFO   ]  Thread 8/10 running batch 15
+[  INFO   ]  Thread 7/10 running batch 13
+[  INFO   ]  Thread 5/10 running batch 9
+[  INFO   ]  Thread 9/10 running batch 17
+[  INFO   ]  Thread 10/10 running batch 19
+[  INFO   ]  Thread 1/10 running batch 1
+[  NORMAL ]  PINSPEC simulated 15804 neutrons / sec in 126.553347 sec
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 22     # threads = 11
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 1 tallies for 22 batches
+[  INFO   ]  Thread 4/11 running batch 6
+[  INFO   ]  Thread 7/11 running batch 12
+[  INFO   ]  Thread 3/11 running batch 4
+[  INFO   ]  Thread 10/11 running batch 18
+[  INFO   ]  Thread 5/11 running batch 8
+[  INFO   ]  Thread 2/11 running batch 2
+[  INFO   ]  Thread 8/11 running batch 14
+[  INFO   ]  Thread 6/11 running batch 10
+[  INFO   ]  Thread 9/11 running batch 16
+[  INFO   ]  Thread 11/11 running batch 20
+[  INFO   ]  Thread 1/11 running batch 0
+[  INFO   ]  Thread 2/11 running batch 3
+[  INFO   ]  Thread 4/11 running batch 7
+[  INFO   ]  Thread 3/11 running batch 5
+[  INFO   ]  Thread 5/11 running batch 9
+[  INFO   ]  Thread 7/11 running batch 13
+[  INFO   ]  Thread 6/11 running batch 11
+[  INFO   ]  Thread 8/11 running batch 15
+[  INFO   ]  Thread 10/11 running batch 19
+[  INFO   ]  Thread 9/11 running batch 17
+[  INFO   ]  Thread 11/11 running batch 21
+[  INFO   ]  Thread 1/11 running batch 1
+[  NORMAL ]  PINSPEC simulated 15615 neutrons / sec in 140.894515 sec
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]              Beginning PINSPEC Monte Carlo Simulation...            
+[  TITLE  ]  *******************************************************************
+[  NORMAL ]  # neutrons / batch = 100000     # batches = 24     # threads = 12
+[SEPARATOR]  -------------------------------------------------------------------
+[  INFO   ]  TallyBank has initialized 1 tallies for 24 batches
+[  INFO   ]  Thread 2/12 running batch 2
+[  INFO   ]  Thread 3/12 running batch 4
+[  INFO   ]  Thread 6/12 running batch 10
+[  INFO   ]  Thread 4/12 running batch 6
+[  INFO   ]  Thread 5/12 running batch 8
+[  INFO   ]  Thread 11/12 running batch 20
+[  INFO   ]  Thread 9/12 running batch 16
+[  INFO   ]  Thread 10/12 running batch 18
+[  INFO   ]  Thread 8/12 running batch 14
+[  INFO   ]  Thread 7/12 running batch 12
+[  INFO   ]  Thread 1/12 running batch 0
+[  INFO   ]  Thread 12/12 running batch 22
+[  INFO   ]  Thread 4/12 running batch 7
+[  INFO   ]  Thread 2/12 running batch 3
+[  INFO   ]  Thread 3/12 running batch 5
+[  INFO   ]  Thread 6/12 running batch 11
+[  INFO   ]  Thread 8/12 running batch 15
+[  INFO   ]  Thread 5/12 running batch 9
+[  INFO   ]  Thread 7/12 running batch 13
+[  INFO   ]  Thread 10/12 running batch 19
+[  INFO   ]  Thread 12/12 running batch 23
+[  INFO   ]  Thread 9/12 running batch 17
+[  INFO   ]  Thread 11/12 running batch 21
+[  INFO   ]  Thread 1/12 running batch 1
+[  NORMAL ]  PINSPEC simulated 15459 neutrons / sec in 155.249649 sec

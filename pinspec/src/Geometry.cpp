@@ -12,7 +12,7 @@ Geometry::Geometry(spatialType spatial_type) {
     _num_batches = 10;
     _num_threads = 1;
 
-    _spatial_type = INFINITE_HOMOGENEOUS;
+    _spatial_type = spatial_type;
 
     /* Initialize regions to null */
     _infinite_medium = NULL;
@@ -196,7 +196,6 @@ void Geometry::setSpatialType(spatialType spatial_type) {
  *          (INFINITE, FUEL, MODERATOR) does not conflict with other regions
  *          that have already been added to the geometry
  * @param region the region to add to the geometry
- * @param a region to add to the Geometry
  */
 void Geometry::addRegion(Region* region) {
 
@@ -280,13 +279,12 @@ void Geometry::runMonteCarloSimulation() {
     TallyBank* tally_bank = TallyBank::Get();
 
     /* Print report to the screen */
-    log_printf(TITLE, "Beginning PINSPEC Monte Carlo Simulation...");
+        log_printf(TITLE, "Beginning PINSPEC Monte Carlo Simulation...");
     log_printf(NORMAL, "# neutrons / batch = %d     # batches = %d     "
-                      "# threads = %d", _num_neutrons_per_batch, 
+                     "# threads = %d", _num_neutrons_per_batch, 
                         _num_batches, _num_threads);
     log_printf(SEPARATOR, "");
 
-    
     omp_set_num_threads(_num_threads);
     tally_bank->initializeBatchTallies(_num_batches);
 
@@ -350,7 +348,7 @@ void Geometry::runMonteCarloSimulation() {
 
     /* If we are running homogeneous equivalence spectral calculation */
     else if (_spatial_type == HOMOGENEOUS_EQUIVALENCE) {
-
+	
         /* Check that all necessary parameters have been set */
         if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
 	    log_printf(ERROR, "Unable to run a HOMOGENEOUS_EQUIVALENCE type "
@@ -383,7 +381,7 @@ void Geometry::runMonteCarloSimulation() {
 	float p_ff;
 	float p_mf;
 	float test;
-
+       
         while (precision_triggered) {
             #pragma omp parallel
 	    {

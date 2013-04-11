@@ -20,7 +20,6 @@
 #include "log.h"
 #endif
 
-
 void setXSLibDirectory(const char* directory);
 const char* getXSLibDirectory();
 int restoreXSLibrary();

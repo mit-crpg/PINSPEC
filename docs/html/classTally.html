@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>PINSPEC: Tally Class Reference</title>
+<title>Tally Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,12 +26,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
-   <div id="projectname">PINSPEC
-   &#160;<span id="projectnumber">0.1</span>
-   </div>
-   <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
-  </td>
+  <td id="projectlogo"><img alt="Logo" src="logo-small.png"/></td>
+    <td style="padding-left: 0.5em;">
+    <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
+    </td>
  </tr>
  </tbody>
 </table>
@@ -1172,7 +1170,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the name of the tally. </p>
-<dl class="section return"><dt>Returns</dt><dd>the name of the tally </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the name of the tally </dd>
+<dd>
+the <a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a>'s name </dd></dl>
 
 </div>
 </div>
@@ -1423,9 +1423,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> multiplication operator. </p>
-<p>This overloaded multiplication operator allows the user to multiply two tallies with each other, if they have the same number of tallies. The creates a new DERIVED type tally, loads it with the product of the tally bin averages for the two tally operands, and computes its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded multiplication operator allows the user to multiply two tallies with each other, if they have the same number of tallies. The creates a new DERIVED type tally, loads it with the product of the tally bin averages for the two tally operands, and computes its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = tally1 * tally2</div>
-</div><!-- fragment --> <dl class="section return"><dt>Returns</dt><dd>a DERIVED type tally with the tally product </dd></dl>
+</div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>a DERIVED type tally with the tally product </dd></dl>
 
 </div>
 </div>
@@ -1444,9 +1444,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> multiplication with a constant operator. </p>
-<p>This overloaded subtraction operator allows the user to multiply a constant with a tally. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately. constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded subtraction operator allows the user to multiply a constant with a tally. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately. constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = <a class="code" href="classTally.html#a50c7919393799145f1ab23457d47b02b" title="This method tallies a particular weight for a neutron.">tally</a> * int(3)</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">amt</td><td>the right operand and the constant value to multiply the tally by </td></tr>
   </table>
@@ -1471,9 +1471,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> multiplication with a constant operator. </p>
-<p>This overloaded subtraction operator allows the user to multiply a constant with a tally. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded subtraction operator allows the user to multiply a constant with a tally. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = <a class="code" href="classTally.html#a50c7919393799145f1ab23457d47b02b" title="This method tallies a particular weight for a neutron.">tally</a> * float(3.5)</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">amt</td><td>the right operand and the constant value to multiply the tally by </td></tr>
   </table>
@@ -1498,9 +1498,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> multiplication with a constant operator. </p>
-<p>This overloaded subtraction operator allows the user to multiply a constant with a tally. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded subtraction operator allows the user to multiply a constant with a tally. The creates a new DERIVED type tally, loads it with the product of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = <a class="code" href="classTally.html#a50c7919393799145f1ab23457d47b02b" title="This method tallies a particular weight for a neutron.">tally</a> * double(3.5)</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">amt</td><td>the right operand and the constant value to multiply the tally by </td></tr>
   </table>
@@ -1552,9 +1552,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> addition with a constant operator. </p>
-<p>This overloaded addition operator allows the user to add a constant to a tally. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately. constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded addition operator allows the user to add a constant to a tally. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately. constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = <a class="code" href="classTally.html#a50c7919393799145f1ab23457d47b02b" title="This method tallies a particular weight for a neutron.">tally</a> + int(3)</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">amt</td><td>the right operand and the constant value to add to the tally </td></tr>
   </table>
@@ -1579,9 +1579,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> addition with a constant operator. </p>
-<p>This overloaded addition operator allows the user to add a constant to a tally. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded addition operator allows the user to add a constant to a tally. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = <a class="code" href="classTally.html#a50c7919393799145f1ab23457d47b02b" title="This method tallies a particular weight for a neutron.">tally</a> + float(3.5)</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">amt</td><td>the right operand and the constant value to add to the tally </td></tr>
   </table>
@@ -1606,9 +1606,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> addition with a constant operator. </p>
-<p>This overloaded addition operator allows the user to add a constant to a tally. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded addition operator allows the user to add a constant to a tally. The creates a new DERIVED type tally, loads it with the sum of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = <a class="code" href="classTally.html#a50c7919393799145f1ab23457d47b02b" title="This method tallies a particular weight for a neutron.">tally</a> + double(3.5)</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">amt</td><td>the right operand and the constant value to add to the tally </td></tr>
   </table>
@@ -1633,9 +1633,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> subtraction operator. </p>
-<p>This overloaded subtraction operator allows the user to subtract two tallies with each other, if they have the same number of tallies. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages for the two tally operands, and computes its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded subtraction operator allows the user to subtract two tallies with each other, if they have the same number of tallies. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages for the two tally operands and computes its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = tally1 - tally2</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tally</td><td>the right operand in the tally product </td></tr>
   </table>
@@ -1660,9 +1660,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> subtraction with a constant operator. </p>
-<p>This overloaded subtraction operator allows the user to subtract a constant from a tally. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately. constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded subtraction operator allows the user to subtract a constant from a tally. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately. constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = <a class="code" href="classTally.html#a50c7919393799145f1ab23457d47b02b" title="This method tallies a particular weight for a neutron.">tally</a> - int(3)</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">amt</td><td>the right operand and the constant value to subtract from the tally </td></tr>
   </table>
@@ -1687,9 +1687,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> subtraction with a constant operator. </p>
-<p>This overloaded subtraction operator allows the user to subtract a constant from a tally. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded subtraction operator allows the user to subtract a constant from a tally. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = <a class="code" href="classTally.html#a50c7919393799145f1ab23457d47b02b" title="This method tallies a particular weight for a neutron.">tally</a> - float(3.5)</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">amt</td><td>the right operand and the constant value to subtract from the tally </td></tr>
   </table>
@@ -1714,9 +1714,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> subtraction with a constant operator. </p>
-<p>This overloaded subtraction operator allows the user to subtract a constant from a tally. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded subtraction operator allows the user to subtract a constant from a tally. The creates a new DERIVED type tally, loads it with the difference of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = <a class="code" href="classTally.html#a50c7919393799145f1ab23457d47b02b" title="This method tallies a particular weight for a neutron.">tally</a> - double(3.5)</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">amt</td><td>the right operand and the constant value to subtract from the tally </td></tr>
   </table>
@@ -1741,9 +1741,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> division operator. </p>
-<p>This overloaded division operator allows the user to divide two tallies with each other, if they have the same number of tallies. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages for the two tally operands, and computes its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded division operator allows the user to divide two tallies with each other, if they have the same number of tallies. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages for the two tally operands, and computes its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = tally1 / tally2</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tally</td><td>the right operand in the tally division </td></tr>
   </table>
@@ -1768,9 +1768,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> division with a constant operator. </p>
-<p>This overloaded division operator allows the user to divide a tally by a constant. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded division operator allows the user to divide a tally by a constant. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = <a class="code" href="classTally.html#a50c7919393799145f1ab23457d47b02b" title="This method tallies a particular weight for a neutron.">tally</a> / int(3)</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">amt</td><td>the right operand and the constant value to divide the tally by </td></tr>
   </table>
@@ -1795,9 +1795,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> division with a constant operator. </p>
-<p>This overloaded division operator allows the user to divide a tally by a constant. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded division operator allows the user to divide a tally by a constant. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = <a class="code" href="classTally.html#a50c7919393799145f1ab23457d47b02b" title="This method tallies a particular weight for a neutron.">tally</a> / float(3.5)</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">amt</td><td>the right operand and the constant value to divide the tally by </td></tr>
   </table>
@@ -1822,9 +1822,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> division with a constant operator. </p>
-<p>This overloaded division operator allows the user to divide a tally by a constant. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately. array, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python. </p>
+<p>This overloaded division operator allows the user to divide a tally by a constant. The creates a new DERIVED type tally, loads it with the dividend of the tally bin averages and the constant, and updates its batch statistics appropriately. array, and updates its batch statistics appropriately. This method is intended to allow for simple tally arithmetic in Python.</p>
 <div class="fragment"><div class="line">new_tally = <a class="code" href="classTally.html#a50c7919393799145f1ab23457d47b02b" title="This method tallies a particular weight for a neutron.">tally</a> / double(3.5)</div>
-</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">amt</td><td>the right operand and the constant value to divide the tally by </td></tr>
   </table>
@@ -2244,7 +2244,7 @@ Protected Attributes</h2></td></tr>
 <p>By setting a precision trigger, the user instructs a PINSEPC simulation to continue running until all tallies meet the precision trigger threshold. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">trigger_type</td><td>the precision trigger type (VARIANCE, RELATIVE_ERROR, etc) </td></tr>
+    <tr><td class="paramname">trigger_type</td><td>the precision trigger type (VARIANCE, etc) </td></tr>
     <tr><td class="paramname">precision</td><td>the threshold for the precision trigger </td></tr>
   </table>
   </dd>
@@ -2855,7 +2855,7 @@ Protected Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classTally.html">Tally</a></li>
-    <li class="footer">Generated on Wed Apr 10 2013 21:11:50 for PINSPEC by
+    <li class="footer">Generated on Thu Apr 11 2013 12:43:16 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

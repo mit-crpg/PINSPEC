@@ -31,8 +31,10 @@ def \hyperlink{classpinspec_1_1process_1_1GroupXS_af74a0da1fab21995e6105762aa21e
 \begin{DoxyCompactList}\small\item\em Returns an array of the multi-\/group cross-\/section standard deviations. \end{DoxyCompactList}\item 
 def \hyperlink{classpinspec_1_1process_1_1GroupXS_a0adae8d5005d0534ccb3dcb3302bef6c}{get\-Relative\-Error}
 \begin{DoxyCompactList}\small\item\em Returns an array of the multi-\/group cross-\/section relative errors. \end{DoxyCompactList}\item 
-def \hyperlink{classpinspec_1_1process_1_1GroupXS_a9a56a3b63e126b65ce191ca7dbdcda32}{get\-Energy\-Bands}
+def \hyperlink{classpinspec_1_1process_1_1GroupXS_a757870124674de6a5ddff4f26df6c0c6}{get\-Energy\-Bands\-Centers}
 \begin{DoxyCompactList}\small\item\em Returns an array of the multi-\/group cross-\/section energy band centers. \end{DoxyCompactList}\item 
+def \hyperlink{classpinspec_1_1process_1_1GroupXS_a9a56a3b63e126b65ce191ca7dbdcda32}{get\-Energy\-Bands}
+\begin{DoxyCompactList}\small\item\em Returns an array of the multi-\/group cross-\/section energy band values. \end{DoxyCompactList}\item 
 def \hyperlink{classpinspec_1_1process_1_1GroupXS_aee3cc4641d6f9709c25cfa4e6fbbba08}{get\-Group\-X\-S}
 \begin{DoxyCompactList}\small\item\em Returns a reference to this \hyperlink{classpinspec_1_1process_1_1GroupXS}{Group\-X\-S} object. \end{DoxyCompactList}\item 
 def \hyperlink{classpinspec_1_1process_1_1GroupXS_a2918792badce34f95584a70d89aa71f7}{print\-X\-S}
@@ -132,6 +134,25 @@ sigma\_groups = reaction\_rate / flux
 )}}\label{classpinspec_1_1process_1_1GroupXS_a9a56a3b63e126b65ce191ca7dbdcda32}
 
 
+Returns an array of the multi-\/group cross-\/section energy band values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em self} & the \hyperlink{classpinspec_1_1process_1_1GroupXS}{Group\-X\-S} object pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a numpy array of the multi-\/group cross-\/section energy band values 
+\end{DoxyReturn}
+\hypertarget{classpinspec_1_1process_1_1GroupXS_a757870124674de6a5ddff4f26df6c0c6}{\index{pinspec\-::process\-::\-Group\-X\-S@{pinspec\-::process\-::\-Group\-X\-S}!get\-Energy\-Bands\-Centers@{get\-Energy\-Bands\-Centers}}
+\index{get\-Energy\-Bands\-Centers@{get\-Energy\-Bands\-Centers}!pinspec::process::GroupXS@{pinspec\-::process\-::\-Group\-X\-S}}
+\subsubsection[{get\-Energy\-Bands\-Centers}]{\setlength{\rightskip}{0pt plus 5cm}def pinspec.\-process.\-Group\-X\-S.\-get\-Energy\-Bands\-Centers (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classpinspec_1_1process_1_1GroupXS_a757870124674de6a5ddff4f26df6c0c6}
+
+
 Returns an array of the multi-\/group cross-\/section energy band centers. 
 
 
@@ -140,15 +161,7 @@ Returns an array of the multi-\/group cross-\/section energy band centers.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-a numpy array of the multi-\/group cross-\/section energy band centers def get\-Energy\-Bands\-Centers(self)\-: Returns an array of the multi-\/group cross-\/section energy band values. 
-\end{DoxyReturn}
-
-\begin{DoxyParams}{Parameters}
-{\em self} & the \hyperlink{classpinspec_1_1process_1_1GroupXS}{Group\-X\-S} object pointer \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-a numpy array of the multi-\/group cross-\/section energy band values 
+a numpy array of the multi-\/group cross-\/section energy band centers 
 \end{DoxyReturn}
 \hypertarget{classpinspec_1_1process_1_1GroupXS_aee3cc4641d6f9709c25cfa4e6fbbba08}{\index{pinspec\-::process\-::\-Group\-X\-S@{pinspec\-::process\-::\-Group\-X\-S}!get\-Group\-X\-S@{get\-Group\-X\-S}}
 \index{get\-Group\-X\-S@{get\-Group\-X\-S}!pinspec::process::GroupXS@{pinspec\-::process\-::\-Group\-X\-S}}

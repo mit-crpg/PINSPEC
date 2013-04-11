@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>PINSPEC: TallyBank Class Reference</title>
+<title>TallyBank Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,12 +26,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
-   <div id="projectname">PINSPEC
-   &#160;<span id="projectnumber">0.1</span>
-   </div>
-   <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
-  </td>
+  <td id="projectlogo"><img alt="Logo" src="logo-small.png"/></td>
+    <td style="padding-left: 0.5em;">
+    <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
+    </td>
  </tr>
  </tbody>
 </table>
@@ -168,6 +166,8 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a9bfccb9be181dd2f293ba43428923d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classTallyBank.html" title="The TallyBank contains all tallies for a simulation.">TallyBank</a> constructor. <br/></td></tr>
 <tr class="memitem:a17f7549e89865f3841fccd876f7c62f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTallyBank.html">TallyBank</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTallyBank.html#a17f7549e89865f3841fccd876f7c62f7">operator=</a> (const <a class="el" href="classTallyBank.html">TallyBank</a> &amp;)</td></tr>
 <tr class="memdesc:a17f7549e89865f3841fccd876f7c62f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">An overloaded assignment function to allow for static referencing of the <a class="el" href="classTallyBank.html" title="The TallyBank contains all tallies for a simulation.">TallyBank</a> class.  <a href="#a17f7549e89865f3841fccd876f7c62f7"></a><br/></td></tr>
+<tr class="memitem:a336e3deb888c9f7b3a1e6d92aabb78cf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTallyBank.html#a336e3deb888c9f7b3a1e6d92aabb78cf">TallyBank</a> (const <a class="el" href="classTallyBank.html">TallyBank</a> &amp;)</td></tr>
+<tr class="memdesc:a336e3deb888c9f7b3a1e6d92aabb78cf"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classTallyBank.html" title="The TallyBank contains all tallies for a simulation.">TallyBank</a> constructor.  <a href="#a336e3deb888c9f7b3a1e6d92aabb78cf"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -184,7 +184,40 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classTallyBank.html" title="The TallyBank contains all tallies for a simulation.">TallyBank</a> contains all tallies for a simulation. </p>
 <p>The <a class="el" href="classTallyBank.html" title="The TallyBank contains all tallies for a simulation.">TallyBank</a> ensures accurate error checking for tallies used in a simulation. The <a class="el" href="classTallyBank.html" title="The TallyBank contains all tallies for a simulation.">TallyBank</a> stores tallies in the appropriate hash table with keys corresponding to the isotope, material, region and/or geometry in which a tally is to be applied. The <a class="el" href="classTallyBank.html" title="The TallyBank contains all tallies for a simulation.">TallyBank</a> can iterate through all of the approrpirate tallies for a neutron and make a tally in each one, in addition to providing other functionality to the main Monte Carlo kernel. </p>
-</div><h2>Member Function Documentation</h2>
+</div><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a336e3deb888c9f7b3a1e6d92aabb78cf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TallyBank::TallyBank </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTallyBank.html">TallyBank</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classTallyBank.html" title="The TallyBank contains all tallies for a simulation.">TallyBank</a> constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">&amp;</td><td>The <a class="el" href="classTallyBank.html" title="The TallyBank contains all tallies for a simulation.">TallyBank</a> static reference pointer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2>Member Function Documentation</h2>
 <a class="anchor" id="a26bdf7c7f02b528c552ee44f0d014af1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -681,7 +714,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classTallyBank.html">TallyBank</a></li>
-    <li class="footer">Generated on Wed Apr 10 2013 21:11:50 for PINSPEC by
+    <li class="footer">Generated on Thu Apr 11 2013 12:43:16 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

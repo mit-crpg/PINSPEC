@@ -91,7 +91,7 @@ void \hyperlink{classMaterial_a89e56bc82fcefcd2c73ab4a525a00129}{set\-Material\-
 \begin{DoxyCompactList}\small\item\em Sets the name for the material. \end{DoxyCompactList}\item 
 void \hyperlink{classMaterial_a24c5b8d61359fd8a9843c3e71f286e01}{set\-Density} (float density, char $\ast$unit)
 \begin{DoxyCompactList}\small\item\em Sets this material's density. \end{DoxyCompactList}\item 
-void \hyperlink{classMaterial_a49b4d4fb7a51ef75cebffdd52d8c6931}{set\-Number\-Density} (float number\-\_\-density)
+void \hyperlink{classMaterial_a32dbf4399d348901aefc4721a891337b}{set\-Number\-Density} (float number\-\_\-density, const char $\ast$unit)
 \begin{DoxyCompactList}\small\item\em Sets the material's number density. \end{DoxyCompactList}\item 
 void \hyperlink{classMaterial_a25785b407a07d9509458cdd342aef877}{set\-Atomic\-Mass} (float atomic\-\_\-mass)
 \begin{DoxyCompactList}\small\item\em Sets the material's total atomic mass. \end{DoxyCompactList}\item 
@@ -258,6 +258,14 @@ Returns the total macroscopic absorption cross-\/section for the material at som
 \begin{DoxyReturn}{Returns}
 the total macroscopic absorption cross-\/section $ (cm^{-1}) $ 
 \end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total macroscopic absorption cross-\/section (cm$^\wedge$-\/1) 
+\end{DoxyReturn}
 \hypertarget{classMaterial_a7538c8c5e94afc9ade32d68e4fef274b}{\index{Material@{Material}!get\-Absorption\-Macro\-X\-S@{get\-Absorption\-Macro\-X\-S}}
 \index{get\-Absorption\-Macro\-X\-S@{get\-Absorption\-Macro\-X\-S}!Material@{Material}}
 \subsubsection[{get\-Absorption\-Macro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Absorption\-Macro\-X\-S (
@@ -347,6 +355,14 @@ Returns the total macroscopic capture cross-\/section within this material at so
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 the total macroscopic capture cross-\/section $ (cm^{-1}) $ 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total macroscopic capture cross-\/section (cm$^\wedge$-\/1) 
 \end{DoxyReturn}
 \hypertarget{classMaterial_a3c78a51474dfde84489f8b60f7c46fc0}{\index{Material@{Material}!get\-Capture\-Macro\-X\-S@{get\-Capture\-Macro\-X\-S}}
 \index{get\-Capture\-Macro\-X\-S@{get\-Capture\-Macro\-X\-S}!Material@{Material}}
@@ -438,6 +454,14 @@ Returns the total macroscopic elastic scattering cross-\/section for the materia
 \begin{DoxyReturn}{Returns}
 the total macroscopic elastic scattering cross-\/section $ (cm^{-1}) $ 
 \end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total elastic macroscopic scattering cross-\/section (cm$^\wedge$-\/1) 
+\end{DoxyReturn}
 \hypertarget{classMaterial_abfa583941d2611f3f1a73dee015551e9}{\index{Material@{Material}!get\-Elastic\-Macro\-X\-S@{get\-Elastic\-Macro\-X\-S}}
 \index{get\-Elastic\-Macro\-X\-S@{get\-Elastic\-Macro\-X\-S}!Material@{Material}}
 \subsubsection[{get\-Elastic\-Macro\-X\-S}]{\setlength{\rightskip}{0pt plus 5cm}float Material\-::get\-Elastic\-Macro\-X\-S (
@@ -513,6 +537,14 @@ Returns the total macroscopic fission cross-\/section for the material at some e
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 the total macroscopic fission cross-\/section $ (cm^{-1}) $ 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em energy} & energy of interest (e\-V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the total macroscopic fission cross-\/section (cm$^\wedge$-\/1) 
 \end{DoxyReturn}
 \hypertarget{classMaterial_a1aef50eaf3e67ecd125269110c69882f}{\index{Material@{Material}!get\-Fission\-Macro\-X\-S@{get\-Fission\-Macro\-X\-S}}
 \index{get\-Fission\-Macro\-X\-S@{get\-Fission\-Macro\-X\-S}!Material@{Material}}
@@ -991,13 +1023,14 @@ Sets the name for the material.
 {\em name} & a character array for the material's name \\
 \hline
 \end{DoxyParams}
-\hypertarget{classMaterial_a49b4d4fb7a51ef75cebffdd52d8c6931}{\index{Material@{Material}!set\-Number\-Density@{set\-Number\-Density}}
+\hypertarget{classMaterial_a32dbf4399d348901aefc4721a891337b}{\index{Material@{Material}!set\-Number\-Density@{set\-Number\-Density}}
 \index{set\-Number\-Density@{set\-Number\-Density}!Material@{Material}}
 \subsubsection[{set\-Number\-Density}]{\setlength{\rightskip}{0pt plus 5cm}void Material\-::set\-Number\-Density (
 \begin{DoxyParamCaption}
-\item[{float}]{number\-\_\-density}
+\item[{float}]{number\-\_\-density, }
+\item[{const char $\ast$}]{unit}
 \end{DoxyParamCaption}
-)}}\label{classMaterial_a49b4d4fb7a51ef75cebffdd52d8c6931}
+)}}\label{classMaterial_a32dbf4399d348901aefc4721a891337b}
 
 
 Sets the material's number density. 
@@ -1005,6 +1038,8 @@ Sets the material's number density.
 
 \begin{DoxyParams}{Parameters}
 {\em number\-\_\-density} & the number density of material (at/cc) \\
+\hline
+{\em unit} & the density units ('g/cc' or 'at/cc') \\
 \hline
 \end{DoxyParams}
 

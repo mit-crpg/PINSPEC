@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>PINSPEC: Geometry Class Reference</title>
+<title>Geometry Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,12 +26,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
-   <div id="projectname">PINSPEC
-   &#160;<span id="projectnumber">0.1</span>
-   </div>
-   <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
-  </td>
+  <td id="projectlogo"><img alt="Logo" src="logo-small.png"/></td>
+    <td style="padding-left: 0.5em;">
+    <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
+    </td>
  </tr>
  </tbody>
 </table>
@@ -121,8 +119,8 @@ $(document).ready(function(){initNavTree('classGeometry.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4c301c163c63d21ed08c17b0f4e131d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a4c301c163c63d21ed08c17b0f4e131d3">Geometry</a> ()</td></tr>
-<tr class="memdesc:a4c301c163c63d21ed08c17b0f4e131d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Geomtery constructor.  <a href="#a4c301c163c63d21ed08c17b0f4e131d3"></a><br/></td></tr>
+<tr class="memitem:ad2146d68260c035d7236de7638c036de"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#ad2146d68260c035d7236de7638c036de">Geometry</a> (<a class="el" href="Geometry_8h.html#af321382c4a8d9fdb71c83382f82fac00">spatialType</a> spatial_type)</td></tr>
+<tr class="memdesc:ad2146d68260c035d7236de7638c036de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Geomtery constructor.  <a href="#ad2146d68260c035d7236de7638c036de"></a><br/></td></tr>
 <tr class="memitem:ad55e832122ab3a2833dcaa6507867678"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad55e832122ab3a2833dcaa6507867678"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#ad55e832122ab3a2833dcaa6507867678">~Geometry</a> ()</td></tr>
 <tr class="memdesc:ad55e832122ab3a2833dcaa6507867678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor deletes the <a class="el" href="classFissioner.html" title="The Fissioner represents the physics of fission neutron emission.">Fissioner</a> and lets SWIG delete the regions, materials, isotopes and allies during garbage collection. <br/></td></tr>
@@ -195,14 +193,15 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classGeometry.html" title="The Geometry represents the highest level entity in which a neutron may reside during a PINSPEC simul...">Geometry</a> represents the highest level entity in which a neutron may reside during a PINSPEC simulaiton. The geometry consists of one or more regions and controls the highest level Monte Carlo kernel. </p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a4c301c163c63d21ed08c17b0f4e131d3"></a>
+<a class="anchor" id="ad2146d68260c035d7236de7638c036de"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Geometry::Geometry </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="Geometry_8h.html#af321382c4a8d9fdb71c83382f82fac00">spatialType</a>&#160;</td>
+          <td class="paramname"><em>spatial_type</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1104,7 +1103,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classGeometry.html">Geometry</a></li>
-    <li class="footer">Generated on Wed Apr 10 2013 21:11:39 for PINSPEC by
+    <li class="footer">Generated on Thu Apr 11 2013 12:43:08 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

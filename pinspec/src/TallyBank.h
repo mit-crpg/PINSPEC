@@ -52,6 +52,12 @@ private:
      */
     TallyBank &operator=(const TallyBank &) { return *this; }
 
+    /**
+     * @brief TallyBank constructor.
+     * @param & The TallyBank static reference pointer.
+     */
+    TallyBank(const TallyBank &) { }
+
     /** Container of all registered tallies */
     std::set<Tally*> _all_tallies;
     /** Hash table of all tallies registered for the geometry */

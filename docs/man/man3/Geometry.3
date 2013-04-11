@@ -1,4 +1,4 @@
-.TH "Geometry" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.TH "Geometry" 3 "Thu Apr 11 2013" "Version v0.1" "Doxygen" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -15,7 +15,7 @@ The \fBGeometry\fP represents the highest level entity in which a neutron may re
 
 .in +1c
 .ti -1c
-.RI "\fBGeometry\fP ()"
+.RI "\fBGeometry\fP (\fBspatialType\fP spatial_type)"
 .br
 .RI "\fIGeomtery constructor\&. \fP"
 .ti -1c
@@ -175,7 +175,7 @@ The \fBGeometry\fP represents the highest level entity in which a neutron may re
 The \fBGeometry\fP represents the highest level entity in which a neutron may reside during a PINSPEC simulaiton\&. The geometry consists of one or more regions and controls the highest level Monte Carlo kernel\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "Geometry::Geometry ()"
+.SS "Geometry::Geometry (\fBspatialType\fPspatial_type)"
 
 .PP
 Geomtery constructor\&. Sets a default number of neutrons per batch (10,000), number of batches (10) and number of threads (1)\&. 
@@ -406,4 +406,4 @@ Lowest energy for the moderator to fuel cross-section ratios
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PINSPEC from the source code\&.
+Generated automatically by Doxygen from the source code\&.

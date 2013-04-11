@@ -18,7 +18,7 @@ def main():
     num_threads = 4
     nu = 2.45
     setOutputDirectory('HW4')
-    setlevel('INFO')
+    py_setlevel('INFO')
 
     py_printf('TITLE', 'Simulation of homework 4 for 2012 22.211')
 
@@ -43,19 +43,19 @@ def main():
     rho_coolant = 0.9966
     enrichment = 0.03035
 
-	# Compute material number densities
+    # Compute material number densities
     N_A = 6.023E23
     N_u238 = rho_fuel * N_A * (1.0 - enrichment) / ((238.0 *
-				    (1.0 - enrichment)) + (235.0*enrichment) + (16.0*2.0))
+                    (1.0 - enrichment)) + (235.0*enrichment) + (16.0*2.0))
     N_u235 = rho_fuel * N_A * enrichment / ((238.0 *
-				    (1.0 - enrichment)) + (235.0*enrichment) + (16.0*2.0))
+		    (1.0 - enrichment)) + (235.0*enrichment) + (16.0*2.0))
     N_o16 = rho_fuel * N_A * 2.0 / ((238.0 *
-				    (1.0 - enrichment)) + (235.0*enrichment) + (16.0*2.0))
+		    (1.0 - enrichment)) + (235.0*enrichment) + (16.0*2.0))
     N_zr90 = rho_clad * N_A / 90.0
     N_h2o = rho_coolant * N_A / 18.0
     N_h1 = rho_coolant * N_A * 2.0 / 18.0
 
-	# Compute 2-region pin cell volumes [cm^3]
+    # Compute 2-region pin cell volumes [cm^3]
     vol_fuel = math.pi * radius_fuel**2.0
     vol_gap = math.pi * (radius_gap**2.0 - radius_fuel**2.0)
     vol_clad = math.pi * (radius_clad**2.0 - radius_gap**2.0)
@@ -63,7 +63,7 @@ def main():
     vol_moderator = vol_gap + vol_clad + vol_coolant;
     vol_total = vol_fuel + vol_moderator;
 
-	# Compute homogenized moderator number densities using volume weighting
+    #  Compute homogenized moderator number densities using volume weighting
     N_h2o *= (vol_coolant / vol_moderator);
     N_h1 *= (vol_coolant / vol_moderator);
     N_zr90 *= (vol_clad / vol_moderator);
@@ -146,8 +146,6 @@ def main():
     geometry.setNumThreads(num_threads)
     geometry.setDancoffFactor(dancoff)
 
-    py_printf('INFO', 'Initializing tallies...')
-
     # Create Tallies for the energy high-resolution fluxes for plotting
     total_flux = createTally(geometry, FLUX, 'total')
     moderator_flux = createTally(moderator, FLUX, 'moderator')
@@ -156,7 +154,7 @@ def main():
     moderator_flux.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
     fuel_flux.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
 
-	# Register tallies
+    # Register tallies
     TallyBank.registerTally(total_flux)
     TallyBank.registerTally(moderator_flux)
     TallyBank.registerTally(fuel_flux)
@@ -164,13 +162,13 @@ def main():
     # Create Tallies for moderator-to-fuel flux ratios
     fuel_flux_ratio = createTally(fuel, FLUX, 'Fuel Flux')
     moderator_flux_ratio = createTally(moderator, FLUX, \
-                                                        'Moderator Flux')
+                                           'Moderator Flux')
     flux_bin_edges = numpy.array([0., 0.1, 0.5, 1., 6., 10., 25., \
                                  50., 1E2, 1E3, 1E4, 1E5, 5E5, 1E7])
     moderator_flux_ratio.setBinEdges(flux_bin_edges)
     fuel_flux_ratio.setBinEdges(flux_bin_edges)
 
-	# Register tallies
+    # Register tallies
     TallyBank.registerTally(fuel_flux_ratio)
     TallyBank.registerTally(moderator_flux_ratio)
 
@@ -214,12 +212,13 @@ def main():
     TallyBank.registerTally(tot_fiss_rate)
     TallyBank.registerTally(tot_abs_rate)
 
+    py_printf('INFO', 'Initializing tallies...')
 
     ###########################################################################
     #######################  Run Monte Carlo Simulation #######################
     ###########################################################################
 
-	# Run Monte Carlo simulation
+    # Run Monte Carlo simulation
     geometry.runMonteCarloSimulation();
 
 
@@ -228,10 +227,10 @@ def main():
     ###########################################################################
 
     py_printf('INFO', 'Writing tally batch statistics to output file...')
-    TallyBank.outputBatchStatistics()
+    #TallyBank.outputBatchStatistics()
 
     py_printf('INFO', 'Plotting fluxes...')
-    plotter.plotFlux([total_flux, moderator_flux, fuel_flux])
+    #plotter.plotFlux([total_flux, moderator_flux, fuel_flux])
 
     py_printf('INFO', 'Plotting microscopic and macroscopic cross-sections...')
     plotter.plotMicroXS(u235, ['capture', 'elastic', 'fission'])
@@ -267,6 +266,9 @@ def main():
     flux_ratio = moderator_flux_ratio / fuel_flux_ratio
     flux_ratio.setTallyName('Moderator-to-Fuel Flux Ratios')
     flux_ratio.printTallies(uncertainties=True)
+
+    # Plot the fluxes
+    plotter.plotFlux([total_flux, moderator_flux, fuel_flux])
 
     py_printf('TITLE', 'Finished')
 

@@ -114,7 +114,7 @@ public:
     /* setters */
     void setMaterialName(char* name);
     void setDensity(float density, char* unit);
-    void setNumberDensity(float number_density);
+    void setNumberDensity(float number_density, const char* unit);
     void setAtomicMass(float atomic_mass);
     void setBucklingSquared(float buckling_squared);
     void incrementVolume(float volume);

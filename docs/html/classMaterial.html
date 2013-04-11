@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>PINSPEC: Material Class Reference</title>
+<title>Material Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,12 +26,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
-   <div id="projectname">PINSPEC
-   &#160;<span id="projectnumber">0.1</span>
-   </div>
-   <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
-  </td>
+  <td id="projectlogo"><img alt="Logo" src="logo-small.png"/></td>
+    <td style="padding-left: 0.5em;">
+    <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
+    </td>
  </tr>
  </tbody>
 </table>
@@ -198,8 +196,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a89e56bc82fcefcd2c73ab4a525a00129"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name for the material.  <a href="#a89e56bc82fcefcd2c73ab4a525a00129"></a><br/></td></tr>
 <tr class="memitem:a24c5b8d61359fd8a9843c3e71f286e01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#a24c5b8d61359fd8a9843c3e71f286e01">setDensity</a> (float density, char *unit)</td></tr>
 <tr class="memdesc:a24c5b8d61359fd8a9843c3e71f286e01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this material's density.  <a href="#a24c5b8d61359fd8a9843c3e71f286e01"></a><br/></td></tr>
-<tr class="memitem:a49b4d4fb7a51ef75cebffdd52d8c6931"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#a49b4d4fb7a51ef75cebffdd52d8c6931">setNumberDensity</a> (float number_density)</td></tr>
-<tr class="memdesc:a49b4d4fb7a51ef75cebffdd52d8c6931"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the material's number density.  <a href="#a49b4d4fb7a51ef75cebffdd52d8c6931"></a><br/></td></tr>
+<tr class="memitem:a32dbf4399d348901aefc4721a891337b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#a32dbf4399d348901aefc4721a891337b">setNumberDensity</a> (float number_density, const char *unit)</td></tr>
+<tr class="memdesc:a32dbf4399d348901aefc4721a891337b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the material's number density.  <a href="#a32dbf4399d348901aefc4721a891337b"></a><br/></td></tr>
 <tr class="memitem:a25785b407a07d9509458cdd342aef877"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#a25785b407a07d9509458cdd342aef877">setAtomicMass</a> (float atomic_mass)</td></tr>
 <tr class="memdesc:a25785b407a07d9509458cdd342aef877"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the material's total atomic mass.  <a href="#a25785b407a07d9509458cdd342aef877"></a><br/></td></tr>
 <tr class="memitem:aeebedf71fc23735ed99c5ab3f5728b25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#aeebedf71fc23735ed99c5ab3f5728b25">setBucklingSquared</a> (float buckling_squared)</td></tr>
@@ -406,6 +404,13 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the total macroscopic absorption cross-section <img class="formulaInl" alt="$ (cm^{-1}) $" src="form_16.png"/> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">energy</td><td>energy of interest (eV) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the total macroscopic absorption cross-section (cm^-1) </dd></dl>
 
 </div>
 </div>
@@ -524,6 +529,13 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the total macroscopic capture cross-section <img class="formulaInl" alt="$ (cm^{-1}) $" src="form_16.png"/> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">energy</td><td>energy of interest (eV) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the total macroscopic capture cross-section (cm^-1) </dd></dl>
 
 </div>
 </div>
@@ -642,6 +654,13 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the total macroscopic elastic scattering cross-section <img class="formulaInl" alt="$ (cm^{-1}) $" src="form_16.png"/> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">energy</td><td>energy of interest (eV) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the total elastic macroscopic scattering cross-section (cm^-1) </dd></dl>
 
 </div>
 </div>
@@ -742,6 +761,13 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the total macroscopic fission cross-section <img class="formulaInl" alt="$ (cm^{-1}) $" src="form_16.png"/> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">energy</td><td>energy of interest (eV) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the total macroscopic fission cross-section (cm^-1) </dd></dl>
 
 </div>
 </div>
@@ -1398,7 +1424,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a49b4d4fb7a51ef75cebffdd52d8c6931"></a>
+<a class="anchor" id="a32dbf4399d348901aefc4721a891337b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1406,8 +1432,18 @@ Private Attributes</h2></td></tr>
           <td class="memname">void Material::setNumberDensity </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>number_density</em></td><td>)</td>
+          <td class="paramname"><em>number_density</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>unit</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1416,6 +1452,7 @@ Private Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">number_density</td><td>the number density of material (at/cc) </td></tr>
+    <tr><td class="paramname">unit</td><td>the density units ('g/cc' or 'at/cc') </td></tr>
   </table>
   </dd>
 </dl>
@@ -1622,7 +1659,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classMaterial.html">Material</a></li>
-    <li class="footer">Generated on Wed Apr 10 2013 21:11:44 for PINSPEC by
+    <li class="footer">Generated on Thu Apr 11 2013 12:43:11 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

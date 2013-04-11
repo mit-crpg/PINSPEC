@@ -3,6 +3,7 @@ var classpinspec_1_1process_1_1GroupXS =
     [ "__init__", "classpinspec_1_1process_1_1GroupXS.html#ad81cb8d5201650c809f300a4af11921f", null ],
     [ "computeGroupXS", "classpinspec_1_1process_1_1GroupXS.html#a86e9d4738e35a82b241a3c7b79882466", null ],
     [ "getEnergyBands", "classpinspec_1_1process_1_1GroupXS.html#a9a56a3b63e126b65ce191ca7dbdcda32", null ],
+    [ "getEnergyBandsCenters", "classpinspec_1_1process_1_1GroupXS.html#a757870124674de6a5ddff4f26df6c0c6", null ],
     [ "getGroupXS", "classpinspec_1_1process_1_1GroupXS.html#aee3cc4641d6f9709c25cfa4e6fbbba08", null ],
     [ "getName", "classpinspec_1_1process_1_1GroupXS.html#ad184b77037578e558a6698a8311bc284", null ],
     [ "getNumXS", "classpinspec_1_1process_1_1GroupXS.html#ae4ae5eda18c6bbc4151d95525ce37394", null ],

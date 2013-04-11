@@ -23,5 +23,6 @@ var searchData=
   ['process',['process',['../namespacepinspec_1_1process.html',1,'pinspec']]],
   ['process_2epy',['process.py',['../process_8py.html',1,'']]],
   ['py_5fprintf',['py_printf',['../namespacepinspec_1_1log.html#a541e006b2440f460574f9f3017279a1d',1,'pinspec::log']]],
+  ['py_5fsetlevel',['py_setlevel',['../namespacepinspec_1_1log.html#a4a96627ffacfa0a93779f42222ecff22',1,'pinspec::log']]],
   ['slbw',['slbw',['../namespacepinspec_1_1slbw.html',1,'pinspec']]]
 ];

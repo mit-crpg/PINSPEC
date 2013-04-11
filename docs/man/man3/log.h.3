@@ -1,4 +1,4 @@
-.TH "pinspec/src/log.h" 3 "Wed Apr 10 2013" "Version 0.1" "PINSPEC" \" -*- nroff -*-
+.TH "pinspec/src/log.h" 3 "Thu Apr 11 2013" "Version v0.1" "Doxygen" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -21,7 +21,7 @@ Utility functions for writing log messages to the screen\&.
 
 .in +1c
 .ti -1c
-.RI "enum \fBlogLevels\fP { \fBDEBUG\fP, \fBINFO\fP, \fBNORMAL\fP, \fBSEPARATOR\fP, \fBHEADER\fP, \fBTITLE\fP, \fBWARNING\fP, \fBCRITICAL\fP, \fBRESULT\fP, \fBERROR\fP }"
+.RI "enum \fBlogLevels\fP { \fBDEBUG\fP, \fBINFO\fP, \fBNORMAL\fP, \fBSEPARATOR\fP, \fBHEADER\fP, \fBTITLE\fP, \fBWARNING\fP, \fBCRITICAL\fP, \fBRESULT\fP, \fBUNITTEST\fP, \fBERROR\fP }"
 .br
 .RI "\fILogging levels characterize an ordered set of message types which may be printed to the screen\&. \fP"
 .in -1c
@@ -150,6 +150,9 @@ A message to warn of critical program conditions
 .TP
 \fB\fIRESULT \fP\fP
 A message containing program results 
+.TP
+\fB\fIUNITTEST \fP\fP
+A messsage for unit testing 
 .TP
 \fB\fIERROR \fP\fP
 A message reporting error conditions 
@@ -327,4 +330,4 @@ Sets the character to be used when printing TITLE type log messages\&. \fBParame
 
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for PINSPEC from the source code\&.
+Generated automatically by Doxygen from the source code\&.

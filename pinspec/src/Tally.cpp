@@ -724,11 +724,11 @@ void Tally::setNumBatches(int num_batches) {
 
     /* Clean up memory from old arrays of batch statistics */
     if (_num_batches != 0) {
-        delete [] _tallies;
-	delete [] _batch_mu;
-	delete [] _batch_variance;
-	delete [] _batch_std_dev;
-	delete [] _batch_rel_err;
+      //        delete [] _tallies;
+      //	delete [] _batch_mu;
+      //	delete [] _batch_variance;
+      //	delete [] _batch_std_dev;
+      //	delete [] _batch_rel_err;
     }
 
     _num_batches = num_batches;
@@ -2887,9 +2887,6 @@ Tally* createTally(Geometry* geometry, tallyType tally_type,
     if (tally_type == DERIVED)
         log_printf(ERROR, "DERIVED type tallies cannot be created by the "
                                                         " TallyFactory.");
-
-    Tally* tally;
-
     if (tally_type == FLUX)
     	return new GeometryFluxTally(geometry, tally_name);
 	else if (tally_type == LEAKAGE_RATE)

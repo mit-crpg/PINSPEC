@@ -628,8 +628,6 @@ float Material::getTransportMicroXS(float energy) {
  *        at some index into the uniform lethargy grid.
  * @param energy_index the index into the uniform lethargy grid
  * @return the transport macroscopic cross-section \f$ (cm^{-1}) \f$
- * @param energy energy of interest (eV)
- * @return the transport macroscopic cross-section (cm^-1)
  */
 float Material::getTransportMacroXS(int energy_index) {
 
@@ -711,23 +709,13 @@ void Material::setDensity(float density, char* unit) {
 /**
  * @brief Sets the material's number density.
  * @param number_density the number density of material (at/cc)
+ * @param unit the density units ('g/cc' or 'at/cc')
  */
-void Material::setNumberDensity(float number_density) {
+void Material::setNumberDensity(float number_density, const char* unit) {
     _material_number_density = number_density;
-
-    if (strcmp(unit, "g/cc") == 0){
-        _material_density = density;
-        _density_unit = GRAM_CM3;
-    }
-    else if (strcmp(unit, "at/cc") == 0){
-	_material_number_density = density;
-	_density_unit = NUM_CM3;
-    }
-    else{
-      log_printf(ERROR, "Cannot set Material %s density in"
+    log_printf(ERROR, "Cannot set Material %s density in"
 		 "units %s since PINSPEC only support units in"
 		 "g/cc and at/cc", _material_name, unit);
-    }
 }
 
 
@@ -798,14 +786,14 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 
     /* Add isotope and isotope AO to _isotopes_AO map */
     std::pair<Isotope*, float> new_isotope_AO =
-    std::pair<Isotope*, float> (isotope, atomic_ratio);
+   	std::pair<Isotope*, float> (isotope, atomic_ratio);
     _isotopes_AO.insert(new_isotope_AO);
 
     /* Checks to make sure material density is set already */
     if (_material_density <= 0)
-        log_printf(ERROR, "Unable to add Isotope %s since the number density "
-                   "for Material %s has not yet been set", 
-                   isotope->getIsotopeName(), _material_name);
+    	log_printf(ERROR, "Unable to add Isotope %s since the number density "
+                       "for Material %s has not yet been set", 
+                        isotope->getIsotopeName(), _material_name);
 
     /* Increments the material's total atomic mass and number density */
     N_av = 6.023E-1;
@@ -813,42 +801,39 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Compute the total atomic ratio */
     float total_AO = 0.0;
     for (iter_AO =_isotopes_AO.begin(); iter_AO != _isotopes_AO.end(); 
-	 ++iter_AO)
-        total_AO += iter_AO->second;
+	 ++iter_AO){
+    	total_AO += iter_AO->second;
+    }
 
     /* Sum the partial contributions to the material atomic mass */
     _material_atomic_mass = 0.0;
     for (iter_AO =_isotopes_AO.begin(); iter_AO != _isotopes_AO.end(); 
-	 ++iter_AO)
-        _material_atomic_mass += iter_AO->second * iter_AO->first->getA();
+	 ++iter_AO){
+    	_material_atomic_mass += iter_AO->second * iter_AO->first->getA();
+    }
 
     /* Calculates the material's number density */
-    if (_density_unit == GRAM_CM3)
-    	_material_number_density = _material_density * N_av / 
-	                          _material_atomic_mass;
-    else if (_density_unit == NUM_CM3)
-    	_material_density = _material_number_density / 
-                             N_av * _material_atomic_mass;
+    _material_number_density = _material_density * N_av / _material_atomic_mass;
 
     /* Calculates the isotope's number density */
     isotope_number_density = atomic_ratio / total_AO * _material_number_density;
 
     /* Creates a pair between the number density and isotope pointer */
     std::pair<float, Isotope*> new_pair = std::pair<float, Isotope*>
-                                          (isotope_number_density, isotope);
+	(isotope_number_density, isotope);
 
     std::pair<char*, std::pair<float, Isotope*> > new_isotope =
-                           std::pair<char*, std::pair<float, Isotope*> >
-                           (isotope->getIsotopeName(), new_pair);
+	std::pair<char*, std::pair<float, Isotope*> >
+	(isotope->getIsotopeName(), new_pair);
 
     /* Inserts the isotope and increments the total number density */
     _isotopes.insert(new_isotope);
 
     /* Loop over all isotopes: update all the number densities */
     for (iter =_isotopes.begin(); iter != _isotopes.end(); ++iter){
-        /* Update isotope's number density */
-        iter->second.first = _isotopes_AO.at(iter->second.second) * 
-	                     _material_number_density;
+    	/* Update isotope's number density */
+    	iter->second.first = _isotopes_AO.at(iter->second.second) 
+	  * _material_number_density;
         log_printf(INFO, "Isotope %s has number density %1.3E in material %s", 
                         iter->first, iter->second.first*1E24, _material_name);
     }
@@ -863,7 +848,7 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
  * @details The probability for collision with an isotope isbased on the
  *          ratios of each isotope's total cross-section to the total 
  *          cross-section of all isotope's in this Material.
- * @return a pointer to the sampled isotope
+ * @return a pointer to the sampled isotope 
  */
 void Material::sampleIsotope(neutron* neutron) {
 
