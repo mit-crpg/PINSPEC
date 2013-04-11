@@ -19,3 +19,10 @@ Current local time and date: Thu Apr 11 12:47:01 2013
 [  INFO   ]  Isotope H-1 has number density 4.685E+22 in material H-1
 [  INFO   ]  Initializing tallies for the flux, collision rate, etc
 [  INFO   ]  Simulating 1000000 neutrons in H-1...
+[  INFO   ]  Plotting the flux...
+[  RESULT ]  Mean # of collisions to 1 eV: 13.574180
+[  RESULT ]  Mean # of collisions to death: 21.014767
+[  RESULT ]  Avg neutron lifetime: 1.39E-05 seconds
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]                               Finished                             
+[  TITLE  ]  *******************************************************************
