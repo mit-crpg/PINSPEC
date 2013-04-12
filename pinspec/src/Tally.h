@@ -282,8 +282,8 @@ public:
 
 class IsotopeOutscatterRateTally: public IsotopeTally {
 public:
-	IsotopeOutscatterRateTally(char* tally_name, Isotope* isotope)
-			: IsotopeTally(tally_name, isotope) {
+IsotopeOutscatterRateTally(Isotope* isotope, char* tally_name)
+    : IsotopeTally(isotope, tally_name) {
 				_tally_type = OUTSCATTER_RATE;
 			}
 	void tally(neutron* neutron);
@@ -293,8 +293,8 @@ public:
 class MaterialOutscatterRateTally: public MaterialTally {
 
 public:
-	MaterialOutscatterRateTally(char* tally_name, Material* material)
-			: MaterialTally(tally_name, material) {
+MaterialOutscatterRateTally(Material* material, char* tally_name)
+    : MaterialTally(material,tally_name) {
 				_tally_type = OUTSCATTER_RATE;
 			}
 	void tally(neutron* neutron);
@@ -304,8 +304,8 @@ public:
 class RegionOutscatterRateTally: public RegionTally {
 
 public:
-	RegionOutscatterRateTally(char* tally_name, Region* region)
-			: RegionTally(tally_name, region) {
+RegionOutscatterRateTally(Region* region, char* tally_name)
+    : RegionTally(region, tally_name) {
 				_tally_type = OUTSCATTER_RATE;
 			}
 	void tally(neutron* neutron);
@@ -315,8 +315,8 @@ public:
 class GeometryOutscatterRateTally: public GeometryTally {
 
 public:
-	GeometryOutscatterRateTally(char* tally_name, Geometry* geometry)
-			: GeometryTally(tally_name, geometry) {
+GeometryOutscatterRateTally(Geometry* geometry, char* tally_name)
+    : GeometryTally(geometry, tally_name) {
 				_tally_type = OUTSCATTER_RATE;
 			}
 	void tally(neutron* neutron);
@@ -370,8 +370,6 @@ public:
 			}
 	void tally(neutron* neutron);
 };
-
-
 
 /******************************************************************************/
 /**************************** Elastic Rate Tallies ****************************/
