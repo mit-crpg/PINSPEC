@@ -59,18 +59,24 @@ private:
     /** The spatial type for the geometry */
     spatialType _spatial_type;
     /** INFINITE type region if the geometery is INFINITE_HOMOGENEOUS */
-    Region* _infinite_medium;
+    InfiniteMediumRegion* _infinite_medium;
     /** FUEL type region if the geometry is HETEROGENEOUS or 
      *  HOMOGENEOUS_EQUIVALANCE */
-    Region* _fuel;
+    EquivalenceRegion* _fuel;
     /** MODERATOR type region if the geometry is HETEROGENEOUS or 
      *  HOMOGENEOUS_EQUIVALANCE */
-    Region* _moderator;
+    EquivalenceRegion* _moderator;
     /** An array of neutrons */
     neutron* _neutrons;
     /** The fissioner used to sample new neutron fission emission energies */
     Fissioner* _fissioner;
 
+    /** The fuel pin radius for a heterogeneous-homogeneous equivalent
+     *  geometry */
+    float _fuel_radius;
+    /** The pin cell pitch for a heterogenous-homogeneous equivalent
+     *  geometry */
+    float _pitch;
     /** The user-specified dancoff factor */    
     float _dancoff;
     /** The user-specified escape cross-section */
@@ -119,6 +125,8 @@ public:
     void setNumBatches(int num_batches);
     void setNumThreads(int num_threads);
     void setSpatialType(spatialType spatial_type);
+    void setFuelPinRadius(float radius);
+    void setPinCellPitch(float pitch);
     void setDancoffFactor(float dancoff);
     void addRegion(Region* region);
     void setBucklingSquared(float buckling_squared);

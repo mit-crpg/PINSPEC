@@ -21,7 +21,11 @@ Geometry::Geometry(spatialType spatial_type) {
 
     /* Initialize a fissioner with a fission spectrum and sampling CDF */
     _fissioner = new Fissioner();
-    
+
+    /* Default equivalent geometry parameters */
+    _fuel_radius = 0.45;
+    _pitch = 1.26;
+
     /* Default for axial leakage is zero */
     _buckling_squared = 0.0;
 }
@@ -143,6 +147,24 @@ void Geometry::setNumThreads(int num_threads) {
 
 
 /**
+ * @brief Sets the fuel pin radius.
+ * @param radius the fuel pin radius (cm)
+ */
+void Geometry::setFuelPinRadius(float radius) {
+    _fuel_radius = radius;
+}
+
+
+/**
+ * @brief Sets the lattice pin cell pitch.
+ * @param pitch the pin cell pitch (cm)
+ */
+void Geometry::setPinCellPitch(float pitch) {
+  _pitch = pitch;
+}
+
+
+/**
  * @brief Sets the dancoff factor and computes the escape cross-section, 
  *        beta, alpha1 and alpha2 parameters used for a two region 
  *        heterogeneous-homogeneous pin cell simulation.
@@ -154,7 +176,7 @@ void Geometry::setDancoffFactor(float dancoff) {
 
     /* Two region homogeneous equivalence parameters */
     float A = (1.0 - dancoff) / dancoff;
-    _sigma_e = 1.0 / (2.0 * _fuel->getFuelRadius());
+    _sigma_e = 1.0 / (2.0 * _fuel->getFuelPinRadius());
     _alpha1 = ((5.0*A + 6.0) - sqrt(A*A + 36.0*A + 36.0)) / (2.0*(A+1.0));
     _alpha2 = ((5.0*A + 6.0) + sqrt(A*A + 36.0*A + 36.0)) / (2.0*(A+1.0));
     _beta = (((4.0*A + 6.0) / (A + 1.0)) - _alpha1) / (_alpha2 - _alpha1);
@@ -199,7 +221,7 @@ void Geometry::setSpatialType(spatialType spatial_type) {
  */
 void Geometry::addRegion(Region* region) {
 
-    if (region->getRegionType() == INFINITE) {
+    if (region->getRegionType() == INFINITE_MEDIUM) {
         if (_fuel != NULL)
 	    log_printf(ERROR, "Unable to add an INFINITE type region %s"
 		       " to the geometry since it contains a"
@@ -211,7 +233,7 @@ void Geometry::addRegion(Region* region) {
 		       " MODERATOR type region %s", region->getRegionName(), 
 		       _moderator->getRegionName());
 	else if (_infinite_medium == NULL)
-	    _infinite_medium = region;
+	    _infinite_medium = static_cast<InfiniteMediumRegion*>(region);
 	else
 	    log_printf(ERROR, "Unable to add a second INFINITE type region %s"
 		       " to the geometry since it already contains"
@@ -219,7 +241,7 @@ void Geometry::addRegion(Region* region) {
 		       _infinite_medium->getRegionName());
     }
 
-    else if (region->getRegionType() == FUEL) {
+    else if (region->getRegionType() == EQUIVALENT_FUEL) {
         if (_infinite_medium != NULL)
 	    log_printf(ERROR, "Unable to add a FUEL type region %s"
 		       " to the geometry since it contains an"
@@ -227,7 +249,7 @@ void Geometry::addRegion(Region* region) {
 		       region->getRegionName(), 
 		       _infinite_medium->getRegionName());
 	else if (_fuel == NULL)
-	    _fuel = region;
+	    _fuel = static_cast<EquivalenceRegion*>(region);
 	else
 	    log_printf(ERROR, "Unable to add a second FUEL type region %s"
 		       " to the geometry since it already contains"
@@ -235,7 +257,7 @@ void Geometry::addRegion(Region* region) {
 		       _fuel->getRegionName());
     }
 
-    else if (region->getRegionType() == MODERATOR) {
+    else if (region->getRegionType() == EQUIVALENT_MODERATOR) {
         if (_infinite_medium != NULL)
 	    log_printf(ERROR, "Unable to add a MODERATOR type region %s"
 		       " to the geometry since it contains an"
@@ -243,7 +265,7 @@ void Geometry::addRegion(Region* region) {
 		       region->getRegionName(), 
 		       _infinite_medium->getRegionName());
 	else if (_moderator == NULL)
-	    _moderator = region;
+	  _moderator = static_cast<EquivalenceRegion*>(region);
 	else
 	    log_printf(ERROR, "Unable to add a second MODERATOR type region %s"
 		       " to the geometry since it already contains"
@@ -294,6 +316,7 @@ void Geometry::runMonteCarloSimulation() {
 
     /* If we are running an infinite medium spectral calculation */
     if (_spatial_type == INFINITE_HOMOGENEOUS){
+
         _infinite_medium->setBucklingSquared(_buckling_squared);
 
 	while (precision_triggered) {
@@ -355,21 +378,11 @@ void Geometry::runMonteCarloSimulation() {
 		       " simulation since beta, sigma_e, alpha1, or alpha2 for "
 		       " have not yet been set for the geometry");
 
-        else if (_fuel->getFuelRadius() == 0)
-	    log_printf(ERROR, "Unable to run simulation since region %s "
-		       " does not know the fuel radius", 
-		       _fuel->getRegionName());
-        else if (_moderator->getFuelRadius() == 0)
-	    log_printf(ERROR, "Unable to run simulation since region %s "
-		       " does not know the fuel radius", 
-		       _moderator->getRegionName());
-        else if (_fuel->getPitch() == 0)
-	    log_printf(ERROR, "Unable to run simulation since region %s "
-		       " does not know the pin pitch", _fuel->getRegionName());
-        else if (_fuel->getPitch() == 0)
-	    log_printf(ERROR, "Unable to run simulation since region %s "
-		       " does not know the pin pitch", 
-		       _moderator->getRegionName());
+	_fuel->setFuelPinRadius(_fuel_radius);
+	_moderator->setFuelPinRadius(_fuel_radius);
+	
+	_fuel->setPinCellPitch(_pitch);
+	_moderator->setPinCellPitch(_pitch);
 
 	_fuel->setBucklingSquared(_buckling_squared);
         _moderator->setBucklingSquared(_buckling_squared);
@@ -470,19 +483,6 @@ void Geometry::runMonteCarloSimulation() {
         log_printf(ERROR, "Unable to run a HOMOGENEOUS_EQUIVALENCE type "
 	    " simulation since beta, sigma_e, alpha1, or alpha2 for "
 	    " have not yet been set for the geometry");
-
-    else if (_fuel->getFuelRadius() == 0)
-        log_printf(ERROR, "Unable to run simulation since region %s "
-	    " does not know the fuel radius", _fuel->getRegionName());
-    else if (_moderator->getFuelRadius() == 0)
-        log_printf(ERROR, "Unable to run simulation since region %s "
-	    " does not know the fuel radius", _moderator->getRegionName());
-    else if (_fuel->getPitch() == 0)
-        log_printf(ERROR, "Unable to run simulation since region %s "
-	    " does not know the pin pitch", _fuel->getRegionName());
-    else if (_fuel->getPitch() == 0)
-        log_printf(ERROR, "Unable to run simulation since region %s "
-	    " does not know the pin pitch", _moderator->getRegionName());
 
     /* Initialize neutrons from fission spectrum for each thread */
     /* Loop over batches */

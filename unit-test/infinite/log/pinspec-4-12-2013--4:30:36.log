@@ -1,0 +1,7 @@
+[ UNITTEST]  Testing xsreader GetNumCrossSectionDataPoints
+[ UNITTEST]  Testing xsreader restoreXSLibrary
+[ UNITTEST]  Testing Equivalence keff
+[ UNITTEST]  Testing Infinite RI 10-25 eV
+[ UNITTEST]  Testing Infinite RI 25-50 eV
+[ UNITTEST]  Testing Infinite RI 6-10 eV
+[ UNITTEST]  Testing Infinite keff

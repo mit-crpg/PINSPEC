@@ -36,16 +36,16 @@ class TestHW2(unittest.TestCase):
         h1_material.setDensity(0.07778, 'g/cc')
         h1_material.addIsotope(h1, 2.0)
         
-        flux = createTally(h1_material, FLUX)
+        flux = TallyFactory.createTally(h1_material, FLUX)
         flux.generateBinEdges(1E-2, 1E7, 1000, LOGARITHMIC)
         
-        self.coll_rate_1eV = createTally(h1_material, COLLISION_RATE)
+        self.coll_rate_1eV = TallyFactory.createTally(h1_material, COLLISION_RATE)
         self.coll_rate_1eV.generateBinEdges(1E-1, 2E6, 1, EQUAL)
         
-        self.coll_rate = createTally(h1_material, COLLISION_RATE)
+        self.coll_rate = TallyFactory.createTally(h1_material, COLLISION_RATE)
         self.coll_rate.generateBinEdges(1E-7, 2E6, 1, EQUAL)
         
-        self.times = createTally(h1_material, INTERCOLLISION_TIME)
+        self.times = TallyFactory.createTally(h1_material, INTERCOLLISION_TIME)
         self.times.generateBinEdges(1E-7, 2E6, 1, EQUAL)
         
         fissioner = Fissioner()

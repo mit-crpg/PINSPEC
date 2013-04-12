@@ -20,6 +20,10 @@ setXSLibDirectory(xs_lib_path)
 # Restore the cross-section library from backup
 restoreXSLibrary()
 
-# Create instances of TallyFactory and TallyBank singleton classes
+# Get instances of TallyBank and TallyFactory singleton classes
 pinspec.TallyBank = TallyBank.Get()
+pinspec.TallyFactory = TallyFactory.Get()
 
+# Get instances of SurfaceFactory and RegionFactory singleton classes
+pinspec.SurfaceBank = SurfaceFactory.Get()
+pinspec.RegionFactory = RegionFactory.Get()

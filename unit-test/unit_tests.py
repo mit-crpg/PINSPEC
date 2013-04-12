@@ -13,13 +13,6 @@ import os
 class TestSimulationParameters(unittest.TestCase):
     
     
-    def testLogLevel(self):
-        py_printf('UNITTEST', 'Testing Simulation Parameters py_setlevel')
-        py_setlevel('UNITTEST')
-        log_val = assignValue('UNITTEST')
-        self.assertEqual(log_val, get_loglevel())
-    
-    
     def testSetOutputDirectory(self):
         py_printf('UNITTEST', 'Testing Simulation Parameters setOutputDirectory')
         setOutputDirectory('infinite')
@@ -103,24 +96,7 @@ class TestIsotope(unittest.TestCase):
         o16 = Isotope('O-16')
         self.assertEqual(o16.getA(), 16)
 
-
-    # Test Isotope setAO function
-    def testAO(self):
-        py_printf('UNITTEST', 'Testing Isotope setAO')
-        o16 = Isotope('O-16')
-        o16.setAO(1.1)
-        self.assertAlmostEqual(o16.getAO(), 1.1)
-
-    
-    # Test Isotope setN function
-    def testN(self):
-        py_printf('UNITTEST', 'Testing Isotope setN')
-        o16 = Isotope('O-16')
-        o16.setN(1.1)
-        self.assertAlmostEqual(o16.getN(), 1.1)
-
-    
-    # Test Isotope getMuAverage function
+# Test Isotope getMuAverage function
     def testMuAverage(self):
         py_printf('UNITTEST', 'Testing Isotope getMuAverage')
         o16 = Isotope('O-16')
@@ -343,13 +319,13 @@ class TestIsotope(unittest.TestCase):
         self.assertEqual(num_cdfs*num_bins,len(cdfs))
         
 
-    # Test Isotope retrieveThermalDistributions function
-    def testRetrieveThermalDistributions(self):
-        py_printf('UNITTEST', 'Testing Isotope retrieveEprimeToE')
+    # Test Isotope retrieveThermalPDFs function
+    def testRetrieveThermalPDFs(self):
+        py_printf('UNITTEST', 'Testing Isotope retrieveThermalPDFs')
         h1 = Isotope('H-1')
         num_bins = h1.getNumThermalCDFBins()
         num_cdfs = h1.getNumThermalCDFs()
-        dist = h1.retrieveThermalDistributions(num_cdfs*num_bins)
+        dist = h1.retrieveThermalPDFs(num_cdfs*num_bins)
         self.assertEqual(num_cdfs*num_bins,len(dist))
 
         
@@ -398,9 +374,9 @@ class TestMaterial(unittest.TestCase):
     def testGetMaterialNumberDensity(self):
         py_printf('UNITTEST', 'Testing Material getMaterialNumberDensity')
         mod = Material('mod')
-        mod.setDensity(1., 'at/cc')
+        mod.setDensity(1., 'g/cc')
         mod.addIsotope(self.h1, 1.0)
-        self.assertAlmostEqual(mod.getMaterialNumberDensity(), 1.0)
+        self.assertAlmostEqual(mod.getMaterialNumberDensity(),6.022999930358751e+23)
 
     
     # Test Material getIsotopeNumDensity function
@@ -409,7 +385,7 @@ class TestMaterial(unittest.TestCase):
         mod = Material('mod')
         mod.setDensity(1., 'g/cc')
         mod.addIsotope(self.h1, 1.0)
-        self.assertAlmostEqual(mod.getIsotopeNumDensity(self.h1) / 6.02299993035875E23 , 1.0)
+        self.assertAlmostEqual(mod.getIsotopeNumDensity(self.h1.getIsotopeName()) / 6.02299993035875E23, 1.0)
     
     
     # Test Material containsIsotope function
@@ -704,14 +680,14 @@ class TestRegion(unittest.TestCase):
     # Test Region getRegionName function
     def testGetRegionName(self):
         py_printf('UNITTEST', 'Testing Region getRegionName')
-        region_fuel = Region('fuel', FUEL)
+        region_fuel = RegionFactory.createRegion(EQUIVALENT_FUEL, 'fuel')
         self.assertEqual(region_fuel.getRegionName(), 'fuel')
 
 
     # Test Region getVolume function
     def testGetVolume(self):
         py_printf('UNITTEST', 'Testing Region getVolume')
-        region_fuel = Region('fuel', FUEL)
+        region_fuel = RegionFactory.createRegion(EQUIVALENT_FUEL, 'fuel')
         region_fuel.setVolume(1.0)
         self.assertAlmostEqual(region_fuel.getVolume(), 1.0)
 
@@ -719,7 +695,7 @@ class TestRegion(unittest.TestCase):
     # Test Region getMaterial function
     def testGetMaterial(self):
         py_printf('UNITTEST', 'Testing Region getMaterial')
-        region_mix = Region('region_mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'region_mix')
         region_mix.setMaterial(self.mix)
         self.assertEqual(region_mix.getMaterial(), self.mix)
 
@@ -727,14 +703,14 @@ class TestRegion(unittest.TestCase):
     # Test Region getMaterial function
     def testGetMaterial(self):
         py_printf('UNITTEST', 'Testing Region getMaterial')
-        region_mix = Region('region_mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'infinite medium')
         region_mix.setMaterial(self.mix)
         self.assertEqual(region_mix.getMaterial().getMaterialName(), self.mix.getMaterialName())
 
     # Test Region containsIsotope function
     def testContainsIsotope(self):
         py_printf('UNITTEST', 'Testing Region containsIsotope')
-        region_mix = Region('region_mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'region mix')
         region_mix.setMaterial(self.mix)
         self.assertTrue(region_mix.containsIsotope(self.h1))
 
@@ -742,52 +718,45 @@ class TestRegion(unittest.TestCase):
     # Test Region getRegionType function
     def testGetRegionType(self):
         py_printf('UNITTEST', 'Testing Region getRegionType')
-        region_mix = Region('region_mix', INFINITE)
-        self.assertEqual(region_mix.getRegionType(), 2)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'region_mix')
+        self.assertEqual(region_mix.getRegionType(), 0)
 
     # Test Region isModerator function
     def testIsModerator(self):
         py_printf('UNITTEST', 'Testing Region isModerator')
-        region_mod = Region('mod', MODERATOR)
+        region_mod = EquivalenceRegion(EQUIVALENT_MODERATOR, 'mod')
         self.assertTrue(region_mod.isModerator())
 
             
     # Test Region isFuel function
     def testIsFuel(self):
         py_printf('UNITTEST', 'Testing Region isFuel')
-        region_fuel = Region('fuel', FUEL)
+        region_fuel = EquivalenceRegion(EQUIVALENT_FUEL, 'fuel')
         self.assertTrue(region_fuel.isFuel())
 
 
-    # Test Region isInfinite function
-    def testIsInfinite(self):
-        py_printf('UNITTEST', 'Testing Region isInfinite')
-        region_mix = Region('mix', INFINITE)
-        self.assertTrue(region_mix.isInfinite())
-
-
     # Test Region getFuelRadius function
-    def testGetFuelRadius(self):
-        py_printf('UNITTEST', 'Testing Region getFuelRadius')
-        region_fuel = Region('fuel', FUEL)
+    def testGetFuelPinRadius(self):
+        py_printf('UNITTEST', 'Testing Region getFuelPinRadius')
+        region_fuel = EquivalenceRegion(EQUIVALENT_FUEL, 'fuel')
         region_fuel.setMaterial(self.mix)
-        region_fuel.setFuelRadius(1.1)
-        self.assertAlmostEqual(region_fuel.getFuelRadius(), 1.1)
+        region_fuel.setFuelPinRadius(1.1)
+        self.assertAlmostEqual(region_fuel.getFuelPinRadius(), 1.1)
 
 
     # Test Region getPitch function
-    def testGetPitch(self):
-        py_printf('UNITTEST', 'Testing Region getPitch')
-        region_fuel = Region('mix', FUEL)
+    def testGetPinCellPitch(self):
+        py_printf('UNITTEST', 'Testing Region getPinCellPitch')
+        region_fuel = EquivalenceRegion(EQUIVALENT_FUEL, 'fuel')
         region_fuel.setMaterial(self.mix)
-        region_fuel.setPitch(1.1)
-        self.assertAlmostEqual(region_fuel.getPitch(), 1.1)
+        region_fuel.setPinCellPitch(1.1)
+        self.assertAlmostEqual(region_fuel.getPinCellPitch(), 1.1)
 
 
     # Test Region getBucklingSquared function
     def testGetBucklingSquared(self):
         py_printf('UNITTEST', 'Testing Region getBucklingSquared')
-        region_mix = Region('mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
         region_mix.setBucklingSquared(1.1)
         self.assertAlmostEqual(region_mix.getBucklingSquared(), 1.1)
@@ -796,7 +765,7 @@ class TestRegion(unittest.TestCase):
     # Test Region getTotalMacroXS function
     def testGetTotalMacroXSbyEnergy(self):
         py_printf('UNITTEST', 'Testing Region getTotalMacroXS by Energy')
-        region_mix = Region('mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
         self.assertGreater(region_mix.getTotalMacroXS(1.0), 0.0)
 
@@ -804,7 +773,7 @@ class TestRegion(unittest.TestCase):
     # Test Region getTotalMacroXS function
     def testGetTotalMacroXSbyIndex(self):
         py_printf('UNITTEST', 'Testing Region getTotalMacroXS by Index')
-        region_mix = Region('mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
         self.assertGreater(region_mix.getTotalMacroXS(100), 0.0)
 
@@ -812,7 +781,7 @@ class TestRegion(unittest.TestCase):
     # Test Region getElasticMacroXS function
     def testGetElasticMacroXSbyEnergy(self):
         py_printf('UNITTEST', 'Testing Region getElasticMacroXS by Energy')
-        region_mix = Region('mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
         self.assertGreater(region_mix.getElasticMacroXS(1.0), 0.0)
     
@@ -820,7 +789,7 @@ class TestRegion(unittest.TestCase):
     # Test Region getElasticMacroXS function
     def testGetElasticMacroXSbyIndex(self):
         py_printf('UNITTEST', 'Testing Region getElasticMacroXS by Index')
-        region_mix = Region('mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
         self.assertGreater(region_mix.getElasticMacroXS(100), 0.0)
 
@@ -828,7 +797,7 @@ class TestRegion(unittest.TestCase):
     # Test Region getTotalMacroXS function
     def testGetAbsorptionMacroXSbyEnergy(self):
         py_printf('UNITTEST', 'Testing Region getAbsorptionMacroXS by Energy')
-        region_mix = Region('mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
         self.assertGreater(region_mix.getAbsorptionMacroXS(1.0), 0.0)
     
@@ -836,7 +805,7 @@ class TestRegion(unittest.TestCase):
     # Test Region getAbsorptionMacroXS function
     def testGetAbsorptionMacroXSbyIndex(self):
         py_printf('UNITTEST', 'Testing Region getAbsorptionMacroXS by Index')
-        region_mix = Region('mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
         self.assertGreater(region_mix.getAbsorptionMacroXS(100), 0.0)
 
@@ -844,7 +813,7 @@ class TestRegion(unittest.TestCase):
     # Test Region getCaptureMacroXS function
     def testGetCaptureMacroXSbyEnergy(self):
         py_printf('UNITTEST', 'Testing Region getCaptureMacroXS by Energy')
-        region_mix = Region('mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
         self.assertGreater(region_mix.getCaptureMacroXS(1.0), 0.0)
     
@@ -852,7 +821,7 @@ class TestRegion(unittest.TestCase):
     # Test Region getCaptureMacroXS function
     def testGetCaptureMacroXSbyIndex(self):
         py_printf('UNITTEST', 'Testing Region getCaptureMacroXS by Index')
-        region_mix = Region('mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
         self.assertGreater(region_mix.getCaptureMacroXS(100), 0.0)
 
@@ -860,7 +829,7 @@ class TestRegion(unittest.TestCase):
     # Test Region getFissionMacroXS function
     def testGetFissionMacroXSbyEnergy(self):
         py_printf('UNITTEST', 'Testing Region getFissionMacroXS by Energy')
-        region_mix = Region('mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
         self.assertGreater(region_mix.getFissionMacroXS(1.0), 0.0)
     
@@ -868,7 +837,7 @@ class TestRegion(unittest.TestCase):
     # Test Region getFissionMacroXS function
     def testGetFissionMacroXSbyIndex(self):
         py_printf('UNITTEST', 'Testing Region getFissionMacroXS by Index')
-        region_mix = Region('mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
         self.assertGreater(region_mix.getFissionMacroXS(100), 0.0)
 
@@ -876,7 +845,7 @@ class TestRegion(unittest.TestCase):
     # Test Region getTransportMacroXS function
     def testGetTransportMacroXSbyEnergy(self):
         py_printf('UNITTEST', 'Testing Region getTransportMacroXS by Energy')
-        region_mix = Region('mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
         self.assertGreater(region_mix.getTransportMacroXS(1.0), 0.0)
     
@@ -884,7 +853,7 @@ class TestRegion(unittest.TestCase):
     # Test Region getTransportMacroXS function
     def testGetTransportMacroXSbyIndex(self):
         py_printf('UNITTEST', 'Testing Region getTransportMacroXS by Index')
-        region_mix = Region('mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
         self.assertGreater(region_mix.getTransportMacroXS(100), 0.0)
 
@@ -892,7 +861,7 @@ class TestRegion(unittest.TestCase):
     # Test Region collideNeutron function
     def testCollideNeutron(self):
         py_printf('UNITTEST', 'Testing Region collideNeutron')
-        region_mix = Region('mix', INFINITE)
+        region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
         neutron = initializeNewNeutron()
         neutron._energy = 1.0
@@ -904,28 +873,21 @@ class TestRegion(unittest.TestCase):
 
 
     # Test Region contains function
-    def testContains(self):
-        py_printf('UNITTEST', 'Testing Region contains')
-        region_fuel = Region('mix', FUEL)
-        region_fuel.setMaterial(self.mix)
-        region_fuel.setFuelRadius(1.0)
-        region_fuel.setFuelRadius(2.5)
-        neutron = initializeNewNeutron()
-        neutron._x = 0.5
-        neutron._y = 0.5
-        self.assertTrue(region_fuel.contains(neutron))
+#    def testContains(self):       
+#        py_printf('UNITTEST', 'Testing Region contains')
+#        neutron = initializeNewNeutron()
+#        neutron._x = 0.5
+#        neutron._y = 0.0
+#        self.assertTrue(region_fuel.contains(neutron))
 
 
     # Test Region onBoundary function
-    def testOnBoundary(self):
-        py_printf('UNITTEST', 'Testing Region onBoundary')
-        region_fuel= Region('fuel', FUEL)
-        region_fuel.setFuelRadius(0.5)
-        region_fuel.setPitch(1.5)
-        neutron = initializeNewNeutron()
-        neutron._x = 0.5
-        neutron._y = 0.0
-        self.assertTrue(region_fuel.onBoundary(neutron))
+#    def testOnBoundary(self):
+#        py_printf('UNITTEST', 'Testing Region onBoundary')
+#        neutron = initializeNewNeutron()
+#        neutron._x = 0.5
+#        neutron._y = 0.0
+#        self.assertTrue(region_fuel.onBoundary(neutron))
 
 
 
@@ -957,7 +919,7 @@ class TestGeometry(unittest.TestCase):
         self.mix.addIsotope(self.b10, .0000001)
     
         # Define region
-        self.region_mix = Region('mix', INFINITE)
+        self.region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         self.region_mix.setMaterial(self.mix)
     
     
@@ -1021,9 +983,9 @@ class TestGeometry(unittest.TestCase):
     def testSetDancoff(self):
         py_printf('UNITTEST', 'Testing Geometry setDancoff')
         geometry = Geometry(HOMOGENEOUS_EQUIVALENCE)
-        region_fuel = Region('fuel', FUEL)
+        region_fuel = RegionFactory.createRegion(EQUIVALENT_FUEL, 'fuel')
         region_fuel.setMaterial(self.mix)
-        region_mod = Region('mod', MODERATOR)
+        region_mod = RegionFactory.createRegion(EQUIVALENT_MODERATOR, 'mod')
         region_mod.setMaterial(self.mix)
         geometry.addRegion(region_mod)
         geometry.addRegion(region_fuel)
@@ -1170,10 +1132,3 @@ class TestGeometry(unittest.TestCase):
 #class TestPlotting(unittest.TestCase)
 #class TestSLBW(unittest.TestCase)
 #class TestSurface(unittest.TestCase)
-
-
-
-
-
-
-

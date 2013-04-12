@@ -43,16 +43,16 @@ class TestInfinite(unittest.TestCase):
         self.mix.addIsotope(self.zr90, 0.16)
         
         # Define regions
-        self.region_mix = Region('infinite medium', INFINITE)
+        self.region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'inf medium')
         self.region_mix.setMaterial(self.mix)
         
         # Define geometry
         self.geometry = Geometry(INFINITE_HOMOGENEOUS)
         self.geometry.addRegion(self.region_mix)
-        
+ 
         # Create a tally for the flux
-        self.fission_tally = createTally(self.region_mix, FISSION_RATE)
-        self.abs_tally = createTally(self.region_mix, ABSORPTION_RATE)
+        self.fission_tally = TallyFactory.createTally(self.region_mix, FISSION_RATE)
+        self.abs_tally = TallyFactory.createTally(self.region_mix, ABSORPTION_RATE)
         self.fission_tally.generateBinEdges(1E-2, 1E7, 1, EQUAL)
         self.abs_tally.generateBinEdges(1E-2, 1E7, 1, EQUAL)
         TallyBank.registerTally(self.fission_tally)
@@ -83,7 +83,7 @@ class TestInfinite(unittest.TestCase):
         self.mix.addIsotope(self.u238, 1E-6)
         
         # Define regions
-        self.region_mix = Region('infinite medium', INFINITE)
+        self.region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'inf medium')
         self.region_mix.setMaterial(self.mix)
         
         # Define geometry
@@ -94,8 +94,8 @@ class TestInfinite(unittest.TestCase):
         self.geometry.setNumThreads(self.num_threads)
         
         # Create a tally for the flux
-        u238_abs_rate = createTally(self.u238, ABSORPTION_RATE)
-        flux = createTally(self.region_mix, FLUX)
+        u238_abs_rate = TallyFactory.createTally(self.u238, ABSORPTION_RATE)
+        flux = TallyFactory.createTally(self.region_mix, FLUX)
         
         abs_rate_bin_edges = numpy.array([1E-5, 1., 6., 10., 25., 50., 100., 1000.])
         u238_abs_rate.setBinEdges(abs_rate_bin_edges)
@@ -127,7 +127,7 @@ class TestInfinite(unittest.TestCase):
         self.mix.addIsotope(self.u238, 1E-6)
         
         # Define regions
-        self.region_mix = Region('infinite medium', INFINITE)
+        self.region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'inf medium')
         self.region_mix.setMaterial(self.mix)
         
         # Define geometry
@@ -138,8 +138,8 @@ class TestInfinite(unittest.TestCase):
         self.geometry.setNumThreads(self.num_threads)
         
         # Create a tally for the flux
-        u238_abs_rate = createTally(self.u238, ABSORPTION_RATE)
-        flux = createTally(self.region_mix, FLUX)
+        u238_abs_rate = TallyFactory.createTally(self.u238, ABSORPTION_RATE)
+        flux = TallyFactory.createTally(self.region_mix, FLUX)
         
         abs_rate_bin_edges = numpy.array([1E-5, 1., 6., 10., 25., 50., 100., 1000.])
         u238_abs_rate.setBinEdges(abs_rate_bin_edges)
@@ -171,7 +171,7 @@ class TestInfinite(unittest.TestCase):
         self.mix.addIsotope(self.u238, 1E-6)
         
         # Define regions
-        self.region_mix = Region('infinite medium', INFINITE)
+        self.region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'inf medium')
         self.region_mix.setMaterial(self.mix)
         
         # Define geometry
@@ -182,8 +182,8 @@ class TestInfinite(unittest.TestCase):
         self.geometry.setNumThreads(self.num_threads)
         
         # Create a tally for the flux
-        u238_abs_rate = createTally(self.u238, ABSORPTION_RATE)
-        flux = createTally(self.region_mix, FLUX)
+        u238_abs_rate = TallyFactory.createTally(self.u238, ABSORPTION_RATE)
+        flux = TallyFactory.createTally(self.region_mix, FLUX)
         
         abs_rate_bin_edges = numpy.array([1E-5, 1., 6., 10., 25., 50., 100., 1000.])
         u238_abs_rate.setBinEdges(abs_rate_bin_edges)
@@ -245,14 +245,15 @@ class TestEquivalence(unittest.TestCase):
         self.fuel.addIsotope(self.zr90, 0.16)
         
         # Define regions
-        self.region_mod = Region('moderator', MODERATOR)
-        self.region_fuel = Region('fuel', FUEL)
+        self.region_mod = EquivalenceRegion(EQUIVALENT_MODERATOR, \
+                                                'MODERATOR')
+        self.region_fuel = EquivalenceRegion(EQUIVALENT_FUEL, 'FUEL')
         self.region_mod.setMaterial(self.mod)
         self.region_fuel.setMaterial(self.fuel)
-        self.region_fuel.setFuelRadius(self.radius_fuel)
-        self.region_fuel.setPitch(self.pitch)
-        self.region_mod.setFuelRadius(self.radius_fuel)
-        self.region_mod.setPitch(self.pitch)
+        self.region_fuel.setFuelPinRadius(self.radius_fuel)
+        self.region_fuel.setPinCellPitch(self.pitch)
+        self.region_mod.setFuelPinRadius(self.radius_fuel)
+        self.region_mod.setPinCellPitch(self.pitch)
         
         # Define geometry
         self.geometry = Geometry(HOMOGENEOUS_EQUIVALENCE)
@@ -264,8 +265,8 @@ class TestEquivalence(unittest.TestCase):
         self.geometry.setDancoffFactor(self.dancoff)
         
         # Create a tally for the flux
-        self.fission_tally = createTally(self.geometry, FISSION_RATE)
-        self.abs_tally = createTally(self.geometry, ABSORPTION_RATE)
+        self.fission_tally = TallyFactory.createTally(self.geometry, FISSION_RATE)
+        self.abs_tally = TallyFactory.createTally(self.geometry, ABSORPTION_RATE)
         self.fission_tally.generateBinEdges(1E-2, 1E7, 1, EQUAL)
         self.abs_tally.generateBinEdges(1E-2, 1E7, 1, EQUAL)
         TallyBank.registerTally(self.fission_tally)
@@ -281,6 +282,4 @@ class TestEquivalence(unittest.TestCase):
         k_eff_array = k_eff_tally.retrieveTallyMu(1)
         k_eff = self.nu * k_eff_array[0]
         
-        self.assertGreater(.05, abs(k_eff - 1.5623)/1.5623)
-
-
+        self.assertGreater(.075, abs(k_eff - 1.5623)/1.5623)

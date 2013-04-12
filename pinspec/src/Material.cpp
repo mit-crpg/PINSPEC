@@ -38,7 +38,7 @@ char* Material::getMaterialName() {
  * @return the total number density \f$ \frac{at}{cm^3} \f$.
  */
 float Material::getMaterialNumberDensity() {
-    return _material_number_density;
+    return _material_number_density * 1E24;
 }
 
 
@@ -56,6 +56,18 @@ float Material::getMaterialNumberDensity() {
  */
 Isotope* Material::getIsotope(char* isotope) {
     return _isotopes.at(isotope).second;
+}
+
+
+/**
+ * @brief This method takes in a character array specifier for an isotope's
+ *        name and returns a float for the Isotope's number density in 
+ *        \f$ \frac{at}{cm^3} \f$.
+ * @param isotope pointer to the isotope of interest
+ * @return the isotope's number density
+ */
+float Material::getIsotopeNumDensity(Isotope* isotope) {
+    return _isotopes.at(isotope->getIsotopeName()).first * 1E24;
 }
 
 
@@ -697,11 +709,18 @@ void Material::setMaterialName(char* name) {
  * @param unit the density units ('g/cc' or 'at/cc')
  */
 void Material::setDensity(float density, char* unit) {
-    _material_density = density;
-    if (strcmp(unit, "g/cc") != 0) {
+    if (strcmp(unit, "g/cc") == 0) {
+        _material_density = density;
+	_density_unit = GRAM_CM3;
+    }
+    else if (strcmp(unit, "at/cc") == 0) {
+        _material_number_density = density;
+	_density_unit = NUM_CM3;
+    }
+    else {
         log_printf(ERROR, "Cannot set Material %s number density in"
 		   "units %s since PINSPEC only support units in"
-		   "g/cc", _material_name, unit);
+		   "g/cc and at/cc", _material_name, unit);
     }    
 }
 

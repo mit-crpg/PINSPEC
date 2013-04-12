@@ -23,6 +23,25 @@
 
 
 /**
+ * @enum surfaceTypes
+ * @brief Bounding surface types
+ */
+
+/**
+ * @var surfaceType
+ * @brief Bounding surface type
+ */
+typedef enum surfaceTypes {
+    /** A plane perpendicular to the x-axis */
+    XPLANE,
+    /** A plane perpendicular to the y-axis */
+    YPLANE,
+    /** A circle in the xy-plane */
+    CIRCLE
+} surfaceType;
+
+
+/**
  * @enum boundaryTypes
  * @brief Boundary condition types
  */
@@ -51,15 +70,28 @@ typedef enum boundaryTypes {
  */
 class Surface {
 protected:
+    /** The surface's name */
+    char* _surface_name;
+    /** The type of surface */
+    surfaceType _surface_type;
     /** The boundary condition for this Surface */
     boundaryType _boundary_type;
 public:
-    Surface();
+    Surface(const char* surface_name=(char*)"");
     virtual ~Surface();
 
+    char* getSurfaceName();
     boundaryType getBoundaryType() const;
 
     void setBoundaryType(boundaryType type);
+
+    /**
+     * @brief Returns the evaluation of a neutron's coordinates \f$ (x,y) \f$ 
+     *        with respect to a quadratic surface \f$ f(x,y) \f$.
+     * @param neutron the neutron of interest
+     *
+     */
+    virtual float evaluate(neutron* neutron) =0;
 
     /**
      * @brief Computes the nearest distance between a neutron at some
@@ -92,10 +124,11 @@ private:
     /** The location of the plane's intersection with the x-axis */
     float _x;
 public:
-    XPlane();
+    XPlane(const char* surface_name=(char*)"");
     virtual ~XPlane();
     float getX();
     void setX(float x);
+    float evaluate(neutron* neutron);
     float computeNearestDistance(neutron* neutron);
     bool onSurface(neutron* neutron);
 };
@@ -112,10 +145,11 @@ private:
     /** The location of the plane's intersection with the y-axis */
     float _y;
 public:
-    YPlane();
+    YPlane(const char* surface_name=(char*)"");
     virtual ~YPlane();
     float getY();
     void setY(float y);
+    float evaluate(neutron* neutron);
     float computeNearestDistance(neutron* neutron);
     bool onSurface(neutron* neutron);
 };
@@ -138,7 +172,7 @@ protected:
     /** The y-coordinate of the circle's center */
     float _y0;
 public:
-    Circle();
+    Circle(const char* surface_name=(char*)"");
     virtual ~Circle();
     float getX0();
     float getY0();
@@ -146,6 +180,7 @@ public:
     void setX0(float x0);
     void setY0(float y0);
     void setRadius(float r);
+    float evaluate(neutron* neutron);
     float computeNearestDistance(neutron* neutron);
     bool onSurface(neutron* neutron);
 };

@@ -10,7 +10,7 @@
 #ifndef NEUTRON_H_
 #define NEUTRON_H_
 
-class Region;	
+class Region;
 class Material;
 class Isotope;
 

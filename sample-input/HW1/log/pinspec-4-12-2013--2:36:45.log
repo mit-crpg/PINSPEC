@@ -1,0 +1,23 @@
+Current local time and date: Fri Apr 12 02:36:45 2013
+[  INFO   ]  Logging level set to INFO
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]               Simulation of homework 1 for 2012 22.211             
+[  TITLE  ]  *******************************************************************
+[  INFO   ]  Initializing isotopes...
+[  INFO   ]  Loading isotope H-1
+[  INFO   ]  Loading H-1-elastic.txt for isotope H-1
+[  INFO   ]  Loading H-1-capture.txt for isotope H-1
+[  INFO   ]  Loading isotope C-12
+[  INFO   ]  Loading C-12-elastic.txt for isotope C-12
+[  INFO   ]  Loading C-12-capture.txt for isotope C-12
+[  INFO   ]  Setting 1-group capture xs for isotope H-1
+[  INFO   ]  Setting 1-group capture xs for isotope C-12
+[  INFO   ]  Plotting microscopic cross-sections...
+[  HEADER ]  ***********************  Problems 1 and 2  ************************
+[  INFO   ]  Initializing generational flux tallies...
+[  INFO   ]  Simulating generational flux from H-1...
+[  INFO   ]  # neutrons = 1000000		# generations = 15
+[  INFO   ]  Simulating generational flux from C-12...
+[  INFO   ]  Plotting the generational fluxes...
+[  HEADER ]  ***********************  Problems 3 and 4  ************************
+[  INFO   ]  Initializing lethargy and energy flux tallies...

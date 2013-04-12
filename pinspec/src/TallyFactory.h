@@ -12,7 +12,7 @@
 
 
 /**
- * @class TallyFactory TallyFactory.h "pinspec/src/TallyFactorh.h"
+ * @class TallyFactory TallyFactory.h "pinspec/src/TallyFactory.h"
  * @brief A utility class for creating instances of tallies.
  */
 class TallyFactory {

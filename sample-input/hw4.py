@@ -124,16 +124,16 @@ def main():
     py_printf('INFO', 'Initializing fuel and moderator regions...')
     
     # Define moderator region
-    region_mod = Region('moderator', MODERATOR)
+    region_mod = RegionFactory.createRegion(EQUIVALENT_MODERATOR, 'moderator')
     region_mod.setMaterial(moderator)
-    region_mod.setFuelRadius(radius_fuel)
-    region_mod.setPitch(pitch)
+#    region_mod.setFuelRadius(radius_fuel)
+#    region_mod.setPitch(pitch)
         
     # Define fuel region
-    region_fuel = Region('fuel', FUEL)
+    region_fuel = RegionFactory.createRegion(EQUIVALENT_FUEL, 'fuel')
     region_fuel.setMaterial(fuel)
-    region_fuel.setFuelRadius(radius_fuel)
-    region_fuel.setPitch(pitch)
+#    region_fuel.setFuelRadius(radius_fuel)
+#    region_fuel.setPitch(pitch)
     
     py_printf('INFO', 'Initializing the geometry...')
 
@@ -141,15 +141,18 @@ def main():
     geometry = Geometry(HOMOGENEOUS_EQUIVALENCE)
     geometry.addRegion(region_mod)
     geometry.addRegion(region_fuel)
+    geometry.setFuelPinRadius(radius_fuel)
+    geometry.setPinCellPitch(pitch)
     geometry.setNumBatches(num_batches)
     geometry.setNeutronsPerBatch(num_neutrons_per_batch)
     geometry.setNumThreads(num_threads)
     geometry.setDancoffFactor(dancoff)
 
     # Create Tallies for the energy high-resolution fluxes for plotting
-    total_flux = createTally(geometry, FLUX, 'total')
-    moderator_flux = createTally(moderator, FLUX, 'moderator')
-    fuel_flux = createTally(fuel, FLUX, 'fuel')
+    total_flux = TallyFactory.createTally(geometry, FLUX, 'total')
+    moderator_flux = TallyFactory.createTally(moderator, FLUX, 'moderator')
+    fuel_flux = TallyFactory.createTally(fuel, FLUX, 'fuel')
+
     total_flux.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
     moderator_flux.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
     fuel_flux.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
@@ -160,11 +163,12 @@ def main():
     TallyBank.registerTally(fuel_flux)
 
     # Create Tallies for moderator-to-fuel flux ratios
-    fuel_flux_ratio = createTally(fuel, FLUX, 'Fuel Flux')
-    moderator_flux_ratio = createTally(moderator, FLUX, \
-                                           'Moderator Flux')
+    fuel_flux_ratio = TallyFactory.createTally(fuel, FLUX, 'Fuel Flux')
+    moderator_flux_ratio = TallyFactory.createTally(moderator, FLUX, \
+                                                        'Moderator Flux')
     flux_bin_edges = numpy.array([0., 0.1, 0.5, 1., 6., 10., 25., \
                                  50., 1E2, 1E3, 1E4, 1E5, 5E5, 1E7])
+
     moderator_flux_ratio.setBinEdges(flux_bin_edges)
     fuel_flux_ratio.setBinEdges(flux_bin_edges)
 
@@ -173,14 +177,14 @@ def main():
     TallyBank.registerTally(moderator_flux_ratio)
 
     # Create tallies for two group cross-sections
-    total_flux_xs = createTally(geometry, FLUX)
-    elastic_rate = createTally(geometry, ELASTIC_RATE)
-    capture_rate = createTally(geometry, CAPTURE_RATE)
-    fission_rate = createTally(geometry, FISSION_RATE)
-    absorb_rate = createTally(geometry, ABSORPTION_RATE)
-    transport_rate = createTally(geometry, TRANSPORT_RATE)
-    diffusion_rate = createTally(geometry, DIFFUSION_RATE)
-    total_rate = createTally(geometry, COLLISION_RATE)
+    total_flux_xs = TallyFactory.createTally(geometry, FLUX)
+    elastic_rate = TallyFactory.createTally(geometry, ELASTIC_RATE)
+    capture_rate = TallyFactory.createTally(geometry, CAPTURE_RATE)
+    fission_rate = TallyFactory.createTally(geometry, FISSION_RATE)
+    absorb_rate = TallyFactory.createTally(geometry, ABSORPTION_RATE)
+    transport_rate = TallyFactory.createTally(geometry, TRANSPORT_RATE)
+    diffusion_rate = TallyFactory.createTally(geometry, DIFFUSION_RATE)
+    total_rate = TallyFactory.createTally(geometry, COLLISION_RATE)
 
     group_xs_edges = numpy.array([0., 0.625, 1E7])
     total_flux_xs.setBinEdges(group_xs_edges)
@@ -203,8 +207,9 @@ def main():
     TallyBank.registerTally(total_rate)
 
     # Create tallies for computing k-inf
-    tot_fiss_rate = createTally(geometry, FISSION_RATE)
-    tot_abs_rate = createTally(geometry, ABSORPTION_RATE)
+    tot_fiss_rate = TallyFactory.createTally(geometry, FISSION_RATE)
+    tot_abs_rate = TallyFactory.createTally(geometry, ABSORPTION_RATE)
+
     tot_fiss_rate.generateBinEdges(0.0, 1E7, 1, EQUAL)
     tot_abs_rate.generateBinEdges(0.0, 1E7, 1, EQUAL)
 

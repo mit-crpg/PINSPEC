@@ -42,7 +42,7 @@ def main():
     plotter.plotMicroXS(h1, ['capture', 'elastic', 'fission'])
     plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission'])
 
-	# Turn off thermal scattering for U-238
+    # Turn off thermal scattering for U-238
     u238.neglectThermalScattering()
 
     py_printf('INFO', 'Creating a fuel-moderator mixture material...')
@@ -56,7 +56,7 @@ def main():
     py_printf('INFO', 'Creating an infinite homogeneous region...')
     
     # Define regions
-    region_mix = Region('infinite medium', INFINITE)
+    region_mix = RegionFactory.createRegion(INFINITE_MEDIUM)
     region_mix.setMaterial(mix)
 
     py_printf('INFO', 'Creating the geometry...')
@@ -71,10 +71,10 @@ def main():
     py_printf('INFO', 'Initializing tallies for flux and absorption rates...')
 
     # Create a tally for the flux
-    flux1 = createTally(geometry, FLUX, 'U/H = 1E-6')
-    flux2 = createTally(geometry, FLUX, 'U/H = 0.01')
-    flux3 = createTally(geometry, FLUX, 'U/H = 0.1')
-    flux4 = createTally(geometry, FLUX, 'U/H = 1.0')
+    flux1 = TallyFactory.createTally(geometry, FLUX, 'U/H = 1E-6')
+    flux2 = TallyFactory.createTally(geometry, FLUX, 'U/H = 0.01')
+    flux3 = TallyFactory.createTally(geometry, FLUX, 'U/H = 0.1')
+    flux4 = TallyFactory.createTally(geometry, FLUX, 'U/H = 1.0')
     flux1.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
     flux2.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
     flux3.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
@@ -82,9 +82,10 @@ def main():
     fluxes = [flux1, flux2, flux3, flux4]
 
     # Create tallies to compute absorption in u238 and the material
-    u238_abs_rate = createTally(u238, ABSORPTION_RATE, 'u238 abs')
-    tot_abs_rate =  createTally(region_mix, ABSORPTION_RATE, 'tot abs')
-    abs_rate_flux = createTally(region_mix, FLUX)
+    u238_abs_rate = TallyFactory.createTally(u238, ABSORPTION_RATE, 'u238 abs')
+    tot_abs_rate =  TallyFactory.createTally(region_mix, \
+                                                 ABSORPTION_RATE, 'tot abs')
+    abs_rate_flux = TallyFactory.createTally(region_mix, FLUX)
 
     abs_rate_bin_edges = numpy.array([1E-5, 1., 6., 10., 25., 50., 100., 1000.])
     tot_abs_rate.generateBinEdges(1E-7, 2E7, 1, EQUAL)

@@ -3,35 +3,14 @@
 /**
  * @brief Region constructor.
  * @details Sets defaults for the geometric parameters to 0.
- * @param region_name the name of the region 
- * @param type the type region (INFINITE, FUEL, etc)
+ * @param region_name the (optional) name of the region 
  */
-Region::Region(char* region_name, regionType type) {
-
-    _region_name = region_name;
-    _region_type = type;
+Region::Region(const char* region_name) {
+    _region_name = (char*)region_name;
     _material = NULL;
-
-    /* Default volume */
-    if (_region_type == INFINITE)
-    	_volume = 1.0;
-    else
-        _volume = 0.0;
-
-    /* Default two region pin cell parameters */
-    _fuel_radius = 0.0;
-    _pitch = 0.0;
-    _half_width = 0.0;
+     _volume = 1.0;
     _buckling_squared = 0.0;
 }
-
-
-/**
- * @brief Region destructor.
- * @details The destructor does not delete anything since SWIG deals with
- *          garbage collection.
- */
-Region::~Region() { }
 
 
 /**
@@ -42,14 +21,6 @@ char* Region::getRegionName() {
     return _region_name;
 }
 
-
-/**
- * @brief returns the volume of this Region \f$ (cm^3) \f$.
- * @return the region's volume
- */
-float Region::getVolume() {
-    return _volume;
-}
 
 
 /**
@@ -73,7 +44,7 @@ bool Region::containsIsotope(Isotope* isotope) {
 
 /**
  * @brief Return the type of region.
- * @return the region type (INFINITE, FUEL, etc.)
+ * @return the region type (INFINITE, EQUIVALENT_FUEL, etc.)
  */
 regionType Region::getRegionType() {
     return _region_type;
@@ -81,66 +52,11 @@ regionType Region::getRegionType() {
 
 
 /**
- * @brief Returns true if this region is the fuel, false otherwise.
- * @return true if fuel, false otherwise
+ * @brief returns the volume of this Region \f$ (cm^3) \f$.
+ * @return the region's volume
  */
-bool Region::isFuel() {
-    if (_region_type == FUEL)
-        return true;
-    else
-        return false;
-}
-
-
-/**
- * @brief Returns true if this region is the moderator, false otherwise.
- * @return true if moderator, false otherwise
- */
-bool Region::isModerator() {
-    if (_region_type == MODERATOR)
-        return true;
-    else
-        return false;
-}
-
-
-/**
- * @brief Returns true if this region is an infnite medium, false otherwise.
- * @return true if infinite, false otherwise
- */
-bool Region::isInfinite() {
-    if (_region_type == INFINITE)
-        return true;
-    else
-        return false;
-}
-
-
-/**
- * @brief Returns the fuel pin radius if not an INFINITE region type.
- * @return the fuel pin radius
- */
-float Region::getFuelRadius() {
-
-    if (_region_type == INFINITE)
-        log_printf(ERROR, "Cannot return a fuel pin radius for region %s"
-		   " which is INFINITE", _region_name);
-
-    return _fuel_radius;
-}
-
-
-/**
- * @brief Returns the pin cell pitch if not an INFINITE region type
- * @return the pin cell pitch
- */
-float Region::getPitch() {
-
-    if (_region_type == INFINITE)
-        log_printf(ERROR, "Cannot return a pin cell pitch for region %s"
-		   " which is INFINITE", _region_name);
-
-    return _pitch;
+float Region::getVolume() {
+    return _volume;
 }
 
 
@@ -442,47 +358,6 @@ void Region::setMaterial(Material* material) {
 
 
 /**
- * @brief Sets the fuel radius if the region is not of INFINITE type.
- * @param radius the fuel pin radius
- */
-void Region::setFuelRadius(float radius) {
-
-    _fuel_radius = radius;
-
-    if (_pitch != 0.0) {
-        if (_region_type == MODERATOR)
-            _volume = _pitch * _pitch - M_PI * _fuel_radius * _fuel_radius;
-        else
-            _volume = M_PI * _fuel_radius * _fuel_radius;
-    }
-
-    if (_material != NULL)
-        _material->incrementVolume(_volume);
-}
-
-
-/**
- * @brief Sets the pin cell pitch if the region is not of INFINITE type.
- * @param pitch the pin cell pitch
- */
-void Region::setPitch(float pitch) {
-
-    _pitch = pitch;
-    _half_width = pitch / 2.0;
-
-    if (_fuel_radius != 0.0) {
-        if (_region_type == MODERATOR)
-            _volume = _pitch * _pitch - M_PI * _fuel_radius * _fuel_radius;
-        else
-            _volume = M_PI * _fuel_radius * _fuel_radius;
-
-        if (_material != NULL)
-            _material->incrementVolume(_volume);
-    }
-}
-
-
-/**
  * @brief Sets the squared geometric buckling for the geometry.
  * @details This method also sets the bucklking squared for the material
  *          filling it.
@@ -495,12 +370,23 @@ void Region::setBucklingSquared(float buckling_squared) {
 
 
 /**
+ * @brief InfiniteMediumRegion constructor.
+ * @details Sets defaults for the geometric parameters to 0.
+ * @param region_name the name of the region 
+ */
+InfiniteMediumRegion::InfiniteMediumRegion(const char* region_name):  
+    Region(region_name) {
+    _region_type = INFINITE_MEDIUM;
+}
+
+
+/**
  * @brief This method collides a neutron within the region.
  * @details This method encapsulates all of the neutron scattering physics
  *          which is further encapsulated by the material and isotope classes.
  * @param neutron the neutron of interest
  */
-void Region::collideNeutron(neutron* neutron) {
+void InfiniteMediumRegion::collideNeutron(neutron* neutron) {
 
     if (_material == NULL)
         log_printf(ERROR, "Region %s must have material to"
@@ -515,27 +401,190 @@ void Region::collideNeutron(neutron* neutron) {
 
 
 /**
- * @brief Check if this region contains a neutron at some 2D location.
+ * @brief EquivalenceRegion constructor.
+ * @details Sets defaults for the geometric parameters to 0.
+ * @param region_type the type of equivalence region (ie, EQUIVALENT_FUEL)
+ * @param region_name the name of the region 
+ */
+EquivalenceRegion::EquivalenceRegion(regionType region_type, 
+				     const char* region_name): 
+    Region(region_name) {
+    _region_type = region_type;
+}
+
+/**
+ * @brief Returns the fuel pin radius.
+ * @return the fuel pin radius
+ */
+float EquivalenceRegion::getFuelPinRadius() {
+    return _fuel_radius;
+}
+
+
+/**
+ * @brief Returns the pin cell pitch.
+ * @return the pin cell pitch
+ */
+float EquivalenceRegion::getPinCellPitch() {
+    return _pitch;
+}
+
+
+/**
+ * @brief Returns true if this region is the fuel, false otherwise.
+ * @return true if fuel, false otherwise
+ */
+bool EquivalenceRegion::isFuel() {
+    if (_region_type == EQUIVALENT_FUEL)
+        return true;
+    else
+        return false;
+}
+
+
+/**
+ * @brief Returns true if this region is the moderator, false otherwise.
+ * @return true if moderator, false otherwise
+ */
+bool EquivalenceRegion::isModerator() {
+    if (_region_type == EQUIVALENT_MODERATOR)
+        return true;
+    else
+        return false;
+}
+
+
+/**
+ * @brief Sets the fuel radius if the region.
+ * @param radius the fuel pin radius (cm)
+ */
+void EquivalenceRegion::setFuelPinRadius(float radius) {
+
+    _fuel_radius = radius;
+
+    if (_pitch != 0.0) {
+        if (_region_type == EQUIVALENT_MODERATOR)
+            _volume = _pitch * _pitch - M_PI * _fuel_radius * _fuel_radius;
+        else
+            _volume = M_PI * _fuel_radius * _fuel_radius;
+    }
+
+    if (_material != NULL)
+        _material->incrementVolume(_volume);
+}
+
+
+/**
+ * @brief Sets the pin cell pitch.
+ * @param pitch the pin cell pitch (cm)
+ */
+void EquivalenceRegion::setPinCellPitch(float pitch) {
+
+    _pitch = pitch;
+    _half_width = pitch / 2.0;
+
+    if (_fuel_radius != 0.0) {
+        if (_region_type == EQUIVALENT_MODERATOR)
+            _volume = _pitch * _pitch - M_PI * _fuel_radius * _fuel_radius;
+        else
+            _volume = M_PI * _fuel_radius * _fuel_radius;
+
+        if (_material != NULL)
+            _material->incrementVolume(_volume);
+    }
+}
+
+/**
+ * @brief This method collides a neutron within the region.
+ * @details This method encapsulates all of the neutron scattering physics
+ *          which is further encapsulated by the material and isotope classes.
+ * @param neutron the neutron of interest
+ */
+void EquivalenceRegion::collideNeutron(neutron* neutron) {
+
+    if (_material == NULL)
+        log_printf(ERROR, "Region %s must have material to"
+			" collide neutron", _region_name);
+
+    /* Collide the neutron in the Region's Material */
+    neutron->_material = _material;
+    _material->collideNeutron(neutron);
+
+    return;
+}
+
+
+
+/**
+ * @brief BoundedRegion constructor.
+ * @details Sets defaults for the geometric parameters to 0.
+ * @param region_name the name of the region 
+ */
+BoundedRegion::BoundedRegion(const char* region_name): Region(region_name) { }
+
+
+/**
+ * @brief Adds a new halfspace of a bounding surface to a region.
+ * @param halfspace an integer (-1 or +1) representing the surface's halfspace
+ * @param surface a pointer to the bounding surface
+ */
+void BoundedRegion::addBoundingSurface(int halfspace, Surface* surface) {
+
+    if (halfspace != -1 && halfspace != +1)
+        log_printf(ERROR, "Unable to add a surface %s with halfspace %d. The "
+		   "halfspace must be -1 or +1.", 
+		   surface->getSurfaceName(), halfspace);
+
+    /* Create a halfspace/surface pair and add it to the bounding surfaces
+     * container for this region */
+    std::pair<int, Surface*> pair=std::pair<int, Surface*>(halfspace, surface);
+    _surfaces.push_back(pair);
+}
+
+
+/**
+ * @brief Removes a halfspace of a bounding surface for a region.
+ * @param halfspace an integer (-1 or +1) representing the surface's halfspace
+ * @param surface a pointer to the bounding surface
+ */
+void BoundedRegion::removeBoundingSurface(int halfspace, Surface* surface) {
+
+    std::pair<int, Surface*> item;
+    std::vector< std::pair<int, Surface*> >::iterator test;
+
+    /* Test whether or not the vector contains the halfspace/surface pair */
+    item = std::pair<int, Surface*>(halfspace, surface);
+    test = std::find(_surfaces.begin(), _surfaces.end(), item);
+
+    /* If the vector of bounding surfaces contains the halfspace/surface
+     * pair, then remove it */
+    if (test != _surfaces.end())
+        _surfaces.erase(test);
+}
+
+
+/**
+ * @brief Check if this region contains a neutron at some location in space.
  * @param neutron the neutron of interest
  * @return if contained (true), otherwise (false)
  */
-bool Region::contains(neutron* neutron) {
+bool BoundedRegion::contains(neutron* neutron) {
 
-    float x = neutron->_x;
-    float y = neutron->_y;
+    int halfspace;
+    Surface* surface;
 
-    if  (_region_type == INFINITE)
- 	return true;
-    else {
-	float r = pow((pow(x, 2.0) + pow(y, 2.0)), 0.5);
-	if (_region_type == FUEL && r < _fuel_radius)
-  	    return true;
-	else if (_region_type == MODERATOR && 
-		 (fabs(x) < _half_width && fabs(y) < _half_width))
-	    return true;
-	else
-	  return false;			
+    /* Loop over and query all bounding surfaces */
+    std::vector< std::pair<int, Surface*> >::iterator iter;
+    for (iter = _surfaces.begin(); iter != _surfaces.end(); ++iter) {
+
+        halfspace = (*iter).first;
+        surface = (*iter).second;
+
+        if (halfspace * surface->evaluate(neutron) < 0)
+	    return false;
     }
+
+    return true;
 }
 
 
@@ -544,25 +593,93 @@ bool Region::contains(neutron* neutron) {
  * @param neutron the neutron of interest
  * @return true if on the boundary, otherwise false
  */
-bool Region::onBoundary(neutron* neutron) {
+bool BoundedRegion::onBoundary(neutron* neutron) {
 
-    float x = neutron->_x;
-    float y = neutron->_y;
+    /* Loop over and query all bounding surfaces */
+    std::vector< std::pair<int, Surface*> >::iterator iter;
+    for (iter = _surfaces.begin(); iter != _surfaces.end(); ++iter) {
+        if ((*iter).second->onSurface(neutron))
+	    return true;
+    }
 
-    if (_region_type == INFINITE) {
-	log_printf(WARNING, "Unable to compute onBoundary method"
-		   " for region %s since it is INIFINITE", _region_name); 
-	return false;
-    }
-    else {
-        float r = pow((pow(x, 2.0) + pow(y, 2.0)), 0.5);
-	if (fabs(r - _fuel_radius) < 1E-5)
-	    return true;
-	else if (fabs(x - _half_width) < 1E-5)
-	    return true;
-	else if (fabs(y - _half_width) < 1E-5)
-	    return true;
-	else
-	    return false;
-    }
+    return false;
+}
+
+
+/**
+ * @brief This method collides a neutron within the region.
+ * @details This method encapsulates all of the neutron scattering physics
+ *          which is further encapsulated by the material and isotope classes.
+ * @param neutron the neutron of interest
+ */
+void BoundedRegion::collideNeutron(neutron* neutron) {
+
+    if (_material == NULL)
+        log_printf(ERROR, "Region %s must have material to"
+			" collide neutron", _region_name);
+
+    /* Collide the neutron in the Region's Material */
+    neutron->_material = _material;
+    _material->collideNeutron(neutron);
+
+    return;
+}
+
+
+/**
+ * @brief BoundedFuelRegion constructor.
+ * @details Sets defaults for the geometric parameters to 0.
+ * @param region_name the name of the region 
+ */
+BoundedFuelRegion::BoundedFuelRegion(const char* region_name):  
+    BoundedRegion(region_name) {
+    _region_type = BOUNDED_FUEL;
+}
+
+
+/**
+ * @brief Generates a series of equal area circular rings within the fuel.
+ * @details This method clones the fuel region into many different equal
+ *          area rings each defined by their own bounding circular surfaces.
+ * @param num_rings the number of ring regions to subdivide the fuel pin into
+ *
+ */
+void BoundedFuelRegion::ringify(int num_rings) {
+    return;
+}
+
+
+/**
+ * @brief BoundedModeratorRegion constructor.
+ * @details Sets defaults for the geometric parameters to 0.
+ * @param region_name the name of the region 
+ */
+BoundedModeratorRegion::BoundedModeratorRegion(const char* 
+					       region_name):  
+    BoundedRegion(region_name) {
+    _region_type = BOUNDED_MODERATOR;
+}
+
+
+/**
+ * @brief Generates a series of equal area circular rings within the moderator.
+ * @details This method clones the moderator region into many different equal
+ *          area rings each defined by their own bounding circular surfaces.
+ * @param num_rings the number of ring regions to subdivide the moderator into
+ *
+ */
+void BoundedModeratorRegion::ringify(int num_rings) {
+    return;
+}
+
+
+
+/**
+ * @brief BoundedGeneralRegion constructor.
+ * @details Sets defaults for the geometric parameters to 0.
+ * @param region_name the name of the region 
+ */
+BoundedGeneralRegion::BoundedGeneralRegion(const char* region_name):
+    BoundedRegion(region_name) {
+    _region_type = BOUNDED_GENERAL;
 }

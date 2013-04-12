@@ -2,10 +2,12 @@
 
 /**
  * @brief Surface class constructor.
+ * @param surface_name the (optional) name of the surface
  * @details By default, the constructor sets the surface boundary conditions
  *          to vacuum.
  */
-Surface::Surface() {
+Surface::Surface(const char* surface_name) {
+    _surface_name = (char*)surface_name;
     _boundary_type = VACUUM;
 }
 
@@ -14,6 +16,15 @@ Surface::Surface() {
  * @brief Surface destructor.
  */
 Surface::~Surface() { }
+
+
+/**
+ * @brief Return the name of the surface.
+ * @return a character array representing this surface's name
+ */
+char* Surface::getSurfaceName() {
+    return _surface_name;
+}
 
 
 /**
@@ -44,9 +55,10 @@ void Surface::setBoundaryType(boundaryType type) {
 
 /**
  * @brief The XPlane constructor.
+ * @param surface_name the (optional) name of the surface
  * @details Assigns a default value of x=0 for the x-axis intersection point.
  */
-XPlane::XPlane() {
+XPlane::XPlane(const char* surface_name) : Surface(surface_name) {
     _x = 0.0;
 };
 
@@ -74,6 +86,18 @@ float XPlane::getX() {
  */
 void XPlane::setX(float x) {
     _x = x;
+}
+
+
+/**
+ * @brief Returns the evaluation of a neutron's coordinates \f$ (x,y) \f$ 
+ *        with respect to the quadratic surface representing this x-plane:
+ *        \f$ f(x,y) = qx + d = x - x_0 \f$
+ * @param neutron the neutron of interest
+ */
+float XPlane::evaluate(neutron* neutron) {
+    float x = neutron->_x;
+    return (x - _x);
 }
 
 
@@ -119,9 +143,10 @@ bool XPlane::onSurface(neutron* neutron) {
 
 /**
  * @brief The YPlane constructor.
+ * @param surface_name the (optional) name of the surface
  * @details Assigns a default value of y=0 for the y-axis intersection point.
  */
-YPlane::YPlane() {
+YPlane::YPlane(const char* surface_name) {
     _y = 0.0;
 };
 
@@ -150,6 +175,18 @@ float YPlane::getY() {
  */
 void YPlane::setY(float y) {
     _y = y;
+}
+
+
+/**
+ * @brief Returns the evaluation of a neutron's coordinates \f$ (x,y) \f$ 
+ *        with respect to the quadratic surface representing this y-plane:
+ *        \f$ f(x,y) = qy + d = y - y_0 \f$
+ * @param neutron the neutron of interest
+ */
+float YPlane::evaluate(neutron* neutron) {
+    float y = neutron->_y;
+    return (y - _y);
 }
 
 
@@ -195,10 +232,11 @@ bool YPlane::onSurface(neutron* neutron) {
 
 /**
  * @brief The Circle constructor.
+ * @param surface_name the (optional) name of the surface
  * @details Assigns default values for the center of the circle (x=0, y=0)
  *          and a radius of 0.
  */
-Circle::Circle() {
+Circle::Circle(const char* surface_name) {
     _x0 = 0;
     _y0 = 0;
     _r = 0;
@@ -266,6 +304,18 @@ void Circle::setRadius(float r) {
      _r_squared = r*r;
 }
 
+
+/**
+ * @brief Returns the evaluation of a neutron's coordinates \f$ (x,y) \f$ 
+ *        with respect to the quadratic surface representing this circle:
+ *        \f$ f(x,y) = (x - x_0)^2 + (y - y_0)^2 - R^2 \f$
+ * @param neutron the neutron of interest
+ */
+float Circle::evaluate(neutron* neutron) {
+    float x = neutron->_x;
+    float y = neutron->_y;
+    return (x - _x0) * (x - _x0) + (y - _y0) * (y - _y0) - _r_squared;
+}
 
 /**
  * @brief Computes the nearest distance to the Circle along a neutron's 

@@ -68,6 +68,7 @@ public:
     float getMaterialNumberDensity();
     Isotope* getIsotope(char* isotope);
     float getDensity();
+    float getIsotopeNumDensity(Isotope* isotope);
     float getIsotopeNumDensity(char* isotope);
     bool containsIsotope(Isotope* isotope);
     float getBucklingSquared();

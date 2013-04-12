@@ -53,10 +53,10 @@ def main():
 
     for i in range(num_generations):
 
-        h1_fluxes.append(createTally(h1, COLLISION_RATE))
+        h1_fluxes.append(TallyFactory.createTally(h1, COLLISION_RATE))
         h1_fluxes[i].generateBinEdges(0., 2E6, 1000, EQUAL)
 
-        c12_fluxes.append(createTally(c12, COLLISION_RATE))
+        c12_fluxes.append(TallyFactory.createTally(c12, COLLISION_RATE))
         c12_fluxes[i].generateBinEdges(1E3, 2E6, 1000, EQUAL)
 
     py_printf('INFO', 'Simulating generational flux from H-1...')
@@ -103,10 +103,10 @@ def main():
     py_printf('HEADER', 'Problems 3 and 4')
     py_printf('INFO', 'Initializing lethargy and energy flux tallies...')
 
-    lethargy_flux = createTally(c12, COLLISION_RATE)
+    lethargy_flux = TallyFactory.createTally(c12, COLLISION_RATE)
     lethargy_flux.generateBinEdges(1E2, 2E6, 5000, LOGARITHMIC)
 
-    energy_flux = createTally(c12, COLLISION_RATE)
+    energy_flux = TallyFactory.createTally(c12, COLLISION_RATE)
     energy_flux.generateBinEdges(1E2, 2E6, 5000, EQUAL)
 
     neutron = initializeNewNeutron()
@@ -147,7 +147,7 @@ def main():
 
     py_printf('INFO', 'Initializing lethargy flux tally...')
 
-    lethargy_flux = createTally(h1_material, FLUX)
+    lethargy_flux = TallyFactory.createTally(h1_material, FLUX)
     lethargy_flux.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
 
     neutron = initializeNewNeutron()

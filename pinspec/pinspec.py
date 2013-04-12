@@ -93,6 +93,8 @@ class Geometry(_object):
     def setNumBatches(self, *args): return _pinspec.Geometry_setNumBatches(self, *args)
     def setNumThreads(self, *args): return _pinspec.Geometry_setNumThreads(self, *args)
     def setSpatialType(self, *args): return _pinspec.Geometry_setSpatialType(self, *args)
+    def setFuelPinRadius(self, *args): return _pinspec.Geometry_setFuelPinRadius(self, *args)
+    def setPinCellPitch(self, *args): return _pinspec.Geometry_setPinCellPitch(self, *args)
     def setDancoffFactor(self, *args): return _pinspec.Geometry_setDancoffFactor(self, *args)
     def addRegion(self, *args): return _pinspec.Geometry_addRegion(self, *args)
     def setBucklingSquared(self, *args): return _pinspec.Geometry_setBucklingSquared(self, *args)
@@ -100,31 +102,26 @@ class Geometry(_object):
 Geometry_swigregister = _pinspec.Geometry_swigregister
 Geometry_swigregister(Geometry)
 
-FUEL = _pinspec.FUEL
-MODERATOR = _pinspec.MODERATOR
-INFINITE = _pinspec.INFINITE
+INFINITE_MEDIUM = _pinspec.INFINITE_MEDIUM
+EQUIVALENT_FUEL = _pinspec.EQUIVALENT_FUEL
+EQUIVALENT_MODERATOR = _pinspec.EQUIVALENT_MODERATOR
+BOUNDED_FUEL = _pinspec.BOUNDED_FUEL
+BOUNDED_MODERATOR = _pinspec.BOUNDED_MODERATOR
+BOUNDED_GENERAL = _pinspec.BOUNDED_GENERAL
 class Region(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Region, name, value)
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, Region, name)
+    def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined - class is abstract")
     __repr__ = _swig_repr
-    def __init__(self, *args): 
-        this = _pinspec.new_Region(*args)
-        try: self.this.append(this)
-        except: self.this = this
     __swig_destroy__ = _pinspec.delete_Region
     __del__ = lambda self : None;
     def getRegionName(self): return _pinspec.Region_getRegionName(self)
-    def getVolume(self): return _pinspec.Region_getVolume(self)
     def getMaterial(self): return _pinspec.Region_getMaterial(self)
     def containsIsotope(self, *args): return _pinspec.Region_containsIsotope(self, *args)
     def getRegionType(self): return _pinspec.Region_getRegionType(self)
-    def isFuel(self): return _pinspec.Region_isFuel(self)
-    def isModerator(self): return _pinspec.Region_isModerator(self)
-    def isInfinite(self): return _pinspec.Region_isInfinite(self)
-    def getFuelRadius(self): return _pinspec.Region_getFuelRadius(self)
-    def getPitch(self): return _pinspec.Region_getPitch(self)
+    def getVolume(self): return _pinspec.Region_getVolume(self)
     def getBucklingSquared(self): return _pinspec.Region_getBucklingSquared(self)
     def getTotalMacroXS(self, *args): return _pinspec.Region_getTotalMacroXS(self, *args)
     def getTotalMicroXS(self, *args): return _pinspec.Region_getTotalMicroXS(self, *args)
@@ -139,20 +136,155 @@ class Region(_object):
     def getTransportMicroXS(self, *args): return _pinspec.Region_getTransportMicroXS(self, *args)
     def getTransportMacroXS(self, *args): return _pinspec.Region_getTransportMacroXS(self, *args)
     def setMaterial(self, *args): return _pinspec.Region_setMaterial(self, *args)
-    def setFuelRadius(self, *args): return _pinspec.Region_setFuelRadius(self, *args)
-    def setPitch(self, *args): return _pinspec.Region_setPitch(self, *args)
     def setVolume(self, *args): return _pinspec.Region_setVolume(self, *args)
     def setBucklingSquared(self, *args): return _pinspec.Region_setBucklingSquared(self, *args)
     def collideNeutron(self, *args): return _pinspec.Region_collideNeutron(self, *args)
-    def contains(self, *args): return _pinspec.Region_contains(self, *args)
-    def onBoundary(self, *args): return _pinspec.Region_onBoundary(self, *args)
 Region_swigregister = _pinspec.Region_swigregister
 Region_swigregister(Region)
+
+class InfiniteMediumRegion(Region):
+    __swig_setmethods__ = {}
+    for _s in [Region]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, InfiniteMediumRegion, name, value)
+    __swig_getmethods__ = {}
+    for _s in [Region]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, InfiniteMediumRegion, name)
+    __repr__ = _swig_repr
+    def __init__(self, region_name=""): 
+        this = _pinspec.new_InfiniteMediumRegion(region_name)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _pinspec.delete_InfiniteMediumRegion
+    __del__ = lambda self : None;
+    def collideNeutron(self, *args): return _pinspec.InfiniteMediumRegion_collideNeutron(self, *args)
+InfiniteMediumRegion_swigregister = _pinspec.InfiniteMediumRegion_swigregister
+InfiniteMediumRegion_swigregister(InfiniteMediumRegion)
+
+class EquivalenceRegion(Region):
+    __swig_setmethods__ = {}
+    for _s in [Region]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, EquivalenceRegion, name, value)
+    __swig_getmethods__ = {}
+    for _s in [Region]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, EquivalenceRegion, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _pinspec.new_EquivalenceRegion(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _pinspec.delete_EquivalenceRegion
+    __del__ = lambda self : None;
+    def getFuelPinRadius(self): return _pinspec.EquivalenceRegion_getFuelPinRadius(self)
+    def getPinCellPitch(self): return _pinspec.EquivalenceRegion_getPinCellPitch(self)
+    def isFuel(self): return _pinspec.EquivalenceRegion_isFuel(self)
+    def isModerator(self): return _pinspec.EquivalenceRegion_isModerator(self)
+    def setFuelPinRadius(self, *args): return _pinspec.EquivalenceRegion_setFuelPinRadius(self, *args)
+    def setPinCellPitch(self, *args): return _pinspec.EquivalenceRegion_setPinCellPitch(self, *args)
+    def collideNeutron(self, *args): return _pinspec.EquivalenceRegion_collideNeutron(self, *args)
+EquivalenceRegion_swigregister = _pinspec.EquivalenceRegion_swigregister
+EquivalenceRegion_swigregister(EquivalenceRegion)
+
+class BoundedRegion(Region):
+    __swig_setmethods__ = {}
+    for _s in [Region]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, BoundedRegion, name, value)
+    __swig_getmethods__ = {}
+    for _s in [Region]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, BoundedRegion, name)
+    __repr__ = _swig_repr
+    def __init__(self, region_name=""): 
+        this = _pinspec.new_BoundedRegion(region_name)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _pinspec.delete_BoundedRegion
+    __del__ = lambda self : None;
+    def addBoundingSurface(self, *args): return _pinspec.BoundedRegion_addBoundingSurface(self, *args)
+    def removeBoundingSurface(self, *args): return _pinspec.BoundedRegion_removeBoundingSurface(self, *args)
+    def contains(self, *args): return _pinspec.BoundedRegion_contains(self, *args)
+    def onBoundary(self, *args): return _pinspec.BoundedRegion_onBoundary(self, *args)
+    def collideNeutron(self, *args): return _pinspec.BoundedRegion_collideNeutron(self, *args)
+BoundedRegion_swigregister = _pinspec.BoundedRegion_swigregister
+BoundedRegion_swigregister(BoundedRegion)
+
+class BoundedFuelRegion(BoundedRegion):
+    __swig_setmethods__ = {}
+    for _s in [BoundedRegion]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, BoundedFuelRegion, name, value)
+    __swig_getmethods__ = {}
+    for _s in [BoundedRegion]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, BoundedFuelRegion, name)
+    __repr__ = _swig_repr
+    def __init__(self, region_name=""): 
+        this = _pinspec.new_BoundedFuelRegion(region_name)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _pinspec.delete_BoundedFuelRegion
+    __del__ = lambda self : None;
+    def ringify(self, *args): return _pinspec.BoundedFuelRegion_ringify(self, *args)
+BoundedFuelRegion_swigregister = _pinspec.BoundedFuelRegion_swigregister
+BoundedFuelRegion_swigregister(BoundedFuelRegion)
+
+class BoundedModeratorRegion(BoundedRegion):
+    __swig_setmethods__ = {}
+    for _s in [BoundedRegion]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, BoundedModeratorRegion, name, value)
+    __swig_getmethods__ = {}
+    for _s in [BoundedRegion]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, BoundedModeratorRegion, name)
+    __repr__ = _swig_repr
+    def __init__(self, region_name=""): 
+        this = _pinspec.new_BoundedModeratorRegion(region_name)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _pinspec.delete_BoundedModeratorRegion
+    __del__ = lambda self : None;
+    def ringify(self, *args): return _pinspec.BoundedModeratorRegion_ringify(self, *args)
+BoundedModeratorRegion_swigregister = _pinspec.BoundedModeratorRegion_swigregister
+BoundedModeratorRegion_swigregister(BoundedModeratorRegion)
+
+class BoundedGeneralRegion(BoundedRegion):
+    __swig_setmethods__ = {}
+    for _s in [BoundedRegion]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, BoundedGeneralRegion, name, value)
+    __swig_getmethods__ = {}
+    for _s in [BoundedRegion]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, BoundedGeneralRegion, name)
+    __repr__ = _swig_repr
+    def __init__(self, region_name=""): 
+        this = _pinspec.new_BoundedGeneralRegion(region_name)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _pinspec.delete_BoundedGeneralRegion
+    __del__ = lambda self : None;
+BoundedGeneralRegion_swigregister = _pinspec.BoundedGeneralRegion_swigregister
+BoundedGeneralRegion_swigregister(BoundedGeneralRegion)
+
+class RegionFactory(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, RegionFactory, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, RegionFactory, name)
+    def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _pinspec.delete_RegionFactory
+    __del__ = lambda self : None;
+    __swig_getmethods__["Get"] = lambda x: _pinspec.RegionFactory_Get
+    if _newclass:Get = staticmethod(_pinspec.RegionFactory_Get)
+    def createRegion(self, *args): return _pinspec.RegionFactory_createRegion(self, *args)
+RegionFactory_swigregister = _pinspec.RegionFactory_swigregister
+RegionFactory_swigregister(RegionFactory)
+
+def RegionFactory_Get():
+  return _pinspec.RegionFactory_Get()
+RegionFactory_Get = _pinspec.RegionFactory_Get
 
 PI_OVER_TWO = _pinspec.PI_OVER_TWO
 THREE_PI_OVER_TWO = _pinspec.THREE_PI_OVER_TWO
 TWO_PI = _pinspec.TWO_PI
 TINY_MOVE = _pinspec.TINY_MOVE
+XPLANE = _pinspec.XPLANE
+YPLANE = _pinspec.YPLANE
+CIRCLE = _pinspec.CIRCLE
 REFLECTIVE = _pinspec.REFLECTIVE
 VACUUM = _pinspec.VACUUM
 INTERFACE = _pinspec.INTERFACE
@@ -165,8 +297,10 @@ class Surface(_object):
     __repr__ = _swig_repr
     __swig_destroy__ = _pinspec.delete_Surface
     __del__ = lambda self : None;
+    def getSurfaceName(self): return _pinspec.Surface_getSurfaceName(self)
     def getBoundaryType(self): return _pinspec.Surface_getBoundaryType(self)
     def setBoundaryType(self, *args): return _pinspec.Surface_setBoundaryType(self, *args)
+    def evaluate(self, *args): return _pinspec.Surface_evaluate(self, *args)
     def computeNearestDistance(self, *args): return _pinspec.Surface_computeNearestDistance(self, *args)
     def onSurface(self, *args): return _pinspec.Surface_onSurface(self, *args)
 Surface_swigregister = _pinspec.Surface_swigregister
@@ -180,14 +314,15 @@ class XPlane(Surface):
     for _s in [Surface]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
     __getattr__ = lambda self, name: _swig_getattr(self, XPlane, name)
     __repr__ = _swig_repr
-    def __init__(self): 
-        this = _pinspec.new_XPlane()
+    def __init__(self, surface_name=""): 
+        this = _pinspec.new_XPlane(surface_name)
         try: self.this.append(this)
         except: self.this = this
     __swig_destroy__ = _pinspec.delete_XPlane
     __del__ = lambda self : None;
     def getX(self): return _pinspec.XPlane_getX(self)
     def setX(self, *args): return _pinspec.XPlane_setX(self, *args)
+    def evaluate(self, *args): return _pinspec.XPlane_evaluate(self, *args)
     def computeNearestDistance(self, *args): return _pinspec.XPlane_computeNearestDistance(self, *args)
     def onSurface(self, *args): return _pinspec.XPlane_onSurface(self, *args)
 XPlane_swigregister = _pinspec.XPlane_swigregister
@@ -201,14 +336,15 @@ class YPlane(Surface):
     for _s in [Surface]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
     __getattr__ = lambda self, name: _swig_getattr(self, YPlane, name)
     __repr__ = _swig_repr
-    def __init__(self): 
-        this = _pinspec.new_YPlane()
+    def __init__(self, surface_name=""): 
+        this = _pinspec.new_YPlane(surface_name)
         try: self.this.append(this)
         except: self.this = this
     __swig_destroy__ = _pinspec.delete_YPlane
     __del__ = lambda self : None;
     def getY(self): return _pinspec.YPlane_getY(self)
     def setY(self, *args): return _pinspec.YPlane_setY(self, *args)
+    def evaluate(self, *args): return _pinspec.YPlane_evaluate(self, *args)
     def computeNearestDistance(self, *args): return _pinspec.YPlane_computeNearestDistance(self, *args)
     def onSurface(self, *args): return _pinspec.YPlane_onSurface(self, *args)
 YPlane_swigregister = _pinspec.YPlane_swigregister
@@ -222,8 +358,8 @@ class Circle(Surface):
     for _s in [Surface]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
     __getattr__ = lambda self, name: _swig_getattr(self, Circle, name)
     __repr__ = _swig_repr
-    def __init__(self): 
-        this = _pinspec.new_Circle()
+    def __init__(self, surface_name=""): 
+        this = _pinspec.new_Circle(surface_name)
         try: self.this.append(this)
         except: self.this = this
     __swig_destroy__ = _pinspec.delete_Circle
@@ -234,10 +370,30 @@ class Circle(Surface):
     def setX0(self, *args): return _pinspec.Circle_setX0(self, *args)
     def setY0(self, *args): return _pinspec.Circle_setY0(self, *args)
     def setRadius(self, *args): return _pinspec.Circle_setRadius(self, *args)
+    def evaluate(self, *args): return _pinspec.Circle_evaluate(self, *args)
     def computeNearestDistance(self, *args): return _pinspec.Circle_computeNearestDistance(self, *args)
     def onSurface(self, *args): return _pinspec.Circle_onSurface(self, *args)
 Circle_swigregister = _pinspec.Circle_swigregister
 Circle_swigregister(Circle)
+
+class SurfaceFactory(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SurfaceFactory, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SurfaceFactory, name)
+    def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _pinspec.delete_SurfaceFactory
+    __del__ = lambda self : None;
+    __swig_getmethods__["Get"] = lambda x: _pinspec.SurfaceFactory_Get
+    if _newclass:Get = staticmethod(_pinspec.SurfaceFactory_Get)
+    def createSurface(self, *args): return _pinspec.SurfaceFactory_createSurface(self, *args)
+SurfaceFactory_swigregister = _pinspec.SurfaceFactory_swigregister
+SurfaceFactory_swigregister(SurfaceFactory)
+
+def SurfaceFactory_Get():
+  return _pinspec.SurfaceFactory_Get()
+SurfaceFactory_Get = _pinspec.SurfaceFactory_Get
 
 class Isotope(_object):
     __swig_setmethods__ = {}
@@ -447,10 +603,6 @@ class Tally(_object):
 Tally_swigregister = _pinspec.Tally_swigregister
 Tally_swigregister(Tally)
 
-
-def createTally(*args):
-  return _pinspec.createTally(*args)
-createTally = _pinspec.createTally
 class IsotopeTally(Tally):
     __swig_setmethods__ = {}
     for _s in [Tally]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
@@ -1234,6 +1386,25 @@ cvar = _pinspec.cvar
 def TallyBank_Get():
   return _pinspec.TallyBank_Get()
 TallyBank_Get = _pinspec.TallyBank_Get
+
+class TallyFactory(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, TallyFactory, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, TallyFactory, name)
+    def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _pinspec.delete_TallyFactory
+    __del__ = lambda self : None;
+    __swig_getmethods__["Get"] = lambda x: _pinspec.TallyFactory_Get
+    if _newclass:Get = staticmethod(_pinspec.TallyFactory_Get)
+    def createTally(self, *args): return _pinspec.TallyFactory_createTally(self, *args)
+TallyFactory_swigregister = _pinspec.TallyFactory_swigregister
+TallyFactory_swigregister(TallyFactory)
+
+def TallyFactory_Get():
+  return _pinspec.TallyFactory_Get()
+TallyFactory_Get = _pinspec.TallyFactory_Get
 
 class neutron(_object):
     __swig_setmethods__ = {}
