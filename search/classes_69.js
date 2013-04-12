@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['infinitemediumregion',['InfiniteMediumRegion',['../classInfiniteMediumRegion.html',1,'']]],
   ['isotope',['Isotope',['../classIsotope.html',1,'']]],
   ['isotopeabsorptionratetally',['IsotopeAbsorptionRateTally',['../classIsotopeAbsorptionRateTally.html',1,'']]],
   ['isotopecaptureratetally',['IsotopeCaptureRateTally',['../classIsotopeCaptureRateTally.html',1,'']]],

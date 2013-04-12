@@ -130,6 +130,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae05e89d49010885dc05648cbeb94f787"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method takes in a character array specifier for an isotope's name and returns a pointer to the <a class="el" href="classIsotope.html" title="The Isotope represents a nuclide at some temperature.">Isotope</a>.  <a href="#ae05e89d49010885dc05648cbeb94f787"></a><br/></td></tr>
 <tr class="memitem:a40740dabb21cc8ba24b168935e10b06f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#a40740dabb21cc8ba24b168935e10b06f">getDensity</a> ()</td></tr>
 <tr class="memdesc:a40740dabb21cc8ba24b168935e10b06f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the material's density.  <a href="#a40740dabb21cc8ba24b168935e10b06f"></a><br/></td></tr>
+<tr class="memitem:aeeb9bb7a67a6dceb5257c2cf67dfbd26"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#aeeb9bb7a67a6dceb5257c2cf67dfbd26">getIsotopeNumDensity</a> (<a class="el" href="classIsotope.html">Isotope</a> *isotope)</td></tr>
+<tr class="memdesc:aeeb9bb7a67a6dceb5257c2cf67dfbd26"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method takes in a character array specifier for an isotope's name and returns a float for the <a class="el" href="classIsotope.html" title="The Isotope represents a nuclide at some temperature.">Isotope</a>'s number density in <img class="formulaInl" alt="$ \frac{at}{cm^3} $" src="form_15.png"/>.  <a href="#aeeb9bb7a67a6dceb5257c2cf67dfbd26"></a><br/></td></tr>
 <tr class="memitem:ad1e6d2015b73498a21f83783d8cf8266"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#ad1e6d2015b73498a21f83783d8cf8266">getIsotopeNumDensity</a> (char *isotope)</td></tr>
 <tr class="memdesc:ad1e6d2015b73498a21f83783d8cf8266"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method takes in a character array specifier for an isotope's name and returns a float for the <a class="el" href="classIsotope.html" title="The Isotope represents a nuclide at some temperature.">Isotope</a>'s number density in <img class="formulaInl" alt="$ \frac{at}{cm^3} $" src="form_15.png"/>.  <a href="#ad1e6d2015b73498a21f83783d8cf8266"></a><br/></td></tr>
 <tr class="memitem:a00b943e8ec54fc37f9a7d5ce0405234d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#a00b943e8ec54fc37f9a7d5ce0405234d">containsIsotope</a> (<a class="el" href="classIsotope.html">Isotope</a> *isotope)</td></tr>
@@ -870,6 +872,31 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the <a class="el" href="classIsotope.html" title="The Isotope represents a nuclide at some temperature.">Isotope</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aeeb9bb7a67a6dceb5257c2cf67dfbd26"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Material::getIsotopeNumDensity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classIsotope.html">Isotope</a> *&#160;</td>
+          <td class="paramname"><em>isotope</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This method takes in a character array specifier for an isotope's name and returns a float for the <a class="el" href="classIsotope.html" title="The Isotope represents a nuclide at some temperature.">Isotope</a>'s number density in <img class="formulaInl" alt="$ \frac{at}{cm^3} $" src="form_15.png"/>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isotope</td><td>pointer to the isotope of interest </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the isotope's number density </dd></dl>
 
 </div>
 </div>
@@ -1659,7 +1686,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classMaterial.html">Material</a></li>
-    <li class="footer">Generated on Thu Apr 11 2013 19:12:48 by
+    <li class="footer">Generated on Fri Apr 12 2013 09:36:12 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

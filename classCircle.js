@@ -1,8 +1,9 @@
 var classCircle =
 [
-    [ "Circle", "classCircle.html#ad1ecfcfc7bf34529c6a6d6c448bf70fe", null ],
+    [ "Circle", "classCircle.html#a8a4d72877af10b55272a71e5028d9529", null ],
     [ "~Circle", "classCircle.html#ae3f30436e645d73e368e8ee55f8d1650", null ],
     [ "computeNearestDistance", "classCircle.html#a566afb2538f5cae0b863ab3cf6e1f1ab", null ],
+    [ "evaluate", "classCircle.html#ad448fb1009e8b4f637699c03b5d57513", null ],
     [ "getRadius", "classCircle.html#af31f99d2b0d545a0daa936384f5abf6b", null ],
     [ "getX0", "classCircle.html#a58d56d258764265600e8c27ecf5c02df", null ],
     [ "getY0", "classCircle.html#ae75c0d7cabbfdd09546ca467ae8a8497", null ],

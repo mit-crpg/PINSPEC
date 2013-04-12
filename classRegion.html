@@ -104,7 +104,7 @@ $(document).ready(function(){initNavTree('classRegion.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classRegion-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Region Class Reference</div>  </div>
@@ -115,33 +115,38 @@ $(document).ready(function(){initNavTree('classRegion.html','');});
  <a href="classRegion.html#details">More...</a></p>
 
 <p><code>#include &quot;<a class="el" href="Region_8h_source.html">src/pinspec/Region.h</a>&quot;</code></p>
+<div class="dynheader">
+Inheritance diagram for Region:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classRegion.png" usemap="#Region_map" alt=""/>
+  <map id="Region_map" name="Region_map">
+<area href="classBoundedRegion.html" title="The BoundedRegion is a region bounded by surfaces using a constructive solid geometry formulation..." alt="BoundedRegion" shape="rect" coords="170,56,330,80"/>
+<area href="classEquivalenceRegion.html" title="The Equivalence Region is a fuel or moderator region treated using the heterogenous-homogeneous equiv..." alt="EquivalenceRegion" shape="rect" coords="340,56,500,80"/>
+<area href="classInfiniteMediumRegion.html" title="The InfiniteMediumRegion is a homogenized region treated without geometric effects." alt="InfiniteMediumRegion" shape="rect" coords="510,56,670,80"/>
+<area href="classBoundedFuelRegion.html" title="The BoundedFuelRegion is a circular fuel pin region bounded by the interior halfspace of a circle sur..." alt="BoundedFuelRegion" shape="rect" coords="0,112,160,136"/>
+<area href="classBoundedGeneralRegion.html" title="The BoundedGeneralRegion is a the space defined by the intersection of some number surface halfspaces..." alt="BoundedGeneralRegion" shape="rect" coords="170,112,330,136"/>
+<area href="classBoundedModeratorRegion.html" title="The BoundedModeratorRegion is a the space defined four surfaces bounding a square pin minus a circula..." alt="BoundedModeratorRegion" shape="rect" coords="340,112,500,136"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab0d1873c68539b5339811f413ecb4dbb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#ab0d1873c68539b5339811f413ecb4dbb">Region</a> (char *region_name, <a class="el" href="Region_8h.html#a2c25b4a3d851e2d45d7a435a73598323">regionType</a> type)</td></tr>
-<tr class="memdesc:ab0d1873c68539b5339811f413ecb4dbb"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRegion.html" title="The region class represents a region in 2D space.">Region</a> constructor.  <a href="#ab0d1873c68539b5339811f413ecb4dbb"></a><br/></td></tr>
-<tr class="memitem:a3c3670fff78f7511d156e3b2f0bc6266"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a3c3670fff78f7511d156e3b2f0bc6266">~Region</a> ()</td></tr>
-<tr class="memdesc:a3c3670fff78f7511d156e3b2f0bc6266"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRegion.html" title="The region class represents a region in 2D space.">Region</a> destructor.  <a href="#a3c3670fff78f7511d156e3b2f0bc6266"></a><br/></td></tr>
+<tr class="memitem:a569a104a9a675dd85c820e9cded32ab9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a569a104a9a675dd85c820e9cded32ab9">Region</a> (const char *region_name=(char *)&quot;&quot;)</td></tr>
+<tr class="memdesc:a569a104a9a675dd85c820e9cded32ab9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRegion.html" title="The region class represents a region in 2D space.">Region</a> constructor.  <a href="#a569a104a9a675dd85c820e9cded32ab9"></a><br/></td></tr>
+<tr class="memitem:a5cde30b344e3a24d9782fe03ffe8dea8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cde30b344e3a24d9782fe03ffe8dea8"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a5cde30b344e3a24d9782fe03ffe8dea8">~Region</a> ()</td></tr>
+<tr class="memdesc:a5cde30b344e3a24d9782fe03ffe8dea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty destructor allows SWIG to cleanup memory for surfaces. <br/></td></tr>
 <tr class="memitem:abac6cb4d426f59e3b4b3f7a5ef8f4a1d"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#abac6cb4d426f59e3b4b3f7a5ef8f4a1d">getRegionName</a> ()</td></tr>
 <tr class="memdesc:abac6cb4d426f59e3b4b3f7a5ef8f4a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the name of the region.  <a href="#abac6cb4d426f59e3b4b3f7a5ef8f4a1d"></a><br/></td></tr>
-<tr class="memitem:a2c3eca3c5373770e19d36198859f4ccb"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a2c3eca3c5373770e19d36198859f4ccb">getVolume</a> ()</td></tr>
-<tr class="memdesc:a2c3eca3c5373770e19d36198859f4ccb"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the volume of this <a class="el" href="classRegion.html" title="The region class represents a region in 2D space.">Region</a> <img class="formulaInl" alt="$ (cm^3) $" src="form_22.png"/>.  <a href="#a2c3eca3c5373770e19d36198859f4ccb"></a><br/></td></tr>
 <tr class="memitem:ace26edc725e1f4d723964f3961e65ceb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMaterial.html">Material</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#ace26edc725e1f4d723964f3961e65ceb">getMaterial</a> ()</td></tr>
 <tr class="memdesc:ace26edc725e1f4d723964f3961e65ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the material filling this region.  <a href="#ace26edc725e1f4d723964f3961e65ceb"></a><br/></td></tr>
 <tr class="memitem:a46eb443386a0f3003a28772f78e6de70"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a46eb443386a0f3003a28772f78e6de70">containsIsotope</a> (<a class="el" href="classIsotope.html">Isotope</a> *isotope)</td></tr>
 <tr class="memdesc:a46eb443386a0f3003a28772f78e6de70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether this region contains a particular isotope.  <a href="#a46eb443386a0f3003a28772f78e6de70"></a><br/></td></tr>
 <tr class="memitem:a79ac377684286e49a7ae54c5543c909c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Region_8h.html#a2c25b4a3d851e2d45d7a435a73598323">regionType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a79ac377684286e49a7ae54c5543c909c">getRegionType</a> ()</td></tr>
 <tr class="memdesc:a79ac377684286e49a7ae54c5543c909c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the type of region.  <a href="#a79ac377684286e49a7ae54c5543c909c"></a><br/></td></tr>
-<tr class="memitem:a28071086d54cd10656a7dd887a9b7d7b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a28071086d54cd10656a7dd887a9b7d7b">isFuel</a> ()</td></tr>
-<tr class="memdesc:a28071086d54cd10656a7dd887a9b7d7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if this region is the fuel, false otherwise.  <a href="#a28071086d54cd10656a7dd887a9b7d7b"></a><br/></td></tr>
-<tr class="memitem:a07b3de22a98396471732b5a06478a2b6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a07b3de22a98396471732b5a06478a2b6">isModerator</a> ()</td></tr>
-<tr class="memdesc:a07b3de22a98396471732b5a06478a2b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if this region is the moderator, false otherwise.  <a href="#a07b3de22a98396471732b5a06478a2b6"></a><br/></td></tr>
-<tr class="memitem:a32c33d47e4cf99a839a7ea36c1f91b73"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a32c33d47e4cf99a839a7ea36c1f91b73">isInfinite</a> ()</td></tr>
-<tr class="memdesc:a32c33d47e4cf99a839a7ea36c1f91b73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if this region is an infnite medium, false otherwise.  <a href="#a32c33d47e4cf99a839a7ea36c1f91b73"></a><br/></td></tr>
-<tr class="memitem:a1eece240d2a03c92abd79c3fcb708fa1"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a1eece240d2a03c92abd79c3fcb708fa1">getFuelRadius</a> ()</td></tr>
-<tr class="memdesc:a1eece240d2a03c92abd79c3fcb708fa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the fuel pin radius if not an INFINITE region type.  <a href="#a1eece240d2a03c92abd79c3fcb708fa1"></a><br/></td></tr>
-<tr class="memitem:a06dcc9cfe0a9d07594ad4baae3f426b9"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a06dcc9cfe0a9d07594ad4baae3f426b9">getPitch</a> ()</td></tr>
-<tr class="memdesc:a06dcc9cfe0a9d07594ad4baae3f426b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the pin cell pitch if not an INFINITE region type.  <a href="#a06dcc9cfe0a9d07594ad4baae3f426b9"></a><br/></td></tr>
+<tr class="memitem:a2c3eca3c5373770e19d36198859f4ccb"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a2c3eca3c5373770e19d36198859f4ccb">getVolume</a> ()</td></tr>
+<tr class="memdesc:a2c3eca3c5373770e19d36198859f4ccb"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the volume of this <a class="el" href="classRegion.html" title="The region class represents a region in 2D space.">Region</a> <img class="formulaInl" alt="$ (cm^3) $" src="form_22.png"/>.  <a href="#a2c3eca3c5373770e19d36198859f4ccb"></a><br/></td></tr>
 <tr class="memitem:a032f38b6fbd2bac296aff6367a273456"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a032f38b6fbd2bac296aff6367a273456">getBucklingSquared</a> ()</td></tr>
 <tr class="memdesc:a032f38b6fbd2bac296aff6367a273456"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the squared geometric buckling.  <a href="#a032f38b6fbd2bac296aff6367a273456"></a><br/></td></tr>
 <tr class="memitem:a44ae74637def12405bf79097854ce376"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a44ae74637def12405bf79097854ce376">getTotalMacroXS</a> (float energy)</td></tr>
@@ -194,56 +199,35 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5c7da29f8103f2b754d5ff830d2d5573"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes and returns the macroscopic transport cross-section in the region at some index into the uniform lethargy grid.  <a href="#a5c7da29f8103f2b754d5ff830d2d5573"></a><br/></td></tr>
 <tr class="memitem:a7db7e7d177ab05b9142300181f261f80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a7db7e7d177ab05b9142300181f261f80">setMaterial</a> (<a class="el" href="classMaterial.html">Material</a> *material)</td></tr>
 <tr class="memdesc:a7db7e7d177ab05b9142300181f261f80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the material filling this region.  <a href="#a7db7e7d177ab05b9142300181f261f80"></a><br/></td></tr>
-<tr class="memitem:aeaaceb598753fb4001bbb9f9ab2e475c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#aeaaceb598753fb4001bbb9f9ab2e475c">setFuelRadius</a> (float radius)</td></tr>
-<tr class="memdesc:aeaaceb598753fb4001bbb9f9ab2e475c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the fuel radius if the region is not of INFINITE type.  <a href="#aeaaceb598753fb4001bbb9f9ab2e475c"></a><br/></td></tr>
-<tr class="memitem:a59684ee41c0461555b53688023d16f3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a59684ee41c0461555b53688023d16f3f">setPitch</a> (float pitch)</td></tr>
-<tr class="memdesc:a59684ee41c0461555b53688023d16f3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pin cell pitch if the region is not of INFINITE type.  <a href="#a59684ee41c0461555b53688023d16f3f"></a><br/></td></tr>
 <tr class="memitem:aaf17e980febbd4856c884d288922f8b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#aaf17e980febbd4856c884d288922f8b6">setVolume</a> (float volume)</td></tr>
 <tr class="memdesc:aaf17e980febbd4856c884d288922f8b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the volume for this region <img class="formulaInl" alt="$ (cm^3) $" src="form_22.png"/>.  <a href="#aaf17e980febbd4856c884d288922f8b6"></a><br/></td></tr>
 <tr class="memitem:afeed8677dff0c9fe1eefae1fb9acd66c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#afeed8677dff0c9fe1eefae1fb9acd66c">setBucklingSquared</a> (float buckling_squared)</td></tr>
 <tr class="memdesc:afeed8677dff0c9fe1eefae1fb9acd66c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the squared geometric buckling for the geometry.  <a href="#afeed8677dff0c9fe1eefae1fb9acd66c"></a><br/></td></tr>
-<tr class="memitem:aa1dcade90f26be22436ce940f22b5b32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#aa1dcade90f26be22436ce940f22b5b32">collideNeutron</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
-<tr class="memdesc:aa1dcade90f26be22436ce940f22b5b32"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method collides a neutron within the region.  <a href="#aa1dcade90f26be22436ce940f22b5b32"></a><br/></td></tr>
-<tr class="memitem:a056e2c3e94253b54b7715d6232c6fade"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a056e2c3e94253b54b7715d6232c6fade">contains</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
-<tr class="memdesc:a056e2c3e94253b54b7715d6232c6fade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if this region contains a neutron at some 2D location.  <a href="#a056e2c3e94253b54b7715d6232c6fade"></a><br/></td></tr>
-<tr class="memitem:a725dd2c9786f1b0df1a4eb66b00cc0f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a725dd2c9786f1b0df1a4eb66b00cc0f2">onBoundary</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
-<tr class="memdesc:a725dd2c9786f1b0df1a4eb66b00cc0f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a neutron at some 2D location is on the region boundary.  <a href="#a725dd2c9786f1b0df1a4eb66b00cc0f2"></a><br/></td></tr>
+<tr class="memitem:a2c1181345fccb4055f4b0d97f21c26ba"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a2c1181345fccb4055f4b0d97f21c26ba">collideNeutron</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)=0</td></tr>
+<tr class="memdesc:a2c1181345fccb4055f4b0d97f21c26ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method collides a neutron within the region.  <a href="#a2c1181345fccb4055f4b0d97f21c26ba"></a><br/></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
 <tr class="memitem:abf94b7a06d6b1500a77b68505868d312"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#abf94b7a06d6b1500a77b68505868d312">_region_name</a></td></tr>
-<tr class="memitem:ad4345a279ed2211c94a73c4bd1f28ba8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#ad4345a279ed2211c94a73c4bd1f28ba8">_volume</a></td></tr>
 <tr class="memitem:afeb207eb640d2543a9b5a1bb2097c50d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMaterial.html">Material</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#afeb207eb640d2543a9b5a1bb2097c50d">_material</a></td></tr>
 <tr class="memitem:a83913828a5b45d69aa073bc567a03750"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Region_8h.html#a2c25b4a3d851e2d45d7a435a73598323">regionType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a83913828a5b45d69aa073bc567a03750">_region_type</a></td></tr>
-<tr class="memitem:a344918fd4f1847efd6be99f2326eaa87"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a344918fd4f1847efd6be99f2326eaa87">_fuel_radius</a></td></tr>
-<tr class="memitem:a378e08077c7f1dd45ed10dddf767415b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a378e08077c7f1dd45ed10dddf767415b">_pitch</a></td></tr>
-<tr class="memitem:a62b5f5e778d5e95d6289d0f0948a312c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a62b5f5e778d5e95d6289d0f0948a312c">_half_width</a></td></tr>
 <tr class="memitem:a2731c8000023342a08a5799e0aa5c0d2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a2731c8000023342a08a5799e0aa5c0d2">_buckling_squared</a></td></tr>
+<tr class="memitem:ad4345a279ed2211c94a73c4bd1f28ba8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#ad4345a279ed2211c94a73c4bd1f28ba8">_volume</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The region class represents a region in 2D space. </p>
 <p>The region class is a superclass allowing for subclasses representing infinited media, heterogeneous/homogeneous equivalance fuel/moderator regions, or even heterogeneous regions bounded by 2D quadratic surfaces, filled by a material. </p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ab0d1873c68539b5339811f413ecb4dbb"></a>
+<a class="anchor" id="a569a104a9a675dd85c820e9cded32ab9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Region::Region </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>region_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>region_name</em> = <code>(char*)&quot;&quot;</code></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="Region_8h.html#a2c25b4a3d851e2d45d7a435a73598323">regionType</a>&#160;</td>
-          <td class="paramname"><em>type</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -252,15 +236,15 @@ Private Attributes</h2></td></tr>
 <p>Sets defaults for the geometric parameters to 0. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">region_name</td><td>the name of the region </td></tr>
-    <tr><td class="paramname">type</td><td>the type region (INFINITE, FUEL, etc) </td></tr>
+    <tr><td class="paramname">region_name</td><td>the (optional) name of the region </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a3c3670fff78f7511d156e3b2f0bc6266"></a>
+<h2>Member Function Documentation</h2>
+<a class="anchor" id="a2c1181345fccb4055f4b0d97f21c26ba"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -268,41 +252,22 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Region::~Region </td>
+          <td class="memname">virtual void Region::collideNeutron </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structneutron.html">neutron</a> *&#160;</td>
+          <td class="paramname"><em>neutron</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classRegion.html" title="The region class represents a region in 2D space.">Region</a> destructor. </p>
-<p>The destructor does not delete anything since SWIG deals with garbage collection. </p>
-
-</div>
-</div>
-<h2>Member Function Documentation</h2>
-<a class="anchor" id="aa1dcade90f26be22436ce940f22b5b32"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Region::collideNeutron </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structneutron.html">neutron</a> *&#160;</td>
-          <td class="paramname"><em>neutron</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
 <p>This method collides a neutron within the region. </p>
-<p>This method encapsulates all of the neutron scattering physics which is further encapsulated by the material and isotope classes. </p>
+<p>This method encapsulates all of the neutron scattering physics which is further encapsulated by the material and isotope classes. This method must be implemented for each region subclass type. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">neutron</td><td>the neutron of interest </td></tr>
@@ -310,30 +275,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-</div>
-</div>
-<a class="anchor" id="a056e2c3e94253b54b7715d6232c6fade"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Region::contains </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structneutron.html">neutron</a> *&#160;</td>
-          <td class="paramname"><em>neutron</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Check if this region contains a neutron at some 2D location. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">neutron</td><td>the neutron of interest </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>if contained (true), otherwise (false) </dd></dl>
+<p>Implemented in <a class="el" href="classBoundedRegion.html#ad0e62195be77da89607959021c45c9a0">BoundedRegion</a>, <a class="el" href="classEquivalenceRegion.html#aa03e69591b2979461f7b7ff24479c4d8">EquivalenceRegion</a>, and <a class="el" href="classInfiniteMediumRegion.html#a4507a6a5d5e568ff90bcaec00cd485f9">InfiniteMediumRegion</a>.</p>
 
 </div>
 </div>
@@ -780,24 +722,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1eece240d2a03c92abd79c3fcb708fa1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Region::getFuelRadius </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the fuel pin radius if not an INFINITE region type. </p>
-<dl class="section return"><dt>Returns</dt><dd>the fuel pin radius </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="ace26edc725e1f4d723964f3961e65ceb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -813,24 +737,6 @@ Private Attributes</h2></td></tr>
 
 <p>Returns a pointer to the material filling this region. </p>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the material filling the region </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a06dcc9cfe0a9d07594ad4baae3f426b9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Region::getPitch </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the pin cell pitch if not an INFINITE region type. </p>
-<dl class="section return"><dt>Returns</dt><dd>the pin cell pitch </dd></dl>
 
 </div>
 </div>
@@ -866,7 +772,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Return the type of region. </p>
-<dl class="section return"><dt>Returns</dt><dd>the region type (INFINITE, FUEL, etc.) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the region type (INFINITE, EQUIVALENT_FUEL, etc.) </dd></dl>
 
 </div>
 </div>
@@ -1088,85 +994,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a28071086d54cd10656a7dd887a9b7d7b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Region::isFuel </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns true if this region is the fuel, false otherwise. </p>
-<dl class="section return"><dt>Returns</dt><dd>true if fuel, false otherwise </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a32c33d47e4cf99a839a7ea36c1f91b73"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Region::isInfinite </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns true if this region is an infnite medium, false otherwise. </p>
-<dl class="section return"><dt>Returns</dt><dd>true if infinite, false otherwise </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a07b3de22a98396471732b5a06478a2b6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Region::isModerator </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns true if this region is the moderator, false otherwise. </p>
-<dl class="section return"><dt>Returns</dt><dd>true if moderator, false otherwise </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a725dd2c9786f1b0df1a4eb66b00cc0f2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Region::onBoundary </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structneutron.html">neutron</a> *&#160;</td>
-          <td class="paramname"><em>neutron</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Checks if a neutron at some 2D location is on the region boundary. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">neutron</td><td>the neutron of interest </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if on the boundary, otherwise false </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="afeed8677dff0c9fe1eefae1fb9acd66c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1192,30 +1019,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aeaaceb598753fb4001bbb9f9ab2e475c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Region::setFuelRadius </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>radius</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets the fuel radius if the region is not of INFINITE type. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">radius</td><td>the fuel pin radius </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="a7db7e7d177ab05b9142300181f261f80"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1235,30 +1038,6 @@ Private Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">material</td><td>a pointer to a material </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a59684ee41c0461555b53688023d16f3f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Region::setPitch </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>pitch</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets the pin cell pitch if the region is not of INFINITE type. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pitch</td><td>the pin cell pitch </td></tr>
   </table>
   </dd>
 </dl>
@@ -1303,53 +1082,11 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <p>The squared geometric buckling </p>
-
-</div>
-</div>
-<a class="anchor" id="a344918fd4f1847efd6be99f2326eaa87"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Region::_fuel_radius</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>The radius of the fuel </p>
-
-</div>
-</div>
-<a class="anchor" id="a62b5f5e778d5e95d6289d0f0948a312c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Region::_half_width</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Half of the pin cell pitch </p>
 
 </div>
 </div>
@@ -1366,32 +1103,11 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <p>A pointer to the material filling the region </p>
-
-</div>
-</div>
-<a class="anchor" id="a378e08077c7f1dd45ed10dddf767415b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Region::_pitch</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>The pin cell pitch </p>
 
 </div>
 </div>
@@ -1408,7 +1124,7 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1429,11 +1145,11 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The type of region (INFINITE, MODERATOR, FUEL, etc.) </p>
+<p>The type of region (INFINITE, EQUIVALNENCE, or BOUNDED) </p>
 
 </div>
 </div>
@@ -1450,7 +1166,7 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1468,7 +1184,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classRegion.html">Region</a></li>
-    <li class="footer">Generated on Thu Apr 11 2013 19:12:48 by
+    <li class="footer">Generated on Fri Apr 12 2013 09:36:12 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -79,9 +79,5 @@ var Tally_8h =
       [ "STANDARD_DEVIATION", "Tally_8h.html#a077779edd257c16613a1980f56a1d645a0300bc08cee254b47cf10eabb320f3eb", null ],
       [ "RELATIVE_ERROR", "Tally_8h.html#a077779edd257c16613a1980f56a1d645ab08cc1810411b04f3644a048465c6331", null ],
       [ "NONE", "Tally_8h.html#a077779edd257c16613a1980f56a1d645ac157bdf0b85a40d2619cbc8bc1ae5fe2", null ]
-    ] ],
-    [ "createTally", "Tally_8h.html#a6991c584c0ec5dc22170433db3eb4d0c", null ],
-    [ "createTally", "Tally_8h.html#a643ed842113dc223997f9fa170a4eeec", null ],
-    [ "createTally", "Tally_8h.html#a17d80a5f38a682364bdb7755df941d5f", null ],
-    [ "createTally", "Tally_8h.html#a2985373edfb77ab0f1b8510eabc8dd95", null ]
+    ] ]
 ];

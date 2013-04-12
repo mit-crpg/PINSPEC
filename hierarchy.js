@@ -6,7 +6,16 @@ var hierarchy =
     [ "Isotope", "classIsotope.html", null ],
     [ "Material", "classMaterial.html", null ],
     [ "neutron", "structneutron.html", null ],
-    [ "Region", "classRegion.html", null ],
+    [ "Region", "classRegion.html", [
+      [ "BoundedRegion", "classBoundedRegion.html", [
+        [ "BoundedFuelRegion", "classBoundedFuelRegion.html", null ],
+        [ "BoundedGeneralRegion", "classBoundedGeneralRegion.html", null ],
+        [ "BoundedModeratorRegion", "classBoundedModeratorRegion.html", null ]
+      ] ],
+      [ "EquivalenceRegion", "classEquivalenceRegion.html", null ],
+      [ "InfiniteMediumRegion", "classInfiniteMediumRegion.html", null ]
+    ] ],
+    [ "RegionFactory", "classRegionFactory.html", null ],
     [ "pinspec.process.RIEff", "classpinspec_1_1process_1_1RIEff.html", null ],
     [ "pinspec.process.RITrue", "classpinspec_1_1process_1_1RITrue.html", null ],
     [ "Surface", "classSurface.html", [
@@ -14,6 +23,7 @@ var hierarchy =
       [ "XPlane", "classXPlane.html", null ],
       [ "YPlane", "classYPlane.html", null ]
     ] ],
+    [ "SurfaceFactory", "classSurfaceFactory.html", null ],
     [ "Tally", "classTally.html", [
       [ "DerivedTally", "classDerivedTally.html", null ],
       [ "GeometryTally", "classGeometryTally.html", [

@@ -146,6 +146,10 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:a657cb04b0e42bc9a1574a9120c5a6e67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the number of batches for this simulation.  <a href="#a657cb04b0e42bc9a1574a9120c5a6e67"></a><br/></td></tr>
 <tr class="memitem:a52ab88674bf4f90db4fab0899f326a58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a52ab88674bf4f90db4fab0899f326a58">setSpatialType</a> (<a class="el" href="Geometry_8h.html#af321382c4a8d9fdb71c83382f82fac00">spatialType</a> spatial_type)</td></tr>
 <tr class="memdesc:a52ab88674bf4f90db4fab0899f326a58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the geometry's spatial type (INFINITE_HOMOGENEOUS, HOMOGENEOUS_EQUIVALENCE or HETEROGENEOUS).  <a href="#a52ab88674bf4f90db4fab0899f326a58"></a><br/></td></tr>
+<tr class="memitem:a3ee1975057e67f7f3b557c259c4050f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a3ee1975057e67f7f3b557c259c4050f1">setFuelPinRadius</a> (float radius)</td></tr>
+<tr class="memdesc:a3ee1975057e67f7f3b557c259c4050f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the fuel pin radius.  <a href="#a3ee1975057e67f7f3b557c259c4050f1"></a><br/></td></tr>
+<tr class="memitem:af6cfa80bca25efaac2864dcd8472a3f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#af6cfa80bca25efaac2864dcd8472a3f4">setPinCellPitch</a> (float pitch)</td></tr>
+<tr class="memdesc:af6cfa80bca25efaac2864dcd8472a3f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the lattice pin cell pitch.  <a href="#af6cfa80bca25efaac2864dcd8472a3f4"></a><br/></td></tr>
 <tr class="memitem:a0ef3fcbefaf7079ee1667adc3d0dbe54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a0ef3fcbefaf7079ee1667adc3d0dbe54">setDancoffFactor</a> (float dancoff)</td></tr>
 <tr class="memdesc:a0ef3fcbefaf7079ee1667adc3d0dbe54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the dancoff factor and computes the escape cross-section, beta, alpha1 and alpha2 parameters used for a two region heterogeneous-homogeneous pin cell simulation.  <a href="#a0ef3fcbefaf7079ee1667adc3d0dbe54"></a><br/></td></tr>
 <tr class="memitem:a68b1626c22c75914eafdcee252406b62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a68b1626c22c75914eafdcee252406b62">addRegion</a> (<a class="el" href="classRegion.html">Region</a> *region)</td></tr>
@@ -172,11 +176,13 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a600fda86b7f3951331ae486548306407"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a600fda86b7f3951331ae486548306407">_num_batches</a></td></tr>
 <tr class="memitem:af78593ff6416ad7fc318e4b8692ed77e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#af78593ff6416ad7fc318e4b8692ed77e">_num_threads</a></td></tr>
 <tr class="memitem:a2e9b473e54caa2c7742b4f676bedf91e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Geometry_8h.html#af321382c4a8d9fdb71c83382f82fac00">spatialType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a2e9b473e54caa2c7742b4f676bedf91e">_spatial_type</a></td></tr>
-<tr class="memitem:aad96c277327aa2fb1f512f4678af94f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRegion.html">Region</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#aad96c277327aa2fb1f512f4678af94f0">_infinite_medium</a></td></tr>
-<tr class="memitem:afca54e88b6d937055fc9ca124db1e17e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRegion.html">Region</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#afca54e88b6d937055fc9ca124db1e17e">_fuel</a></td></tr>
-<tr class="memitem:a023855a68edb163698d88da928935c4b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRegion.html">Region</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a023855a68edb163698d88da928935c4b">_moderator</a></td></tr>
+<tr class="memitem:aae3ad047669451601277fcdabab2922a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classInfiniteMediumRegion.html">InfiniteMediumRegion</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#aae3ad047669451601277fcdabab2922a">_infinite_medium</a></td></tr>
+<tr class="memitem:aaf322b2f5b08a8bd572882f775f1857f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEquivalenceRegion.html">EquivalenceRegion</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#aaf322b2f5b08a8bd572882f775f1857f">_fuel</a></td></tr>
+<tr class="memitem:a9bd7d46ca0af4dbf6f1cc5d092fa67ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEquivalenceRegion.html">EquivalenceRegion</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a9bd7d46ca0af4dbf6f1cc5d092fa67ff">_moderator</a></td></tr>
 <tr class="memitem:aae2651151b89d9b82c434eaa83edc477"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structneutron.html">neutron</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#aae2651151b89d9b82c434eaa83edc477">_neutrons</a></td></tr>
 <tr class="memitem:a5947cd1c6029329ed188ce4b8a8d4e28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFissioner.html">Fissioner</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a5947cd1c6029329ed188ce4b8a8d4e28">_fissioner</a></td></tr>
+<tr class="memitem:a126bd6425cbc48518bb58c74163f9ab7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a126bd6425cbc48518bb58c74163f9ab7">_fuel_radius</a></td></tr>
+<tr class="memitem:a545b9525bae0b9b98f394d4f98262eab"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a545b9525bae0b9b98f394d4f98262eab">_pitch</a></td></tr>
 <tr class="memitem:aedfa5e190e5e87f0a0d84ca48278e019"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#aedfa5e190e5e87f0a0d84ca48278e019">_dancoff</a></td></tr>
 <tr class="memitem:a161dd81342c2018dc6af5db732385b67"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a161dd81342c2018dc6af5db732385b67">_sigma_e</a></td></tr>
 <tr class="memitem:a20733d493193d7c75ad9afb454046324"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a20733d493193d7c75ad9afb454046324">_beta</a></td></tr>
@@ -555,6 +561,30 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a3ee1975057e67f7f3b557c259c4050f1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Geometry::setFuelPinRadius </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radius</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the fuel pin radius. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">radius</td><td>the fuel pin radius (cm) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a0160e8eef8ecd7655dc2ddc8f7a46391"></a>
 <div class="memitem">
 <div class="memproto">
@@ -621,6 +651,30 @@ Private Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">num_threads</td><td>the number of batches </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af6cfa80bca25efaac2864dcd8472a3f4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Geometry::setPinCellPitch </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>pitch</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the lattice pin cell pitch. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pitch</td><td>the pin cell pitch (cm) </td></tr>
   </table>
   </dd>
 </dl>
@@ -820,7 +874,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="afca54e88b6d937055fc9ca124db1e17e"></a>
+<a class="anchor" id="aaf322b2f5b08a8bd572882f775f1857f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -828,7 +882,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classRegion.html">Region</a>* Geometry::_fuel</td>
+          <td class="memname"><a class="el" href="classEquivalenceRegion.html">EquivalenceRegion</a>* Geometry::_fuel</td>
         </tr>
       </table>
   </td>
@@ -841,7 +895,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aad96c277327aa2fb1f512f4678af94f0"></a>
+<a class="anchor" id="a126bd6425cbc48518bb58c74163f9ab7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -849,7 +903,28 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classRegion.html">Region</a>* Geometry::_infinite_medium</td>
+          <td class="memname">float Geometry::_fuel_radius</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The fuel pin radius for a heterogeneous-homogeneous equivalent geometry </p>
+
+</div>
+</div>
+<a class="anchor" id="aae3ad047669451601277fcdabab2922a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classInfiniteMediumRegion.html">InfiniteMediumRegion</a>* Geometry::_infinite_medium</td>
         </tr>
       </table>
   </td>
@@ -862,7 +937,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a023855a68edb163698d88da928935c4b"></a>
+<a class="anchor" id="a9bd7d46ca0af4dbf6f1cc5d092fa67ff"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -870,7 +945,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classRegion.html">Region</a>* Geometry::_moderator</td>
+          <td class="memname"><a class="el" href="classEquivalenceRegion.html">EquivalenceRegion</a>* Geometry::_moderator</td>
         </tr>
       </table>
   </td>
@@ -985,6 +1060,27 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>The number of threads </p>
+
+</div>
+</div>
+<a class="anchor" id="a545b9525bae0b9b98f394d4f98262eab"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Geometry::_pitch</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The pin cell pitch for a heterogenous-homogeneous equivalent geometry </p>
 
 </div>
 </div>
@@ -1103,7 +1199,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classGeometry.html">Geometry</a></li>
-    <li class="footer">Generated on Thu Apr 11 2013 19:12:48 by
+    <li class="footer">Generated on Fri Apr 12 2013 09:36:12 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

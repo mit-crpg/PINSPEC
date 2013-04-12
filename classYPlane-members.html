@@ -110,15 +110,19 @@ $(document).ready(function(){initNavTree('classYPlane.html','');});
 <p>This is the complete list of members for <a class="el" href="classYPlane.html">YPlane</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="classSurface.html#a73ff438f865a0694735877998dce0d91">_boundary_type</a></td><td class="entry"><a class="el" href="classSurface.html">Surface</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classSurface.html#af051ad8db831a80278fff458e6a2d74f">_surface_name</a></td><td class="entry"><a class="el" href="classSurface.html">Surface</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSurface.html#a2b8655eb5a953ea4b45abe5fab7831d0">_surface_type</a></td><td class="entry"><a class="el" href="classSurface.html">Surface</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr><td class="entry"><a class="el" href="classYPlane.html#a83201c3008efd840a147a136828e6a28">_y</a></td><td class="entry"><a class="el" href="classYPlane.html">YPlane</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classYPlane.html#a7f474b38634753235438ca5eff23c2d5">computeNearestDistance</a>(neutron *neutron)</td><td class="entry"><a class="el" href="classYPlane.html">YPlane</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classSurface.html#a33b25b8e797853cf582cf5085262e028">getBoundaryType</a>() const </td><td class="entry"><a class="el" href="classSurface.html">Surface</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classYPlane.html#a86c9563c4ed5ac95a7e9e6f860a247e1">evaluate</a>(neutron *neutron)</td><td class="entry"><a class="el" href="classYPlane.html">YPlane</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSurface.html#a33b25b8e797853cf582cf5085262e028">getBoundaryType</a>() const </td><td class="entry"><a class="el" href="classSurface.html">Surface</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classSurface.html#ac81ba9beb50551c9f515c584337bcee5">getSurfaceName</a>()</td><td class="entry"><a class="el" href="classSurface.html">Surface</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classYPlane.html#aaba79f83163cc562a3f5e80a3942bc23">getY</a>()</td><td class="entry"><a class="el" href="classYPlane.html">YPlane</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classYPlane.html#aa8899ff929b56f242316ca684f671772">onSurface</a>(neutron *neutron)</td><td class="entry"><a class="el" href="classYPlane.html">YPlane</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSurface.html#a3bce151806619035116fa8cbb68ae62b">setBoundaryType</a>(boundaryType type)</td><td class="entry"><a class="el" href="classSurface.html">Surface</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classYPlane.html#a3acd886aef57f239f49abdf5004c0df0">setY</a>(float y)</td><td class="entry"><a class="el" href="classYPlane.html">YPlane</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classSurface.html#a8fc57f2a15292135c00545c9d224ec68">Surface</a>()</td><td class="entry"><a class="el" href="classSurface.html">Surface</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classYPlane.html#a3d34dc597f130082af67566a00422f17">YPlane</a>()</td><td class="entry"><a class="el" href="classYPlane.html">YPlane</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classSurface.html#a77e14a37164709fd65d051b09bdd0089">Surface</a>(const char *surface_name=(char *)&quot;&quot;)</td><td class="entry"><a class="el" href="classSurface.html">Surface</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classYPlane.html#a75bfdd4d51b9d8e76b10c68e75577a2b">YPlane</a>(const char *surface_name=(char *)&quot;&quot;)</td><td class="entry"><a class="el" href="classYPlane.html">YPlane</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classSurface.html#a89de75c95cb550d432f3ea4ed1429db0">~Surface</a>()</td><td class="entry"><a class="el" href="classSurface.html">Surface</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr><td class="entry"><a class="el" href="classYPlane.html#a5b76c095cf26194044254f719e92236f">~YPlane</a>()</td><td class="entry"><a class="el" href="classYPlane.html">YPlane</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
@@ -126,7 +130,7 @@ $(document).ready(function(){initNavTree('classYPlane.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Apr 11 2013 19:12:49 by
+    <li class="footer">Generated on Fri Apr 12 2013 09:36:12 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -51,3 +51,8 @@
 \form#50:$\Gamma_{\gamma}$
 \form#51:$ \chi = 0.453 * exp(-1.036E) * sinh(\sqrt(2.29E)) $
 \form#52:$ \chi = 0.453 * exp(-1.036E) * sinh(\sqrt{2.29E}) $
+\form#53:$ (x,y) $
+\form#54:$ f(x,y) = qx + d = x - x_0 $
+\form#55:$ f(x,y) = qy + d = y - y_0 $
+\form#56:$ f(x,y) = (x - x_0)^2 + (y - y_0)^2 - R^2 $
+\form#57:$ f(x,y) $

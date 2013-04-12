@@ -119,6 +119,18 @@ $(document).ready(function(){initNavTree('Region_8h.html','');});
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html">Region</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The region class represents a region in 2D space.  <a href="classRegion.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInfiniteMediumRegion.html">InfiniteMediumRegion</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classInfiniteMediumRegion.html" title="The InfiniteMediumRegion is a homogenized region treated without geometric effects.">InfiniteMediumRegion</a> is a homogenized region treated without geometric effects.  <a href="classInfiniteMediumRegion.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEquivalenceRegion.html">EquivalenceRegion</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Equivalence <a class="el" href="classRegion.html" title="The region class represents a region in 2D space.">Region</a> is a fuel or moderator region treated using the heterogenous-homogeneous equivalence theory.  <a href="classEquivalenceRegion.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoundedRegion.html">BoundedRegion</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classBoundedRegion.html" title="The BoundedRegion is a region bounded by surfaces using a constructive solid geometry formulation...">BoundedRegion</a> is a region bounded by surfaces using a constructive solid geometry formulation.  <a href="classBoundedRegion.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoundedFuelRegion.html">BoundedFuelRegion</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classBoundedFuelRegion.html" title="The BoundedFuelRegion is a circular fuel pin region bounded by the interior halfspace of a circle sur...">BoundedFuelRegion</a> is a circular fuel pin region bounded by the interior halfspace of a circle surface.  <a href="classBoundedFuelRegion.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoundedModeratorRegion.html">BoundedModeratorRegion</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classBoundedModeratorRegion.html" title="The BoundedModeratorRegion is a the space defined four surfaces bounding a square pin minus a circula...">BoundedModeratorRegion</a> is a the space defined four surfaces bounding a square pin minus a circular fuel pin region.  <a href="classBoundedModeratorRegion.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoundedGeneralRegion.html">BoundedGeneralRegion</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classBoundedGeneralRegion.html" title="The BoundedGeneralRegion is a the space defined by the intersection of some number surface halfspaces...">BoundedGeneralRegion</a> is a the space defined by the intersection of some number surface halfspaces.  <a href="classBoundedGeneralRegion.html#details">More...</a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -128,9 +140,15 @@ typedef enum <a class="el" href="Region_8h.html#a12bdf26d02e9b6703d94eb38c27447f
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a12bdf26d02e9b6703d94eb38c27447ff"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Region_8h.html#a12bdf26d02e9b6703d94eb38c27447ff">regionTypes</a> { <a class="el" href="Region_8h.html#a12bdf26d02e9b6703d94eb38c27447ffa8bda58832a68157abbcdcbb92f2e797c">FUEL</a>, 
-<a class="el" href="Region_8h.html#a12bdf26d02e9b6703d94eb38c27447ffa1d0870284f9514093683a7d6245aac70">MODERATOR</a>, 
-<a class="el" href="Region_8h.html#a12bdf26d02e9b6703d94eb38c27447ffa6a1459101774b7f68e084098fa8bacbb">INFINITE</a>
+<tr class="memitem:a12bdf26d02e9b6703d94eb38c27447ff"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Region_8h.html#a12bdf26d02e9b6703d94eb38c27447ff">regionTypes</a> { <br/>
+&#160;&#160;<a class="el" href="Region_8h.html#a12bdf26d02e9b6703d94eb38c27447ffa99412d656231a7a3c4afa6d34a3c6fd5">INFINITE_MEDIUM</a>, 
+<a class="el" href="Region_8h.html#a12bdf26d02e9b6703d94eb38c27447ffaaf5d9e26c00b1ebdeb45fcfeb32cefa0">EQUIVALENT_FUEL</a>, 
+<a class="el" href="Region_8h.html#a12bdf26d02e9b6703d94eb38c27447ffa03c43ddcfc63909b60a957cbdd3d6c12">EQUIVALENT_MODERATOR</a>, 
+<a class="el" href="Region_8h.html#a12bdf26d02e9b6703d94eb38c27447ffa31091f0428b02fd076e4fbbb50784226">BOUNDED_FUEL</a>, 
+<br/>
+&#160;&#160;<a class="el" href="Region_8h.html#a12bdf26d02e9b6703d94eb38c27447ffa56ffdc61b3121e2294465cf7abe67fb3">BOUNDED_MODERATOR</a>, 
+<a class="el" href="Region_8h.html#a12bdf26d02e9b6703d94eb38c27447ffa29fdad5f10ba039a5a0ba1206d4bdb5e">BOUNDED_GENERAL</a>
+<br/>
  }</td></tr>
 <tr class="memdesc:a12bdf26d02e9b6703d94eb38c27447ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spatial Types of regions.  <a href="Region_8h.html#a12bdf26d02e9b6703d94eb38c27447ff">More...</a><br/></td></tr>
 </table>
@@ -151,14 +169,23 @@ Enumerations</h2></td></tr>
 
 <p>Spatial Types of regions. </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="a12bdf26d02e9b6703d94eb38c27447ffa8bda58832a68157abbcdcbb92f2e797c"></a>FUEL</em>&nbsp;</td><td>
-<p>A fuel region </p>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a12bdf26d02e9b6703d94eb38c27447ffa1d0870284f9514093683a7d6245aac70"></a>MODERATOR</em>&nbsp;</td><td>
-<p>A moderator region </p>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a12bdf26d02e9b6703d94eb38c27447ffa6a1459101774b7f68e084098fa8bacbb"></a>INFINITE</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a12bdf26d02e9b6703d94eb38c27447ffa99412d656231a7a3c4afa6d34a3c6fd5"></a>INFINITE_MEDIUM</em>&nbsp;</td><td>
 <p>An infinite medium region </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a12bdf26d02e9b6703d94eb38c27447ffaaf5d9e26c00b1ebdeb45fcfeb32cefa0"></a>EQUIVALENT_FUEL</em>&nbsp;</td><td>
+<p>An equivalence theory-based fuel region </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a12bdf26d02e9b6703d94eb38c27447ffa03c43ddcfc63909b60a957cbdd3d6c12"></a>EQUIVALENT_MODERATOR</em>&nbsp;</td><td>
+<p>An equivalence theory-based fuel moderator </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a12bdf26d02e9b6703d94eb38c27447ffa31091f0428b02fd076e4fbbb50784226"></a>BOUNDED_FUEL</em>&nbsp;</td><td>
+<p>A fully heterogeneous circular fuel region bounded by surfaces </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a12bdf26d02e9b6703d94eb38c27447ffa56ffdc61b3121e2294465cf7abe67fb3"></a>BOUNDED_MODERATOR</em>&nbsp;</td><td>
+<p>A fully heterogeneous pin cell moderator region bounded by surfaces </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a12bdf26d02e9b6703d94eb38c27447ffa29fdad5f10ba039a5a0ba1206d4bdb5e"></a>BOUNDED_GENERAL</em>&nbsp;</td><td>
+<p>A fully heterogenous generalized region bounded by surfaces </p>
 </td></tr>
 </table>
 </dd>
@@ -172,7 +199,7 @@ Enumerations</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_84f7ff0300158889f846dc38dd277189.html">pinspec</a></li><li class="navelem"><a class="el" href="dir_d2e853d2e88eb629480e78345103ed51.html">src</a></li><li class="navelem"><a class="el" href="Region_8h.html">Region.h</a></li>
-    <li class="footer">Generated on Thu Apr 11 2013 19:12:48 by
+    <li class="footer">Generated on Fri Apr 12 2013 09:36:12 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

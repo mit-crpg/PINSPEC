@@ -20,7 +20,7 @@ var searchData=
   ['setelasticxs',['setElasticXS',['../classIsotope.html#a404adc028a3a6b07aa8a4102429d9566',1,'Isotope::setElasticXS(float *elastic_xs, float *elastic_xs_energies, int num_elastic_xs)'],['../classIsotope.html#a7916d1aa6ff21cdc92bf7d50fe007ab3',1,'Isotope::setElasticXS(double *energies, int num_energies, double *elastic_xs, int num_xs)']]],
   ['setemax',['setEMax',['../classFissioner.html#a77c0acd5b3cc8a9b58a7a0fb4182479d',1,'Fissioner']]],
   ['setfissionxs',['setFissionXS',['../classIsotope.html#a07b3f65d805c904a943dd18a9e2128fb',1,'Isotope::setFissionXS(float *fission_xs, float *fission_xs_energies, int num_fission_xs)'],['../classIsotope.html#ac8268351aeb8d8d321935386fbfae45b',1,'Isotope::setFissionXS(double *energies, int num_energies, double *fission_xs, int num_xs)']]],
-  ['setfuelradius',['setFuelRadius',['../classRegion.html#aeaaceb598753fb4001bbb9f9ab2e475c',1,'Region']]],
+  ['setfuelpinradius',['setFuelPinRadius',['../classGeometry.html#a3ee1975057e67f7f3b557c259c4050f1',1,'Geometry::setFuelPinRadius()'],['../classEquivalenceRegion.html#a7b7bd526e0e4ca9b2d35885fcfd42a32',1,'EquivalenceRegion::setFuelPinRadius()']]],
   ['setheadercharacter',['setHeaderCharacter',['../log_8h.html#ad883b9386585911a94d98135f061c228',1,'log.cpp']]],
   ['setlinelength',['setLineLength',['../log_8h.html#ac3008464681b34c10540b78d408e4db6',1,'log.cpp']]],
   ['setlogfilename',['setLogfileName',['../log_8h.html#a465a60dcbab8eedbf8c943daba80d2e3',1,'log.cpp']]],
@@ -36,7 +36,7 @@ var searchData=
   ['setnumbins',['setNumBins',['../classFissioner.html#a0ccf4ae781088313fd20975aa8d9d789',1,'Fissioner']]],
   ['setnumthreads',['setNumThreads',['../classGeometry.html#a657cb04b0e42bc9a1574a9120c5a6e67',1,'Geometry']]],
   ['setoutputdirectory',['setOutputDirectory',['../log_8h.html#a5ef1ed8ce52cd43ae7f8512d09971618',1,'log.cpp']]],
-  ['setpitch',['setPitch',['../classRegion.html#a59684ee41c0461555b53688023d16f3f',1,'Region']]],
+  ['setpincellpitch',['setPinCellPitch',['../classGeometry.html#af6cfa80bca25efaac2864dcd8472a3f4',1,'Geometry::setPinCellPitch()'],['../classEquivalenceRegion.html#a6aa772e53ef5b5423944d02ae3d73d22',1,'EquivalenceRegion::setPinCellPitch()']]],
   ['setprecisiontrigger',['setPrecisionTrigger',['../classTally.html#a5284760b90e97c59b7f6cf71a7a36cf8',1,'Tally']]],
   ['setradius',['setRadius',['../classCircle.html#af2e568fbc6274720cade0c11521f8fa1',1,'Circle']]],
   ['setseparatorcharacter',['setSeparatorCharacter',['../log_8h.html#a280c959b5b23ffdf907c1727c690dd04',1,'log.cpp']]],
@@ -53,10 +53,12 @@ var searchData=
   ['setxslibdirectory',['setXSLibDirectory',['../xsreader_8h.html#a0395358dcff5b26488118cbdca23a7d2',1,'xsreader.cpp']]],
   ['sety',['setY',['../classYPlane.html#a3acd886aef57f239f49abdf5004c0df0',1,'YPlane']]],
   ['sety0',['setY0',['../classCircle.html#aa8a2aabeb95db6b8f7665e2ce21af7ff',1,'Circle']]],
+  ['slbwxs',['SLBWXS',['../namespacepinspec_1_1slbw.html#a4aafba8dacef99e07de3143d25345244',1,'pinspec::slbw']]],
   ['start',['start',['../classTimer.html#a3a8b5272198d029779dc9302a54305a8',1,'Timer']]],
   ['stop',['stop',['../classTimer.html#a63f0eb44b27402196590a03781515dba',1,'Timer']]],
   ['subtractdoubles',['subtractDoubles',['../classTally.html#ad6055bb7f1fc7dc711d6373511be9863',1,'Tally']]],
   ['subtractfloats',['subtractFloats',['../classTally.html#aaafa8791ea206e5da93082081b94abf5',1,'Tally']]],
   ['subtractintegers',['subtractIntegers',['../classTally.html#aebd2a26ce513bfde74ccbb97bee1635b',1,'Tally']]],
-  ['surface',['Surface',['../classSurface.html#a8fc57f2a15292135c00545c9d224ec68',1,'Surface']]]
+  ['surface',['Surface',['../classSurface.html#a77e14a37164709fd65d051b09bdd0089',1,'Surface']]],
+  ['surfacefactory',['SurfaceFactory',['../classSurfaceFactory.html#a161100812290bd2bdbe60ac4a1ecb657',1,'SurfaceFactory']]]
 ];

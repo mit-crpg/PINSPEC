@@ -38,9 +38,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"classIsotope.html#a6f0664722f1697f821f39e9a2dac0523",
-"classRegionFluxTally.html",
-"functions.html"
+"classGeometryTally.html#a442edb7b6ab999650005393b5d5a3a20",
+"classRegion.html#a83913828a5b45d69aa073bc567a03750",
+"classpinspec_1_1process_1_1GroupXS.html#a2918792badce34f95584a70d89aa71f7"
 ];
 
 var navTreeSubIndices = new Array();

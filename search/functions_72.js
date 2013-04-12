@@ -1,12 +1,13 @@
 var searchData=
 [
   ['recordsplit',['recordSplit',['../classTimer.html#a613c775ca0b0b08f7cf1a6c165a6b6f7',1,'Timer']]],
-  ['region',['Region',['../classRegion.html#ab0d1873c68539b5339811f413ecb4dbb',1,'Region']]],
+  ['region',['Region',['../classRegion.html#a569a104a9a675dd85c820e9cded32ab9',1,'Region']]],
   ['regionabsorptionratetally',['RegionAbsorptionRateTally',['../classRegionAbsorptionRateTally.html#a660ea8cbb625cad4ecb5a64e963a0682',1,'RegionAbsorptionRateTally']]],
   ['regioncaptureratetally',['RegionCaptureRateTally',['../classRegionCaptureRateTally.html#a7d0e48235eb320f44fa11b4395e3b7ae',1,'RegionCaptureRateTally']]],
   ['regioncollisionratetally',['RegionCollisionRateTally',['../classRegionCollisionRateTally.html#a4665e117d3c7be7ce66ae9a23e031e73',1,'RegionCollisionRateTally']]],
   ['regiondiffusionratetally',['RegionDiffusionRateTally',['../classRegionDiffusionRateTally.html#a64dc61a22189a60f052cf349615d3463',1,'RegionDiffusionRateTally']]],
   ['regionelasticratetally',['RegionElasticRateTally',['../classRegionElasticRateTally.html#aab82cda6914a01240b7fdfe01ca08b33',1,'RegionElasticRateTally']]],
+  ['regionfactory',['RegionFactory',['../classRegionFactory.html#ae3599b5e2313bffa2704ba211af2a3f7',1,'RegionFactory']]],
   ['regionfissionratetally',['RegionFissionRateTally',['../classRegionFissionRateTally.html#af3344001e9ba2ac13119191e49111d3d',1,'RegionFissionRateTally']]],
   ['regionfluxtally',['RegionFluxTally',['../classRegionFluxTally.html#afeb527c4b8deafc6cff68594ad95a9c8',1,'RegionFluxTally']]],
   ['regionintercollisiontimetally',['RegionInterCollisionTimeTally',['../classRegionInterCollisionTimeTally.html#ac80f657141e0c7388092e41f25e228f1',1,'RegionInterCollisionTimeTally']]],
@@ -14,6 +15,7 @@ var searchData=
   ['regiontally',['RegionTally',['../classRegionTally.html#a82b509ab3c69d15f67b3eb1c15b94c11',1,'RegionTally']]],
   ['regiontransportratetally',['RegionTransportRateTally',['../classRegionTransportRateTally.html#a7be90fefee298aad00612fdad134a6ea',1,'RegionTransportRateTally']]],
   ['registertally',['registerTally',['../classTallyBank.html#a90ee52a423f9957f92c6727f7fe4d549',1,'TallyBank::registerTally(Tally *tally)'],['../classTallyBank.html#a91534dfefd753e4a5d907edc97eb35d1',1,'TallyBank::registerTally(Tally *tally, Geometry *geometry)'],['../classTallyBank.html#a796fc4a2a42ea1065743d2bf51b5d69c',1,'TallyBank::registerTally(Tally *tally, Region *region)'],['../classTallyBank.html#a66e05cdee146e7740b211c6037672226',1,'TallyBank::registerTally(Tally *tally, Material *material)'],['../classTallyBank.html#afa78d302d6665bdbe407f2c126f218ce',1,'TallyBank::registerTally(Tally *tally, Isotope *isotope)']]],
+  ['removeboundingsurface',['removeBoundingSurface',['../classBoundedRegion.html#a6e501758af2f931dd7995c9728cf580a',1,'BoundedRegion']]],
   ['rescalexs',['rescaleXS',['../classIsotope.html#a4371bd4097b6df0b2ddadc3dd7b01864',1,'Isotope']]],
   ['reset',['reset',['../classTimer.html#a9020542d73357a4eef512eefaf57524b',1,'Timer']]],
   ['restart',['restart',['../classTimer.html#aa3f7871196bb56202af2bc982bfbfff6',1,'Timer']]],
@@ -32,5 +34,6 @@ var searchData=
   ['retrievethermalpdfs',['retrieveThermalPDFs',['../classIsotope.html#abb9e5754658ea5e02556a998186f8161',1,'Isotope']]],
   ['retrievexs',['retrieveXS',['../classIsotope.html#a6df521ce57cd296a61c6460219b591a1',1,'Isotope::retrieveXS()'],['../classMaterial.html#ab5b5e2078eddb057841b77ccd4110071',1,'Material::retrieveXS()']]],
   ['retrievexsenergies',['retrieveXSEnergies',['../classIsotope.html#aee41dd3daff39c53eaad68839ed869b7',1,'Isotope::retrieveXSEnergies()'],['../classMaterial.html#a01e69f371011e7c80b1f8ba9c3b57204',1,'Material::retrieveXSEnergies()']]],
+  ['ringify',['ringify',['../classBoundedFuelRegion.html#a74be3b528689b14926abae5fbdcb1b5c',1,'BoundedFuelRegion::ringify()'],['../classBoundedModeratorRegion.html#a15c353a4059d8c68d570c5e04ad8db5f',1,'BoundedModeratorRegion::ringify()']]],
   ['runmontecarlosimulation',['runMonteCarloSimulation',['../classGeometry.html#a32ac1087eeb0f71d4f36b751e65cfe9d',1,'Geometry']]]
 ];

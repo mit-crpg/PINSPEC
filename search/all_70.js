@@ -2,6 +2,7 @@ var searchData=
 [
   ['log',['log',['../namespacepinspec_1_1log.html',1,'pinspec']]],
   ['pinspec',['PINSPEC',['../md_README.html',1,'']]],
+  ['parse',['parse',['../namespacepinspec_1_1slbw.html#a76171c0756809c031a091b2b5bfda666',1,'pinspec::slbw']]],
   ['parsecrosssections',['parseCrossSections',['../xsreader_8h.html#ac6e921d203d9d3612bdf131f061aa987',1,'xsreader.cpp']]],
   ['parsename',['parseName',['../classIsotope.html#a8f2edf586499fff80ecee7cbdc28bd0e',1,'Isotope']]],
   ['pi_5fover_5ftwo',['PI_OVER_TWO',['../Surface_8h.html#adadbae7d9856635bbacdc4c9f546ef81',1,'Surface.h']]],
@@ -22,5 +23,6 @@ var searchData=
   ['process',['process',['../namespacepinspec_1_1process.html',1,'pinspec']]],
   ['process_2epy',['process.py',['../process_8py.html',1,'']]],
   ['py_5fprintf',['py_printf',['../namespacepinspec_1_1log.html#a541e006b2440f460574f9f3017279a1d',1,'pinspec::log']]],
-  ['py_5fsetlevel',['py_setlevel',['../namespacepinspec_1_1log.html#a4a96627ffacfa0a93779f42222ecff22',1,'pinspec::log']]]
+  ['py_5fsetlevel',['py_setlevel',['../namespacepinspec_1_1log.html#a4a96627ffacfa0a93779f42222ecff22',1,'pinspec::log']]],
+  ['slbw',['slbw',['../namespacepinspec_1_1slbw.html',1,'pinspec']]]
 ];

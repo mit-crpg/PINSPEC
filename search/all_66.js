@@ -5,6 +5,5 @@ var searchData=
   ['fissioner',['Fissioner',['../classFissioner.html',1,'Fissioner'],['../classFissioner.html#afcd97a27d994cf3fefb474c9f5887e79',1,'Fissioner::Fissioner()']]],
   ['fissioner_2eh',['Fissioner.h',['../Fissioner_8h.html',1,'']]],
   ['flux',['FLUX',['../Tally_8h.html#ad6eff977b851c4ead69131ba0fa30e79aa76c44edb76686fa1bbda9ebe69c7857',1,'Tally.h']]],
-  ['flux_5fplot_5fnum',['flux_plot_num',['../namespacepinspec_1_1plotter.html#a696ce32dd92f7b9132675df865c1ab5a',1,'pinspec::plotter']]],
-  ['fuel',['FUEL',['../Region_8h.html#a12bdf26d02e9b6703d94eb38c27447ffa8bda58832a68157abbcdcbb92f2e797c',1,'Region.h']]]
+  ['flux_5fplot_5fnum',['flux_plot_num',['../namespacepinspec_1_1plotter.html#a696ce32dd92f7b9132675df865c1ab5a',1,'pinspec::plotter']]]
 ];

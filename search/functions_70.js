@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['parse',['parse',['../namespacepinspec_1_1slbw.html#a76171c0756809c031a091b2b5bfda666',1,'pinspec::slbw']]],
   ['parsecrosssections',['parseCrossSections',['../xsreader_8h.html#ac6e921d203d9d3612bdf131f061aa987',1,'xsreader.cpp']]],
   ['parsename',['parseName',['../classIsotope.html#a8f2edf586499fff80ecee7cbdc28bd0e',1,'Isotope']]],
   ['plotfissionspectrum',['plotFissionSpectrum',['../namespacepinspec_1_1plotter.html#a6711829dda3c540c331ff0dce8eacd85',1,'pinspec::plotter']]],

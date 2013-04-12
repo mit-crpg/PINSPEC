@@ -129,15 +129,19 @@ Inheritance diagram for Surface:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8fc57f2a15292135c00545c9d224ec68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a8fc57f2a15292135c00545c9d224ec68">Surface</a> ()</td></tr>
-<tr class="memdesc:a8fc57f2a15292135c00545c9d224ec68"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a> class constructor.  <a href="#a8fc57f2a15292135c00545c9d224ec68"></a><br/></td></tr>
+<tr class="memitem:a77e14a37164709fd65d051b09bdd0089"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a77e14a37164709fd65d051b09bdd0089">Surface</a> (const char *surface_name=(char *)&quot;&quot;)</td></tr>
+<tr class="memdesc:a77e14a37164709fd65d051b09bdd0089"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a> class constructor.  <a href="#a77e14a37164709fd65d051b09bdd0089"></a><br/></td></tr>
 <tr class="memitem:a89de75c95cb550d432f3ea4ed1429db0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89de75c95cb550d432f3ea4ed1429db0"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a89de75c95cb550d432f3ea4ed1429db0">~Surface</a> ()</td></tr>
 <tr class="memdesc:a89de75c95cb550d432f3ea4ed1429db0"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a> destructor. <br/></td></tr>
+<tr class="memitem:ac81ba9beb50551c9f515c584337bcee5"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#ac81ba9beb50551c9f515c584337bcee5">getSurfaceName</a> ()</td></tr>
+<tr class="memdesc:ac81ba9beb50551c9f515c584337bcee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the name of the surface.  <a href="#ac81ba9beb50551c9f515c584337bcee5"></a><br/></td></tr>
 <tr class="memitem:a33b25b8e797853cf582cf5085262e028"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Surface_8h.html#a94f2bdaf8e1769faec72dbd9e7486341">boundaryType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a33b25b8e797853cf582cf5085262e028">getBoundaryType</a> () const </td></tr>
 <tr class="memdesc:a33b25b8e797853cf582cf5085262e028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this <a class="el" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a>'s boundary type.  <a href="#a33b25b8e797853cf582cf5085262e028"></a><br/></td></tr>
 <tr class="memitem:a3bce151806619035116fa8cbb68ae62b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a3bce151806619035116fa8cbb68ae62b">setBoundaryType</a> (<a class="el" href="Surface_8h.html#a94f2bdaf8e1769faec72dbd9e7486341">boundaryType</a> type)</td></tr>
 <tr class="memdesc:a3bce151806619035116fa8cbb68ae62b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the boundary type for this <a class="el" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a>.  <a href="#a3bce151806619035116fa8cbb68ae62b"></a><br/></td></tr>
+<tr class="memitem:acacc8ac56302a9b8ceab23d8b5b5cc93"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#acacc8ac56302a9b8ceab23d8b5b5cc93">evaluate</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)=0</td></tr>
+<tr class="memdesc:acacc8ac56302a9b8ceab23d8b5b5cc93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y) $" src="form_53.png"/> with respect to a quadratic surface <img class="formulaInl" alt="$ f(x,y) $" src="form_57.png"/>.  <a href="#acacc8ac56302a9b8ceab23d8b5b5cc93"></a><br/></td></tr>
 <tr class="memitem:a3d33dd138200489112a2369eab0b2083"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a3d33dd138200489112a2369eab0b2083">computeNearestDistance</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)=0</td></tr>
 <tr class="memdesc:a3d33dd138200489112a2369eab0b2083"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the nearest distance between a neutron at some location and this surface.  <a href="#a3d33dd138200489112a2369eab0b2083"></a><br/></td></tr>
 <tr class="memitem:acdf69fa01f522393ab504b331d88821a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#acdf69fa01f522393ab504b331d88821a">onSurface</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)=0</td></tr>
@@ -145,26 +149,35 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:af051ad8db831a80278fff458e6a2d74f"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#af051ad8db831a80278fff458e6a2d74f">_surface_name</a></td></tr>
+<tr class="memitem:a2b8655eb5a953ea4b45abe5fab7831d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Surface_8h.html#a669341e8f044e9051db22e680c1b81df">surfaceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a2b8655eb5a953ea4b45abe5fab7831d0">_surface_type</a></td></tr>
 <tr class="memitem:a73ff438f865a0694735877998dce0d91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Surface_8h.html#a94f2bdaf8e1769faec72dbd9e7486341">boundaryType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a73ff438f865a0694735877998dce0d91">_boundary_type</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a> represents a quadratic surface in the xy-plane. </p>
 <p>The <a class="el" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a> is an abstract class with stub for the function calls needed to trace rays across a 2D geometry. Each surface type to be used in a simulation is a subclass of the <a class="el" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a> class </p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a8fc57f2a15292135c00545c9d224ec68"></a>
+<a class="anchor" id="a77e14a37164709fd65d051b09bdd0089"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Surface::Surface </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>surface_name</em> = <code>(char*)&quot;&quot;</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p><a class="el" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a> class constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">surface_name</td><td>the (optional) name of the surface</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>By default, the constructor sets the surface boundary conditions to vacuum. </p>
 
 </div>
@@ -205,6 +218,40 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="acacc8ac56302a9b8ceab23d8b5b5cc93"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual float Surface::evaluate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structneutron.html">neutron</a> *&#160;</td>
+          <td class="paramname"><em>neutron</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y) $" src="form_53.png"/> with respect to a quadratic surface <img class="formulaInl" alt="$ f(x,y) $" src="form_57.png"/>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">neutron</td><td>the neutron of interest </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classCircle.html#ad448fb1009e8b4f637699c03b5d57513">Circle</a>, <a class="el" href="classYPlane.html#a86c9563c4ed5ac95a7e9e6f860a247e1">YPlane</a>, and <a class="el" href="classXPlane.html#ab58e3c875a84060c099da20f79dfdb52">XPlane</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a33b25b8e797853cf582cf5085262e028"></a>
 <div class="memitem">
 <div class="memproto">
@@ -221,6 +268,24 @@ Protected Attributes</h2></td></tr>
 <p>Returns this <a class="el" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a>'s boundary type. </p>
 <p>Returns the <a class="el" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a>'s boundary type which can be REFLECTIVE, VACUUM, or INTERFACE. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a> boundary type </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac81ba9beb50551c9f515c584337bcee5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * Surface::getSurfaceName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the name of the surface. </p>
+<dl class="section return"><dt>Returns</dt><dd>a character array representing this surface's name </dd></dl>
 
 </div>
 </div>
@@ -306,6 +371,48 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af051ad8db831a80278fff458e6a2d74f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* Surface::_surface_name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The surface's name </p>
+
+</div>
+</div>
+<a class="anchor" id="a2b8655eb5a953ea4b45abe5fab7831d0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Surface_8h.html#a669341e8f044e9051db22e680c1b81df">surfaceType</a> Surface::_surface_type</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The type of surface </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>pinspec/src/<a class="el" href="Surface_8h_source.html">Surface.h</a></li>
 <li>pinspec/src/Surface.cpp</li>
@@ -316,7 +423,7 @@ Protected Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classSurface.html">Surface</a></li>
-    <li class="footer">Generated on Thu Apr 11 2013 19:12:48 by
+    <li class="footer">Generated on Fri Apr 12 2013 09:36:12 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>
