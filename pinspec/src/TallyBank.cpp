@@ -347,7 +347,17 @@ void TallyBank::registerTally(Tally* tally, Isotope* isotope) {
 	else if (isotope_tally->getTallyType() == ELASTIC_RATE)
 	    log_printf(ERROR, "The TallyBank is unable to register tally %s"
 			" in an isotope since it is a ELASTIC_RATE type tally",
-											isotope_tally->getTallyName());
+		       isotope_tally->getTallyName());
+
+	else if (isotope_tally->getTallyType() == GROUP_RATE)
+	    log_printf(ERROR, "The TallyBank is unable to register tally %s"
+			" in an isotope since it is a GROUP_RATE type tally",
+		       isotope_tally->getTallyName());
+
+	else if (isotope_tally->getTallyType() == OUT_RATE)
+	    log_printf(ERROR, "The TallyBank is unable to register tally %s"
+			" in an isotope since it is a OUT_RATE type tally",
+		       isotope_tally->getTallyName());
 
 	else if (isotope_tally->getTallyType() == CAPTURE_RATE)
 	    log_printf(ERROR, "The TallyBank is unable to register tally %s"

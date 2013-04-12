@@ -518,6 +518,8 @@ LEAKAGE_RATE = _pinspec.LEAKAGE_RATE
 COLLISION_RATE = _pinspec.COLLISION_RATE
 INTERCOLLISION_TIME = _pinspec.INTERCOLLISION_TIME
 ELASTIC_RATE = _pinspec.ELASTIC_RATE
+GROUP_RATE = _pinspec.GROUP_RATE
+OUT_RATE = _pinspec.OUT_RATE
 ABSORPTION_RATE = _pinspec.ABSORPTION_RATE
 CAPTURE_RATE = _pinspec.CAPTURE_RATE
 FISSION_RATE = _pinspec.FISSION_RATE
@@ -583,6 +585,7 @@ class Tally(_object):
     def outputBatchStatistics(self, *args): return _pinspec.Tally_outputBatchStatistics(self, *args)
     def printTallies(self, uncertainties=False): return _pinspec.Tally_printTallies(self, uncertainties)
     def clone(self): return _pinspec.Tally_clone(self)
+    def tallyGroup(self, *args): return _pinspec.Tally_tallyGroup(self, *args)
     def tally(self, *args): return _pinspec.Tally_tally(self, *args)
     def addIntegers(self, *args): return _pinspec.Tally_addIntegers(self, *args)
     def addFloats(self, *args): return _pinspec.Tally_addFloats(self, *args)
@@ -810,6 +813,150 @@ class GeometryElasticRateTally(GeometryTally):
     __del__ = lambda self : None;
 GeometryElasticRateTally_swigregister = _pinspec.GeometryElasticRateTally_swigregister
 GeometryElasticRateTally_swigregister(GeometryElasticRateTally)
+
+class IsotopeGroupRateTally(IsotopeTally):
+    __swig_setmethods__ = {}
+    for _s in [IsotopeTally]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, IsotopeGroupRateTally, name, value)
+    __swig_getmethods__ = {}
+    for _s in [IsotopeTally]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, IsotopeGroupRateTally, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _pinspec.new_IsotopeGroupRateTally(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    def tally(self, *args): return _pinspec.IsotopeGroupRateTally_tally(self, *args)
+    __swig_destroy__ = _pinspec.delete_IsotopeGroupRateTally
+    __del__ = lambda self : None;
+IsotopeGroupRateTally_swigregister = _pinspec.IsotopeGroupRateTally_swigregister
+IsotopeGroupRateTally_swigregister(IsotopeGroupRateTally)
+
+class MaterialGroupRateTally(MaterialTally):
+    __swig_setmethods__ = {}
+    for _s in [MaterialTally]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, MaterialGroupRateTally, name, value)
+    __swig_getmethods__ = {}
+    for _s in [MaterialTally]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, MaterialGroupRateTally, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _pinspec.new_MaterialGroupRateTally(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    def tally(self, *args): return _pinspec.MaterialGroupRateTally_tally(self, *args)
+    __swig_destroy__ = _pinspec.delete_MaterialGroupRateTally
+    __del__ = lambda self : None;
+MaterialGroupRateTally_swigregister = _pinspec.MaterialGroupRateTally_swigregister
+MaterialGroupRateTally_swigregister(MaterialGroupRateTally)
+
+class RegionGroupRateTally(RegionTally):
+    __swig_setmethods__ = {}
+    for _s in [RegionTally]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, RegionGroupRateTally, name, value)
+    __swig_getmethods__ = {}
+    for _s in [RegionTally]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, RegionGroupRateTally, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _pinspec.new_RegionGroupRateTally(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    def tally(self, *args): return _pinspec.RegionGroupRateTally_tally(self, *args)
+    __swig_destroy__ = _pinspec.delete_RegionGroupRateTally
+    __del__ = lambda self : None;
+RegionGroupRateTally_swigregister = _pinspec.RegionGroupRateTally_swigregister
+RegionGroupRateTally_swigregister(RegionGroupRateTally)
+
+class GeometryGroupRateTally(GeometryTally):
+    __swig_setmethods__ = {}
+    for _s in [GeometryTally]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, GeometryGroupRateTally, name, value)
+    __swig_getmethods__ = {}
+    for _s in [GeometryTally]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, GeometryGroupRateTally, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _pinspec.new_GeometryGroupRateTally(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    def tally(self, *args): return _pinspec.GeometryGroupRateTally_tally(self, *args)
+    __swig_destroy__ = _pinspec.delete_GeometryGroupRateTally
+    __del__ = lambda self : None;
+GeometryGroupRateTally_swigregister = _pinspec.GeometryGroupRateTally_swigregister
+GeometryGroupRateTally_swigregister(GeometryGroupRateTally)
+
+class IsotopeOutScatterRateTally(IsotopeTally):
+    __swig_setmethods__ = {}
+    for _s in [IsotopeTally]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, IsotopeOutScatterRateTally, name, value)
+    __swig_getmethods__ = {}
+    for _s in [IsotopeTally]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, IsotopeOutScatterRateTally, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _pinspec.new_IsotopeOutScatterRateTally(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    def tally(self, *args): return _pinspec.IsotopeOutScatterRateTally_tally(self, *args)
+    __swig_destroy__ = _pinspec.delete_IsotopeOutScatterRateTally
+    __del__ = lambda self : None;
+IsotopeOutScatterRateTally_swigregister = _pinspec.IsotopeOutScatterRateTally_swigregister
+IsotopeOutScatterRateTally_swigregister(IsotopeOutScatterRateTally)
+
+class MaterialOutScatterRateTally(MaterialTally):
+    __swig_setmethods__ = {}
+    for _s in [MaterialTally]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, MaterialOutScatterRateTally, name, value)
+    __swig_getmethods__ = {}
+    for _s in [MaterialTally]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, MaterialOutScatterRateTally, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _pinspec.new_MaterialOutScatterRateTally(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    def tally(self, *args): return _pinspec.MaterialOutScatterRateTally_tally(self, *args)
+    __swig_destroy__ = _pinspec.delete_MaterialOutScatterRateTally
+    __del__ = lambda self : None;
+MaterialOutScatterRateTally_swigregister = _pinspec.MaterialOutScatterRateTally_swigregister
+MaterialOutScatterRateTally_swigregister(MaterialOutScatterRateTally)
+
+class RegionOutScatterRateTally(RegionTally):
+    __swig_setmethods__ = {}
+    for _s in [RegionTally]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, RegionOutScatterRateTally, name, value)
+    __swig_getmethods__ = {}
+    for _s in [RegionTally]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, RegionOutScatterRateTally, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _pinspec.new_RegionOutScatterRateTally(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    def tally(self, *args): return _pinspec.RegionOutScatterRateTally_tally(self, *args)
+    __swig_destroy__ = _pinspec.delete_RegionOutScatterRateTally
+    __del__ = lambda self : None;
+RegionOutScatterRateTally_swigregister = _pinspec.RegionOutScatterRateTally_swigregister
+RegionOutScatterRateTally_swigregister(RegionOutScatterRateTally)
+
+class GeometryOutScatterRateTally(GeometryTally):
+    __swig_setmethods__ = {}
+    for _s in [GeometryTally]: __swig_setmethods__.update(getattr(_s,'__swig_setmethods__',{}))
+    __setattr__ = lambda self, name, value: _swig_setattr(self, GeometryOutScatterRateTally, name, value)
+    __swig_getmethods__ = {}
+    for _s in [GeometryTally]: __swig_getmethods__.update(getattr(_s,'__swig_getmethods__',{}))
+    __getattr__ = lambda self, name: _swig_getattr(self, GeometryOutScatterRateTally, name)
+    __repr__ = _swig_repr
+    def __init__(self, *args): 
+        this = _pinspec.new_GeometryOutScatterRateTally(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    def tally(self, *args): return _pinspec.GeometryOutScatterRateTally_tally(self, *args)
+    __swig_destroy__ = _pinspec.delete_GeometryOutScatterRateTally
+    __del__ = lambda self : None;
+GeometryOutScatterRateTally_swigregister = _pinspec.GeometryOutScatterRateTally_swigregister
+GeometryOutScatterRateTally_swigregister(GeometryOutScatterRateTally)
 
 class IsotopeAbsorptionRateTally(IsotopeTally):
     __swig_setmethods__ = {}

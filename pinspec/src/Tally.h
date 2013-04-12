@@ -106,6 +106,10 @@ typedef enum tallyTypes {
     INTERCOLLISION_TIME,
     /** A tally of the elastic scattering rate */
     ELASTIC_RATE,
+    /** A tally of the group to group scattering rate */
+    GROUP_RATE,
+    /** A tally of the outter scattering reaction rate */
+    OUT_RATE,
     /** A tally of the absorption rate */
     ABSORPTION_RATE,
     /** A tally of the capture rate */
@@ -266,6 +270,7 @@ public:
     Tally* clone();
 
     void tally(neutron* neutron, double weight);
+    void tallyGroup(neutron* neutron, double weight);
 
     /**
      * @brief A virtual method to tally a neutron which must be implemented by
@@ -662,6 +667,197 @@ public:
     void tally(neutron* neutron);
 };
 
+/******************************************************************************/
+/**************************** GROUP Rate Tallies ****************************/
+/******************************************************************************/
+//FIXME - implement scattering matrix and override most Tally methods
+
+/**
+ * @class IsotopeGroupRateTally Tally.h "pinspec/src/Tally.h"
+ * @brief A class for tallying the group-to-group scattering rate for an isotope.
+ */
+class IsotopeGroupRateTally: public IsotopeTally {
+
+public:
+    /** 
+     * @brief IsotopeGroupRateTally constructor calls the IsotopeTally
+     *        constructor and Tally constructors and sets the tally type
+     *        to GROUP_RATE.
+     * @param isotope a pointer to the isotope for which to tally
+     * @param tally_name a character array for the tally name (optional)
+     */
+    IsotopeGroupRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+        : IsotopeTally(isotope, tally_name){
+            _tally_type = GROUP_RATE;
+    }
+
+    void tally(neutron* neutron);
+};
+
+/**
+ * @class MaterialGroupRateTally Tally.h "pinspec/src/Tally.h"
+ * @brief A class for tallying the group-to-group scattering rate within a material.
+ */
+class MaterialGroupRateTally: public MaterialTally {
+
+public:
+    /** 
+     * @brief MaterialGroupRateTally constructor calls the MaterialTally
+     *        constructor and Tally constructors and sets the tally type
+     *        to GROUP_RATE.
+     * @param material a pointer to the material within which to tally
+     * @param tally_name a character array for the tally name (optional)
+     */
+    MaterialGroupRateTally(Material* material, 
+			   const char* tally_name=(char*)"")
+        : MaterialTally(material, tally_name){
+            _tally_type = GROUP_RATE;
+    }
+  
+    void tally(neutron* neutron);
+};
+
+
+/**
+ * @class RegionGroupRateTally Tally.h "pinspec/src/Tally.h"
+ * @brief A class for tallying the group-to-group scattering rate within a region.
+ */
+class RegionGroupRateTally: public RegionTally {
+
+public:
+    /** 
+     * @brief RegionGroupRateTally constructor calls the RegionTally
+     *        constructor and Tally constructors and sets the tally type
+     *        to GROUP_RATE.
+     * @param region a pointer to the region within which to tally
+     * @param tally_name a character array for the tally name (optional)
+     */
+    RegionGroupRateTally(Region* region, const char* tally_name=(char*)"")
+        : RegionTally(region, tally_name){
+	_tally_type = GROUP_RATE;
+    }
+
+    void tally(neutron* neutron);
+};
+
+
+/**
+ * @class GeometryGroupRateTally Tally.h "pinspec/src/Tally.h"
+ * @brief A class for tallying the group-to-group scattering rate within the geometry.
+ */
+class GeometryGroupRateTally: public GeometryTally {
+
+public:
+    /** 
+     * @brief GeometryGroupRateTally constructor calls the GeometryTally
+     *        constructor and Tally constructors and sets the tally type
+     *        to GROUP_RATE.
+     * @param geometry a pointer to the geometry within which to tally
+     * @param tally_name a character array for the tally name (optional)
+     */
+    GeometryGroupRateTally(Geometry* geometry, 
+			   const char* tally_name=(char*)"")
+        : GeometryTally(geometry, tally_name){
+	_tally_type = GROUP_RATE;
+    }
+
+    void tally(neutron* neutron);
+};
+
+/******************************************************************************/
+/************************ Outter Scatter Rate Tallies  ************************/
+/******************************************************************************/
+/**
+ * @class IsotopeOutScatterRateTally Tally.h "pinspec/src/Tally.h"
+ * @brief A class for tallying the outter scattering rate for an isotope.
+ */
+class IsotopeOutScatterRateTally: public IsotopeTally {
+
+public:
+    /** 
+     * @brief IsotopeOutScatterRateTally constructor calls the IsotopeTally
+     *        constructor and Tally constructors and sets the tally type
+     *        to OUT_RATE.
+     * @param isotope a pointer to the isotope for which to tally
+     * @param tally_name a character array for the tally name (optional)
+     */
+    IsotopeOutScatterRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+        : IsotopeTally(isotope, tally_name){
+            _tally_type = OUT_RATE;
+    }
+
+    void tally(neutron* neutron);
+};
+
+/**
+ * @class MaterialOutRateTally Tally.h "pinspec/src/Tally.h"
+ * @brief A class for tallying the outter scattering rate within a material.
+ */
+class MaterialOutScatterRateTally: public MaterialTally {
+
+public:
+    /** 
+     * @brief MaterialOutScatterRateTally constructor calls the MaterialTally
+     *        constructor and Tally constructors and sets the tally type
+     *        to OUT_RATE.
+     * @param material a pointer to the material within which to tally
+     * @param tally_name a character array for the tally name (optional)
+     */
+    MaterialOutScatterRateTally(Material* material, 
+			   const char* tally_name=(char*)"")
+        : MaterialTally(material, tally_name){
+            _tally_type = OUT_RATE;
+    }
+  
+    void tally(neutron* neutron);
+};
+
+
+/**
+ * @class RegionOutScatterRateTally Tally.h "pinspec/src/Tally.h"
+ * @brief A class for tallying the outter scattering rate within a region.
+ */
+class RegionOutScatterRateTally: public RegionTally {
+
+public:
+    /** 
+     * @brief RegionOutScatterRateTally constructor calls the RegionTally
+     *        constructor and Tally constructors and sets the tally type
+     *        to OUT_RATE.
+     * @param region a pointer to the region within which to tally
+     * @param tally_name a character array for the tally name (optional)
+     */
+    RegionOutScatterRateTally(Region* region, const char* tally_name=(char*)"")
+        : RegionTally(region, tally_name){
+	_tally_type = OUT_RATE;
+    }
+
+    void tally(neutron* neutron);
+};
+
+
+/**
+ * @class GeometryOutScatterRateTally Tally.h "pinspec/src/Tally.h"
+ * @brief A class for tallying the outter scattering rate within the geometry.
+ */
+class GeometryOutScatterRateTally: public GeometryTally {
+
+public:
+    /** 
+     * @brief GeometryOutScatterRateTally constructor calls the GeometryTally
+     *        constructor and Tally constructors and sets the tally type
+     *        to OUT_RATE.
+     * @param geometry a pointer to the geometry within which to tally
+     * @param tally_name a character array for the tally name (optional)
+     */
+    GeometryOutScatterRateTally(Geometry* geometry, 
+			   const char* tally_name=(char*)"")
+        : GeometryTally(geometry, tally_name){
+	_tally_type = OUT_RATE;
+    }
+
+    void tally(neutron* neutron);
+};
 
 /******************************************************************************/
 /************************** Absorption Rate Tallies ***************************/
