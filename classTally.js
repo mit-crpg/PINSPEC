@@ -80,6 +80,7 @@ var classTally =
     [ "subtractIntegers", "classTally.html#aebd2a26ce513bfde74ccbb97bee1635b", null ],
     [ "tally", "classTally.html#a50c7919393799145f1ab23457d47b02b", null ],
     [ "tally", "classTally.html#afb566ef038a61e2449311f2ae95e862e", null ],
+    [ "tallyGroup", "classTally.html#a94853efc0442e1e64a0f1b47f70a0878", null ],
     [ "_batch_mu", "classTally.html#a72b95f77c52db7b5c0447acd77dcb53e", null ],
     [ "_batch_rel_err", "classTally.html#a1867b3ec480d667b298c272e475ea027", null ],
     [ "_batch_std_dev", "classTally.html#a178d0ba17341fd2109b62a116805bbd0", null ],

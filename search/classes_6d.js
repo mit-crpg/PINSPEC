@@ -8,8 +8,11 @@ var searchData=
   ['materialelasticratetally',['MaterialElasticRateTally',['../classMaterialElasticRateTally.html',1,'']]],
   ['materialfissionratetally',['MaterialFissionRateTally',['../classMaterialFissionRateTally.html',1,'']]],
   ['materialfluxtally',['MaterialFluxTally',['../classMaterialFluxTally.html',1,'']]],
+  ['materialgroupratetally',['MaterialGroupRateTally',['../classMaterialGroupRateTally.html',1,'']]],
   ['materialintercollisiontimetally',['MaterialInterCollisionTimeTally',['../classMaterialInterCollisionTimeTally.html',1,'']]],
   ['materialleakageratetally',['MaterialLeakageRateTally',['../classMaterialLeakageRateTally.html',1,'']]],
+  ['materialoutratetally',['MaterialOutRateTally',['../classMaterialOutRateTally.html',1,'']]],
+  ['materialoutscatterratetally',['MaterialOutScatterRateTally',['../classMaterialOutScatterRateTally.html',1,'']]],
   ['materialtally',['MaterialTally',['../classMaterialTally.html',1,'']]],
   ['materialtransportratetally',['MaterialTransportRateTally',['../classMaterialTransportRateTally.html',1,'']]]
 ];

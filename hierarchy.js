@@ -5,6 +5,7 @@ var hierarchy =
     [ "pinspec.process.GroupXS", "classpinspec_1_1process_1_1GroupXS.html", null ],
     [ "Isotope", "classIsotope.html", null ],
     [ "Material", "classMaterial.html", null ],
+    [ "MaterialOutRateTally", "classMaterialOutRateTally.html", null ],
     [ "neutron", "structneutron.html", null ],
     [ "Region", "classRegion.html", [
       [ "BoundedRegion", "classBoundedRegion.html", [
@@ -34,8 +35,10 @@ var hierarchy =
         [ "GeometryElasticRateTally", "classGeometryElasticRateTally.html", null ],
         [ "GeometryFissionRateTally", "classGeometryFissionRateTally.html", null ],
         [ "GeometryFluxTally", "classGeometryFluxTally.html", null ],
+        [ "GeometryGroupRateTally", "classGeometryGroupRateTally.html", null ],
         [ "GeometryInterCollisionTimeTally", "classGeometryInterCollisionTimeTally.html", null ],
         [ "GeometryLeakageRateTally", "classGeometryLeakageRateTally.html", null ],
+        [ "GeometryOutScatterRateTally", "classGeometryOutScatterRateTally.html", null ],
         [ "GeometryTransportRateTally", "classGeometryTransportRateTally.html", null ]
       ] ],
       [ "IsotopeTally", "classIsotopeTally.html", [
@@ -45,6 +48,8 @@ var hierarchy =
         [ "IsotopeDiffusionRateTally", "classIsotopeDiffusionRateTally.html", null ],
         [ "IsotopeElasticRateTally", "classIsotopeElasticRateTally.html", null ],
         [ "IsotopeFissionRateTally", "classIsotopeFissionRateTally.html", null ],
+        [ "IsotopeGroupRateTally", "classIsotopeGroupRateTally.html", null ],
+        [ "IsotopeOutScatterRateTally", "classIsotopeOutScatterRateTally.html", null ],
         [ "IsotopeTransportRateTally", "classIsotopeTransportRateTally.html", null ]
       ] ],
       [ "MaterialTally", "classMaterialTally.html", [
@@ -55,8 +60,10 @@ var hierarchy =
         [ "MaterialElasticRateTally", "classMaterialElasticRateTally.html", null ],
         [ "MaterialFissionRateTally", "classMaterialFissionRateTally.html", null ],
         [ "MaterialFluxTally", "classMaterialFluxTally.html", null ],
+        [ "MaterialGroupRateTally", "classMaterialGroupRateTally.html", null ],
         [ "MaterialInterCollisionTimeTally", "classMaterialInterCollisionTimeTally.html", null ],
         [ "MaterialLeakageRateTally", "classMaterialLeakageRateTally.html", null ],
+        [ "MaterialOutScatterRateTally", "classMaterialOutScatterRateTally.html", null ],
         [ "MaterialTransportRateTally", "classMaterialTransportRateTally.html", null ]
       ] ],
       [ "RegionTally", "classRegionTally.html", [
@@ -67,8 +74,10 @@ var hierarchy =
         [ "RegionElasticRateTally", "classRegionElasticRateTally.html", null ],
         [ "RegionFissionRateTally", "classRegionFissionRateTally.html", null ],
         [ "RegionFluxTally", "classRegionFluxTally.html", null ],
+        [ "RegionGroupRateTally", "classRegionGroupRateTally.html", null ],
         [ "RegionInterCollisionTimeTally", "classRegionInterCollisionTimeTally.html", null ],
         [ "RegionLeakageRateTally", "classRegionLeakageRateTally.html", null ],
+        [ "RegionOutScatterRateTally", "classRegionOutScatterRateTally.html", null ],
         [ "RegionTransportRateTally", "classRegionTransportRateTally.html", null ]
       ] ]
     ] ],

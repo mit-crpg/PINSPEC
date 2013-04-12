@@ -38,9 +38,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"classGeometryTally.html#a442edb7b6ab999650005393b5d5a3a20",
-"classRegion.html#a83913828a5b45d69aa073bc567a03750",
-"classpinspec_1_1process_1_1GroupXS.html#a2918792badce34f95584a70d89aa71f7"
+"classGeometryLeakageRateTally.html",
+"classRegion.html",
+"classTimer.html#a8263ea8a07c2e7b18fcc2a14ba6975e6",
+"structneutron.html#a9bc73caa5e8ea77020e7112299deec2e"
 ];
 
 var navTreeSubIndices = new Array();

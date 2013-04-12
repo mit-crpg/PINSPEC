@@ -14,8 +14,10 @@ var searchData=
   ['geometryelasticratetally',['GeometryElasticRateTally',['../classGeometryElasticRateTally.html',1,'GeometryElasticRateTally'],['../classGeometryElasticRateTally.html#acae25bceffafeb18ab0552dcca9b11df',1,'GeometryElasticRateTally::GeometryElasticRateTally()']]],
   ['geometryfissionratetally',['GeometryFissionRateTally',['../classGeometryFissionRateTally.html',1,'GeometryFissionRateTally'],['../classGeometryFissionRateTally.html#a041d7971d78dd0c45287242720e33d32',1,'GeometryFissionRateTally::GeometryFissionRateTally()']]],
   ['geometryfluxtally',['GeometryFluxTally',['../classGeometryFluxTally.html',1,'GeometryFluxTally'],['../classGeometryFluxTally.html#afe633b1d646dfe7bbf3232cb49095356',1,'GeometryFluxTally::GeometryFluxTally()']]],
+  ['geometrygroupratetally',['GeometryGroupRateTally',['../classGeometryGroupRateTally.html',1,'GeometryGroupRateTally'],['../classGeometryGroupRateTally.html#a0e40807d62f4c06fba191df5961bee0d',1,'GeometryGroupRateTally::GeometryGroupRateTally()']]],
   ['geometryintercollisiontimetally',['GeometryInterCollisionTimeTally',['../classGeometryInterCollisionTimeTally.html',1,'GeometryInterCollisionTimeTally'],['../classGeometryInterCollisionTimeTally.html#abeda6d89eff389576d4f4b5e8a6b5987',1,'GeometryInterCollisionTimeTally::GeometryInterCollisionTimeTally()']]],
   ['geometryleakageratetally',['GeometryLeakageRateTally',['../classGeometryLeakageRateTally.html',1,'GeometryLeakageRateTally'],['../classGeometryLeakageRateTally.html#a3fd9dfc7a6b11686d6941d922fbfdb56',1,'GeometryLeakageRateTally::GeometryLeakageRateTally()']]],
+  ['geometryoutscatterratetally',['GeometryOutScatterRateTally',['../classGeometryOutScatterRateTally.html',1,'GeometryOutScatterRateTally'],['../classGeometryOutScatterRateTally.html#ae79c2c35dfa0b2690bbbe491fbc75dde',1,'GeometryOutScatterRateTally::GeometryOutScatterRateTally()']]],
   ['geometrytally',['GeometryTally',['../classGeometryTally.html',1,'GeometryTally'],['../classGeometryTally.html#a442edb7b6ab999650005393b5d5a3a20',1,'GeometryTally::GeometryTally()']]],
   ['geometrytransportratetally',['GeometryTransportRateTally',['../classGeometryTransportRateTally.html',1,'GeometryTransportRateTally'],['../classGeometryTransportRateTally.html#a04cb0a51c0a30bfb90966ea9f35c687c',1,'GeometryTransportRateTally::GeometryTransportRateTally()']]],
   ['get',['Get',['../classRegionFactory.html#a30f960d44701498d626a70b8ebe6c6ab',1,'RegionFactory::Get()'],['../classSurfaceFactory.html#a49db758a19e6e1dd240374aca33fd038',1,'SurfaceFactory::Get()'],['../classTallyBank.html#aa1d0673d8b28528416e5862e30c63aa2',1,'TallyBank::Get()'],['../classTallyFactory.html#a3f9230487e7fb1568524c21fa3f49360',1,'TallyFactory::Get()']]],
@@ -125,5 +127,6 @@ var searchData=
   ['getxslibdirectory',['getXSLibDirectory',['../xsreader_8h.html#afd5ca20dba7e58dcab7f523d8c56d678',1,'xsreader.cpp']]],
   ['gety',['getY',['../classYPlane.html#aaba79f83163cc562a3f5e80a3942bc23',1,'YPlane']]],
   ['gety0',['getY0',['../classCircle.html#ae75c0d7cabbfdd09546ca467ae8a8497',1,'Circle']]],
+  ['group_5frate',['GROUP_RATE',['../Tally_8h.html#ad6eff977b851c4ead69131ba0fa30e79a85545dbfa96f063a00798c2bd327d472',1,'Tally.h']]],
   ['groupxs',['GroupXS',['../classpinspec_1_1process_1_1GroupXS.html',1,'pinspec::process']]]
 ];

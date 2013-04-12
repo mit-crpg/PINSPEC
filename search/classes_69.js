@@ -8,6 +8,8 @@ var searchData=
   ['isotopediffusionratetally',['IsotopeDiffusionRateTally',['../classIsotopeDiffusionRateTally.html',1,'']]],
   ['isotopeelasticratetally',['IsotopeElasticRateTally',['../classIsotopeElasticRateTally.html',1,'']]],
   ['isotopefissionratetally',['IsotopeFissionRateTally',['../classIsotopeFissionRateTally.html',1,'']]],
+  ['isotopegroupratetally',['IsotopeGroupRateTally',['../classIsotopeGroupRateTally.html',1,'']]],
+  ['isotopeoutscatterratetally',['IsotopeOutScatterRateTally',['../classIsotopeOutScatterRateTally.html',1,'']]],
   ['isotopetally',['IsotopeTally',['../classIsotopeTally.html',1,'']]],
   ['isotopetransportratetally',['IsotopeTransportRateTally',['../classIsotopeTransportRateTally.html',1,'']]]
 ];

@@ -129,9 +129,11 @@ Inheritance diagram for GeometryTally:</div>
 <area href="classGeometryElasticRateTally.html" title="A class for tallying the elastic scattering rate within the geometry." alt="GeometryElasticRateTally" shape="rect" coords="202,336,394,360"/>
 <area href="classGeometryFissionRateTally.html" title="A class for tallying the capture rate for an isotope." alt="GeometryFissionRateTally" shape="rect" coords="202,392,394,416"/>
 <area href="classGeometryFluxTally.html" title="A class for tallying the flux for the geometry." alt="GeometryFluxTally" shape="rect" coords="202,448,394,472"/>
-<area href="classGeometryInterCollisionTimeTally.html" title="A class for tallying the time between collisions for the geometry." alt="GeometryInterCollisionTimeTally" shape="rect" coords="202,504,394,528"/>
-<area href="classGeometryLeakageRateTally.html" title="A class for tallying the leakage rate for the geometry." alt="GeometryLeakageRateTally" shape="rect" coords="202,560,394,584"/>
-<area href="classGeometryTransportRateTally.html" title="A class for tallying the transport rate within the geometry." alt="GeometryTransportRateTally" shape="rect" coords="202,616,394,640"/>
+<area href="classGeometryGroupRateTally.html" title="A class for tallying the group-to-group scattering rate within the geometry." alt="GeometryGroupRateTally" shape="rect" coords="202,504,394,528"/>
+<area href="classGeometryInterCollisionTimeTally.html" title="A class for tallying the time between collisions for the geometry." alt="GeometryInterCollisionTimeTally" shape="rect" coords="202,560,394,584"/>
+<area href="classGeometryLeakageRateTally.html" title="A class for tallying the leakage rate for the geometry." alt="GeometryLeakageRateTally" shape="rect" coords="202,616,394,640"/>
+<area href="classGeometryOutScatterRateTally.html" title="A class for tallying the outter scattering rate within the geometry." alt="GeometryOutScatterRateTally" shape="rect" coords="202,672,394,696"/>
+<area href="classGeometryTransportRateTally.html" title="A class for tallying the transport rate within the geometry." alt="GeometryTransportRateTally" shape="rect" coords="202,728,394,752"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -249,6 +251,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a9d96448ef6b56fe491a9b4d5e2d454df inherit pub_methods_classTally"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new version of this tally with identical data.  <a href="#a9d96448ef6b56fe491a9b4d5e2d454df"></a><br/></td></tr>
 <tr class="memitem:a50c7919393799145f1ab23457d47b02b inherit pub_methods_classTally"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTally.html#a50c7919393799145f1ab23457d47b02b">tally</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>, double weight)</td></tr>
 <tr class="memdesc:a50c7919393799145f1ab23457d47b02b inherit pub_methods_classTally"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tallies a particular weight for a neutron.  <a href="#a50c7919393799145f1ab23457d47b02b"></a><br/></td></tr>
+<tr class="memitem:a94853efc0442e1e64a0f1b47f70a0878 inherit pub_methods_classTally"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTally.html#a94853efc0442e1e64a0f1b47f70a0878">tallyGroup</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>, double weight)</td></tr>
+<tr class="memdesc:a94853efc0442e1e64a0f1b47f70a0878 inherit pub_methods_classTally"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tallies a particular weight for a neutron for group-to group scattering.  <a href="#a94853efc0442e1e64a0f1b47f70a0878"></a><br/></td></tr>
 <tr class="memitem:a80264c1e85d8ae1163136097621b48ba inherit pub_methods_classTally"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDerivedTally.html">DerivedTally</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTally.html#a80264c1e85d8ae1163136097621b48ba">addIntegers</a> (const int *amt, const int length)</td></tr>
 <tr class="memdesc:a80264c1e85d8ae1163136097621b48ba inherit pub_methods_classTally"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> addition with an array of integers.  <a href="#a80264c1e85d8ae1163136097621b48ba"></a><br/></td></tr>
 <tr class="memitem:ad23d3e3db6184a558c6bad478084fb49 inherit pub_methods_classTally"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDerivedTally.html">DerivedTally</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTally.html#ad23d3e3db6184a558c6bad478084fb49">addFloats</a> (const float *amt, const int length)</td></tr>
@@ -433,7 +437,7 @@ Protected Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classGeometryTally.html">GeometryTally</a></li>
-    <li class="footer">Generated on Fri Apr 12 2013 09:36:12 by
+    <li class="footer">Generated on Fri Apr 12 2013 09:54:26 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

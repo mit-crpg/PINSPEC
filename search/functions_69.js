@@ -18,6 +18,8 @@ var searchData=
   ['isotopediffusionratetally',['IsotopeDiffusionRateTally',['../classIsotopeDiffusionRateTally.html#af7261cada71cb0cea0a6f3f4d5b92f4c',1,'IsotopeDiffusionRateTally']]],
   ['isotopeelasticratetally',['IsotopeElasticRateTally',['../classIsotopeElasticRateTally.html#a4f590fce6ac4136240fb5ddadfbcc3c0',1,'IsotopeElasticRateTally']]],
   ['isotopefissionratetally',['IsotopeFissionRateTally',['../classIsotopeFissionRateTally.html#a3fc1712cbad1343b8580560e152442c1',1,'IsotopeFissionRateTally']]],
+  ['isotopegroupratetally',['IsotopeGroupRateTally',['../classIsotopeGroupRateTally.html#a8c82f2d938abffbd77bd9820fb12701d',1,'IsotopeGroupRateTally']]],
+  ['isotopeoutscatterratetally',['IsotopeOutScatterRateTally',['../classIsotopeOutScatterRateTally.html#a03d751a9561454d6c212883a63be2edd',1,'IsotopeOutScatterRateTally']]],
   ['isotopetally',['IsotopeTally',['../classIsotopeTally.html#a99b6c5ff93bcab9176d9cd7bc561617e',1,'IsotopeTally']]],
   ['isotopetransportratetally',['IsotopeTransportRateTally',['../classIsotopeTransportRateTally.html#a80842d6877d46b24bc02f88e884c5e1d',1,'IsotopeTransportRateTally']]],
   ['isprecisiontriggered',['isPrecisionTriggered',['../classTally.html#acc38798b21b99da9b1c04bfa4d067547',1,'Tally::isPrecisionTriggered()'],['../classTallyBank.html#adea9d4feafcbed060abc21d24d81c990',1,'TallyBank::isPrecisionTriggered()']]],

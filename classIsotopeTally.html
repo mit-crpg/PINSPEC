@@ -121,14 +121,16 @@ Inheritance diagram for IsotopeTally:</div>
  <div class="center">
   <img src="classIsotopeTally.png" usemap="#IsotopeTally_map" alt=""/>
   <map id="IsotopeTally_map" name="IsotopeTally_map">
-<area href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity." alt="Tally" shape="rect" coords="525,0,690,24"/>
-<area href="classIsotopeAbsorptionRateTally.html" title="A class for tallying the absorption rate for an isotope." alt="IsotopeAbsorptionRateTally" shape="rect" coords="0,112,165,136"/>
-<area href="classIsotopeCaptureRateTally.html" title="A class for tallying the capture rate for an isotope." alt="IsotopeCaptureRateTally" shape="rect" coords="175,112,340,136"/>
-<area href="classIsotopeCollisionRateTally.html" title="A class for tallying the collision rate for an isotope." alt="IsotopeCollisionRateTally" shape="rect" coords="350,112,515,136"/>
-<area href="classIsotopeDiffusionRateTally.html" title="A class for tallying the diffusion rate for an isotope." alt="IsotopeDiffusionRateTally" shape="rect" coords="525,112,690,136"/>
-<area href="classIsotopeElasticRateTally.html" title="A class for tallying the elastic scattering rate for an isotope." alt="IsotopeElasticRateTally" shape="rect" coords="700,112,865,136"/>
-<area href="classIsotopeFissionRateTally.html" title="A class for tallying the fission rate for an isotope." alt="IsotopeFissionRateTally" shape="rect" coords="875,112,1040,136"/>
-<area href="classIsotopeTransportRateTally.html" title="A class for tallying the transport rate for an isotope." alt="IsotopeTransportRateTally" shape="rect" coords="1050,112,1215,136"/>
+<area href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity." alt="Tally" shape="rect" coords="0,0,165,24"/>
+<area href="classIsotopeAbsorptionRateTally.html" title="A class for tallying the absorption rate for an isotope." alt="IsotopeAbsorptionRateTally" shape="rect" coords="175,112,340,136"/>
+<area href="classIsotopeCaptureRateTally.html" title="A class for tallying the capture rate for an isotope." alt="IsotopeCaptureRateTally" shape="rect" coords="175,168,340,192"/>
+<area href="classIsotopeCollisionRateTally.html" title="A class for tallying the collision rate for an isotope." alt="IsotopeCollisionRateTally" shape="rect" coords="175,224,340,248"/>
+<area href="classIsotopeDiffusionRateTally.html" title="A class for tallying the diffusion rate for an isotope." alt="IsotopeDiffusionRateTally" shape="rect" coords="175,280,340,304"/>
+<area href="classIsotopeElasticRateTally.html" title="A class for tallying the elastic scattering rate for an isotope." alt="IsotopeElasticRateTally" shape="rect" coords="175,336,340,360"/>
+<area href="classIsotopeFissionRateTally.html" title="A class for tallying the fission rate for an isotope." alt="IsotopeFissionRateTally" shape="rect" coords="175,392,340,416"/>
+<area href="classIsotopeGroupRateTally.html" title="A class for tallying the group-to-group scattering rate for an isotope." alt="IsotopeGroupRateTally" shape="rect" coords="175,448,340,472"/>
+<area href="classIsotopeOutScatterRateTally.html" title="A class for tallying the outter scattering rate for an isotope." alt="IsotopeOutScatterRateTally" shape="rect" coords="175,504,340,528"/>
+<area href="classIsotopeTransportRateTally.html" title="A class for tallying the transport rate for an isotope." alt="IsotopeTransportRateTally" shape="rect" coords="175,560,340,584"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -246,6 +248,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a9d96448ef6b56fe491a9b4d5e2d454df inherit pub_methods_classTally"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new version of this tally with identical data.  <a href="#a9d96448ef6b56fe491a9b4d5e2d454df"></a><br/></td></tr>
 <tr class="memitem:a50c7919393799145f1ab23457d47b02b inherit pub_methods_classTally"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTally.html#a50c7919393799145f1ab23457d47b02b">tally</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>, double weight)</td></tr>
 <tr class="memdesc:a50c7919393799145f1ab23457d47b02b inherit pub_methods_classTally"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tallies a particular weight for a neutron.  <a href="#a50c7919393799145f1ab23457d47b02b"></a><br/></td></tr>
+<tr class="memitem:a94853efc0442e1e64a0f1b47f70a0878 inherit pub_methods_classTally"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTally.html#a94853efc0442e1e64a0f1b47f70a0878">tallyGroup</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>, double weight)</td></tr>
+<tr class="memdesc:a94853efc0442e1e64a0f1b47f70a0878 inherit pub_methods_classTally"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tallies a particular weight for a neutron for group-to group scattering.  <a href="#a94853efc0442e1e64a0f1b47f70a0878"></a><br/></td></tr>
 <tr class="memitem:a80264c1e85d8ae1163136097621b48ba inherit pub_methods_classTally"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDerivedTally.html">DerivedTally</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTally.html#a80264c1e85d8ae1163136097621b48ba">addIntegers</a> (const int *amt, const int length)</td></tr>
 <tr class="memdesc:a80264c1e85d8ae1163136097621b48ba inherit pub_methods_classTally"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> addition with an array of integers.  <a href="#a80264c1e85d8ae1163136097621b48ba"></a><br/></td></tr>
 <tr class="memitem:ad23d3e3db6184a558c6bad478084fb49 inherit pub_methods_classTally"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDerivedTally.html">DerivedTally</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTally.html#ad23d3e3db6184a558c6bad478084fb49">addFloats</a> (const float *amt, const int length)</td></tr>
@@ -430,7 +434,7 @@ Protected Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classIsotopeTally.html">IsotopeTally</a></li>
-    <li class="footer">Generated on Fri Apr 12 2013 09:36:12 by
+    <li class="footer">Generated on Fri Apr 12 2013 09:54:26 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>
