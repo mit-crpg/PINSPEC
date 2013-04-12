@@ -33,7 +33,7 @@ def main():
     py_printf('NORMAL', 'Initializing fuel-moderator mix region...')
     
     # Define region
-    region_mix = Region('infinite medium', INFINITE)
+    region_mix = RegionFactory.createRegion(INFINITE_MEDIUM)
     region_mix.setMaterial(mix)
     
     py_printf('NORMAL', 'Initializing the geometry...')
@@ -45,7 +45,7 @@ def main():
     py_printf('NORMAL', 'Initializing tally...')
     
     # Create a tally for the group-to-group scattering
-    rate = createTally(region_mix, OUT_RATE, 'out sca rate')
+    rate = createTally(region_mix, OUT_RATE, 'out scatter rate')
     rate.generateBinEdges(1E-2, 1E7, 5, LOGARITHMIC)
     TallyBank.registerTally(rate)
     

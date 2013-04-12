@@ -42,5 +42,28 @@ build/
 objs/
 pinspec/Geometry_wrap.cpp
 pinspec/pinspec.py*
+log/*
+*/log/*
 pinspec-*-.log
 */pinspec-*-.log
+
+# Sample output
+sample-input/HW1
+sample-input/HW1/*
+sample-input/HW2
+sample-input/HW2/*
+sample-input/HW3
+sample-input/HW3/*
+sample-input/HW4
+sample-input/HW4/*
+sample-input/Equivalence
+sample-input/Equivalence/*
+sample-input/strong-scaling
+sample-input/strong-scaling/*
+sample-input/weak-scaling
+sample-input/weak-scaling/*
+sample-input/group-to-group
+sample-input/group-to-group/*
+
+# emacs temp files
+#*#
