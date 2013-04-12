@@ -24,3 +24,6 @@ To access the C++ classes from a Python interpreter, do:
    > fuel = Region()
 
    > ...
+
+Checkout our wiki (https://github.com/mit-crpg/PINSPEC/wiki) with complete installation instructions as well as 
+tutorials on how use PINSPEC.
