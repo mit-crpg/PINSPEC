@@ -733,6 +733,10 @@ void Tally::setNumBatches(int num_batches) {
 
     _num_batches = num_batches;
 
+    /* Throw a special case for group-to-group scattering */
+    if (_tally_type == GROUP_RATE)
+	_num_bins = _num_bins * _num_bins;
+
     /* Set all tallies to zero by default */
     _tallies = (double**) malloc(sizeof(double*) * _num_batches);
     for (int i=0; i < _num_batches; i++)
@@ -875,6 +879,36 @@ void Tally::tally(neutron* neutron, double weight) {
     return;
 }
 
+/**
+ * @brief This method tallies a particular weight for a neutron for group-to
+ *         group scattering.
+ * @details The method determines which tally bin to use based on the
+ *          neutron's old energy and new energy.
+ * @param neutron the neutron we are tallying
+ * @param weight the weight to increment tally by
+ */
+void Tally::tallyGroup(neutron* neutron, double weight) {
+
+    if (_num_bins == 0)
+        log_printf(ERROR, "Cannot tally weighted sample in Tally %s since "
+		   "the bins have not yet been created", _tally_name);
+    
+    if (_num_batches == 0)
+        log_printf(ERROR, "Cannot tally samples in Tally %s since "
+		   "batches have not yet been created", _tally_name);
+
+    int old_index = getBinIndex(neutron->_old_energy);
+    int new_index = getBinIndex(neutron->_energy);
+    int bin_index = old_index * _num_bins  + new_index;
+
+    if (weight < 0.0)
+        log_printf(NORMAL, "weight = %f", weight);
+
+    if (bin_index >= 0 && bin_index < _num_bins) 
+        _tallies[neutron->_batch_num][bin_index] += weight;
+
+    return;
+}
 
 /**
  * @brief Computes average, variance, standard deviation and relative error 
@@ -1031,6 +1065,9 @@ void Tally::outputBatchStatistics(const char* filename) {
     else if (_tally_type == ELASTIC_RATE)
         fprintf(output_file, "Tally type: ELASTIC_RATE Scattering Reaction "
 		"Rate\n");
+    else if (_tally_type == GROUP_RATE)
+	fprintf(output_file, "Tally tyle: GROUP_RATE Group-to-group Scattering"
+		" Reaction Rate\n");
     else if (_tally_type == ABSORPTION_RATE)
         fprintf(output_file, "Tally type: ABSORPTION_RATE Reaction Rate\n");
     else if (_tally_type == CAPTURE_RATE)
@@ -1063,17 +1100,42 @@ void Tally::outputBatchStatistics(const char* filename) {
     else if (_bin_spacing == OTHER)
         fprintf(output_file, "User-defined bins\n");
 
-    fprintf(output_file, "# batches: %d\t, # bins: %d\n", 
-	    _num_batches, _num_bins);
-    fprintf(output_file, "Bin center, Mu, Variance, Std Dev, Rel Err\n");
-
     /* Loop over each bin and print mu, var, std dev and rel err */
-    for (int i=0; i < _num_bins; i++) {
-        fprintf(output_file, "%1.10f, %1.10f, %1.10f, %1.10f, %1.10f\n",
-		_centers[i], _batch_mu[i], _batch_variance[i], 
-		_batch_std_dev[i], _batch_rel_err[i]);
-    }
+    if (_tally_type == GROUP_RATE) {
 
+	/* FIXME: For some reason */
+	int nb = floor(sqrt(sqrt(_num_bins)));
+	fprintf(output_file, "# batches: %d\t, # bins: %d %d\n", _num_batches,
+		_num_bins, nb);
+	fprintf(output_file, "Avg reaction rate, with entry (i,j)"
+		" represents going from energy i to energy j\n");
+
+	for (int i = 0; i < nb; i++) {
+	    fprintf(output_file, "%1.1f ", _centers[i]);
+	}
+	fprintf(output_file, "\n");
+
+
+	for (int k = 0; k < nb; k++) {
+	    fprintf(output_file, "%1.1f ", _centers[k]);
+
+	    for (int j = 0; j < nb; j++) {
+		int i = k * nb + j;
+		fprintf(output_file, "%e ", _batch_mu[i]);
+	    }
+	    fprintf(output_file, "\n");
+	}
+    }
+    else {
+	fprintf(output_file, "# batches: %d\t, # bins: %d\n", 
+		_num_batches, _num_bins);
+	fprintf(output_file, "Bin center, Mu, Variance, Std Dev, Rel Err\n");
+	for (int i=0; i < _num_bins; i++) {
+	    fprintf(output_file, "%1.10f, %1.10f, %1.10f, %1.10f, %1.10f\n",
+		    _centers[i], _batch_mu[i], _batch_variance[i], 
+		    _batch_std_dev[i], _batch_rel_err[i]);
+	}
+    }
     fclose(output_file);
 
     return;
@@ -2787,6 +2849,8 @@ Tally* createTally(Isotope* isotope, tallyType tally_type,
 	return new IsotopeCollisionRateTally(isotope, tally_name);
     else if (tally_type == ELASTIC_RATE)
 	return new IsotopeElasticRateTally(isotope, tally_name);
+    else if (tally_type == GROUP_RATE)
+	return new IsotopeGroupRateTally(isotope, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new IsotopeAbsorptionRateTally(isotope, tally_name);
     else if (tally_type == CAPTURE_RATE)
@@ -2824,6 +2888,8 @@ Tally* createTally(Material* material, tallyType tally_type,
         return new MaterialCollisionRateTally(material, tally_name);
     else if (tally_type == ELASTIC_RATE)
         return new MaterialElasticRateTally(material, tally_name);
+    else if (tally_type == GROUP_RATE)
+	return new MaterialGroupRateTally(material,tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new MaterialAbsorptionRateTally(material, tally_name);
     else if (tally_type == CAPTURE_RATE)
@@ -2861,6 +2927,8 @@ Tally* createTally(Region* region, tallyType tally_type,
         return new RegionCollisionRateTally(region, tally_name);
     else if (tally_type == ELASTIC_RATE)
         return new RegionElasticRateTally(region, tally_name);
+    else if (tally_type == GROUP_RATE)
+	return new RegionGroupRateTally(region, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new RegionAbsorptionRateTally(region, tally_name);
     else if (tally_type == CAPTURE_RATE)
@@ -2898,6 +2966,8 @@ Tally* createTally(Geometry* geometry, tallyType tally_type,
         return new GeometryCollisionRateTally(geometry, tally_name);
     else if (tally_type == ELASTIC_RATE)
         return new GeometryElasticRateTally(geometry, tally_name);
+    else if (tally_type == GROUP_RATE)
+	return new GeometryGroupRateTally(geometry, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new GeometryAbsorptionRateTally(geometry, tally_name);
     else if (tally_type == CAPTURE_RATE)
@@ -3012,6 +3082,60 @@ void GeometryElasticRateTally::tally(neutron* neutron) {
     double weight = neutron->_region->getElasticMacroXS(neutron->_old_energy)
 			/ neutron->_total_xs;
     Tally::tally(neutron, weight);
+    return;
+}
+
+/******************************************************************************/
+/************************ GROUP Rate Tallying Methods ***********************/
+/******************************************************************************/
+/**
+ * @brief Tally the isotope group-to-group scattering rate by incrementing the 
+ *        tally by \f$ \frac{\sigma_s}{\Sigma_t} \f$ at the neutron's energy.
+ * @param neutron the neutron of interest
+ */
+void IsotopeGroupRateTally::tally(neutron* neutron) {
+    double weight = _isotope->getElasticXS(neutron->_old_energy) 
+			/ neutron->_total_xs;
+    Tally::tallyGroup(neutron, weight);
+    return;
+}
+
+
+/**
+ * @brief Tally the material group-to-group scattering rate by incrementing the 
+ *        tally by \f$ \frac{\Sigma_s}{\Sigma_t} \f$ at the neutron's energy.
+ * @param neutron the neutron of interest
+ */
+void MaterialGroupRateTally::tally(neutron* neutron) {
+    double weight = _material->getElasticMacroXS(neutron->_old_energy) 
+			/ neutron->_total_xs;
+    Tally::tallyGroup(neutron, weight);
+    return;
+}
+
+
+/**
+ * @brief Tally the region group-to-group scattering rate by incrementing the 
+ *        tally by \f$ \frac{\Sigma_s}{\Sigma_t} \f$ at the neutron's energy.
+ * @param neutron the neutron of interest
+ */
+void RegionGroupRateTally::tally(neutron* neutron) {
+    double weight = _region->getElasticMacroXS(neutron->_old_energy) 
+                   / neutron->_total_xs;
+    Tally::tallyGroup(neutron, weight);
+    return;
+}
+
+
+/**
+ * @brief Tally the geometry group-to-group scattering rate by incrementing the 
+ *        tally by \f$ \frac{\Sigma_s}{\Sigma_t} \f$ at the neutron's energy.
+ * @param neutron the neutron of interest
+ */
+void GeometryGroupRateTally::tally(neutron* neutron) {
+    double weight = neutron->_region->getElasticMacroXS(neutron->_old_energy)
+			/ neutron->_total_xs;
+    Tally::tallyGroup(neutron, weight);
     return;
 }
 
