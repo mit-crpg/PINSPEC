@@ -5,7 +5,7 @@ A Monte Carlo code for simple spectral calculations in nuclear reactor applicati
 a terminal window and 'cd' into the directory where you would like to install PINSPEC. From here, download the code
 as follows:
 
-   > git clone https://github.com/wbinventor/PINSPEC.git PINSPEC
+   > git clone https://github.com/mit-crpg/PINSPEC.git PINSPEC
    
 Now that you have downloaded the PINSPEC source code, it is time to install it. Enter the PINSPEC directory:
 
