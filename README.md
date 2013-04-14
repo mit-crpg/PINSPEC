@@ -1,29 +1,60 @@
-PINSPEC
-=======
+==========================================
+PINSPE Monte Carlo Particle Transport Code
+==========================================
 
-A Monte Carlo code for simple spectral calculations in nuclear reactor applications. To download the code, open
-a terminal window and 'cd' into the directory where you would like to install PINSPEC. From here, download the code
-as follows:
+The PINSPEC project project aims to provide a simple-to-use 
+Python package for spectral calculations of nuclear reactor 
+applications. It includes support for infinite homogeneous
+spectral calculations, heterogeneous-homogeneous pin cell
+equivalence calculations, as well as constructive solid
+geometry and 3D ray tracing for fully heterogeneous
+calculations. A basic ENDF-VII continuous energy 
+cross-section is provided with support for the user to
+make additions to the library for their own applications.
+The project started under the Computational Reactor Physics 
+Group at MIT.
 
-   > git clone https://github.com/mit-crpg/PINSPEC.git PINSPEC
-   
-Now that you have downloaded the PINSPEC source code, it is time to install it. Enter the PINSPEC directory:
+Complete documentation on the usage of PINSPEC is hosted on 
+our GitHub wiki at https://github.com/mit-crpg/PINSPEC/wiki. 
+If you are interested in the project or would like to help and 
+contribute, please contact the development team. In addition, 
+PINSPEC hosts a collection of 'Evernote notebooks'_ to allow for 
+free and open collaboration between users and the development 
+team.
 
-   > cd PINSPEC
+------------
+Installation
+------------
 
-For a standard build and installation as a standalone Python package accessible from any directory on your machine:
+Detailed `installation instructions`_ can be found in the 
+User's Guide.
 
-   > python setup.py install --user
+---------------
+Troubleshooting
+---------------
 
-To access the C++ classes from a Python interpreter, do:
+If you run into problems installing or running PINSPEC, 
+first review the `FAQ`_ in the Wiki and the 
+`Evernote notebooks`_ for info from other users regarding 
+your issue. If you are not able to find a solution to your 
+problem there, please `contact`_ one of the developers.
 
-   > python
+--------------
+Reporting Bugs
+--------------
 
-   > from pinspec import *
+PINSPEC is hosted on GitHub and all bugs are reported 
+and tracked through the `Issues`_ Evernote notebook. 
 
-   > fuel = Region()
+-------
+License
+-------
 
-   > ...
+PINSPEC is undergoing review to be distributed under the MIT/X license_.
 
-Checkout our wiki (https://github.com/mit-crpg/PINSPEC/wiki) with complete installation instructions as well as 
-tutorials on how use PINSPEC.
+.. _Evernote_notebooks:  https://www.evernote.com/pub/wbinventor/main
+.. _installation instructions: https://github.com/mit-crpg/PINSPEC/wiki/Installing-PINSPEC
+.. _Issues: https://www.evernote.com/pub/wbinventor/issues#st=p
+.. _FAQ: https://github.com/mit-crpg/PINSPEC/wiki/FAQ
+.. _license: https://github.com/mit-crpg/PINSPEC/wiki/License
+.. _contact: https://github.com/mit-crpg/PINSPEC/wiki/Contact-Us
