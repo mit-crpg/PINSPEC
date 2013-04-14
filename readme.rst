@@ -18,11 +18,11 @@ Complete documentation on the usage of PINSPEC is hosted on
 our GitHub wiki at https://github.com/mit-crpg/PINSPEC/wiki. 
 If you are interested in the project or would like to help and 
 contribute, please contact the development team. In addition, 
-PINSPEC hosts a collection of `Evernote notebooks`_ to allow for 
-free and open collaboration between users and the development 
-team which are publicly readable. If you plan to use PINSPEC 
-frequently and would like to contribute notes and feedback 
-through Evernote, please `contact`_ the development team.
+PINSPEC hosts a collection of publicly readable `Evernote notebooks`_ 
+to allow for free and open collaboration between users and the 
+development team. If you plan to use PINSPEC frequently and would 
+like to contribute notes and feedback through Evernote, please 
+`contact`_ the development team.
 
 ------------
 Installation
