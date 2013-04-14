@@ -1,7 +1,7 @@
 var classRegion =
 [
     [ "Region", "classRegion.html#a569a104a9a675dd85c820e9cded32ab9", null ],
-    [ "~Region", "classRegion.html#a5cde30b344e3a24d9782fe03ffe8dea8", null ],
+    [ "~Region", "classRegion.html#a3c3670fff78f7511d156e3b2f0bc6266", null ],
     [ "collideNeutron", "classRegion.html#a2c1181345fccb4055f4b0d97f21c26ba", null ],
     [ "containsIsotope", "classRegion.html#a46eb443386a0f3003a28772f78e6de70", null ],
     [ "getAbsorptionMacroXS", "classRegion.html#a5bdd08baa4b621e7ed540438d8624cb7", null ],

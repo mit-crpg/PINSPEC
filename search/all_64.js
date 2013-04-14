@@ -10,5 +10,7 @@ var searchData=
   ['diffusion_5frate',['DIFFUSION_RATE',['../Tally_8h.html#ad6eff977b851c4ead69131ba0fa30e79afcd50c513af970c7af86187c40210f22',1,'Tally.h']]],
   ['dividedoubles',['divideDoubles',['../classTally.html#aff77b58ca33931af447b80668e6ea5b7',1,'Tally']]],
   ['dividefloats',['divideFloats',['../classTally.html#a76b9fa35eabb07d0e31d994b627983a8',1,'Tally']]],
-  ['divideintegers',['divideIntegers',['../classTally.html#aa5ec92d46f8b27461dd8d92de3fda86e',1,'Tally']]]
+  ['divideintegers',['divideIntegers',['../classTally.html#aa5ec92d46f8b27461dd8d92de3fda86e',1,'Tally']]],
+  ['dotproduct2d',['dotProduct2D',['../vector_8h.html#ae6d941fe8b19011b2f9d8be88bc38721',1,'vector.h']]],
+  ['dotproduct3d',['dotProduct3D',['../vector_8h.html#a050fc4b5a9cc3a20eb8a6cb3b8622af7',1,'vector.h']]]
 ];

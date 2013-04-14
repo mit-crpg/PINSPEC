@@ -42,6 +42,7 @@ var classMaterial =
     [ "incrementVolume", "classMaterial.html#affdd4a5887ae6cfb3772c7ebe6181a57", null ],
     [ "retrieveXS", "classMaterial.html#ab5b5e2078eddb057841b77ccd4110071", null ],
     [ "retrieveXSEnergies", "classMaterial.html#a01e69f371011e7c80b1f8ba9c3b57204", null ],
+    [ "sampleDistanceTraveled", "classMaterial.html#a0140bc699d7dff738b54e38867d9d263", null ],
     [ "sampleIsotope", "classMaterial.html#a45bc347522e5f10ffdf05e0c6a68001f", null ],
     [ "setAtomicMass", "classMaterial.html#a25785b407a07d9509458cdd342aef877", null ],
     [ "setBucklingSquared", "classMaterial.html#aeebedf71fc23735ed99c5ab3f5728b25", null ],

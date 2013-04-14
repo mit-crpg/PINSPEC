@@ -29,5 +29,6 @@ var dir_d2e853d2e88eb629480e78345103ed51 =
     [ "Timer.h", "Timer_8h.html", [
       [ "Timer", "classTimer.html", "classTimer" ]
     ] ],
+    [ "vector.h", "vector_8h.html", "vector_8h" ],
     [ "xsreader.h", "xsreader_8h.html", "xsreader_8h" ]
 ];

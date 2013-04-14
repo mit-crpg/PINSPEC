@@ -6,6 +6,7 @@ var classXPlane =
     [ "evaluate", "classXPlane.html#ab58e3c875a84060c099da20f79dfdb52", null ],
     [ "getX", "classXPlane.html#a7dc0803dc4f83aab3de306f4b70a097c", null ],
     [ "onSurface", "classXPlane.html#aba1824906b2f6ed732646385cb3cb98c", null ],
+    [ "reflectNeutron", "classXPlane.html#aa55e539bc39e833e027d9d5d4ce7aae7", null ],
     [ "setX", "classXPlane.html#aad3f4f68ce1cac31589ee00244e30f64", null ],
     [ "_x", "classXPlane.html#a697098fb72495ec39e947938c71db40c", null ]
 ];

@@ -1,7 +1,6 @@
 var NAVTREE =
 [
   [ "Main Page", "index.html", [
-    [ "PINSPEC", "md_README.html", null ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", null ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -38,10 +37,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"classGeometryLeakageRateTally.html",
-"classRegion.html",
-"classTimer.html#a8263ea8a07c2e7b18fcc2a14ba6975e6",
-"structneutron.html#a9bc73caa5e8ea77020e7112299deec2e"
+"classGeometryDiffusionRateTally.html#ad7813cacc07a6833a25dfddba0ee7cf4",
+"classMaterialFluxTally.html#ab1deeebac35f38d8f3c56f1b5c4b0eb5",
+"classTallyBank.html#af3de613ba9ec0fd23c4c459b6fdda7f4",
+"process_8py.html#a6cf809df65f0a24714f69a080add30b2"
 ];
 
 var navTreeSubIndices = new Array();

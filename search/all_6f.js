@@ -8,9 +8,9 @@ var searchData=
   ['operator_2f',['operator/',['../classTally.html#ad43cc4bf0bb3a45b6dd79932b172201b',1,'Tally::operator/(Tally *tally)'],['../classTally.html#a8bffb42dbecf2d27335ec82de3fdfa25',1,'Tally::operator/(const int amt)'],['../classTally.html#a95b5dbad09760c1ef6887887d6b0da70',1,'Tally::operator/(const float amt)'],['../classTally.html#ab0a24883876b8ac95fd0c0cb36369aa7',1,'Tally::operator/(const double amt)']]],
   ['operator_3d',['operator=',['../classRegionFactory.html#adeb7dca6ab38556f34870dafface138a',1,'RegionFactory::operator=()'],['../classSurfaceFactory.html#aefc87755e38143637828bda6bf738b5b',1,'SurfaceFactory::operator=()'],['../classTallyBank.html#a17f7549e89865f3841fccd876f7c62f7',1,'TallyBank::operator=()'],['../classTallyFactory.html#a5a7f7937050ad6a5155102cbb02ce94e',1,'TallyFactory::operator=()']]],
   ['other',['OTHER',['../Tally_8h.html#ab7d4ad30f44e9abe7178a76b03887909adbf1dee1b8cd7ea3c82661943c7b74f4',1,'Tally.h']]],
-  ['out_5frate',['OUT_RATE',['../Tally_8h.html#ad6eff977b851c4ead69131ba0fa30e79a1f149c352759a345c88ceaf5a5f93db5',1,'Tally.h']]],
-  ['output_5ffile_5fnum',['output_file_num',['../TallyBank_8h.html#af371487d6eb54c519e8d9f43ec7a9952',1,'TallyBank.cpp']]],
+  ['output_5ffile_5fnum',['output_file_num',['../TallyBank_8h.html#af371487d6eb54c519e8d9f43ec7a9952',1,'TallyBank (wills-laptop&apos;s conflicted copy 2013-04-14).cpp']]],
   ['outputbatchstatistics',['outputBatchStatistics',['../classTally.html#a4fd93a5423286a5a9b7953cc8d1dcbcf',1,'Tally::outputBatchStatistics()'],['../classTallyBank.html#abf05a2ab1390f0703cf550b1c312f191',1,'TallyBank::outputBatchStatistics()']]],
   ['outputritofile',['outputRItoFile',['../classpinspec_1_1process_1_1RIEff.html#a222c27b2e654c5823bbd0293d87a4292',1,'pinspec::process::RIEff']]],
-  ['outputxstofile',['outputXStoFile',['../classpinspec_1_1process_1_1GroupXS.html#a6b64121b4d0efaf6b3e86587ecde0273',1,'pinspec::process::GroupXS']]]
+  ['outputxstofile',['outputXStoFile',['../classpinspec_1_1process_1_1GroupXS.html#a6b64121b4d0efaf6b3e86587ecde0273',1,'pinspec::process::GroupXS']]],
+  ['outscatter_5frate',['OUTSCATTER_RATE',['../Tally_8h.html#ad6eff977b851c4ead69131ba0fa30e79ac8ba77463894d96defb816f304fda43e',1,'Tally.h']]]
 ];

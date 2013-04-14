@@ -8,6 +8,7 @@ var classCircle =
     [ "getX0", "classCircle.html#a58d56d258764265600e8c27ecf5c02df", null ],
     [ "getY0", "classCircle.html#ae75c0d7cabbfdd09546ca467ae8a8497", null ],
     [ "onSurface", "classCircle.html#a129caa61e522c6f0abbbfe5d5d4e7534", null ],
+    [ "reflectNeutron", "classCircle.html#a3075e0a59892b2d1ffc792f25af548c0", null ],
     [ "setRadius", "classCircle.html#af2e568fbc6274720cade0c11521f8fa1", null ],
     [ "setX0", "classCircle.html#a26f477fd0b422f630d291e7dd1f01d4e", null ],
     [ "setY0", "classCircle.html#aa8a2aabeb95db6b8f7665e2ce21af7ff", null ],

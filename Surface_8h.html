@@ -26,7 +26,6 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="PINSPEC_logo_trans.png"/></td>
     <td style="padding-left: 0.5em;">
     <div id="projectbrief">A monte carlo pin cell spectral code for nuclear engineering applications.</div>
     </td>
@@ -42,7 +41,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -90,7 +88,7 @@ $(document).ready(function(){initNavTree('Surface_8h.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -114,6 +112,7 @@ $(document).ready(function(){initNavTree('Surface_8h.html','');});
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;limits&gt;</code><br/>
 <code>#include &lt;math.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="vector_8h_source.html">vector.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="Neutron_8h_source.html">Neutron.h</a>&quot;</code><br/>
 </div>
 <p><a href="Surface_8h_source.html">Go to the source code of this file.</a></p>
@@ -134,7 +133,7 @@ Macros</h2></td></tr>
 <tr class="memitem:adadbae7d9856635bbacdc4c9f546ef81"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Surface_8h.html#adadbae7d9856635bbacdc4c9f546ef81">PI_OVER_TWO</a>&#160;&#160;&#160;1.57079633</td></tr>
 <tr class="memitem:a10b8b2d0d73c09f411c0e67416fd10e4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Surface_8h.html#a10b8b2d0d73c09f411c0e67416fd10e4">THREE_PI_OVER_TWO</a>&#160;&#160;&#160;4.71238898</td></tr>
 <tr class="memitem:a3b947f4b635461030ff2d87833e5049e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Surface_8h.html#a3b947f4b635461030ff2d87833e5049e">TWO_PI</a>&#160;&#160;&#160;6.28318531</td></tr>
-<tr class="memitem:a481c7dad5dc2bb9070235752daa421c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Surface_8h.html#a481c7dad5dc2bb9070235752daa421c6">TINY_MOVE</a>&#160;&#160;&#160;1E-3</td></tr>
+<tr class="memitem:a481c7dad5dc2bb9070235752daa421c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Surface_8h.html#a481c7dad5dc2bb9070235752daa421c6">TINY_MOVE</a>&#160;&#160;&#160;1E-5</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -194,7 +193,7 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define TINY_MOVE&#160;&#160;&#160;1E-3</td>
+          <td class="memname">#define TINY_MOVE&#160;&#160;&#160;1E-5</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -276,7 +275,7 @@ Enumerations</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_84f7ff0300158889f846dc38dd277189.html">pinspec</a></li><li class="navelem"><a class="el" href="dir_d2e853d2e88eb629480e78345103ed51.html">src</a></li><li class="navelem"><a class="el" href="Surface_8h.html">Surface.h</a></li>
-    <li class="footer">Generated on Fri Apr 12 2013 13:55:00 by
+    <li class="footer">Generated on Sun Apr 14 2013 13:54:42 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -56,3 +56,10 @@
 \form#55:$ f(x,y) = qy + d = y - y_0 $
 \form#56:$ f(x,y) = (x - x_0)^2 + (y - y_0)^2 - R^2 $
 \form#57:$ f(x,y) $
+\form#58:$ (A+1)^2 $
+\form#59:$ \frac{-log(\xi)}{\Sigma_t(E)} $
+\form#60:$ \vec{u}\cdot\vec{v}=\vec{u}_x *\vec{v}_x + \vec{u}_y * \vec{u}_y $
+\form#61:$ \vec{u}\cdot\vec{v}=\vec{u}_x\cdot\vec{v}_x + \vec{u}_y\cdot\vec{u}_y + \vec{u}_z\cdot\vec{v}_z $
+\form#62:$ \vec{u} $
+\form#63:$ \| \vec{u} \| = \sqrt{x \cdot x + y \cdot y} $
+\form#64:$ \| \vec{u} \| = \sqrt{x\ cdot x + y \cdot y + z \cdot z} $
