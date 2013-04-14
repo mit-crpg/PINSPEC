@@ -20,7 +20,9 @@ If you are interested in the project or would like to help and
 contribute, please contact the development team. In addition, 
 PINSPEC hosts a collection of `Evernote notebooks`_ to allow for 
 free and open collaboration between users and the development 
-team.
+team which are publicly readable. If you plan to use PINSPEC 
+frequently and would like to contribute notes and feedback 
+through Evernote, please `contact`_ the development team.
 
 ------------
 Installation
@@ -43,8 +45,9 @@ problem there, please `contact`_ one of the developers.
 Reporting Bugs
 --------------
 
-PINSPEC is hosted on GitHub and all bugs are reported 
-and tracked through the `Issues`_ Evernote notebook. 
+All bugs are reported through the `Issues`_ Evernote notebook. 
+This allows for users to submit their input files, modified source
+code, as well as images (ie, plots) along with their bugs.
 
 -------
 License
