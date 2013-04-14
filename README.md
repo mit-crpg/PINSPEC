@@ -5,31 +5,15 @@ A Monte Carlo code for simple spectral calculations in nuclear reactor applicati
 a terminal window and 'cd' into the directory where you would like to install PINSPEC. From here, download the code
 as follows:
 
-   > git clone https://github.com/wbinventor/PINSPEC.git PINSPEC
+   > git clone https://github.com/mit-crpg/PINSPEC.git PINSPEC
    
-Now that you have downloaded the PINSPEC source code, it is time to install it. Enter the PINSPE directory:
+Now that you have downloaded the PINSPEC source code, it is time to install it. Enter the PINSPEC directory:
 
    > cd PINSPEC
 
-For a standard build and installation as a standalone Python package accessible to all users of your machine:
-
-   > sudo python setup.py install
-   
-If you would rather install this as a standalone Python package only accessible to your username:
+For a standard build and installation as a standalone Python package accessible from any directory on your machine:
 
    > python setup.py install --user
-
-To run a sample infinite medium input file, do: 
-
-   > cd sample-input
-
-   > python infinite.py
-
-To run a sample homogeneouse equivalence input file, do: 
-
-   > cd sample-input
-
-   > python equivalence.py
 
 To access the C++ classes from a Python interpreter, do:
 
@@ -40,3 +24,6 @@ To access the C++ classes from a Python interpreter, do:
    > fuel = Region()
 
    > ...
+
+Checkout our wiki (https://github.com/mit-crpg/PINSPEC/wiki) with complete installation instructions as well as 
+tutorials on how use PINSPEC.
