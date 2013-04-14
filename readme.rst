@@ -1,5 +1,5 @@
 ==========================================
-PINSPE Monte Carlo Particle Transport Code
+PINSPEC Monte Carlo Particle Transport Code
 ==========================================
 
 The PINSPEC project project aims to provide a simple-to-use 
