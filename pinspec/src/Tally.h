@@ -106,10 +106,10 @@ typedef enum tallyTypes {
     INTERCOLLISION_TIME,
     /** A tally of the elastic scattering rate */
     ELASTIC_RATE,
-    /** A tally of the group to group scattering rate */
-    GROUP_RATE,
-    /** A tally of the outter scattering reaction rate */
-    OUT_RATE,
+    /** A tally of the group-to-group scattering rate */
+    GROUP_TO_GROUP_RATE,
+    /** A tally of the out-scattering reaction rate */
+    OUTSCATTER_RATE,
     /** A tally of the absorption rate */
     ABSORPTION_RATE,
     /** A tally of the capture rate */
@@ -682,13 +682,13 @@ public:
     /** 
      * @brief IsotopeGroupRateTally constructor calls the IsotopeTally
      *        constructor and Tally constructors and sets the tally type
-     *        to GROUP_RATE.
+     *        to GROUP_TO_GROUP_RATE.
      * @param isotope a pointer to the isotope for which to tally
      * @param tally_name a character array for the tally name (optional)
      */
     IsotopeGroupRateTally(Isotope* isotope, const char* tally_name=(char*)"")
         : IsotopeTally(isotope, tally_name){
-            _tally_type = GROUP_RATE;
+            _tally_type = GROUP_TO_GROUP_RATE;
     }
 
     void tally(neutron* neutron);
@@ -704,14 +704,14 @@ public:
     /** 
      * @brief MaterialGroupRateTally constructor calls the MaterialTally
      *        constructor and Tally constructors and sets the tally type
-     *        to GROUP_RATE.
+     *        to GROUP_TO_GROUP_RATE.
      * @param material a pointer to the material within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
     MaterialGroupRateTally(Material* material, 
 			   const char* tally_name=(char*)"")
         : MaterialTally(material, tally_name){
-            _tally_type = GROUP_RATE;
+            _tally_type = GROUP_TO_GROUP_RATE;
     }
   
     void tally(neutron* neutron);
@@ -728,13 +728,13 @@ public:
     /** 
      * @brief RegionGroupRateTally constructor calls the RegionTally
      *        constructor and Tally constructors and sets the tally type
-     *        to GROUP_RATE.
+     *        to GROUP_TO_GROUP_RATE.
      * @param region a pointer to the region within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
     RegionGroupRateTally(Region* region, const char* tally_name=(char*)"")
         : RegionTally(region, tally_name){
-	_tally_type = GROUP_RATE;
+	_tally_type = GROUP_TO_GROUP_RATE;
     }
 
     void tally(neutron* neutron);
@@ -751,14 +751,14 @@ public:
     /** 
      * @brief GeometryGroupRateTally constructor calls the GeometryTally
      *        constructor and Tally constructors and sets the tally type
-     *        to GROUP_RATE.
+     *        to GROUP_TO_GROUP_RATE.
      * @param geometry a pointer to the geometry within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
     GeometryGroupRateTally(Geometry* geometry, 
 			   const char* tally_name=(char*)"")
         : GeometryTally(geometry, tally_name){
-	_tally_type = GROUP_RATE;
+	_tally_type = GROUP_TO_GROUP_RATE;
     }
 
     void tally(neutron* neutron);
@@ -777,13 +777,13 @@ public:
     /** 
      * @brief IsotopeOutScatterRateTally constructor calls the IsotopeTally
      *        constructor and Tally constructors and sets the tally type
-     *        to OUT_RATE.
+     *        to OUTSCATTER_RATE.
      * @param isotope a pointer to the isotope for which to tally
      * @param tally_name a character array for the tally name (optional)
      */
     IsotopeOutScatterRateTally(Isotope* isotope, const char* tally_name=(char*)"")
         : IsotopeTally(isotope, tally_name){
-            _tally_type = OUT_RATE;
+            _tally_type = OUTSCATTER_RATE;
     }
 
     void tally(neutron* neutron);
@@ -799,14 +799,14 @@ public:
     /** 
      * @brief MaterialOutScatterRateTally constructor calls the MaterialTally
      *        constructor and Tally constructors and sets the tally type
-     *        to OUT_RATE.
+     *        to OUTSCATTER_RATE.
      * @param material a pointer to the material within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
     MaterialOutScatterRateTally(Material* material, 
 			   const char* tally_name=(char*)"")
         : MaterialTally(material, tally_name){
-            _tally_type = OUT_RATE;
+            _tally_type = OUTSCATTER_RATE;
     }
   
     void tally(neutron* neutron);
@@ -823,13 +823,13 @@ public:
     /** 
      * @brief RegionOutScatterRateTally constructor calls the RegionTally
      *        constructor and Tally constructors and sets the tally type
-     *        to OUT_RATE.
+     *        to OUTSCATTER_RATE.
      * @param region a pointer to the region within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
     RegionOutScatterRateTally(Region* region, const char* tally_name=(char*)"")
         : RegionTally(region, tally_name){
-	_tally_type = OUT_RATE;
+	_tally_type = OUTSCATTER_RATE;
     }
 
     void tally(neutron* neutron);
@@ -846,14 +846,14 @@ public:
     /** 
      * @brief GeometryOutScatterRateTally constructor calls the GeometryTally
      *        constructor and Tally constructors and sets the tally type
-     *        to OUT_RATE.
+     *        to OUTSCATTER_RATE.
      * @param geometry a pointer to the geometry within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
     GeometryOutScatterRateTally(Geometry* geometry, 
 			   const char* tally_name=(char*)"")
         : GeometryTally(geometry, tally_name){
-	_tally_type = OUT_RATE;
+	_tally_type = OUTSCATTER_RATE;
     }
 
     void tally(neutron* neutron);

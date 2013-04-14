@@ -22,7 +22,8 @@ class TestHW2(unittest.TestCase):
         c12 = Isotope('C-12')
         
         # Create an artifical capture xs for hydrogen
-        norm_const = 0.025
+        norm_const = 0.025k
+
         h1_capture_energies = numpy.logspace(-5., 7.5, 500);
         h1_capture_xs = numpy.sqrt(norm_const/h1_capture_energies) * 7.
         h1.setCaptureXS(h1_capture_energies, h1_capture_xs)
@@ -49,7 +50,7 @@ class TestHW2(unittest.TestCase):
         self.times.generateBinEdges(1E-7, 2E6, 1, EQUAL)
         
         fissioner = Fissioner()
-        neutron = initializeNewNeutron()
+        neutron = createNewNeutron()
         
         for i in range(self.num_neutrons):
             

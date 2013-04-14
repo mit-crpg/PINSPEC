@@ -1,69 +1,52 @@
-# Put any files you don't want to check in here.
-# Common among everyone 
+# installation
 *.o
 *.cxx
 *.h.gch
 *.so
-Makefile
 *.pbs.e*
 *.pbs.o*
 */*.o
 */*.cxx
 */*.h.gch
 */*.so
-*/Makefile
 *~
 */*~
 */*.pbs.e*
 */*.pbs.o*
-
-# Jessica specific:
-sample-input/reinstall.sh
-
-# Sam specific:
-
-# Lulu specific:
-tutorial/
-pinspec/Geometry_wrap.cpp
-sample-input/Infinite_MC_Statistics/*.txt
-sample-input/Infinite/
-sample-input/infinite/
-*/log
-# this file is being updated everytime we run, so I am ignoring it for now.
-# may need to add back in for the initial release
-xs-lib/U-238-capture.txt 
-
-# Will specific:
-*.png
-*.pyc
-*/*.png
 */*.pyc
-build/
-objs/
-pinspec/Geometry_wrap.cpp
+build
+build/*
 pinspec/pinspec.py*
+pinspec/Geometry_wrap.cpp
+
+# output files
+sample-input/infinite
+sample-input/infinite/*
+sample-input/generational
+sample-input/generational/*
+sample-input/slowdown
+sample-input/slowdown/*
+sample-input/dopplerRIs
+sample-input/dopplerRIs/*
+sample-input/equivalence
+sample-input/equivalence/*
+sample-input/outscatter
+sample-input/outscatter/*
+sample-input/group-to-group
+sample-input/group-to-group/*
+sample-input/strongscaling
+sample-input/strongscaling/*
+sample-input/weakscaling
+sample-input/weakscaling/**.png
+*/*.png
 log/*
 */log/*
 pinspec-*-.log
 */pinspec-*-.log
 
-# Sample output
-sample-input/HW1
-sample-input/HW1/*
-sample-input/HW2
-sample-input/HW2/*
-sample-input/HW3
-sample-input/HW3/*
-sample-input/HW4
-sample-input/HW4/*
-sample-input/Equivalence
-sample-input/Equivalence/*
-sample-input/strong-scaling
-sample-input/strong-scaling/*
-sample-input/weak-scaling
-sample-input/weak-scaling/*
-sample-input/group-to-group
-sample-input/group-to-group/*
+# backup xs library
+xs-lib/BackupXS
+xs-lib/BackupXS/*
 
 # emacs temp files
 #*#

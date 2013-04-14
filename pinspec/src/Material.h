@@ -123,6 +123,7 @@ public:
     
     Material *clone();
 
+    float sampleDistanceTraveled(neutron* neutron);
     void sampleIsotope(neutron* neutron);
     void collideNeutron(neutron* neutron);
 };

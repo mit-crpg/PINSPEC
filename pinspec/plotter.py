@@ -178,7 +178,7 @@ def plotMacroXS(material, rxns, loglog=True, \
 # @param uselegend an optional argument boolean to include a legend
 # @param title an optional argument string with the plot title
 # @param filename an optional argument string with the plot filename
-def plotFlux(fluxes, loglog=True, uselegend=True, title='', filename=''):
+def plotFlux(fluxes, loglog=True, uselegend=False, title='', filename=''):
 
     global flux_plot_num
     global subdirectory

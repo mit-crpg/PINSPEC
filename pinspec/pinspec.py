@@ -89,6 +89,8 @@ class Geometry(_object):
     def getSpatialType(self): return _pinspec.Geometry_getSpatialType(self)
     def getBucklingSquared(self): return _pinspec.Geometry_getBucklingSquared(self)
     def getVolume(self): return _pinspec.Geometry_getVolume(self)
+    def getSourceSamplingRadius(self): return _pinspec.Geometry_getSourceSamplingRadius(self)
+    def setSourceSamplingRadius(self, *args): return _pinspec.Geometry_setSourceSamplingRadius(self, *args)
     def setNeutronsPerBatch(self, *args): return _pinspec.Geometry_setNeutronsPerBatch(self, *args)
     def setNumBatches(self, *args): return _pinspec.Geometry_setNumBatches(self, *args)
     def setNumThreads(self, *args): return _pinspec.Geometry_setNumThreads(self, *args)
@@ -99,6 +101,7 @@ class Geometry(_object):
     def addRegion(self, *args): return _pinspec.Geometry_addRegion(self, *args)
     def setBucklingSquared(self, *args): return _pinspec.Geometry_setBucklingSquared(self, *args)
     def runMonteCarloSimulation(self): return _pinspec.Geometry_runMonteCarloSimulation(self)
+    def initializeSourceNeutron(self, *args): return _pinspec.Geometry_initializeSourceNeutron(self, *args)
 Geometry_swigregister = _pinspec.Geometry_swigregister
 Geometry_swigregister(Geometry)
 
@@ -176,10 +179,15 @@ class EquivalenceRegion(Region):
     __del__ = lambda self : None;
     def getFuelPinRadius(self): return _pinspec.EquivalenceRegion_getFuelPinRadius(self)
     def getPinCellPitch(self): return _pinspec.EquivalenceRegion_getPinCellPitch(self)
+    def getEnergyGridIndex(self, *args): return _pinspec.EquivalenceRegion_getEnergyGridIndex(self, *args)
     def isFuel(self): return _pinspec.EquivalenceRegion_isFuel(self)
     def isModerator(self): return _pinspec.EquivalenceRegion_isModerator(self)
+    def setFirstFlightCollProb(self, *args): return _pinspec.EquivalenceRegion_setFirstFlightCollProb(self, *args)
+    def setOtherRegion(self, *args): return _pinspec.EquivalenceRegion_setOtherRegion(self, *args)
     def setFuelPinRadius(self, *args): return _pinspec.EquivalenceRegion_setFuelPinRadius(self, *args)
     def setPinCellPitch(self, *args): return _pinspec.EquivalenceRegion_setPinCellPitch(self, *args)
+    def computeFuelFuelCollsionProb(self, *args): return _pinspec.EquivalenceRegion_computeFuelFuelCollsionProb(self, *args)
+    def computeModeratorFuelCollisionProb(self, *args): return _pinspec.EquivalenceRegion_computeModeratorFuelCollisionProb(self, *args)
     def collideNeutron(self, *args): return _pinspec.EquivalenceRegion_collideNeutron(self, *args)
 EquivalenceRegion_swigregister = _pinspec.EquivalenceRegion_swigregister
 EquivalenceRegion_swigregister(EquivalenceRegion)
@@ -202,6 +210,7 @@ class BoundedRegion(Region):
     def removeBoundingSurface(self, *args): return _pinspec.BoundedRegion_removeBoundingSurface(self, *args)
     def contains(self, *args): return _pinspec.BoundedRegion_contains(self, *args)
     def onBoundary(self, *args): return _pinspec.BoundedRegion_onBoundary(self, *args)
+    def computeDistanceToSurface(self, *args): return _pinspec.BoundedRegion_computeDistanceToSurface(self, *args)
     def collideNeutron(self, *args): return _pinspec.BoundedRegion_collideNeutron(self, *args)
 BoundedRegion_swigregister = _pinspec.BoundedRegion_swigregister
 BoundedRegion_swigregister(BoundedRegion)
@@ -299,10 +308,12 @@ class Surface(_object):
     __del__ = lambda self : None;
     def getSurfaceName(self): return _pinspec.Surface_getSurfaceName(self)
     def getBoundaryType(self): return _pinspec.Surface_getBoundaryType(self)
+    def getSurfaceType(self): return _pinspec.Surface_getSurfaceType(self)
     def setBoundaryType(self, *args): return _pinspec.Surface_setBoundaryType(self, *args)
     def evaluate(self, *args): return _pinspec.Surface_evaluate(self, *args)
     def computeNearestDistance(self, *args): return _pinspec.Surface_computeNearestDistance(self, *args)
     def onSurface(self, *args): return _pinspec.Surface_onSurface(self, *args)
+    def reflectNeutron(self, *args): return _pinspec.Surface_reflectNeutron(self, *args)
 Surface_swigregister = _pinspec.Surface_swigregister
 Surface_swigregister(Surface)
 
@@ -325,6 +336,7 @@ class XPlane(Surface):
     def evaluate(self, *args): return _pinspec.XPlane_evaluate(self, *args)
     def computeNearestDistance(self, *args): return _pinspec.XPlane_computeNearestDistance(self, *args)
     def onSurface(self, *args): return _pinspec.XPlane_onSurface(self, *args)
+    def reflectNeutron(self, *args): return _pinspec.XPlane_reflectNeutron(self, *args)
 XPlane_swigregister = _pinspec.XPlane_swigregister
 XPlane_swigregister(XPlane)
 
@@ -347,6 +359,7 @@ class YPlane(Surface):
     def evaluate(self, *args): return _pinspec.YPlane_evaluate(self, *args)
     def computeNearestDistance(self, *args): return _pinspec.YPlane_computeNearestDistance(self, *args)
     def onSurface(self, *args): return _pinspec.YPlane_onSurface(self, *args)
+    def reflectNeutron(self, *args): return _pinspec.YPlane_reflectNeutron(self, *args)
 YPlane_swigregister = _pinspec.YPlane_swigregister
 YPlane_swigregister(YPlane)
 
@@ -373,6 +386,7 @@ class Circle(Surface):
     def evaluate(self, *args): return _pinspec.Circle_evaluate(self, *args)
     def computeNearestDistance(self, *args): return _pinspec.Circle_computeNearestDistance(self, *args)
     def onSurface(self, *args): return _pinspec.Circle_onSurface(self, *args)
+    def reflectNeutron(self, *args): return _pinspec.Circle_reflectNeutron(self, *args)
 Circle_swigregister = _pinspec.Circle_swigregister
 Circle_swigregister(Circle)
 
@@ -415,6 +429,7 @@ class Isotope(_object):
     def getTemperature(self): return _pinspec.Isotope_getTemperature(self)
     def getMuAverage(self): return _pinspec.Isotope_getMuAverage(self)
     def isFissionable(self): return _pinspec.Isotope_isFissionable(self)
+    def getThermalScatteringCutoff(self): return _pinspec.Isotope_getThermalScatteringCutoff(self)
     def getNumXSEnergies(self, *args): return _pinspec.Isotope_getNumXSEnergies(self, *args)
     def getElasticXS(self, *args): return _pinspec.Isotope_getElasticXS(self, *args)
     def getAbsorptionXS(self, *args): return _pinspec.Isotope_getAbsorptionXS(self, *args)
@@ -437,6 +452,7 @@ class Isotope(_object):
     def setA(self, *args): return _pinspec.Isotope_setA(self, *args)
     def setTemperature(self, *args): return _pinspec.Isotope_setTemperature(self, *args)
     def neglectThermalScattering(self): return _pinspec.Isotope_neglectThermalScattering(self)
+    def setThermalScatteringCutoff(self, *args): return _pinspec.Isotope_setThermalScatteringCutoff(self, *args)
     def useThermalScattering(self): return _pinspec.Isotope_useThermalScattering(self)
     def clone(self): return _pinspec.Isotope_clone(self)
     def sampleCollisionType(self, *args): return _pinspec.Isotope_sampleCollisionType(self, *args)
@@ -497,6 +513,7 @@ class Material(_object):
     def incrementVolume(self, *args): return _pinspec.Material_incrementVolume(self, *args)
     def addIsotope(self, *args): return _pinspec.Material_addIsotope(self, *args)
     def clone(self): return _pinspec.Material_clone(self)
+    def sampleDistanceTraveled(self, *args): return _pinspec.Material_sampleDistanceTraveled(self, *args)
     def sampleIsotope(self, *args): return _pinspec.Material_sampleIsotope(self, *args)
     def collideNeutron(self, *args): return _pinspec.Material_collideNeutron(self, *args)
 Material_swigregister = _pinspec.Material_swigregister
@@ -518,8 +535,8 @@ LEAKAGE_RATE = _pinspec.LEAKAGE_RATE
 COLLISION_RATE = _pinspec.COLLISION_RATE
 INTERCOLLISION_TIME = _pinspec.INTERCOLLISION_TIME
 ELASTIC_RATE = _pinspec.ELASTIC_RATE
-GROUP_RATE = _pinspec.GROUP_RATE
-OUT_RATE = _pinspec.OUT_RATE
+GROUP_TO_GROUP_RATE = _pinspec.GROUP_TO_GROUP_RATE
+OUTSCATTER_RATE = _pinspec.OUTSCATTER_RATE
 ABSORPTION_RATE = _pinspec.ABSORPTION_RATE
 CAPTURE_RATE = _pinspec.CAPTURE_RATE
 FISSION_RATE = _pinspec.FISSION_RATE
@@ -1562,6 +1579,33 @@ class neutron(_object):
     __swig_setmethods__["_batch_num"] = _pinspec.neutron__batch_num_set
     __swig_getmethods__["_batch_num"] = _pinspec.neutron__batch_num_get
     if _newclass:_batch_num = _swig_property(_pinspec.neutron__batch_num_get, _pinspec.neutron__batch_num_set)
+    __swig_setmethods__["_energy"] = _pinspec.neutron__energy_set
+    __swig_getmethods__["_energy"] = _pinspec.neutron__energy_get
+    if _newclass:_energy = _swig_property(_pinspec.neutron__energy_get, _pinspec.neutron__energy_set)
+    __swig_setmethods__["_old_energy"] = _pinspec.neutron__old_energy_set
+    __swig_getmethods__["_old_energy"] = _pinspec.neutron__old_energy_get
+    if _newclass:_old_energy = _swig_property(_pinspec.neutron__old_energy_get, _pinspec.neutron__old_energy_set)
+    __swig_setmethods__["_collided"] = _pinspec.neutron__collided_set
+    __swig_getmethods__["_collided"] = _pinspec.neutron__collided_get
+    if _newclass:_collided = _swig_property(_pinspec.neutron__collided_get, _pinspec.neutron__collided_set)
+    __swig_setmethods__["_total_xs"] = _pinspec.neutron__total_xs_set
+    __swig_getmethods__["_total_xs"] = _pinspec.neutron__total_xs_get
+    if _newclass:_total_xs = _swig_property(_pinspec.neutron__total_xs_get, _pinspec.neutron__total_xs_set)
+    __swig_setmethods__["_path_length"] = _pinspec.neutron__path_length_set
+    __swig_getmethods__["_path_length"] = _pinspec.neutron__path_length_get
+    if _newclass:_path_length = _swig_property(_pinspec.neutron__path_length_get, _pinspec.neutron__path_length_set)
+    __swig_setmethods__["_alive"] = _pinspec.neutron__alive_set
+    __swig_getmethods__["_alive"] = _pinspec.neutron__alive_get
+    if _newclass:_alive = _swig_property(_pinspec.neutron__alive_get, _pinspec.neutron__alive_set)
+    __swig_setmethods__["_region"] = _pinspec.neutron__region_set
+    __swig_getmethods__["_region"] = _pinspec.neutron__region_get
+    if _newclass:_region = _swig_property(_pinspec.neutron__region_get, _pinspec.neutron__region_set)
+    __swig_setmethods__["_material"] = _pinspec.neutron__material_set
+    __swig_getmethods__["_material"] = _pinspec.neutron__material_get
+    if _newclass:_material = _swig_property(_pinspec.neutron__material_get, _pinspec.neutron__material_set)
+    __swig_setmethods__["_isotope"] = _pinspec.neutron__isotope_set
+    __swig_getmethods__["_isotope"] = _pinspec.neutron__isotope_get
+    if _newclass:_isotope = _swig_property(_pinspec.neutron__isotope_get, _pinspec.neutron__isotope_set)
     __swig_setmethods__["_x"] = _pinspec.neutron__x_set
     __swig_getmethods__["_x"] = _pinspec.neutron__x_get
     if _newclass:_x = _swig_property(_pinspec.neutron__x_get, _pinspec.neutron__x_set)
@@ -1586,27 +1630,9 @@ class neutron(_object):
     __swig_setmethods__["_phi"] = _pinspec.neutron__phi_set
     __swig_getmethods__["_phi"] = _pinspec.neutron__phi_get
     if _newclass:_phi = _swig_property(_pinspec.neutron__phi_get, _pinspec.neutron__phi_set)
-    __swig_setmethods__["_energy"] = _pinspec.neutron__energy_set
-    __swig_getmethods__["_energy"] = _pinspec.neutron__energy_get
-    if _newclass:_energy = _swig_property(_pinspec.neutron__energy_get, _pinspec.neutron__energy_set)
-    __swig_setmethods__["_alive"] = _pinspec.neutron__alive_set
-    __swig_getmethods__["_alive"] = _pinspec.neutron__alive_get
-    if _newclass:_alive = _swig_property(_pinspec.neutron__alive_get, _pinspec.neutron__alive_set)
-    __swig_setmethods__["_region"] = _pinspec.neutron__region_set
-    __swig_getmethods__["_region"] = _pinspec.neutron__region_get
-    if _newclass:_region = _swig_property(_pinspec.neutron__region_get, _pinspec.neutron__region_set)
-    __swig_setmethods__["_material"] = _pinspec.neutron__material_set
-    __swig_getmethods__["_material"] = _pinspec.neutron__material_get
-    if _newclass:_material = _swig_property(_pinspec.neutron__material_get, _pinspec.neutron__material_set)
-    __swig_setmethods__["_isotope"] = _pinspec.neutron__isotope_set
-    __swig_getmethods__["_isotope"] = _pinspec.neutron__isotope_get
-    if _newclass:_isotope = _swig_property(_pinspec.neutron__isotope_get, _pinspec.neutron__isotope_set)
-    __swig_setmethods__["_old_energy"] = _pinspec.neutron__old_energy_set
-    __swig_getmethods__["_old_energy"] = _pinspec.neutron__old_energy_get
-    if _newclass:_old_energy = _swig_property(_pinspec.neutron__old_energy_get, _pinspec.neutron__old_energy_set)
-    __swig_setmethods__["_total_xs"] = _pinspec.neutron__total_xs_set
-    __swig_getmethods__["_total_xs"] = _pinspec.neutron__total_xs_get
-    if _newclass:_total_xs = _swig_property(_pinspec.neutron__total_xs_get, _pinspec.neutron__total_xs_set)
+    __swig_setmethods__["_surface"] = _pinspec.neutron__surface_set
+    __swig_getmethods__["_surface"] = _pinspec.neutron__surface_get
+    if _newclass:_surface = _swig_property(_pinspec.neutron__surface_get, _pinspec.neutron__surface_set)
     def __init__(self): 
         this = _pinspec.new_neutron()
         try: self.this.append(this)
@@ -1617,9 +1643,9 @@ neutron_swigregister = _pinspec.neutron_swigregister
 neutron_swigregister(neutron)
 
 
-def initializeNewNeutron():
-  return _pinspec.initializeNewNeutron()
-initializeNewNeutron = _pinspec.initializeNewNeutron
+def createNewNeutron():
+  return _pinspec.createNewNeutron()
+createNewNeutron = _pinspec.createNewNeutron
 class Fissioner(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Fissioner, name, value)

@@ -15,6 +15,8 @@ Isotope::Isotope(char* isotope_name){
     /* Assigns the isotope's name and uses it to find the cross-section files */
     _isotope_name = isotope_name;
     parseName();
+    _A_squared = _A * _A;
+    _A_plus_one_squared = (_A + 1) * (_A + 1);
 
     _T = 300;
     _kB = 8.617332E-5;             /* boltzmann's constant (ev / K) */
@@ -42,6 +44,7 @@ Isotope::Isotope(char* isotope_name){
     rescaleXS(_start_lethargy, _end_lethargy, _num_energies);
  
     /* By default the thermal scattering cdfs have not been initialized */
+    _thermal_cutoff = 4.0;
     _use_thermal_scattering = true;
     _num_thermal_cdfs = 0;
     _num_thermal_cdf_bins = 0;
@@ -174,6 +177,16 @@ float Isotope::getMuAverage() const {
  */
 bool Isotope::isFissionable() const {
     return _fissionable;
+}
+
+
+/**
+ * @brief Return the thermal scattering high energy cutoff.
+ * @return the thermal scattering high energy cutoff (eV)
+ *
+ */
+float Isotope::getThermalScatteringCutoff() {
+    return _thermal_cutoff;
 }
 
 
@@ -1228,6 +1241,14 @@ void Isotope::neglectThermalScattering() {
 }
 
 
+/**
+ * @brief Sets the thermal scattering high energy cutoff energy.
+ * @param cutoff_energy the thermal scattering high energy cutoff energy (eV)
+ */
+void Isotope::setThermalScatteringCutoff(float cutoff_energy) {
+    _thermal_cutoff = cutoff_energy;
+}
+
 
 /**
  * @brief Informs isotope to use thermal scattering to sample outgoing
@@ -2099,18 +2120,74 @@ void Isotope::collideNeutron(neutron* neutron) {
 
     neutron->_old_energy = neutron->_energy;
 
-    /* obtain collision type */
+    /* Obtain collision type and kill neutron if absorbed*/
     sampleCollisionType(neutron);
 
-    /* Sample outgoing energy uniformally between [alpha*E, E] */
-    float alpha = getAlpha();
-    double random = (float)(rand()) / (float)(RAND_MAX);
+    /* Update the neutron's energy and direction on every collision,
+     * including absorptions, to avoid having an if-else statement to 
+     * check if it was absorbed or not. This is an optimization and
+     * shouldn't slow the code down too much since most collisions will
+     * result in scattering rather than capture or fission. */
 
-    /* Asymptotic elastic scattering above 4 eV or if no thermal scattering */
-    if (neutron->_energy > 4.0 || !_use_thermal_scattering)
-    	neutron->_energy *= (alpha + (1.0 - alpha) * random);
-    else
-    	neutron->_energy = getThermalScatteringEnergy(neutron->_energy);
+    /* If the neutron is in an INFINITE_HOMOGENEOUS or HOMOGENEOUS_EQUIVALENCE 
+     * geometry then it's azimuthal angle phi will have been initialized to 
+     * -1 and we can simply uniformly sample an outgoing energy */
+    if (neutron->_phi == -1.0) {
+        /* Sample outgoing energy uniformally between [alpha*E, E] */
+        float alpha = getAlpha();
+        double random = (float)(rand()) / (float)(RAND_MAX);
+
+        /* Asymptotic elastic scattering above 4 eV */
+        if (neutron->_energy > 4.0 || !_use_thermal_scattering)
+    	    neutron->_energy *= (alpha + (1.0 - alpha) * random);
+        else
+    	    neutron->_energy = getThermalScatteringEnergy(neutron->_energy);
+    }
+
+    /* If the neutron is in a HETEROGENEOUS geometry then we must update
+     * the azimuthal and polar angles for the neutron using isotropic
+     * scattering in CM */
+    else {
+        /* Isotropic (in 2*pi) scattering for the azimuthal angle */
+        float phi = (float(rand()) / RAND_MAX) * 2.0 * M_PI;
+        float cos_phi = cos(phi);
+        float sin_phi = sin(phi);
+
+        /* Update neutron's direction vector - assume that scattering is
+         * isotropic in center of mass for the polar angle */
+        float mu_cm = (float(rand()) / RAND_MAX) * 2.0 - 1.0;
+        float mu_l = (1.0 + _A*mu_cm)/(sqrt(_A_squared + 2.0 * _A * mu_cm+1.0));
+        float sqrt_mu_l_squared = sqrt(1.0 - mu_l * mu_l);
+
+        float u = neutron->_u;
+        float v = neutron->_v;
+        float w = neutron->_w;
+        float sqrt_w_squared = sqrt(1.0 - w * w);  
+  
+        neutron->_u = mu_l * u + ((sqrt_mu_l_squared * (u * w * cos_phi - 
+					        v * sin_phi)) / sqrt_w_squared);
+        neutron->_v = mu_l * v + ((sqrt_mu_l_squared * (v * w * cos_phi + 
+					        u * sin_phi)) / sqrt_w_squared);
+        neutron->_w = mu_l * w + (sqrt_mu_l_squared * sqrt_w_squared * cos_phi);
+
+        neutron->_mu = cos(neutron->_w / 
+			   norm2D<float>(neutron->_u, neutron->_v));
+        neutron->_phi = atan2(neutron->_v, neutron->_u);
+
+        /* Correct for atan2's result in [-pi, pi] to interval [0, 2*pi] */
+        if (neutron->_v <= 0.0)
+            neutron->_phi += 2.0 * M_PI;
+    
+        /* Asymptotic elastic scattering above 4 eV */
+        if (neutron->_energy > 4.0 || !_use_thermal_scattering)
+            neutron->_energy *= (_A_squared + 2 *_A*mu_cm + 1.0) 
+    	                    / _A_plus_one_squared;
+        else
+            neutron->_energy = getThermalScatteringEnergy(neutron->_energy);
+    }
+
+    neutron->_energy += 1E-7;  //FIXME: temp bug fix for zeroed out energy
+    neutron->_collided = true;
 
     return;
 }

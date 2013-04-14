@@ -74,7 +74,7 @@ public:
     /**
      * @brief Empty destructor allows SWIG to cleanup memory for surfaces.
      */
-    virtual ~Region() { };
+    virtual ~Region();
     char* getRegionName();
     Material* getMaterial();
     bool containsIsotope(Isotope* isotope);
@@ -145,6 +145,7 @@ public:
      * @brief Empty destructor allows SWIG to cleanup memory for surfaces.
      */
     virtual ~InfiniteMediumRegion() { };
+
     void collideNeutron(neutron* neutron);
 };
 
@@ -171,6 +172,25 @@ private:
     /** Half of the pin cell pitch */
     float _half_width;
 
+    /** The other region (ie, if this region is an EQUIVALENT_FUEL type region,
+     *the other region is EQUIVALENT_MODERATOR) */
+    EquivalenceRegion* _other_region;
+
+    /** First flight fuel-to-fuel collision probabilities */
+    float* _prob_ff;
+    /** First flight fuel-to-fuel collision probabilities */
+    float* _prob_mf;
+    /** Energies (eV) for first flight collision probabilities */
+    float* _prob_energies;
+    /** The number of first flight collision probabilities */
+    int _num_prob;
+    /** Lowest lethargy for the first flight collision probabilities */
+    float _start_lethargy;
+    /** Highest lethargy for the first flight collision probabilities */
+    float _end_lethargy;
+    /** Space between lethargy for the first flight collision probabilities*/
+    float _delta_lethargy;
+
 public:
     EquivalenceRegion(regionType region_type, 
 		      const char* region_name=(char*)"");
@@ -180,12 +200,18 @@ public:
     virtual ~EquivalenceRegion() { };
     float getFuelPinRadius();
     float getPinCellPitch();
+    int getEnergyGridIndex(float lethargy);
     bool isFuel();
     bool isModerator();
 
+    void setFirstFlightCollProb(float* prob_ff, float* prob_mf, 
+				float* prob_energies, int num_prob);
+    void setOtherRegion(EquivalenceRegion* region);
     void setFuelPinRadius(float radius);
     void setPinCellPitch(float pitch);
 
+    float computeFuelFuelCollsionProb(neutron* neutron);
+    float computeModeratorFuelCollisionProb(neutron* neutron);
     void collideNeutron(neutron* neutron);
 };
 
@@ -216,6 +242,7 @@ public:
 
     bool contains(neutron* neutron);
     bool onBoundary(neutron* neutron);
+    float computeDistanceToSurface(neutron* neutron);
 
     void collideNeutron(neutron* neutron);
 };
@@ -240,6 +267,7 @@ public:
      * @brief Empty destructor allows SWIG to cleanup memory for surfaces.
      */
     ~BoundedFuelRegion() { };
+
     void ringify(int num_rings);
 };
 
@@ -263,6 +291,7 @@ public:
      * @brief Empty destructor allows SWIG to cleanup memory for surfaces.
      */
     ~BoundedModeratorRegion() { };
+
     void ringify(int num_rings);
 };
 

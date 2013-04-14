@@ -30,7 +30,7 @@ Tally* TallyFactory::createTally(Isotope* isotope, tallyType tally_type,
         return new IsotopeCollisionRateTally(isotope, tally_name);
     else if (tally_type == ELASTIC_RATE)
         return new IsotopeElasticRateTally(isotope, tally_name);
-    else if (tally_type == GROUP_RATE)
+    else if (tally_type == GROUP_TO_GROUP_RATE)
 	return new IsotopeGroupRateTally(isotope, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new IsotopeAbsorptionRateTally(isotope, tally_name);
@@ -69,7 +69,7 @@ Tally* TallyFactory::createTally(Material* material, tallyType tally_type,
         return new MaterialCollisionRateTally(material, tally_name);
     else if (tally_type == ELASTIC_RATE)
         return new MaterialElasticRateTally(material, tally_name);
-    else if (tally_type == GROUP_RATE)
+    else if (tally_type == GROUP_TO_GROUP_RATE)
 	return new MaterialGroupRateTally(material, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new MaterialAbsorptionRateTally(material, tally_name);
@@ -108,7 +108,7 @@ Tally* TallyFactory::createTally(Region* region, tallyType tally_type,
         return new RegionCollisionRateTally(region, tally_name);
     else if (tally_type == ELASTIC_RATE)
         return new RegionElasticRateTally(region, tally_name);
-    else if (tally_type == GROUP_RATE)
+    else if (tally_type == GROUP_TO_GROUP_RATE)
 	return new RegionGroupRateTally(region, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new RegionAbsorptionRateTally(region, tally_name);
@@ -147,7 +147,7 @@ Tally* TallyFactory::createTally(Geometry* geometry, tallyType tally_type,
         return new GeometryCollisionRateTally(geometry, tally_name);
     else if (tally_type == ELASTIC_RATE)
         return new GeometryElasticRateTally(geometry, tally_name);
-    else if (tally_type == GROUP_RATE)
+    else if (tally_type == GROUP_TO_GROUP_RATE)
 	return new GeometryGroupRateTally(geometry, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new GeometryAbsorptionRateTally(geometry, tally_name);

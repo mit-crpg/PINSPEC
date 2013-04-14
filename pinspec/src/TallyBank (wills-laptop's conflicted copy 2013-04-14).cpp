@@ -515,9 +515,10 @@ void TallyBank::computeScaledBatchStatistics(float scale_factor) {
         std::set<Tally*> tally_set = (*(*iter1).second);
         volume = (*(*iter1).first).getVolume();
 
+        printf("tally %s has volume %f", ((*iter).first).getTallyName(),volume);
+
         for (set_iter = tally_set.begin(); set_iter != tally_set.end(); 
 	     ++set_iter) {
-
             if ((*set_iter)->getTallyType() == INTERCOLLISION_TIME)
                 (*set_iter)->computeScaledBatchStatistics(scale_factor);
             else
@@ -530,11 +531,10 @@ void TallyBank::computeScaledBatchStatistics(float scale_factor) {
 	  ++iter2) {
 
         std::set<Tally*> tally_set = (*(*iter2).second);
-        volume = (*(*iter2).first).getVolume();
 
         for (set_iter = tally_set.begin(); set_iter != tally_set.end(); 
 	     ++set_iter) {
-
+            volume = (*(*iter2).first).getVolume();
             if ((*set_iter)->getTallyType() == INTERCOLLISION_TIME)
                 (*set_iter)->computeScaledBatchStatistics(scale_factor);
             else
@@ -551,7 +551,6 @@ void TallyBank::computeScaledBatchStatistics(float scale_factor) {
 
         for (set_iter = tally_set.begin(); set_iter != tally_set.end(); 
 	     ++set_iter) {
-
             if ((*set_iter)->getTallyType() == INTERCOLLISION_TIME)
                 (*set_iter)->computeScaledBatchStatistics(scale_factor);
             else

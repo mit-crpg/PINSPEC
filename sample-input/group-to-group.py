@@ -1,16 +1,11 @@
-import time
-import matplotlib.pyplot as plt
 import numpy
 from pinspec import *
-import pinspec.plotter as plotter
 from pinspec.log import *
 
 
 ###############################################################################
-##    This python script uses PINSPEC to generate results for a strong scaling
-##    study of PINSPEC's parallel performance. This file runs a series 
-##    of infinite medium spectral calculations and varies the number of
-##    shared memory (OpenMP) parallel threads for a given number of batches.
+##    This python script uses PINSPEC to generate results for an
+##    group-to-group scattering rate tally.
 ###############################################################################
 
 
@@ -18,50 +13,42 @@ from pinspec.log import *
 ###########################  Main Simulation Paramters  #######################
 ###############################################################################
 
-# Set main simulation params
-num_batches = 24
-num_neutrons_per_batch = 10000
-setOutputDirectory('strongscaling')
-
+setOutputDirectory('group-to-group')
 py_setlevel('INFO')
-
-py_printf('TITLE', 'Starting a strong scaling multi-threading study')
-
+    
+py_printf('TITLE', 'Simulation to tally group-to-group scattering')
+    
 
 ###############################################################################
 ##############################  Create Isotopes ###############################
 ###############################################################################
-
-py_printf('INFO', 'Initializing isotopes...')
+    
+py_printf('NORMAL', 'Initializing isotopes...')
 h1 = Isotope('H-1')
-b10 = Isotope('B-10')
 o16 = Isotope('O-16')
 u235 = Isotope('U-235')
 u238 = Isotope('U-238')
-zr90 = Isotope('Zr-90')    
 
 
 ###############################################################################
 ##############################  Create Materials ##############################
 ###############################################################################
-
-py_printf('INFO', 'Initializing fuel-moderator mix material...')
+    
+py_printf('NORMAL', 'Initializing fuel-moderator mix material...')
 mix = Material('Fuel Moderator Mix')
 mix.setDensity(5., 'g/cc')
-mix.addIsotope(b10, .0000001)
 mix.addIsotope(o16, 1.0)
 mix.addIsotope(h1, 1.0)
 mix.addIsotope(u238, 0.01)
 mix.addIsotope(u235, .0025)
-mix.addIsotope(zr90, .16)
 
 
 ###############################################################################
 ###############################  Create Regions ###############################
 ###############################################################################
 
-py_printf('INFO', 'Initializing fuel-moderator mix region...')
-region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'infinite medium')
+py_printf('NORMAL', 'Initializing fuel-moderator mix region...')
+region_mix = RegionFactory.createRegion(INFINITE_MEDIUM)
 region_mix.setMaterial(mix)
 
 
@@ -69,54 +56,37 @@ region_mix.setMaterial(mix)
 ###############################  Create Geometry ##############################
 ###############################################################################
 
-py_printf('INFO', 'Initializing the geometry...')
+py_printf('NORMAL', 'Initializing the geometry...')
 geometry = Geometry(INFINITE_HOMOGENEOUS)
 geometry.addRegion(region_mix)
-geometry.setNumBatches(num_batches)
-geometry.setNeutronsPerBatch(num_neutrons_per_batch)
+
 
 ###############################################################################
 ################################  Create Tallies ##############################
 ###############################################################################
-
-py_printf('INFO', 'Initializing flux tally...')
-flux = TallyFactory.createTally(region_mix, FLUX)
-flux.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC) 
     
-# Register the tallies
-TallyBank.registerTally(flux)
+py_printf('NORMAL', 'Initializing tally...')
+group_rate = TallyFactory.createTally(region_mix, GROUP_TO_GROUP_RATE, \
+                                          'group rate')
+group_rate.generateBinEdges(1E-2, 1E7, 5, LOGARITHMIC)
+TallyBank.registerTally(group_rate)
 
 
 ###############################################################################
 #########################  Run Monte Carlo Simulation #########################
 ###############################################################################
 
-runtimes = numpy.zeros(12)
-threads = numpy.linspace(1,12,12)
-
-# Run simulation with 1-12 threads
-for num_threads in threads: 
-
-    geometry.setNumThreads(int(num_threads))
-
-    # Run Monte Carlo simulation
-    start_time = time.time()
-    geometry.runMonteCarloSimulation();
-    end_time = time.time()
-    runtimes[num_threads-1] = (end_time - start_time)
+# Run Monte Carlo simulation
+geometry.runMonteCarloSimulation()
 
 
 ###############################################################################
 ############################  Process Output Data #############################
 ###############################################################################
+    
+py_printf('INFO', 'Writing tally batch statistics to output file...')
+TallyBank.outputBatchStatistics()
+group_rate.printTallies()
 
-# Plot the runtime vs. thread count
-fig = plt.figure()
-plt.plot(threads, runtimes)
-plt.title('Strong Scaling: Runtime vs. Thread Count')
-plt.xlabel('# Threads')
-plt.ylabel('Runtime [sec]')
-plt.grid()
-plt.savefig(getOutputDirectory() + '/threadscaling.png')
-
-py_printf('HEADER', 'Finished')
+    
+py_printf('TITLE', 'Finished')

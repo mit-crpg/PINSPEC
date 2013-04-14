@@ -15,6 +15,7 @@
     #include "src/Neutron.h"
     #include "src/Fissioner.h"
     #include "src/log.h"
+    #include "src/vector.h"
     #include "src/xsreader.h"
     #include "src/Timer.h"
 
@@ -94,5 +95,6 @@
 %include src/Neutron.h
 %include src/Fissioner.h
 %include src/log.h
+%include src/vector.h
 %include src/xsreader.h
 %include src/Timer.h

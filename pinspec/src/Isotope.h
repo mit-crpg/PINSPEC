@@ -28,6 +28,7 @@
 #include "arraycreator.h"
 #include "xsreader.h"
 #include "log.h"
+#include "vector.h"
 #include "Neutron.h"
 #endif
 
@@ -43,6 +44,11 @@ private:
     char* _isotope_name;
     /** Atomic number */
     int _A;
+    /** Atomic number squared (an optimization for speedup) */
+    int _A_squared;
+    /** Atomic number plus one squared (an optimization for speeup):
+     *  \f$ (A+1)^2 \f$ */
+    int _A_plus_one_squared;
     /** \f$ \alpha = \left(\frac{A-1}{A+1}\right)^2\f$ */
     float _alpha;
     /** \f$ \eta = \left(\frac{A+1}{2\sqrt{A}}\right)^2 \f$ */
@@ -117,6 +123,8 @@ private:
 
     /** Whether or not to use thermal scattering */
     bool _use_thermal_scattering;
+    /** The high energy cutoff for the thermal scattering treatment (eV) */
+    float _thermal_cutoff;
     /** Boltzmann's constant */
     float _kB;
     /** The number of thermal scattering CDFs */
@@ -161,6 +169,7 @@ public:
     float getTemperature() const;
     float getMuAverage() const;
     bool isFissionable() const;
+    float getThermalScatteringCutoff();
 
     int getNumXSEnergies(char* xs_type) const;
 
@@ -206,6 +215,7 @@ public:
     void setA(int A);
     void setTemperature(float T);
     void neglectThermalScattering();
+    void setThermalScatteringCutoff(float cutoff_energy);
     void useThermalScattering();
 
     Isotope* clone();

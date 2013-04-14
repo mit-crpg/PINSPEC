@@ -28,8 +28,17 @@ char* Surface::getSurfaceName() {
 
 
 /**
- * @brief Returns this Surface's boundary type.
- * @details Returns the Surface's boundary type which can be REFLECTIVE, VACUUM, 
+ * @brief Returns this surface's type (XPLANE, YPLANE, CIRCLE, etc.)
+ * @returns Surface type
+ */
+surfaceType Surface::getSurfaceType() const {
+    return _surface_type;
+}
+
+
+/**
+ * @brief Returns this surface's boundary type.
+ * @details Returns the surface's boundary type which can be REFLECTIVE, VACUUM, 
  *          or INTERFACE.
  * @return Surface boundary type
  */
@@ -136,6 +145,22 @@ bool XPlane::onSurface(neutron* neutron) {
 }
 
 
+/**
+ * @brief Perfectly reflects a neutron at a xplane.
+ * @param neutron the neutron of interest
+ */
+void XPlane::reflectNeutron(neutron* neutron) {
+    /* If the neutron's azimuthal angle is less than pi */
+    if (neutron->_phi < M_PI)
+        neutron->_phi = M_PI - neutron->_phi;
+    else
+        neutron->_phi = 3.0*M_PI - neutron->_phi;
+
+    /* Reverse the x-component of the velocity vector */
+    neutron->_u *= -1.0;
+}
+
+
 
 /******************************************************************************
  *****************************   YPlane   *************************************
@@ -224,6 +249,23 @@ bool YPlane::onSurface(neutron* neutron) {
     return false;
 }
 
+
+
+/**
+ * @brief Perfectly reflects a neutron at a yplane.
+ * @param neutron the neutron of interest
+ */
+void YPlane::reflectNeutron(neutron* neutron) {
+
+    /* If the neutron's azimuthal angle is less than pi */
+    if (neutron->_phi < M_PI)
+        neutron->_phi = 2.0* M_PI - neutron->_phi;
+    else
+        neutron->_phi = 2.0*M_PI - neutron->_phi;
+
+    /* Reverse the x-component of the velocity vector */
+    neutron->_v *= -1.0;
+}
 
 
 /******************************************************************************
@@ -387,4 +429,44 @@ bool Circle::onSurface(neutron* neutron) {
         return true;
     else
         return false;
+}
+
+
+/**
+ * @brief Perfectly reflects a neutron at a circle.
+ * @param neutron the neutron of interest
+ */
+void Circle::reflectNeutron(neutron* neutron) {
+
+    /* Compute the vector normal to the circle at the intersection point of the
+     * neutron's trajectory and the circle */
+    float x1 = neutron->_x - _x0;
+    float y1 = neutron->_y - _y0;
+   
+    /* Compute the unit vector of the neutron's trajectory */
+    float u = neutron->_u;
+    float v = neutron->_v;
+
+    /* Compute the angle between the two vectors at the reflection point on 
+     *the circle's surface */
+    float theta = acos(dotProduct2D(x1, y1, u, v) 
+			/ (norm2D(x1, y1) * norm2D(u, v)));
+
+    /* Reflect the particle around the vector normal to the circle surface */
+    float rotation_angle = M_PI - 2.0 * theta;
+    neutron->_phi += rotation_angle;
+
+    /* Correct for reflected angles outside of the intervale [0, 2pi] */
+    if (neutron->_phi > 2.0 * M_PI)
+        neutron->_phi -= 2.0 * M_PI;
+    else if (neutron->_phi < 0.0)
+        neutron->_phi += 2.0 * M_PI;
+
+    /* Update the neutron's trajectory vector using the 2D rotation matrix */
+    neutron->_u = neutron->_u * cos(rotation_angle) -
+                  neutron->_v * sin(rotation_angle);
+    neutron->_v = neutron->_u * sin(rotation_angle) +
+                  neutron->_v * cos(rotation_angle);
+
+    return;
 }

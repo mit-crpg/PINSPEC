@@ -10,6 +10,7 @@
 
 #include <limits>
 #include <math.h>
+#include "vector.h"
 #include "Neutron.h"
 
 /** \f$ \frac{\pi}{2}\f$ */
@@ -19,7 +20,7 @@
 /** \f$ 2\pi \f$ */
 #define TWO_PI 6.28318531
 /** A small move to push a particle across a Surface into a new Region */
-#define TINY_MOVE 1E-3
+#define TINY_MOVE 1E-5
 
 
 /**
@@ -81,8 +82,9 @@ public:
     virtual ~Surface();
 
     char* getSurfaceName();
+    
     boundaryType getBoundaryType() const;
-
+    surfaceType getSurfaceType() const;
     void setBoundaryType(boundaryType type);
 
     /**
@@ -110,6 +112,15 @@ public:
      * @param neutron the neutron of interest
      */
     virtual bool onSurface(neutron* neutron) =0;
+
+    /**
+     * @brief Perfectly reflects a neutron at the surface for REFLECTIVE
+     *        boundary conditions.
+     * @details This virtual class method must be implemented for each
+     *          surface type to be used in a PINSPEC simulation.
+     * @param neutron the neutron of interest
+     */
+    virtual void reflectNeutron(neutron* neutron) =0;
 };
 
 
@@ -131,6 +142,7 @@ public:
     float evaluate(neutron* neutron);
     float computeNearestDistance(neutron* neutron);
     bool onSurface(neutron* neutron);
+    void reflectNeutron(neutron* neutron);
 };
 
 
@@ -152,6 +164,7 @@ public:
     float evaluate(neutron* neutron);
     float computeNearestDistance(neutron* neutron);
     bool onSurface(neutron* neutron);
+    void reflectNeutron(neutron* neutron);
 };
 
 
@@ -183,6 +196,7 @@ public:
     float evaluate(neutron* neutron);
     float computeNearestDistance(neutron* neutron);
     bool onSurface(neutron* neutron);
+    void reflectNeutron(neutron* neutron);
 };
 
 #endif /* SURFACE_H_ */

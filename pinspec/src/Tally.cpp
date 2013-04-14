@@ -735,7 +735,8 @@ void Tally::setNumBatches(int num_batches) {
 
     /* Throw a special case for group-to-group scattering and out scattering */
     /* Basically we want the array to be long enough to hold a matrix */
-    if ((_tally_type == GROUP_RATE) || (_tally_type == OUT_RATE))
+    if ((_tally_type == GROUP_TO_GROUP_RATE) || 
+	(_tally_type == OUTSCATTER_RATE))
 	_num_bins = _num_bins * _num_bins;
 
     /* Set all tallies to zero by default */
@@ -906,9 +907,9 @@ void Tally::tallyGroup(neutron* neutron, double weight) {
 
     int nb = floor(sqrt(_num_bins));
 
-    if (_tally_type == GROUP_RATE)
+    if (_tally_type == GROUP_TO_GROUP_RATE)
 	bin_index = old_index * nb  + new_index;
-    else if (_tally_type == OUT_RATE) {
+    else if (_tally_type == OUTSCATTER_RATE) {
 	if (old_index == new_index)
 	    return;
 	else
@@ -1081,12 +1082,12 @@ void Tally::outputBatchStatistics(const char* filename) {
     else if (_tally_type == ELASTIC_RATE)
         fprintf(output_file, "Tally type: ELASTIC_RATE Scattering Reaction "
 		"Rate\n");
-    else if (_tally_type == GROUP_RATE)
-	fprintf(output_file, "Tally type: GROUP_RATE Group-to-group Scattering"
-		" Reaction Rate\n");
-    else if (_tally_type == OUT_RATE)
-	fprintf(output_file, "Tally type: OUT_RATE Outter Scattering Reaction "
-		"Rate\n");
+    else if (_tally_type == GROUP_TO_GROUP_RATE)
+	fprintf(output_file, "Tally type: GROUP_TO_GROUP_RATE "
+		"Group-to-group Scattering Reaction Rate\n");
+    else if (_tally_type == OUTSCATTER_RATE)
+	fprintf(output_file, "Tally type: OUTSCATTER_RATE Out-scattering "
+		"Reaction Rate\n");
     else if (_tally_type == ABSORPTION_RATE)
         fprintf(output_file, "Tally type: ABSORPTION_RATE Reaction Rate\n");
     else if (_tally_type == CAPTURE_RATE)
@@ -1120,7 +1121,8 @@ void Tally::outputBatchStatistics(const char* filename) {
         fprintf(output_file, "User-defined bins\n");
 
     /* Loop over each bin and print mu, var, std dev and rel err */
-    if ((_tally_type == GROUP_RATE) || (_tally_type == OUT_RATE)) {
+    if ((_tally_type == GROUP_TO_GROUP_RATE) || 
+	(_tally_type == OUTSCATTER_RATE)) {
 
 	/* FIXME: For some reason _num_bins here is squared of what we expect */
 	int nb = floor(sqrt(sqrt(_num_bins)));
@@ -2867,9 +2869,9 @@ Tally* createTally(Isotope* isotope, tallyType tally_type,
 	return new IsotopeCollisionRateTally(isotope, tally_name);
     else if (tally_type == ELASTIC_RATE)
 	return new IsotopeElasticRateTally(isotope, tally_name);
-    else if (tally_type == GROUP_RATE)
+    else if (tally_type == GROUP_TO_GROUP_RATE)
 	return new IsotopeGroupRateTally(isotope, tally_name);
-    else if (tally_type == OUT_RATE)
+    else if (tally_type == OUTSCATTER_RATE)
 	return new IsotopeOutScatterRateTally(isotope, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new IsotopeAbsorptionRateTally(isotope, tally_name);
@@ -2908,9 +2910,9 @@ Tally* createTally(Material* material, tallyType tally_type,
         return new MaterialCollisionRateTally(material, tally_name);
     else if (tally_type == ELASTIC_RATE)
         return new MaterialElasticRateTally(material, tally_name);
-    else if (tally_type == GROUP_RATE)
+    else if (tally_type == GROUP_TO_GROUP_RATE)
 	return new MaterialGroupRateTally(material,tally_name);
-    else if (tally_type == OUT_RATE)
+    else if (tally_type == OUTSCATTER_RATE)
 	return new MaterialOutScatterRateTally(material, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new MaterialAbsorptionRateTally(material, tally_name);
@@ -2949,9 +2951,9 @@ Tally* createTally(Region* region, tallyType tally_type,
         return new RegionCollisionRateTally(region, tally_name);
     else if (tally_type == ELASTIC_RATE)
         return new RegionElasticRateTally(region, tally_name);
-    else if (tally_type == GROUP_RATE)
+    else if (tally_type == GROUP_TO_GROUP_RATE)
 	return new RegionGroupRateTally(region, tally_name);
-    else if (tally_type == OUT_RATE)
+    else if (tally_type == OUTSCATTER_RATE)
 	return new RegionOutScatterRateTally(region, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new RegionAbsorptionRateTally(region, tally_name);
@@ -2990,9 +2992,9 @@ Tally* createTally(Geometry* geometry, tallyType tally_type,
         return new GeometryCollisionRateTally(geometry, tally_name);
     else if (tally_type == ELASTIC_RATE)
         return new GeometryElasticRateTally(geometry, tally_name);
-    else if (tally_type == GROUP_RATE)
+    else if (tally_type == GROUP_TO_GROUP_RATE)
 	return new GeometryGroupRateTally(geometry, tally_name);
-    else if (tally_type == OUT_RATE)
+    else if (tally_type == OUTSCATTER_RATE)
 	return new GeometryOutScatterRateTally(geometry, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new GeometryAbsorptionRateTally(geometry, tally_name);

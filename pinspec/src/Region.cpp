@@ -8,9 +8,16 @@
 Region::Region(const char* region_name) {
     _region_name = (char*)region_name;
     _material = NULL;
-     _volume = 1.0;
+    _volume = 1.0;
     _buckling_squared = 0.0;
 }
+
+
+/**
+ * @brief Destructor lets SWIG delete the materials and isotopes during 
+ *        garbage collection.
+ */
+Region::~Region() { }
 
 
 /**
@@ -353,7 +360,6 @@ void Region::setVolume(float volume) {
  */
 void Region::setMaterial(Material* material) {
     _material = material;
-    _material->incrementVolume(_volume);
 }
 
 
@@ -369,6 +375,11 @@ void Region::setBucklingSquared(float buckling_squared) {
 }
 
 
+
+/*******************************************************************************
+ *****************************  Infinite Medium Region  ************************
+ ******************************************************************************/
+
 /**
  * @brief InfiniteMediumRegion constructor.
  * @details Sets defaults for the geometric parameters to 0.
@@ -376,7 +387,7 @@ void Region::setBucklingSquared(float buckling_squared) {
  */
 InfiniteMediumRegion::InfiniteMediumRegion(const char* region_name):  
     Region(region_name) {
-    _region_type = INFINITE_MEDIUM;
+        _region_type = INFINITE_MEDIUM;
 }
 
 
@@ -393,23 +404,34 @@ void InfiniteMediumRegion::collideNeutron(neutron* neutron) {
 			" collide neutron", _region_name);
 
     /* Collide the neutron in the Region's Material */
-    neutron->_material = _material;
     _material->collideNeutron(neutron);
+    neutron->_path_length = 1.0 / neutron->_total_xs;
 
     return;
 }
 
 
+
+/*******************************************************************************
+ ************ Heterogeneous-Homogeneous Equivalence Theory Region  *************
+ ******************************************************************************/
+
 /**
  * @brief EquivalenceRegion constructor.
- * @details Sets defaults for the geometric parameters to 0.
+ * @details Sets defaults for the geometric parameters: fuel radius (0.45 cm),
+ *          pitch (1.26 cm).
  * @param region_type the type of equivalence region (ie, EQUIVALENT_FUEL)
  * @param region_name the name of the region 
  */
 EquivalenceRegion::EquivalenceRegion(regionType region_type, 
 				     const char* region_name): 
     Region(region_name) {
-    _region_type = region_type;
+        _region_type = region_type;
+        _fuel_radius = 0.0;
+        _pitch = 0.0;
+        _half_width = 0.0;
+        _other_region = NULL;
+        _num_prob = 0;
 }
 
 /**
@@ -427,6 +449,31 @@ float EquivalenceRegion::getFuelPinRadius() {
  */
 float EquivalenceRegion::getPinCellPitch() {
     return _pitch;
+}
+
+
+
+/**
+ * @brief This method returns the index for a certain lethargy (log10(eV)) into
+ *        the uniform lethargy grid of the region's first flight
+ *        collision probabilies.
+ * @details The index is for the closest lethargy which is greater than or
+ *          equal to the input lethargy.
+ * @param lethargy the lethargy (log10(eV)) of interest
+ * @return the index into the uniform lethargy grid
+ */
+int EquivalenceRegion::getEnergyGridIndex(float lethargy) {
+
+    int index;
+
+    if (lethargy > _end_lethargy)
+        index = _num_prob - 1;
+    else if (lethargy < _start_lethargy)
+        index = 0;
+    else
+        index = int(floor((lethargy - _start_lethargy) / _delta_lethargy));
+
+    return index;
 }
 
 
@@ -455,6 +502,62 @@ bool EquivalenceRegion::isModerator() {
 
 
 /**
+ * @brief Sets the first flight collision probabilities.
+ * @details Sets the first flight collision (fuel-to-fuel and
+ *        moderator-to-fuel) at each of the energies for which the
+ *        isotope cross-sections are defined on a uniform lethargy grid.
+ *        The first flight collison probabilities are computed by the
+ *        geometry and set at the beginning of each PINSPEC simulation.
+ * @param prob_ff an array of fuel-to-fuel collision probabilities
+ * @param prob_mf an array of moderator-to-fuel collision probabilities
+ * @param prob_energies an array of energies for which the first flight
+ *        collision probabilities are defined
+ * @param num_prob the number of first flight collision probabilities
+ */
+void EquivalenceRegion::setFirstFlightCollProb(float* prob_ff, float* prob_mf, 
+					 float* prob_energies, int num_prob) {
+    _prob_ff = prob_ff;
+    _prob_mf = prob_mf;
+    _prob_energies = prob_energies;
+    _num_prob = num_prob;
+
+    _start_lethargy = log10(_prob_energies[0]);
+    _end_lethargy = log10(_prob_energies[_num_prob-1]);
+    _delta_lethargy = (_end_lethargy - _start_lethargy) / _num_prob;
+}
+
+
+/**
+ * @brief Sets other region for a homogeneous equivalence region.
+ * @details If this region is an EQUIVALENT_FUEL region, the other region
+ *          must be EQUIVALENT_MODERATOR region type. If this region is an
+ *          EQUIVALENT_MODERATOR region, the other region must be
+ *          EQUIVALENT_FUEL region type.
+ * @param region the other region
+ */
+void EquivalenceRegion::setOtherRegion(EquivalenceRegion* region) {
+  if (_region_type == EQUIVALENT_FUEL && 
+        region->getRegionType() == EQUIVALENT_FUEL)
+            log_printf(ERROR, "Unable to add an EQUIVALENT_FUEL region %s to "
+	       "region %s which is also an EQUIVALENT_FUEL region type",
+	       region->getRegionName(), _region_name);
+    if (_region_type == EQUIVALENT_MODERATOR && 
+        region->getRegionType() == EQUIVALENT_MODERATOR)
+            log_printf(ERROR, "Unable to add an EQUIVALENT_MODERATOR region "
+	       "%s to region %s which is also an EQUIVALENT_MODERATOR region "
+	       "type", region->getRegionName(), _region_name);
+    if (region->getRegionType() != EQUIVALENT_MODERATOR && 
+        region->getRegionType() != EQUIVALENT_FUEL)
+            log_printf(ERROR, "Unable to add region %s which is of %d region "
+		"type to region %s since it is not a homogeneous equivalent "
+		 "region", region->getRegionName(), region->getRegionType(), 
+		       _region_name);
+
+    _other_region = region;
+}
+
+
+/**
  * @brief Sets the fuel radius if the region.
  * @param radius the fuel pin radius (cm)
  */
@@ -467,10 +570,10 @@ void EquivalenceRegion::setFuelPinRadius(float radius) {
             _volume = _pitch * _pitch - M_PI * _fuel_radius * _fuel_radius;
         else
             _volume = M_PI * _fuel_radius * _fuel_radius;
-    }
 
-    if (_material != NULL)
-        _material->incrementVolume(_volume);
+        if (_material != NULL)
+            _material->incrementVolume(_volume);
+    }
 }
 
 
@@ -494,6 +597,65 @@ void EquivalenceRegion::setPinCellPitch(float pitch) {
     }
 }
 
+
+/**
+ * @brief Finds the first flight fuel-to-fuel collision probability
+ *        for a neutron.
+ * @details Uses linear interpolation to compute the first flight
+ *          fuel-to-fuel collision probabilty at a neutron's energy
+ *          using the region's first flight collision probability table.
+ * @param neutron the neutron of interest
+ * @return the first flight fuel-to-fuel collision probability
+ */
+float EquivalenceRegion::computeFuelFuelCollsionProb(neutron* neutron) {
+
+    /* Find the index into the first flight collision probabilities array -
+     * this index is for the nearest energy less than or equal to the
+     * neutron's energy */
+    float lethargy = log10(neutron->_energy);
+    int lower_index = getEnergyGridIndex(lethargy);
+
+    /* Use linear interpolation for the probability */
+    float lower_prob_ff = _prob_ff[lower_index];
+    float upper_prob_ff = _prob_ff[lower_index + 1];
+    float delta_prob_ff = upper_prob_ff - lower_prob_ff;
+    float slope = delta_prob_ff / _delta_lethargy;
+    float lower_lethargy = _start_lethargy + _delta_lethargy * lower_index;
+    float prob_ff =  lower_prob_ff + slope * (lethargy - lower_lethargy); 
+
+    return prob_ff;
+}
+
+
+/**
+ * @brief Finds the first flight moderator-to-fuel collision probability
+ *        for a neutron.
+ * @details Uses linear interpolation to compute the first flight
+ *          moderator-to-fuel collision probabilty at a neutron's energy
+ *          using the region's first flight collision probability table.
+ * @param neutron the neutron of interest
+ * @return the first flight moderator-to-fuel collision probability
+ */
+float EquivalenceRegion::computeModeratorFuelCollisionProb(neutron* neutron) {
+
+    /* Find the index into the first flight collision probabilities array -
+     * this index is for the nearest energy less than or equal to the
+     * neutron's energy */
+    float lethargy = log10(neutron->_energy);
+    int lower_index = getEnergyGridIndex(lethargy);
+
+    /* Use linear interpolation for the probability */
+    float lower_prob_mf = _prob_mf[lower_index];
+    float upper_prob_mf = _prob_mf[lower_index + 1];
+    float delta_prob_mf = upper_prob_mf - lower_prob_mf;
+    float slope = delta_prob_mf / _delta_lethargy;
+    float lower_lethargy = _start_lethargy + _delta_lethargy * lower_index;
+    float prob_mf =  lower_prob_mf + slope * (lethargy - lower_lethargy); 
+
+    return prob_mf;
+}
+
+
 /**
  * @brief This method collides a neutron within the region.
  * @details This method encapsulates all of the neutron scattering physics
@@ -502,22 +664,48 @@ void EquivalenceRegion::setPinCellPitch(float pitch) {
  */
 void EquivalenceRegion::collideNeutron(neutron* neutron) {
 
-    if (_material == NULL)
-        log_printf(ERROR, "Region %s must have material to"
-			" collide neutron", _region_name);
+    float test = float(rand()) / (float)RAND_MAX;
 
-    /* Collide the neutron in the Region's Material */
-    neutron->_material = _material;
-    _material->collideNeutron(neutron);
+    /* If the neutron is in the fuel */
+    if (_region_type == EQUIVALENT_FUEL) {
+
+        float prob_ff = computeFuelFuelCollsionProb(neutron);
+
+        /* If the test is larger than prob_ff, move to moderator */
+        if (test > prob_ff) {
+	    neutron->_region = _other_region;
+            _other_region->getMaterial()->collideNeutron(neutron);
+	}
+        /* Otherwise collide the neutron in the fuel's material */
+        else
+            _material->collideNeutron(neutron);
+
+        neutron->_path_length = 1.0 / neutron->_total_xs;
+    }
+
+    /* If the neutron is in the moderator */
+    else {
+
+        float prob_mf = computeModeratorFuelCollisionProb(neutron);
+
+        /* If the test is larger than prob_mf, move to fuel */
+        if (test < prob_mf) {
+	    neutron->_region = _other_region;
+            _other_region->getMaterial()->collideNeutron(neutron);
+	}
+        /* Otherwise collide the neutron in the moderator's material */
+        else
+	    _material->collideNeutron(neutron);
+
+        neutron->_path_length = 1.0 / neutron->_total_xs;
+    }
 
     return;
 }
 
 
-
 /**
  * @brief BoundedRegion constructor.
- * @details Sets defaults for the geometric parameters to 0.
  * @param region_name the name of the region 
  */
 BoundedRegion::BoundedRegion(const char* region_name): Region(region_name) { }
@@ -606,6 +794,35 @@ bool BoundedRegion::onBoundary(neutron* neutron) {
 }
 
 
+
+/**
+ * @brief This method computes the distance along a neutron's trajectory
+ *        to the nearest bounding surface for this REgion.
+ * @param neutron the neutron of interest
+ */
+float BoundedRegion::computeDistanceToSurface(neutron* neutron) {
+
+    float min_dist = std::numeric_limits<float>::infinity();
+    float curr_dist;
+
+    /* Loop over and query all bounding surfaces */
+    std::vector< std::pair<int, Surface*> >::iterator iter;
+    for (iter = _surfaces.begin(); iter != _surfaces.end(); ++iter) {
+
+        curr_dist = (*iter).second->computeNearestDistance(neutron);
+
+	/* If the distance to this surface is the least found thus far,
+	 * update minimum distance found */
+        if (curr_dist < min_dist) {
+	    min_dist = curr_dist;
+	    neutron->_surface = (*iter).second;
+	}
+    }
+
+    return min_dist;
+}
+
+
 /**
  * @brief This method collides a neutron within the region.
  * @details This method encapsulates all of the neutron scattering physics
@@ -618,9 +835,65 @@ void BoundedRegion::collideNeutron(neutron* neutron) {
         log_printf(ERROR, "Region %s must have material to"
 			" collide neutron", _region_name);
 
-    /* Collide the neutron in the Region's Material */
-    neutron->_material = _material;
-    _material->collideNeutron(neutron);
+    float path_length = _material->sampleDistanceTraveled(neutron);
+    float surface_dist = computeDistanceToSurface(neutron);
+    float theta = acos(neutron->_mu);
+
+    /* The neutron collided within this region */
+    if (path_length < surface_dist) {
+
+        neutron->_path_length = path_length;
+
+        /* Update the neutron's location */
+        neutron->_x += path_length * cos(neutron->_phi) * sin(theta);
+        neutron->_y += path_length * sin(neutron->_phi) * sin(theta);
+        neutron->_z += path_length * neutron->_mu;
+
+	/* Sample a collision type and update the neutron's energy 
+	 *  and direction vector */
+        _material->collideNeutron(neutron);
+    }
+
+    /* The neutron crossed a bounding surface for this region */
+    else {
+
+        path_length = surface_dist;
+        neutron->_path_length = path_length;
+
+        /* The neutron crossed an INTERFACE type surface, so we "bump" 
+	 * it across the surface with a tiny "nudge" */
+        if (neutron->_surface->getBoundaryType() == INTERFACE) {
+
+            path_length += TINY_MOVE;
+            
+            /* Update the neutron's location */
+            neutron->_x += path_length * cos(neutron->_phi) * sin(theta);
+            neutron->_y += path_length * sin(neutron->_phi) * sin(theta);
+            neutron->_z += path_length * neutron->_mu;
+	}
+
+        /* The neutron crossed a REFLECTIVE boundary, so we move it the 
+	 * boundary and reflect its direction of travel */
+        else if (neutron->_surface->getBoundaryType() == REFLECTIVE) {
+
+            /* Update the neutron's location to the intersection point
+	     * on the surface */
+            neutron->_x += path_length * cos(neutron->_phi) * sin(theta);
+            neutron->_y += path_length * sin(neutron->_phi) * sin(theta);
+            neutron->_z += path_length * neutron->_mu;
+
+	    /* Update the neutron's trajectory vectory */
+	    neutron->_surface->reflectNeutron(neutron);
+        }
+
+        /* The neutron crossed a VACUUM boundary surface so we kill it */
+        else {
+            
+	    //FIXME: Should leakage across VACUUM boundaries affect tallies?
+	    /* Kill the neutron */
+	    neutron->_alive = false;
+        }
+    }
 
     return;
 }
@@ -628,12 +901,11 @@ void BoundedRegion::collideNeutron(neutron* neutron) {
 
 /**
  * @brief BoundedFuelRegion constructor.
- * @details Sets defaults for the geometric parameters to 0.
  * @param region_name the name of the region 
  */
 BoundedFuelRegion::BoundedFuelRegion(const char* region_name):  
     BoundedRegion(region_name) {
-    _region_type = BOUNDED_FUEL;
+        _region_type = BOUNDED_FUEL;
 }
 
 
@@ -642,22 +914,22 @@ BoundedFuelRegion::BoundedFuelRegion(const char* region_name):
  * @details This method clones the fuel region into many different equal
  *          area rings each defined by their own bounding circular surfaces.
  * @param num_rings the number of ring regions to subdivide the fuel pin into
- *
+ * 
  */
 void BoundedFuelRegion::ringify(int num_rings) {
+    log_printf(ERROR, "Ringify is not yet implemented for BOUNDED_FUEL type "
+	       "regions.");
     return;
 }
 
 
 /**
  * @brief BoundedModeratorRegion constructor.
- * @details Sets defaults for the geometric parameters to 0.
  * @param region_name the name of the region 
  */
-BoundedModeratorRegion::BoundedModeratorRegion(const char* 
-					       region_name):  
+BoundedModeratorRegion::BoundedModeratorRegion(const char* region_name):  
     BoundedRegion(region_name) {
-    _region_type = BOUNDED_MODERATOR;
+        _region_type = BOUNDED_MODERATOR;
 }
 
 
@@ -669,17 +941,17 @@ BoundedModeratorRegion::BoundedModeratorRegion(const char*
  *
  */
 void BoundedModeratorRegion::ringify(int num_rings) {
+    log_printf(ERROR, "Ringify is not yet implemented for BOUNDED_MODERATOR "
+	       "type regions.");
     return;
 }
 
 
-
 /**
  * @brief BoundedGeneralRegion constructor.
- * @details Sets defaults for the geometric parameters to 0.
  * @param region_name the name of the region 
  */
 BoundedGeneralRegion::BoundedGeneralRegion(const char* region_name):
     BoundedRegion(region_name) {
-    _region_type = BOUNDED_GENERAL;
+        _region_type = BOUNDED_GENERAL;
 }

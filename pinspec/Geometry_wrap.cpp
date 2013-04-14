@@ -3155,6 +3155,7 @@ namespace swig {
     #include "src/Neutron.h"
     #include "src/Fissioner.h"
     #include "src/log.h"
+    #include "src/vector.h"
     #include "src/xsreader.h"
     #include "src/Timer.h"
 
@@ -4205,6 +4206,76 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Geometry_getSourceSamplingRadius(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Geometry_getSourceSamplingRadius",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_getSourceSamplingRadius" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  {
+    try {
+      result = (float)(arg1)->getSourceSamplingRadius();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Geometry_setSourceSamplingRadius(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Geometry_setSourceSamplingRadius",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_setSourceSamplingRadius" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Geometry_setSourceSamplingRadius" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      (arg1)->setSourceSamplingRadius(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Geometry_setNeutronsPerBatch(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Geometry *arg1 = (Geometry *) 0 ;
@@ -4572,6 +4643,45 @@ SWIGINTERN PyObject *_wrap_Geometry_runMonteCarloSimulation(PyObject *SWIGUNUSED
   {
     try {
       (arg1)->runMonteCarloSimulation();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Geometry_initializeSourceNeutron(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Geometry *arg1 = (Geometry *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Geometry_initializeSourceNeutron",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Geometry, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Geometry_initializeSourceNeutron" "', argument " "1"" of type '" "Geometry *""'"); 
+  }
+  arg1 = reinterpret_cast< Geometry * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Geometry_initializeSourceNeutron" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->initializeSourceNeutron(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -6914,6 +7024,46 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_EquivalenceRegion_getEnergyGridIndex(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  EquivalenceRegion *arg1 = (EquivalenceRegion *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:EquivalenceRegion_getEnergyGridIndex",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_EquivalenceRegion, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "EquivalenceRegion_getEnergyGridIndex" "', argument " "1"" of type '" "EquivalenceRegion *""'"); 
+  }
+  arg1 = reinterpret_cast< EquivalenceRegion * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "EquivalenceRegion_getEnergyGridIndex" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      result = (int)(arg1)->getEnergyGridIndex(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_EquivalenceRegion_isFuel(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   EquivalenceRegion *arg1 = (EquivalenceRegion *) 0 ;
@@ -6970,6 +7120,111 @@ SWIGINTERN PyObject *_wrap_EquivalenceRegion_isModerator(PyObject *SWIGUNUSEDPAR
     }
   }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_EquivalenceRegion_setFirstFlightCollProb(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  EquivalenceRegion *arg1 = (EquivalenceRegion *) 0 ;
+  float *arg2 = (float *) 0 ;
+  float *arg3 = (float *) 0 ;
+  float *arg4 = (float *) 0 ;
+  int arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOO:EquivalenceRegion_setFirstFlightCollProb",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_EquivalenceRegion, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "EquivalenceRegion_setFirstFlightCollProb" "', argument " "1"" of type '" "EquivalenceRegion *""'"); 
+  }
+  arg1 = reinterpret_cast< EquivalenceRegion * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_float, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "EquivalenceRegion_setFirstFlightCollProb" "', argument " "2"" of type '" "float *""'"); 
+  }
+  arg2 = reinterpret_cast< float * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_float, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "EquivalenceRegion_setFirstFlightCollProb" "', argument " "3"" of type '" "float *""'"); 
+  }
+  arg3 = reinterpret_cast< float * >(argp3);
+  res4 = SWIG_ConvertPtr(obj3, &argp4,SWIGTYPE_p_float, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "EquivalenceRegion_setFirstFlightCollProb" "', argument " "4"" of type '" "float *""'"); 
+  }
+  arg4 = reinterpret_cast< float * >(argp4);
+  ecode5 = SWIG_AsVal_int(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "EquivalenceRegion_setFirstFlightCollProb" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  {
+    try {
+      (arg1)->setFirstFlightCollProb(arg2,arg3,arg4,arg5);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_EquivalenceRegion_setOtherRegion(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  EquivalenceRegion *arg1 = (EquivalenceRegion *) 0 ;
+  EquivalenceRegion *arg2 = (EquivalenceRegion *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:EquivalenceRegion_setOtherRegion",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_EquivalenceRegion, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "EquivalenceRegion_setOtherRegion" "', argument " "1"" of type '" "EquivalenceRegion *""'"); 
+  }
+  arg1 = reinterpret_cast< EquivalenceRegion * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_EquivalenceRegion, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "EquivalenceRegion_setOtherRegion" "', argument " "2"" of type '" "EquivalenceRegion *""'"); 
+  }
+  arg2 = reinterpret_cast< EquivalenceRegion * >(argp2);
+  {
+    try {
+      (arg1)->setOtherRegion(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -7048,6 +7303,86 @@ SWIGINTERN PyObject *_wrap_EquivalenceRegion_setPinCellPitch(PyObject *SWIGUNUSE
     }
   }
   resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_EquivalenceRegion_computeFuelFuelCollsionProb(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  EquivalenceRegion *arg1 = (EquivalenceRegion *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:EquivalenceRegion_computeFuelFuelCollsionProb",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_EquivalenceRegion, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "EquivalenceRegion_computeFuelFuelCollsionProb" "', argument " "1"" of type '" "EquivalenceRegion *""'"); 
+  }
+  arg1 = reinterpret_cast< EquivalenceRegion * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "EquivalenceRegion_computeFuelFuelCollsionProb" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      result = (float)(arg1)->computeFuelFuelCollsionProb(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_EquivalenceRegion_computeModeratorFuelCollisionProb(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  EquivalenceRegion *arg1 = (EquivalenceRegion *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:EquivalenceRegion_computeModeratorFuelCollisionProb",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_EquivalenceRegion, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "EquivalenceRegion_computeModeratorFuelCollisionProb" "', argument " "1"" of type '" "EquivalenceRegion *""'"); 
+  }
+  arg1 = reinterpret_cast< EquivalenceRegion * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "EquivalenceRegion_computeModeratorFuelCollisionProb" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      result = (float)(arg1)->computeModeratorFuelCollisionProb(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
   return NULL;
@@ -7387,6 +7722,46 @@ SWIGINTERN PyObject *_wrap_BoundedRegion_onBoundary(PyObject *SWIGUNUSEDPARM(sel
     }
   }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BoundedRegion_computeDistanceToSurface(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BoundedRegion *arg1 = (BoundedRegion *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:BoundedRegion_computeDistanceToSurface",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BoundedRegion, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BoundedRegion_computeDistanceToSurface" "', argument " "1"" of type '" "BoundedRegion *""'"); 
+  }
+  arg1 = reinterpret_cast< BoundedRegion * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "BoundedRegion_computeDistanceToSurface" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      result = (float)(arg1)->computeDistanceToSurface(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
   return NULL;
@@ -8186,6 +8561,37 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Surface_getSurfaceType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Surface *arg1 = (Surface *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  surfaceType result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Surface_getSurfaceType",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Surface, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Surface_getSurfaceType" "', argument " "1"" of type '" "Surface const *""'"); 
+  }
+  arg1 = reinterpret_cast< Surface * >(argp1);
+  {
+    try {
+      result = (surfaceType)((Surface const *)arg1)->getSurfaceType();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Surface_setBoundaryType(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Surface *arg1 = (Surface *) 0 ;
@@ -8339,6 +8745,45 @@ SWIGINTERN PyObject *_wrap_Surface_onSurface(PyObject *SWIGUNUSEDPARM(self), PyO
     }
   }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Surface_reflectNeutron(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Surface *arg1 = (Surface *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Surface_reflectNeutron",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Surface, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Surface_reflectNeutron" "', argument " "1"" of type '" "Surface *""'"); 
+  }
+  arg1 = reinterpret_cast< Surface * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Surface_reflectNeutron" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->reflectNeutron(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -8659,6 +9104,45 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_XPlane_reflectNeutron(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  XPlane *arg1 = (XPlane *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:XPlane_reflectNeutron",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_XPlane, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "XPlane_reflectNeutron" "', argument " "1"" of type '" "XPlane *""'"); 
+  }
+  arg1 = reinterpret_cast< XPlane * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "XPlane_reflectNeutron" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->reflectNeutron(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *XPlane_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
@@ -8967,6 +9451,45 @@ SWIGINTERN PyObject *_wrap_YPlane_onSurface(PyObject *SWIGUNUSEDPARM(self), PyOb
     }
   }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_YPlane_reflectNeutron(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  YPlane *arg1 = (YPlane *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:YPlane_reflectNeutron",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_YPlane, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "YPlane_reflectNeutron" "', argument " "1"" of type '" "YPlane *""'"); 
+  }
+  arg1 = reinterpret_cast< YPlane * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "YPlane_reflectNeutron" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->reflectNeutron(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -9421,6 +9944,45 @@ SWIGINTERN PyObject *_wrap_Circle_onSurface(PyObject *SWIGUNUSEDPARM(self), PyOb
     }
   }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Circle_reflectNeutron(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Circle *arg1 = (Circle *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Circle_reflectNeutron",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Circle, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Circle_reflectNeutron" "', argument " "1"" of type '" "Circle *""'"); 
+  }
+  arg1 = reinterpret_cast< Circle * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Circle_reflectNeutron" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      (arg1)->reflectNeutron(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -9943,6 +10505,37 @@ SWIGINTERN PyObject *_wrap_Isotope_isFissionable(PyObject *SWIGUNUSEDPARM(self),
     }
   }
   resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_getThermalScatteringCutoff(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Isotope_getThermalScatteringCutoff",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_getThermalScatteringCutoff" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  {
+    try {
+      result = (float)(arg1)->getThermalScatteringCutoff();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
   return NULL;
@@ -11656,6 +12249,45 @@ SWIGINTERN PyObject *_wrap_Isotope_neglectThermalScattering(PyObject *SWIGUNUSED
   {
     try {
       (arg1)->neglectThermalScattering();
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Isotope_setThermalScatteringCutoff(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Isotope *arg1 = (Isotope *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Isotope_setThermalScatteringCutoff",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Isotope, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Isotope_setThermalScatteringCutoff" "', argument " "1"" of type '" "Isotope *""'"); 
+  }
+  arg1 = reinterpret_cast< Isotope * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Isotope_setThermalScatteringCutoff" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  {
+    try {
+      (arg1)->setThermalScatteringCutoff(arg2);
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -14669,6 +15301,46 @@ SWIGINTERN PyObject *_wrap_Material_clone(PyObject *SWIGUNUSEDPARM(self), PyObje
     }
   }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Material_sampleDistanceTraveled(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Material *arg1 = (Material *) 0 ;
+  neutron *arg2 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:Material_sampleDistanceTraveled",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Material, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Material_sampleDistanceTraveled" "', argument " "1"" of type '" "Material *""'"); 
+  }
+  arg1 = reinterpret_cast< Material * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Material_sampleDistanceTraveled" "', argument " "2"" of type '" "neutron *""'"); 
+  }
+  arg2 = reinterpret_cast< neutron * >(argp2);
+  {
+    try {
+      result = (float)(arg1)->sampleDistanceTraveled(arg2);
+    } catch (const std::runtime_error &e) {
+      SWIG_exception(SWIG_RuntimeError, err_occurred());
+      return NULL;
+    } catch (const std::exception &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what()); 
+    }
+  }
+  resultobj = SWIG_From_float(static_cast< float >(result));
   return resultobj;
 fail:
   return NULL;
@@ -29557,6 +30229,474 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_neutron__energy_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__energy_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__energy_set" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__energy_set" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  if (arg1) (arg1)->_energy = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__energy_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:neutron__energy_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__energy_get" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  result = (float) ((arg1)->_energy);
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__old_energy_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__old_energy_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__old_energy_set" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__old_energy_set" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  if (arg1) (arg1)->_old_energy = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__old_energy_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:neutron__old_energy_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__old_energy_get" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  result = (float) ((arg1)->_old_energy);
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__collided_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__collided_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__collided_set" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__collided_set" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  if (arg1) (arg1)->_collided = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__collided_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:neutron__collided_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__collided_get" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  result = (bool) ((arg1)->_collided);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__total_xs_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__total_xs_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__total_xs_set" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__total_xs_set" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  if (arg1) (arg1)->_total_xs = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__total_xs_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:neutron__total_xs_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__total_xs_get" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  result = (float) ((arg1)->_total_xs);
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__path_length_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  float arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  float val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__path_length_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__path_length_set" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  ecode2 = SWIG_AsVal_float(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__path_length_set" "', argument " "2"" of type '" "float""'");
+  } 
+  arg2 = static_cast< float >(val2);
+  if (arg1) (arg1)->_path_length = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__path_length_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  float result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:neutron__path_length_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__path_length_get" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  result = (float) ((arg1)->_path_length);
+  resultobj = SWIG_From_float(static_cast< float >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__alive_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__alive_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__alive_set" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__alive_set" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  if (arg1) (arg1)->_alive = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__alive_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:neutron__alive_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__alive_get" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  result = (bool) ((arg1)->_alive);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__region_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  Region *arg2 = (Region *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__region_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__region_set" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Region, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "neutron__region_set" "', argument " "2"" of type '" "Region *""'"); 
+  }
+  arg2 = reinterpret_cast< Region * >(argp2);
+  if (arg1) (arg1)->_region = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__region_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Region *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:neutron__region_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__region_get" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  result = (Region *) ((arg1)->_region);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Region, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__material_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  Material *arg2 = (Material *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__material_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__material_set" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Material, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "neutron__material_set" "', argument " "2"" of type '" "Material *""'"); 
+  }
+  arg2 = reinterpret_cast< Material * >(argp2);
+  if (arg1) (arg1)->_material = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__material_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Material *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:neutron__material_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__material_get" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  result = (Material *) ((arg1)->_material);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__isotope_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  Isotope *arg2 = (Isotope *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__isotope_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__isotope_set" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Isotope, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "neutron__isotope_set" "', argument " "2"" of type '" "Isotope *""'"); 
+  }
+  arg2 = reinterpret_cast< Isotope * >(argp2);
+  if (arg1) (arg1)->_isotope = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_neutron__isotope_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  neutron *arg1 = (neutron *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Isotope *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:neutron__isotope_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__isotope_get" "', argument " "1"" of type '" "neutron *""'"); 
+  }
+  arg1 = reinterpret_cast< neutron * >(argp1);
+  result = (Isotope *) ((arg1)->_isotope);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Isotope, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_neutron__x_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   neutron *arg1 = (neutron *) 0 ;
@@ -29973,114 +31113,10 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_neutron__energy_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_neutron__surface_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   neutron *arg1 = (neutron *) 0 ;
-  float arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  float val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__energy_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__energy_set" "', argument " "1"" of type '" "neutron *""'"); 
-  }
-  arg1 = reinterpret_cast< neutron * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__energy_set" "', argument " "2"" of type '" "float""'");
-  } 
-  arg2 = static_cast< float >(val2);
-  if (arg1) (arg1)->_energy = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_neutron__energy_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  neutron *arg1 = (neutron *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  float result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:neutron__energy_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__energy_get" "', argument " "1"" of type '" "neutron *""'"); 
-  }
-  arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (float) ((arg1)->_energy);
-  resultobj = SWIG_From_float(static_cast< float >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_neutron__alive_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  neutron *arg1 = (neutron *) 0 ;
-  bool arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  bool val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__alive_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__alive_set" "', argument " "1"" of type '" "neutron *""'"); 
-  }
-  arg1 = reinterpret_cast< neutron * >(argp1);
-  ecode2 = SWIG_AsVal_bool(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__alive_set" "', argument " "2"" of type '" "bool""'");
-  } 
-  arg2 = static_cast< bool >(val2);
-  if (arg1) (arg1)->_alive = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_neutron__alive_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  neutron *arg1 = (neutron *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  bool result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:neutron__alive_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__alive_get" "', argument " "1"" of type '" "neutron *""'"); 
-  }
-  arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (bool) ((arg1)->_alive);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_neutron__region_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  neutron *arg1 = (neutron *) 0 ;
-  Region *arg2 = (Region *) 0 ;
+  Surface *arg2 = (Surface *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -30088,18 +31124,18 @@ SWIGINTERN PyObject *_wrap_neutron__region_set(PyObject *SWIGUNUSEDPARM(self), P
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__region_set",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__surface_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__region_set" "', argument " "1"" of type '" "neutron *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__surface_set" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Region, SWIG_POINTER_DISOWN |  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Surface, SWIG_POINTER_DISOWN |  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "neutron__region_set" "', argument " "2"" of type '" "Region *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "neutron__surface_set" "', argument " "2"" of type '" "Surface *""'"); 
   }
-  arg2 = reinterpret_cast< Region * >(argp2);
-  if (arg1) (arg1)->_region = arg2;
+  arg2 = reinterpret_cast< Surface * >(argp2);
+  if (arg1) (arg1)->_surface = arg2;
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -30107,230 +31143,22 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_neutron__region_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_neutron__surface_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   neutron *arg1 = (neutron *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  Region *result = 0 ;
+  Surface *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:neutron__region_get",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:neutron__surface_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__region_get" "', argument " "1"" of type '" "neutron *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__surface_get" "', argument " "1"" of type '" "neutron *""'"); 
   }
   arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (Region *) ((arg1)->_region);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Region, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_neutron__material_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  neutron *arg1 = (neutron *) 0 ;
-  Material *arg2 = (Material *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__material_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__material_set" "', argument " "1"" of type '" "neutron *""'"); 
-  }
-  arg1 = reinterpret_cast< neutron * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Material, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "neutron__material_set" "', argument " "2"" of type '" "Material *""'"); 
-  }
-  arg2 = reinterpret_cast< Material * >(argp2);
-  if (arg1) (arg1)->_material = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_neutron__material_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  neutron *arg1 = (neutron *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Material *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:neutron__material_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__material_get" "', argument " "1"" of type '" "neutron *""'"); 
-  }
-  arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (Material *) ((arg1)->_material);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Material, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_neutron__isotope_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  neutron *arg1 = (neutron *) 0 ;
-  Isotope *arg2 = (Isotope *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__isotope_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__isotope_set" "', argument " "1"" of type '" "neutron *""'"); 
-  }
-  arg1 = reinterpret_cast< neutron * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Isotope, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "neutron__isotope_set" "', argument " "2"" of type '" "Isotope *""'"); 
-  }
-  arg2 = reinterpret_cast< Isotope * >(argp2);
-  if (arg1) (arg1)->_isotope = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_neutron__isotope_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  neutron *arg1 = (neutron *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Isotope *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:neutron__isotope_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__isotope_get" "', argument " "1"" of type '" "neutron *""'"); 
-  }
-  arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (Isotope *) ((arg1)->_isotope);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Isotope, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_neutron__old_energy_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  neutron *arg1 = (neutron *) 0 ;
-  float arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  float val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__old_energy_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__old_energy_set" "', argument " "1"" of type '" "neutron *""'"); 
-  }
-  arg1 = reinterpret_cast< neutron * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__old_energy_set" "', argument " "2"" of type '" "float""'");
-  } 
-  arg2 = static_cast< float >(val2);
-  if (arg1) (arg1)->_old_energy = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_neutron__old_energy_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  neutron *arg1 = (neutron *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  float result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:neutron__old_energy_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__old_energy_get" "', argument " "1"" of type '" "neutron *""'"); 
-  }
-  arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (float) ((arg1)->_old_energy);
-  resultobj = SWIG_From_float(static_cast< float >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_neutron__total_xs_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  neutron *arg1 = (neutron *) 0 ;
-  float arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  float val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:neutron__total_xs_set",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__total_xs_set" "', argument " "1"" of type '" "neutron *""'"); 
-  }
-  arg1 = reinterpret_cast< neutron * >(argp1);
-  ecode2 = SWIG_AsVal_float(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "neutron__total_xs_set" "', argument " "2"" of type '" "float""'");
-  } 
-  arg2 = static_cast< float >(val2);
-  if (arg1) (arg1)->_total_xs = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_neutron__total_xs_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  neutron *arg1 = (neutron *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  float result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:neutron__total_xs_get",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_neutron, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "neutron__total_xs_get" "', argument " "1"" of type '" "neutron *""'"); 
-  }
-  arg1 = reinterpret_cast< neutron * >(argp1);
-  result = (float) ((arg1)->_total_xs);
-  resultobj = SWIG_From_float(static_cast< float >(result));
+  result = (Surface *) ((arg1)->_surface);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Surface, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -30396,14 +31224,14 @@ SWIGINTERN PyObject *neutron_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObje
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_initializeNewNeutron(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_createNewNeutron(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   neutron *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)":initializeNewNeutron")) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)":createNewNeutron")) SWIG_fail;
   {
     try {
-      result = (neutron *)initializeNewNeutron();
+      result = (neutron *)createNewNeutron();
     } catch (const std::runtime_error &e) {
       SWIG_exception(SWIG_RuntimeError, err_occurred());
       return NULL;
@@ -31910,6 +32738,8 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Geometry_getSpatialType", _wrap_Geometry_getSpatialType, METH_VARARGS, NULL},
 	 { (char *)"Geometry_getBucklingSquared", _wrap_Geometry_getBucklingSquared, METH_VARARGS, NULL},
 	 { (char *)"Geometry_getVolume", _wrap_Geometry_getVolume, METH_VARARGS, NULL},
+	 { (char *)"Geometry_getSourceSamplingRadius", _wrap_Geometry_getSourceSamplingRadius, METH_VARARGS, NULL},
+	 { (char *)"Geometry_setSourceSamplingRadius", _wrap_Geometry_setSourceSamplingRadius, METH_VARARGS, NULL},
 	 { (char *)"Geometry_setNeutronsPerBatch", _wrap_Geometry_setNeutronsPerBatch, METH_VARARGS, NULL},
 	 { (char *)"Geometry_setNumBatches", _wrap_Geometry_setNumBatches, METH_VARARGS, NULL},
 	 { (char *)"Geometry_setNumThreads", _wrap_Geometry_setNumThreads, METH_VARARGS, NULL},
@@ -31920,6 +32750,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Geometry_addRegion", _wrap_Geometry_addRegion, METH_VARARGS, NULL},
 	 { (char *)"Geometry_setBucklingSquared", _wrap_Geometry_setBucklingSquared, METH_VARARGS, NULL},
 	 { (char *)"Geometry_runMonteCarloSimulation", _wrap_Geometry_runMonteCarloSimulation, METH_VARARGS, NULL},
+	 { (char *)"Geometry_initializeSourceNeutron", _wrap_Geometry_initializeSourceNeutron, METH_VARARGS, NULL},
 	 { (char *)"Geometry_swigregister", Geometry_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_Region", _wrap_delete_Region, METH_VARARGS, NULL},
 	 { (char *)"Region_getRegionName", _wrap_Region_getRegionName, METH_VARARGS, NULL},
@@ -31953,10 +32784,15 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_EquivalenceRegion", _wrap_delete_EquivalenceRegion, METH_VARARGS, NULL},
 	 { (char *)"EquivalenceRegion_getFuelPinRadius", _wrap_EquivalenceRegion_getFuelPinRadius, METH_VARARGS, NULL},
 	 { (char *)"EquivalenceRegion_getPinCellPitch", _wrap_EquivalenceRegion_getPinCellPitch, METH_VARARGS, NULL},
+	 { (char *)"EquivalenceRegion_getEnergyGridIndex", _wrap_EquivalenceRegion_getEnergyGridIndex, METH_VARARGS, NULL},
 	 { (char *)"EquivalenceRegion_isFuel", _wrap_EquivalenceRegion_isFuel, METH_VARARGS, NULL},
 	 { (char *)"EquivalenceRegion_isModerator", _wrap_EquivalenceRegion_isModerator, METH_VARARGS, NULL},
+	 { (char *)"EquivalenceRegion_setFirstFlightCollProb", _wrap_EquivalenceRegion_setFirstFlightCollProb, METH_VARARGS, NULL},
+	 { (char *)"EquivalenceRegion_setOtherRegion", _wrap_EquivalenceRegion_setOtherRegion, METH_VARARGS, NULL},
 	 { (char *)"EquivalenceRegion_setFuelPinRadius", _wrap_EquivalenceRegion_setFuelPinRadius, METH_VARARGS, NULL},
 	 { (char *)"EquivalenceRegion_setPinCellPitch", _wrap_EquivalenceRegion_setPinCellPitch, METH_VARARGS, NULL},
+	 { (char *)"EquivalenceRegion_computeFuelFuelCollsionProb", _wrap_EquivalenceRegion_computeFuelFuelCollsionProb, METH_VARARGS, NULL},
+	 { (char *)"EquivalenceRegion_computeModeratorFuelCollisionProb", _wrap_EquivalenceRegion_computeModeratorFuelCollisionProb, METH_VARARGS, NULL},
 	 { (char *)"EquivalenceRegion_collideNeutron", _wrap_EquivalenceRegion_collideNeutron, METH_VARARGS, NULL},
 	 { (char *)"EquivalenceRegion_swigregister", EquivalenceRegion_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_BoundedRegion", _wrap_new_BoundedRegion, METH_VARARGS, NULL},
@@ -31965,6 +32801,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"BoundedRegion_removeBoundingSurface", _wrap_BoundedRegion_removeBoundingSurface, METH_VARARGS, NULL},
 	 { (char *)"BoundedRegion_contains", _wrap_BoundedRegion_contains, METH_VARARGS, NULL},
 	 { (char *)"BoundedRegion_onBoundary", _wrap_BoundedRegion_onBoundary, METH_VARARGS, NULL},
+	 { (char *)"BoundedRegion_computeDistanceToSurface", _wrap_BoundedRegion_computeDistanceToSurface, METH_VARARGS, NULL},
 	 { (char *)"BoundedRegion_collideNeutron", _wrap_BoundedRegion_collideNeutron, METH_VARARGS, NULL},
 	 { (char *)"BoundedRegion_swigregister", BoundedRegion_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_BoundedFuelRegion", _wrap_new_BoundedFuelRegion, METH_VARARGS, NULL},
@@ -31985,10 +32822,12 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_Surface", _wrap_delete_Surface, METH_VARARGS, NULL},
 	 { (char *)"Surface_getSurfaceName", _wrap_Surface_getSurfaceName, METH_VARARGS, NULL},
 	 { (char *)"Surface_getBoundaryType", _wrap_Surface_getBoundaryType, METH_VARARGS, NULL},
+	 { (char *)"Surface_getSurfaceType", _wrap_Surface_getSurfaceType, METH_VARARGS, NULL},
 	 { (char *)"Surface_setBoundaryType", _wrap_Surface_setBoundaryType, METH_VARARGS, NULL},
 	 { (char *)"Surface_evaluate", _wrap_Surface_evaluate, METH_VARARGS, NULL},
 	 { (char *)"Surface_computeNearestDistance", _wrap_Surface_computeNearestDistance, METH_VARARGS, NULL},
 	 { (char *)"Surface_onSurface", _wrap_Surface_onSurface, METH_VARARGS, NULL},
+	 { (char *)"Surface_reflectNeutron", _wrap_Surface_reflectNeutron, METH_VARARGS, NULL},
 	 { (char *)"Surface_swigregister", Surface_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_XPlane", _wrap_new_XPlane, METH_VARARGS, NULL},
 	 { (char *)"delete_XPlane", _wrap_delete_XPlane, METH_VARARGS, NULL},
@@ -31997,6 +32836,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"XPlane_evaluate", _wrap_XPlane_evaluate, METH_VARARGS, NULL},
 	 { (char *)"XPlane_computeNearestDistance", _wrap_XPlane_computeNearestDistance, METH_VARARGS, NULL},
 	 { (char *)"XPlane_onSurface", _wrap_XPlane_onSurface, METH_VARARGS, NULL},
+	 { (char *)"XPlane_reflectNeutron", _wrap_XPlane_reflectNeutron, METH_VARARGS, NULL},
 	 { (char *)"XPlane_swigregister", XPlane_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_YPlane", _wrap_new_YPlane, METH_VARARGS, NULL},
 	 { (char *)"delete_YPlane", _wrap_delete_YPlane, METH_VARARGS, NULL},
@@ -32005,6 +32845,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"YPlane_evaluate", _wrap_YPlane_evaluate, METH_VARARGS, NULL},
 	 { (char *)"YPlane_computeNearestDistance", _wrap_YPlane_computeNearestDistance, METH_VARARGS, NULL},
 	 { (char *)"YPlane_onSurface", _wrap_YPlane_onSurface, METH_VARARGS, NULL},
+	 { (char *)"YPlane_reflectNeutron", _wrap_YPlane_reflectNeutron, METH_VARARGS, NULL},
 	 { (char *)"YPlane_swigregister", YPlane_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Circle", _wrap_new_Circle, METH_VARARGS, NULL},
 	 { (char *)"delete_Circle", _wrap_delete_Circle, METH_VARARGS, NULL},
@@ -32017,6 +32858,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Circle_evaluate", _wrap_Circle_evaluate, METH_VARARGS, NULL},
 	 { (char *)"Circle_computeNearestDistance", _wrap_Circle_computeNearestDistance, METH_VARARGS, NULL},
 	 { (char *)"Circle_onSurface", _wrap_Circle_onSurface, METH_VARARGS, NULL},
+	 { (char *)"Circle_reflectNeutron", _wrap_Circle_reflectNeutron, METH_VARARGS, NULL},
 	 { (char *)"Circle_swigregister", Circle_swigregister, METH_VARARGS, NULL},
 	 { (char *)"delete_SurfaceFactory", _wrap_delete_SurfaceFactory, METH_VARARGS, NULL},
 	 { (char *)"SurfaceFactory_Get", _wrap_SurfaceFactory_Get, METH_VARARGS, NULL},
@@ -32032,6 +32874,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_getTemperature", _wrap_Isotope_getTemperature, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getMuAverage", _wrap_Isotope_getMuAverage, METH_VARARGS, NULL},
 	 { (char *)"Isotope_isFissionable", _wrap_Isotope_isFissionable, METH_VARARGS, NULL},
+	 { (char *)"Isotope_getThermalScatteringCutoff", _wrap_Isotope_getThermalScatteringCutoff, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getNumXSEnergies", _wrap_Isotope_getNumXSEnergies, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getElasticXS", _wrap_Isotope_getElasticXS, METH_VARARGS, NULL},
 	 { (char *)"Isotope_getAbsorptionXS", _wrap_Isotope_getAbsorptionXS, METH_VARARGS, NULL},
@@ -32054,6 +32897,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Isotope_setA", _wrap_Isotope_setA, METH_VARARGS, NULL},
 	 { (char *)"Isotope_setTemperature", _wrap_Isotope_setTemperature, METH_VARARGS, NULL},
 	 { (char *)"Isotope_neglectThermalScattering", _wrap_Isotope_neglectThermalScattering, METH_VARARGS, NULL},
+	 { (char *)"Isotope_setThermalScatteringCutoff", _wrap_Isotope_setThermalScatteringCutoff, METH_VARARGS, NULL},
 	 { (char *)"Isotope_useThermalScattering", _wrap_Isotope_useThermalScattering, METH_VARARGS, NULL},
 	 { (char *)"Isotope_clone", _wrap_Isotope_clone, METH_VARARGS, NULL},
 	 { (char *)"Isotope_sampleCollisionType", _wrap_Isotope_sampleCollisionType, METH_VARARGS, NULL},
@@ -32100,6 +32944,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Material_incrementVolume", _wrap_Material_incrementVolume, METH_VARARGS, NULL},
 	 { (char *)"Material_addIsotope", _wrap_Material_addIsotope, METH_VARARGS, NULL},
 	 { (char *)"Material_clone", _wrap_Material_clone, METH_VARARGS, NULL},
+	 { (char *)"Material_sampleDistanceTraveled", _wrap_Material_sampleDistanceTraveled, METH_VARARGS, NULL},
 	 { (char *)"Material_sampleIsotope", _wrap_Material_sampleIsotope, METH_VARARGS, NULL},
 	 { (char *)"Material_collideNeutron", _wrap_Material_collideNeutron, METH_VARARGS, NULL},
 	 { (char *)"Material_swigregister", Material_swigregister, METH_VARARGS, NULL},
@@ -32396,6 +33241,24 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"TallyFactory_swigregister", TallyFactory_swigregister, METH_VARARGS, NULL},
 	 { (char *)"neutron__batch_num_set", _wrap_neutron__batch_num_set, METH_VARARGS, NULL},
 	 { (char *)"neutron__batch_num_get", _wrap_neutron__batch_num_get, METH_VARARGS, NULL},
+	 { (char *)"neutron__energy_set", _wrap_neutron__energy_set, METH_VARARGS, NULL},
+	 { (char *)"neutron__energy_get", _wrap_neutron__energy_get, METH_VARARGS, NULL},
+	 { (char *)"neutron__old_energy_set", _wrap_neutron__old_energy_set, METH_VARARGS, NULL},
+	 { (char *)"neutron__old_energy_get", _wrap_neutron__old_energy_get, METH_VARARGS, NULL},
+	 { (char *)"neutron__collided_set", _wrap_neutron__collided_set, METH_VARARGS, NULL},
+	 { (char *)"neutron__collided_get", _wrap_neutron__collided_get, METH_VARARGS, NULL},
+	 { (char *)"neutron__total_xs_set", _wrap_neutron__total_xs_set, METH_VARARGS, NULL},
+	 { (char *)"neutron__total_xs_get", _wrap_neutron__total_xs_get, METH_VARARGS, NULL},
+	 { (char *)"neutron__path_length_set", _wrap_neutron__path_length_set, METH_VARARGS, NULL},
+	 { (char *)"neutron__path_length_get", _wrap_neutron__path_length_get, METH_VARARGS, NULL},
+	 { (char *)"neutron__alive_set", _wrap_neutron__alive_set, METH_VARARGS, NULL},
+	 { (char *)"neutron__alive_get", _wrap_neutron__alive_get, METH_VARARGS, NULL},
+	 { (char *)"neutron__region_set", _wrap_neutron__region_set, METH_VARARGS, NULL},
+	 { (char *)"neutron__region_get", _wrap_neutron__region_get, METH_VARARGS, NULL},
+	 { (char *)"neutron__material_set", _wrap_neutron__material_set, METH_VARARGS, NULL},
+	 { (char *)"neutron__material_get", _wrap_neutron__material_get, METH_VARARGS, NULL},
+	 { (char *)"neutron__isotope_set", _wrap_neutron__isotope_set, METH_VARARGS, NULL},
+	 { (char *)"neutron__isotope_get", _wrap_neutron__isotope_get, METH_VARARGS, NULL},
 	 { (char *)"neutron__x_set", _wrap_neutron__x_set, METH_VARARGS, NULL},
 	 { (char *)"neutron__x_get", _wrap_neutron__x_get, METH_VARARGS, NULL},
 	 { (char *)"neutron__y_set", _wrap_neutron__y_set, METH_VARARGS, NULL},
@@ -32412,24 +33275,12 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"neutron__mu_get", _wrap_neutron__mu_get, METH_VARARGS, NULL},
 	 { (char *)"neutron__phi_set", _wrap_neutron__phi_set, METH_VARARGS, NULL},
 	 { (char *)"neutron__phi_get", _wrap_neutron__phi_get, METH_VARARGS, NULL},
-	 { (char *)"neutron__energy_set", _wrap_neutron__energy_set, METH_VARARGS, NULL},
-	 { (char *)"neutron__energy_get", _wrap_neutron__energy_get, METH_VARARGS, NULL},
-	 { (char *)"neutron__alive_set", _wrap_neutron__alive_set, METH_VARARGS, NULL},
-	 { (char *)"neutron__alive_get", _wrap_neutron__alive_get, METH_VARARGS, NULL},
-	 { (char *)"neutron__region_set", _wrap_neutron__region_set, METH_VARARGS, NULL},
-	 { (char *)"neutron__region_get", _wrap_neutron__region_get, METH_VARARGS, NULL},
-	 { (char *)"neutron__material_set", _wrap_neutron__material_set, METH_VARARGS, NULL},
-	 { (char *)"neutron__material_get", _wrap_neutron__material_get, METH_VARARGS, NULL},
-	 { (char *)"neutron__isotope_set", _wrap_neutron__isotope_set, METH_VARARGS, NULL},
-	 { (char *)"neutron__isotope_get", _wrap_neutron__isotope_get, METH_VARARGS, NULL},
-	 { (char *)"neutron__old_energy_set", _wrap_neutron__old_energy_set, METH_VARARGS, NULL},
-	 { (char *)"neutron__old_energy_get", _wrap_neutron__old_energy_get, METH_VARARGS, NULL},
-	 { (char *)"neutron__total_xs_set", _wrap_neutron__total_xs_set, METH_VARARGS, NULL},
-	 { (char *)"neutron__total_xs_get", _wrap_neutron__total_xs_get, METH_VARARGS, NULL},
+	 { (char *)"neutron__surface_set", _wrap_neutron__surface_set, METH_VARARGS, NULL},
+	 { (char *)"neutron__surface_get", _wrap_neutron__surface_get, METH_VARARGS, NULL},
 	 { (char *)"new_neutron", _wrap_new_neutron, METH_VARARGS, NULL},
 	 { (char *)"delete_neutron", _wrap_delete_neutron, METH_VARARGS, NULL},
 	 { (char *)"neutron_swigregister", neutron_swigregister, METH_VARARGS, NULL},
-	 { (char *)"initializeNewNeutron", _wrap_initializeNewNeutron, METH_VARARGS, NULL},
+	 { (char *)"createNewNeutron", _wrap_createNewNeutron, METH_VARARGS, NULL},
 	 { (char *)"new_Fissioner", _wrap_new_Fissioner, METH_VARARGS, NULL},
 	 { (char *)"delete_Fissioner", _wrap_delete_Fissioner, METH_VARARGS, NULL},
 	 { (char *)"Fissioner_getNumBins", _wrap_Fissioner_getNumBins, METH_VARARGS, NULL},
@@ -33859,7 +34710,7 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "PI_OVER_TWO",SWIG_From_double(static_cast< double >(1.57079633)));
   SWIG_Python_SetConstant(d, "THREE_PI_OVER_TWO",SWIG_From_double(static_cast< double >(4.71238898)));
   SWIG_Python_SetConstant(d, "TWO_PI",SWIG_From_double(static_cast< double >(6.28318531)));
-  SWIG_Python_SetConstant(d, "TINY_MOVE",SWIG_From_double(static_cast< double >(1E-3)));
+  SWIG_Python_SetConstant(d, "TINY_MOVE",SWIG_From_double(static_cast< double >(1E-5)));
   SWIG_Python_SetConstant(d, "XPLANE",SWIG_From_int(static_cast< int >(XPLANE)));
   SWIG_Python_SetConstant(d, "YPLANE",SWIG_From_int(static_cast< int >(YPLANE)));
   SWIG_Python_SetConstant(d, "CIRCLE",SWIG_From_int(static_cast< int >(CIRCLE)));
@@ -33884,8 +34735,8 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, "COLLISION_RATE",SWIG_From_int(static_cast< int >(COLLISION_RATE)));
   SWIG_Python_SetConstant(d, "INTERCOLLISION_TIME",SWIG_From_int(static_cast< int >(INTERCOLLISION_TIME)));
   SWIG_Python_SetConstant(d, "ELASTIC_RATE",SWIG_From_int(static_cast< int >(ELASTIC_RATE)));
-  SWIG_Python_SetConstant(d, "GROUP_RATE",SWIG_From_int(static_cast< int >(GROUP_RATE)));
-  SWIG_Python_SetConstant(d, "OUT_RATE",SWIG_From_int(static_cast< int >(OUT_RATE)));
+  SWIG_Python_SetConstant(d, "GROUP_TO_GROUP_RATE",SWIG_From_int(static_cast< int >(GROUP_TO_GROUP_RATE)));
+  SWIG_Python_SetConstant(d, "OUTSCATTER_RATE",SWIG_From_int(static_cast< int >(OUTSCATTER_RATE)));
   SWIG_Python_SetConstant(d, "ABSORPTION_RATE",SWIG_From_int(static_cast< int >(ABSORPTION_RATE)));
   SWIG_Python_SetConstant(d, "CAPTURE_RATE",SWIG_From_int(static_cast< int >(CAPTURE_RATE)));
   SWIG_Python_SetConstant(d, "FISSION_RATE",SWIG_From_int(static_cast< int >(FISSION_RATE)));

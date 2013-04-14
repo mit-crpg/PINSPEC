@@ -3,7 +3,8 @@
 /**
  * @brief Geomtery constructor.
  * @details Sets a default number of neutrons per batch (10,000), number of
- *          batches (10) and number of threads (1).
+ *          batches (10) and number of threads (1). Sets the source sampling
+ *          radius to 10 cm by default.
  */	
 Geometry::Geometry(spatialType spatial_type) {
 
@@ -19,25 +20,37 @@ Geometry::Geometry(spatialType spatial_type) {
     _fuel = NULL;
     _moderator = NULL;
 
-    /* Initialize a fissioner with a fission spectrum and sampling CDF */
-    _fissioner = new Fissioner();
-
     /* Default equivalent geometry parameters */
     _fuel_radius = 0.45;
     _pitch = 1.26;
 
+    /* The default number of first flight collision probabilities is zero */
+    _num_prob = 0;
+
     /* Default for axial leakage is zero */
     _buckling_squared = 0.0;
+   
+    /* Default dancoff factor is non-physical to allow for error checking */
+    _dancoff = -1.0;
+
+    /* Initialize a fissioner with a fission spectrum and sampling CDF */
+    _fissioner = new Fissioner();
+    _source_sampling_radius = 10.0;
 }
 
 
 /**
- * @brief Destructor deletes the Fissioner and lets SWIG delete 
- *        the regions, materials, isotopes and allies during 
- *        garbage collection.
+ * @brief Destructor lets SWIG delete regions, materials, isotopes and
+ *        tallies during garbage collection.
  */
-Geometry::~Geometry() {
+Geometry::~Geometry() { 
     delete _fissioner;
+
+    if (_spatial_type == HOMOGENEOUS_EQUIVALENCE && _num_prob > 0) {
+        delete [] _prob_ff;
+        delete [] _prob_mf;
+        delete [] _prob_energies;
+    }
 }
 
 
@@ -110,6 +123,25 @@ float Geometry::getVolume() {
 }
 
 
+/**
+ * @brief Returns the source sampling radius used for rejection sampling of
+ *        random fission emission source sites.
+ * @return the source sampling radius (cm)
+ */
+float Geometry::getSourceSamplingRadius() {
+    return _source_sampling_radius;
+}
+
+
+/**
+ * @brief Sets the source sampling radius used for rejection sampling of
+ *        random fission emission source sites.
+ * @param radius the source sampling radius (cm)
+ */
+void Geometry::setSourceSamplingRadius(float radius) {
+    _source_sampling_radius = radius;
+}
+
 
 /**
  * @brief Sets the square of the geometric buckling for the geometry.
@@ -171,15 +203,14 @@ void Geometry::setPinCellPitch(float pitch) {
  * @param dancoff the dancoff factor
  */
 void Geometry::setDancoffFactor(float dancoff) {
-
-    _dancoff = dancoff;
-
-    /* Two region homogeneous equivalence parameters */
-    float A = (1.0 - dancoff) / dancoff;
-    _sigma_e = 1.0 / (2.0 * _fuel->getFuelPinRadius());
-    _alpha1 = ((5.0*A + 6.0) - sqrt(A*A + 36.0*A + 36.0)) / (2.0*(A+1.0));
-    _alpha2 = ((5.0*A + 6.0) + sqrt(A*A + 36.0*A + 36.0)) / (2.0*(A+1.0));
-    _beta = (((4.0*A + 6.0) / (A + 1.0)) - _alpha1) / (_alpha2 - _alpha1);
+    if (dancoff > 1.0)
+        log_printf(ERROR, "Unable to set a dancoff factor of %f since it is "
+	       "greater than 1.0", dancoff);
+    else if (dancoff < 0.0)
+        log_printf(ERROR, "Unable to set a dancoff factor of %f since it is "
+	       "less than 0.0", dancoff);
+    else
+        _dancoff = dancoff;
 }
 
 
@@ -272,9 +303,82 @@ void Geometry::addRegion(Region* region) {
 		       " region %s", region->getRegionName(), 
 		       _fuel->getRegionName());
     }
+    else if (region->getRegionType() == BOUNDED_GENERAL) {
+        _regions.push_back(static_cast<BoundedRegion*>(region));
+    }
+    else if (region->getRegionType() == BOUNDED_MODERATOR) {
+        _regions.push_back(static_cast<BoundedRegion*>(region));
+    }
+    else if (region->getRegionType() == BOUNDED_FUEL) {
+        _regions.push_back(static_cast<BoundedRegion*>(region));
+    }
     else
         log_printf(ERROR, "Unable to add Region %s since it does not have a"
 		   " Region type", region->getRegionName());
+}
+
+
+
+/**
+ * @brief Finds the region containing a neutron.
+ * @details Finds the region and sets the neutron struct's region pointer 
+ *          to this region. If no region is found, throws exception.
+ *
+ * @param neutron the neutron of interest
+ */
+void Geometry::findContainingRegion(neutron* neutron) {
+
+
+    /* Simpy return if the geometry is infinite or uses 
+     * heterogeneous-homogeneous equivalence theory */
+    if (_spatial_type == INFINITE_HOMOGENEOUS 
+        || _spatial_type == HOMOGENEOUS_EQUIVALENCE)
+            return;
+
+    /* If the geometry is heterogeneous, loop over all regions to find
+     * one which contains this neutron */
+    std::vector<BoundedRegion*>::iterator iter;
+    for (iter = _regions.begin(); iter != _regions.end(); ++iter) {
+        if ((*iter)->contains(neutron)) {
+	    neutron->_region = (*iter);
+            return;
+        }
+    }
+
+    /* If no containing region was found, throw exception */
+    log_printf(ERROR, "Unable to find the region containing neutron at "
+	       "(x,y,z) = (%f,%f,%f)", neutron->_x, neutron->_y, neutron->_z);
+}
+
+
+/**
+ * @brief Determines whether or not the geometry contains this neutron.
+ * @details If the geometry contains this neutron's location, sets the 
+ *          neutron struct's region pointer to this region and returns
+ *          true. If no region is found, returns false.
+ *
+ * @param neutron the neutron of interest
+ */
+bool Geometry::contains(neutron* neutron) {
+
+    /* Simpy return true if the geometry is infinite or uses 
+     * heterogeneous-homogeneous equivalence theory */
+    if (_spatial_type == INFINITE_HOMOGENEOUS 
+        || _spatial_type == HOMOGENEOUS_EQUIVALENCE)
+        return true;
+
+    /* If the geometry is heterogeneous, loop over all regions to find
+     * if any contains this neutron */
+    std::vector<BoundedRegion*>::iterator iter;
+    for (iter = _regions.begin(); iter != _regions.end(); ++iter) {
+        if ((*iter)->contains(neutron)) {
+	    neutron->_region = (*iter);
+            return true;
+        }
+    }
+
+    /* If no containing region was found, return false */
+    return false;
 }
 
 
@@ -288,95 +392,65 @@ void Geometry::addRegion(Region* region) {
  */
 void Geometry::runMonteCarloSimulation() {
 
-    if (_infinite_medium == NULL && _fuel == NULL && _moderator == NULL)
-        log_printf(ERROR, "Unable to run Monte Carlo simulation since the"
-		   " Geometry does not contain any Regions");
+    /*************************************************************************/
+    /****************************  ERROR CHECKING  ***************************/
+    /*************************************************************************/
+    if (_spatial_type == INFINITE_HOMOGENEOUS && _infinite_medium == NULL)
+        log_printf(ERROR, "Unable to run Monte Carlo simulation for an "
+		   "INFINITE_HOMOGENEOUS geometry since it does not contain "
+		   " an INFINITE_MEDIUM type region.");
+    if (_spatial_type == INFINITE_HOMOGENEOUS && 
+	  _infinite_medium->getMaterial() == NULL)
+              log_printf(ERROR, "Unable to run Monte Carlo simulation for an "
+		   "INFINITE_HOMOGENEOUS geometry since the infinite medium "
+                   "region does not contain a material.");
+    if (_spatial_type == HOMOGENEOUS_EQUIVALENCE && _fuel == NULL)
+        log_printf(ERROR, "Unable to run Monte Carlo simulation for a "
+		   "HOMOGENEOUS_EQUIVALENCE geometry since it does not contain "
+		   "an EQUIVALENT_FUEL type region.");
+    if (_spatial_type == HOMOGENEOUS_EQUIVALENCE && _moderator == NULL)
+        log_printf(ERROR, "Unable to run Monte Carlo simulation for a "
+		   "HOMOGENEOUS_EQUIVALENCE geometry since it does not contain "
+		   "an EQUIVALENT_MODERATOR type region.");    
+    if (_spatial_type == HOMOGENEOUS_EQUIVALENCE && 
+	  _fuel->getMaterial() == NULL) 
+              log_printf(ERROR, "Unable to run Monte Carlo simulation for a "
+		   "HOMOGENEOUS_EQUIVALENCE geometry since the fuel "
+                   "region does not contain a material.");
+    if (_spatial_type == HOMOGENEOUS_EQUIVALENCE && 
+	  _moderator->getMaterial() == NULL) 
+              log_printf(ERROR, "Unable to run Monte Carlo simulation for a "
+		   "HOMOGENEOUS_EQUIVALENCE geometry since the moderator "
+                   "region does not contain a material.");
+    if (_spatial_type == HOMOGENEOUS_EQUIVALENCE && _dancoff == -1.0)
+            log_printf(ERROR, "Unable to run a HOMOGENEOUS_EQUIVALENCE type "
+		       "simulation since the dancoff factor has not yet "
+		       "been set for the geometry");
+    if (_spatial_type == HETEROGENEOUS && _regions.size() == 0)
+        log_printf(ERROR, "Unable to run a HETEROGENEOUS type simulation since "
+                   " the geometry does not contain any BOUNDED type regions");
 
+
+    /*************************************************************************/
+    /****************************  SIMULATION SETUP  *************************/
+    /*************************************************************************/
     int start_batch = 0;
     int end_batch = _num_batches;
-    neutron* curr;
+    neutron curr;
     bool precision_triggered = true;
     Timer timer;
     timer.start();
     TallyBank* tally_bank = TallyBank::Get();
 
-    /* Print report to the screen */
-        log_printf(TITLE, "Beginning PINSPEC Monte Carlo Simulation...");
-    log_printf(NORMAL, "# neutrons / batch = %d     # batches = %d     "
-                     "# threads = %d", _num_neutrons_per_batch, 
-                        _num_batches, _num_threads);
-    log_printf(SEPARATOR, "");
-
-    omp_set_num_threads(_num_threads);
-    tally_bank->initializeBatchTallies(_num_batches);
-
-    /*************************************************************************/
-    /************************   INFINITE_HOMOGENEOUS *************************/
-    /*************************************************************************/
-
-    /* If we are running an infinite medium spectral calculation */
-    if (_spatial_type == INFINITE_HOMOGENEOUS){
-
+    if (_spatial_type == INFINITE_HOMOGENEOUS) {
         _infinite_medium->setBucklingSquared(_buckling_squared);
-
-	while (precision_triggered) {
-
-            #pragma omp parallel
-            {
-                #pragma omp for private(curr)
-	        for (int i=start_batch; i < end_batch; i++) {
-
-		    log_printf(INFO, "Thread %d/%d running batch %d", 
-			       omp_get_thread_num()+1, 
-			       omp_get_num_threads(), i);
-
-		    curr = initializeNewNeutron();
-	            curr->_batch_num = i;
-
-		    for (int j=0; j < _num_neutrons_per_batch; j++) {
-
-		        /* Initialize neutron energy [ev] from Watt spectrum */
-		        curr->_energy = _fissioner->emitNeutroneV();
-		        curr->_alive = true;
-		        curr->_region = _infinite_medium;
-			
-			/* While the neutron is still alive, collide it. All
-                         * tallying and collision physics take place within
-			 * the Region, Material, and Isotope classes filling
-                         * the Geometry */
-			while (curr->_alive == true) {
-			    _infinite_medium->collideNeutron(curr);
-			    tally_bank->tally(curr);
-			}
-		    }
-		}
-            }
-
-            tally_bank->computeScaledBatchStatistics(_num_neutrons_per_batch);
-            if (!tally_bank->isPrecisionTriggered())
-                precision_triggered = false;
-            else {
-                tally_bank->incrementNumBatches(_num_batches);
-                start_batch = end_batch;
-                end_batch += _num_batches;                
-            }
-        }
     }
-
-
-
-    /*************************************************************************/
-    /**********************   HOMOGENEOUS_EQUIVALENCE ************************/
-    /*************************************************************************/
-
-    /* If we are running homogeneous equivalence spectral calculation */
     else if (_spatial_type == HOMOGENEOUS_EQUIVALENCE) {
-	
-        /* Check that all necessary parameters have been set */
-        if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
-	    log_printf(ERROR, "Unable to run a HOMOGENEOUS_EQUIVALENCE type "
-		       " simulation since beta, sigma_e, alpha1, or alpha2 for "
-		       " have not yet been set for the geometry");
+        _fuel->setBucklingSquared(_buckling_squared);
+	_moderator->setBucklingSquared(_buckling_squared);
+
+        _fuel->setOtherRegion(_moderator);
+        _moderator->setOtherRegion(_fuel);
 
 	_fuel->setFuelPinRadius(_fuel_radius);
 	_moderator->setFuelPinRadius(_fuel_radius);
@@ -384,242 +458,228 @@ void Geometry::runMonteCarloSimulation() {
 	_fuel->setPinCellPitch(_pitch);
 	_moderator->setPinCellPitch(_pitch);
 
-	_fuel->setBucklingSquared(_buckling_squared);
-        _moderator->setBucklingSquared(_buckling_squared);
         initializeProbModFuelRatios();
+    }
+    else {
+        std::vector<BoundedRegion*>::iterator iter;
+        for (iter = _regions.begin(); iter != _regions.end(); ++iter)
+              (*iter)->setBucklingSquared(_buckling_squared);
+    }
 
-	/* Initialize neutrons from fission spectrum for each thread */
-	/* Loop over batches */
-	/* Loop over neutrons per batch*/		
-	float p_ff;
-	float p_mf;
-	float test;
-       
-        while (precision_triggered) {
-            #pragma omp parallel
-	    {
-                #pragma omp for private(curr, p_ff, p_mf, test)
-	        for (int i=start_batch; i < end_batch; i++) {
-	  
-	            log_printf(INFO, "Thread %d/%d running batch %d", 
-	                      omp_get_thread_num()+1, omp_get_num_threads(), i);
+    tally_bank->initializeBatchTallies(_num_batches);
 
-		    curr = initializeNewNeutron();
-		    curr->_batch_num = i;
-				
-		    for (int j=0; j < _num_neutrons_per_batch; j++) {
+    omp_set_num_threads(_num_threads);
 
-	            /* Initialize neutron's energy [ev] from Watt spectrum */
-	            curr->_energy = _fissioner->emitNeutroneV();
-		    curr->_alive = true;
-		    curr->_region = _fuel;
-			
-		    /* While the neutron is still alive, collide it. All
-		     * tallying and collision physics take place within
-		     * the Region, Material, and Isotope classes filling
-		     * the Geometry */
-		    while (curr->_alive == true) {
-	  
-	                /* Determine if neutron collided in fuel or moderator */
-	                p_ff = computeFuelFuelCollisionProb(curr);
-	                p_mf = computeModeratorFuelCollisionProb(curr);
-	                test = float(rand()) / RAND_MAX;
-	  
-	                /* If the neutron is in the fuel */
-                        if (curr->_region == _fuel) {
-	  
-	                    /* If test is larger than p_ff, move to moderator */
-	                    if (test > p_ff) {
-	                        curr->_region = _moderator;
-		                _moderator->collideNeutron(curr);
-	                    }
-	                    else
-		                _fuel->collideNeutron(curr);
-	                }
-		        /* If the neutron is in the moderator */
-			else {
-	  
-	                   /* If test is larger than p_mf, move to fuel */
-	                   if (test < p_mf) {
-	                       curr->_region = _fuel;
-	                       _fuel->collideNeutron(curr);
-	                   }
-			   else
-			       _moderator->collideNeutron(curr);
-	                }
+    /* Print report to the screen */
+    log_printf(TITLE, "Beginning PINSPEC Monte Carlo Simulation...");
+    log_printf(NORMAL, "# neutrons / batch = %d     # batches = %d     "
+                     "# threads = %d", _num_neutrons_per_batch, 
+                        _num_batches, _num_threads);
+    log_printf(SEPARATOR, "");
 
-		        /* Tally the neutron collision */
-			tally_bank->tally(curr);
-	            }
-	        }
+
+    /*************************************************************************/
+    /*************************   MONTE CARLO KERNEL   ************************/
+    /*************************************************************************/
+
+    while (precision_triggered) {
+
+        #pragma omp parallel
+        {
+            #pragma omp for private(curr)
+            for (int i=start_batch; i < end_batch; i++) {
+
+	        log_printf(INFO, "Thread %d/%d running batch %d", 
+                       omp_get_thread_num()+1, omp_get_num_threads(), i);
+
+                curr._batch_num = i;
+
+                for (int j=0; j < _num_neutrons_per_batch; j++) {
+
+	            /* Initialize new source neutron */
+                    initializeSourceNeutron(&curr);
+                    
+                    /* While the neutron is still alive, collide it. All
+                     * tallying and collision physics take place within
+		     * the region, material, and isotope classes filling
+                     * the geometry */
+                     while (curr._alive == true) {
+                         findContainingRegion(&curr);
+                         curr._region->collideNeutron(&curr);
+                         tally_bank->tally(&curr);
+                    }
+                }
 	    }
 	}
+
+        /* Compute batch statistics for all tallies in this simulation */
         tally_bank->computeScaledBatchStatistics(_num_neutrons_per_batch);
         if (!tally_bank->isPrecisionTriggered())
             precision_triggered = false;
         else {
-	    tally_bank->incrementNumBatches(_num_batches);
-	    start_batch = end_batch;
-	    end_batch += _num_batches;                
-	}
+            tally_bank->incrementNumBatches(_num_batches);
+            start_batch = end_batch;
+            end_batch += _num_batches;                
         }
     }
 
-
-
-    /*************************************************************************/
-    /***************************   HETEROGENEOUS *****************************/
-    /*************************************************************************/
-
-    //TODO: Truly heterogeneous geometry is NOT yet implemented!
-    //The following code is simply to stub out what will become
-    //the heterogeneous monte carlo kernel
-
-    /* If we are running homogeneous equivalence spectral calculation */
-    else if (_spatial_type == HETEROGENEOUS) {
-
-    /* Check that all necessary parameters have been set */
-    if (_beta <= 0 || _sigma_e <= 0 || _alpha1 <= 0 || _alpha2 <= 0)
-        log_printf(ERROR, "Unable to run a HOMOGENEOUS_EQUIVALENCE type "
-	    " simulation since beta, sigma_e, alpha1, or alpha2 for "
-	    " have not yet been set for the geometry");
-
-    /* Initialize neutrons from fission spectrum for each thread */
-    /* Loop over batches */
-    /* Loop over neutrons per batch*/		
-    neutron* curr = initializeNewNeutron();
-
-    while (precision_triggered) {
-        for (int i=start_batch; i < end_batch; i++) {
-	  
-	    log_printf(INFO, "Thread %d/%d running batch %d", 
-	    omp_get_thread_num()+1, omp_get_num_threads(), i);
-
-	    curr->_batch_num = i;
-
-	    for (int j=0; j < _num_neutrons_per_batch; j++) {
-
-	    /* Initialize this neutron's energy [ev] from Watt spectrum */
-	    curr->_energy = _fissioner->emitNeutroneV();
-	    curr->_alive = true;
-			
-	    /* While the neutron is still alive, collide it. All
-	     * tallying and collision physics take place within
-	     * the Region, Material, and Isotope classes filling
-	     * the Geometry */
-	    while (curr->_alive == true) { 
-	        /* Find the region the neutron is currently within */
-	        /* Collide the neutron in the fuel or moderator */
-	            _fuel->collideNeutron(curr);
-	            tally_bank->tally(curr);
-	    }
-	}
-	}
-	tally_bank->computeScaledBatchStatistics(_num_neutrons_per_batch);
-	if (!tally_bank->isPrecisionTriggered())
-	    precision_triggered = false;
-	else {
-	  tally_bank->incrementNumBatches(_num_batches);
-	  start_batch = end_batch;
-	  end_batch += _num_batches;                
-	}
-        }
-
-
-        /* Clone each Tally for each fuel ring */
-        /* Clone each Tally for each moderator ring */
-        /* Initialize neutrons from fission spectrum for each thread */
-        /* Loop over batches */
-        /* Loop over neutrons per batch*/
-        /* Sample distance traveled in 3D */
-        /* Compute new x, y coordinates */
-        /* If neutron is in fuel, check if crossed the boundary of the fuel */
-        /* If neutron is in moderator, check if it crossed into the fuel */
-        /* If neutron stays current region, call region collideNeutron method */
-	}
-
-
-    /* Compute batch statistics for all Tallies in this simulation */
     timer.stop();
+
     log_printf(NORMAL, "PINSPEC simulated %.0f neutrons / sec in %f sec", 
-        _num_neutrons_per_batch * end_batch / timer.getTime(),
-	timer.getTime());
-}
+	    _num_neutrons_per_batch * end_batch / timer.getTime(),
+	    timer.getTime());
+
+    return;
+}	
 
 
 /**
- * @brief Initializes a pre-computed array of moderator to fuel first flight
- *        probability ratios.
- * @details The pre-computaiton of the ratios is an optimization to save time
- *          for the homogeneous-heterogeneous equivalence geometry type.
+ * @brief Initializes a pre-computed array of moderator to first flight
+ *        collsion probabilities using Carlvik's two term rational model.
+ * @details The pre-computaiton of the probabilities is an optimization to 
+ *          save time in the monte carlo kernel for the 
+ *          homogeneous-heterogeneous equivalence geometry type. Each of the
+ *          fuel and moderator equivalence theory regions contains a reference
+ *          to the arrays of first flight collision probabilities in addition
+ *          to the geometery. Everyone (both regions and the geometry)
+ *          reference the same arrays to optimize cache performance. The
+ *          geometry is in charge of deleting the memory for the arrays at
+ *          the end of the simulation.
  */
 void Geometry::initializeProbModFuelRatios() {
+
+    /* Two region homogeneous equivalence parameters */
+    float A = (1.0 - _dancoff) / _dancoff;
+    _sigma_e = 1.0 / (2.0 * _fuel->getFuelPinRadius());
+    _alpha1 = ((5.0*A + 6.0) - sqrt(A*A + 36.0*A + 36.0)) / (2.0*(A+1.0));
+    _alpha2 = ((5.0*A + 6.0) + sqrt(A*A + 36.0*A + 36.0)) / (2.0*(A+1.0));
+    _beta = (((4.0*A + 6.0) / (A + 1.0)) - _alpha1) / (_alpha2 - _alpha1);
+
+    if (_spatial_type != HOMOGENEOUS_EQUIVALENCE)
+        log_printf(ERROR, "Unable to initialize first flight collision "
+            "probabilities for the geometry since it is not a "
+	    "HOMOGENEOUS_EQUIVALENCE type geometry.");
 
     Material* mod = _moderator->getMaterial();
     Material* fuel = _fuel->getMaterial();
     float v_mod = _moderator->getVolume();
     float v_fuel = _fuel->getVolume();
-    _num_ratios = mod->getNumXSEnergies((char*)"elastic");
+    float sigma_tot_fuel;
 
-    /* Allocate memory for ratios */    
-    _pmf_ratios = new float[_num_ratios];
+    _num_prob = mod->getNumXSEnergies((char*)"elastic");
 
-    /* Set energy bounds and delta to allow for O(1) lookup of ratio */
-    float* xs_energies = new float[_num_ratios];
-    mod->retrieveXSEnergies(xs_energies, _num_ratios, (char*)"elastic");
-    _start_energy = xs_energies[0];
-    _end_energy = xs_energies[_num_ratios-1];
+    /* Allocate memory for first flight collision probabilities */    
+    float* prob_mf_ratios = new float[_num_prob];
+    _prob_ff = new float[_num_prob];
+    _prob_mf = new float[_num_prob];
 
-    if (_scale_type == EQUAL)
-        _delta_energy = (xs_energies[_num_ratios-1] - 
-	                xs_energies[0]) / _num_ratios;
-    else {
-        _start_energy = log10(xs_energies[0]);
-	_end_energy = log10(xs_energies[_num_ratios-1]);
-	_delta_energy = (_end_energy - _start_energy) / _num_ratios;
-    }
-
-    delete xs_energies;
+    /* Set energy bounds and delta to allow for O(1) lookup of probabilities */
+    _prob_energies = new float[_num_prob];
+    mod->retrieveXSEnergies(_prob_energies, _num_prob, (char*)"elastic");
 
     /* Loop over all xs energies and compute the P_mf ratios */
-    for (int i=0; i < _num_ratios; i++)
-        _pmf_ratios[i] = (fuel->getTotalMacroXS(i) * v_fuel) / 
+    for (int i=0; i < _num_prob; i++) {
+        prob_mf_ratios[i] = (fuel->getTotalMacroXS(i) * v_fuel) / 
                          (mod->getTotalMacroXS(i) * v_mod);
+
+        sigma_tot_fuel = fuel->getTotalMacroXS(i);
+        _prob_ff[i] = ((_beta * sigma_tot_fuel) / (_alpha1 *_sigma_e + 
+		sigma_tot_fuel)) + ((1.0 - _beta) * sigma_tot_fuel / 
+		(_alpha2 * _sigma_e + sigma_tot_fuel));
+        _prob_mf[i] = (1.0 - _prob_ff[i]) * prob_mf_ratios[i];
+    }
+
+    /* Load first flight collision probabilities into each homogeneous
+     * equivalent region */
+    _moderator->setFirstFlightCollProb(_prob_ff, _prob_mf, 
+		                       _prob_energies, _num_prob);
+    _fuel->setFirstFlightCollProb(_prob_ff, _prob_mf, 
+		                       _prob_energies, _num_prob);
+
+    delete prob_mf_ratios;
 
     return;
 }
 
 
 /**
- * @brief This function computes the two-region fuel-to-fuel collision 
- *        probability for a two-region pin cell simulation. It uses 
- *        Carlvik's two-term rational model.
+ * @brief Initializes a new source neutron within the geometry.
+ * @details A source neutron initialized within the geometry will 
+ *          have an energy (eV) from a Watt spectrum, an _alive attribute
+ *          set to true, a _collided attribute set to false, and its
+ *          _region pointer set to this region. The _material and _isotope 
+ *          attributes will be set to NULL. For HETEROGENEOUS geometries, 
+ *          this method uses rejection sampling to initialize the neutrons 
+ *          location to a source site within the geometry with a non-zero 
+ *          fission cross-section. An isotropic (in lab) direction vector is 
+ *          sampled for the neutron's trajectory in 3D.
  * @param neutron the neutron of interest
- * @return the fuel-to-fuel collision probability at the neutron's energy
  */
-float Geometry::computeFuelFuelCollisionProb(neutron* neutron) {
-    float energy = neutron->_energy;
-    float p_ff;
-    float sigma_tot_fuel = _fuel->getMaterial()->getTotalMacroXS(energy);
-    p_ff = ((_beta*sigma_tot_fuel) / (_alpha1*_sigma_e + sigma_tot_fuel)) +
-          ((1.0 - _beta)*sigma_tot_fuel / (_alpha2*_sigma_e + sigma_tot_fuel));
-    log_printf(DEBUG, "sigma_tot_fuel = %f, p_ff = %f", sigma_tot_fuel, p_ff);
-    return p_ff;
-}
+void Geometry::initializeSourceNeutron(neutron* neutron) {
 
+    neutron->_energy = _fissioner->emitNeutroneV();
+    neutron->_old_energy = neutron->_energy;
+    neutron->_collided = false;
+    neutron->_total_xs = 0.0;
+    neutron->_path_length = 0.0;
+    neutron->_alive = true;
+    neutron->_material = NULL;
+    neutron->_isotope = NULL;
+    neutron->_surface = NULL;
 
-/**
- * @brief This function computes the two-region moderator-to-fuel collision
- *        probability for a two-region pin cell simulation. It uses Carlvik's
- *        two-term rational model.
- * @param neutron the neutron of interest
- * @return the moderator-to-fuel collision probability at the neutron's energy
- */
-float Geometry::computeModeratorFuelCollisionProb(neutron* neutron) {
-    float energy = neutron->_energy;
-    float p_ff = computeFuelFuelCollisionProb(neutron);
-    int index = getEnergyGridIndex(energy);
-    float pmf_ratio = _pmf_ratios[index];
-    float p_mf = (1.0 - p_ff) * pmf_ratio;
-    return p_mf;
+    if (_spatial_type == INFINITE_HOMOGENEOUS) {
+        neutron->_region = _infinite_medium;
+        neutron->_phi = -1.0;
+    }
+
+    else if (_spatial_type == HOMOGENEOUS_EQUIVALENCE) {
+        neutron->_region = _fuel;
+        neutron->_phi = -1.0;
+    }
+
+    /* Use rejection sampling to sample a source site within a HETEROGENEOUS 
+     * geometry with a non-zero fission cross-section */
+    else {
+        int i;
+
+        for (i=0; i < 1000; i++) {
+        
+            float radius = (float(rand()) / RAND_MAX) * _source_sampling_radius;
+
+            /* Azimuthal angle in xy-plane */
+            float phi = (float(rand()) / RAND_MAX) * 2.0 * M_PI;
+
+            /* Polar angle with respect to z-axis */
+            float theta = (float(rand()) / RAND_MAX) * M_PI;
+
+            /* Spherical to cartesian coordinate conversion */
+            neutron->_x = radius * sin(theta) * cos(phi);
+            neutron->_y = radius * sin(theta) * sin(phi);
+            neutron->_z = radius * cos(theta);
+       
+            /* If we successfully found a source site within the geometry with
+  	     * a non-zero thermal fission cross-section, break the loop */
+            if (contains(neutron) && 
+	        neutron->_region->getFissionMacroXS(0.0253f) > 0.0)
+	            break;
+        }
+
+        if (i < 1000)
+            log_printf(ERROR, "Unable to sample a source site with rejection "
+	         "sampling using a sampling radius of %f cm after 1000 "
+	         "attempts.", _source_sampling_radius);
+
+        /* Randomly sample a direction vector */
+        neutron->_u = float(rand()) / RAND_MAX;
+        neutron->_v = float(rand()) / RAND_MAX;
+        neutron->_w = float(rand()) / RAND_MAX;
+        neutron->_mu = cos(neutron->_w/norm2D<float>(neutron->_u, neutron->_v));
+        neutron->_phi = atan2(neutron->_v, neutron->_u);
+
+        /* Correct for atan2 in [-pi, pi] to phi in [0, 2pi] */
+        if (neutron->_w <= 0.0)
+            neutron->_phi += 2.0 * M_PI;
+	}
+
+    return;
 }

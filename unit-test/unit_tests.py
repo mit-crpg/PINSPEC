@@ -333,7 +333,7 @@ class TestIsotope(unittest.TestCase):
     def testGetDistanceTraveled(self):
         py_printf('UNITTEST', 'Testing Isotope getDistanceTraveled')
         h1 = Isotope('H-1')
-        neutron = initializeNewNeutron()
+        neutron = createNewNeutron()
         neutron._energy = 1.0
         dist = h1.getDistanceTraveled(neutron)
         self.assertGreater(dist, 0.0)
@@ -343,7 +343,7 @@ class TestIsotope(unittest.TestCase):
     def testCollideNeutron(self):
         py_printf('UNITTEST', 'Testing Isotope collideNeutron')
         h1 = Isotope('H-1')
-        neutron = initializeNewNeutron()
+        neutron = createNewNeutron()
         neutron._energy = 1.0
         dist = h1.collideNeutron(neutron)
         self.assertEqual(neutron._old_energy, 1.0)
@@ -620,7 +620,7 @@ class TestMaterial(unittest.TestCase):
         mod = Material('mod')
         mod.setDensity(5., 'g/cc')
         mod.addIsotope(self.h1, 1.0)
-        neutron = initializeNewNeutron()
+        neutron = createNewNeutron()
         neutron._energy = 1.0
         
         try:
@@ -635,7 +635,7 @@ class TestMaterial(unittest.TestCase):
         mod = Material('mod')
         mod.setDensity(5., 'g/cc')
         mod.addIsotope(self.h1, 1.0)
-        neutron = initializeNewNeutron()
+        neutron = createNewNeutron()
         neutron._energy = 1.0
         
         try:
@@ -863,7 +863,7 @@ class TestRegion(unittest.TestCase):
         py_printf('UNITTEST', 'Testing Region collideNeutron')
         region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'mix')
         region_mix.setMaterial(self.mix)
-        neutron = initializeNewNeutron()
+        neutron = createNewNeutron()
         neutron._energy = 1.0
         
         try:
@@ -875,7 +875,7 @@ class TestRegion(unittest.TestCase):
     # Test Region contains function
 #    def testContains(self):       
 #        py_printf('UNITTEST', 'Testing Region contains')
-#        neutron = initializeNewNeutron()
+#        neutron = createNewNeutron()
 #        neutron._x = 0.5
 #        neutron._y = 0.0
 #        self.assertTrue(region_fuel.contains(neutron))
@@ -884,7 +884,7 @@ class TestRegion(unittest.TestCase):
     # Test Region onBoundary function
 #    def testOnBoundary(self):
 #        py_printf('UNITTEST', 'Testing Region onBoundary')
-#        neutron = initializeNewNeutron()
+#        neutron = createNewNeutron()
 #        neutron._x = 0.5
 #        neutron._y = 0.0
 #        self.assertTrue(region_fuel.onBoundary(neutron))

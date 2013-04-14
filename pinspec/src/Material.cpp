@@ -861,6 +861,18 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 }
 
 
+/**
+ * @brief Samples a random distance to collision within this material.
+ * @details Samples a random distance to the nearest collision in this
+ *          material at some neutron energy using direct sampling from:
+ *          \f$ \frac{-log(\xi)}{\Sigma_t(E)} \f$
+ * @param neutron the neutron of interest
+ */
+float Material::sampleDistanceTraveled(neutron* neutron) {
+    float sigma_t = getTotalMacroXS(neutron->_energy);
+    return -log(float(rand()) / RAND_MAX) / sigma_t;
+}
+
 
 /**
  * @brief Samples an isotope for a collision.
@@ -874,7 +886,7 @@ void Material::sampleIsotope(neutron* neutron) {
     float energy = neutron->_energy;
     float sigma_t = getTotalMacroXS(energy);
     neutron->_total_xs = sigma_t;
-	
+
     float sigma_t_ratio = 0.0;
     float new_sigma_t_ratio = 0.0;
     float test = float(rand()) / RAND_MAX;
@@ -882,28 +894,29 @@ void Material::sampleIsotope(neutron* neutron) {
     /* Loop over all isotopes */
     std::map<char*, std::pair<float, Isotope*> >::iterator iter;
     Isotope* isotope = NULL;
+
     for (iter =_isotopes.begin(); iter !=_isotopes.end(); ++iter){
 
         new_sigma_t_ratio += (iter->second.second->getTotalXS(energy) *
-			      iter->second.first) / sigma_t;
+				  iter->second.first) / sigma_t;
 
-	if (test >= sigma_t_ratio && ((test <= new_sigma_t_ratio) ||
-				  fabs(test - new_sigma_t_ratio) < 1E-5)) {
-	    isotope = iter->second.second;
-	    break;
-	}
+        if (test >= sigma_t_ratio && ((test <= new_sigma_t_ratio) ||
+				  fabs(test - new_sigma_t_ratio) < 1E-4)) {
+            isotope = iter->second.second;
+            break;
+        }
 
-	sigma_t_ratio = new_sigma_t_ratio;
+        sigma_t_ratio = new_sigma_t_ratio;
     }
 
     if (isotope == NULL) {
         log_printf(ERROR, "Unable to find isotope type in material %s"
-		   " sampleIsotope method, test = %1.20f," 
-		   " new_num_density = %1.20f", 
-		   _material_name, test, new_sigma_t_ratio);
+    		   " sampleIsotope method, energy = %1.20f, test = %1.20f,"
+    		   " new_sigma_t_ratio = %1.20f", 
+    		   _material_name, energy, test, new_sigma_t_ratio);
     }
     else
-	neutron->_isotope = isotope;
+        neutron->_isotope = isotope;
 
     return;
 }
@@ -930,9 +943,12 @@ float Material::getDensity(){
 void Material::collideNeutron(neutron* neutron) {
 
     sampleIsotope(neutron);
+    neutron->_material = this;
+
+    neutron->_isotope->collideNeutron(neutron);
+
     log_printf(DEBUG, "Material %s has collided in isotope %s", 
 		_material_name, neutron->_isotope->getIsotopeName());
-    neutron->_isotope->collideNeutron(neutron);
     return;
 }
 
