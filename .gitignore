@@ -26,8 +26,8 @@ sample-input/generational
 sample-input/generational/*
 sample-input/slowdown
 sample-input/slowdown/*
-sample-input/dopplerRIs
-sample-input/dopplerRIs/*
+sample-input/doppler
+sample-input/doppler/*
 sample-input/equivalence
 sample-input/equivalence/*
 sample-input/outscatter
