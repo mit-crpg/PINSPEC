@@ -18,7 +18,7 @@ Complete documentation on the usage of PINSPEC is hosted on
 our GitHub wiki at https://github.com/mit-crpg/PINSPEC/wiki. 
 If you are interested in the project or would like to help and 
 contribute, please contact the development team. In addition, 
-PINSPEC hosts a collection of `Evernote notebooks`_ to allow for 
+PINSPEC hosts a collection of `evernote notebooks`_ to allow for 
 free and open collaboration between users and the development 
 team.
 
@@ -52,7 +52,7 @@ License
 
 PINSPEC is undergoing review to be distributed under the MIT/X license_.
 
-.. _Evernote_notebooks:  https://www.evernote.com/pub/wbinventor/main
+.. _evernote notebooks:  https://www.evernote.com/pub/wbinventor/main
 .. _installation instructions: https://github.com/mit-crpg/PINSPEC/wiki/Installing-PINSPEC
 .. _Issues: https://www.evernote.com/pub/wbinventor/issues#st=p
 .. _FAQ: https://github.com/mit-crpg/PINSPEC/wiki/FAQ
