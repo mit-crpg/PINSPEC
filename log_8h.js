@@ -1,19 +1,7 @@
 var log_8h =
 [
     [ "logLevel", "log_8h.html#a474fc5e1d06d669823896ac6258fbc0d", null ],
-    [ "logLevels", "log_8h.html#a5096002e05063d13577205e0bc5f0564", [
-      [ "DEBUG", "log_8h.html#a5096002e05063d13577205e0bc5f0564a0593585da9181e972974c1274d8f2b4f", null ],
-      [ "INFO", "log_8h.html#a5096002e05063d13577205e0bc5f0564a748005382152808a72b1a9177d9dc806", null ],
-      [ "NORMAL", "log_8h.html#a5096002e05063d13577205e0bc5f0564a50d1448013c6f17125caee18aa418af7", null ],
-      [ "SEPARATOR", "log_8h.html#a5096002e05063d13577205e0bc5f0564ac22e1a44f0ddbc929cfea45e49d20f84", null ],
-      [ "HEADER", "log_8h.html#a5096002e05063d13577205e0bc5f0564a2e57918a09d25b07a664e505d50a97f6", null ],
-      [ "TITLE", "log_8h.html#a5096002e05063d13577205e0bc5f0564a0a041e18d712f7b239eac5375daf4a05", null ],
-      [ "WARNING", "log_8h.html#a5096002e05063d13577205e0bc5f0564a984de77c680eaff141ec910e25568a81", null ],
-      [ "CRITICAL", "log_8h.html#a5096002e05063d13577205e0bc5f0564acda21a4a072f2261f6d4ab596599f8b0", null ],
-      [ "RESULT", "log_8h.html#a5096002e05063d13577205e0bc5f0564a7186ecefe792fdae9fec0a42f105ad6b", null ],
-      [ "UNITTEST", "log_8h.html#a5096002e05063d13577205e0bc5f0564a7d4213bd412f92318544af232a0481e6", null ],
-      [ "ERROR", "log_8h.html#a5096002e05063d13577205e0bc5f0564a2fd6f336d08340583bd620a7f5694c90", null ]
-    ] ],
+    [ "logLevels", "log_8h.html#a5096002e05063d13577205e0bc5f0564", null ],
     [ "createMultilineMsg", "log_8h.html#ab42a0de70fdb518ab616d1c61ce7a1a0", null ],
     [ "get_loglevel", "log_8h.html#aa219436a7e8f4367959ccd68f76cde36", null ],
     [ "getHeaderCharacter", "log_8h.html#a5240ded8a1b9c82d390fc9095b735abc", null ],

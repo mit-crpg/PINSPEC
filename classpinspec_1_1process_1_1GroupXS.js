@@ -14,9 +14,9 @@ var classpinspec_1_1process_1_1GroupXS =
     [ "outputXStoFile", "classpinspec_1_1process_1_1GroupXS.html#a6b64121b4d0efaf6b3e86587ecde0273", null ],
     [ "printXS", "classpinspec_1_1process_1_1GroupXS.html#a2918792badce34f95584a70d89aa71f7", null ],
     [ "setName", "classpinspec_1_1process_1_1GroupXS.html#ae52730b41f0003d4295486cba6ec7438", null ],
-    [ "_flux", "classpinspec_1_1process_1_1GroupXS.html#acc9c47ded2fb3c3e8d27b8ca1652962a", null ],
-    [ "_name", "classpinspec_1_1process_1_1GroupXS.html#ae1ec6f536e2a123c5e050313681364ce", null ],
-    [ "_num_xs", "classpinspec_1_1process_1_1GroupXS.html#aec56586bd4e0a90d9d5ce97ad6c40595", null ],
-    [ "_rate", "classpinspec_1_1process_1_1GroupXS.html#a72b491dd81618cc213b4f397d3a73b14", null ],
-    [ "_xs", "classpinspec_1_1process_1_1GroupXS.html#ad6f901eaff624ea2d59280d198bbca09", null ]
+    [ "_flux", "classpinspec_1_1process_1_1GroupXS.html#a394e24bed1500596006ffb7b8d5ce49c", null ],
+    [ "_name", "classpinspec_1_1process_1_1GroupXS.html#a0ec1b5eca7d5160639e56ae3845c9d4d", null ],
+    [ "_num_xs", "classpinspec_1_1process_1_1GroupXS.html#acb37235efc53788db16ad0b41bb06aa1", null ],
+    [ "_rate", "classpinspec_1_1process_1_1GroupXS.html#a517c7c358b0bd107eac2f36d45477413", null ],
+    [ "_xs", "classpinspec_1_1process_1_1GroupXS.html#a126f761e990d2cf5c3cdf966f84146b5", null ]
 ];

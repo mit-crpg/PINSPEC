@@ -31,7 +31,7 @@ var searchData=
   ['setmultigroupcapturexs',['setMultigroupCaptureXS',['../classIsotope.html#ab1938f4ecfa23a73ab995626a28b9393',1,'Isotope']]],
   ['setmultigroupelasticxs',['setMultigroupElasticXS',['../classIsotope.html#a9e6a5d6c881814415769038b288189cc',1,'Isotope']]],
   ['setmultigroupfissionxs',['setMultigroupFissionXS',['../classIsotope.html#ae642cf07eaeeb65ddddbb91f00b5b4d7',1,'Isotope']]],
-  ['setname',['setName',['../classpinspec_1_1process_1_1RIEff.html#a0a484c374d5285ec12506fc4bbc7f079',1,'pinspec.process.RIEff.setName()'],['../classpinspec_1_1process_1_1RITrue.html#ad356c85340b6b981a9687a95aa57a375',1,'pinspec.process.RITrue.setName()'],['../classpinspec_1_1process_1_1GroupXS.html#ae52730b41f0003d4295486cba6ec7438',1,'pinspec.process.GroupXS.setName()']]],
+  ['setname',['setName',['../classpinspec_1_1process_1_1RIEff.html#a0a484c374d5285ec12506fc4bbc7f079',1,'pinspec::process::RIEff.setName()'],['../classpinspec_1_1process_1_1RITrue.html#ad356c85340b6b981a9687a95aa57a375',1,'pinspec::process::RITrue.setName()'],['../classpinspec_1_1process_1_1GroupXS.html#ae52730b41f0003d4295486cba6ec7438',1,'pinspec::process::GroupXS.setName()']]],
   ['setneutronsperbatch',['setNeutronsPerBatch',['../classGeometry.html#a0160e8eef8ecd7655dc2ddc8f7a46391',1,'Geometry']]],
   ['setnumbatches',['setNumBatches',['../classGeometry.html#ab78e778d1362e38dd9e02514e7ee7019',1,'Geometry::setNumBatches()'],['../classTally.html#aa9151ca7c865222b499032af22ab76c8',1,'Tally::setNumBatches()']]],
   ['setnumberdensity',['setNumberDensity',['../classMaterial.html#a32dbf4399d348901aefc4721a891337b',1,'Material']]],

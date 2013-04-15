@@ -1,11 +1,5 @@
 var annotated =
 [
-    [ "pinspec", null, [
-      [ "log", "namespacepinspec_1_1log.html", null ],
-      [ "plotter", "namespacepinspec_1_1plotter.html", null ],
-      [ "process", "namespacepinspec_1_1process.html", "namespacepinspec_1_1process" ],
-      [ "slbw", "namespacepinspec_1_1slbw.html", null ]
-    ] ],
     [ "BoundedFuelRegion", "classBoundedFuelRegion.html", "classBoundedFuelRegion" ],
     [ "BoundedGeneralRegion", "classBoundedGeneralRegion.html", "classBoundedGeneralRegion" ],
     [ "BoundedModeratorRegion", "classBoundedModeratorRegion.html", "classBoundedModeratorRegion" ],
@@ -28,6 +22,7 @@ var annotated =
     [ "GeometryOutScatterRateTally", "classGeometryOutScatterRateTally.html", "classGeometryOutScatterRateTally" ],
     [ "GeometryTally", "classGeometryTally.html", "classGeometryTally" ],
     [ "GeometryTransportRateTally", "classGeometryTransportRateTally.html", "classGeometryTransportRateTally" ],
+    [ "pinspec.process.GroupXS", "classpinspec_1_1process_1_1GroupXS.html", "classpinspec_1_1process_1_1GroupXS" ],
     [ "InfiniteMediumRegion", "classInfiniteMediumRegion.html", "classInfiniteMediumRegion" ],
     [ "Isotope", "classIsotope.html", "classIsotope" ],
     [ "IsotopeAbsorptionRateTally", "classIsotopeAbsorptionRateTally.html", "classIsotopeAbsorptionRateTally" ],
@@ -71,6 +66,8 @@ var annotated =
     [ "RegionOutScatterRateTally", "classRegionOutScatterRateTally.html", "classRegionOutScatterRateTally" ],
     [ "RegionTally", "classRegionTally.html", "classRegionTally" ],
     [ "RegionTransportRateTally", "classRegionTransportRateTally.html", "classRegionTransportRateTally" ],
+    [ "pinspec.process.RIEff", "classpinspec_1_1process_1_1RIEff.html", "classpinspec_1_1process_1_1RIEff" ],
+    [ "pinspec.process.RITrue", "classpinspec_1_1process_1_1RITrue.html", "classpinspec_1_1process_1_1RITrue" ],
     [ "Surface", "classSurface.html", "classSurface" ],
     [ "SurfaceFactory", "classSurfaceFactory.html", "classSurfaceFactory" ],
     [ "Tally", "classTally.html", "classTally" ],

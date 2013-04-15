@@ -17,7 +17,7 @@ var searchData=
   ['computeriemanncenter',['computeRiemannCenter',['../integrate_8h.html#ad4dfff0713192e61bd14a825ec198af7',1,'integrate.h']]],
   ['computeriemannleft',['computeRiemannLeft',['../integrate_8h.html#a6343365f0d65a315eae7cc641f2732af',1,'integrate.h']]],
   ['computeriemannright',['computeRiemannRight',['../integrate_8h.html#af71a2826d64f1615a6e7c8e01688b675',1,'integrate.h']]],
-  ['computeris',['computeRIs',['../classpinspec_1_1process_1_1RIEff.html#a821baa9dccb3c9a1aa9ebf5c1044059d',1,'pinspec.process.RIEff.computeRIs()'],['../classpinspec_1_1process_1_1RITrue.html#a23b3e3deabb334457c82c7b4e29d3cf1',1,'pinspec.process.RITrue.computeRIs()']]],
+  ['computeris',['computeRIs',['../classpinspec_1_1process_1_1RIEff.html#a821baa9dccb3c9a1aa9ebf5c1044059d',1,'pinspec::process::RIEff.computeRIs()'],['../classpinspec_1_1process_1_1RITrue.html#a23b3e3deabb334457c82c7b4e29d3cf1',1,'pinspec::process::RITrue.computeRIs()']]],
   ['computescaledbatchstatistics',['computeScaledBatchStatistics',['../classTally.html#a7b34a782b04b7056fe7d3ea4b70828e7',1,'Tally::computeScaledBatchStatistics()'],['../classTallyBank.html#a26bdf7c7f02b528c552ee44f0d014af1',1,'TallyBank::computeScaledBatchStatistics()']]],
   ['computesimpsons',['computeSimpsons',['../integrate_8h.html#ac5a99a2d09d82e7c531868271bdb532f',1,'integrate.h']]],
   ['computesimpsons38',['computeSimpsons38',['../integrate_8h.html#a24c3c46489d761340e9e1685925b110c',1,'integrate.h']]],
