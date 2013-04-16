@@ -10,6 +10,7 @@
 
 #include <limits>
 #include <math.h>
+#include "log.h"
 #include "vector.h"
 #include "Neutron.h"
 

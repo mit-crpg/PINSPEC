@@ -177,6 +177,9 @@ bool XPlane::onSurface(neutron* neutron) {
  * @param neutron the neutron of interest
  */
 void XPlane::reflectNeutron(neutron* neutron) {
+    log_printf(NORMAL, "Reflecting a neutron from XPlane %s with x = %f, phi = %f",
+	     _surface_name, neutron->_x, neutron->_phi);
+
     /* If the neutron's azimuthal angle is less than pi */
     if (neutron->_phi < M_PI)
         neutron->_phi = M_PI - neutron->_phi;

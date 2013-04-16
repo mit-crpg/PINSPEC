@@ -149,6 +149,12 @@ bottom.setY(-pitch/2.0)
 top.setY(pitch/2.0)
 pin.setRadius(radius_fuel)
 
+left.setBoundaryType(REFLECTIVE)
+right.setBoundaryType(REFLECTIVE)
+top.setBoundaryType(REFLECTIVE)
+bottom.setBoundaryType(REFLECTIVE)
+pin.setBoundaryType(INTERFACE)
+
 
 ###############################################################################
 ###############################  Create Regions ###############################
@@ -178,8 +184,37 @@ geometry.addRegion(region_mod)
 geometry.addRegion(region_fuel)
 geometry.setNumBatches(num_batches)
 geometry.setNeutronsPerBatch(num_neutrons_per_batch)
-geometry.setNumThreads(num_threads)
+geometry.setNumThreads(1)
+geometry.setSourceSamplingRadius(0.5)
 
+
+###############################################################################
+#########################  Run Monte Carlo Simulation #########################
+###############################################################################
+
+# Run Monte Carlo simulation
+#geometry.runMonteCarloSimulation();
+
+neutron = createNewNeutron()
+
+x = []
+y = []
+u = []
+v = []
+
+for i in range(500):
+    geometry.initializeSourceNeutron(neutron)
+    
+    x.append(neutron._x)
+    y.append(neutron._y)
+    u.append(neutron._u)
+    v.append(neutron._v)
+
+
+plt.figure()
+plt.quiver(x,y,u,v,angles='xy', color='r')
+plt.title('fission source distribution')
+plt.show()
 
 ###############################################################################
 ##################################  Plotting  #################################
