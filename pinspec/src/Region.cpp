@@ -900,8 +900,12 @@ void BoundedRegion::collideNeutron(neutron* neutron) {
     float surface_dist = computeDistanceToSurface(neutron);
     float theta = acos(neutron->_mu);
 
+    log_printf(NORMAL, "path length = %f, surface dist = %f", path_length, surface_dist);
+
     /* The neutron collided within this region */
     if (path_length < surface_dist) {
+     
+        log_printf(NORMAL, "The neutron collided within region %s", _region_name);
 
         neutron->_path_length = path_length;
 
@@ -925,6 +929,9 @@ void BoundedRegion::collideNeutron(neutron* neutron) {
 	 * it across the surface with a tiny "nudge" */
         if (neutron->_surface->getBoundaryType() == INTERFACE) {
 
+	    log_printf(NORMAL, "The neutron crossed an INTERFACE surface %s", 
+		     neutron->_surface->getSurfaceName());
+
             path_length += TINY_MOVE;
             
             /* Update the neutron's location */
@@ -936,6 +943,9 @@ void BoundedRegion::collideNeutron(neutron* neutron) {
         /* The neutron crossed a REFLECTIVE boundary, so we move it the 
 	 * boundary and reflect its direction of travel */
         else if (neutron->_surface->getBoundaryType() == REFLECTIVE) {
+
+	    log_printf(NORMAL, "The neutron crossed an REFLECTIVE surface %s", 
+		     neutron->_surface->getSurfaceName());
 
             /* Update the neutron's location to the intersection point
 	     * on the surface */

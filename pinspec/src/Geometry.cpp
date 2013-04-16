@@ -37,7 +37,7 @@ Geometry::Geometry(spatialType spatial_type, const char* name) {
 
     /* Initialize a fissioner with a fission spectrum and sampling CDF */
     _fissioner = new Fissioner();
-    _source_sampling_radius = 10.0;
+    _source_sampling_radius = 2.0;
 }
 
 
@@ -721,20 +721,24 @@ void Geometry::initializeSourceNeutron(neutron* neutron) {
         int i;
 
         for (i=0; i < 1000; i++) {
-        
-            float radius = (float(rand()) / RAND_MAX) * _source_sampling_radius;
 
+	    /* Uniformly sample within a sphere */
             /* Azimuthal angle in xy-plane */
-            float phi = (float(rand()) / RAND_MAX) * 2.0 * M_PI;
+	    float phi = (float(rand()) / RAND_MAX) * 2.0 * M_PI;
 
             /* Polar angle with respect to z-axis */
-            float theta = (float(rand()) / RAND_MAX) * M_PI;
+            float cos_theta = (float(rand()) / RAND_MAX) * 2.0 - 1.0; 
+            float theta = acos(cos_theta);
+
+            /* Radius from sphere center */
+            float u = float(rand()) / RAND_MAX; 
+            float radius = _source_sampling_radius * pow(u, (1./3.));
 
             /* Spherical to cartesian coordinate conversion */
             neutron->_x = radius * sin(theta) * cos(phi);
             neutron->_y = radius * sin(theta) * sin(phi);
             neutron->_z = radius * cos(theta);
-       
+     
             /* If we successfully found a source site within the geometry with
   	     * a non-zero thermal fission cross-section, break the loop */
             if (contains(neutron) && 
@@ -742,15 +746,15 @@ void Geometry::initializeSourceNeutron(neutron* neutron) {
 	            break;
         }
 
-        if (i < 1000)
+        if (i == 1000)
             log_printf(ERROR, "Unable to sample a source site with rejection "
 	         "sampling using a sampling radius of %f cm after 1000 "
 	         "attempts.", _source_sampling_radius);
 
         /* Randomly sample a direction vector */
-        neutron->_u = float(rand()) / RAND_MAX;
-        neutron->_v = float(rand()) / RAND_MAX;
-        neutron->_w = float(rand()) / RAND_MAX;
+        neutron->_u = (float(rand()) / RAND_MAX) * 2.0 - 1.0;
+        neutron->_v = (float(rand()) / RAND_MAX) * 2.0 - 1.0;
+        neutron->_w = (float(rand()) / RAND_MAX) * 2.0 - 1.0;
         neutron->_mu = cos(neutron->_w/norm2D<float>(neutron->_u, neutron->_v));
         neutron->_phi = atan2(neutron->_v, neutron->_u);
 
@@ -758,6 +762,8 @@ void Geometry::initializeSourceNeutron(neutron* neutron) {
         if (neutron->_w <= 0.0)
             neutron->_phi += 2.0 * M_PI;
 	}
+
+    log_printf(INFO, "Initialized a source neutron...");
 
     return;
 }
