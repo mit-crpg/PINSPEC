@@ -11,7 +11,7 @@ from pinspec.log import *
 
 setOutputDirectory('infinite')
 
-py_setlevel('INFO')
+py_setlevel('NORMAL')
 py_printf('TITLE', 'Simulating an infinite medium homogenized pin-cell')
     
 
