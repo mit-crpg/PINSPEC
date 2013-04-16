@@ -763,7 +763,5 @@ void Geometry::initializeSourceNeutron(neutron* neutron) {
             neutron->_phi += 2.0 * M_PI;
 	}
 
-    log_printf(INFO, "Initialized a source neutron...");
-
     return;
 }

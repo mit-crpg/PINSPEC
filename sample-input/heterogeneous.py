@@ -193,8 +193,7 @@ geometry.setSourceSamplingRadius(0.5)
 ###############################################################################
 
 # Run Monte Carlo simulation
-#geometry.runMonteCarloSimulation();
-
+geometry.runMonteCarloSimulation();
 
 
 ###############################################################################
