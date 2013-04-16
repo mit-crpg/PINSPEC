@@ -823,12 +823,18 @@ bool BoundedRegion::contains(neutron* neutron) {
     int halfspace;
     Surface* surface;
 
+    log_printf(NORMAL, "Checking if region %s contains neutron", _region_name);
+
     /* Loop over and query all bounding surfaces */
     std::vector< std::pair<int, Surface*> >::iterator iter;
     for (iter = _surfaces.begin(); iter != _surfaces.end(); ++iter) {
 
         halfspace = (*iter).first;
         surface = (*iter).second;
+
+        log_printf(NORMAL, "surface %s evaluates to %f with halfspace %d",
+		   surface->getSurfaceName(), surface->evaluate(neutron),
+		   halfspace);
 
         if (halfspace * surface->evaluate(neutron) < 0)
 	    return false;
