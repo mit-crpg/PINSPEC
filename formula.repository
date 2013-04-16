@@ -1,70 +1,65 @@
 \form#0:$\chi$
-\form#1:$ \chi = 0.453 * exp(-1.036E) * sinh(sqrt(2.29E)) $
-\form#2:$ p_{mf} $
-\form#3:$ \alpha = ((A-1)/(A+1))^2 $
-\form#4:$ \left<\mu\right> = \frac{2}{3A} $
-\form#5:$ \sigma_{tr} = \sigma_t - \left<\mu\right>\sigma_s $
-\form#6:$ \alpha = \left(\frac{A-1}{A+1}\right)^2 $
-\form#7:$ \eta = \left(\frac{A+1}{2\sqrt{A}}\right)^2 $
-\form#8:$ \rho = \left(\frac{A-1}{2\sqrt{A}}\right)^2 $
-\form#9:$ E' $
-\form#10:$ \frac{E}{kT} $
-\form#11:$ \frac{E'}{E} $
+\form#1:$ \chi = 0.453 * exp(-1.036E) * sinh(\sqrt{2.29E}) $
+\form#2:$ \alpha = ((A-1)/(A+1))^2 $
+\form#3:$ \left<\mu\right> = \frac{2}{3A} $
+\form#4:$ \sigma_{tr} = \sigma_t - \left<\mu\right>\sigma_s $
+\form#5:$ \alpha = \left(\frac{A-1}{A+1}\right)^2 $
+\form#6:$ \eta = \left(\frac{A+1}{2\sqrt{A}}\right)^2 $
+\form#7:$ \rho = \left(\frac{A-1}{2\sqrt{A}}\right)^2 $
+\form#8:$ E' $
+\form#9:$ \frac{E}{kT} $
+\form#10:$ \frac{E'}{E} $
+\form#11:$ (A+1)^2 $
 \form#12:$ \alpha = \left(\frac{A-1}{A+1}\right)^2$
 \form#13:$ \rho = \left(\frac{A+1}{2\sqrt{A}}\right) $
 \form#14:$ \frac{E}{E'} $
 \form#15:$ \frac{at}{cm^3} $
 \form#16:$ (cm^{-1}) $
 \form#17:$ 235 + 16 + 16 = 267 $
-\form#18:$\theta$
-\form#19:$\mu = cos(\theta)$
-\form#20:$\phi$
-\form#21:$cm^{-1}$
-\form#22:$ (cm^3) $
-\form#23:$ \frac{\pi}{2}$
-\form#24:$ \frac{3\pi}{2}$
-\form#25:$ 2\pi $
-\form#26:$ \frac{\sigma_s}{\Sigma_t} $
-\form#27:$ \frac{\Sigma_s}{\Sigma_t} $
-\form#28:$ \frac{\sigma_a}{\Sigma_t} $
-\form#29:$ \frac{\Sigma_a}{\Sigma_t} $
-\form#30:$ \frac{\sigma_c}{\Sigma_t} $
-\form#31:$ \frac{\Sigma_c}{\Sigma_t} $
-\form#32:$ \frac{\sigma_f}{\Sigma_t} $
-\form#33:$ \frac{\Sigma_f}{\Sigma_t} $
-\form#34:$ \frac{\sigma_tr}{\Sigma_t} $
-\form#35:$ \frac{\Sigma_tr}{\Sigma_t} $
-\form#36:$ \frac{\frac{1}{3\sigma_tr}}{\Sigma_t} $
-\form#37:$ \frac{\frac{1}{3\Sigma_tr}}{\Sigma_t} $
-\form#38:$ DB^2 $
-\form#39:$ \frac{1}{\Sigma_t} $
-\form#40:$ d = \frac{1}{\Sigma_t} $
-\form#41:$ v = c\sqrt{2Em_n} $
-\form#42:$ time = \frac{d}{v} $
-\form#43:$ \frac{eV}{c^2} $
-\form#44:$ \frac{1}{E} $
-\form#45:$ RI_{eff} $
-\form#46:$ \int\limits_{E_{i-1}}^{E_i} \sigma_{j}(E) \frac{1}{E} \mathrm{d}E $
-\form#47:$ E_0 > 0 $
-\form#48:$E_0$
-\form#49:$\Gamma_n$
-\form#50:$\Gamma_{\gamma}$
-\form#51:$ \chi = 0.453 * exp(-1.036E) * sinh(\sqrt(2.29E)) $
-\form#52:$ \chi = 0.453 * exp(-1.036E) * sinh(\sqrt{2.29E}) $
-\form#53:$ (x,y) $
-\form#54:$ f(x,y) = qx + d = x - x_0 $
-\form#55:$ f(x,y) = qy + d = y - y_0 $
-\form#56:$ f(x,y) = (x - x_0)^2 + (y - y_0)^2 - R^2 $
-\form#57:$ f(x,y) $
-\form#58:$ (A+1)^2 $
-\form#59:$ \frac{-log(\xi)}{\Sigma_t(E)} $
-\form#60:$ \vec{u}\cdot\vec{v}=\vec{u}_x *\vec{v}_x + \vec{u}_y * \vec{u}_y $
-\form#61:$ \vec{u}\cdot\vec{v}=\vec{u}_x\cdot\vec{v}_x + \vec{u}_y\cdot\vec{u}_y + \vec{u}_z\cdot\vec{v}_z $
-\form#62:$ \vec{u} $
-\form#63:$ \| \vec{u} \| = \sqrt{x \cdot x + y \cdot y} $
-\form#64:$ \| \vec{u} \| = \sqrt{x\ cdot x + y \cdot y + z \cdot z} $
-\form#65:$ (x,y,z) $
-\form#66:$ f(x,y,z) = qx + d = x - x_0 $
-\form#67:$ f(x,y,z) = qy + d = y - y_0 $
-\form#68:$ f(x,y,z) = (x - x_0)^2 + (y - y_0)^2 - R^2 $
-\form#69:$ f(x,y,z) $
+\form#18:$ \frac{-log(\xi)}{\Sigma_t(E)} $
+\form#19:$cm^{-1}$
+\form#20:$\theta$
+\form#21:$\mu = cos(\theta)$
+\form#22:$\phi$
+\form#23:$ (cm^3) $
+\form#24:$ (x,y,z) $
+\form#25:$ f(x,y,z) = qx + d = x - x_0 $
+\form#26:$ (x,y) $
+\form#27:$ f(x,y) = qy + d = y - y_0 $
+\form#28:$ f(x,y,z) = qy + d = y - y_0 $
+\form#29:$ f(x,y) = (x - x_0)^2 + (y - y_0)^2 - R^2 $
+\form#30:$ f(x,y,z) = (x - x_0)^2 + (y - y_0)^2 - R^2 $
+\form#31:$ \frac{\pi}{2}$
+\form#32:$ \frac{3\pi}{2}$
+\form#33:$ 2\pi $
+\form#34:$ f(x,y,z) $
+\form#35:$ \frac{\sigma_s}{\Sigma_t} $
+\form#36:$ \frac{\Sigma_s}{\Sigma_t} $
+\form#37:$ \frac{\sigma_a}{\Sigma_t} $
+\form#38:$ \frac{\Sigma_a}{\Sigma_t} $
+\form#39:$ \frac{\sigma_c}{\Sigma_t} $
+\form#40:$ \frac{\Sigma_c}{\Sigma_t} $
+\form#41:$ \frac{\sigma_f}{\Sigma_t} $
+\form#42:$ \frac{\Sigma_f}{\Sigma_t} $
+\form#43:$ \frac{\sigma_tr}{\Sigma_t} $
+\form#44:$ \frac{\Sigma_tr}{\Sigma_t} $
+\form#45:$ \frac{\frac{1}{3\sigma_tr}}{\Sigma_t} $
+\form#46:$ \frac{\frac{1}{3\Sigma_tr}}{\Sigma_t} $
+\form#47:$ DB^2 $
+\form#48:$ \frac{1}{\Sigma_t} $
+\form#49:$ d = \frac{1}{\Sigma_t} $
+\form#50:$ v = c\sqrt{2Em_n} $
+\form#51:$ time = \frac{d}{v} $
+\form#52:$ \frac{eV}{c^2} $
+\form#53:$ \vec{u}\cdot\vec{v}=\vec{u}_x *\vec{v}_x + \vec{u}_y * \vec{u}_y $
+\form#54:$ \vec{u}\cdot\vec{v}=\vec{u}_x\cdot\vec{v}_x + \vec{u}_y\cdot\vec{u}_y + \vec{u}_z\cdot\vec{v}_z $
+\form#55:$ \vec{u} $
+\form#56:$ \| \vec{u} \| = \sqrt{x \cdot x + y \cdot y} $
+\form#57:$ \| \vec{u} \| = \sqrt{x\ cdot x + y \cdot y + z \cdot z} $
+\form#58:$ \frac{1}{E} $
+\form#59:$ RI_{eff} $
+\form#60:$ \int\limits_{E_{i-1}}^{E_i} \sigma_{j}(E) \frac{1}{E} \mathrm{d}E $
+\form#61:$ E_0 > 0 $
+\form#62:$E_0$
+\form#63:$\Gamma_n$
+\form#64:$\Gamma_{\gamma}$
