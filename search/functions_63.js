@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['circle',['Circle',['../classCircle.html#a8a4d72877af10b55272a71e5028d9529',1,'Circle']]],
   ['cleartallies',['clearTallies',['../classTallyBank.html#a0e3309a94c772eedd2e0f6f4d6003f7d',1,'TallyBank']]],
   ['clone',['clone',['../classIsotope.html#aa1bec1b87123c3659a64d7cd35deca47',1,'Isotope::clone()'],['../classMaterial.html#a417cf6f7c2cc82c04599e5a29b620a64',1,'Material::clone()'],['../classTally.html#a9d96448ef6b56fe491a9b4d5e2d454df',1,'Tally::clone()']]],
   ['collideneutron',['collideNeutron',['../classIsotope.html#afc161538a2b6d971cb355f616880125b',1,'Isotope::collideNeutron()'],['../classMaterial.html#a3edcd9cac4f7e663499c4f6645aefa8c',1,'Material::collideNeutron()'],['../classRegion.html#a2c1181345fccb4055f4b0d97f21c26ba',1,'Region::collideNeutron()'],['../classInfiniteMediumRegion.html#a4507a6a5d5e568ff90bcaec00cd485f9',1,'InfiniteMediumRegion::collideNeutron()'],['../classEquivalenceRegion.html#aa03e69591b2979461f7b7ff24479c4d8',1,'EquivalenceRegion::collideNeutron()'],['../classBoundedRegion.html#ad0e62195be77da89607959021c45c9a0',1,'BoundedRegion::collideNeutron()']]],
@@ -13,7 +12,7 @@ var searchData=
   ['computemeanneutronlifetime',['computeMeanNeutronLifetime',['../namespacepinspec_1_1process.html#a5a89290e473b171ac1f535ef361e1e83',1,'pinspec::process']]],
   ['computemeannumcollisions',['computeMeanNumCollisions',['../namespacepinspec_1_1process.html#afb8cb723f05702c6ab466ef4ffda7a8e',1,'pinspec::process']]],
   ['computemoderatorfuelcollisionprob',['computeModeratorFuelCollisionProb',['../classEquivalenceRegion.html#a4c43fb7839c086b19700824eb4ae2ffd',1,'EquivalenceRegion']]],
-  ['computenearestdistance',['computeNearestDistance',['../classSurface.html#a3d33dd138200489112a2369eab0b2083',1,'Surface::computeNearestDistance()'],['../classXPlane.html#a4370395de84303e337c12457b862753a',1,'XPlane::computeNearestDistance()'],['../classYPlane.html#a7f474b38634753235438ca5eff23c2d5',1,'YPlane::computeNearestDistance()'],['../classCircle.html#a566afb2538f5cae0b863ab3cf6e1f1ab',1,'Circle::computeNearestDistance()']]],
+  ['computenearestdistance',['computeNearestDistance',['../classSurface.html#a3d33dd138200489112a2369eab0b2083',1,'Surface::computeNearestDistance()'],['../classXPlane.html#a4370395de84303e337c12457b862753a',1,'XPlane::computeNearestDistance()'],['../classYPlane.html#a7f474b38634753235438ca5eff23c2d5',1,'YPlane::computeNearestDistance()'],['../classZCylinder.html#adc1b9099d792149d2b9d4c856552b91a',1,'ZCylinder::computeNearestDistance()']]],
   ['computeriemanncenter',['computeRiemannCenter',['../integrate_8h.html#ad4dfff0713192e61bd14a825ec198af7',1,'integrate.h']]],
   ['computeriemannleft',['computeRiemannLeft',['../integrate_8h.html#a6343365f0d65a315eae7cc641f2732af',1,'integrate.h']]],
   ['computeriemannright',['computeRiemannRight',['../integrate_8h.html#af71a2826d64f1615a6e7c8e01688b675',1,'integrate.h']]],
@@ -22,13 +21,11 @@ var searchData=
   ['computesimpsons',['computeSimpsons',['../integrate_8h.html#ac5a99a2d09d82e7c531868271bdb532f',1,'integrate.h']]],
   ['computesimpsons38',['computeSimpsons38',['../integrate_8h.html#a24c3c46489d761340e9e1685925b110c',1,'integrate.h']]],
   ['computetrapezoidal',['computeTrapezoidal',['../integrate_8h.html#a7b5a20ca959bc8a9b55c41c5f1dffcca',1,'integrate.h']]],
-  ['contains',['contains',['../classGeometry.html#a4247ec14ea7344eed87dbc8c1599f2d7',1,'Geometry::contains()'],['../classBoundedRegion.html#ade7c07fc47919e47cf9536a561248713',1,'BoundedRegion::contains()']]],
+  ['contains',['contains',['../classGeometry.html#a4247ec14ea7344eed87dbc8c1599f2d7',1,'Geometry::contains(neutron *neutron)'],['../classGeometry.html#a23c375ffca05b253762f527080ce40bd',1,'Geometry::contains(float x, float y, float z)'],['../classBoundedRegion.html#ade7c07fc47919e47cf9536a561248713',1,'BoundedRegion::contains(neutron *neutron)'],['../classBoundedRegion.html#a62266b2f21182e723685ed8aa20ddab6',1,'BoundedRegion::contains(float x, float y, float z)']]],
   ['containsisotope',['containsIsotope',['../classMaterial.html#a00b943e8ec54fc37f9a7d5ce0405234d',1,'Material::containsIsotope()'],['../classRegion.html#a46eb443386a0f3003a28772f78e6de70',1,'Region::containsIsotope()']]],
   ['convert',['convert',['../namespacepinspec_1_1slbw.html#a026e643a6e213703f2b18533c7149c03',1,'pinspec::slbw']]],
   ['createmultilinemsg',['createMultilineMsg',['../log_8h.html#ab42a0de70fdb518ab616d1c61ce7a1a0',1,'log.cpp']]],
   ['createnewneutron',['createNewNeutron',['../Neutron_8h.html#aa1d6be7ef13853855cc553224b3e49f6',1,'Neutron.cpp']]],
-  ['createregion',['createRegion',['../classRegionFactory.html#a5478e4310ec2fd5a51ca64dfd9049bc5',1,'RegionFactory']]],
-  ['createsurface',['createSurface',['../classSurfaceFactory.html#ab702b918f40d1f677e1ffcf418d5ace5',1,'SurfaceFactory']]],
   ['createtally',['createTally',['../classTallyFactory.html#af867d20139f3e667cb4888be750ce1af',1,'TallyFactory::createTally(Geometry *geometry, tallyType tally_type, const char *tally_name=(char *)&quot;&quot;)'],['../classTallyFactory.html#adc2544df5d156100a3d2dfe529bd3bab',1,'TallyFactory::createTally(Region *region, tallyType tally_type, const char *tally_name=(char *)&quot;&quot;)'],['../classTallyFactory.html#a8ae1ea758bd5e8dc61247e76629d6d06',1,'TallyFactory::createTally(Material *material, tallyType tally_type, const char *tally_name=(char *)&quot;&quot;)'],['../classTallyFactory.html#ab991a59aabd67c38a36506c3966aa0f1',1,'TallyFactory::createTally(Isotope *isotope, tallyType tally_type, const char *tally_name=(char *)&quot;&quot;)']]],
   ['cumulativeintegral',['cumulativeIntegral',['../integrate_8h.html#a6986dcb4f4d8dce75ba3a907b9da75aa',1,'integrate.h']]]
 ];

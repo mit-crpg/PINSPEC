@@ -6,6 +6,7 @@ var classBoundedRegion =
     [ "collideNeutron", "classBoundedRegion.html#ad0e62195be77da89607959021c45c9a0", null ],
     [ "computeDistanceToSurface", "classBoundedRegion.html#a4698fcb521a3f2f068841187587ada79", null ],
     [ "contains", "classBoundedRegion.html#ade7c07fc47919e47cf9536a561248713", null ],
+    [ "contains", "classBoundedRegion.html#a62266b2f21182e723685ed8aa20ddab6", null ],
     [ "onBoundary", "classBoundedRegion.html#a6a67a616102b394230008e147c976bc5", null ],
     [ "removeBoundingSurface", "classBoundedRegion.html#a6e501758af2f931dd7995c9728cf580a", null ],
     [ "_surfaces", "classBoundedRegion.html#a7627b918572fdf4594223566d245dda5", null ]

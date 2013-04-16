@@ -14,13 +14,7 @@ var dir_d2e853d2e88eb629480e78345103ed51 =
     [ "Material.h", "Material_8h.html", "Material_8h" ],
     [ "Neutron.h", "Neutron_8h.html", "Neutron_8h" ],
     [ "Region.h", "Region_8h.html", "Region_8h" ],
-    [ "RegionFactory.h", "RegionFactory_8h.html", [
-      [ "RegionFactory", "classRegionFactory.html", "classRegionFactory" ]
-    ] ],
     [ "Surface.h", "Surface_8h.html", "Surface_8h" ],
-    [ "SurfaceFactory.h", "SurfaceFactory_8h.html", [
-      [ "SurfaceFactory", "classSurfaceFactory.html", "classSurfaceFactory" ]
-    ] ],
     [ "Tally.h", "Tally_8h.html", "Tally_8h" ],
     [ "TallyBank.h", "TallyBank_8h.html", "TallyBank_8h" ],
     [ "TallyFactory.h", "TallyFactory_8h.html", [

@@ -3,6 +3,8 @@ var Region_8h =
     [ "Region", "classRegion.html", "classRegion" ],
     [ "InfiniteMediumRegion", "classInfiniteMediumRegion.html", "classInfiniteMediumRegion" ],
     [ "EquivalenceRegion", "classEquivalenceRegion.html", "classEquivalenceRegion" ],
+    [ "EquivalenceFuelRegion", "classEquivalenceFuelRegion.html", "classEquivalenceFuelRegion" ],
+    [ "EquivalenceModeratorRegion", "classEquivalenceModeratorRegion.html", "classEquivalenceModeratorRegion" ],
     [ "BoundedRegion", "classBoundedRegion.html", "classBoundedRegion" ],
     [ "BoundedFuelRegion", "classBoundedFuelRegion.html", "classBoundedFuelRegion" ],
     [ "BoundedModeratorRegion", "classBoundedModeratorRegion.html", "classBoundedModeratorRegion" ],

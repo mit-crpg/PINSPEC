@@ -37,10 +37,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"classGeometryDiffusionRateTally.html#ad7813cacc07a6833a25dfddba0ee7cf4",
-"classMaterialFluxTally.html#ab1deeebac35f38d8f3c56f1b5c4b0eb5",
-"classTallyBank.html#af3de613ba9ec0fd23c4c459b6fdda7f4",
-"process_8py.html#a6cf809df65f0a24714f69a080add30b2"
+"classGeometryFluxTally.html#afe633b1d646dfe7bbf3232cb49095356",
+"classMaterialGroupRateTally.html#a4e6658b9ce653f19a08a8b1860cc90aa",
+"classTallyFactory.html#a5a7f7937050ad6a5155102cbb02ce94e",
+"plotter_8py.html"
 ];
 
 var navTreeSubIndices = new Array();

@@ -137,6 +137,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:a3acd886aef57f239f49abdf5004c0df0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the x-coordinate of the plane's intersection point with the y-axis.  <a href="#a3acd886aef57f239f49abdf5004c0df0"></a><br/></td></tr>
 <tr class="memitem:a86c9563c4ed5ac95a7e9e6f860a247e1"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#a86c9563c4ed5ac95a7e9e6f860a247e1">evaluate</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
 <tr class="memdesc:a86c9563c4ed5ac95a7e9e6f860a247e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y) $" src="form_53.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y) = qy + d = y - y_0 $" src="form_55.png"/>.  <a href="#a86c9563c4ed5ac95a7e9e6f860a247e1"></a><br/></td></tr>
+<tr class="memitem:a82075cb5fd14a23739af4a44a9a21769"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#a82075cb5fd14a23739af4a44a9a21769">evaluate</a> (float x, float y, float z)</td></tr>
+<tr class="memdesc:a82075cb5fd14a23739af4a44a9a21769"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_65.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y,z) = qy + d = y - y_0 $" src="form_67.png"/>.  <a href="#a82075cb5fd14a23739af4a44a9a21769"></a><br/></td></tr>
 <tr class="memitem:a7f474b38634753235438ca5eff23c2d5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#a7f474b38634753235438ca5eff23c2d5">computeNearestDistance</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
 <tr class="memdesc:a7f474b38634753235438ca5eff23c2d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the nearest distance to the <a class="el" href="classYPlane.html" title="The YPlane is a a plane perpendicular to the y-axis.">YPlane</a> along a neutron's trajectory.  <a href="#a7f474b38634753235438ca5eff23c2d5"></a><br/></td></tr>
 <tr class="memitem:aa8899ff929b56f242316ca684f671772"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#aa8899ff929b56f242316ca684f671772">onSurface</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
@@ -151,6 +153,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:a89de75c95cb550d432f3ea4ed1429db0 inherit pub_methods_classSurface"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a> destructor. <br/></td></tr>
 <tr class="memitem:ac81ba9beb50551c9f515c584337bcee5 inherit pub_methods_classSurface"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#ac81ba9beb50551c9f515c584337bcee5">getSurfaceName</a> ()</td></tr>
 <tr class="memdesc:ac81ba9beb50551c9f515c584337bcee5 inherit pub_methods_classSurface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the name of the surface.  <a href="#ac81ba9beb50551c9f515c584337bcee5"></a><br/></td></tr>
+<tr class="memitem:af9ddf1594a6911f0ff40dff64ed12489 inherit pub_methods_classSurface"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#af9ddf1594a6911f0ff40dff64ed12489">getUid</a> () const </td></tr>
+<tr class="memdesc:af9ddf1594a6911f0ff40dff64ed12489 inherit pub_methods_classSurface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the unique ID auto-generated for the surface.  <a href="#af9ddf1594a6911f0ff40dff64ed12489"></a><br/></td></tr>
 <tr class="memitem:a33b25b8e797853cf582cf5085262e028 inherit pub_methods_classSurface"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Surface_8h.html#a94f2bdaf8e1769faec72dbd9e7486341">boundaryType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a33b25b8e797853cf582cf5085262e028">getBoundaryType</a> () const </td></tr>
 <tr class="memdesc:a33b25b8e797853cf582cf5085262e028 inherit pub_methods_classSurface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this surface's boundary type.  <a href="#a33b25b8e797853cf582cf5085262e028"></a><br/></td></tr>
 <tr class="memitem:a4b8cf1f10574134d62d1d30f3a14a890 inherit pub_methods_classSurface"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Surface_8h.html#a669341e8f044e9051db22e680c1b81df">surfaceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a4b8cf1f10574134d62d1d30f3a14a890">getSurfaceType</a> () const </td></tr>
@@ -166,8 +170,11 @@ Private Attributes</h2></td></tr>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_classSurface"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classSurface')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="classSurface.html">Surface</a></td></tr>
 <tr class="memitem:af051ad8db831a80278fff458e6a2d74f inherit pro_attribs_classSurface"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#af051ad8db831a80278fff458e6a2d74f">_surface_name</a></td></tr>
+<tr class="memitem:aea05fdb4d9e26103dfb66c6833f66b4a inherit pro_attribs_classSurface"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#aea05fdb4d9e26103dfb66c6833f66b4a">_uid</a></td></tr>
 <tr class="memitem:a2b8655eb5a953ea4b45abe5fab7831d0 inherit pro_attribs_classSurface"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Surface_8h.html#a669341e8f044e9051db22e680c1b81df">surfaceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a2b8655eb5a953ea4b45abe5fab7831d0">_surface_type</a></td></tr>
 <tr class="memitem:a73ff438f865a0694735877998dce0d91 inherit pro_attribs_classSurface"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Surface_8h.html#a94f2bdaf8e1769faec72dbd9e7486341">boundaryType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a73ff438f865a0694735877998dce0d91">_boundary_type</a></td></tr>
+<tr class="inherit_header pro_static_attribs_classSurface"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_classSurface')"><img src="closed.png" alt="-"/>&nbsp;Static Protected Attributes inherited from <a class="el" href="classSurface.html">Surface</a></td></tr>
+<tr class="memitem:af29013bb2235204f570e86d62bca4a1f inherit pro_static_attribs_classSurface"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#af29013bb2235204f570e86d62bca4a1f">_n</a> = 1</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classYPlane.html" title="The YPlane is a a plane perpendicular to the y-axis.">YPlane</a> is a a plane perpendicular to the y-axis. </p>
@@ -264,6 +271,58 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 
 <p>Implements <a class="el" href="classSurface.html#acacc8ac56302a9b8ceab23d8b5b5cc93">Surface</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a82075cb5fd14a23739af4a44a9a21769"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float YPlane::evaluate </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_65.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y,z) = qy + d = y - y_0 $" src="form_67.png"/>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>the x-coordinate of interest </td></tr>
+    <tr><td class="paramname">y</td><td>the y-coordinate of interest </td></tr>
+    <tr><td class="paramname">z</td><td>the z-coordinate of interest </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classSurface.html#ae8a7b9ab365ef35622c14bd576d134ca">Surface</a>.</p>
 
 </div>
 </div>
@@ -411,7 +470,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classYPlane.html">YPlane</a></li>
-    <li class="footer">Generated on Sun Apr 14 2013 13:58:24 by
+    <li class="footer">Generated on Tue Apr 16 2013 03:39:09 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

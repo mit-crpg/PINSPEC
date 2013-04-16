@@ -105,6 +105,7 @@ $(document).ready(function(){initNavTree('classIsotope.html','');});
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classIsotope-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Isotope Class Reference</div>  </div>
@@ -131,6 +132,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a9adedaf6a1bd4cee536c4684d6adaf65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inform isotope that it is fissionable. <br/></td></tr>
 <tr class="memitem:a3e2ee2187d8765500876067f184e9958"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIsotope.html#a3e2ee2187d8765500876067f184e9958">getIsotopeName</a> () const </td></tr>
 <tr class="memdesc:a3e2ee2187d8765500876067f184e9958"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the of isotope.  <a href="#a3e2ee2187d8765500876067f184e9958"></a><br/></td></tr>
+<tr class="memitem:a3cb6ed4e3aeb7ba8ca226fce2746e4d1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIsotope.html#a3cb6ed4e3aeb7ba8ca226fce2746e4d1">getUid</a> () const </td></tr>
+<tr class="memdesc:a3cb6ed4e3aeb7ba8ca226fce2746e4d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the unique ID auto-generated for the isotope.  <a href="#a3cb6ed4e3aeb7ba8ca226fce2746e4d1"></a><br/></td></tr>
 <tr class="memitem:a147b6797175aebe1971ce959e9fee09f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIsotope.html#a147b6797175aebe1971ce959e9fee09f">getA</a> () const </td></tr>
 <tr class="memdesc:a147b6797175aebe1971ce959e9fee09f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the atomic number of this isotope.  <a href="#a147b6797175aebe1971ce959e9fee09f"></a><br/></td></tr>
 <tr class="memitem:ad0003d170a157b0bcbc7577803408f33"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIsotope.html#ad0003d170a157b0bcbc7577803408f33">getAlpha</a> () const </td></tr>
@@ -252,6 +255,7 @@ Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a073b0f7a2c59a676284d68dbdc588a6b"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIsotope.html#a073b0f7a2c59a676284d68dbdc588a6b">_isotope_name</a></td></tr>
+<tr class="memitem:a69c6a8e0759f98d173fa2b0df6d63d6b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIsotope.html#a69c6a8e0759f98d173fa2b0df6d63d6b">_uid</a></td></tr>
 <tr class="memitem:a85a7058c3057f880e015791c460f7c29"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIsotope.html#a85a7058c3057f880e015791c460f7c29">_A</a></td></tr>
 <tr class="memitem:ad20642f575309ba084e702adb009d178"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIsotope.html#ad20642f575309ba084e702adb009d178">_A_squared</a></td></tr>
 <tr class="memitem:a57ed0ac9957800c8c43790be2bb0ecd3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIsotope.html#a57ed0ac9957800c8c43790be2bb0ecd3">_A_plus_one_squared</a></td></tr>
@@ -294,6 +298,10 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a273dfb14475d3d16c5c8ed37dababfa5"><td class="memItemLeft" align="right" valign="top">float **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIsotope.html#a273dfb14475d3d16c5c8ed37dababfa5">_thermal_cdfs</a></td></tr>
 <tr class="memitem:a99e9d62aea621b33e5250b3def9079f6"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIsotope.html#a99e9d62aea621b33e5250b3def9079f6">_E_to_kT</a></td></tr>
 <tr class="memitem:a3f3437fabe8c5b6108080f150b854fda"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIsotope.html#a3f3437fabe8c5b6108080f150b854fda">_Eprime_to_E</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a39118a0c067435ebeec4a1432a24a20c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIsotope.html#a39118a0c067435ebeec4a1432a24a20c">_n</a> = 1</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classIsotope.html" title="The Isotope represents a nuclide at some temperature.">Isotope</a> represents a nuclide at some temperature. </p>
@@ -1024,6 +1032,24 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the microscopic transport cross-section </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3cb6ed4e3aeb7ba8ca226fce2746e4d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Isotope::getUid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the unique ID auto-generated for the isotope. </p>
+<dl class="section return"><dt>Returns</dt><dd>a unique ID for the isotope </dd></dl>
 
 </div>
 </div>
@@ -2627,6 +2653,27 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a39118a0c067435ebeec4a1432a24a20c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Isotope::_n = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A static class variable to generate a UID for each new isotope </p>
+
+</div>
+</div>
 <a class="anchor" id="aa197f9184aae95b37bcfb89c6c456a8f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -2984,6 +3031,27 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a69c6a8e0759f98d173fa2b0df6d63d6b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Isotope::_uid</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The isotope's unique identifier </p>
+
+</div>
+</div>
 <a class="anchor" id="aabb478cc4ceefb44824230c03d68c881"></a>
 <div class="memitem">
 <div class="memproto">
@@ -3015,7 +3083,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classIsotope.html">Isotope</a></li>
-    <li class="footer">Generated on Sun Apr 14 2013 13:58:23 by
+    <li class="footer">Generated on Tue Apr 16 2013 03:39:07 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

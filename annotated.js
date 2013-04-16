@@ -10,8 +10,9 @@ var annotated =
     [ "BoundedGeneralRegion", "classBoundedGeneralRegion.html", "classBoundedGeneralRegion" ],
     [ "BoundedModeratorRegion", "classBoundedModeratorRegion.html", "classBoundedModeratorRegion" ],
     [ "BoundedRegion", "classBoundedRegion.html", "classBoundedRegion" ],
-    [ "Circle", "classCircle.html", "classCircle" ],
     [ "DerivedTally", "classDerivedTally.html", "classDerivedTally" ],
+    [ "EquivalenceFuelRegion", "classEquivalenceFuelRegion.html", "classEquivalenceFuelRegion" ],
+    [ "EquivalenceModeratorRegion", "classEquivalenceModeratorRegion.html", "classEquivalenceModeratorRegion" ],
     [ "EquivalenceRegion", "classEquivalenceRegion.html", "classEquivalenceRegion" ],
     [ "Fissioner", "classFissioner.html", "classFissioner" ],
     [ "Geometry", "classGeometry.html", "classGeometry" ],
@@ -62,7 +63,6 @@ var annotated =
     [ "RegionCollisionRateTally", "classRegionCollisionRateTally.html", "classRegionCollisionRateTally" ],
     [ "RegionDiffusionRateTally", "classRegionDiffusionRateTally.html", "classRegionDiffusionRateTally" ],
     [ "RegionElasticRateTally", "classRegionElasticRateTally.html", "classRegionElasticRateTally" ],
-    [ "RegionFactory", "classRegionFactory.html", "classRegionFactory" ],
     [ "RegionFissionRateTally", "classRegionFissionRateTally.html", "classRegionFissionRateTally" ],
     [ "RegionFluxTally", "classRegionFluxTally.html", "classRegionFluxTally" ],
     [ "RegionGroupRateTally", "classRegionGroupRateTally.html", "classRegionGroupRateTally" ],
@@ -72,11 +72,11 @@ var annotated =
     [ "RegionTally", "classRegionTally.html", "classRegionTally" ],
     [ "RegionTransportRateTally", "classRegionTransportRateTally.html", "classRegionTransportRateTally" ],
     [ "Surface", "classSurface.html", "classSurface" ],
-    [ "SurfaceFactory", "classSurfaceFactory.html", "classSurfaceFactory" ],
     [ "Tally", "classTally.html", "classTally" ],
     [ "TallyBank", "classTallyBank.html", "classTallyBank" ],
     [ "TallyFactory", "classTallyFactory.html", "classTallyFactory" ],
     [ "Timer", "classTimer.html", "classTimer" ],
     [ "XPlane", "classXPlane.html", "classXPlane" ],
-    [ "YPlane", "classYPlane.html", "classYPlane" ]
+    [ "YPlane", "classYPlane.html", "classYPlane" ],
+    [ "ZCylinder", "classZCylinder.html", "classZCylinder" ]
 ];

@@ -2,7 +2,7 @@ var searchData=
 [
   ['recordsplit',['recordSplit',['../classTimer.html#a613c775ca0b0b08f7cf1a6c165a6b6f7',1,'Timer']]],
   ['reflective',['REFLECTIVE',['../Surface_8h.html#abb822ff7806f2c6ef918ca198e0358c3a45e171c3bba46047336203d2aed3775d',1,'Surface.h']]],
-  ['reflectneutron',['reflectNeutron',['../classSurface.html#a9c447e16cce8344f0eaec043cc5401e6',1,'Surface::reflectNeutron()'],['../classXPlane.html#aa55e539bc39e833e027d9d5d4ce7aae7',1,'XPlane::reflectNeutron()'],['../classYPlane.html#a0a1b7117b12f7f0b4384a78a7ae5da58',1,'YPlane::reflectNeutron()'],['../classCircle.html#a3075e0a59892b2d1ffc792f25af548c0',1,'Circle::reflectNeutron()']]],
+  ['reflectneutron',['reflectNeutron',['../classSurface.html#a9c447e16cce8344f0eaec043cc5401e6',1,'Surface::reflectNeutron()'],['../classXPlane.html#aa55e539bc39e833e027d9d5d4ce7aae7',1,'XPlane::reflectNeutron()'],['../classYPlane.html#a0a1b7117b12f7f0b4384a78a7ae5da58',1,'YPlane::reflectNeutron()'],['../classZCylinder.html#a750e61124a01162b3897f5e04a7b5c84',1,'ZCylinder::reflectNeutron()']]],
   ['region',['Region',['../classRegion.html',1,'Region'],['../classRegion.html#a569a104a9a675dd85c820e9cded32ab9',1,'Region::Region()'],['../Tally_8h.html#ada80c8cd6f43d1b9d2cc2c365bd12cb7a3bfda0bdc93e66e77b2242a9ce4cd804',1,'REGION():&#160;Tally.h']]],
   ['region_2eh',['Region.h',['../Region_8h.html',1,'']]],
   ['regionabsorptionratetally',['RegionAbsorptionRateTally',['../classRegionAbsorptionRateTally.html',1,'RegionAbsorptionRateTally'],['../classRegionAbsorptionRateTally.html#a660ea8cbb625cad4ecb5a64e963a0682',1,'RegionAbsorptionRateTally::RegionAbsorptionRateTally()']]],
@@ -10,8 +10,6 @@ var searchData=
   ['regioncollisionratetally',['RegionCollisionRateTally',['../classRegionCollisionRateTally.html',1,'RegionCollisionRateTally'],['../classRegionCollisionRateTally.html#a4665e117d3c7be7ce66ae9a23e031e73',1,'RegionCollisionRateTally::RegionCollisionRateTally()']]],
   ['regiondiffusionratetally',['RegionDiffusionRateTally',['../classRegionDiffusionRateTally.html',1,'RegionDiffusionRateTally'],['../classRegionDiffusionRateTally.html#a64dc61a22189a60f052cf349615d3463',1,'RegionDiffusionRateTally::RegionDiffusionRateTally()']]],
   ['regionelasticratetally',['RegionElasticRateTally',['../classRegionElasticRateTally.html',1,'RegionElasticRateTally'],['../classRegionElasticRateTally.html#aab82cda6914a01240b7fdfe01ca08b33',1,'RegionElasticRateTally::RegionElasticRateTally()']]],
-  ['regionfactory',['RegionFactory',['../classRegionFactory.html',1,'RegionFactory'],['../classRegionFactory.html#ae3599b5e2313bffa2704ba211af2a3f7',1,'RegionFactory::RegionFactory()']]],
-  ['regionfactory_2eh',['RegionFactory.h',['../RegionFactory_8h.html',1,'']]],
   ['regionfissionratetally',['RegionFissionRateTally',['../classRegionFissionRateTally.html',1,'RegionFissionRateTally'],['../classRegionFissionRateTally.html#af3344001e9ba2ac13119191e49111d3d',1,'RegionFissionRateTally::RegionFissionRateTally()']]],
   ['regionfluxtally',['RegionFluxTally',['../classRegionFluxTally.html',1,'RegionFluxTally'],['../classRegionFluxTally.html#afeb527c4b8deafc6cff68594ad95a9c8',1,'RegionFluxTally::RegionFluxTally()']]],
   ['regiongroupratetally',['RegionGroupRateTally',['../classRegionGroupRateTally.html',1,'RegionGroupRateTally'],['../classRegionGroupRateTally.html#ac767cc661f9d4a563516b9a9b994e241',1,'RegionGroupRateTally::RegionGroupRateTally()']]],

@@ -11,6 +11,7 @@ var searchData=
   ['plotmacroxs',['plotMacroXS',['../namespacepinspec_1_1plotter.html#a43bdaa25a0a79c03b4082523d529f1ef',1,'pinspec::plotter']]],
   ['plotmicroxs',['plotMicroXS',['../namespacepinspec_1_1plotter.html#a9310520b2e86be0e353ca47aed9daab1',1,'pinspec::plotter']]],
   ['plotri',['plotRI',['../namespacepinspec_1_1plotter.html#a00729d4934ced6d02844b7f0355b77f4',1,'pinspec::plotter']]],
+  ['plotslice',['plotSlice',['../namespacepinspec_1_1plotter.html#ac4e680b32413a19fb42ab62a3c445146',1,'pinspec::plotter']]],
   ['plotter',['plotter',['../namespacepinspec_1_1plotter.html',1,'pinspec']]],
   ['plotter_2epy',['plotter.py',['../plotter_8py.html',1,'']]],
   ['plotthermalscattering',['plotThermalScattering',['../namespacepinspec_1_1plotter.html#a4ba46d55fc5d6e970c4f4bceefbd1990',1,'pinspec::plotter']]],

@@ -104,6 +104,7 @@ $(document).ready(function(){initNavTree('classRegion.html','');});
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
 <a href="classRegion-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Region Class Reference</div>  </div>
@@ -120,12 +121,14 @@ Inheritance diagram for Region:</div>
  <div class="center">
   <img src="classRegion.png" usemap="#Region_map" alt=""/>
   <map id="Region_map" name="Region_map">
-<area href="classBoundedRegion.html" title="The BoundedRegion is a region bounded by surfaces using a constructive solid geometry formulation..." alt="BoundedRegion" shape="rect" coords="170,56,330,80"/>
-<area href="classEquivalenceRegion.html" title="The Equivalence Region is a fuel or moderator region treated using the heterogenous-homogeneous equiv..." alt="EquivalenceRegion" shape="rect" coords="340,56,500,80"/>
-<area href="classInfiniteMediumRegion.html" title="The InfiniteMediumRegion is a homogenized region treated without geometric effects." alt="InfiniteMediumRegion" shape="rect" coords="510,56,670,80"/>
-<area href="classBoundedFuelRegion.html" title="The BoundedFuelRegion is a circular fuel pin region bounded by the interior halfspace of a circle sur..." alt="BoundedFuelRegion" shape="rect" coords="0,112,160,136"/>
-<area href="classBoundedGeneralRegion.html" title="The BoundedGeneralRegion is a the space defined by the intersection of some number surface halfspaces..." alt="BoundedGeneralRegion" shape="rect" coords="170,112,330,136"/>
-<area href="classBoundedModeratorRegion.html" title="The BoundedModeratorRegion is a the space defined four surfaces bounding a square pin minus a circula..." alt="BoundedModeratorRegion" shape="rect" coords="340,112,500,136"/>
+<area href="classBoundedRegion.html" title="The BoundedRegion is a region bounded by surfaces using a constructive solid geometry formulation..." alt="BoundedRegion" shape="rect" coords="189,56,368,80"/>
+<area href="classEquivalenceRegion.html" title="The Equivalence Region is a fuel or moderator region treated using the heterogenous-homogeneous equiv..." alt="EquivalenceRegion" shape="rect" coords="661,56,840,80"/>
+<area href="classInfiniteMediumRegion.html" title="The InfiniteMediumRegion is a homogenized region treated without geometric effects." alt="InfiniteMediumRegion" shape="rect" coords="850,56,1029,80"/>
+<area href="classBoundedFuelRegion.html" title="The BoundedFuelRegion is a circular fuel pin region bounded by the interior halfspace of a circle sur..." alt="BoundedFuelRegion" shape="rect" coords="0,112,179,136"/>
+<area href="classBoundedGeneralRegion.html" title="The BoundedGeneralRegion is a the space defined by the intersection of some number surface halfspaces..." alt="BoundedGeneralRegion" shape="rect" coords="189,112,368,136"/>
+<area href="classBoundedModeratorRegion.html" title="The BoundedModeratorRegion is a the space defined four surfaces bounding a square pin minus a circula..." alt="BoundedModeratorRegion" shape="rect" coords="378,112,557,136"/>
+<area href="classEquivalenceFuelRegion.html" title="The EquivalenceFuelRegion is a fuel region treated using the heterogenous-homogeneous equivalence the..." alt="EquivalenceFuelRegion" shape="rect" coords="567,112,746,136"/>
+<area href="classEquivalenceModeratorRegion.html" title="The EquivalenceModeratorRegion is a fuel region treated using the heterogenous-homogeneous equivalenc..." alt="EquivalenceModeratorRegion" shape="rect" coords="756,112,935,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -135,8 +138,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a569a104a9a675dd85c820e9cded32ab9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRegion.html" title="The region class represents a region in 2D space.">Region</a> constructor.  <a href="#a569a104a9a675dd85c820e9cded32ab9"></a><br/></td></tr>
 <tr class="memitem:a3c3670fff78f7511d156e3b2f0bc6266"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a3c3670fff78f7511d156e3b2f0bc6266">~Region</a> ()</td></tr>
 <tr class="memdesc:a3c3670fff78f7511d156e3b2f0bc6266"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty destructor allows SWIG to cleanup memory for surfaces.  <a href="#a3c3670fff78f7511d156e3b2f0bc6266"></a><br/></td></tr>
-<tr class="memitem:abac6cb4d426f59e3b4b3f7a5ef8f4a1d"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#abac6cb4d426f59e3b4b3f7a5ef8f4a1d">getRegionName</a> ()</td></tr>
-<tr class="memdesc:abac6cb4d426f59e3b4b3f7a5ef8f4a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the name of the region.  <a href="#abac6cb4d426f59e3b4b3f7a5ef8f4a1d"></a><br/></td></tr>
+<tr class="memitem:a2d5a11bbd891f5ce33dfbad2bcea0542"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a2d5a11bbd891f5ce33dfbad2bcea0542">getName</a> ()</td></tr>
+<tr class="memdesc:a2d5a11bbd891f5ce33dfbad2bcea0542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the name of the region.  <a href="#a2d5a11bbd891f5ce33dfbad2bcea0542"></a><br/></td></tr>
+<tr class="memitem:a96a4b535e9a951aa3809b73a40f17c4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a96a4b535e9a951aa3809b73a40f17c4f">getUid</a> () const </td></tr>
+<tr class="memdesc:a96a4b535e9a951aa3809b73a40f17c4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the unique ID auto-generated for the region.  <a href="#a96a4b535e9a951aa3809b73a40f17c4f"></a><br/></td></tr>
 <tr class="memitem:ace26edc725e1f4d723964f3961e65ceb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMaterial.html">Material</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#ace26edc725e1f4d723964f3961e65ceb">getMaterial</a> ()</td></tr>
 <tr class="memdesc:ace26edc725e1f4d723964f3961e65ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the material filling this region.  <a href="#ace26edc725e1f4d723964f3961e65ceb"></a><br/></td></tr>
 <tr class="memitem:a46eb443386a0f3003a28772f78e6de70"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a46eb443386a0f3003a28772f78e6de70">containsIsotope</a> (<a class="el" href="classIsotope.html">Isotope</a> *isotope)</td></tr>
@@ -207,10 +212,15 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:abf94b7a06d6b1500a77b68505868d312"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#abf94b7a06d6b1500a77b68505868d312">_region_name</a></td></tr>
+<tr class="memitem:ab34595cf305e6dca85fba93958846f79"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#ab34595cf305e6dca85fba93958846f79">_uid</a></td></tr>
 <tr class="memitem:afeb207eb640d2543a9b5a1bb2097c50d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMaterial.html">Material</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#afeb207eb640d2543a9b5a1bb2097c50d">_material</a></td></tr>
 <tr class="memitem:a83913828a5b45d69aa073bc567a03750"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Region_8h.html#a2c25b4a3d851e2d45d7a435a73598323">regionType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a83913828a5b45d69aa073bc567a03750">_region_type</a></td></tr>
 <tr class="memitem:a2731c8000023342a08a5799e0aa5c0d2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a2731c8000023342a08a5799e0aa5c0d2">_buckling_squared</a></td></tr>
 <tr class="memitem:ad4345a279ed2211c94a73c4bd1f28ba8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#ad4345a279ed2211c94a73c4bd1f28ba8">_volume</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="pro-static-attribs"></a>
+Static Protected Attributes</h2></td></tr>
+<tr class="memitem:af6cbf446445c77247ff9d7cf677a18ac"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#af6cbf446445c77247ff9d7cf677a18ac">_n</a> = 1</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The region class represents a region in 2D space. </p>
@@ -764,12 +774,12 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abac6cb4d426f59e3b4b3f7a5ef8f4a1d"></a>
+<a class="anchor" id="a2d5a11bbd891f5ce33dfbad2bcea0542"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char * Region::getRegionName </td>
+          <td class="memname">char * Region::getName </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1000,6 +1010,24 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a96a4b535e9a951aa3809b73a40f17c4f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Region::getUid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the unique ID auto-generated for the region. </p>
+<dl class="section return"><dt>Returns</dt><dd>a unique ID for the region </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a2c3eca3c5373770e19d36198859f4ccb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1135,6 +1163,27 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af6cbf446445c77247ff9d7cf677a18ac"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Region::_n = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A static class variable to generate a UID for each new region </p>
+
+</div>
+</div>
 <a class="anchor" id="abf94b7a06d6b1500a77b68505868d312"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1177,6 +1226,27 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ab34595cf305e6dca85fba93958846f79"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Region::_uid</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The region's unique identifier </p>
+
+</div>
+</div>
 <a class="anchor" id="ad4345a279ed2211c94a73c4bd1f28ba8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1208,7 +1278,7 @@ Protected Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classRegion.html">Region</a></li>
-    <li class="footer">Generated on Sun Apr 14 2013 13:58:24 by
+    <li class="footer">Generated on Tue Apr 16 2013 03:39:08 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

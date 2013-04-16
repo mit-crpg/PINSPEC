@@ -3,7 +3,7 @@ var Surface_8h =
     [ "Surface", "classSurface.html", "classSurface" ],
     [ "XPlane", "classXPlane.html", "classXPlane" ],
     [ "YPlane", "classYPlane.html", "classYPlane" ],
-    [ "Circle", "classCircle.html", "classCircle" ],
+    [ "ZCylinder", "classZCylinder.html", "classZCylinder" ],
     [ "PI_OVER_TWO", "Surface_8h.html#adadbae7d9856635bbacdc4c9f546ef81", null ],
     [ "THREE_PI_OVER_TWO", "Surface_8h.html#a10b8b2d0d73c09f411c0e67416fd10e4", null ],
     [ "TINY_MOVE", "Surface_8h.html#a481c7dad5dc2bb9070235752daa421c6", null ],
@@ -18,6 +18,6 @@ var Surface_8h =
     [ "surfaceTypes", "Surface_8h.html#aae07c7b4372f62f6968ba1a9bb22f7e5", [
       [ "XPLANE", "Surface_8h.html#aae07c7b4372f62f6968ba1a9bb22f7e5a1c21ef9ff004b3e547f19918ab7e7a80", null ],
       [ "YPLANE", "Surface_8h.html#aae07c7b4372f62f6968ba1a9bb22f7e5a02382f3d36c22c4fdd1544a55ac87d4a", null ],
-      [ "CIRCLE", "Surface_8h.html#aae07c7b4372f62f6968ba1a9bb22f7e5aa79c827759ea48f0735386c4b1188911", null ]
+      [ "ZCYLINDER", "Surface_8h.html#aae07c7b4372f62f6968ba1a9bb22f7e5ab72f6c804a0705499e51f83f88187f8f", null ]
     ] ]
 ];
