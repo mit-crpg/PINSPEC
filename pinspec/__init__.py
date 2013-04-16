@@ -25,5 +25,5 @@ pinspec.TallyBank = TallyBank.Get()
 pinspec.TallyFactory = TallyFactory.Get()
 
 # Get instances of SurfaceFactory and RegionFactory singleton classes
-pinspec.SurfaceBank = SurfaceFactory.Get()
+pinspec.SurfaceFactory = SurfaceFactory.Get()
 pinspec.RegionFactory = RegionFactory.Get()

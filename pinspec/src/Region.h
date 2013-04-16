@@ -60,6 +60,10 @@ class Region {
 protected:
     /** The region's name */
     char* _region_name;
+    /** A static class variable to generate a UID for each new region */
+    static int _n;
+    /** The region's unique identifier */
+    int _uid;
     /** A pointer to the material filling the region */
     Material* _material;
     /** The type of region (INFINITE, EQUIVALNENCE, or BOUNDED) */
@@ -75,7 +79,8 @@ public:
      * @brief Empty destructor allows SWIG to cleanup memory for surfaces.
      */
     virtual ~Region();
-    char* getRegionName();
+    char* getName();
+    int getUid() const;
     Material* getMaterial();
     bool containsIsotope(Isotope* isotope);
     regionType getRegionType();
@@ -241,6 +246,7 @@ public:
     void removeBoundingSurface(int halfspace, Surface* surface);
 
     bool contains(neutron* neutron);
+    bool contains(float x, float y, float z);
     bool onBoundary(neutron* neutron);
     float computeDistanceToSurface(neutron* neutron);
 

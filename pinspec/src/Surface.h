@@ -37,8 +37,8 @@ typedef enum surfaceTypes {
     XPLANE,
     /** A plane perpendicular to the y-axis */
     YPLANE,
-    /** A circle in the xy-plane */
-    CIRCLE
+    /** An infinite cylinder parallel to the z-axis */
+    ZCYLINDER
 } surfaceType;
 
 
@@ -73,6 +73,10 @@ class Surface {
 protected:
     /** The surface's name */
     char* _surface_name;
+    /** A static class variable to generate a UID for each new surface */
+    static int _n;
+    /** The surface's unique identifier */
+    int _uid;
     /** The type of surface */
     surfaceType _surface_type;
     /** The boundary condition for this Surface */
@@ -82,18 +86,29 @@ public:
     virtual ~Surface();
 
     char* getSurfaceName();
-    
+    int getUid() const;    
     boundaryType getBoundaryType() const;
     surfaceType getSurfaceType() const;
+
     void setBoundaryType(boundaryType type);
 
     /**
-     * @brief Returns the evaluation of a neutron's coordinates \f$ (x,y) \f$ 
-     *        with respect to a quadratic surface \f$ f(x,y) \f$.
+     * @brief Returns the evaluation of a neutron's coordinates \f$ (x,y,z) \f$ 
+     *        with respect to a quadratic surface \f$ f(x,y,z) \f$.
      * @param neutron the neutron of interest
      *
      */
     virtual float evaluate(neutron* neutron) =0;
+
+    /**
+     * @brief Returns the evaluation of a neutron's coordinates \f$ (x,y,z) \f$ 
+     *        with respect to a quadratic surface \f$ f(x,y,z) \f$.
+     * @param x the x-coordinate of interest
+     * @param y the y-coordinate of interest
+     * @param z the z-coordinate of interest
+     *
+     */
+    virtual float evaluate(float x, float y, float z) =0;
 
     /**
      * @brief Computes the nearest distance between a neutron at some
@@ -140,6 +155,7 @@ public:
     float getX();
     void setX(float x);
     float evaluate(neutron* neutron);
+    float evaluate(float x, float y, float z);
     float computeNearestDistance(neutron* neutron);
     bool onSurface(neutron* neutron);
     void reflectNeutron(neutron* neutron);
@@ -162,6 +178,7 @@ public:
     float getY();
     void setY(float y);
     float evaluate(neutron* neutron);
+    float evaluate(float x, float y, float z);
     float computeNearestDistance(neutron* neutron);
     bool onSurface(neutron* neutron);
     void reflectNeutron(neutron* neutron);
@@ -169,24 +186,24 @@ public:
 
 
 /**
- * @class Circle Surface.h "pinspec/src/Surface.h"
- * @brief The Circle is the locus of a point equidistant from a fixed point.
- * @details The Circle represents a set of points within a given distance
- *          from a point in the xy-plane called the circle's center.
+ * @class ZCylinder Surface.h "pinspec/src/Surface.h"
+ * @brief The ZCylinder is the locus of a point equidistant from a fixed point.
+ * @details The ZCylinder represents a set of points within a given distance
+ *          from a point in the xy-plane called the cylinder's center.
  */
-class Circle: public Surface {
+class ZCylinder: public Surface {
 protected:
-    /** The circle's radius */
+    /** The cylinder's radius */
     float _r;
-    /** The square of the circle's radius */
+    /** The square of the cylinder's radius */
     float  _r_squared;
-    /** The x-coordinate of the circle's center */
+    /** The x-coordinate of the cylinder's center */
     float _x0;
-    /** The y-coordinate of the circle's center */
+    /** The y-coordinate of the cylinder's center */
     float _y0;
 public:
-    Circle(const char* surface_name=(char*)"");
-    virtual ~Circle();
+    ZCylinder(const char* surface_name=(char*)"");
+    virtual ~ZCylinder();
     float getX0();
     float getY0();
     float getRadius();
@@ -194,6 +211,7 @@ public:
     void setY0(float y0);
     void setRadius(float r);
     float evaluate(neutron* neutron);
+    float evaluate(float x, float y, float z);
     float computeNearestDistance(neutron* neutron);
     bool onSurface(neutron* neutron);
     void reflectNeutron(neutron* neutron);

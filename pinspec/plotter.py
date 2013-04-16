@@ -18,6 +18,7 @@ import os
 
 ## A static variable to auto-generate unique filenames for flux plots
 flux_plot_num = 0
+
 ## A static variable for the output directory in which to save plots
 subdirectory = "/plots/"
     
@@ -465,5 +466,184 @@ def plotGroupXS(group_xs, title='', filename=''):
     else:
         filename = directory + filename.replace(' ', '-').lower() + \
                                                         '-group-xs.png'
+
+    plt.savefig(filename)
+
+
+
+##
+# @brief This method takes in a region or a geometry object and plots a
+#        color-coded 2D surface plot representing a planar slice through 
+#         the space.
+# @param space a bounded region or heterogeneous geometry object
+# @param plane the optional 'xy', 'xz' or 'yz' plane the user wishes to plot
+# @param loc the optional x, y, or z position of the planar plot
+# @param lim1 the optional bounding limits for the first planar dimension
+# @param lim2 the optional bounding limits for the second planar dimension
+# @param gridsize an optional number of grid cells for the plot
+# @param filename an optional filename
+def plotSlice(space, plane='XY', loc=0.0, lim1=[-2., 2.], lim2=[-2., 2.], 
+              gridsize=100, filename=''):
+
+    global subdirectory
+
+    directory = getOutputDirectory() + subdirectory
+
+    # Make directory if it does not exist
+    if not os.path.exists(directory):
+            os.makedirs(directory)
+
+    # Error checking
+    if not isinstance(space, (BoundedModeratorRegion, BoundedFuelRegion, \
+                                   BoundedGeneralRegion, Geometry)):
+        py_printf('ERROR', 'Unable to plot a %s slice since input ' + \
+                  'did not contain a region or geometry', plane)
+    if not isinstance(plane, str):
+        py_printf('ERROR', 'Unable to plot a %s slice for space %s.' + \
+                      'PINSPEC only supports plots of XY, XZ and YZ slices.',
+                      str(plane), space.getName())
+    if plane.lower() != 'xy' and plane.lower() != 'xz' \
+            and plane.lower() != 'yz':
+        print 'plane.lower = ' + str(plane.lower())
+        py_printf('ERROR', 'Unable to plot a %s slice for space %s.' + \
+                      'PINSPEC only supports plots of XY, XZ and YZ slices.',
+                      plane, space.getName()) 
+    if len(lim1) is not 2:
+        py_printf('ERROR', 'Unable to plot a %s slice for space %s since ' + \
+                      'the lim1 parameter is of length %d rather than 2', 
+                      plane, space.getName(), len(lim1))
+    if len(lim2) is not 2:
+        py_printf('ERROR', 'Unable to plot a %s slice for space %s since ' + \
+                      'the lim2 parameter is of length %d rather than 2', 
+                      plane, space.getName(), len(lim2))
+    if not isinstance(lim1[0], float) or not isinstance(lim1[1], float):
+        py_printf('ERROR', 'Unable to plot a %s slice for space %s since ' + \
+                      'lim1 does not contain floating point values', plane,
+                      space.getName())
+    if not isinstance(lim2[0], float) or not isinstance(lim2[1], float):
+        py_printf('ERROR', 'Unable to plot a %s slice for space %s since ' + \
+                      'lim2 does not contain floating point values', plane,
+                      space.getName())
+    if lim1[0] >= lim1[1]:
+        py_printf('ERROR', 'Unable to plot a %s slice for space %s since ' + \
+                      'the minimum lim1 value (%f) is greater than the ' + \
+                      'maximum lim1 value (%f)', space.getName(), plane,
+                      lim1[0], lim1[1])
+    if lim2[0] >= lim2[1]:
+        py_printf('ERROR', 'Unable to plot a %s slice for space %s since ' + \
+                      'the minimum lim2 value (%f) is greater than the ' + \
+                      'maximum lim2 value (%f)', space.getName(), plane,
+                      lim2[0], lim2[1])
+    if not isinstance(gridsize, int):
+        py_printf('ERROR', 'Unable to plot a %s slice for space %s ' + \
+                      'Since the gridsize %s is not an integer', plane,
+                      space.getName(), str(gridsize))
+    if gridsize <= 0:
+        py_printf('Error', 'Unable to plot a %s slice for space %s ' + \
+                      'with a negative gridsize (%d)', plane,
+                      space.getName(), gridsize)
+
+    # TODO: pass in either a region, geometry
+    # TODO: For space color 0 or 1
+    # TODO: For geometry color by material uid
+
+    # Initialize a numpy array for the surface colors
+    surface = numpy.zeros((gridsize, gridsize), dtype=np.int32)
+
+    dim1 = np.linspace(lim1[0], lim1[1], gridsize)
+    dim2 = np.linspace(lim2[0], lim2[1], gridsize)
+
+    if plane.lower() == 'xy':
+
+        # We are plotting a region
+        if isinstance(space, (BoundedRegion, BoundedModeratorRegion, \
+                                  BoundedFuelRegion)):
+            for i in range(len(dim1)):
+                for j in range(len(dim2)):
+            
+                    # Color space for points within the space
+                    if space.contains(dim1[i], dim2[j], loc):
+                        surface[j][i] = 1.0
+
+        # We are plotting the geometry
+        else:
+
+            for i in range(len(dim1)):
+                for j in range(len(dim2)):
+            
+                    # Color space for points within the space
+                    if space.contains(dim1[i], dim2[j], loc):
+                        region = space.findContainingRegion(dim1[i], \
+                                                            dim2[j], loc)
+                        surface[j][i] = region.getUid()
+
+    if plane.lower() == 'xz':
+
+        # We are plotting a region
+        if isinstance(space, (BoundedRegion, BoundedModeratorRegion, \
+                                  BoundedFuelRegion)):
+            for i in range(len(dim1)):
+                for j in range(len(dim2)):
+            
+                    # Color space for points within the space
+                    if space.contains(dim1[i], loc, dim2[j]):
+                        surface[j][i] = 1.0
+
+        # We are plotting the geometry
+        else:
+
+            for i in range(len(dim1)):
+                for j in range(len(dim2)):
+            
+                    # Color space for points within the space
+                    if space.contains(dim1[i], loc, dim2[j]):
+                        region = space.findContainingRegion(dim1[i], loc,
+                                                            dim2[j])
+                        surface[j][i] = region.getUid()
+
+
+    if plane.lower() == 'yz':
+
+        # We are plotting a region
+        if isinstance(space, (BoundedRegion, BoundedModeratorRegion, \
+                                  BoundedFuelRegion)):
+
+            # We are plotting a region
+            for i in range(len(dim1)):
+                for j in range(len(dim2)):
+            
+                    # Color space for points within the space
+                    if space.contains(loc, dim1[i], dim2[j]):
+                        surface[j][i] = 1.0
+
+        # We are plotting the geometry
+        else:
+
+            for i in range(len(dim1)):
+                for j in range(len(dim2)):
+            
+                    # Color space for points within the space
+                    if space.contains(dim1[i], loc, dim2[j]):
+                        region = space.findContainingRegion(loc, dim1[i],
+                                                            dim2[j])
+                        surface[j][i] = region.getUid()
+
+    
+    fig = plt.figure()
+    plt.pcolor(dim1, dim2, surface)
+    plt.axis([lim1[0], lim1[1], lim2[0], lim2[1]])
+
+    if plane.lower() is 'xy':
+        plt.title('' + plane.upper() + ' Plane at z = ' + str(loc))
+    if plane.lower() is 'xz':
+        plt.title('' + plane.upper() + ' Plane at y = ' + str(loc))
+    else:
+        plt.title('' + plane.upper() + ' Plane at x = ' + str(loc))
+
+    if filename is '':
+        filename = directory + '/ + ' + plane.lower() + '-slice.png'
+    else:
+        filename = directory + filename.replace(' ', '-').lower() + \
+                      '-' + plane.lower() + '-slice.png'
 
     plt.savefig(filename)

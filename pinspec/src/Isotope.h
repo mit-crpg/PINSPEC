@@ -42,6 +42,10 @@ class Isotope {
 private:
     /** The name of the isotope-periodic table name followed by atomic number */
     char* _isotope_name;
+    /** A static class variable to generate a UID for each new isotope */
+    static int _n;
+    /** The isotope's unique identifier */
+    int _uid;
     /** Atomic number */
     int _A;
     /** Atomic number squared (an optimization for speedup) */
@@ -164,6 +168,7 @@ public:
     void makeFissionable();
 
     char* getIsotopeName() const;
+    int getUid() const;
     int getA() const;
     float getAlpha() const;
     float getTemperature() const;

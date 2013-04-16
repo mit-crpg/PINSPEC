@@ -1,5 +1,9 @@
 #include "Material.h"
 
+
+int Material::_n = 1;
+
+
 /**
  * @brief Material constructor.
  * @details Sets the user-defined name along with default values for the
@@ -8,6 +12,8 @@
  */
 Material::Material(char* material_name) {
     _material_name = material_name;
+    _uid = _n;
+    _n++;
     _material_density = 0.0;
     _material_number_density = 0.0;
     _material_atomic_mass = 1.0;
@@ -31,6 +37,16 @@ Material::~Material() { }
 char* Material::getMaterialName() {
     return _material_name;
 }
+
+
+/**
+ * @brief Returns the unique ID auto-generated for the material.
+ * @return a unique ID for the material
+ */
+int Material::getUid() const {
+    return _uid;
+}
+
 
 
 /**

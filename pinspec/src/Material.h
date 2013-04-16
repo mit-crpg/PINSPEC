@@ -21,8 +21,8 @@
  * @brief A unit in which density for isotopes may be expressed
  */
 typedef enum densityUnits {
-	GRAM_CM3,
-	NUM_CM3
+    GRAM_CM3,
+    NUM_CM3
 } densityUnit;
 
 
@@ -38,6 +38,10 @@ class Material {
 private:
     /** The name of the material arbitrarily defined by the user*/
     char* _material_name;
+    /** A static class variable to generate a UID for each new material */
+    static int _n;
+    /** The material's unique identifier */
+    int _uid;
     /** The material density in g/cc */
     float _material_density;
     /** The material number density in num/cc */
@@ -65,6 +69,7 @@ public:
 	
     /* getters */
     char* getMaterialName();
+    int getUid() const;
     float getMaterialNumberDensity();
     Isotope* getIsotope(char* isotope);
     float getDensity();

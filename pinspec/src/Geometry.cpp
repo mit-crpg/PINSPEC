@@ -6,7 +6,9 @@
  *          batches (10) and number of threads (1). Sets the source sampling
  *          radius to 10 cm by default.
  */	
-Geometry::Geometry(spatialType spatial_type) {
+Geometry::Geometry(spatialType spatial_type, const char* name) {
+
+    _geometry_name = name;
 
     /* Set defaults for the number of neutrons, batches, and threads */
     _num_neutrons_per_batch = 10000;
@@ -51,6 +53,15 @@ Geometry::~Geometry() {
         delete [] _prob_mf;
         delete [] _prob_energies;
     }
+}
+
+
+/**
+ * @brief Returns the name of the geometry.
+ * @return the name of the goemetry
+ */
+const char* Geometry::getName() {
+    return _geometry_name;
 }
 
 
@@ -130,6 +141,15 @@ float Geometry::getVolume() {
  */
 float Geometry::getSourceSamplingRadius() {
     return _source_sampling_radius;
+}
+
+
+/**
+ * @brief Sets the name of the geometry.
+ * @param name the name of the geometry
+ */
+void Geometry::setName(const char* name) {
+    _geometry_name = name;
 }
 
 
@@ -223,21 +243,21 @@ void Geometry::setSpatialType(spatialType spatial_type) {
     if (spatial_type == INFINITE_HOMOGENEOUS && _fuel != NULL)
         log_printf(ERROR, "Cannot set the geometry spatial type to be"
 		   " INFINITE_HOMOGENEOUS since it contains a FUEL Region %s",
-		   _fuel->getRegionName());
+		   _fuel->getName());
     else if (spatial_type == INFINITE_HOMOGENEOUS && _moderator != NULL)
         log_printf(ERROR, "Cannot set the geometry spatial type to be"
 		   " INFINITE_HOMOGENEOUS since it contains a MODERATOR"
-		   " Region %s", _moderator->getRegionName());
+		   " Region %s", _moderator->getName());
     else if (spatial_type == HOMOGENEOUS_EQUIVALENCE && 
 	     _infinite_medium != NULL)
         log_printf(ERROR, "Cannot set the geometry spatial type to be"
 		   " HOMOGENEOUS_EQUIVALENCE since it contains an "
-		   "INIFINTE Region %s", _infinite_medium->getRegionName());
+		   "INIFINTE Region %s", _infinite_medium->getName());
     else if (spatial_type == HETEROGENEOUS && _infinite_medium != NULL)
         log_printf(ERROR, "Cannot set the geometry spatial type to be"
 		   " HETEROGENEOUS since it contains an"
 		   " INFINITE_HOMOGENEOUS Region %s", 
-		   _infinite_medium->getRegionName());
+		   _infinite_medium->getName());
     else
       _spatial_type = spatial_type;
 }
@@ -256,20 +276,20 @@ void Geometry::addRegion(Region* region) {
         if (_fuel != NULL)
 	    log_printf(ERROR, "Unable to add an INFINITE type region %s"
 		       " to the geometry since it contains a"
-		       " FUEL type region %s", region->getRegionName(), 
-		       _fuel->getRegionName());
+		       " FUEL type region %s", region->getName(), 
+		       _fuel->getName());
 	else if (_moderator != NULL)
 	    log_printf(ERROR, "Unable to add an INFINITE type region %s"
 		       " to the geometry since it contains a"
-		       " MODERATOR type region %s", region->getRegionName(), 
-		       _moderator->getRegionName());
+		       " MODERATOR type region %s", region->getName(), 
+		       _moderator->getName());
 	else if (_infinite_medium == NULL)
 	    _infinite_medium = static_cast<InfiniteMediumRegion*>(region);
 	else
 	    log_printf(ERROR, "Unable to add a second INFINITE type region %s"
 		       " to the geometry since it already contains"
-		       " region %s", region->getRegionName(), 
-		       _infinite_medium->getRegionName());
+		       " region %s", region->getName(), 
+		       _infinite_medium->getName());
     }
 
     else if (region->getRegionType() == EQUIVALENT_FUEL) {
@@ -277,15 +297,15 @@ void Geometry::addRegion(Region* region) {
 	    log_printf(ERROR, "Unable to add a FUEL type region %s"
 		       " to the geometry since it contains an"
 		       " INFINITE_HOMOGENEOUS type region %s", 
-		       region->getRegionName(), 
-		       _infinite_medium->getRegionName());
+		       region->getName(), 
+		       _infinite_medium->getName());
 	else if (_fuel == NULL)
 	    _fuel = static_cast<EquivalenceRegion*>(region);
 	else
 	    log_printf(ERROR, "Unable to add a second FUEL type region %s"
 		       " to the geometry since it already contains"
-		       " region %s", region->getRegionName(), 
-		       _fuel->getRegionName());
+		       " region %s", region->getName(), 
+		       _fuel->getName());
     }
 
     else if (region->getRegionType() == EQUIVALENT_MODERATOR) {
@@ -293,15 +313,15 @@ void Geometry::addRegion(Region* region) {
 	    log_printf(ERROR, "Unable to add a MODERATOR type region %s"
 		       " to the geometry since it contains an"
 		       " INFINITE_HOMOGENEOUS type region %s", 
-		       region->getRegionName(), 
-		       _infinite_medium->getRegionName());
+		       region->getName(), 
+		       _infinite_medium->getName());
 	else if (_moderator == NULL)
 	  _moderator = static_cast<EquivalenceRegion*>(region);
 	else
 	    log_printf(ERROR, "Unable to add a second MODERATOR type region %s"
 		       " to the geometry since it already contains"
-		       " region %s", region->getRegionName(), 
-		       _fuel->getRegionName());
+		       " region %s", region->getName(), 
+		       _fuel->getName());
     }
     else if (region->getRegionType() == BOUNDED_GENERAL) {
         _regions.push_back(static_cast<BoundedRegion*>(region));
@@ -314,40 +334,7 @@ void Geometry::addRegion(Region* region) {
     }
     else
         log_printf(ERROR, "Unable to add Region %s since it does not have a"
-		   " Region type", region->getRegionName());
-}
-
-
-
-/**
- * @brief Finds the region containing a neutron.
- * @details Finds the region and sets the neutron struct's region pointer 
- *          to this region. If no region is found, throws exception.
- *
- * @param neutron the neutron of interest
- */
-void Geometry::findContainingRegion(neutron* neutron) {
-
-
-    /* Simpy return if the geometry is infinite or uses 
-     * heterogeneous-homogeneous equivalence theory */
-    if (_spatial_type == INFINITE_HOMOGENEOUS 
-        || _spatial_type == HOMOGENEOUS_EQUIVALENCE)
-            return;
-
-    /* If the geometry is heterogeneous, loop over all regions to find
-     * one which contains this neutron */
-    std::vector<BoundedRegion*>::iterator iter;
-    for (iter = _regions.begin(); iter != _regions.end(); ++iter) {
-        if ((*iter)->contains(neutron)) {
-	    neutron->_region = (*iter);
-            return;
-        }
-    }
-
-    /* If no containing region was found, throw exception */
-    log_printf(ERROR, "Unable to find the region containing neutron at "
-	       "(x,y,z) = (%f,%f,%f)", neutron->_x, neutron->_y, neutron->_z);
+		   " Region type", region->getName());
 }
 
 
@@ -379,6 +366,97 @@ bool Geometry::contains(neutron* neutron) {
 
     /* If no containing region was found, return false */
     return false;
+}
+
+
+/**
+ * @brief Determine whether or not this point is contained in the geometry.
+ * @details Returns true for INFINITE_HOMOGENEOUS and HOMOGENEOUS_EQUIVALENCE
+ *          geometries. Returns true for HETEROGENEOUS geometries if the
+ *          point is contained within one of the geomtry's regions.
+ * @param x the x-coordinate of interest
+ * @param y the y-coordinate of interest
+ * @param z the z-coordinate of interest
+ */
+bool Geometry::contains(float x, float y, float z) {
+
+    if (_spatial_type == INFINITE_HOMOGENEOUS)
+        return true;
+    else if (_spatial_type == HOMOGENEOUS_EQUIVALENCE)
+      return true;
+    else {
+
+        /* Loop over all of a HETEROGENOUS geometery's regions */
+        std::vector<BoundedRegion*>::iterator iter;
+        for (iter = _regions.begin(); iter != _regions.end(); ++iter) {
+
+	    /* If this region contains the neutron */
+	    if ((*iter)->contains(x, y, z))
+	      return true;
+	}
+        
+        /* None of the geomtry's regions contained the neutron */
+        return NULL;
+    }
+}
+
+
+/**
+ * @brief Finds the region containing a neutron.
+ * @details Finds the region and sets the neutron struct's region pointer 
+ *          to this region. If no region is found, throws exception.
+ *
+ * @param neutron the neutron of interest
+ */
+void Geometry::findContainingRegion(neutron* neutron) {
+
+    /* Simpy return if the geometry is infinite or uses 
+     * heterogeneous-homogeneous equivalence theory */
+    if (_spatial_type == INFINITE_HOMOGENEOUS 
+        || _spatial_type == HOMOGENEOUS_EQUIVALENCE)
+            return;
+
+    /* If the geometry is heterogeneous, loop over all regions to find
+     * one which contains this neutron */
+    std::vector<BoundedRegion*>::iterator iter;
+    for (iter = _regions.begin(); iter != _regions.end(); ++iter) {
+        if ((*iter)->contains(neutron)) {
+	    neutron->_region = (*iter);
+            return;
+        }
+    }
+
+    /* If no containing region was found, throw exception */
+    log_printf(ERROR, "Unable to find the region containing neutron at "
+	       "(x,y,z) = (%f,%f,%f)", neutron->_x, neutron->_y, neutron->_z);
+}
+
+/**
+ * @brief Finds the region containing a neutron.
+ * @details Finds the region containing a neutron and returns a pointer to it
+ *          or NULL if no region was found. Also returns NULL for 
+ *          INFINITE_HOMOGENEOUS and HOMOGENEOUS_EQUIVALENCE geometry types.
+ * @param x the x-coordinate of interest
+ * @param y the y-coordinate of interest
+ * @param z the z-coordinate of interest
+ */
+Region* Geometry::findContainingRegion(float x, float y, float z) {
+
+    /* Return NULL for INFINITE_HOMOGENEOUS and HOMOGENEOUS_EQUIVALENCE */
+    if (_spatial_type == INFINITE_HOMOGENEOUS)
+        return NULL;
+    if (_spatial_type == HOMOGENEOUS_EQUIVALENCE)
+        return NULL;
+
+    /* If the geometry is HETEROGENEOUS, loop over all regions to find
+     * one which contains this neutron */
+    std::vector<BoundedRegion*>::iterator iter;
+    for (iter = _regions.begin(); iter != _regions.end(); ++iter) {
+        if ((*iter)->contains(x, y, z))
+	    return (*iter);
+    }
+
+    return NULL;
 }
 
 

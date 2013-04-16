@@ -1,5 +1,8 @@
 #include "Region.h"
 
+
+int Region::_n = 1;
+
 /**
  * @brief Region constructor.
  * @details Sets defaults for the geometric parameters to 0.
@@ -7,6 +10,8 @@
  */
 Region::Region(const char* region_name) {
     _region_name = (char*)region_name;
+    _uid = _n;
+    _n++;
     _material = NULL;
     _volume = 1.0;
     _buckling_squared = 0.0;
@@ -24,10 +29,18 @@ Region::~Region() { }
  * @brief Return the name of the region.
  * @return a character array representing this region's name
  */
-char* Region::getRegionName() {
+char* Region::getName() {
     return _region_name;
 }
 
+
+/**
+ * @brief Returns the unique ID auto-generated for the region.
+ * @return a unique ID for the region
+ */
+int Region::getUid() const {
+    return _uid;
+}
 
 
 /**
@@ -540,17 +553,17 @@ void EquivalenceRegion::setOtherRegion(EquivalenceRegion* region) {
         region->getRegionType() == EQUIVALENT_FUEL)
             log_printf(ERROR, "Unable to add an EQUIVALENT_FUEL region %s to "
 	       "region %s which is also an EQUIVALENT_FUEL region type",
-	       region->getRegionName(), _region_name);
+	       region->getName(), _region_name);
     if (_region_type == EQUIVALENT_MODERATOR && 
         region->getRegionType() == EQUIVALENT_MODERATOR)
             log_printf(ERROR, "Unable to add an EQUIVALENT_MODERATOR region "
 	       "%s to region %s which is also an EQUIVALENT_MODERATOR region "
-	       "type", region->getRegionName(), _region_name);
+	       "type", region->getName(), _region_name);
     if (region->getRegionType() != EQUIVALENT_MODERATOR && 
         region->getRegionType() != EQUIVALENT_FUEL)
             log_printf(ERROR, "Unable to add region %s which is of %d region "
 		"type to region %s since it is not a homogeneous equivalent "
-		 "region", region->getRegionName(), region->getRegionType(), 
+		 "region", region->getName(), region->getRegionType(), 
 		       _region_name);
 
     _other_region = region;
@@ -723,6 +736,8 @@ void BoundedRegion::addBoundingSurface(int halfspace, Surface* surface) {
 		   "halfspace must be -1 or +1.", 
 		   surface->getSurfaceName(), halfspace);
 
+    log_printf(NORMAL, "Adding bounding surface %s with halfspace %d", surface->getSurfaceName(), halfspace);
+
     /* Create a halfspace/surface pair and add it to the bounding surfaces
      * container for this region */
     std::pair<int, Surface*> pair=std::pair<int, Surface*>(halfspace, surface);
@@ -748,6 +763,33 @@ void BoundedRegion::removeBoundingSurface(int halfspace, Surface* surface) {
      * pair, then remove it */
     if (test != _surfaces.end())
         _surfaces.erase(test);
+}
+
+
+/**
+ * @brief Check if this region contains some location in space.
+ * @param x the x-coordinate of interest
+ * @param y the y-coordinate of interest
+ * @param z the z-coordinate of interest
+ * @return if contained (true), otherwise (false)
+ */
+bool BoundedRegion::contains(float x, float y, float z) {
+
+    int halfspace;
+    Surface* surface;
+
+    /* Loop over and query all bounding surfaces */
+    std::vector< std::pair<int, Surface*> >::iterator iter;
+    for (iter = _surfaces.begin(); iter != _surfaces.end(); ++iter) {
+
+        halfspace = (*iter).first;
+        surface = (*iter).second;
+
+        if (halfspace * surface->evaluate(x, y, z) < 0)
+            return false;
+    }
+
+    return true;
 }
 
 

@@ -1,0 +1,251 @@
+Current local time and date: Mon Apr 15 23:49:41 2013
+[  INFO   ]  Logging level set to INFO
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]     Starting a heterogeneous-homogeneous equivalence calculation   
+[  TITLE  ]  *******************************************************************
+[  INFO   ]  Computing homogenized number densities...
+[  INFO   ]  Initializing isotopes...
+[  INFO   ]  Loading isotope H-1
+[  INFO   ]  Loading H-1-elastic.txt for isotope H-1
+[  INFO   ]  Loading H-1-capture.txt for isotope H-1
+[  INFO   ]  Loading isotope O-16
+[  INFO   ]  Loading O-16-elastic.txt for isotope O-16
+[  INFO   ]  Loading O-16-capture.txt for isotope O-16
+[  INFO   ]  Loading isotope U-235
+[  INFO   ]  Loading U-235-elastic.txt for isotope U-235
+[  INFO   ]  Loading U-235-capture.txt for isotope U-235
+[  INFO   ]  Loading U-235-fission.txt for isotope U-235
+[  INFO   ]  Loading isotope U-238
+[  INFO   ]  Loading U-238-elastic.txt for isotope U-238
+[  INFO   ]  Loading U-238-capture.txt for isotope U-238
+[  INFO   ]  Loading U-238-fission.txt for isotope U-238
+[  INFO   ]  Loading isotope Zr-90
+[  INFO   ]  Loading Zr-90-elastic.txt for isotope Zr-90
+[  INFO   ]  Loading Zr-90-capture.txt for isotope Zr-90
+[  INFO   ]  Setting 1-group elastic xs for isotope U-235
+[  INFO   ]  Setting 1-group elastic xs for isotope U-238
+[  INFO   ]  Setting 1-group capture xs for isotope Zr-90
+[  INFO   ]  Setting 1-group capture xs for isotope O-16
+[  INFO   ]  Initializing fuel and moderator materials...
+[  INFO   ]  Isotope H-1 has number density 1.093E+24 in material moderator
+[  INFO   ]  Isotope H-1 has number density 1.215E+23 in material moderator
+[  INFO   ]  Isotope O-16 has number density 6.074E+22 in material moderator
+[  INFO   ]  Isotope H-1 has number density 5.526E+22 in material moderator
+[  INFO   ]  Isotope O-16 has number density 2.763E+22 in material moderator
+[  INFO   ]  Isotope Zr-90 has number density 6.621E+21 in material moderator
+[  INFO   ]  Isotope U-235 has number density 2.614E+22 in material fuel
+[  INFO   ]  Isotope U-235 has number density 7.837E+20 in material fuel
+[  INFO   ]  Isotope U-238 has number density 2.504E+22 in material fuel
+[  INFO   ]  Isotope O-16 has number density 4.552E+22 in material fuel
+[  INFO   ]  Isotope U-235 has number density 6.908E+20 in material fuel
+[  INFO   ]  Isotope U-238 has number density 2.207E+22 in material fuel
+[  INFO   ]  Initializing bounding surfaces...
+[  INFO   ]  Initializing fuel and moderator regions...
+[  NORMAL ]  Adding bounding surface left edge with halfspace 1
+[  NORMAL ]  Adding bounding surface right edge with halfspace -1
+[  NORMAL ]  Adding bounding surface bottom edge with halfspace 1
+[  NORMAL ]  Adding bounding surface top edge with halfspace -1
+[  NORMAL ]  Adding bounding surface fuel boundary with halfspace 1
+[  NORMAL ]  Adding bounding surface fuel boundary with halfspace -1
+[  INFO   ]  Initializing the geometry...
+[  INFO   ]  Plotting the geometry
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-1.000000,
+[  NORMAL ]  ... y=-1.000000, evaluated to 1.832228
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-1.000000,
+[  NORMAL ]  ... y=-0.777778, evaluated to 1.437166
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-1.000000,
+[  NORMAL ]  ... y=-0.555556, evaluated to 1.140870
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-1.000000,
+[  NORMAL ]  ... y=-0.333333, evaluated to 0.943339
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-1.000000,
+[  NORMAL ]  ... y=-0.111111, evaluated to 0.844573
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-1.000000,
+[  NORMAL ]  ... y=0.111111, evaluated to 0.844573
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-1.000000,
+[  NORMAL ]  ... y=0.333333, evaluated to 0.943339
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-1.000000,
+[  NORMAL ]  ... y=0.555556, evaluated to 1.140870
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-1.000000,
+[  NORMAL ]  ... y=0.777778, evaluated to 1.437166
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-1.000000,
+[  NORMAL ]  ... y=1.000000, evaluated to 1.832228
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.777778,
+[  NORMAL ]  ... y=-1.000000, evaluated to 1.437166
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.777778,
+[  NORMAL ]  ... y=-0.777778, evaluated to 1.042104
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.777778,
+[  NORMAL ]  ... y=-0.555556, evaluated to 0.745808
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.777778,
+[  NORMAL ]  ... y=-0.333333, evaluated to 0.548277
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.777778,
+[  NORMAL ]  ... y=-0.111111, evaluated to 0.449512
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.777778,
+[  NORMAL ]  ... y=0.111111, evaluated to 0.449512
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.777778,
+[  NORMAL ]  ... y=0.333333, evaluated to 0.548277
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.777778,
+[  NORMAL ]  ... y=0.555556, evaluated to 0.745808
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.777778,
+[  NORMAL ]  ... y=0.777778, evaluated to 1.042104
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.777778,
+[  NORMAL ]  ... y=1.000000, evaluated to 1.437166
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.555556,
+[  NORMAL ]  ... y=-1.000000, evaluated to 1.140870
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.555556,
+[  NORMAL ]  ... y=-0.777778, evaluated to 0.745808
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.555556,
+[  NORMAL ]  ... y=-0.555556, evaluated to 0.449512
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.555556,
+[  NORMAL ]  ... y=-0.333333, evaluated to 0.251981
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.555556,
+[  NORMAL ]  ... y=-0.111111, evaluated to 0.153216
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.555556,
+[  NORMAL ]  ... y=0.111111, evaluated to 0.153216
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.555556,
+[  NORMAL ]  ... y=0.333333, evaluated to 0.251981
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.555556,
+[  NORMAL ]  ... y=0.555556, evaluated to 0.449512
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.555556,
+[  NORMAL ]  ... y=0.777778, evaluated to 0.745808
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.555556,
+[  NORMAL ]  ... y=1.000000, evaluated to 1.140870
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.333333,
+[  NORMAL ]  ... y=-1.000000, evaluated to 0.943339
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.333333,
+[  NORMAL ]  ... y=-0.777778, evaluated to 0.548277
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.333333,
+[  NORMAL ]  ... y=-0.555556, evaluated to 0.251981
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.333333,
+[  NORMAL ]  ... y=-0.333333, evaluated to 0.054450
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.333333,
+[  NORMAL ]  ... y=-0.111111, evaluated to -0.044315
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.333333,
+[  NORMAL ]  ... y=0.111111, evaluated to -0.044315
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.333333,
+[  NORMAL ]  ... y=0.333333, evaluated to 0.054450
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.333333,
+[  NORMAL ]  ... y=0.555556, evaluated to 0.251981
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.333333,
+[  NORMAL ]  ... y=0.777778, evaluated to 0.548277
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.333333,
+[  NORMAL ]  ... y=1.000000, evaluated to 0.943339
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.111111,
+[  NORMAL ]  ... y=-1.000000, evaluated to 0.844573
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.111111,
+[  NORMAL ]  ... y=-0.777778, evaluated to 0.449512
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.111111,
+[  NORMAL ]  ... y=-0.555556, evaluated to 0.153216
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.111111,
+[  NORMAL ]  ... y=-0.333333, evaluated to -0.044315
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.111111,
+[  NORMAL ]  ... y=-0.111111, evaluated to -0.143081
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.111111,
+[  NORMAL ]  ... y=0.111111, evaluated to -0.143081
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.111111,
+[  NORMAL ]  ... y=0.333333, evaluated to -0.044315
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.111111,
+[  NORMAL ]  ... y=0.555556, evaluated to 0.153216
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.111111,
+[  NORMAL ]  ... y=0.777778, evaluated to 0.449512
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=-0.111111,
+[  NORMAL ]  ... y=1.000000, evaluated to 0.844573
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.111111,
+[  NORMAL ]  ... y=-1.000000, evaluated to 0.844573
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.111111,
+[  NORMAL ]  ... y=-0.777778, evaluated to 0.449512
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.111111,
+[  NORMAL ]  ... y=-0.555556, evaluated to 0.153216
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.111111,
+[  NORMAL ]  ... y=-0.333333, evaluated to -0.044315
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.111111,
+[  NORMAL ]  ... y=-0.111111, evaluated to -0.143081
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.111111,
+[  NORMAL ]  ... y=0.111111, evaluated to -0.143081
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.111111,
+[  NORMAL ]  ... y=0.333333, evaluated to -0.044315
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.111111,
+[  NORMAL ]  ... y=0.555556, evaluated to 0.153216
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.111111,
+[  NORMAL ]  ... y=0.777778, evaluated to 0.449512
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.111111,
+[  NORMAL ]  ... y=1.000000, evaluated to 0.844573
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.333333,
+[  NORMAL ]  ... y=-1.000000, evaluated to 0.943339
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.333333,
+[  NORMAL ]  ... y=-0.777778, evaluated to 0.548277
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.333333,
+[  NORMAL ]  ... y=-0.555556, evaluated to 0.251981
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.333333,
+[  NORMAL ]  ... y=-0.333333, evaluated to 0.054450
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.333333,
+[  NORMAL ]  ... y=-0.111111, evaluated to -0.044315
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.333333,
+[  NORMAL ]  ... y=0.111111, evaluated to -0.044315
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.333333,
+[  NORMAL ]  ... y=0.333333, evaluated to 0.054450
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.333333,
+[  NORMAL ]  ... y=0.555556, evaluated to 0.251981
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.333333,
+[  NORMAL ]  ... y=0.777778, evaluated to 0.548277
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.333333,
+[  NORMAL ]  ... y=1.000000, evaluated to 0.943339
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.555556,
+[  NORMAL ]  ... y=-1.000000, evaluated to 1.140870
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.555556,
+[  NORMAL ]  ... y=-0.777778, evaluated to 0.745808
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.555556,
+[  NORMAL ]  ... y=-0.555556, evaluated to 0.449512
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.555556,
+[  NORMAL ]  ... y=-0.333333, evaluated to 0.251981
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.555556,
+[  NORMAL ]  ... y=-0.111111, evaluated to 0.153216
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.555556,
+[  NORMAL ]  ... y=0.111111, evaluated to 0.153216
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.555556,
+[  NORMAL ]  ... y=0.333333, evaluated to 0.251981
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.555556,
+[  NORMAL ]  ... y=0.555556, evaluated to 0.449512
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.555556,
+[  NORMAL ]  ... y=0.777778, evaluated to 0.745808
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.555556,
+[  NORMAL ]  ... y=1.000000, evaluated to 1.140870
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.777778,
+[  NORMAL ]  ... y=-1.000000, evaluated to 1.437166
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.777778,
+[  NORMAL ]  ... y=-0.777778, evaluated to 1.042104
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.777778,
+[  NORMAL ]  ... y=-0.555556, evaluated to 0.745808
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.777778,
+[  NORMAL ]  ... y=-0.333333, evaluated to 0.548277
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.777778,
+[  NORMAL ]  ... y=-0.111111, evaluated to 0.449512
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.777778,
+[  NORMAL ]  ... y=0.111111, evaluated to 0.449512
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.777778,
+[  NORMAL ]  ... y=0.333333, evaluated to 0.548277
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.777778,
+[  NORMAL ]  ... y=0.555556, evaluated to 0.745808
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.777778,
+[  NORMAL ]  ... y=0.777778, evaluated to 1.042104
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=0.777778,
+[  NORMAL ]  ... y=1.000000, evaluated to 1.437166
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=1.000000,
+[  NORMAL ]  ... y=-1.000000, evaluated to 1.832228
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=1.000000,
+[  NORMAL ]  ... y=-0.777778, evaluated to 1.437166
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=1.000000,
+[  NORMAL ]  ... y=-0.555556, evaluated to 1.140870
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=1.000000,
+[  NORMAL ]  ... y=-0.333333, evaluated to 0.943339
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=1.000000,
+[  NORMAL ]  ... y=-0.111111, evaluated to 0.844573
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=1.000000,
+[  NORMAL ]  ... y=0.111111, evaluated to 0.844573
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=1.000000,
+[  NORMAL ]  ... y=0.333333, evaluated to 0.943339
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=1.000000,
+[  NORMAL ]  ... y=0.555556, evaluated to 1.140870
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=1.000000,
+[  NORMAL ]  ... y=0.777778, evaluated to 1.437166
+[  NORMAL ]  Testing surface fuel boundary, halfspace -1 for x=1.000000,
+[  NORMAL ]  ... y=1.000000, evaluated to 1.832228

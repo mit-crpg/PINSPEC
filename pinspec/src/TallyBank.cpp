@@ -136,8 +136,8 @@ void TallyBank::registerTally(Tally* tally, Region* region) {
              log_printf(ERROR, "The TallyBank is unable to register tally %s"
 			" in region %s since it is a REGION type tally "
 			" for region %s", region_tally->getTallyName(), 
-			region->getRegionName(), 
-			region_tally->getRegion()->getRegionName());
+			region->getName(), 
+			region_tally->getRegion()->getName());
     }
 
     /* Track tallies with a MATERIAL domain in this region */
@@ -152,7 +152,7 @@ void TallyBank::registerTally(Tally* tally, Region* region) {
 		   " in region %s with material %s since it is a "
 		   "MATERIAL type tally for material %s", 
 		   material_tally->getTallyName(), 
-		   region->getRegionName(), 
+		   region->getName(), 
 		   region->getMaterial()->getMaterialName(),
 		   material_tally->getMaterial()->getMaterialName());
     }
@@ -171,7 +171,7 @@ void TallyBank::registerTally(Tally* tally, Region* region) {
 		   " in region %s since it is an ISOTOPE type tally for"
 		   " isotope %s which is not contained in material %s", 
 		   isotope_tally->getTallyName(), 
-		   region->getRegionName(), 
+		   region->getName(), 
 		   isotope_tally->getIsotope()->getIsotopeName(),
 		   region->getMaterial()->getMaterialName());
     }
@@ -203,7 +203,7 @@ void TallyBank::registerTally(Tally* tally, Region* region) {
     /* Add the tally to the global registry */
     _all_tallies.insert(tally);
 
-    log_printf(INFO, "Registered tally %s with the TallyBank for region %s", 		        tally->getTallyName(), region->getRegionName());
+    log_printf(INFO, "Registered tally %s with the TallyBank for region %s", 		        tally->getTallyName(), region->getName());
 }
 
 

@@ -1,5 +1,9 @@
 #include "Isotope.h"
 
+
+int Isotope::_n = 1;
+
+
 /**
  * @brief Isotope constructor.
  * @details Searches the cross-section library for appropriately named
@@ -15,6 +19,10 @@ Isotope::Isotope(char* isotope_name){
     /* Assigns the isotope's name and uses it to find the cross-section files */
     _isotope_name = isotope_name;
     parseName();
+
+    _uid = _n;
+    _n++;
+
     _A_squared = _A * _A;
     _A_plus_one_squared = (_A + 1) * (_A + 1);
 
@@ -129,6 +137,15 @@ void Isotope::parseName(){
  */
 char* Isotope::getIsotopeName() const {
     return _isotope_name;
+}
+
+
+/**
+ * @brief Returns the unique ID auto-generated for the isotope.
+ * @return a unique ID for the isotope
+ */
+int Isotope::getUid() const {
+    return _uid;
 }
 
 

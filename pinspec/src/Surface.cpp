@@ -1,5 +1,7 @@
 #include "Surface.h"
 
+int Surface::_n = 1;
+
 /**
  * @brief Surface class constructor.
  * @param surface_name the (optional) name of the surface
@@ -8,6 +10,8 @@
  */
 Surface::Surface(const char* surface_name) {
     _surface_name = (char*)surface_name;
+    _uid = _n;
+    _n++;
     _boundary_type = VACUUM;
 }
 
@@ -24,6 +28,15 @@ Surface::~Surface() { }
  */
 char* Surface::getSurfaceName() {
     return _surface_name;
+}
+
+
+/**
+ * @brief Returns the unique ID auto-generated for the surface.
+ * @return a unique ID for the surface
+ */
+int Surface::getUid() const {
+    return _uid;
 }
 
 
@@ -99,15 +112,29 @@ void XPlane::setX(float x) {
 
 
 /**
- * @brief Returns the evaluation of a neutron's coordinates \f$ (x,y) \f$ 
+ * @brief Returns the evaluation of a neutron's coordinates \f$ (x,y,z) \f$ 
  *        with respect to the quadratic surface representing this x-plane:
- *        \f$ f(x,y) = qx + d = x - x_0 \f$
+ *        \f$ f(x,y,z) = qx + d = x - x_0 \f$
  * @param neutron the neutron of interest
  */
 float XPlane::evaluate(neutron* neutron) {
     float x = neutron->_x;
     return (x - _x);
 }
+
+
+/**
+ * @brief Returns the evaluation of a 3D coordinate \f$ (x,y,z) \f$ 
+ *        with respect to the quadratic surface representing this x-plane:
+ *        \f$ f(x,y,z) = qx + d = x - x_0 \f$
+ * @param x the x-coordinate of interest
+ * @param y the y-coordinate of interest
+ * @param z the z-coordinate of interest
+ */
+float XPlane::evaluate(float x, float y, float z) {
+    return (x - _x);
+}
+
 
 
 /**
@@ -171,7 +198,7 @@ void XPlane::reflectNeutron(neutron* neutron) {
  * @param surface_name the (optional) name of the surface
  * @details Assigns a default value of y=0 for the y-axis intersection point.
  */
-YPlane::YPlane(const char* surface_name) {
+YPlane::YPlane(const char* surface_name) : Surface(surface_name) {
     _y = 0.0;
 };
 
@@ -211,6 +238,19 @@ void YPlane::setY(float y) {
  */
 float YPlane::evaluate(neutron* neutron) {
     float y = neutron->_y;
+    return (y - _y);
+}
+
+
+/**
+ * @brief Returns the evaluation of a neutron's coordinates \f$ (x,y,z) \f$ 
+ *        with respect to the quadratic surface representing this y-plane:
+ *        \f$ f(x,y,z) = qy + d = y - y_0 \f$
+ * @param x the x-coordinate of interest
+ * @param y the y-coordinate of interest
+ * @param z the z-coordinate of interest 
+ */
+float YPlane::evaluate(float x, float y, float z) {
     return (y - _y);
 }
 
@@ -269,16 +309,16 @@ void YPlane::reflectNeutron(neutron* neutron) {
 
 
 /******************************************************************************
- *****************************   Circle   *************************************
+ ****************************   ZCylinder   ***********************************
  *****************************************************************************/
 
 /**
- * @brief The Circle constructor.
+ * @brief The ZCylinder constructor.
  * @param surface_name the (optional) name of the surface
- * @details Assigns default values for the center of the circle (x=0, y=0)
+ * @details Assigns default values for the center of the cylinder (x=0, y=0)
  *          and a radius of 0.
  */
-Circle::Circle(const char* surface_name) {
+ZCylinder::ZCylinder(const char* surface_name) : Surface(surface_name) {
     _x0 = 0;
     _y0 = 0;
     _r = 0;
@@ -287,61 +327,61 @@ Circle::Circle(const char* surface_name) {
 
 
 /**
- * @brief Circle destructor.
+ * @brief ZCylinder destructor.
  */
-Circle::~Circle() { };
+ZCylinder::~ZCylinder() { };
 
 
 /**
- * @brief Returns the x-coordinate of the circle's center.
- * @return the x-coordinate of the circle center
+ * @brief Returns the x-coordinate of the cylinder's center.
+ * @return the x-coordinate of the cylinder center
  */
-float Circle::getX0() {
+float ZCylinder::getX0() {
     return _x0;
 }
 
 
 /**
- * @brief Returns the y-coordinate of the circle's center.
- * @return the y-coordinate of the circle center
+ * @brief Returns the y-coordinate of the cylinder's center.
+ * @return the y-coordinate of the cylinder center
  */
-float Circle::getY0() {
+float ZCylinder::getY0() {
     return _y0;
 }
 
 
 /**
- * @brief Returns the radius of the circle.
- * @return the circle radius
+ * @brief Returns the radius of the cylinder.
+ * @return the cylinder radius
  */
-float Circle::getRadius() {
+float ZCylinder::getRadius() {
     return _r;
 }
 
 
 /**
- * @brief Sets the x-coordinate of the circle's center.
- * @param x0 the x-coordinate of the circle center
+ * @brief Sets the x-coordinate of the cylinder's center.
+ * @param x0 the x-coordinate of the cylinder center
  */
-void Circle::setX0(float x0) {
+void ZCylinder::setX0(float x0) {
      _x0 = x0;
 }
 
 
 /**
- * @brief Sets the y-coordinate of the circle's center.
- * @param y0 the y-coordinate of the circle center
+ * @brief Sets the y-coordinate of the cylinder's center.
+ * @param y0 the y-coordinate of the cylinder center
  */
-void Circle::setY0(float y0) {
+void ZCylinder::setY0(float y0) {
     _y0 = y0;
 }
 
 
 /**
- * @brief Sets the radius of the circle's center.
- * @param r the circle's radius
+ * @brief Sets the radius of the cylinder's center.
+ * @param r the cylinder's radius
  */
-void Circle::setRadius(float r) {
+void ZCylinder::setRadius(float r) {
      _r = r;
      _r_squared = r*r;
 }
@@ -349,22 +389,36 @@ void Circle::setRadius(float r) {
 
 /**
  * @brief Returns the evaluation of a neutron's coordinates \f$ (x,y) \f$ 
- *        with respect to the quadratic surface representing this circle:
+ *        with respect to the quadratic surface representing this cylinder:
  *        \f$ f(x,y) = (x - x_0)^2 + (y - y_0)^2 - R^2 \f$
  * @param neutron the neutron of interest
  */
-float Circle::evaluate(neutron* neutron) {
+float ZCylinder::evaluate(neutron* neutron) {
     float x = neutron->_x;
     float y = neutron->_y;
     return (x - _x0) * (x - _x0) + (y - _y0) * (y - _y0) - _r_squared;
 }
 
+
 /**
- * @brief Computes the nearest distance to the Circle along a neutron's 
+ * @brief Returns the evaluation of a neutron's coordinates \f$ (x,y,z) \f$ 
+ *        with respect to the quadratic surface representing this cylinder:
+ *        \f$ f(x,y,z) = (x - x_0)^2 + (y - y_0)^2 - R^2 \f$
+ * @param x the x-coordinate of interest
+ * @param y the y-coordinate of interest
+ * @param z the z-coordinate of interest
+ */
+float ZCylinder::evaluate(float x, float y, float z) {
+    return (x - _x0) * (x - _x0) + (y - _y0) * (y - _y0) - _r_squared;
+}
+
+
+/**
+ * @brief Computes the nearest distance to the ZCylinder along a neutron's 
  *        trajectory.
  * @param neutron a pointer to a Neutron struct
  */
-float Circle::computeNearestDistance(neutron* neutron) {
+float ZCylinder::computeNearestDistance(neutron* neutron) {
 
     float x = neutron->_x;
     float y = neutron->_y;
@@ -412,15 +466,15 @@ float Circle::computeNearestDistance(neutron* neutron) {
 
 
 /**
- * @brief Checks whether a neutron is on the Circle.
+ * @brief Checks whether a neutron is on the ZCylinder.
  * @details The threshold used to compute whether or not a neutron is on the
  *          on the neutron is 1E-6 for the difference between the distance
- *          between the neutron and the circle center and the radius of the
- *          circle.
+ *          between the neutron and the cylinder center and the radius of the
+ *          cylinder.
  * @param neutron the neutron of interest
  * @return true if on the XPlane, otherwise false
  */
-bool Circle::onSurface(neutron* neutron) {
+bool ZCylinder::onSurface(neutron* neutron) {
 
     float r_squared = (neutron->_y - _y0) * (neutron->_y - _y0) + 
                        (neutron->_x - _x0) * (neutron->_x - _x0);
@@ -433,13 +487,13 @@ bool Circle::onSurface(neutron* neutron) {
 
 
 /**
- * @brief Perfectly reflects a neutron at a circle.
+ * @brief Perfectly reflects a neutron at a cylinder.
  * @param neutron the neutron of interest
  */
-void Circle::reflectNeutron(neutron* neutron) {
+void ZCylinder::reflectNeutron(neutron* neutron) {
 
-    /* Compute the vector normal to the circle at the intersection point of the
-     * neutron's trajectory and the circle */
+    /* Compute the vector normal to the cylinder at the intersection point of the
+     * neutron's trajectory and the cylinder */
     float x1 = neutron->_x - _x0;
     float y1 = neutron->_y - _y0;
    
@@ -448,11 +502,11 @@ void Circle::reflectNeutron(neutron* neutron) {
     float v = neutron->_v;
 
     /* Compute the angle between the two vectors at the reflection point on 
-     *the circle's surface */
+     *the cylinder's surface */
     float theta = acos(dotProduct2D(x1, y1, u, v) 
 			/ (norm2D(x1, y1) * norm2D(u, v)));
 
-    /* Reflect the particle around the vector normal to the circle surface */
+    /* Reflect the particle around the vector normal to the cylinder surface */
     float rotation_angle = M_PI - 2.0 * theta;
     neutron->_phi += rotation_angle;
 

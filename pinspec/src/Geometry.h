@@ -48,6 +48,8 @@ typedef enum spatialTypes {
 class Geometry {
 
 private:
+    /** The name of the geometry */
+    const char* _geometry_name;
     /** The number of neutrons per batch */
     int _num_neutrons_per_batch;
     /** The number of batches */
@@ -102,13 +104,12 @@ private:
     float _source_sampling_radius;
 
     void initializeProbModFuelRatios();
-    void findContainingRegion(neutron* neutron);
-    bool contains(neutron* neutron);
 
 public:
-    Geometry(spatialType spatial_type);
+    Geometry(spatialType spatial_type, const char* name=(const char*)"");
     virtual ~Geometry();
 	
+    const char* getName();
     int getNumNeutronsPerBatch();
     int getTotalNumNeutrons();
     int getNumBatches();
@@ -118,6 +119,7 @@ public:
     float getVolume();
     float getSourceSamplingRadius();
 
+    void setName(const char* name);
     void setSourceSamplingRadius(float radius);			
     void setNeutronsPerBatch(int num_neutrons_per_batch);
     void setNumBatches(int num_batches);
@@ -129,6 +131,10 @@ public:
     void addRegion(Region* region);
     void setBucklingSquared(float buckling_squared);
 
+    bool contains(neutron* neutron);
+    bool contains(float x, float y, float z);
+    void findContainingRegion(neutron* neutron);
+    Region* findContainingRegion(float x, float y, float z);    
     void runMonteCarloSimulation();
     void initializeSourceNeutron(neutron* neutron);
 };
