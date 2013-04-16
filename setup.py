@@ -43,7 +43,7 @@ pinspec = Extension('_pinspec',
                             'pinspec/src/Geometry.cpp'],
                    extra_compile_args=['-O3', '-fopenmp',
                                     '-march=native', '-ffast-math'],
-                   extra_link_args=['-lstdc++', '-fopenmp', '-lgomp', '-fPI'],
+                   extra_link_args=['-lstdc++', '-fopenmp', '-lgomp'],
                    language='c++',
                    swig_opts=['-c++'],
                    )
