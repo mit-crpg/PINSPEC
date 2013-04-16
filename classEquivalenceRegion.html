@@ -115,7 +115,9 @@ Inheritance diagram for EquivalenceRegion:</div>
  <div class="center">
   <img src="classEquivalenceRegion.png" usemap="#EquivalenceRegion_map" alt=""/>
   <map id="EquivalenceRegion_map" name="EquivalenceRegion_map">
-<area href="classRegion.html" title="The region class represents a region in 2D space." alt="Region" shape="rect" coords="0,0,120,24"/>
+<area href="classRegion.html" title="The region class represents a region in 2D space." alt="Region" shape="rect" coords="94,0,273,24"/>
+<area href="classEquivalenceFuelRegion.html" title="The EquivalenceFuelRegion is a fuel region treated using the heterogenous-homogeneous equivalence the..." alt="EquivalenceFuelRegion" shape="rect" coords="0,112,179,136"/>
+<area href="classEquivalenceModeratorRegion.html" title="The EquivalenceModeratorRegion is a fuel region treated using the heterogenous-homogeneous equivalenc..." alt="EquivalenceModeratorRegion" shape="rect" coords="189,112,368,136"/>
 </map>
  </div></div>
 
@@ -123,8 +125,8 @@ Inheritance diagram for EquivalenceRegion:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEquivalenceRegion.html#a7e3c4434d82630f0bbefa805d01b44da">EquivalenceRegion</a> (<a class="el" href="Region_8h.html#a2c25b4a3d851e2d45d7a435a73598323">regionType</a> region_type, const char *region_name=(char *)&quot;&quot;)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classEquivalenceRegion.html" title="The Equivalence Region is a fuel or moderator region treated using the heterogenous-homogeneous equiv...">EquivalenceRegion</a> constructor.  <a href="#a7e3c4434d82630f0bbefa805d01b44da"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEquivalenceRegion.html#a63e848c09ff0f36ece5078fc7695ab6e">EquivalenceRegion</a> (const char *region_name=(char *)&quot;&quot;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classEquivalenceRegion.html" title="The Equivalence Region is a fuel or moderator region treated using the heterogenous-homogeneous equiv...">EquivalenceRegion</a> constructor.  <a href="#a63e848c09ff0f36ece5078fc7695ab6e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf7f80ef7a6a3356feb3ba58a8d5c520"></a><!-- doxytag: member="EquivalenceRegion::~EquivalenceRegion" ref="aaf7f80ef7a6a3356feb3ba58a8d5c520" args="()" -->
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEquivalenceRegion.html#aaf7f80ef7a6a3356feb3ba58a8d5c520">~EquivalenceRegion</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty destructor allows SWIG to cleanup memory for surfaces. <br/></td></tr>
@@ -170,26 +172,16 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>The Equivalence <a class="el" href="classRegion.html" title="The region class represents a region in 2D space.">Region</a> is a fuel or moderator region treated using the heterogenous-homogeneous equivalence theory. </p>
 <p>In particular, this class uses Carlvik's Rational Approximation for first flight collision probabilities. This heterogeneous - homogeneous approximation allows this class to treat a heterogeneous pin cell simply as a homogeneous fuel and homogeneous moderator regions with probabilities for a particle to travel from one region to another at a given energy. This avoids the need for explicit ray tracing of particle trajectories across the geometry. </p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a7e3c4434d82630f0bbefa805d01b44da"></a><!-- doxytag: member="EquivalenceRegion::EquivalenceRegion" ref="a7e3c4434d82630f0bbefa805d01b44da" args="(regionType region_type, const char *region_name=(char *)&quot;&quot;)" -->
+<a class="anchor" id="a63e848c09ff0f36ece5078fc7695ab6e"></a><!-- doxytag: member="EquivalenceRegion::EquivalenceRegion" ref="a63e848c09ff0f36ece5078fc7695ab6e" args="(const char *region_name=(char *)&quot;&quot;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classEquivalenceRegion.html#a7e3c4434d82630f0bbefa805d01b44da">EquivalenceRegion::EquivalenceRegion</a> </td>
+          <td class="memname"><a class="el" href="classEquivalenceRegion.html#a63e848c09ff0f36ece5078fc7695ab6e">EquivalenceRegion::EquivalenceRegion</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Region_8h.html#a2c25b4a3d851e2d45d7a435a73598323">regionType</a>&#160;</td>
-          <td class="paramname"><em>region_type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>region_name</em> = <code>(char*)&quot;&quot;</code>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>region_name</em> = <code>(char*)&quot;&quot;</code></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div>
@@ -199,7 +191,6 @@ Private Attributes</h2></td></tr>
 <p>Sets defaults for the geometric parameters: fuel radius (0.45 cm), pitch (1.26 cm). </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">region_type</td><td>the type of equivalence region (ie, EQUIVALENT_FUEL) </td></tr>
     <tr><td class="paramname">region_name</td><td>the name of the region </td></tr>
   </table>
   </dd>
@@ -699,7 +690,7 @@ Private Attributes</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="classEquivalenceRegion.html">EquivalenceRegion</a>      </li>
 
-    <li class="footer">Generated on Tue Apr 16 2013 02:16:52 by
+    <li class="footer">Generated on Tue Apr 16 2013 13:03:54 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

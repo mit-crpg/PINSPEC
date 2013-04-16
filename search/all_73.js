@@ -74,8 +74,6 @@ var searchData=
   ['subtractintegers',['subtractIntegers',['../classTally.html#aebd2a26ce513bfde74ccbb97bee1635b',1,'Tally']]],
   ['surface',['Surface',['../classSurface.html',1,'Surface'],['../classSurface.html#a77e14a37164709fd65d051b09bdd0089',1,'Surface::Surface()']]],
   ['surface_2eh',['Surface.h',['../Surface_8h.html',1,'']]],
-  ['surfacefactory',['SurfaceFactory',['../classSurfaceFactory.html',1,'SurfaceFactory'],['../classSurfaceFactory.html#a161100812290bd2bdbe60ac4a1ecb657',1,'SurfaceFactory::SurfaceFactory()']]],
-  ['surfacefactory_2eh',['SurfaceFactory.h',['../SurfaceFactory_8h.html',1,'']]],
   ['surfacetype',['surfaceType',['../Surface_8h.html#a669341e8f044e9051db22e680c1b81df',1,'Surface.h']]],
   ['surfacetypes',['surfaceTypes',['../Surface_8h.html#aae07c7b4372f62f6968ba1a9bb22f7e5',1,'Surface.h']]]
 ];

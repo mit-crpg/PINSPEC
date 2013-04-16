@@ -215,76 +215,93 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00197"></a><a class="code" href="classEquivalenceRegion.html#a139dc61872431e66a3a11d9fe4f89b75">00197</a>     <span class="keywordtype">float</span> <a class="code" href="classEquivalenceRegion.html#a139dc61872431e66a3a11d9fe4f89b75">_delta_lethargy</a>;
 <a name="l00198"></a>00198 
 <a name="l00199"></a>00199 <span class="keyword">public</span>:
-<a name="l00200"></a>00200     <a class="code" href="classEquivalenceRegion.html#a7e3c4434d82630f0bbefa805d01b44da" title="EquivalenceRegion constructor.">EquivalenceRegion</a>(<a class="code" href="Region_8h.html#a2c25b4a3d851e2d45d7a435a73598323" title="Region spatial type.">regionType</a> region_type, 
-<a name="l00201"></a>00201               <span class="keyword">const</span> <span class="keywordtype">char</span>* region_name=(<span class="keywordtype">char</span>*)<span class="stringliteral">&quot;&quot;</span>);
-<a name="l00205"></a><a class="code" href="classEquivalenceRegion.html#aaf7f80ef7a6a3356feb3ba58a8d5c520">00205</a>     <span class="keyword">virtual</span> <a class="code" href="classEquivalenceRegion.html#aaf7f80ef7a6a3356feb3ba58a8d5c520" title="Empty destructor allows SWIG to cleanup memory for surfaces.">~EquivalenceRegion</a>() { };
-<a name="l00206"></a>00206     <span class="keywordtype">float</span> <a class="code" href="classEquivalenceRegion.html#ab9973346741c17eb4b5288a36935cc82" title="Returns the fuel pin radius.">getFuelPinRadius</a>();
-<a name="l00207"></a>00207     <span class="keywordtype">float</span> <a class="code" href="classEquivalenceRegion.html#aa2f9d1a26a576586e097f7071d022e7b" title="Returns the pin cell pitch.">getPinCellPitch</a>();
-<a name="l00208"></a>00208     <span class="keywordtype">int</span> <a class="code" href="classEquivalenceRegion.html#a65c7307e1d62e02646e4c7b8d2ed03ef" title="This method returns the index for a certain lethargy (log10(eV)) into the uniform lethargy grid of th...">getEnergyGridIndex</a>(<span class="keywordtype">float</span> lethargy);
-<a name="l00209"></a>00209     <span class="keywordtype">bool</span> <a class="code" href="classEquivalenceRegion.html#a9618864ea980da6231835e89a73af020" title="Returns true if this region is the fuel, false otherwise.">isFuel</a>();
-<a name="l00210"></a>00210     <span class="keywordtype">bool</span> <a class="code" href="classEquivalenceRegion.html#ad4c0eedc21b2db18c6e96845a8a029be" title="Returns true if this region is the moderator, false otherwise.">isModerator</a>();
-<a name="l00211"></a>00211 
-<a name="l00212"></a>00212     <span class="keywordtype">void</span> <a class="code" href="classEquivalenceRegion.html#a8572c288ad0d3ba489a04b1a86ecd041" title="Sets the first flight collision probabilities.">setFirstFlightCollProb</a>(<span class="keywordtype">float</span>* prob_ff, <span class="keywordtype">float</span>* prob_mf, 
-<a name="l00213"></a>00213                 <span class="keywordtype">float</span>* prob_energies, <span class="keywordtype">int</span> num_prob);
-<a name="l00214"></a>00214     <span class="keywordtype">void</span> <a class="code" href="classEquivalenceRegion.html#a2366ade6692d5eb3f1e32b01aa4f4056" title="Sets other region for a homogeneous equivalence region.">setOtherRegion</a>(<a class="code" href="classEquivalenceRegion.html" title="The Equivalence Region is a fuel or moderator region treated using the heterogenous-homogeneous equiv...">EquivalenceRegion</a>* region);
-<a name="l00215"></a>00215     <span class="keywordtype">void</span> <a class="code" href="classEquivalenceRegion.html#a7b7bd526e0e4ca9b2d35885fcfd42a32" title="Sets the fuel radius if the region.">setFuelPinRadius</a>(<span class="keywordtype">float</span> radius);
-<a name="l00216"></a>00216     <span class="keywordtype">void</span> <a class="code" href="classEquivalenceRegion.html#a6aa772e53ef5b5423944d02ae3d73d22" title="Sets the pin cell pitch.">setPinCellPitch</a>(<span class="keywordtype">float</span> pitch);
-<a name="l00217"></a>00217 
-<a name="l00218"></a>00218     <span class="keywordtype">float</span> <a class="code" href="classEquivalenceRegion.html#a121a034f5d979895f0ab00be99d3d9ad" title="Finds the first flight fuel-to-fuel collision probability for a neutron.">computeFuelFuelCollsionProb</a>(<a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>* <a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>);
-<a name="l00219"></a>00219     <span class="keywordtype">float</span> <a class="code" href="classEquivalenceRegion.html#a4c43fb7839c086b19700824eb4ae2ffd" title="Finds the first flight moderator-to-fuel collision probability for a neutron.">computeModeratorFuelCollisionProb</a>(<a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>* <a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>);
-<a name="l00220"></a>00220     <span class="keywordtype">void</span> <a class="code" href="classEquivalenceRegion.html#aa03e69591b2979461f7b7ff24479c4d8" title="This method collides a neutron within the region.">collideNeutron</a>(<a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>* <a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>);
-<a name="l00221"></a>00221 };
+<a name="l00200"></a>00200     <a class="code" href="classEquivalenceRegion.html#a63e848c09ff0f36ece5078fc7695ab6e" title="EquivalenceRegion constructor.">EquivalenceRegion</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* region_name=(<span class="keywordtype">char</span>*)<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00204"></a><a class="code" href="classEquivalenceRegion.html#aaf7f80ef7a6a3356feb3ba58a8d5c520">00204</a>     <span class="keyword">virtual</span> <a class="code" href="classEquivalenceRegion.html#aaf7f80ef7a6a3356feb3ba58a8d5c520" title="Empty destructor allows SWIG to cleanup memory for surfaces.">~EquivalenceRegion</a>() { };
+<a name="l00205"></a>00205     <span class="keywordtype">float</span> <a class="code" href="classEquivalenceRegion.html#ab9973346741c17eb4b5288a36935cc82" title="Returns the fuel pin radius.">getFuelPinRadius</a>();
+<a name="l00206"></a>00206     <span class="keywordtype">float</span> <a class="code" href="classEquivalenceRegion.html#aa2f9d1a26a576586e097f7071d022e7b" title="Returns the pin cell pitch.">getPinCellPitch</a>();
+<a name="l00207"></a>00207     <span class="keywordtype">int</span> <a class="code" href="classEquivalenceRegion.html#a65c7307e1d62e02646e4c7b8d2ed03ef" title="This method returns the index for a certain lethargy (log10(eV)) into the uniform lethargy grid of th...">getEnergyGridIndex</a>(<span class="keywordtype">float</span> lethargy);
+<a name="l00208"></a>00208     <span class="keywordtype">bool</span> <a class="code" href="classEquivalenceRegion.html#a9618864ea980da6231835e89a73af020" title="Returns true if this region is the fuel, false otherwise.">isFuel</a>();
+<a name="l00209"></a>00209     <span class="keywordtype">bool</span> <a class="code" href="classEquivalenceRegion.html#ad4c0eedc21b2db18c6e96845a8a029be" title="Returns true if this region is the moderator, false otherwise.">isModerator</a>();
+<a name="l00210"></a>00210 
+<a name="l00211"></a>00211     <span class="keywordtype">void</span> <a class="code" href="classEquivalenceRegion.html#a8572c288ad0d3ba489a04b1a86ecd041" title="Sets the first flight collision probabilities.">setFirstFlightCollProb</a>(<span class="keywordtype">float</span>* prob_ff, <span class="keywordtype">float</span>* prob_mf, 
+<a name="l00212"></a>00212                 <span class="keywordtype">float</span>* prob_energies, <span class="keywordtype">int</span> num_prob);
+<a name="l00213"></a>00213     <span class="keywordtype">void</span> <a class="code" href="classEquivalenceRegion.html#a2366ade6692d5eb3f1e32b01aa4f4056" title="Sets other region for a homogeneous equivalence region.">setOtherRegion</a>(<a class="code" href="classEquivalenceRegion.html" title="The Equivalence Region is a fuel or moderator region treated using the heterogenous-homogeneous equiv...">EquivalenceRegion</a>* region);
+<a name="l00214"></a>00214     <span class="keywordtype">void</span> <a class="code" href="classEquivalenceRegion.html#a7b7bd526e0e4ca9b2d35885fcfd42a32" title="Sets the fuel radius if the region.">setFuelPinRadius</a>(<span class="keywordtype">float</span> radius);
+<a name="l00215"></a>00215     <span class="keywordtype">void</span> <a class="code" href="classEquivalenceRegion.html#a6aa772e53ef5b5423944d02ae3d73d22" title="Sets the pin cell pitch.">setPinCellPitch</a>(<span class="keywordtype">float</span> pitch);
+<a name="l00216"></a>00216 
+<a name="l00217"></a>00217     <span class="keywordtype">float</span> <a class="code" href="classEquivalenceRegion.html#a121a034f5d979895f0ab00be99d3d9ad" title="Finds the first flight fuel-to-fuel collision probability for a neutron.">computeFuelFuelCollsionProb</a>(<a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>* <a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>);
+<a name="l00218"></a>00218     <span class="keywordtype">float</span> <a class="code" href="classEquivalenceRegion.html#a4c43fb7839c086b19700824eb4ae2ffd" title="Finds the first flight moderator-to-fuel collision probability for a neutron.">computeModeratorFuelCollisionProb</a>(<a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>* <a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>);
+<a name="l00219"></a>00219     <span class="keywordtype">void</span> <a class="code" href="classEquivalenceRegion.html#aa03e69591b2979461f7b7ff24479c4d8" title="This method collides a neutron within the region.">collideNeutron</a>(<a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>* <a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>);
+<a name="l00220"></a>00220 };
+<a name="l00221"></a>00221 
 <a name="l00222"></a>00222 
-<a name="l00223"></a>00223 
-<a name="l00233"></a><a class="code" href="classBoundedRegion.html">00233</a> <span class="keyword">class </span><a class="code" href="classBoundedRegion.html" title="The BoundedRegion is a region bounded by surfaces using a constructive solid geometry formulation...">BoundedRegion</a>: <span class="keyword">public</span> <a class="code" href="classRegion.html" title="The region class represents a region in 2D space.">Region</a> {
-<a name="l00234"></a>00234 
-<a name="l00235"></a>00235 <span class="keyword">private</span>:
-<a name="l00237"></a><a class="code" href="classBoundedRegion.html#a7627b918572fdf4594223566d245dda5">00237</a>     std::vector&lt; std::pair&lt;int, Surface*&gt; &gt; <a class="code" href="classBoundedRegion.html#a7627b918572fdf4594223566d245dda5">_surfaces</a>;
-<a name="l00238"></a>00238 
-<a name="l00239"></a>00239 <span class="keyword">public</span>:
-<a name="l00240"></a>00240     <a class="code" href="classBoundedRegion.html#ad03b2b88b6eaf8c1fb75e4c4046deb98" title="BoundedRegion constructor.">BoundedRegion</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* region_name=(<span class="keywordtype">char</span>*)<span class="stringliteral">&quot;&quot;</span>);
-<a name="l00244"></a><a class="code" href="classBoundedRegion.html#a4ce1f9580205544435da831b00ba7046">00244</a>     <span class="keyword">virtual</span> <a class="code" href="classBoundedRegion.html#a4ce1f9580205544435da831b00ba7046" title="Empty destructor allows SWIG to cleanup memory for surfaces.">~BoundedRegion</a>() { };
-<a name="l00245"></a>00245     <span class="keywordtype">void</span> <a class="code" href="classBoundedRegion.html#a569242dfc370ee201a1d4d4fa8fbce0c" title="Adds a new halfspace of a bounding surface to a region.">addBoundingSurface</a>(<span class="keywordtype">int</span> halfspace, <a class="code" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a>* surface);
-<a name="l00246"></a>00246     <span class="keywordtype">void</span> <a class="code" href="classBoundedRegion.html#a6e501758af2f931dd7995c9728cf580a" title="Removes a halfspace of a bounding surface for a region.">removeBoundingSurface</a>(<span class="keywordtype">int</span> halfspace, <a class="code" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a>* surface);
-<a name="l00247"></a>00247 
-<a name="l00248"></a>00248     <span class="keywordtype">bool</span> <a class="code" href="classBoundedRegion.html#ade7c07fc47919e47cf9536a561248713" title="Check if this region contains a neutron at some location in space.">contains</a>(<a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>* <a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>);
-<a name="l00249"></a>00249     <span class="keywordtype">bool</span> <a class="code" href="classBoundedRegion.html#ade7c07fc47919e47cf9536a561248713" title="Check if this region contains a neutron at some location in space.">contains</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z);
-<a name="l00250"></a>00250     <span class="keywordtype">bool</span> <a class="code" href="classBoundedRegion.html#a6a67a616102b394230008e147c976bc5" title="Checks if a neutron at some 2D location is on the region boundary.">onBoundary</a>(<a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>* <a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>);
-<a name="l00251"></a>00251     <span class="keywordtype">float</span> <a class="code" href="classBoundedRegion.html#a4698fcb521a3f2f068841187587ada79" title="This method computes the distance along a neutron&#39;s trajectory to the nearest bounding surface for th...">computeDistanceToSurface</a>(<a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>* <a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>);
-<a name="l00252"></a>00252 
-<a name="l00253"></a>00253     <span class="keywordtype">void</span> <a class="code" href="classBoundedRegion.html#ad0e62195be77da89607959021c45c9a0" title="This method collides a neutron within the region.">collideNeutron</a>(<a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>* <a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>);
-<a name="l00254"></a>00254 };
-<a name="l00255"></a>00255 
-<a name="l00256"></a>00256 
-<a name="l00268"></a><a class="code" href="classBoundedFuelRegion.html">00268</a> <span class="keyword">class </span><a class="code" href="classBoundedFuelRegion.html" title="The BoundedFuelRegion is a circular fuel pin region bounded by the interior halfspace of a circle sur...">BoundedFuelRegion</a>: <span class="keyword">public</span> <a class="code" href="classBoundedRegion.html" title="The BoundedRegion is a region bounded by surfaces using a constructive solid geometry formulation...">BoundedRegion</a> {
-<a name="l00269"></a>00269 
-<a name="l00270"></a>00270 <span class="keyword">public</span>:
-<a name="l00271"></a>00271     <a class="code" href="classBoundedFuelRegion.html#ab1ac496ac59338d9dcfb3d132c0c1952" title="BoundedFuelRegion constructor.">BoundedFuelRegion</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* region_name=(<span class="keywordtype">char</span>*)<span class="stringliteral">&quot;&quot;</span>);
-<a name="l00275"></a><a class="code" href="classBoundedFuelRegion.html#a4bf03005544a2fb901b6c0352ec7a17f">00275</a>     <a class="code" href="classBoundedFuelRegion.html#a4bf03005544a2fb901b6c0352ec7a17f" title="Empty destructor allows SWIG to cleanup memory for surfaces.">~BoundedFuelRegion</a>() { };
-<a name="l00276"></a>00276 
-<a name="l00277"></a>00277     <span class="keywordtype">void</span> <a class="code" href="classBoundedFuelRegion.html#a74be3b528689b14926abae5fbdcb1b5c" title="Generates a series of equal area circular rings within the fuel.">ringify</a>(<span class="keywordtype">int</span> num_rings);
-<a name="l00278"></a>00278 };
+<a name="l00235"></a><a class="code" href="classEquivalenceFuelRegion.html">00235</a> <span class="keyword">class </span><a class="code" href="classEquivalenceFuelRegion.html" title="The EquivalenceFuelRegion is a fuel region treated using the heterogenous-homogeneous equivalence the...">EquivalenceFuelRegion</a>: <span class="keyword">public</span> <a class="code" href="classEquivalenceRegion.html" title="The Equivalence Region is a fuel or moderator region treated using the heterogenous-homogeneous equiv...">EquivalenceRegion</a> {
+<a name="l00236"></a>00236 
+<a name="l00237"></a>00237 <span class="keyword">public</span>:
+<a name="l00238"></a>00238     <a class="code" href="classEquivalenceFuelRegion.html#a417379f2bb1942ebadbbfd8fcd59eea9" title="EquivalenceFuelRegion constructor.">EquivalenceFuelRegion</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* region_name=(<span class="keywordtype">char</span>*)<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00242"></a><a class="code" href="classEquivalenceFuelRegion.html#abab2513a6363e79384b7357621c92908">00242</a>     <a class="code" href="classEquivalenceFuelRegion.html#abab2513a6363e79384b7357621c92908" title="Empty destructor allows SWIG to cleanup memory for surfaces.">~EquivalenceFuelRegion</a>() { };
+<a name="l00243"></a>00243 };
+<a name="l00244"></a>00244 
+<a name="l00245"></a>00245 
+<a name="l00258"></a><a class="code" href="classEquivalenceModeratorRegion.html">00258</a> <span class="keyword">class </span><a class="code" href="classEquivalenceModeratorRegion.html" title="The EquivalenceModeratorRegion is a fuel region treated using the heterogenous-homogeneous equivalenc...">EquivalenceModeratorRegion</a>: <span class="keyword">public</span> <a class="code" href="classEquivalenceRegion.html" title="The Equivalence Region is a fuel or moderator region treated using the heterogenous-homogeneous equiv...">EquivalenceRegion</a> {
+<a name="l00259"></a>00259 
+<a name="l00260"></a>00260 <span class="keyword">public</span>:
+<a name="l00261"></a>00261     <a class="code" href="classEquivalenceModeratorRegion.html#aa65a167dbee47b1c616d1a12c8e04e80" title="EquivalenceModeratorRegion constructor.">EquivalenceModeratorRegion</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* region_name=(<span class="keywordtype">char</span>*)<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00265"></a><a class="code" href="classEquivalenceModeratorRegion.html#a2c387028b545e08f14ae37e706fb642f">00265</a>     <a class="code" href="classEquivalenceModeratorRegion.html#a2c387028b545e08f14ae37e706fb642f" title="Empty destructor allows SWIG to cleanup memory for surfaces.">~EquivalenceModeratorRegion</a>() { };
+<a name="l00266"></a>00266 };
+<a name="l00267"></a>00267 
+<a name="l00268"></a>00268 
+<a name="l00278"></a><a class="code" href="classBoundedRegion.html">00278</a> <span class="keyword">class </span><a class="code" href="classBoundedRegion.html" title="The BoundedRegion is a region bounded by surfaces using a constructive solid geometry formulation...">BoundedRegion</a>: <span class="keyword">public</span> <a class="code" href="classRegion.html" title="The region class represents a region in 2D space.">Region</a> {
 <a name="l00279"></a>00279 
-<a name="l00280"></a>00280 
-<a name="l00292"></a><a class="code" href="classBoundedModeratorRegion.html">00292</a> <span class="keyword">class </span><a class="code" href="classBoundedModeratorRegion.html" title="The BoundedModeratorRegion is a the space defined four surfaces bounding a square pin minus a circula...">BoundedModeratorRegion</a>: <span class="keyword">public</span> <a class="code" href="classBoundedRegion.html" title="The BoundedRegion is a region bounded by surfaces using a constructive solid geometry formulation...">BoundedRegion</a> {
-<a name="l00293"></a>00293 
-<a name="l00294"></a>00294 <span class="keyword">public</span>:
-<a name="l00295"></a>00295     <a class="code" href="classBoundedModeratorRegion.html#aae1900c6a6c466c7bd32903137a7210f" title="BoundedModeratorRegion constructor.">BoundedModeratorRegion</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* region_name=(<span class="keywordtype">char</span>*)<span class="stringliteral">&quot;&quot;</span>);
-<a name="l00299"></a><a class="code" href="classBoundedModeratorRegion.html#a3acff142a25f840710ca8346fff872c9">00299</a>     <a class="code" href="classBoundedModeratorRegion.html#a3acff142a25f840710ca8346fff872c9" title="Empty destructor allows SWIG to cleanup memory for surfaces.">~BoundedModeratorRegion</a>() { };
+<a name="l00280"></a>00280 <span class="keyword">private</span>:
+<a name="l00282"></a><a class="code" href="classBoundedRegion.html#a7627b918572fdf4594223566d245dda5">00282</a>     std::vector&lt; std::pair&lt;int, Surface*&gt; &gt; <a class="code" href="classBoundedRegion.html#a7627b918572fdf4594223566d245dda5">_surfaces</a>;
+<a name="l00283"></a>00283 
+<a name="l00284"></a>00284 <span class="keyword">public</span>:
+<a name="l00285"></a>00285     <a class="code" href="classBoundedRegion.html#ad03b2b88b6eaf8c1fb75e4c4046deb98" title="BoundedRegion constructor.">BoundedRegion</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* region_name=(<span class="keywordtype">char</span>*)<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00289"></a><a class="code" href="classBoundedRegion.html#a4ce1f9580205544435da831b00ba7046">00289</a>     <span class="keyword">virtual</span> <a class="code" href="classBoundedRegion.html#a4ce1f9580205544435da831b00ba7046" title="Empty destructor allows SWIG to cleanup memory for surfaces.">~BoundedRegion</a>() { };
+<a name="l00290"></a>00290     <span class="keywordtype">void</span> <a class="code" href="classBoundedRegion.html#a569242dfc370ee201a1d4d4fa8fbce0c" title="Adds a new halfspace of a bounding surface to a region.">addBoundingSurface</a>(<span class="keywordtype">int</span> halfspace, <a class="code" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a>* surface);
+<a name="l00291"></a>00291     <span class="keywordtype">void</span> <a class="code" href="classBoundedRegion.html#a6e501758af2f931dd7995c9728cf580a" title="Removes a halfspace of a bounding surface for a region.">removeBoundingSurface</a>(<span class="keywordtype">int</span> halfspace, <a class="code" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a>* surface);
+<a name="l00292"></a>00292 
+<a name="l00293"></a>00293     <span class="keywordtype">bool</span> <a class="code" href="classBoundedRegion.html#ade7c07fc47919e47cf9536a561248713" title="Check if this region contains a neutron at some location in space.">contains</a>(<a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>* <a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>);
+<a name="l00294"></a>00294     <span class="keywordtype">bool</span> <a class="code" href="classBoundedRegion.html#ade7c07fc47919e47cf9536a561248713" title="Check if this region contains a neutron at some location in space.">contains</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z);
+<a name="l00295"></a>00295     <span class="keywordtype">bool</span> <a class="code" href="classBoundedRegion.html#a6a67a616102b394230008e147c976bc5" title="Checks if a neutron at some 2D location is on the region boundary.">onBoundary</a>(<a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>* <a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>);
+<a name="l00296"></a>00296     <span class="keywordtype">float</span> <a class="code" href="classBoundedRegion.html#a4698fcb521a3f2f068841187587ada79" title="This method computes the distance along a neutron&#39;s trajectory to the nearest bounding surface for th...">computeDistanceToSurface</a>(<a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>* <a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>);
+<a name="l00297"></a>00297 
+<a name="l00298"></a>00298     <span class="keywordtype">void</span> <a class="code" href="classBoundedRegion.html#ad0e62195be77da89607959021c45c9a0" title="This method collides a neutron within the region.">collideNeutron</a>(<a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>* <a class="code" href="structneutron.html" title="Represents a neutron in a PINSPEC simulation.">neutron</a>);
+<a name="l00299"></a>00299 };
 <a name="l00300"></a>00300 
-<a name="l00301"></a>00301     <span class="keywordtype">void</span> <a class="code" href="classBoundedModeratorRegion.html#a15c353a4059d8c68d570c5e04ad8db5f" title="Generates a series of equal area circular rings within the moderator.">ringify</a>(<span class="keywordtype">int</span> num_rings);
-<a name="l00302"></a>00302 };
+<a name="l00301"></a>00301 
+<a name="l00302"></a>00302 
 <a name="l00303"></a>00303 
-<a name="l00304"></a>00304 
-<a name="l00314"></a><a class="code" href="classBoundedGeneralRegion.html">00314</a> <span class="keyword">class </span><a class="code" href="classBoundedGeneralRegion.html" title="The BoundedGeneralRegion is a the space defined by the intersection of some number surface halfspaces...">BoundedGeneralRegion</a>: <span class="keyword">public</span> <a class="code" href="classBoundedRegion.html" title="The BoundedRegion is a region bounded by surfaces using a constructive solid geometry formulation...">BoundedRegion</a> {
-<a name="l00315"></a>00315 
-<a name="l00316"></a>00316 <span class="keyword">public</span>:
-<a name="l00317"></a>00317     <a class="code" href="classBoundedGeneralRegion.html#a232318d9269fe14f797e0972e88ef36f" title="BoundedGeneralRegion constructor.">BoundedGeneralRegion</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* region_name=(<span class="keywordtype">char</span>*)<span class="stringliteral">&quot;&quot;</span>);
-<a name="l00321"></a><a class="code" href="classBoundedGeneralRegion.html#ae47bbd827ece6373cd1fa5be712db42a">00321</a>     <a class="code" href="classBoundedGeneralRegion.html#ae47bbd827ece6373cd1fa5be712db42a" title="Empty destructor allows SWIG to cleanup memory for surfaces.">~BoundedGeneralRegion</a>() { };
-<a name="l00322"></a>00322 };
+<a name="l00315"></a><a class="code" href="classBoundedFuelRegion.html">00315</a> <span class="keyword">class </span><a class="code" href="classBoundedFuelRegion.html" title="The BoundedFuelRegion is a circular fuel pin region bounded by the interior halfspace of a circle sur...">BoundedFuelRegion</a>: <span class="keyword">public</span> <a class="code" href="classBoundedRegion.html" title="The BoundedRegion is a region bounded by surfaces using a constructive solid geometry formulation...">BoundedRegion</a> {
+<a name="l00316"></a>00316 
+<a name="l00317"></a>00317 <span class="keyword">public</span>:
+<a name="l00318"></a>00318     <a class="code" href="classBoundedFuelRegion.html#ab1ac496ac59338d9dcfb3d132c0c1952" title="BoundedFuelRegion constructor.">BoundedFuelRegion</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* region_name=(<span class="keywordtype">char</span>*)<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00322"></a><a class="code" href="classBoundedFuelRegion.html#a4bf03005544a2fb901b6c0352ec7a17f">00322</a>     <a class="code" href="classBoundedFuelRegion.html#a4bf03005544a2fb901b6c0352ec7a17f" title="Empty destructor allows SWIG to cleanup memory for surfaces.">~BoundedFuelRegion</a>() { };
 <a name="l00323"></a>00323 
-<a name="l00324"></a>00324 <span class="preprocessor">#endif </span><span class="comment">/* REGION_H_ */</span>
-<a name="l00325"></a>00325 
+<a name="l00324"></a>00324     <span class="keywordtype">void</span> <a class="code" href="classBoundedFuelRegion.html#a74be3b528689b14926abae5fbdcb1b5c" title="Generates a series of equal area circular rings within the fuel.">ringify</a>(<span class="keywordtype">int</span> num_rings);
+<a name="l00325"></a>00325 };
+<a name="l00326"></a>00326 
+<a name="l00327"></a>00327 
+<a name="l00339"></a><a class="code" href="classBoundedModeratorRegion.html">00339</a> <span class="keyword">class </span><a class="code" href="classBoundedModeratorRegion.html" title="The BoundedModeratorRegion is a the space defined four surfaces bounding a square pin minus a circula...">BoundedModeratorRegion</a>: <span class="keyword">public</span> <a class="code" href="classBoundedRegion.html" title="The BoundedRegion is a region bounded by surfaces using a constructive solid geometry formulation...">BoundedRegion</a> {
+<a name="l00340"></a>00340 
+<a name="l00341"></a>00341 <span class="keyword">public</span>:
+<a name="l00342"></a>00342     <a class="code" href="classBoundedModeratorRegion.html#aae1900c6a6c466c7bd32903137a7210f" title="BoundedModeratorRegion constructor.">BoundedModeratorRegion</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* region_name=(<span class="keywordtype">char</span>*)<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00346"></a><a class="code" href="classBoundedModeratorRegion.html#a3acff142a25f840710ca8346fff872c9">00346</a>     <a class="code" href="classBoundedModeratorRegion.html#a3acff142a25f840710ca8346fff872c9" title="Empty destructor allows SWIG to cleanup memory for surfaces.">~BoundedModeratorRegion</a>() { };
+<a name="l00347"></a>00347 
+<a name="l00348"></a>00348     <span class="keywordtype">void</span> <a class="code" href="classBoundedModeratorRegion.html#a15c353a4059d8c68d570c5e04ad8db5f" title="Generates a series of equal area circular rings within the moderator.">ringify</a>(<span class="keywordtype">int</span> num_rings);
+<a name="l00349"></a>00349 };
+<a name="l00350"></a>00350 
+<a name="l00351"></a>00351 
+<a name="l00361"></a><a class="code" href="classBoundedGeneralRegion.html">00361</a> <span class="keyword">class </span><a class="code" href="classBoundedGeneralRegion.html" title="The BoundedGeneralRegion is a the space defined by the intersection of some number surface halfspaces...">BoundedGeneralRegion</a>: <span class="keyword">public</span> <a class="code" href="classBoundedRegion.html" title="The BoundedRegion is a region bounded by surfaces using a constructive solid geometry formulation...">BoundedRegion</a> {
+<a name="l00362"></a>00362 
+<a name="l00363"></a>00363 <span class="keyword">public</span>:
+<a name="l00364"></a>00364     <a class="code" href="classBoundedGeneralRegion.html#a232318d9269fe14f797e0972e88ef36f" title="BoundedGeneralRegion constructor.">BoundedGeneralRegion</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* region_name=(<span class="keywordtype">char</span>*)<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00368"></a><a class="code" href="classBoundedGeneralRegion.html#ae47bbd827ece6373cd1fa5be712db42a">00368</a>     <a class="code" href="classBoundedGeneralRegion.html#ae47bbd827ece6373cd1fa5be712db42a" title="Empty destructor allows SWIG to cleanup memory for surfaces.">~BoundedGeneralRegion</a>() { };
+<a name="l00369"></a>00369 };
+<a name="l00370"></a>00370 
+<a name="l00371"></a>00371 <span class="preprocessor">#endif </span><span class="comment">/* REGION_H_ */</span>
+<a name="l00372"></a>00372 
 </pre></div></div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -305,7 +322,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul>
       <li class="navelem"><a class="el" href="Region_8h.html">Region.h</a>      </li>
 
-    <li class="footer">Generated on Tue Apr 16 2013 02:16:52 by
+    <li class="footer">Generated on Tue Apr 16 2013 13:03:54 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

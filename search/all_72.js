@@ -10,8 +10,6 @@ var searchData=
   ['regioncollisionratetally',['RegionCollisionRateTally',['../classRegionCollisionRateTally.html',1,'RegionCollisionRateTally'],['../classRegionCollisionRateTally.html#a4665e117d3c7be7ce66ae9a23e031e73',1,'RegionCollisionRateTally::RegionCollisionRateTally()']]],
   ['regiondiffusionratetally',['RegionDiffusionRateTally',['../classRegionDiffusionRateTally.html',1,'RegionDiffusionRateTally'],['../classRegionDiffusionRateTally.html#a64dc61a22189a60f052cf349615d3463',1,'RegionDiffusionRateTally::RegionDiffusionRateTally()']]],
   ['regionelasticratetally',['RegionElasticRateTally',['../classRegionElasticRateTally.html',1,'RegionElasticRateTally'],['../classRegionElasticRateTally.html#aab82cda6914a01240b7fdfe01ca08b33',1,'RegionElasticRateTally::RegionElasticRateTally()']]],
-  ['regionfactory',['RegionFactory',['../classRegionFactory.html',1,'RegionFactory'],['../classRegionFactory.html#ae3599b5e2313bffa2704ba211af2a3f7',1,'RegionFactory::RegionFactory()']]],
-  ['regionfactory_2eh',['RegionFactory.h',['../RegionFactory_8h.html',1,'']]],
   ['regionfissionratetally',['RegionFissionRateTally',['../classRegionFissionRateTally.html',1,'RegionFissionRateTally'],['../classRegionFissionRateTally.html#af3344001e9ba2ac13119191e49111d3d',1,'RegionFissionRateTally::RegionFissionRateTally()']]],
   ['regionfluxtally',['RegionFluxTally',['../classRegionFluxTally.html',1,'RegionFluxTally'],['../classRegionFluxTally.html#afeb527c4b8deafc6cff68594ad95a9c8',1,'RegionFluxTally::RegionFluxTally()']]],
   ['regiongroupratetally',['RegionGroupRateTally',['../classRegionGroupRateTally.html',1,'RegionGroupRateTally'],['../classRegionGroupRateTally.html#ac767cc661f9d4a563516b9a9b994e241',1,'RegionGroupRateTally::RegionGroupRateTally()']]],

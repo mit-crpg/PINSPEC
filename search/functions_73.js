@@ -64,6 +64,5 @@ var searchData=
   ['subtractdoubles',['subtractDoubles',['../classTally.html#ad6055bb7f1fc7dc711d6373511be9863',1,'Tally']]],
   ['subtractfloats',['subtractFloats',['../classTally.html#aaafa8791ea206e5da93082081b94abf5',1,'Tally']]],
   ['subtractintegers',['subtractIntegers',['../classTally.html#aebd2a26ce513bfde74ccbb97bee1635b',1,'Tally']]],
-  ['surface',['Surface',['../classSurface.html#a77e14a37164709fd65d051b09bdd0089',1,'Surface']]],
-  ['surfacefactory',['SurfaceFactory',['../classSurfaceFactory.html#a161100812290bd2bdbe60ac4a1ecb657',1,'SurfaceFactory']]]
+  ['surface',['Surface',['../classSurface.html#a77e14a37164709fd65d051b09bdd0089',1,'Surface']]]
 ];

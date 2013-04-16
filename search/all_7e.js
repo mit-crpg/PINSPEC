@@ -4,6 +4,8 @@ var searchData=
   ['_7eboundedgeneralregion',['~BoundedGeneralRegion',['../classBoundedGeneralRegion.html#ae47bbd827ece6373cd1fa5be712db42a',1,'BoundedGeneralRegion']]],
   ['_7eboundedmoderatorregion',['~BoundedModeratorRegion',['../classBoundedModeratorRegion.html#a3acff142a25f840710ca8346fff872c9',1,'BoundedModeratorRegion']]],
   ['_7eboundedregion',['~BoundedRegion',['../classBoundedRegion.html#a4ce1f9580205544435da831b00ba7046',1,'BoundedRegion']]],
+  ['_7eequivalencefuelregion',['~EquivalenceFuelRegion',['../classEquivalenceFuelRegion.html#abab2513a6363e79384b7357621c92908',1,'EquivalenceFuelRegion']]],
+  ['_7eequivalencemoderatorregion',['~EquivalenceModeratorRegion',['../classEquivalenceModeratorRegion.html#a2c387028b545e08f14ae37e706fb642f',1,'EquivalenceModeratorRegion']]],
   ['_7eequivalenceregion',['~EquivalenceRegion',['../classEquivalenceRegion.html#aaf7f80ef7a6a3356feb3ba58a8d5c520',1,'EquivalenceRegion']]],
   ['_7efissioner',['~Fissioner',['../classFissioner.html#a5b5045b1de9a25a6022aec9124a1b024',1,'Fissioner']]],
   ['_7egeometry',['~Geometry',['../classGeometry.html#ad55e832122ab3a2833dcaa6507867678',1,'Geometry']]],

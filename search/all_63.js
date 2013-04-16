@@ -28,8 +28,6 @@ var searchData=
   ['convert',['convert',['../namespacepinspec_1_1slbw.html#a026e643a6e213703f2b18533c7149c03',1,'pinspec::slbw']]],
   ['createmultilinemsg',['createMultilineMsg',['../log_8h.html#ab42a0de70fdb518ab616d1c61ce7a1a0',1,'log.cpp']]],
   ['createnewneutron',['createNewNeutron',['../Neutron_8h.html#aa1d6be7ef13853855cc553224b3e49f6',1,'Neutron.cpp']]],
-  ['createregion',['createRegion',['../classRegionFactory.html#a5478e4310ec2fd5a51ca64dfd9049bc5',1,'RegionFactory']]],
-  ['createsurface',['createSurface',['../classSurfaceFactory.html#ab702b918f40d1f677e1ffcf418d5ace5',1,'SurfaceFactory']]],
   ['createtally',['createTally',['../classTallyFactory.html#af867d20139f3e667cb4888be750ce1af',1,'TallyFactory::createTally(Geometry *geometry, tallyType tally_type, const char *tally_name=(char *)&quot;&quot;)'],['../classTallyFactory.html#adc2544df5d156100a3d2dfe529bd3bab',1,'TallyFactory::createTally(Region *region, tallyType tally_type, const char *tally_name=(char *)&quot;&quot;)'],['../classTallyFactory.html#a8ae1ea758bd5e8dc61247e76629d6d06',1,'TallyFactory::createTally(Material *material, tallyType tally_type, const char *tally_name=(char *)&quot;&quot;)'],['../classTallyFactory.html#ab991a59aabd67c38a36506c3966aa0f1',1,'TallyFactory::createTally(Isotope *isotope, tallyType tally_type, const char *tally_name=(char *)&quot;&quot;)']]],
   ['critical',['CRITICAL',['../log_8h.html#a5096002e05063d13577205e0bc5f0564acda21a4a072f2261f6d4ab596599f8b0',1,'log.h']]],
   ['cumulativeintegral',['cumulativeIntegral',['../integrate_8h.html#a6986dcb4f4d8dce75ba3a907b9da75aa',1,'integrate.h']]]

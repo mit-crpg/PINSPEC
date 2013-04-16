@@ -13,10 +13,12 @@ var hierarchy =
         [ "BoundedGeneralRegion", "classBoundedGeneralRegion.html", null ],
         [ "BoundedModeratorRegion", "classBoundedModeratorRegion.html", null ]
       ] ],
-      [ "EquivalenceRegion", "classEquivalenceRegion.html", null ],
+      [ "EquivalenceRegion", "classEquivalenceRegion.html", [
+        [ "EquivalenceFuelRegion", "classEquivalenceFuelRegion.html", null ],
+        [ "EquivalenceModeratorRegion", "classEquivalenceModeratorRegion.html", null ]
+      ] ],
       [ "InfiniteMediumRegion", "classInfiniteMediumRegion.html", null ]
     ] ],
-    [ "RegionFactory", "classRegionFactory.html", null ],
     [ "pinspec.process.RIEff", "classpinspec_1_1process_1_1RIEff.html", null ],
     [ "pinspec.process.RITrue", "classpinspec_1_1process_1_1RITrue.html", null ],
     [ "Surface", "classSurface.html", [
@@ -24,7 +26,6 @@ var hierarchy =
       [ "YPlane", "classYPlane.html", null ],
       [ "ZCylinder", "classZCylinder.html", null ]
     ] ],
-    [ "SurfaceFactory", "classSurfaceFactory.html", null ],
     [ "Tally", "classTally.html", [
       [ "DerivedTally", "classDerivedTally.html", null ],
       [ "GeometryTally", "classGeometryTally.html", [

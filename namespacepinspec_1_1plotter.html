@@ -124,6 +124,8 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Plots a multi-group cross-section as a step function.  <a href="#afa68183a802e9f9195f30f4eb8f3ae88"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepinspec_1_1plotter.html#ac4e680b32413a19fb42ab62a3c445146">plotSlice</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This method takes in a region or a geometry object and plots a color-coded 2D surface plot representing a planar slice through the space.  <a href="#ac4e680b32413a19fb42ab62a3c445146"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepinspec_1_1plotter.html#a9621d8c604194099668daf2836101aae">plotFissionSourceDist</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Plots a vector field of the fission site source distribution.  <a href="#a9621d8c604194099668daf2836101aae"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a696ce32dd92f7b9132675df865c1ab5a"></a><!-- doxytag: member="pinspec::plotter::flux_plot_num" ref="a696ce32dd92f7b9132675df865c1ab5a" args="" -->
@@ -140,6 +142,49 @@ string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="na
 William Boyd (<a href="mailto:wboyd@mit.edu">wboyd@mit.edu</a> </dd></dl>
 <dl class="date"><dt><b>Date:</b></dt><dd>March 10, 2013 </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a9621d8c604194099668daf2836101aae"></a><!-- doxytag: member="pinspec::plotter::plotFissionSourceDist" ref="a9621d8c604194099668daf2836101aae" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def <a class="el" href="namespacepinspec_1_1plotter.html#a9621d8c604194099668daf2836101aae">pinspec.plotter.plotFissionSourceDist</a> </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>geometry</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>num_samples</em> = <code>1000</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>filename</em> = <code>''</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Plots a vector field of the fission site source distribution. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">geometry</td><td>a HETEROGENEOUS geometry class object </td></tr>
+    <tr><td class="paramname">num_samples</td><td>an optional number of samples </td></tr>
+    <tr><td class="paramname">filename</td><td>an optional filename </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a6711829dda3c540c331ff0dce8eacd85"></a><!-- doxytag: member="pinspec::plotter::plotFissionSpectrum" ref="a6711829dda3c540c331ff0dce8eacd85" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -570,7 +615,7 @@ William Boyd (<a href="mailto:wboyd@mit.edu">wboyd@mit.edu</a> </dd></dl>
       <li class="navelem"><b>pinspec</b>      </li>
       <li class="navelem"><a class="el" href="namespacepinspec_1_1plotter.html">plotter</a>      </li>
 
-    <li class="footer">Generated on Tue Apr 16 2013 02:16:53 by
+    <li class="footer">Generated on Tue Apr 16 2013 13:03:55 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

@@ -1,5 +1,6 @@
 var plotter_8py =
 [
+    [ "plotFissionSourceDist", "namespacepinspec_1_1plotter.html#a9621d8c604194099668daf2836101aae", null ],
     [ "plotFissionSpectrum", "namespacepinspec_1_1plotter.html#a6711829dda3c540c331ff0dce8eacd85", null ],
     [ "plotFlux", "namespacepinspec_1_1plotter.html#a28bc000c574cd5986a481dc2870d7b09", null ],
     [ "plotGroupXS", "namespacepinspec_1_1plotter.html#afa68183a802e9f9195f30f4eb8f3ae88", null ],
