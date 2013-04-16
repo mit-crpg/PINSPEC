@@ -48,7 +48,7 @@ mix.addIsotope(zr90, .16)
 ###############################################################################
 
 py_printf('NORMAL', 'Initializing infnite medium region...')
-region_mix = RegionFactory.createRegion(INFINITE_MEDIUM)
+region_mix = InfiniteMediumRegion('infinite medium')
 region_mix.setMaterial(mix)
 
 

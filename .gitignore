@@ -37,7 +37,9 @@ sample-input/group-to-group/*
 sample-input/strongscaling
 sample-input/strongscaling/*
 sample-input/weakscaling
-sample-input/weakscaling/**.png
+sample-input/weakscaling/*
+sample-input/heterogeneous
+sample-input/heterogeneous/*
 */*.png
 log/*
 */log/*

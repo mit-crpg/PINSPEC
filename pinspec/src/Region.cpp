@@ -433,13 +433,10 @@ void InfiniteMediumRegion::collideNeutron(neutron* neutron) {
  * @brief EquivalenceRegion constructor.
  * @details Sets defaults for the geometric parameters: fuel radius (0.45 cm),
  *          pitch (1.26 cm).
- * @param region_type the type of equivalence region (ie, EQUIVALENT_FUEL)
  * @param region_name the name of the region 
  */
-EquivalenceRegion::EquivalenceRegion(regionType region_type, 
-				     const char* region_name): 
+EquivalenceRegion::EquivalenceRegion(const char* region_name): 
     Region(region_name) {
-        _region_type = region_type;
         _fuel_radius = 0.0;
         _pitch = 0.0;
         _half_width = 0.0;
@@ -718,6 +715,27 @@ void EquivalenceRegion::collideNeutron(neutron* neutron) {
 
 
 /**
+ * @brief EquivalenceFuelRegion constructor.
+ * @param region_name the name of the region 
+ */
+EquivalenceFuelRegion::EquivalenceFuelRegion(const char* region_name):
+    EquivalenceRegion(region_name) {
+        _region_type = EQUIVALENT_FUEL;
+}
+
+
+
+/**
+ * @brief EquivalenceModeratorRegion constructor.
+ * @param region_name the name of the region 
+ */
+EquivalenceModeratorRegion::EquivalenceModeratorRegion(const char* region_name):
+    EquivalenceRegion(region_name) {
+        _region_type = EQUIVALENT_MODERATOR;
+}
+
+
+/**
  * @brief BoundedRegion constructor.
  * @param region_name the name of the region 
  */
@@ -736,7 +754,8 @@ void BoundedRegion::addBoundingSurface(int halfspace, Surface* surface) {
 		   "halfspace must be -1 or +1.", 
 		   surface->getSurfaceName(), halfspace);
 
-    log_printf(NORMAL, "Adding bounding surface %s with halfspace %d", surface->getSurfaceName(), halfspace);
+    log_printf(NORMAL, "Adding bounding surface %s with halfspace %d", 
+	       surface->getSurfaceName(), halfspace);
 
     /* Create a halfspace/surface pair and add it to the bounding surfaces
      * container for this region */

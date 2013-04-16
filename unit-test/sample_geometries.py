@@ -43,7 +43,7 @@ class TestInfinite(unittest.TestCase):
         self.mix.addIsotope(self.zr90, 0.16)
         
         # Define regions
-        self.region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'inf medium')
+        self.region_mix = InfiniteMediumRegion('inf medium')
         self.region_mix.setMaterial(self.mix)
         
         # Define geometry
@@ -83,7 +83,7 @@ class TestInfinite(unittest.TestCase):
         self.mix.addIsotope(self.u238, 1E-6)
         
         # Define regions
-        self.region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'inf medium')
+        self.region_mix = InfiniteMediumRegion('inf medium')
         self.region_mix.setMaterial(self.mix)
         
         # Define geometry
@@ -127,7 +127,7 @@ class TestInfinite(unittest.TestCase):
         self.mix.addIsotope(self.u238, 1E-6)
         
         # Define regions
-        self.region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'inf medium')
+        self.region_mix = InfiniteMediumRegion('inf medium')
         self.region_mix.setMaterial(self.mix)
         
         # Define geometry
@@ -171,7 +171,7 @@ class TestInfinite(unittest.TestCase):
         self.mix.addIsotope(self.u238, 1E-6)
         
         # Define regions
-        self.region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'inf medium')
+        self.region_mix = InfiniteMediumRegion('inf medium')
         self.region_mix.setMaterial(self.mix)
         
         # Define geometry
@@ -245,9 +245,8 @@ class TestEquivalence(unittest.TestCase):
         self.fuel.addIsotope(self.zr90, 0.16)
         
         # Define regions
-        self.region_mod = EquivalenceRegion(EQUIVALENT_MODERATOR, \
-                                                'MODERATOR')
-        self.region_fuel = EquivalenceRegion(EQUIVALENT_FUEL, 'FUEL')
+        self.region_mod = EquivalenceModeratorRegion('MODERATOR')
+        self.region_fuel = EquivalenceFuelRegion('FUEL')
         self.region_mod.setMaterial(self.mod)
         self.region_fuel.setMaterial(self.fuel)
         self.region_fuel.setFuelPinRadius(self.radius_fuel)

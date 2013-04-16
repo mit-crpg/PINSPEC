@@ -22,7 +22,7 @@ class TestHW2(unittest.TestCase):
         c12 = Isotope('C-12')
         
         # Create an artifical capture xs for hydrogen
-        norm_const = 0.025k
+        norm_const = 0.025
 
         h1_capture_energies = numpy.logspace(-5., 7.5, 500);
         h1_capture_xs = numpy.sqrt(norm_const/h1_capture_energies) * 7.

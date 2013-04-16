@@ -23,7 +23,3 @@ restoreXSLibrary()
 # Get instances of TallyBank and TallyFactory singleton classes
 pinspec.TallyBank = TallyBank.Get()
 pinspec.TallyFactory = TallyFactory.Get()
-
-# Get instances of SurfaceFactory and RegionFactory singleton classes
-pinspec.SurfaceFactory = SurfaceFactory.Get()
-pinspec.RegionFactory = RegionFactory.Get()

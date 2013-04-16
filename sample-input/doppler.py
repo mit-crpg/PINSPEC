@@ -71,7 +71,7 @@ mix.addIsotope(u238, 1E-1)
 ###############################################################################
 
 py_printf('INFO', 'Creating an infinite homogeneous region...')
-region_mix = RegionFactory.createRegion(INFINITE_MEDIUM)
+region_mix = InfiniteMediumRegion('infinite medium')
 region_mix.setMaterial(mix)
 
 

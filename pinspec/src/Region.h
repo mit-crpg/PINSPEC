@@ -197,8 +197,7 @@ private:
     float _delta_lethargy;
 
 public:
-    EquivalenceRegion(regionType region_type, 
-		      const char* region_name=(char*)"");
+    EquivalenceRegion(const char* region_name=(char*)"");
     /**
      * @brief Empty destructor allows SWIG to cleanup memory for surfaces.
      */
@@ -218,6 +217,52 @@ public:
     float computeFuelFuelCollsionProb(neutron* neutron);
     float computeModeratorFuelCollisionProb(neutron* neutron);
     void collideNeutron(neutron* neutron);
+};
+
+
+/**
+ * @class EquivalenceFuelRegion Region.h "pinspec/src/Region.h"
+ * @brief The EquivalenceFuelRegion is a fuel region treated using the
+ *        heterogenous-homogeneous equivalence theory. 
+ * @details In particular, this class uses Carlvik's Rational Approximation 
+ *        for first flight collision probabilities. This heterogeneous -
+ *        homogeneous approximation allows this class to treat a heterogeneous 
+ *        pin cell simply as a homogeneous fuel and homogeneous moderator 
+ *        regions with probabilities for a particle to travel from one region 
+ *        to another at a given energy. This avoids the need for explicit ray 
+ *        tracing of particle trajectories across the geometry.
+ */
+class EquivalenceFuelRegion: public EquivalenceRegion {
+
+public:
+    EquivalenceFuelRegion(const char* region_name=(char*)"");
+    /**
+     * @brief Empty destructor allows SWIG to cleanup memory for surfaces.
+     */
+    ~EquivalenceFuelRegion() { };
+};
+
+
+/**
+ * @class EquivalenceModeratorRegion Region.h "pinspec/src/Region.h"
+ * @brief The EquivalenceModeratorRegion is a fuel region treated using the
+ *        heterogenous-homogeneous equivalence theory. 
+ * @details In particular, this class uses Carlvik's Rational Approximation 
+ *        for first flight collision probabilities. This heterogeneous -
+ *        homogeneous approximation allows this class to treat a heterogeneous 
+ *        pin cell simply as a homogeneous fuel and homogeneous moderator 
+ *        regions with probabilities for a particle to travel from one region 
+ *        to another at a given energy. This avoids the need for explicit ray 
+ *        tracing of particle trajectories across the geometry.
+ */
+class EquivalenceModeratorRegion: public EquivalenceRegion {
+
+public:
+    EquivalenceModeratorRegion(const char* region_name=(char*)"");
+    /**
+     * @brief Empty destructor allows SWIG to cleanup memory for surfaces.
+     */
+    ~EquivalenceModeratorRegion() { };
 };
 
 
@@ -252,6 +297,8 @@ public:
 
     void collideNeutron(neutron* neutron);
 };
+
+
 
 
 /**
@@ -306,7 +353,7 @@ public:
  * @class BoundedGeneralRegion Region.h "pinspec/src/Region.h"
  * @brief The BoundedGeneralRegion is a the space defined by the intersection
  *        of some number surface halfspaces.
- * @details This type of region is useful for a surface that is more 
+ * @details This type of region is useful for a region that is more 
  *          complicated than the basic fuel or moderator pin cell, and
  *          allows the user to apply their own discretion to create a
  *          the bounded region.

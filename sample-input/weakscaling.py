@@ -58,7 +58,7 @@ mix.addIsotope(zr90, .16)
 ###############################################################################
 
 py_printf('INFO', 'Initializing fuel-moderator mix region...')
-region_mix = RegionFactory.createRegion(INFINITE_MEDIUM, 'infinite medium')
+region_mix = InfiniteMediumRegion('infinite medium')
 region_mix.setMaterial(mix)
 
 

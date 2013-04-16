@@ -136,10 +136,10 @@ fuel.addIsotope(o16, N_o16 / N_fuel)
 ###############################################################################
 
 py_printf('INFO', 'Initializing fuel and moderator regions...')
-region_mod = RegionFactory.createRegion(EQUIVALENT_MODERATOR, 'moderator')
+region_mod = EquivalenceModeratorRegion('moderator')
 region_mod.setMaterial(moderator)
         
-region_fuel = RegionFactory.createRegion(EQUIVALENT_FUEL, 'fuel')
+region_fuel = EquivalenceFuelRegion('fuel')
 region_fuel.setMaterial(fuel)
 
 
