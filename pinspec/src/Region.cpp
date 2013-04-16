@@ -3,6 +3,7 @@
 
 int Region::_n = 1;
 
+
 /**
  * @brief Region constructor.
  * @details Sets defaults for the geometric parameters to 0.

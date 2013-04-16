@@ -633,17 +633,77 @@ def plotSlice(space, plane='XY', loc=0.0, lim1=[-2., 2.], lim2=[-2., 2.],
     plt.pcolor(dim1, dim2, surface)
     plt.axis([lim1[0], lim1[1], lim2[0], lim2[1]])
 
-    if plane.lower() is 'xy':
+    if plane.lower() == 'xy':
         plt.title('' + plane.upper() + ' Plane at z = ' + str(loc))
-    if plane.lower() is 'xz':
+    if plane.lower() == 'xz':
         plt.title('' + plane.upper() + ' Plane at y = ' + str(loc))
     else:
         plt.title('' + plane.upper() + ' Plane at x = ' + str(loc))
 
     if filename is '':
-        filename = directory + '/ + ' + plane.lower() + '-slice.png'
+        filename = directory + '/' + plane.lower() + '-slice.png'
     else:
         filename = directory + filename.replace(' ', '-').lower() + \
                       '-' + plane.lower() + '-slice.png'
+
+    plt.savefig(filename)
+
+
+##
+# @brief Plots a vector field of the fission site source distribution
+# @param geometry a HETEROGENEOUS geometry class object
+# @param num_samples an optional number of samples
+# @param filename an optional filename
+def plotFissionSourceDist(geometry, num_samples=1000, filename=''):
+
+    global subdirectory
+
+    directory = getOutputDirectory() + subdirectory
+
+    # Make directory if it does not exist
+    if not os.path.exists(directory):
+            os.makedirs(directory)
+
+    # Error checking
+    if not isinstance(geometry, Geometry):
+        py_printf('ERROR', 'Unable to plot the fission source distribution since ' + \
+                      'the parameters did not include a geometry class object')
+    if geometry.getSpatialType() != HETEROGENEOUS:
+        py_printf('ERROR', 'Unable to plot the fission source distribution since ' + \
+                      'for a non HETEROGENEOUS type geometry')
+    if not isinstance(num_samples, int):
+        py_printf('ERROR', 'Unable to plot the fission source distribution since the ' + \
+                      ' a non-integer number of samples was input')
+    if num_samples < 0:
+        py_printf('ERROR', 'Unable to plot the fission source distribution for %d ' + \
+                      ' number of particle since it is negative', num_samples)
+
+    neutron = createNewNeutron()
+
+    x = []
+    y = []
+    u = []
+    v = []
+
+
+    # Sample fission source neutrons and save their locations and velocity vectors
+    for i in range(1000):
+        geometry.initializeSourceNeutron(neutron)
+    
+        x.append(neutron._x)
+        y.append(neutron._y)
+        u.append(neutron._u)
+        v.append(neutron._v)
+
+
+    # Plot the vector field
+    plt.figure()
+    plt.quiver(x,y,u,v,angles='xy', color='r')
+    plt.title('Fission Source Distribution')
+
+    if filename is '':
+        filename = directory + '/' + 'fission-site-dist.png'
+    else:
+        filename = directory + filename.replace(' ', '-').lower() + '-.png'
 
     plt.savefig(filename)
