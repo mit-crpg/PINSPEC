@@ -195,32 +195,13 @@ geometry.setSourceSamplingRadius(0.5)
 # Run Monte Carlo simulation
 #geometry.runMonteCarloSimulation();
 
-neutron = createNewNeutron()
 
-x = []
-y = []
-u = []
-v = []
-
-for i in range(500):
-    geometry.initializeSourceNeutron(neutron)
-    
-    x.append(neutron._x)
-    y.append(neutron._y)
-    u.append(neutron._u)
-    v.append(neutron._v)
-
-
-plt.figure()
-plt.quiver(x,y,u,v,angles='xy', color='r')
-plt.title('fission source distribution')
-plt.show()
 
 ###############################################################################
 ##################################  Plotting  #################################
 ###############################################################################
 
-py_printf('INFO', 'Plotting the geometry')
+py_printf('INFO', 'Plotting the geometry...')
 
 # Plot xy slices
 plotter.plotSlice(geometry, plane='XY', lim1=[-1., 1.], lim2=[-1., 1.], \
@@ -239,3 +220,6 @@ plotter.plotSlice(geometry, plane='YZ', lim1=[-1., 1.], lim2=[-1., 1.], \
                     filename='fuel', gridsize=50)
 plotter.plotSlice(geometry, plane='YZ', lim1=[-1., 1.], lim2=[-1., 1.], \
                     filename='moderator', gridsize=50)
+
+py_printf('INFO', 'Plotting the fission site source distribution...')
+plotter.plotFissionSourceDist(geometry)
