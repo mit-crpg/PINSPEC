@@ -110,6 +110,7 @@ This is the complete list of members for <a class="el" href="classGeometry.html"
   <tr class="memlist"><td><a class="el" href="classGeometry.html#a5947cd1c6029329ed188ce4b8a8d4e28">_fissioner</a></td><td><a class="el" href="classGeometry.html">Geometry</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#aaf322b2f5b08a8bd572882f775f1857f">_fuel</a></td><td><a class="el" href="classGeometry.html">Geometry</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#a126bd6425cbc48518bb58c74163f9ab7">_fuel_radius</a></td><td><a class="el" href="classGeometry.html">Geometry</a></td><td><code> [private]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classGeometry.html#a58de01c859561456cb413a4beb48ab9c">_geometry_name</a></td><td><a class="el" href="classGeometry.html">Geometry</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#aae3ad047669451601277fcdabab2922a">_infinite_medium</a></td><td><a class="el" href="classGeometry.html">Geometry</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#a9bd7d46ca0af4dbf6f1cc5d092fa67ff">_moderator</a></td><td><a class="el" href="classGeometry.html">Geometry</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#a600fda86b7f3951331ae486548306407">_num_batches</a></td><td><a class="el" href="classGeometry.html">Geometry</a></td><td><code> [private]</code></td></tr>
@@ -125,10 +126,13 @@ This is the complete list of members for <a class="el" href="classGeometry.html"
   <tr class="memlist"><td><a class="el" href="classGeometry.html#a5ff2c685cc9e8764744e5a6b2c9e0846">_source_sampling_radius</a></td><td><a class="el" href="classGeometry.html">Geometry</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#a2e9b473e54caa2c7742b4f676bedf91e">_spatial_type</a></td><td><a class="el" href="classGeometry.html">Geometry</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#a68b1626c22c75914eafdcee252406b62">addRegion</a>(Region *region)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="classGeometry.html#a4247ec14ea7344eed87dbc8c1599f2d7">contains</a>(neutron *neutron)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td><code> [private]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classGeometry.html#a39ba1209e8c043f09d64ced49e3d57ae">findContainingRegion</a>(neutron *neutron)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td><code> [private]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="classGeometry.html#ad2146d68260c035d7236de7638c036de">Geometry</a>(spatialType spatial_type)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classGeometry.html#a4247ec14ea7344eed87dbc8c1599f2d7">contains</a>(neutron *neutron)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classGeometry.html#a23c375ffca05b253762f527080ce40bd">contains</a>(float x, float y, float z)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classGeometry.html#a39ba1209e8c043f09d64ced49e3d57ae">findContainingRegion</a>(neutron *neutron)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classGeometry.html#ab9854b7ab462c6407d459fd402e40da4">findContainingRegion</a>(float x, float y, float z)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classGeometry.html#ad39af329db002b95f8659cf81a00684c">Geometry</a>(spatialType spatial_type, const char *name=(const char *)&quot;&quot;)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#a662e458bc59ac8390e0c07cea3ab0be8">getBucklingSquared</a>()</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classGeometry.html#a0f383e3e9db45e438f3cfd7f82f0af77">getName</a>()</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#af45e47614fc0b25fffd16528d17b296c">getNumBatches</a>()</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#add8ce27223fdd5f038cbbaa4f552a2c1">getNumNeutronsPerBatch</a>()</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#a254abef4b1f2a48e6b75001856e4c233">getNumThreads</a>()</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
@@ -142,6 +146,7 @@ This is the complete list of members for <a class="el" href="classGeometry.html"
   <tr class="memlist"><td><a class="el" href="classGeometry.html#a81f067e09349731a0b90bdda98b83594">setBucklingSquared</a>(float buckling_squared)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#a0ef3fcbefaf7079ee1667adc3d0dbe54">setDancoffFactor</a>(float dancoff)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#a3ee1975057e67f7f3b557c259c4050f1">setFuelPinRadius</a>(float radius)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classGeometry.html#ac066198c6793d7d61d946f76d4db4296">setName</a>(const char *name)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#a0160e8eef8ecd7655dc2ddc8f7a46391">setNeutronsPerBatch</a>(int num_neutrons_per_batch)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#ab78e778d1362e38dd9e02514e7ee7019">setNumBatches</a>(int num_batches)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classGeometry.html#a657cb04b0e42bc9a1574a9120c5a6e67">setNumThreads</a>(int num_threads)</td><td><a class="el" href="classGeometry.html">Geometry</a></td><td></td></tr>
@@ -168,7 +173,7 @@ This is the complete list of members for <a class="el" href="classGeometry.html"
   <div id="nav-path" class="navpath">
     <ul>
 
-    <li class="footer">Generated on Mon Apr 15 2013 12:24:18 by
+    <li class="footer">Generated on Tue Apr 16 2013 02:16:52 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

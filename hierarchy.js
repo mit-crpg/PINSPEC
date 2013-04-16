@@ -20,9 +20,9 @@ var hierarchy =
     [ "pinspec.process.RIEff", "classpinspec_1_1process_1_1RIEff.html", null ],
     [ "pinspec.process.RITrue", "classpinspec_1_1process_1_1RITrue.html", null ],
     [ "Surface", "classSurface.html", [
-      [ "Circle", "classCircle.html", null ],
       [ "XPlane", "classXPlane.html", null ],
-      [ "YPlane", "classYPlane.html", null ]
+      [ "YPlane", "classYPlane.html", null ],
+      [ "ZCylinder", "classZCylinder.html", null ]
     ] ],
     [ "SurfaceFactory", "classSurfaceFactory.html", null ],
     [ "Tally", "classTally.html", [

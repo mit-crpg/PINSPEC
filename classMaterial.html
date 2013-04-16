@@ -99,7 +99,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a>  </div>
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">Material Class Reference</div>  </div>
 </div><!--header-->
@@ -120,6 +121,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Mterial destructor.  <a href="#a2c19452d71f54075df8f5405b03129f4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#ab27870f1a05a25a77c0c17959c5386b6">getMaterialName</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the material name.  <a href="#ab27870f1a05a25a77c0c17959c5386b6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#a95de130b248a20f9237793ab92e494a3">getUid</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the unique ID auto-generated for the material.  <a href="#a95de130b248a20f9237793ab92e494a3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#a8ec68452133cc891a57db98c66753096">getMaterialNumberDensity</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total number density for all isotopes within the material.  <a href="#a8ec68452133cc891a57db98c66753096"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIsotope.html">Isotope</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#ae05e89d49010885dc05648cbeb94f787">getIsotope</a> (char *isotope)</td></tr>
@@ -215,6 +218,7 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#a5fae14afcfee32144bea316d57ffaa91">_material_name</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#a489d35359a61b0e444bca0704a1b21c0">_uid</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#a43b7af8a6d0db91f87ba6fc4bc444296">_material_density</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#ae8d6d883253ee2c7ac6b2ec30dcafcf3">_material_number_density</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#aa34fea9db30d4154bd405266452997d7">_material_atomic_mass</a></td></tr>
@@ -224,6 +228,9 @@ Private Attributes</h2></td></tr>
 &lt; float, <a class="el" href="classIsotope.html">Isotope</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#a4d5279bd3412ccc933feca7b79488787">_isotopes</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="classIsotope.html">Isotope</a> *, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#aba125e44b2b55657a2977e05fbfe879b">_isotopes_AO</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="Material_8h.html#a4851e68a0f78301ca873499ec041202a">densityUnit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#ae21ca778e0138e02a3aa81a726dc8a94">_density_unit</a></td></tr>
+<tr><td colspan="2"><h2><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#aa98938c954a6d4dae8c56489c1805546">_n</a> = 1</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classMaterial.html" title="The Material class represents a collection of isotope objects.">Material</a> class represents a collection of isotope objects. </p>
@@ -1214,6 +1221,25 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a95de130b248a20f9237793ab92e494a3"></a><!-- doxytag: member="Material::getUid" ref="a95de130b248a20f9237793ab92e494a3" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classMaterial.html#a95de130b248a20f9237793ab92e494a3">Material::getUid</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns the unique ID auto-generated for the material. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>a unique ID for the material </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ab88c88c9d5f7638d2c4029c3cf589aae"></a><!-- doxytag: member="Material::getVolume" ref="ab88c88c9d5f7638d2c4029c3cf589aae" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -1662,6 +1688,34 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aa98938c954a6d4dae8c56489c1805546"></a><!-- doxytag: member="Material::_n" ref="aa98938c954a6d4dae8c56489c1805546" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classMaterial.html#aa98938c954a6d4dae8c56489c1805546">Material::_n</a> = 1<code> [static, private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>A static class variable to generate a UID for each new material </p>
+
+</div>
+</div>
+<a class="anchor" id="a489d35359a61b0e444bca0704a1b21c0"></a><!-- doxytag: member="Material::_uid" ref="a489d35359a61b0e444bca0704a1b21c0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classMaterial.html#a489d35359a61b0e444bca0704a1b21c0">Material::_uid</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The material's unique identifier </p>
+
+</div>
+</div>
 <a class="anchor" id="a78d416095f5ae1235cbe6a39526deca6"></a><!-- doxytag: member="Material::_volume" ref="a78d416095f5ae1235cbe6a39526deca6" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -1700,7 +1754,7 @@ Private Attributes</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="classMaterial.html">Material</a>      </li>
 
-    <li class="footer">Generated on Mon Apr 15 2013 12:24:18 by
+    <li class="footer">Generated on Tue Apr 16 2013 02:16:52 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

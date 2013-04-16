@@ -9,6 +9,7 @@ var searchData=
   ['plotmacroxs',['plotMacroXS',['../namespacepinspec_1_1plotter.html#a43bdaa25a0a79c03b4082523d529f1ef',1,'pinspec::plotter']]],
   ['plotmicroxs',['plotMicroXS',['../namespacepinspec_1_1plotter.html#a9310520b2e86be0e353ca47aed9daab1',1,'pinspec::plotter']]],
   ['plotri',['plotRI',['../namespacepinspec_1_1plotter.html#a00729d4934ced6d02844b7f0355b77f4',1,'pinspec::plotter']]],
+  ['plotslice',['plotSlice',['../namespacepinspec_1_1plotter.html#ac4e680b32413a19fb42ab62a3c445146',1,'pinspec::plotter']]],
   ['plotthermalscattering',['plotThermalScattering',['../namespacepinspec_1_1plotter.html#a4ba46d55fc5d6e970c4f4bceefbd1990',1,'pinspec::plotter']]],
   ['printri',['printRI',['../classpinspec_1_1process_1_1RIEff.html#ac3af925ad0212228c18d2dec7cd6a056',1,'pinspec::process::RIEff']]],
   ['printris',['printRIs',['../classpinspec_1_1process_1_1RITrue.html#a306c5e00b9d9999020e6b27f4ff7e89d',1,'pinspec::process::RITrue.printRIs()'],['../namespacepinspec_1_1process.html#abca578c733031cbf54954e15df72a385',1,'pinspec::process.printRIs()']]],

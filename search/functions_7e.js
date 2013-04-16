@@ -4,7 +4,6 @@ var searchData=
   ['_7eboundedgeneralregion',['~BoundedGeneralRegion',['../classBoundedGeneralRegion.html#ae47bbd827ece6373cd1fa5be712db42a',1,'BoundedGeneralRegion']]],
   ['_7eboundedmoderatorregion',['~BoundedModeratorRegion',['../classBoundedModeratorRegion.html#a3acff142a25f840710ca8346fff872c9',1,'BoundedModeratorRegion']]],
   ['_7eboundedregion',['~BoundedRegion',['../classBoundedRegion.html#a4ce1f9580205544435da831b00ba7046',1,'BoundedRegion']]],
-  ['_7ecircle',['~Circle',['../classCircle.html#ae3f30436e645d73e368e8ee55f8d1650',1,'Circle']]],
   ['_7eequivalenceregion',['~EquivalenceRegion',['../classEquivalenceRegion.html#aaf7f80ef7a6a3356feb3ba58a8d5c520',1,'EquivalenceRegion']]],
   ['_7efissioner',['~Fissioner',['../classFissioner.html#a5b5045b1de9a25a6022aec9124a1b024',1,'Fissioner']]],
   ['_7egeometry',['~Geometry',['../classGeometry.html#ad55e832122ab3a2833dcaa6507867678',1,'Geometry']]],
@@ -17,5 +16,6 @@ var searchData=
   ['_7etallybank',['~TallyBank',['../classTallyBank.html#ac5fa620ccaee14fe52f95a82a832f6fb',1,'TallyBank']]],
   ['_7etimer',['~Timer',['../classTimer.html#a14fa469c4c295c5fa6e66a4ad1092146',1,'Timer']]],
   ['_7explane',['~XPlane',['../classXPlane.html#ada639dc05191d98fc5010a92f47dd105',1,'XPlane']]],
-  ['_7eyplane',['~YPlane',['../classYPlane.html#a5b76c095cf26194044254f719e92236f',1,'YPlane']]]
+  ['_7eyplane',['~YPlane',['../classYPlane.html#a5b76c095cf26194044254f719e92236f',1,'YPlane']]],
+  ['_7ezcylinder',['~ZCylinder',['../classZCylinder.html#a4eca334d18d1d708e21cc65dc74db13c',1,'ZCylinder']]]
 ];

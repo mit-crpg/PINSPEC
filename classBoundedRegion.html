@@ -137,6 +137,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a halfspace of a bounding surface for a region.  <a href="#a6e501758af2f931dd7995c9728cf580a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoundedRegion.html#ade7c07fc47919e47cf9536a561248713">contains</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if this region contains a neutron at some location in space.  <a href="#ade7c07fc47919e47cf9536a561248713"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoundedRegion.html#a62266b2f21182e723685ed8aa20ddab6">contains</a> (float x, float y, float z)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if this region contains some location in space.  <a href="#a62266b2f21182e723685ed8aa20ddab6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoundedRegion.html#a6a67a616102b394230008e147c976bc5">onBoundary</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a neutron at some 2D location is on the region boundary.  <a href="#a6a67a616102b394230008e147c976bc5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoundedRegion.html#a4698fcb521a3f2f068841187587ada79">computeDistanceToSurface</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
@@ -293,6 +295,50 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a62266b2f21182e723685ed8aa20ddab6"></a><!-- doxytag: member="BoundedRegion::contains" ref="a62266b2f21182e723685ed8aa20ddab6" args="(float x, float y, float z)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classBoundedRegion.html#ade7c07fc47919e47cf9536a561248713">BoundedRegion::contains</a> </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Check if this region contains some location in space. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>the x-coordinate of interest </td></tr>
+    <tr><td class="paramname">y</td><td>the y-coordinate of interest </td></tr>
+    <tr><td class="paramname">z</td><td>the z-coordinate of interest </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>if contained (true), otherwise (false) </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a6a67a616102b394230008e147c976bc5"></a><!-- doxytag: member="BoundedRegion::onBoundary" ref="a6a67a616102b394230008e147c976bc5" args="(neutron *neutron)" -->
 <div class="memitem">
 <div class="memproto">
@@ -394,7 +440,7 @@ Private Attributes</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="classBoundedRegion.html">BoundedRegion</a>      </li>
 
-    <li class="footer">Generated on Mon Apr 15 2013 12:24:18 by
+    <li class="footer">Generated on Tue Apr 16 2013 02:16:52 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

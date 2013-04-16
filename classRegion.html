@@ -99,7 +99,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a>  </div>
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pro-static-attribs">Static Protected Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">Region Class Reference</div>  </div>
 </div><!--header-->
@@ -132,8 +133,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRegion.html" title="The region class represents a region in 2D space.">Region</a> constructor.  <a href="#a569a104a9a675dd85c820e9cded32ab9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a3c3670fff78f7511d156e3b2f0bc6266">~Region</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty destructor allows SWIG to cleanup memory for surfaces.  <a href="#a3c3670fff78f7511d156e3b2f0bc6266"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#abac6cb4d426f59e3b4b3f7a5ef8f4a1d">getRegionName</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the name of the region.  <a href="#abac6cb4d426f59e3b4b3f7a5ef8f4a1d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a2d5a11bbd891f5ce33dfbad2bcea0542">getName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the name of the region.  <a href="#a2d5a11bbd891f5ce33dfbad2bcea0542"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a96a4b535e9a951aa3809b73a40f17c4f">getUid</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the unique ID auto-generated for the region.  <a href="#a96a4b535e9a951aa3809b73a40f17c4f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMaterial.html">Material</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#ace26edc725e1f4d723964f3961e65ceb">getMaterial</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the material filling this region.  <a href="#ace26edc725e1f4d723964f3961e65ceb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a46eb443386a0f3003a28772f78e6de70">containsIsotope</a> (<a class="el" href="classIsotope.html">Isotope</a> *isotope)</td></tr>
@@ -203,10 +206,14 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#abf94b7a06d6b1500a77b68505868d312">_region_name</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#ab34595cf305e6dca85fba93958846f79">_uid</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMaterial.html">Material</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#afeb207eb640d2543a9b5a1bb2097c50d">_material</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="Region_8h.html#a2c25b4a3d851e2d45d7a435a73598323">regionType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a83913828a5b45d69aa073bc567a03750">_region_type</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#a2731c8000023342a08a5799e0aa5c0d2">_buckling_squared</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#ad4345a279ed2211c94a73c4bd1f28ba8">_volume</a></td></tr>
+<tr><td colspan="2"><h2><a name="pro-static-attribs"></a>
+Static Protected Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRegion.html#af6cbf446445c77247ff9d7cf677a18ac">_n</a> = 1</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The region class represents a region in 2D space. </p>
@@ -766,12 +773,12 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abac6cb4d426f59e3b4b3f7a5ef8f4a1d"></a><!-- doxytag: member="Region::getRegionName" ref="abac6cb4d426f59e3b4b3f7a5ef8f4a1d" args="()" -->
+<a class="anchor" id="a2d5a11bbd891f5ce33dfbad2bcea0542"></a><!-- doxytag: member="Region::getName" ref="a2d5a11bbd891f5ce33dfbad2bcea0542" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char * <a class="el" href="classRegion.html#abac6cb4d426f59e3b4b3f7a5ef8f4a1d">Region::getRegionName</a> </td>
+          <td class="memname">char * <a class="el" href="classRegion.html#a2d5a11bbd891f5ce33dfbad2bcea0542">Region::getName</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1012,6 +1019,25 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a96a4b535e9a951aa3809b73a40f17c4f"></a><!-- doxytag: member="Region::getUid" ref="a96a4b535e9a951aa3809b73a40f17c4f" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classRegion.html#a96a4b535e9a951aa3809b73a40f17c4f">Region::getUid</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns the unique ID auto-generated for the region. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>a unique ID for the region </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a2c3eca3c5373770e19d36198859f4ccb"></a><!-- doxytag: member="Region::getVolume" ref="a2c3eca3c5373770e19d36198859f4ccb" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -1137,6 +1163,20 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af6cbf446445c77247ff9d7cf677a18ac"></a><!-- doxytag: member="Region::_n" ref="af6cbf446445c77247ff9d7cf677a18ac" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classRegion.html#af6cbf446445c77247ff9d7cf677a18ac">Region::_n</a> = 1<code> [static, protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>A static class variable to generate a UID for each new region </p>
+
+</div>
+</div>
 <a class="anchor" id="abf94b7a06d6b1500a77b68505868d312"></a><!-- doxytag: member="Region::_region_name" ref="abf94b7a06d6b1500a77b68505868d312" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -1162,6 +1202,20 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>The type of region (INFINITE, EQUIVALNENCE, or BOUNDED) </p>
+
+</div>
+</div>
+<a class="anchor" id="ab34595cf305e6dca85fba93958846f79"></a><!-- doxytag: member="Region::_uid" ref="ab34595cf305e6dca85fba93958846f79" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classRegion.html#ab34595cf305e6dca85fba93958846f79">Region::_uid</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The region's unique identifier </p>
 
 </div>
 </div>
@@ -1203,7 +1257,7 @@ Protected Attributes</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="classRegion.html">Region</a>      </li>
 
-    <li class="footer">Generated on Mon Apr 15 2013 12:24:19 by
+    <li class="footer">Generated on Tue Apr 16 2013 02:16:52 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

@@ -1,7 +1,7 @@
 var searchData=
 [
   ['recordsplit',['recordSplit',['../classTimer.html#a613c775ca0b0b08f7cf1a6c165a6b6f7',1,'Timer']]],
-  ['reflectneutron',['reflectNeutron',['../classSurface.html#a9c447e16cce8344f0eaec043cc5401e6',1,'Surface::reflectNeutron()'],['../classXPlane.html#aa55e539bc39e833e027d9d5d4ce7aae7',1,'XPlane::reflectNeutron()'],['../classYPlane.html#a0a1b7117b12f7f0b4384a78a7ae5da58',1,'YPlane::reflectNeutron()'],['../classCircle.html#a3075e0a59892b2d1ffc792f25af548c0',1,'Circle::reflectNeutron()']]],
+  ['reflectneutron',['reflectNeutron',['../classSurface.html#a9c447e16cce8344f0eaec043cc5401e6',1,'Surface::reflectNeutron()'],['../classXPlane.html#aa55e539bc39e833e027d9d5d4ce7aae7',1,'XPlane::reflectNeutron()'],['../classYPlane.html#a0a1b7117b12f7f0b4384a78a7ae5da58',1,'YPlane::reflectNeutron()'],['../classZCylinder.html#a750e61124a01162b3897f5e04a7b5c84',1,'ZCylinder::reflectNeutron()']]],
   ['region',['Region',['../classRegion.html#a569a104a9a675dd85c820e9cded32ab9',1,'Region']]],
   ['regionabsorptionratetally',['RegionAbsorptionRateTally',['../classRegionAbsorptionRateTally.html#a660ea8cbb625cad4ecb5a64e963a0682',1,'RegionAbsorptionRateTally']]],
   ['regioncaptureratetally',['RegionCaptureRateTally',['../classRegionCaptureRateTally.html#a7d0e48235eb320f44fa11b4395e3b7ae',1,'RegionCaptureRateTally']]],

@@ -134,6 +134,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the x-coordinate of the plane's intersection point with the y-axis.  <a href="#a3acd886aef57f239f49abdf5004c0df0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#a86c9563c4ed5ac95a7e9e6f860a247e1">evaluate</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y) $" src="form_53.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y) = qy + d = y - y_0 $" src="form_55.png"/>.  <a href="#a86c9563c4ed5ac95a7e9e6f860a247e1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#a82075cb5fd14a23739af4a44a9a21769">evaluate</a> (float x, float y, float z)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_65.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y,z) = qy + d = y - y_0 $" src="form_67.png"/>.  <a href="#a82075cb5fd14a23739af4a44a9a21769"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#a7f474b38634753235438ca5eff23c2d5">computeNearestDistance</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the nearest distance to the <a class="el" href="classYPlane.html" title="The YPlane is a a plane perpendicular to the y-axis.">YPlane</a> along a neutron's trajectory.  <a href="#a7f474b38634753235438ca5eff23c2d5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#aa8899ff929b56f242316ca684f671772">onSurface</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
@@ -226,6 +228,51 @@ Private Attributes</h2></td></tr>
 </dl>
 
 <p>Implements <a class="el" href="classSurface.html#acacc8ac56302a9b8ceab23d8b5b5cc93">Surface</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a82075cb5fd14a23739af4a44a9a21769"></a><!-- doxytag: member="YPlane::evaluate" ref="a82075cb5fd14a23739af4a44a9a21769" args="(float x, float y, float z)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float <a class="el" href="classYPlane.html#a86c9563c4ed5ac95a7e9e6f860a247e1">YPlane::evaluate</a> </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_65.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y,z) = qy + d = y - y_0 $" src="form_67.png"/>. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>the x-coordinate of interest </td></tr>
+    <tr><td class="paramname">y</td><td>the y-coordinate of interest </td></tr>
+    <tr><td class="paramname">z</td><td>the z-coordinate of interest </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classSurface.html#ae8a7b9ab365ef35622c14bd576d134ca">Surface</a>.</p>
 
 </div>
 </div>
@@ -368,7 +415,7 @@ Private Attributes</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="classYPlane.html">YPlane</a>      </li>
 
-    <li class="footer">Generated on Mon Apr 15 2013 12:24:19 by
+    <li class="footer">Generated on Tue Apr 16 2013 02:16:53 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

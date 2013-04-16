@@ -104,8 +104,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 This is the complete list of members for <a class="el" href="classRegion.html">Region</a>, including all inherited members.<table>
   <tr class="memlist"><td><a class="el" href="classRegion.html#a2731c8000023342a08a5799e0aa5c0d2">_buckling_squared</a></td><td><a class="el" href="classRegion.html">Region</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#afeb207eb640d2543a9b5a1bb2097c50d">_material</a></td><td><a class="el" href="classRegion.html">Region</a></td><td><code> [protected]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classRegion.html#af6cbf446445c77247ff9d7cf677a18ac">_n</a></td><td><a class="el" href="classRegion.html">Region</a></td><td><code> [protected, static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#abf94b7a06d6b1500a77b68505868d312">_region_name</a></td><td><a class="el" href="classRegion.html">Region</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#a83913828a5b45d69aa073bc567a03750">_region_type</a></td><td><a class="el" href="classRegion.html">Region</a></td><td><code> [protected]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="classRegion.html#ab34595cf305e6dca85fba93958846f79">_uid</a></td><td><a class="el" href="classRegion.html">Region</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#ad4345a279ed2211c94a73c4bd1f28ba8">_volume</a></td><td><a class="el" href="classRegion.html">Region</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#a2c1181345fccb4055f4b0d97f21c26ba">collideNeutron</a>(neutron *neutron)=0</td><td><a class="el" href="classRegion.html">Region</a></td><td><code> [pure virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#a46eb443386a0f3003a28772f78e6de70">containsIsotope</a>(Isotope *isotope)</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
@@ -127,7 +129,7 @@ This is the complete list of members for <a class="el" href="classRegion.html">R
   <tr class="memlist"><td><a class="el" href="classRegion.html#ac752b2a3eef8f5d5a1003f5f5b6bdf89">getFissionMicroXS</a>(float energy)</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#a93a93182c14494e09a35bfda54a0cebd">getFissionMicroXS</a>(int energy_index)</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#ace26edc725e1f4d723964f3961e65ceb">getMaterial</a>()</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="classRegion.html#abac6cb4d426f59e3b4b3f7a5ef8f4a1d">getRegionName</a>()</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classRegion.html#a2d5a11bbd891f5ce33dfbad2bcea0542">getName</a>()</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#a79ac377684286e49a7ae54c5543c909c">getRegionType</a>()</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#a44ae74637def12405bf79097854ce376">getTotalMacroXS</a>(float energy)</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#a1e0b264433131ab0e902d9fc2fee7477">getTotalMacroXS</a>(int energy_index)</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
@@ -137,6 +139,7 @@ This is the complete list of members for <a class="el" href="classRegion.html">R
   <tr class="memlist"><td><a class="el" href="classRegion.html#a5c7da29f8103f2b754d5ff830d2d5573">getTransportMacroXS</a>(int energy_index)</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#a5945faaec979b87aaf2b673ac240cc7d">getTransportMicroXS</a>(float energy)</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#abd82a6bf83979583bfbf15b47e4e9a25">getTransportMicroXS</a>(int energy_index)</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classRegion.html#a96a4b535e9a951aa3809b73a40f17c4f">getUid</a>() const </td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#a2c3eca3c5373770e19d36198859f4ccb">getVolume</a>()</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#a569a104a9a675dd85c820e9cded32ab9">Region</a>(const char *region_name=(char *)&quot;&quot;)</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="classRegion.html#afeed8677dff0c9fe1eefae1fb9acd66c">setBucklingSquared</a>(float buckling_squared)</td><td><a class="el" href="classRegion.html">Region</a></td><td></td></tr>
@@ -162,7 +165,7 @@ This is the complete list of members for <a class="el" href="classRegion.html">R
   <div id="nav-path" class="navpath">
     <ul>
 
-    <li class="footer">Generated on Mon Apr 15 2013 12:24:19 by
+    <li class="footer">Generated on Tue Apr 16 2013 02:16:52 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

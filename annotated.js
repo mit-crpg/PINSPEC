@@ -4,7 +4,6 @@ var annotated =
     [ "BoundedGeneralRegion", "classBoundedGeneralRegion.html", "classBoundedGeneralRegion" ],
     [ "BoundedModeratorRegion", "classBoundedModeratorRegion.html", "classBoundedModeratorRegion" ],
     [ "BoundedRegion", "classBoundedRegion.html", "classBoundedRegion" ],
-    [ "Circle", "classCircle.html", "classCircle" ],
     [ "DerivedTally", "classDerivedTally.html", "classDerivedTally" ],
     [ "EquivalenceRegion", "classEquivalenceRegion.html", "classEquivalenceRegion" ],
     [ "Fissioner", "classFissioner.html", "classFissioner" ],
@@ -75,5 +74,6 @@ var annotated =
     [ "TallyFactory", "classTallyFactory.html", "classTallyFactory" ],
     [ "Timer", "classTimer.html", "classTimer" ],
     [ "XPlane", "classXPlane.html", "classXPlane" ],
-    [ "YPlane", "classYPlane.html", "classYPlane" ]
+    [ "YPlane", "classYPlane.html", "classYPlane" ],
+    [ "ZCylinder", "classZCylinder.html", "classZCylinder" ]
 ];
