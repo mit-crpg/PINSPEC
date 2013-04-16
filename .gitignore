@@ -16,7 +16,7 @@
 */*.pyc
 build
 build/*
-pinspec/pinspec.py*
+pinspec/pinspec.py
 pinspec/Geometry_wrap.cpp
 
 # output files
