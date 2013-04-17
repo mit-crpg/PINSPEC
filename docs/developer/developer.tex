@@ -1,6 +1,12 @@
 \documentclass[titlepage]{article}
 \usepackage{school-style-packages}
 \usepackage[cc]{titlepic}
+\newcommand{\hi}[1]{\textbf{\textcolor{blue}{#1}}}
+
+% For generating landscape orientated image, use Figure
+\newenvironment{Figure}[1][!t]
+  {\begin{landscape}\thispagestyle{empty}\begin{figure}}
+  {\end{figure}\null\vfill\centerline{\raisebox{-2cm}{\thepage}}\end{landscape}}
 
 \begin{document}
 \title{Developer's Guide for PINSPEC}
@@ -34,7 +40,6 @@ More specifically, here is the flow of a typical simulation:
 \item C++ contains the actualy Monte Carlo kernel, and neutrons are simulated here;
 \item If any plotting is requested, generated results would be passed from C++ back to python using SWIG again and python would generate plots. 
 \end{itemize}
-
 \begin{figure}[h]
   \centering
   \includegraphics[width=5in]{images/high-level.png}
@@ -43,52 +48,129 @@ More specifically, here is the flow of a typical simulation:
 
 
 \clearpage
-\subsection{Major C++ Classes}
-C++ using the following major classes: 
-\begin{itemize}
-\item Geometry: the umbrella class that knows the \# neutrons per batch, \# batches, \# threads, the type of geometry (infinite, infinite equivalent, or heterogeneous) etc. 
-\item Region: a region object knows its name, material type, region type, volume and buckling. More specifically, we support 6 types of regions: 
+\subsection{Major C++ Classes and Structures}
+C++ using the following major classes and structures: 
+\begin{enumerate}
+\item Geometry: the umbrella object that knows the \# neutrons per batch, \# batches, \# threads, the type of geometry etc. Geometry contains region, which contains material, which contains isotopes. There are three types of geometries:
   \begin{itemize}
-    \item Infinite medium: this region covers an infinite space. 
-    \item Equivalent fuel: this region is a fuel region using the infinite equivalence model. 
-    \item Equivalent moderator: this region is a moderator region using the infinite equivalence model. 
-    \item Bounded fuel: this region is a fuel region using the true heterogeneous model. 
-    \item Bounded moderator: this region is a moderator region using the true heterogeneous model. 
-    \item Bounded general: this region is a generalized region bounded by surfaces and is used in the true heterogeneous model. 
+  \item \hi{Infinite homogeneous model}: that is, the entire geometry is one homogenized material. 
+  \item \hi{Heterogeneous equivalent model}: that is, the region declared as Equivalent Fuel would be homogenized into one fuel region, and the region declared as Equivalent Moderator would be homogenized into one moderator region, and we use collision probability method to estimate the probability of neutrons traveling from one region to another. In this model neutrons only know whether they are in Equivalent Fuel or Equivalent Moderator and do not have an explicit $(x,y,z)$. 
+  \item \hi{Full heterogeneous model}: this is the model where neutrons truly know their $(x,y,z)$ locations. In this model, region objects contain surfaces.
+  \end{itemize}
+  
+\item Region: a region object knows its region name, the material inside, its region type, volume and buckling. More specifically, we support 6 region types: 
+  \begin{itemize}
+    \item \hi{Infinite medium}: this region covers an infinite space. 
+    \item \hi{Equivalent fuel}: this region is a fuel region using the infinite equivalence model. 
+    \item \hi{Equivalent moderator}: this region is a moderator region using the infinite equivalence model. 
+    \item \hi{Bounded fuel}: this region is a fuel region using the true heterogeneous model. 
+    \item \hi{Bounded moderator}: this region is a moderator region using the true heterogeneous model. 
+    \item \hi{Bounded general}: this region is a generalized region bounded by surfaces and is used in the true heterogeneous model. 
+  \end{itemize}
+  %See Fig.~\ref{classRegion} for an illustration of the inheritance structure of the Region class. 
+  \begin{figure}[h]
+    \hspace{-1in}
+    \includegraphics[width=1.5\textwidth]{images/classRegion.png}
+    \caption{Inheritance Diagram of Region Class} \label{classRegion}
+  \end{figure}
+
+
+
+\item Surface: Surface objects are used to bound regions in the true heterogeneous model. A surface object knows its name, ID \#, its surface type (three sub-classes: x-plane, y-plane, z-cylinder), and its boundary condition (reflective, vacuum, interface). 
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/classSurface.png}
+    \caption{Inheritance Diagram of Surface Class}
+  \end{figure}
+
+
+\item Material: an material object contains one or more isotope objects, and an material object is used to filled a region object. A material object knows basic info like its name, ID \#, material density; when adding an isotope into a material, the material object needs to know the relative atomic mass associated with each isotope. 
+  \begin{itemize}
+  \item Note: each material and isotope isotope object needs to keep track of its number densities. Instead of having users to manually put in number densities, PINSPEC keeps track of them; notice that every time a new isotope is added, the number density of the material as well as other isotopes need to be updated as well. PINSPEC handles it by keeping a map of the isotopes with its corresponding relative atomic mass in each material object. So every time a new isotope is added, the material object loops through all existing isotopes and update the number density of the material and of each isotope. 
   \end{itemize}
 
-\item Surface: Surface objects are used to bound a region. For instance, a surface object knows its name, ID \#, its surface type (x-plane, y-plane, z-cylinder), and its boundary condition (reflective, vacuum, interface). 
+\item Isotope: an isotope object can be considered as one of the most basic object in PINSPEC. We use isotope to build material, which in turn builds region, which builds geometry. An isotope object needs to have a name and atomic number, and PINSPEC would assign each isotope a unique identifier, calculate its $\displaystyle \alpha = \left(\frac{A-1}{A+1}\right)^2$, $\eta, \rho$ for SLBW, averaged cosine of scattering angle $\displaystyle \bar{\mu} = \frac{2}{3A}$ etc. 
+  \begin{itemize}
+    \item We asks the user to provide isotope name in the format of: isotope's periodic table name (first letter capitalized), followed by its atomic number, with a hyphen in-between.
+  \end{itemize}
 
-\item Material: an material object contains one or more isotope objects, and an material object is used to filled a region object. A material object knows basic info like its name, ID \#, material density, 
+\item Neutron: a neutron structure knows its batch number (for running multiple batches and performing batch statistics), its previous energy (in eV) and its current energy (in eV), the region it is in, the material it is in, and the isotope it is in. For heterogeneous geometries, neutrons also know its $(x,y,z)$ location, $(u,v,w)$ velocity directions, and the closest surface. This neutron structure is being passed from class to class, and it contains the most essentially information that the other classes would depend on to perform the simulation and generate the corresponding statistics. 
 
+\item Tally: PINSPEC uses a Tally class to keep the implementation of tally accumulation general. See Fig.~\ref{classTally} for the different sub-classes supported in the Tally class. There are also a TallyBank class that stores all the tallies, and a TallyFactory class that creates tallies. For more details, see Section~\ref{example-add-tally} for an example on how to implement a new tally type. 
+  \begin{Figure}
+    \vspace{-1in}
+    \hspace{-1.45in}
+    \includegraphics[width=2.\textwidth]{images/classTally.png}
+    \caption{Inheritance Diagram of Tally Class} \label{classTally}
+  \end{Figure}
+\end{enumerate}
 
-\item Isotope:
-
-\item Neutron
-
-\item Tally
-\end{itemize}
-
-\clearpage
-\subsection{Hierarchy Diagram}
-In this section we go more in depths into some of the above classes to illustrate their hierarchy. 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INSTALL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \section{Installation and How To Run} \label{install}
-An overview of the installation procedures can be found on the users' guide. 
+An overview of the installation procedures can be found on the users' guide at \href{https://github.com/mit-crpg/PINSPEC/wiki/Installing-PINSPEC}{PINSPEC's wiki page}. 
 
+Table.~\ref{install-table} lists PINSPEC's package requirements and the third column provides installation suggestion for ubuntu users. 
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|c|} \hline
+    Package & Version \# & Installation \\ \hline \hline
+    Python & 2.7 & sudo apt-get install python2.7 \\ \hline
+    matplotlib & 1.2 or later & sudo apt-get install python-matplotlib \\ \hline
+    numpy & 1.6 or later & sudo apt-get install python-numpy \\ \hline
+    scipy & 0.9 or later & sudo apt-get install python-scipy \\ \hline
+    SWIG & -- &  sudo apt-get install swig \\ \hline
+    GIT & -- & sudo apt-get install git \\ \hline
+  \end{tabular} 
+  \caption{PINSPEC Package Requirements and Installation Notes} \label{install-table}
+\end{table}
+Notes:
+\begin{itemize}
+\item Ubuntu users: 
+\begin{itemize}
+\item If you have Ubuntu v12.10, the default installation (aka using the commands listed in Table~\ref{install-table}) would get you the right versions. 
+\item If you have an earlier version of Ubuntu, and the packages you obtained through your Ubuntu release are earlier versions than the ones listed in Table.~\ref{install-table}, we suggest you first install all the packages required, and try running PINSPEC, and python's error message would help you determine whether you need any newer version of software. 
+\item If you tried the previous bullet point and decided you have to build some of these packages from source, here are examples for pulling numpy and scipy from their git repositories: 
+\begin{verbatim}
+> git clone git://github.com/numpy/numpy.git numpy 
+> git clone git://github.com/scipy/scipy.git scipy
+\end{verbatim}
+Then build using python's utilities:
+\begin{verbatim}
+> python setup.py install
+\end{verbatim}
+For more details, see \href{http://scipy.org/Installing_SciPy/BuildingGeneral}{Scipy's installation page} for instance. 
+\end{itemize}
+
+\item Other Linux users: use your corresponding package management system. For instance, in Gentoo you would use `emerge' to get the above packages. 
+
+\item Mac users: try install the listed packages using MacPort, and MacPort seems to be the Mac version of package management system, and it should make keeping track of dependencies and updating packages in the future easier. 
+\end{itemize}
 
 
 \clearpage
-\subsection{Python 2.7 Is The Way to Go!}
+\subsection{A Special Note About Python Version}
+\begin{itemize}
+\item Python2 vs. Python3: because of the syntax incompatibility between python2 and python3, PINSPEC only supports python2 (more specifically it is tested mostly with python2.7). Developers could choose to update the python source codes into python3 syntax in the future if python3 gets more popular; though for now the easiest thing to do for users with python3 would be to install a copy of python2.7 as well, and every command that has `python' in it, using the syntax `python2.7' would request the correct version of python. 
 
+\item Mac users may run into problems with running our python setup.py file (located in the main directory). It is recommended to use the env prefix as in the following example for users with gcc-4.7:
+\begin{verbatim}
+env CC=gcc-mp-4.7 python setup.py install --user
+\end{verbatim}
+\end{itemize}
 
 \clearpage
 \subsection{Additional Tools}
-SSHFS: 
+This section contains some notes on useful tools that might help developers. 
+\begin{enumerate}
+\item GIT. 
+
+\item SCP
+
+\item SSHFS: 
 \begin{itemize}
 
 \item To see what sftp subsystems are mounted: 
@@ -99,7 +181,7 @@ SSHFS:
 
 \end{itemize}
 
-
+\end{enumerate}
 
 
 
@@ -181,7 +263,7 @@ In the above examples, Surface is the super-class, and XPlane and YPlane are sub
 \subsection{Example: Implement A New Surface}
 
 \clearpage
-\subsection{Example: Implement A New Tally}
+\subsection{Example: Implement A New Tally} \label{example-add-tally}
 
 
 \clearpage
