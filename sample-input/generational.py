@@ -27,7 +27,7 @@ py_printf('TITLE', 'Starting a simulation to compute generational fluxes')
 ##############################  Create Isotopes ###############################
 ###############################################################################
 
-py_printf('INFO', 'Initializing isotopes...')
+py_printf('NORMAL', 'Initializing isotopes...')
 h1 = Isotope('H-1')
 c12 = Isotope('C-12')
 

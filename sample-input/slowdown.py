@@ -28,7 +28,7 @@ py_printf('TITLE', 'Starting a simulation of asymptotic slowing down in H-1')
 ##############################  Create Isotopes ###############################
 ###############################################################################
 
-py_printf('INFO', 'Initializing isotopes...')
+py_printf('NORMAL', 'Initializing isotopes...')
 h1 = Isotope('H-1')
 c12 = Isotope('C-12')
 

@@ -823,6 +823,8 @@ bool BoundedRegion::contains(neutron* neutron) {
     int halfspace;
     Surface* surface;
 
+    log_printf(NORMAL, "Checking if region %s contains neutron", _region_name);
+
     /* Loop over and query all bounding surfaces */
     std::vector< std::pair<int, Surface*> >::iterator iter;
     for (iter = _surfaces.begin(); iter != _surfaces.end(); ++iter) {
@@ -899,7 +901,7 @@ void BoundedRegion::collideNeutron(neutron* neutron) {
 
     float path_length = _material->sampleDistanceTraveled(neutron);
     float param_coll_dist = path_length / 
-                            norm3D<float>(neutron->_u, neutron->_v, neutron->_w);
+                           norm3D<float>(neutron->_u, neutron->_v, neutron->_w);
     float param_surf_dist = computeParametrizedDistance(neutron);
 
     /* The neutron collided within this region */

@@ -183,8 +183,7 @@ region_fuel.addBoundingSurface(-1, pin)
 py_printf('INFO', 'Initializing the geometry...')
 geometry = Geometry(HETEROGENEOUS)
 geometry.addRegion(region_mod)
-geometry.addRegion(region_fuel)
-geometry.setNumBatches(num_batches)
+geometry.addRegion(region_fuel)geometry.setNumBatches(num_batches)
 geometry.setNeutronsPerBatch(num_neutrons_per_batch)
 geometry.setNumThreads(num_threads)
 geometry.setSourceSamplingRadius(0.5)
@@ -197,7 +196,17 @@ geometry.setSourceSamplingRadius(0.5)
 # Run Monte Carlo simulation
 geometry.runMonteCarloSimulation()
 
+<<<<<<< HEAD
 
+=======
+#x = [0, 1, 2, 3, 4, 5]
+#y = [1, 3, 2, 5, 3, 1]
+#plt.figure()
+#plt.plot(x,y,'b-')
+#plt.plot(x,y,'wo', markersize=25, markeredgecolor = 'w')
+#plt.plot(x,y,'bo', markersize=7, markeredgecolor = 'w')
+#plt.show()
+>>>>>>> 8f57443d390e1e62a106ef2bfe59a7d858905867
 
 ###############################################################################
 ##################################  Plotting  #################################
