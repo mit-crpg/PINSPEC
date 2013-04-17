@@ -790,8 +790,8 @@ public:
 };
 
 /**
- * @class MaterialOutRateTally Tally.h "pinspec/src/Tally.h"
- * @brief A class for tallying the outter scattering rate within a material.
+ * @class MaterialOutScatterRateTally Tally.h "pinspec/src/Tally.h"
+ * @brief A class for tallying the out scattering rate within a material.
  */
 class MaterialOutScatterRateTally: public MaterialTally {
 
