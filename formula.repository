@@ -24,50 +24,50 @@
 \form#23:$ (cm^3) $
 \form#24:$ (x,y,z) $
 \form#25:$ f(x,y,z) = qx + d = x - x_0 $
-\form#26:$ (x,y) $
-\form#27:$ f(x,y) = qy + d = y - y_0 $
-\form#28:$ f(x,y,z) = qy + d = y - y_0 $
-\form#29:$ f(x,y) = (x - x_0)^2 + (y - y_0)^2 - R^2 $
-\form#30:$ f(x,y,z) = (x - x_0)^2 + (y - y_0)^2 - R^2 $
-\form#31:$ \frac{\pi}{2}$
-\form#32:$ \frac{3\pi}{2}$
-\form#33:$ 2\pi $
-\form#34:$ f(x,y,z) $
-\form#35:$ \frac{\sigma_s}{\Sigma_t} $
-\form#36:$ \frac{\Sigma_s}{\Sigma_t} $
-\form#37:$ \frac{\sigma_a}{\Sigma_t} $
-\form#38:$ \frac{\Sigma_a}{\Sigma_t} $
-\form#39:$ \frac{\sigma_c}{\Sigma_t} $
-\form#40:$ \frac{\Sigma_c}{\Sigma_t} $
-\form#41:$ \frac{\sigma_f}{\Sigma_t} $
-\form#42:$ \frac{\Sigma_f}{\Sigma_t} $
-\form#43:$ \frac{\sigma_tr}{\Sigma_t} $
-\form#44:$ \frac{\Sigma_tr}{\Sigma_t} $
-\form#45:$ \frac{\frac{1}{3\sigma_tr}}{\Sigma_t} $
-\form#46:$ \frac{\frac{1}{3\Sigma_tr}}{\Sigma_t} $
-\form#47:$ DB^2 $
-\form#48:$ \frac{1}{\Sigma_t} $
-\form#49:$ d = \frac{1}{\Sigma_t} $
-\form#50:$ v = c\sqrt{2Em_n} $
-\form#51:$ time = \frac{d}{v} $
-\form#52:$ \frac{eV}{c^2} $
-\form#53:$ \vec{u}\cdot\vec{v}=\vec{u}_x *\vec{v}_x + \vec{u}_y * \vec{u}_y $
-\form#54:$ \vec{u}\cdot\vec{v}=\vec{u}_x\cdot\vec{v}_x + \vec{u}_y\cdot\vec{u}_y + \vec{u}_z\cdot\vec{v}_z $
-\form#55:$ \vec{u} $
-\form#56:$ \| \vec{u} \| = \sqrt{x \cdot x + y \cdot y} $
-\form#57:$ \| \vec{u} \| = \sqrt{x\ cdot x + y \cdot y + z \cdot z} $
-\form#58:$ \frac{1}{E} $
-\form#59:$ RI_{eff} $
-\form#60:$ \int\limits_{E_{i-1}}^{E_i} \sigma_{j}(E) \frac{1}{E} \mathrm{d}E $
-\form#61:$ E_0 > 0 $
-\form#62:$E_0$
-\form#63:$\Gamma_n$
-\form#64:$\Gamma_{\gamma}$
-\form#65:$ d $
-\form#66:$ x $
-\form#67:$ u $
-\form#68:$ x_0 $
-\form#69:$ d = \frac{x_0 - x}{u} $
-\form#70:$ y $
-\form#71:$ y_0 $
-\form#72:$ d = \frac{y_0 - y}{u} $
+\form#26:$ d $
+\form#27:$ x $
+\form#28:$ u $
+\form#29:$ x_0 $
+\form#30:$ d = \frac{x_0 - x}{u} $
+\form#31:$ (x,y) $
+\form#32:$ f(x,y) = qy + d = y - y_0 $
+\form#33:$ f(x,y,z) = qy + d = y - y_0 $
+\form#34:$ y $
+\form#35:$ y_0 $
+\form#36:$ d = \frac{y_0 - y}{u} $
+\form#37:$ f(x,y) = (x - x_0)^2 + (y - y_0)^2 - R^2 $
+\form#38:$ f(x,y,z) = (x - x_0)^2 + (y - y_0)^2 - R^2 $
+\form#39:$ \frac{\pi}{2}$
+\form#40:$ \frac{3\pi}{2}$
+\form#41:$ 2\pi $
+\form#42:$ f(x,y,z) $
+\form#43:$ \frac{\sigma_s}{\Sigma_t} $
+\form#44:$ \frac{\Sigma_s}{\Sigma_t} $
+\form#45:$ \frac{\sigma_a}{\Sigma_t} $
+\form#46:$ \frac{\Sigma_a}{\Sigma_t} $
+\form#47:$ \frac{\sigma_c}{\Sigma_t} $
+\form#48:$ \frac{\Sigma_c}{\Sigma_t} $
+\form#49:$ \frac{\sigma_f}{\Sigma_t} $
+\form#50:$ \frac{\Sigma_f}{\Sigma_t} $
+\form#51:$ \frac{\sigma_tr}{\Sigma_t} $
+\form#52:$ \frac{\Sigma_tr}{\Sigma_t} $
+\form#53:$ \frac{\frac{1}{3\sigma_tr}}{\Sigma_t} $
+\form#54:$ \frac{\frac{1}{3\Sigma_tr}}{\Sigma_t} $
+\form#55:$ DB^2 $
+\form#56:$ \frac{1}{\Sigma_t} $
+\form#57:$ d = \frac{1}{\Sigma_t} $
+\form#58:$ v = c\sqrt{2Em_n} $
+\form#59:$ time = \frac{d}{v} $
+\form#60:$ \frac{eV}{c^2} $
+\form#61:$ \vec{u}\cdot\vec{v}=\vec{u}_x *\vec{v}_x + \vec{u}_y * \vec{u}_y $
+\form#62:$ \vec{u}\cdot\vec{v}=\vec{u}_x\cdot\vec{v}_x + \vec{u}_y\cdot\vec{u}_y + \vec{u}_z\cdot\vec{v}_z $
+\form#63:$ \vec{u} $
+\form#64:$ \| \vec{u} \| = \sqrt{x \cdot x + y \cdot y} $
+\form#65:$ \| \vec{u} \| = \sqrt{x\ cdot x + y \cdot y + z \cdot z} $
+\form#66:$ \frac{1}{E} $
+\form#67:$ RI_{eff} $
+\form#68:$ \int\limits_{E_{i-1}}^{E_i} \sigma_{j}(E) \frac{1}{E} \mathrm{d}E $
+\form#69:$ E_0 > 0 $
+\form#70:$E_0$
+\form#71:$\Gamma_n$
+\form#72:$\Gamma_{\gamma}$
