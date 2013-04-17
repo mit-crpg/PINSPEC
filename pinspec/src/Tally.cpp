@@ -1,5 +1,23 @@
 #include "Tally.h"
 
+#define NEXT(n, i)  (((n) + (i)/(n)) >> 1)  
+ 
+/**
+ * @brief Computes the square root of an integer.
+ * @param the integer number to be taken square root of.
+ */
+unsigned int isqrt(int number) {  
+    unsigned int n  = 1;  
+    unsigned int n1 = NEXT(n, number);  
+  
+    while(abs(n1 - n) > 1) {  
+	n  = n1;  
+	n1 = NEXT(n, number);  
+    }  
+    while(n1*n1 > number)  
+	n1--;  
+    return n1;  
+}  
 
 /**
  * @brief Tally constructor.
@@ -18,6 +36,7 @@ Tally::Tally(const char* tally_name) {
     _num_batches = 0;
     _num_bins = 0;
     _computed_statistics = false;
+    _group_expand_bins = false;
 }
 
 
@@ -733,10 +752,14 @@ void Tally::setNumBatches(int num_batches) {
 
     _num_batches = num_batches;
 
-    /* Throw a special case for group-to-group scattering. */
-    /* Basically we want the array to be long enough to hold a matrix */
-    if (_tally_type == GROUP_TO_GROUP_RATE)
+    /* Specifically for group-to-group scattering, we expand the size of 
+     * the array to hold a group-to-group structure. bool _group_expand_bins
+     * is a flag we keep around to make sure this operation is done once. */
+    if ((_tally_type == GROUP_TO_GROUP_RATE) && (_group_expand_bins == false))
+    {
 	_num_bins = _num_bins * _num_bins;
+	_group_expand_bins = true;
+    }
 
     /* Set all tallies to zero by default */
     _tallies = (double**) malloc(sizeof(double*) * _num_batches);
@@ -912,24 +935,26 @@ void Tally::tallyGroup(neutron* neutron, double weight) {
     if (weight < 0.0)
         log_printf(NORMAL, "weight = %f", weight);
 
+    /* Obtains the index corresponding to neutron's incoming energy (old_index)
+     * and outgoing energy (new_index) */
     int old_index = getBinIndex(neutron->_old_energy);
     int new_index = getBinIndex(neutron->_energy);
     int bin_index = 0;
+    log_printf(DEBUG, "old index = %d, new index = %d", old_index, new_index);
 
-    int nb = floor(sqrt(_num_bins));
+    /* Computes the real # of energy groups */
+    int nb = isqrt(_num_bins);
+    log_printf(DEBUG, "num_bin = %d, # energy groups = %d", _num_bins, nb);
 
-    if (_tally_type == GROUP_TO_GROUP_RATE)
-	bin_index = old_index * nb  + new_index;
-    else
-	log_printf(WARNING, "A tally that is not group-to-group scattering"
-		   " is trying to access the group structure"
-		   " functions.");
+    bin_index = old_index * nb  + new_index;
 
-
-    if (bin_index >= 0 && bin_index < nb) 
+    if (bin_index >= 0 && bin_index < _num_bins) 
+    {
+	log_printf(DEBUG, "bin_index = %d", bin_index);
         _tallies[neutron->_batch_num][bin_index] += weight;
+    }
 
-    return;
+        return;
 }
 
 /**
@@ -1128,24 +1153,28 @@ void Tally::outputBatchStatistics(const char* filename) {
     /* Loop over each bin and print mu, var, std dev and rel err */
     if (_tally_type == GROUP_TO_GROUP_RATE)
     {
-	/* FIXME: For some reason _num_bins here is squared of what we expect */
-	int nb = floor(sqrt(sqrt(_num_bins)));
+	/* For group-to-group xs, the _num_bins is really the square of 
+	 * the actual # of energy groups, so we take square root of that. */
+	int nb = isqrt(_num_bins);
 	fprintf(output_file, "# batches: %d\t, # bins: %d %d\n", _num_batches,
 		_num_bins, nb);
 	fprintf(output_file, "Avg group-to-group reaction rate, "
 		" with entry (i,j) = from energy i to energy j\n");
+	fprintf(output_file, "(top row represents outgoing energies, left-most" 
+		" column represents incoming energies)");
 
 	for (int i = 0; i < nb; i++) {
-	    fprintf(output_file, "%1.1f ", _centers[i]);
+	    fprintf(output_file, "%e ", _centers[i]);
 	}
 	fprintf(output_file, "\n");
 
 
 	for (int k = 0; k < nb; k++) {
-	    fprintf(output_file, "%1.1f ", _centers[k]);
+	    fprintf(output_file, "%e ", _centers[k]);
 
 	    for (int j = 0; j < nb; j++) {
 		int i = k * nb + j;
+		//assert(i <= _num_bins);
 		fprintf(output_file, "%e ", _batch_mu[i]);
 	    }
 	    fprintf(output_file, "\n");

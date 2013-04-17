@@ -206,6 +206,8 @@ protected:
     double* _batch_rel_err;
     /** Whether or not batch statistics have been computed */
     bool _computed_statistics;
+    /** Whether or not bin size has be squared for group-to-group xs */
+    bool _group_expand_bins;
 
 public:
     Tally(const char* tally_name=(char*)"");
