@@ -30,6 +30,7 @@ var classIsotope =
     [ "getTotalXS", "classIsotope.html#a2011a11b493809ee71315cfcb10ce54e", null ],
     [ "getTransportXS", "classIsotope.html#a7108414f5f312b4dd4373faf7edeb01e", null ],
     [ "getTransportXS", "classIsotope.html#a2951e0f6c5c3830c19d917c11cd24ee5", null ],
+    [ "getUid", "classIsotope.html#a3cb6ed4e3aeb7ba8ca226fce2746e4d1", null ],
     [ "initializeThermalScattering", "classIsotope.html#ad0a509a4dcab1c06afac3d9c9a3dfda8", null ],
     [ "isFissionable", "classIsotope.html#aa8b40c46707c5989d4d834b4805e363a", null ],
     [ "isRescaled", "classIsotope.html#ab1f3ff8d24f6c9a184d07987deb5a386", null ],
@@ -86,6 +87,7 @@ var classIsotope =
     [ "_isotope_name", "classIsotope.html#a073b0f7a2c59a676284d68dbdc588a6b", null ],
     [ "_kB", "classIsotope.html#a9ca004efbe18d4777529a7ae2c499e4b", null ],
     [ "_mu_avg", "classIsotope.html#aa56de3d2e8a5ae51aec90e202abfac14", null ],
+    [ "_n", "classIsotope.html#a39118a0c067435ebeec4a1432a24a20c", null ],
     [ "_num_absorb_xs", "classIsotope.html#aa197f9184aae95b37bcfb89c6c456a8f", null ],
     [ "_num_capture_xs", "classIsotope.html#ab4fb8d377328b23ae192dba57514ad40", null ],
     [ "_num_elastic_xs", "classIsotope.html#aeff29a44daea93ec2dfc06b39231afb7", null ],
@@ -103,5 +105,6 @@ var classIsotope =
     [ "_thermal_dist", "classIsotope.html#a75f6f039420234ae8d2fd8ee54e5592d", null ],
     [ "_total_xs", "classIsotope.html#a92906b0ef21e25db8688b239d6dbfb58", null ],
     [ "_total_xs_energies", "classIsotope.html#a143a0cbba4e478f064cda7ce9ee0e8fb", null ],
+    [ "_uid", "classIsotope.html#a69c6a8e0759f98d173fa2b0df6d63d6b", null ],
     [ "_use_thermal_scattering", "classIsotope.html#aabb478cc4ceefb44824230c03d68c881", null ]
 ];

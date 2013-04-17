@@ -122,6 +122,12 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Plots a resonance integral (RIEff or RITrue) as a step function.  <a href="#a00729d4934ced6d02844b7f0355b77f4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepinspec_1_1plotter.html#afa68183a802e9f9195f30f4eb8f3ae88">plotGroupXS</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Plots a multi-group cross-section as a step function.  <a href="#afa68183a802e9f9195f30f4eb8f3ae88"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepinspec_1_1plotter.html#ac4e680b32413a19fb42ab62a3c445146">plotSlice</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This method takes in a region or a geometry object and plots a color-coded 2D surface plot representing a planar slice through the space.  <a href="#ac4e680b32413a19fb42ab62a3c445146"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepinspec_1_1plotter.html#a9621d8c604194099668daf2836101aae">plotFissionSourceDist</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Plots a vector field of the fission site source distribution.  <a href="#a9621d8c604194099668daf2836101aae"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepinspec_1_1plotter.html#a10547a7e5611caa78c1237f9a1fae5ea">trackANeutron</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This method takes in a geometry class object and tracks a neutron as it travels across the geomgetry.  <a href="#a10547a7e5611caa78c1237f9a1fae5ea"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a696ce32dd92f7b9132675df865c1ab5a"></a><!-- doxytag: member="pinspec::plotter::flux_plot_num" ref="a696ce32dd92f7b9132675df865c1ab5a" args="" -->
@@ -138,6 +144,49 @@ string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="na
 William Boyd (<a href="mailto:wboyd@mit.edu">wboyd@mit.edu</a> </dd></dl>
 <dl class="date"><dt><b>Date:</b></dt><dd>March 10, 2013 </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a9621d8c604194099668daf2836101aae"></a><!-- doxytag: member="pinspec::plotter::plotFissionSourceDist" ref="a9621d8c604194099668daf2836101aae" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def <a class="el" href="namespacepinspec_1_1plotter.html#a9621d8c604194099668daf2836101aae">pinspec.plotter.plotFissionSourceDist</a> </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>geometry</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>num_samples</em> = <code>1000</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>filename</em> = <code>''</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Plots a vector field of the fission site source distribution. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">geometry</td><td>a HETEROGENEOUS geometry class object </td></tr>
+    <tr><td class="paramname">num_samples</td><td>an optional number of samples </td></tr>
+    <tr><td class="paramname">filename</td><td>an optional filename </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a6711829dda3c540c331ff0dce8eacd85"></a><!-- doxytag: member="pinspec::plotter::plotFissionSpectrum" ref="a6711829dda3c540c331ff0dce8eacd85" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -424,6 +473,77 @@ William Boyd (<a href="mailto:wboyd@mit.edu">wboyd@mit.edu</a> </dd></dl>
 </pre></div> 
 </div>
 </div>
+<a class="anchor" id="ac4e680b32413a19fb42ab62a3c445146"></a><!-- doxytag: member="pinspec::plotter::plotSlice" ref="ac4e680b32413a19fb42ab62a3c445146" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def <a class="el" href="namespacepinspec_1_1plotter.html#ac4e680b32413a19fb42ab62a3c445146">pinspec.plotter.plotSlice</a> </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>space</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>plane</em> = <code>'XY'</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>loc</em> = <code>0.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>lim1</em> = <code>[-2.</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>lim2</em> = <code>[-2.</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>gridsize</em> = <code>100</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>filename</em> = <code>''</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This method takes in a region or a geometry object and plots a color-coded 2D surface plot representing a planar slice through the space. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">space</td><td>a bounded region or heterogeneous geometry object </td></tr>
+    <tr><td class="paramname">plane</td><td>the optional 'xy', 'xz' or 'yz' plane the user wishes to plot </td></tr>
+    <tr><td class="paramname">loc</td><td>the optional x, y, or z position of the planar plot </td></tr>
+    <tr><td class="paramname">lim1</td><td>the optional bounding limits for the first planar dimension </td></tr>
+    <tr><td class="paramname">lim2</td><td>the optional bounding limits for the second planar dimension </td></tr>
+    <tr><td class="paramname">gridsize</td><td>an optional number of grid cells for the plot </td></tr>
+    <tr><td class="paramname">filename</td><td>an optional filename </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a4ba46d55fc5d6e970c4f4bceefbd1990"></a><!-- doxytag: member="pinspec::plotter::plotThermalScattering" ref="a4ba46d55fc5d6e970c4f4bceefbd1990" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -476,6 +596,85 @@ William Boyd (<a href="mailto:wboyd@mit.edu">wboyd@mit.edu</a> </dd></dl>
 
 </div>
 </div>
+<a class="anchor" id="a10547a7e5611caa78c1237f9a1fae5ea"></a><!-- doxytag: member="pinspec::plotter::trackANeutron" ref="a10547a7e5611caa78c1237f9a1fae5ea" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def <a class="el" href="namespacepinspec_1_1plotter.html#a10547a7e5611caa78c1237f9a1fae5ea">pinspec.plotter.trackANeutron</a> </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>geometry</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>plane</em> = <code>'XY'</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>num_moves</em> = <code>100</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>loc</em> = <code>0.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>lim1</em> = <code>[-2.</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>lim2</em> = <code>[-2.</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>gridsize</em> = <code>100</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>filename</em> = <code>''</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This method takes in a geometry class object and tracks a neutron as it travels across the geomgetry. </p>
+<p>A color-coded 2D surface plot representing a planar slice through the space is produced as the backdrop to a series of line segments representing a neutron's path across the pin cell. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">geometry</td><td>a heterogeneous geometry object </td></tr>
+    <tr><td class="paramname">plane</td><td>the optional 'xy', 'xz' or 'yz' plane the user wishes to plot </td></tr>
+    <tr><td class="paramname">num_moves</td><td>the number of neutron moves across the geometry to plot </td></tr>
+    <tr><td class="paramname">loc</td><td>the optional x, y, or z position of the planar plot </td></tr>
+    <tr><td class="paramname">lim1</td><td>the optional bounding limits for the first planar dimension </td></tr>
+    <tr><td class="paramname">lim2</td><td>the optional bounding limits for the second planar dimension </td></tr>
+    <tr><td class="paramname">gridsize</td><td>an optional number of grid cells for the plot </td></tr>
+    <tr><td class="paramname">filename</td><td>an optional filename </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -497,7 +696,7 @@ William Boyd (<a href="mailto:wboyd@mit.edu">wboyd@mit.edu</a> </dd></dl>
       <li class="navelem"><b>pinspec</b>      </li>
       <li class="navelem"><a class="el" href="namespacepinspec_1_1plotter.html">plotter</a>      </li>
 
-    <li class="footer">Generated on Mon Apr 15 2013 12:24:19 by
+    <li class="footer">Generated on Wed Apr 17 2013 15:37:47 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

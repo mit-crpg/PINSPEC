@@ -133,9 +133,11 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXPlane.html#aad3f4f68ce1cac31589ee00244e30f64">setX</a> (float x)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the x-coordinate of the plane's intersection point with the x-axis.  <a href="#aad3f4f68ce1cac31589ee00244e30f64"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXPlane.html#ab58e3c875a84060c099da20f79dfdb52">evaluate</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y) $" src="form_53.png"/> with respect to the quadratic surface representing this x-plane: <img class="formulaInl" alt="$ f(x,y) = qx + d = x - x_0 $" src="form_54.png"/>.  <a href="#ab58e3c875a84060c099da20f79dfdb52"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXPlane.html#a4370395de84303e337c12457b862753a">computeNearestDistance</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the nearest distance to the <a class="el" href="classXPlane.html" title="The XPlane is a plane perpendicular to the y-axis.">XPlane</a> along a neutron's trajectory.  <a href="#a4370395de84303e337c12457b862753a"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_65.png"/> with respect to the quadratic surface representing this x-plane: <img class="formulaInl" alt="$ f(x,y,z) = qx + d = x - x_0 $" src="form_66.png"/>.  <a href="#ab58e3c875a84060c099da20f79dfdb52"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXPlane.html#ae0ade7d6d9d47fbf3b04aceab510f3b0">evaluate</a> (float x, float y, float z)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a 3D coordinate <img class="formulaInl" alt="$ (x,y,z) $" src="form_65.png"/> with respect to the quadratic surface representing this x-plane: <img class="formulaInl" alt="$ f(x,y,z) = qx + d = x - x_0 $" src="form_66.png"/>.  <a href="#ae0ade7d6d9d47fbf3b04aceab510f3b0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXPlane.html#adcf0addaa1f01950e3c538762fc0a8b0">computeParametrizedDistance</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the parametrized distance to the <a class="el" href="classXPlane.html" title="The XPlane is a plane perpendicular to the y-axis.">XPlane</a> along a neutron's trajectory.  <a href="#adcf0addaa1f01950e3c538762fc0a8b0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXPlane.html#aba1824906b2f6ed732646385cb3cb98c">onSurface</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether a neutron is on the <a class="el" href="classXPlane.html" title="The XPlane is a plane perpendicular to the y-axis.">XPlane</a>.  <a href="#aba1824906b2f6ed732646385cb3cb98c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classXPlane.html#aa55e539bc39e833e027d9d5d4ce7aae7">reflectNeutron</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
@@ -175,12 +177,12 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a4370395de84303e337c12457b862753a"></a><!-- doxytag: member="XPlane::computeNearestDistance" ref="a4370395de84303e337c12457b862753a" args="(neutron *neutron)" -->
+<a class="anchor" id="adcf0addaa1f01950e3c538762fc0a8b0"></a><!-- doxytag: member="XPlane::computeParametrizedDistance" ref="adcf0addaa1f01950e3c538762fc0a8b0" args="(neutron *neutron)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">float <a class="el" href="classXPlane.html#a4370395de84303e337c12457b862753a">XPlane::computeNearestDistance</a> </td>
+          <td class="memname">float <a class="el" href="classXPlane.html#adcf0addaa1f01950e3c538762fc0a8b0">XPlane::computeParametrizedDistance</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structneutron.html">neutron</a> *&#160;</td>
           <td class="paramname"><em>neutron</em></td><td>)</td>
@@ -190,15 +192,17 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Computes the nearest distance to the <a class="el" href="classXPlane.html" title="The XPlane is a plane perpendicular to the y-axis.">XPlane</a> along a neutron's trajectory. </p>
+<p>Computes the parametrized distance to the <a class="el" href="classXPlane.html" title="The XPlane is a plane perpendicular to the y-axis.">XPlane</a> along a neutron's trajectory. </p>
+<p>The distance returned is a parametrized distance along the unit vectory defining the neutron's trajectory, not a Cartesian distance. If the neutron is traveling away from the surface then the distance returned will be infinity. The equation used to compute the parametrized distance <img class="formulaInl" alt="$ d $" src="form_67.png"/> from a neutron at <img class="formulaInl" alt="$ x $" src="form_68.png"/> traveling with component an x-component of its unit trajectory vector <img class="formulaInl" alt="$ u $" src="form_69.png"/> to this xplane at <img class="formulaInl" alt="$ x_0 $" src="form_70.png"/> is: <img class="formulaInl" alt="$ d = \frac{x_0 - x}{u} $" src="form_71.png"/></p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">neutron</td><td>a pointer to a Neutron struct </td></tr>
+    <tr><td class="paramname">neutron</td><td>a pointer to a neutron struct </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the parametrized distance to the surface along the neutron's trajectory </dd></dl>
 
-<p>Implements <a class="el" href="classSurface.html#a3d33dd138200489112a2369eab0b2083">Surface</a>.</p>
+<p>Implements <a class="el" href="classSurface.html#a13368235fddcfa66e0f3cac11ec9a8d1">Surface</a>.</p>
 
 </div>
 </div>
@@ -217,7 +221,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y) $" src="form_53.png"/> with respect to the quadratic surface representing this x-plane: <img class="formulaInl" alt="$ f(x,y) = qx + d = x - x_0 $" src="form_54.png"/>. </p>
+<p>Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_65.png"/> with respect to the quadratic surface representing this x-plane: <img class="formulaInl" alt="$ f(x,y,z) = qx + d = x - x_0 $" src="form_66.png"/>. </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">neutron</td><td>the neutron of interest </td></tr>
@@ -226,6 +230,51 @@ Private Attributes</h2></td></tr>
 </dl>
 
 <p>Implements <a class="el" href="classSurface.html#acacc8ac56302a9b8ceab23d8b5b5cc93">Surface</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae0ade7d6d9d47fbf3b04aceab510f3b0"></a><!-- doxytag: member="XPlane::evaluate" ref="ae0ade7d6d9d47fbf3b04aceab510f3b0" args="(float x, float y, float z)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float <a class="el" href="classXPlane.html#ab58e3c875a84060c099da20f79dfdb52">XPlane::evaluate</a> </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns the evaluation of a 3D coordinate <img class="formulaInl" alt="$ (x,y,z) $" src="form_65.png"/> with respect to the quadratic surface representing this x-plane: <img class="formulaInl" alt="$ f(x,y,z) = qx + d = x - x_0 $" src="form_66.png"/>. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>the x-coordinate of interest </td></tr>
+    <tr><td class="paramname">y</td><td>the y-coordinate of interest </td></tr>
+    <tr><td class="paramname">z</td><td>the z-coordinate of interest </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classSurface.html#ae8a7b9ab365ef35622c14bd576d134ca">Surface</a>.</p>
 
 </div>
 </div>
@@ -368,7 +417,7 @@ Private Attributes</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="classXPlane.html">XPlane</a>      </li>
 
-    <li class="footer">Generated on Mon Apr 15 2013 12:24:19 by
+    <li class="footer">Generated on Wed Apr 17 2013 15:37:47 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

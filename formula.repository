@@ -63,3 +63,16 @@
 \form#62:$ \vec{u} $
 \form#63:$ \| \vec{u} \| = \sqrt{x \cdot x + y \cdot y} $
 \form#64:$ \| \vec{u} \| = \sqrt{x\ cdot x + y \cdot y + z \cdot z} $
+\form#65:$ (x,y,z) $
+\form#66:$ f(x,y,z) = qx + d = x - x_0 $
+\form#67:$ d $
+\form#68:$ x $
+\form#69:$ u $
+\form#70:$ x_0 $
+\form#71:$ d = \frac{x_0 - x}{u} $
+\form#72:$ f(x,y,z) = qy + d = y - y_0 $
+\form#73:$ y $
+\form#74:$ y_0 $
+\form#75:$ d = \frac{y_0 - y}{u} $
+\form#76:$ f(x,y,z) = (x - x_0)^2 + (y - y_0)^2 - R^2 $
+\form#77:$ f(x,y,z) $

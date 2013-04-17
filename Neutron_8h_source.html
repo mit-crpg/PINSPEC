@@ -121,7 +121,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00040"></a>00040 
 <a name="l00042"></a><a class="code" href="structneutron.html#ac705d5f871c2c2594703a78ebe58c929">00042</a>     <span class="keywordtype">bool</span> <a class="code" href="structneutron.html#ac705d5f871c2c2594703a78ebe58c929">_collided</a>;
 <a name="l00043"></a>00043 
-<a name="l00046"></a><a class="code" href="structneutron.html#aac01f1ff8efae019839d37bb959fa33f">00046</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#aac01f1ff8efae019839d37bb959fa33f">_total_xs</a>;
+<a name="l00046"></a>00046   <span class="comment">//    float _total_xs;</span>
 <a name="l00047"></a>00047 
 <a name="l00049"></a><a class="code" href="structneutron.html#a5d8b31aa8d34c49a6ce8734aaf15a9b0">00049</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#a5d8b31aa8d34c49a6ce8734aaf15a9b0">_path_length</a>;
 <a name="l00050"></a>00050 
@@ -137,23 +137,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00067"></a>00067     <span class="comment">/***************************************************************************</span>
 <a name="l00068"></a>00068 <span class="comment">     *****************  ATTRIBUTES FOR HETEROGENEOUS GEOMETRIES  ***************</span>
 <a name="l00069"></a>00069 <span class="comment">     **************************************************************************/</span>
-<a name="l00071"></a><a class="code" href="structneutron.html#a14743394ac7bf443a57bccf9ab8beba5">00071</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#a14743394ac7bf443a57bccf9ab8beba5">_x</a>;
+<a name="l00071"></a><a class="code" href="structneutron.html#a7e855f039a2f7b52182ecf82efcb001c">00071</a>     <a class="code" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a>* <a class="code" href="structneutron.html#a7e855f039a2f7b52182ecf82efcb001c">_surface</a>;
 <a name="l00072"></a>00072 
-<a name="l00074"></a><a class="code" href="structneutron.html#a9bc73caa5e8ea77020e7112299deec2e">00074</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#a9bc73caa5e8ea77020e7112299deec2e">_y</a>;
+<a name="l00074"></a><a class="code" href="structneutron.html#a14743394ac7bf443a57bccf9ab8beba5">00074</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#a14743394ac7bf443a57bccf9ab8beba5">_x</a>;
 <a name="l00075"></a>00075 
-<a name="l00077"></a><a class="code" href="structneutron.html#a8ee10b15ab1dc8294c84a0d742e15154">00077</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#a8ee10b15ab1dc8294c84a0d742e15154">_z</a>;
+<a name="l00077"></a><a class="code" href="structneutron.html#a9bc73caa5e8ea77020e7112299deec2e">00077</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#a9bc73caa5e8ea77020e7112299deec2e">_y</a>;
 <a name="l00078"></a>00078 
-<a name="l00080"></a><a class="code" href="structneutron.html#a4ac5f314a0547708378d6b00a8863af0">00080</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#a4ac5f314a0547708378d6b00a8863af0">_u</a>;
+<a name="l00080"></a><a class="code" href="structneutron.html#a8ee10b15ab1dc8294c84a0d742e15154">00080</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#a8ee10b15ab1dc8294c84a0d742e15154">_z</a>;
 <a name="l00081"></a>00081 
-<a name="l00083"></a><a class="code" href="structneutron.html#a382ebb7a5a3c7b971b283f0eb2e14ea6">00083</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#a382ebb7a5a3c7b971b283f0eb2e14ea6">_v</a>;
+<a name="l00083"></a><a class="code" href="structneutron.html#a4ac5f314a0547708378d6b00a8863af0">00083</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#a4ac5f314a0547708378d6b00a8863af0">_u</a>;
 <a name="l00084"></a>00084 
-<a name="l00086"></a><a class="code" href="structneutron.html#a2556e63540e62a318ca919cbe24f9794">00086</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#a2556e63540e62a318ca919cbe24f9794">_w</a>;
+<a name="l00086"></a><a class="code" href="structneutron.html#a382ebb7a5a3c7b971b283f0eb2e14ea6">00086</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#a382ebb7a5a3c7b971b283f0eb2e14ea6">_v</a>;
 <a name="l00087"></a>00087 
-<a name="l00091"></a><a class="code" href="structneutron.html#ad0addd2c6b874a54d838455358e7f6e8">00091</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#ad0addd2c6b874a54d838455358e7f6e8">_mu</a>;
-<a name="l00092"></a>00092 
-<a name="l00095"></a><a class="code" href="structneutron.html#ac17d30fc4c24666fcab05fe3d787b32d">00095</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#ac17d30fc4c24666fcab05fe3d787b32d">_phi</a>;
-<a name="l00096"></a>00096 
-<a name="l00098"></a><a class="code" href="structneutron.html#a7e855f039a2f7b52182ecf82efcb001c">00098</a>     <a class="code" href="classSurface.html" title="The Surface represents a quadratic surface in the xy-plane.">Surface</a>* <a class="code" href="structneutron.html#a7e855f039a2f7b52182ecf82efcb001c">_surface</a>;
+<a name="l00089"></a><a class="code" href="structneutron.html#a2556e63540e62a318ca919cbe24f9794">00089</a>     <span class="keywordtype">float</span> <a class="code" href="structneutron.html#a2556e63540e62a318ca919cbe24f9794">_w</a>;
+<a name="l00090"></a>00090 
+<a name="l00094"></a>00094   <span class="comment">//    float _mu;</span>
+<a name="l00095"></a>00095 
+<a name="l00098"></a>00098   <span class="comment">// float _phi;</span>
 <a name="l00099"></a>00099 };
 <a name="l00100"></a>00100 
 <a name="l00101"></a>00101 
@@ -181,7 +181,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul>
       <li class="navelem"><a class="el" href="Neutron_8h.html">Neutron.h</a>      </li>
 
-    <li class="footer">Generated on Mon Apr 15 2013 12:24:18 by
+    <li class="footer">Generated on Wed Apr 17 2013 15:37:46 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

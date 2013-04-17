@@ -151,7 +151,7 @@ Inheritance diagram for Tally:</div>
 <area href="classMaterialGroupRateTally.html" title="A class for tallying the group-to-group scattering rate within a material." alt="MaterialGroupRateTally" shape="rect" coords="1212,504,1404,528"/>
 <area href="classMaterialInterCollisionTimeTally.html" title="A class for tallying the time between collision with a material." alt="MaterialInterCollisionTimeTally" shape="rect" coords="1212,560,1404,584"/>
 <area href="classMaterialLeakageRateTally.html" title="A class for tallying the leakage rate for the regions filled by a material." alt="MaterialLeakageRateTally" shape="rect" coords="1212,616,1404,640"/>
-<area href="classMaterialOutScatterRateTally.html" alt="MaterialOutScatterRateTally" shape="rect" coords="1212,672,1404,696"/>
+<area href="classMaterialOutScatterRateTally.html" title="A class for tallying the out scattering rate within a material." alt="MaterialOutScatterRateTally" shape="rect" coords="1212,672,1404,696"/>
 <area href="classMaterialTransportRateTally.html" title="A class for tallying the transport rate within a material." alt="MaterialTransportRateTally" shape="rect" coords="1212,728,1404,752"/>
 <area href="classRegionAbsorptionRateTally.html" title="A class for tallying the absorption rate within a region." alt="RegionAbsorptionRateTally" shape="rect" coords="1616,112,1808,136"/>
 <area href="classRegionCaptureRateTally.html" title="A class for tallying the capture rate within a region." alt="RegionCaptureRateTally" shape="rect" coords="1616,168,1808,192"/>
@@ -355,6 +355,7 @@ Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTally.html#a178d0ba17341fd2109b62a116805bbd0">_batch_std_dev</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTally.html#a1867b3ec480d667b298c272e475ea027">_batch_rel_err</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTally.html#a003383fc219cc3b964b19a1508fb2a7f">_computed_statistics</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTally.html#a21489642b0f542256605d1fc9dc442f0">_group_expand_bins</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A <a class="el" href="classTally.html" title="A Tally reprsents a set of bins for tallying some quantity.">Tally</a> reprsents a set of bins for tallying some quantity. </p>
@@ -2718,6 +2719,20 @@ the <a class="el" href="classTally.html" title="A Tally reprsents a set of bins 
 
 </div>
 </div>
+<a class="anchor" id="a21489642b0f542256605d1fc9dc442f0"></a><!-- doxytag: member="Tally::_group_expand_bins" ref="a21489642b0f542256605d1fc9dc442f0" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classTally.html#a21489642b0f542256605d1fc9dc442f0">Tally::_group_expand_bins</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Whether or not bin size has be squared for group-to-group xs </p>
+
+</div>
+</div>
 <a class="anchor" id="ab9e3d1f11d71a62d51872cff0e70051d"></a><!-- doxytag: member="Tally::_num_batches" ref="ab9e3d1f11d71a62d51872cff0e70051d" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -2854,7 +2869,7 @@ the <a class="el" href="classTally.html" title="A Tally reprsents a set of bins 
     <ul>
       <li class="navelem"><a class="el" href="classTally.html">Tally</a>      </li>
 
-    <li class="footer">Generated on Mon Apr 15 2013 12:24:19 by
+    <li class="footer">Generated on Wed Apr 17 2013 15:37:47 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

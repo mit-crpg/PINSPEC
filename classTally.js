@@ -90,6 +90,7 @@ var classTally =
     [ "_centers", "classTally.html#a7248cac93d9c10a52ad9ce02354b288d", null ],
     [ "_computed_statistics", "classTally.html#a003383fc219cc3b964b19a1508fb2a7f", null ],
     [ "_edges", "classTally.html#a2cd7b0c78c22b6ba926f55575a38723c", null ],
+    [ "_group_expand_bins", "classTally.html#a21489642b0f542256605d1fc9dc442f0", null ],
     [ "_num_batches", "classTally.html#ab9e3d1f11d71a62d51872cff0e70051d", null ],
     [ "_num_bins", "classTally.html#a2f4828eaf5d1de0b4d8aefd7c62171e6", null ],
     [ "_tallies", "classTally.html#ae590e52cd88360d5fb37cc22fe0631d6", null ],

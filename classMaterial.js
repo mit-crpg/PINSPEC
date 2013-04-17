@@ -38,6 +38,7 @@ var classMaterial =
     [ "getTransportMacroXS", "classMaterial.html#a6d8003082a563689412ce6416da2b45f", null ],
     [ "getTransportMicroXS", "classMaterial.html#acdad422a1e93337d5245af481463ed68", null ],
     [ "getTransportMicroXS", "classMaterial.html#a144a311226154eaea56631fdbea5d0e4", null ],
+    [ "getUid", "classMaterial.html#a95de130b248a20f9237793ab92e494a3", null ],
     [ "getVolume", "classMaterial.html#ab88c88c9d5f7638d2c4029c3cf589aae", null ],
     [ "incrementVolume", "classMaterial.html#affdd4a5887ae6cfb3772c7ebe6181a57", null ],
     [ "retrieveXS", "classMaterial.html#ab5b5e2078eddb057841b77ccd4110071", null ],
@@ -57,5 +58,7 @@ var classMaterial =
     [ "_material_density", "classMaterial.html#a43b7af8a6d0db91f87ba6fc4bc444296", null ],
     [ "_material_name", "classMaterial.html#a5fae14afcfee32144bea316d57ffaa91", null ],
     [ "_material_number_density", "classMaterial.html#ae8d6d883253ee2c7ac6b2ec30dcafcf3", null ],
+    [ "_n", "classMaterial.html#aa98938c954a6d4dae8c56489c1805546", null ],
+    [ "_uid", "classMaterial.html#a489d35359a61b0e444bca0704a1b21c0", null ],
     [ "_volume", "classMaterial.html#a78d416095f5ae1235cbe6a39526deca6", null ]
 ];

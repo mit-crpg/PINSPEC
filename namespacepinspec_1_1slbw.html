@@ -107,8 +107,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepinspec_1_1slbw.html#a4aafba8dacef99e07de3143d25345244">SLBWXS</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to create resonant capture and scatter cross-sections.  <a href="#a4aafba8dacef99e07de3143d25345244"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepinspec_1_1slbw.html#a8d467c01b1b1f0fdef83b0bbca938b3a">buildSLBWXS</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to create resonant capture and scatter cross-sections.  <a href="#a8d467c01b1b1f0fdef83b0bbca938b3a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepinspec_1_1slbw.html#a026e643a6e213703f2b18533c7149c03">convert</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to convert a string into a float.  <a href="#a026e643a6e213703f2b18533c7149c03"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepinspec_1_1slbw.html#a76171c0756809c031a091b2b5bfda666">parse</a></td></tr>
@@ -122,8 +122,117 @@ Functions</h2></td></tr>
 <div class="textblock"><p>The slbw module provides utility functions to generate resonant cross-sections using the Single-Level Breit-Wigner formalism. </p>
 <p>This is most helpful for PINSPEC applications which are temperature- dependent and require doppler broadening effects to be treated for resonant absorbers. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Jessica Hunter </dd></dl>
-<dl class="date"><dt><b>Date:</b></dt><dd>February 25, 2013 </dd></dl>
+<dl class="date"><dt><b>Date:</b></dt><dd>April 17, 2013 </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a8d467c01b1b1f0fdef83b0bbca938b3a"></a><!-- doxytag: member="pinspec::slbw::buildSLBWXS" ref="a8d467c01b1b1f0fdef83b0bbca938b3a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def <a class="el" href="namespacepinspec_1_1slbw.html#a8d467c01b1b1f0fdef83b0bbca938b3a">pinspec.slbw.buildSLBWXS</a> </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>isotope</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>temp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>xs_type</em> = <code>'capture'</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>number_of_pos_res</em> = <code>14</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>energy_min</em> = <code>1e-5</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>energy_max</em> = <code>20E6</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>upper_energy_limit_identical_res</em> = <code>1000.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>energy_bin_width</em> = <code>0.075</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>resonance_spacing_identical_res</em> = <code>25</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>lower_bound_identical_res</em> = <code>300</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>gamma_gamma_identical_res</em> = <code>0.023</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>flat_xs</em> = <code>0.1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Function to create resonant capture and scatter cross-sections. </p>
+<p>Generates the cross-section at some temperature using resonance data and the Single-Level Breit-Wigner formalism. Function broadens a specific number of resonances from the ENDFB-VII library, then creates identical resonances with even spacing to a specified energy limit, and then a specific flat cross section for the remaining energy. When generating elastic cross sections, the flat cross section is set to the potential scattering value. </p>
+<div class="fragment"><pre class="fragment"> temp=1200
+ slbw.SLBWXS(u238, temp, <span class="stringliteral">&#39;capture&#39;</span>)
+</pre></div> <dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isotope</td><td>the isotope of interest </td></tr>
+    <tr><td class="paramname">temp</td><td>the temperature in degrees Kelvin </td></tr>
+    <tr><td class="paramname">xs_type</td><td>an optional argument string for the cross-section type </td></tr>
+    <tr><td class="paramname">number_of_pos_res</td><td>the number of positive resonance to use with <img class="formulaInl" alt="$ E_0 > 0 $" src="form_47.png"/> </td></tr>
+    <tr><td class="paramname">energy_min</td><td>the minimum energy at which to generate the cross-section (eV) </td></tr>
+    <tr><td class="paramname">energy_max</td><td>the maximum energy of the cross section (eV) </td></tr>
+    <tr><td class="paramname">upper_energy_limit_identical_res</td><td>the upper energy limit of the equally spaced, identical resonances section </td></tr>
+    <tr><td class="paramname">energy_bin_width</td><td>the width of the energy bin for the cross section </td></tr>
+    <tr><td class="paramname">resonance_spacing_identical_res</td><td>the spacing between resonance peaks for the identical resonances section </td></tr>
+    <tr><td class="paramname">lower_bound_identical_res</td><td>the lower energy bound for the identical resonances section </td></tr>
+    <tr><td class="paramname">gamma_gamma_identical_res</td><td>the <img class="formulaInl" alt="$\Gamma_{\gamma}$" src="form_50.png"/> value for the identical resonances section </td></tr>
+    <tr><td class="paramname">flat_xs</td><td>a flat cross section used for the capture cross section above the identical resonances region </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a48b45b1d229e9afa999d8cb5fc201144"></a><!-- doxytag: member="pinspec::slbw::compareXS" ref="a48b45b1d229e9afa999d8cb5fc201144" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -138,13 +247,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>XStype</em> = <code>'capture'</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>RI</em> = <code>'no'</code>, </td>
+          <td class="paramname"><em>type_xs</em> = <code>'capture'</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -165,9 +268,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">isotope</td><td>the isotope of interest </td></tr>
-    <tr><td class="paramname">XStype</td><td></td></tr>
-    <tr><td class="paramname">RI</td><td></td></tr>
-    <tr><td class="paramname">dir</td><td></td></tr>
+    <tr><td class="paramname">type_xs</td><td>type of cross section, 'capture' or 'elastic' ('scatter' also accepted) </td></tr>
+    <tr><td class="paramname">dir</td><td>the directory in which the plot will be saved </td></tr>
   </table>
   </dd>
 </dl>
@@ -214,13 +316,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>Emin</em> = <code>1e-5</code>, </td>
+          <td class="paramname"><em>energy_min</em> = <code>1e-5</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>finalEcut</em> = <code>20E6</code>&#160;</td>
+          <td class="paramname"><em>energy_max</em> = <code>20E6</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -235,8 +337,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">isotope</td><td>the isotope of interest </td></tr>
-    <tr><td class="paramname">Emin</td><td></td></tr>
-    <tr><td class="paramname">finalEcut</td><td></td></tr>
+    <tr><td class="paramname">energy_min</td><td>the upper limit of the energy range </td></tr>
+    <tr><td class="paramname">energy_max</td><td>the lower limit of the energy range </td></tr>
   </table>
   </dd>
 </dl>
@@ -269,113 +371,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4aafba8dacef99e07de3143d25345244"></a><!-- doxytag: member="pinspec::slbw::SLBWXS" ref="a4aafba8dacef99e07de3143d25345244" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">def <a class="el" href="namespacepinspec_1_1slbw.html#a4aafba8dacef99e07de3143d25345244">pinspec.slbw.SLBWXS</a> </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>isotope</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>T</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>typeXS</em> = <code>'capture'</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>numberofpositiveresonances</em> = <code>14</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>Emin</em> = <code>1e-5</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>Ecut</em> = <code>1000.0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>Ebnwdth</em> = <code>0.075</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>resspacing</em> = <code>25</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>idntclfakereslb</em> = <code>300</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>gamg</em> = <code>0.023</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>flatxs</em> = <code>0.1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>finalEcut</em> = <code>20E6</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Function to create resonant capture and scatter cross-sections. </p>
-<p>Generates the cross-section at some temperature using resonance data and the Single-Level Breit-Wigner formalism. </p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">isotope</td><td>the isotope of interest </td></tr>
-    <tr><td class="paramname">T</td><td>the temperature in degrees Kelvin </td></tr>
-    <tr><td class="paramname">typeXS</td><td>an optional argument string for the cross-section type </td></tr>
-    <tr><td class="paramname">numberofpositiveresonances</td><td>the number of resonance to use with <img class="formulaInl" alt="$ E_0 > 0 $" src="form_47.png"/> </td></tr>
-    <tr><td class="paramname">Emin</td><td>the minimum energy at which to generate the cross-section (eV) </td></tr>
-    <tr><td class="paramname">Ecut</td><td></td></tr>
-    <tr><td class="paramname">Ebnwdth</td><td></td></tr>
-    <tr><td class="paramname">resspacing</td><td></td></tr>
-    <tr><td class="paramname">idntclfakereslb</td><td></td></tr>
-    <tr><td class="paramname">gamg</td><td></td></tr>
-    <tr><td class="paramname">flatxs</td><td></td></tr>
-    <tr><td class="paramname">finalEcut</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 </div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -397,7 +392,7 @@ Functions</h2></td></tr>
       <li class="navelem"><b>pinspec</b>      </li>
       <li class="navelem"><a class="el" href="namespacepinspec_1_1slbw.html">slbw</a>      </li>
 
-    <li class="footer">Generated on Mon Apr 15 2013 12:24:19 by
+    <li class="footer">Generated on Wed Apr 17 2013 15:37:47 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

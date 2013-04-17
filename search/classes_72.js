@@ -6,7 +6,6 @@ var searchData=
   ['regioncollisionratetally',['RegionCollisionRateTally',['../classRegionCollisionRateTally.html',1,'']]],
   ['regiondiffusionratetally',['RegionDiffusionRateTally',['../classRegionDiffusionRateTally.html',1,'']]],
   ['regionelasticratetally',['RegionElasticRateTally',['../classRegionElasticRateTally.html',1,'']]],
-  ['regionfactory',['RegionFactory',['../classRegionFactory.html',1,'']]],
   ['regionfissionratetally',['RegionFissionRateTally',['../classRegionFissionRateTally.html',1,'']]],
   ['regionfluxtally',['RegionFluxTally',['../classRegionFluxTally.html',1,'']]],
   ['regiongroupratetally',['RegionGroupRateTally',['../classRegionGroupRateTally.html',1,'']]],

@@ -115,11 +115,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#ad2146d68260c035d7236de7638c036de">Geometry</a> (<a class="el" href="Geometry_8h.html#af321382c4a8d9fdb71c83382f82fac00">spatialType</a> spatial_type)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Geomtery constructor.  <a href="#ad2146d68260c035d7236de7638c036de"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#ad39af329db002b95f8659cf81a00684c">Geometry</a> (<a class="el" href="Geometry_8h.html#af321382c4a8d9fdb71c83382f82fac00">spatialType</a> spatial_type, const char *name=(const char *)&quot;&quot;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Geomtery constructor.  <a href="#ad39af329db002b95f8659cf81a00684c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad55e832122ab3a2833dcaa6507867678"></a><!-- doxytag: member="Geometry::~Geometry" ref="ad55e832122ab3a2833dcaa6507867678" args="()" -->
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#ad55e832122ab3a2833dcaa6507867678">~Geometry</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor lets SWIG delete regions, materials, isotopes and tallies during garbage collection. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a0f383e3e9db45e438f3cfd7f82f0af77">getName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the geometry.  <a href="#a0f383e3e9db45e438f3cfd7f82f0af77"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#add8ce27223fdd5f038cbbaa4f552a2c1">getNumNeutronsPerBatch</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of neutrons per batch for this simulation.  <a href="#add8ce27223fdd5f038cbbaa4f552a2c1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a1110957b5b8e1eafdd6f34ffa233d4d1">getTotalNumNeutrons</a> ()</td></tr>
@@ -136,6 +138,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total volume occuppied by the geometry.  <a href="#a982427d7ad500c703b5348f455b7dced"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#acf97321748bd303bab303acc818622a2">getSourceSamplingRadius</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the source sampling radius used for rejection sampling of random fission emission source sites.  <a href="#acf97321748bd303bab303acc818622a2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#ac066198c6793d7d61d946f76d4db4296">setName</a> (const char *name)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of the geometry.  <a href="#ac066198c6793d7d61d946f76d4db4296"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a854bbe0cddc82c8d0ccc0303ea7e8db8">setSourceSamplingRadius</a> (float radius)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the source sampling radius used for rejection sampling of random fission emission source sites.  <a href="#a854bbe0cddc82c8d0ccc0303ea7e8db8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a0160e8eef8ecd7655dc2ddc8f7a46391">setNeutronsPerBatch</a> (int num_neutrons_per_batch)</td></tr>
@@ -156,6 +160,14 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new region to the geometry.  <a href="#a68b1626c22c75914eafdcee252406b62"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a81f067e09349731a0b90bdda98b83594">setBucklingSquared</a> (float buckling_squared)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the square of the geometric buckling for the geometry.  <a href="#a81f067e09349731a0b90bdda98b83594"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a4247ec14ea7344eed87dbc8c1599f2d7">contains</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether or not the geometry contains this neutron.  <a href="#a4247ec14ea7344eed87dbc8c1599f2d7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a23c375ffca05b253762f527080ce40bd">contains</a> (float x, float y, float z)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine whether or not this point is contained in the geometry.  <a href="#a23c375ffca05b253762f527080ce40bd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a39ba1209e8c043f09d64ced49e3d57ae">findContainingRegion</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the region containing a neutron.  <a href="#a39ba1209e8c043f09d64ced49e3d57ae"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRegion.html">Region</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#ab9854b7ab462c6407d459fd402e40da4">findContainingRegion</a> (float x, float y, float z)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the region containing a neutron.  <a href="#ab9854b7ab462c6407d459fd402e40da4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a32ac1087eeb0f71d4f36b751e65cfe9d">runMonteCarloSimulation</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The primary Monte Carlo kernel for a PINSPEC simulation.  <a href="#a32ac1087eeb0f71d4f36b751e65cfe9d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#accb7b19da09e518ff5fe5158aa915b5f">initializeSourceNeutron</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
@@ -164,12 +176,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a8cff9ffc1cdeff81b79b1be44bc07727">initializeProbModFuelRatios</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a pre-computed array of moderator to first flight collsion probabilities using Carlvik's two term rational model.  <a href="#a8cff9ffc1cdeff81b79b1be44bc07727"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a39ba1209e8c043f09d64ced49e3d57ae">findContainingRegion</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the region containing a neutron.  <a href="#a39ba1209e8c043f09d64ced49e3d57ae"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a4247ec14ea7344eed87dbc8c1599f2d7">contains</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether or not the geometry contains this neutron.  <a href="#a4247ec14ea7344eed87dbc8c1599f2d7"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a58de01c859561456cb413a4beb48ab9c">_geometry_name</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#ab2f62b285fd3ebc06114db10a3f50167">_num_neutrons_per_batch</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#a600fda86b7f3951331ae486548306407">_num_batches</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeometry.html#af78593ff6416ad7fc318e4b8692ed77e">_num_threads</a></td></tr>
@@ -196,16 +205,26 @@ Private Attributes</h2></td></tr>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classGeometry.html" title="The Geometry represents the highest level entity in which a neutron may reside during a PINSPEC simul...">Geometry</a> represents the highest level entity in which a neutron may reside during a PINSPEC simulaiton. The geometry consists of one or more regions and controls the highest level Monte Carlo kernel. </p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ad2146d68260c035d7236de7638c036de"></a><!-- doxytag: member="Geometry::Geometry" ref="ad2146d68260c035d7236de7638c036de" args="(spatialType spatial_type)" -->
+<a class="anchor" id="ad39af329db002b95f8659cf81a00684c"></a><!-- doxytag: member="Geometry::Geometry" ref="ad39af329db002b95f8659cf81a00684c" args="(spatialType spatial_type, const char *name=(const char *)&quot;&quot;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classGeometry.html#ad2146d68260c035d7236de7638c036de">Geometry::Geometry</a> </td>
+          <td class="memname"><a class="el" href="classGeometry.html#ad39af329db002b95f8659cf81a00684c">Geometry::Geometry</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="Geometry_8h.html#af321382c4a8d9fdb71c83382f82fac00">spatialType</a>&#160;</td>
-          <td class="paramname"><em>spatial_type</em></td><td>)</td>
+          <td class="paramname"><em>spatial_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em> = <code>(const&#160;char*)&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
@@ -252,7 +271,7 @@ Private Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structneutron.html">neutron</a> *&#160;</td>
           <td class="paramname"><em>neutron</em></td><td>)</td>
-          <td><code> [private]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -269,6 +288,50 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a23c375ffca05b253762f527080ce40bd"></a><!-- doxytag: member="Geometry::contains" ref="a23c375ffca05b253762f527080ce40bd" args="(float x, float y, float z)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classGeometry.html#a4247ec14ea7344eed87dbc8c1599f2d7">Geometry::contains</a> </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Determine whether or not this point is contained in the geometry. </p>
+<p>Returns true for INFINITE_HOMOGENEOUS and HOMOGENEOUS_EQUIVALENCE geometries. Returns true for HETEROGENEOUS geometries if the point is contained within one of the geomtry's regions. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>the x-coordinate of interest </td></tr>
+    <tr><td class="paramname">y</td><td>the y-coordinate of interest </td></tr>
+    <tr><td class="paramname">z</td><td>the z-coordinate of interest </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a39ba1209e8c043f09d64ced49e3d57ae"></a><!-- doxytag: member="Geometry::findContainingRegion" ref="a39ba1209e8c043f09d64ced49e3d57ae" args="(neutron *neutron)" -->
 <div class="memitem">
 <div class="memproto">
@@ -278,7 +341,7 @@ Private Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structneutron.html">neutron</a> *&#160;</td>
           <td class="paramname"><em>neutron</em></td><td>)</td>
-          <td><code> [private]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -289,6 +352,50 @@ Private Attributes</h2></td></tr>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">neutron</td><td>the neutron of interest </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ab9854b7ab462c6407d459fd402e40da4"></a><!-- doxytag: member="Geometry::findContainingRegion" ref="ab9854b7ab462c6407d459fd402e40da4" args="(float x, float y, float z)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classRegion.html">Region</a> * <a class="el" href="classGeometry.html#a39ba1209e8c043f09d64ced49e3d57ae">Geometry::findContainingRegion</a> </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Finds the region containing a neutron. </p>
+<p>Finds the region containing a neutron and returns a pointer to it or NULL if no region was found. Also returns NULL for INFINITE_HOMOGENEOUS and HOMOGENEOUS_EQUIVALENCE geometry types. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>the x-coordinate of interest </td></tr>
+    <tr><td class="paramname">y</td><td>the y-coordinate of interest </td></tr>
+    <tr><td class="paramname">z</td><td>the z-coordinate of interest </td></tr>
   </table>
   </dd>
 </dl>
@@ -311,6 +418,25 @@ Private Attributes</h2></td></tr>
 
 <p>Returns the square of the geometric buckling for this geometry. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>the square of the geometric buckling </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0f383e3e9db45e438f3cfd7f82f0af77"></a><!-- doxytag: member="Geometry::getName" ref="a0f383e3e9db45e438f3cfd7f82f0af77" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * <a class="el" href="classGeometry.html#a0f383e3e9db45e438f3cfd7f82f0af77">Geometry::getName</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns the name of the geometry. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>the name of the goemetry </dd></dl>
 
 </div>
 </div>
@@ -586,6 +712,31 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac066198c6793d7d61d946f76d4db4296"></a><!-- doxytag: member="Geometry::setName" ref="ac066198c6793d7d61d946f76d4db4296" args="(const char *name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classGeometry.html#ac066198c6793d7d61d946f76d4db4296">Geometry::setName</a> </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the name of the geometry. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>the name of the geometry </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a0160e8eef8ecd7655dc2ddc8f7a46391"></a><!-- doxytag: member="Geometry::setNeutronsPerBatch" ref="a0160e8eef8ecd7655dc2ddc8f7a46391" args="(int num_neutrons_per_batch)" -->
 <div class="memitem">
 <div class="memproto">
@@ -849,6 +1000,20 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a58de01c859561456cb413a4beb48ab9c"></a><!-- doxytag: member="Geometry::_geometry_name" ref="a58de01c859561456cb413a4beb48ab9c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* <a class="el" href="classGeometry.html#a58de01c859561456cb413a4beb48ab9c">Geometry::_geometry_name</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>The name of the geometry </p>
+
+</div>
+</div>
 <a class="anchor" id="aae3ad047669451601277fcdabab2922a"></a><!-- doxytag: member="Geometry::_infinite_medium" ref="aae3ad047669451601277fcdabab2922a" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -1069,7 +1234,7 @@ Private Attributes</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="classGeometry.html">Geometry</a>      </li>
 
-    <li class="footer">Generated on Mon Apr 15 2013 12:24:18 by
+    <li class="footer">Generated on Wed Apr 17 2013 15:37:47 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

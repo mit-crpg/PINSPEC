@@ -1,6 +1,6 @@
 var classEquivalenceRegion =
 [
-    [ "EquivalenceRegion", "classEquivalenceRegion.html#a7e3c4434d82630f0bbefa805d01b44da", null ],
+    [ "EquivalenceRegion", "classEquivalenceRegion.html#a63e848c09ff0f36ece5078fc7695ab6e", null ],
     [ "~EquivalenceRegion", "classEquivalenceRegion.html#aaf7f80ef7a6a3356feb3ba58a8d5c520", null ],
     [ "collideNeutron", "classEquivalenceRegion.html#aa03e69591b2979461f7b7ff24479c4d8", null ],
     [ "computeFuelFuelCollsionProb", "classEquivalenceRegion.html#a121a034f5d979895f0ab00be99d3d9ad", null ],
