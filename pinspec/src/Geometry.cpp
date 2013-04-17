@@ -707,12 +707,12 @@ void Geometry::initializeSourceNeutron(neutron* neutron) {
 
     if (_spatial_type == INFINITE_HOMOGENEOUS) {
         neutron->_region = _infinite_medium;
-        neutron->_phi = -1.0;
+        neutron->_surface = NULL;
     }
 
     else if (_spatial_type == HOMOGENEOUS_EQUIVALENCE) {
         neutron->_region = _fuel;
-        neutron->_phi = -1.0;
+        neutron->_surface = NULL;
     }
 
     /* Use rejection sampling to sample a source site within a HETEROGENEOUS 
@@ -755,13 +755,7 @@ void Geometry::initializeSourceNeutron(neutron* neutron) {
         neutron->_u = (float(rand()) / RAND_MAX) * 2.0 - 1.0;
         neutron->_v = (float(rand()) / RAND_MAX) * 2.0 - 1.0;
         neutron->_w = (float(rand()) / RAND_MAX) * 2.0 - 1.0;
-        neutron->_mu = cos(neutron->_w/norm2D<float>(neutron->_u, neutron->_v));
-        neutron->_phi = atan2(neutron->_v, neutron->_u);
-
-        /* Correct for atan2 in [-pi, pi] to phi in [0, 2pi] */
-        if (neutron->_w <= 0.0)
-            neutron->_phi += 2.0 * M_PI;
-	}
+    }
 
     return;
 }

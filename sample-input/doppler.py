@@ -173,7 +173,8 @@ for temp in range(len(temps)):
 
     # Plot fluxes
     plotter.plotFlux(fluxes,title='Flux for Temp = ' + str(temps[temp]) \
-                        + 'K', filename='flux-temp-'+str(temps[temp])+'K')
+                        + 'K', filename='flux-temp-'+str(temps[temp])+'K', \
+                         uselegend=True)
 
     # print the reaction rate ratios and resonance integrals to the shell
     process.printTallies(abs_rate_ratios[temp], 

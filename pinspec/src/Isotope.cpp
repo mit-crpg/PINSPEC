@@ -2149,7 +2149,7 @@ void Isotope::collideNeutron(neutron* neutron) {
     /* If the neutron is in an INFINITE_HOMOGENEOUS or HOMOGENEOUS_EQUIVALENCE 
      * geometry then it's azimuthal angle phi will have been initialized to 
      * -1 and we can simply uniformly sample an outgoing energy */
-    if (neutron->_phi == -1.0) {
+    if (neutron->_surface == NULL) {
         /* Sample outgoing energy uniformally between [alpha*E, E] */
         float alpha = getAlpha();
         double random = (float)(rand()) / (float)(RAND_MAX);
@@ -2187,13 +2187,18 @@ void Isotope::collideNeutron(neutron* neutron) {
 					        u * sin_phi)) / sqrt_w_squared);
         neutron->_w = mu_l * w + (sqrt_mu_l_squared * sqrt_w_squared * cos_phi);
 
-        neutron->_mu = cos(neutron->_w / 
-			   norm2D<float>(neutron->_u, neutron->_v));
-        neutron->_phi = atan2(neutron->_v, neutron->_u);
+        float direction_norm = norm3D<float>(neutron->_u, neutron->_v, neutron->_w);
+        neutron->_u /= direction_norm;
+	neutron->_v /= direction_norm;
+	neutron->_w /= direction_norm;
+
+	//        neutron->_mu = cos(neutron->_w / 
+	//		   norm2D<float>(neutron->_u, neutron->_v));
+        //neutron->_phi = atan2(neutron->_v, neutron->_u);
 
         /* Correct for atan2's result in [-pi, pi] to interval [0, 2*pi] */
-        if (neutron->_v <= 0.0)
-            neutron->_phi += 2.0 * M_PI;
+	//    if (neutron->_v <= 0.0)
+	//  neutron->_phi += 2.0 * M_PI;
     
         /* Asymptotic elastic scattering above 4 eV */
         if (neutron->_energy > 4.0 || !_use_thermal_scattering)

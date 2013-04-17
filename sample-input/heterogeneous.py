@@ -1,5 +1,6 @@
 import numpy
 import math
+import random
 import matplotlib.pyplot as plt
 from pinspec import *
 import pinspec.process as process
@@ -18,9 +19,9 @@ from pinspec.log import *
 ###############################################################################
 
 # Simulation parameters
-num_batches = 50
-num_neutrons_per_batch = 10000
-num_threads = 4
+num_batches = 10
+num_neutrons_per_batch = 1000
+num_threads = 1
 nu = 2.45
 setOutputDirectory('heterogeneous')
 
@@ -31,6 +32,7 @@ radius_clad = 0.4750
 pitch = 1.26
 pitch_squared = pitch**2.0
 dancoff = 0.277
+source_sampling_radius = 2.0      # sphere within which to do rejection sampling
 
 py_setlevel('INFO')
 
@@ -184,7 +186,7 @@ geometry.addRegion(region_mod)
 geometry.addRegion(region_fuel)
 geometry.setNumBatches(num_batches)
 geometry.setNeutronsPerBatch(num_neutrons_per_batch)
-geometry.setNumThreads(1)
+geometry.setNumThreads(num_threads)
 geometry.setSourceSamplingRadius(0.5)
 
 
@@ -193,7 +195,8 @@ geometry.setSourceSamplingRadius(0.5)
 ###############################################################################
 
 # Run Monte Carlo simulation
-geometry.runMonteCarloSimulation();
+geometry.runMonteCarloSimulation()
+
 
 
 ###############################################################################
@@ -222,3 +225,13 @@ plotter.plotSlice(geometry, plane='YZ', lim1=[-1., 1.], lim2=[-1., 1.], \
 
 py_printf('INFO', 'Plotting the fission site source distribution...')
 plotter.plotFissionSourceDist(geometry)
+
+
+py_printf('INFO', 'Plotting neutron tracks...')
+
+plotter.trackANeutron(geometry, num_moves=100, plane='xy', \
+                          lim1=[-0.75, 0.75], lim2=[-0.75,0.75])
+plotter.trackANeutron(geometry, num_moves=100, plane='yz', \
+                          lim1=[-0.75, 0.75], lim2=[-3., 3.])
+plotter.trackANeutron(geometry, num_moves=100, plane='xz', \
+                          lim1=[-0.75, 0.75], lim2=[-3.,3.])

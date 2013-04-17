@@ -67,6 +67,9 @@ public:
     /***************************************************************************
      *****************  ATTRIBUTES FOR HETEROGENEOUS GEOMETRIES  ***************
      **************************************************************************/
+    /** A pointer to the nearest surface in a heterogeneous case */
+    Surface* _surface;
+
     /** The x-coordinate of this neutron's location */
     float _x;
 
@@ -88,14 +91,11 @@ public:
     /** The cosine of the polar angle \f$\theta\f$ of this neutron's direction 
      * vector: \f$\mu = cos(\theta)\f$
      */
-    float _mu;
+  //    float _mu;
 
     /** The azimuthal angle \f$\phi\f$ of this neutron's direction vector in 
      * the xy-plane */
-    float _phi;
-
-    /** A pointer to the nearest surface in a heterogeneous case */
-    Surface* _surface;
+  // float _phi;
 };
 
 
