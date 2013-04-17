@@ -152,35 +152,53 @@ For more details, see \href{http://scipy.org/Installing_SciPy/BuildingGeneral}{S
 
 
 \clearpage
-\subsection{A Special Note About Python Version}
+\subsection{A Special Note About Python Version and Running Python}
 \begin{itemize}
 \item Python2 vs. Python3: because of the syntax incompatibility between python2 and python3, PINSPEC only supports python2 (more specifically it is tested mostly with python2.7). Developers could choose to update the python source codes into python3 syntax in the future if python3 gets more popular; though for now the easiest thing to do for users with python3 would be to install a copy of python2.7 as well, and every command that has `python' in it, using the syntax `python2.7' would request the correct version of python. 
 
+\item We provide a setup.py file in the release that would build PINSPEC using \href{http://docs.python.org/2/distutils/index.html}{distutils}. To run in Linux:\begin{verbatim}
+> python setup.py install --user
+\end{verbatim}
+The `--user' flag is handy for two reasons: a) you do not need root access later to run etc; b) you do not want to build PINSPEC into the default directories on your machine that keep your real programs.
+
 \item Mac users may run into problems with running our python setup.py file (located in the main directory). It is recommended to use the env prefix as in the following example for users with gcc-4.7:
 \begin{verbatim}
-env CC=gcc-mp-4.7 python setup.py install --user
+> env CC=gcc-mp-4.7 python setup.py install --user
 \end{verbatim}
 \end{itemize}
 
 \clearpage
 \subsection{Additional Tools}
-This section contains some notes on useful tools that might help developers. 
+This section contains some notes on useful tools that developers might find beneficial. Notice this is by all means an incomplete list and would be updated from time to time. 
 \begin{enumerate}
-\item GIT. 
+\item Version control/source code management. We choose to use GIT (and use gitHub as our host for repositories), so it is recommended that the developers use git as well. However if you really insist, there might be a way to set up such that you can continue to use SVN, which is supported by GIT now, though we would be at the risk of losing our commit log messages. 
 
-\item SCP
 
-\item SSHFS: 
+\item Secure Copy (SCP) is useful in securely transferring files between two hosts. Two hosts can be: your local machine, and the server that you might run PINSPEC on. More specifically, the general command for copying a file from a local folder to a remote folder is: 
+\begin{verbatim}
+> scp <local folder path> <account>@<ip>:<remote folder path>
+\end{verbatim}
+For coying files from a remote folder to a local machine, you just need to need to swap the second and third argument. 
+
+\item SSHFS enables mounting of a remote filesystem on a local machine. That is,  you can mount a remote directory (say, the one you have on a server) onto your laptop, and you can access it graphically using your file management system (e.g., click open a file, edit it, etc). Here are the three common commands:
 \begin{itemize}
+\item To mount: 
+\begin{verbatim}
+> sshfs -0 idmap=user <account>@<ip>:<remote folder path> <local folder path>
+\end{verbatim}
 
 \item To see what sftp subsystems are mounted: 
 \begin{verbatim}
-    ps aux | grep -i sftp | grep -v grep
+> ps aux | grep -i sftp | grep -v grep
 \end{verbatim}
 
-
+\item To unmount: 
+\begin{verbatim}
+> fusermount -u <local folder path>
+\end{verbatim}
 \end{itemize}
 
+\item To be continued. 
 \end{enumerate}
 
 
@@ -192,20 +210,50 @@ This section contains some notes on useful tools that might help developers.
 \clearpage
 \section{Manipulating Python Inputs}\label{python}
 \subsection{Utilizing Tally Arithmetic}
-There are three tally arithmetics supported in PINSPEC: 
+In writing the python input file, users can utilize the tally arithmetics implemented and create essentially a new tally type by `adding,' `subtracting,' `multiplying,' and `dividing' two existing tallies together. 
+
+There are three tally arithmetics supported in PINSPEC using operator overload; we use addition as an example:
 \begin{enumerate}
-\item tally1 + tally2: creates a new tally with the correct statistics. 
-\item tally1 + 3.5:
-\item tally1.addFloats(numpy.array([1,2])), or addIntegers, or addDoubles. 
+\item `new\_ tally = tally1 + tally2': after error checking (e.g., tallies have computed batch statistics, tally1 and tally2 have the same \# of energy bins), a new tally (of derived type) of the correct length will be initialized, and entry $i$ in new\_tally would be the addition of tally1[$i$] $+$ tally2[$i$]. 
+ 
+\item `new\_tally = tally1 + 3.5': a new tally (of derived type) will be initialized to have the same length as tally1, and for every entry $i$, new\_tally[$i$] = tally1[$i$] + 3.5. Notice PINSPEC only supports tally $+$ constant, not constant $+$ tally. 
+
+\item `new\_tally = tally1.addFloats(numpy.array([1,2]))': instead of the second argument being a single number, users can choose to pass in an array of numbers as well using numpy. In addition to addFloats(..), PINSPEC also supports addIntegers(..), or addDoubles(..). 
 \end{enumerate}
+For more details, see Tally.cpp's operator overloading functions. 
+
+If the tally you want cannot be implemented this way, see Section.~\ref{example-add-tally} for suggestions on how to implement your own tally types. 
 
 
 \clearpage
 \subsection{Example: Add A New Isotope}
+The PINSPEC package comes with a library of common isotopes' ENDF/B-VII cross sections for capture, elastic scattering and fission cross sections. 
+\begin{itemize}
+\item To view the isotopes available, developers can do a `ls' in PINSPEC/pinspec/xs-lib. 
+\item To add a provided isotope to your simulation, call Isotope construct with the isotope name (formatted as the isotope's periodic table element name followed by hyphen followed by atomic mass). For instance, 
+\begin{verbatim}
+U235 = Isotope('U-235')
+O16 = Isotope('O-16')
+Zr90 = Isotope('Zr-90')
+\end{verbatim}
+\end{itemize}
+If an isotope of desire is not included in the xs folder, following the instruction in the next sub-section on how to define your own isotope cross section, and construct isotope object the same way as if the isotope is a PINSPEC pre-defined one.
+
 
 \clearpage
 \subsection{Example: Add A New Cross Section}
+It is also possible to add to this library and use other isotopes from the ENDF/B-VII cross section library. To do this, visit the National Nuclear Data Center and follow the steps below:
+\begin{itemize}
+\item Select the element you wish to add to the library.
+\item On the right hand side, select the isotope.
+\item On the right hand side, select the `plot' link next to the cross section desired ((n,elastic), (n,gamma) or (n,total fission)). A new tab will appear.
+\item On the right hand side, click "view evaluated data".
+\item At the top of the page, scroll over the link called "Text". Right click and select `Save Link As..'. This will give you the option of saving the cross section file as a text file.
 
+\item Save the above file in the xs-lib folder (PINSPEC/pinspec/xs-lib), and title it with the element abbreviation, mass number, and isotope designation. For example, the capture cross section (n,gamma) for Boron 10 should be saved as B-10-capture.txt. 
+
+\item Then you can use it as any pre-defined isotope types. 
+\end{itemize}
 
 
 
@@ -215,10 +263,13 @@ There are three tally arithmetics supported in PINSPEC:
 \clearpage
 \section{Manipulating C++ Codes}\label{C++}
 \subsection{Create A New Source File}
-If you create a new source file, make sure you add it to \textit{setup.py}
+If you create a new source file, make sure do the following: 
 
 \begin{itemize}
+\item Add it to \textit{setup.py}
+
 \item If you need to pass data from the python input file into the C file, or you would like to retrieve the results generated by C++ and plot or print it using python, see Section~\ref{data}. 
+
 \item Make sure you update the doxygen commenting accordingly, and run doxygen by:
 \begin{verbatim}
  doxygen docs/Doxyfile
@@ -230,10 +281,15 @@ See more details in Section.~\ref{doxygen}.
 \item Two examples are shown about how to add a new tally and a new surface. 
 \end{itemize}
 
+
+
+\clearpage
 \subsection{Passing Data Between Python and C++} \label{data}
 If you would like to gain access to an array of data, you need to do so through SWIG. Examples can be found in Geometry.i which contains numpy template. 
 
 
+
+\clearpage
 \subsection{Doxygen Commenting} \label{doxygen}
 To generate html and pdf from source code commenting, run Doxygen by the following command:
 \begin{verbatim}
