@@ -32,6 +32,8 @@ Tally* TallyFactory::createTally(Isotope* isotope, tallyType tally_type,
         return new IsotopeElasticRateTally(isotope, tally_name);
     else if (tally_type == GROUP_TO_GROUP_RATE)
 	return new IsotopeGroupRateTally(isotope, tally_name);
+    else if (tally_type == OUTSCATTER_RATE)
+	return new IsotopeOutScatterRateTally(isotope, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new IsotopeAbsorptionRateTally(isotope, tally_name);
     else if (tally_type == CAPTURE_RATE)
@@ -71,6 +73,8 @@ Tally* TallyFactory::createTally(Material* material, tallyType tally_type,
         return new MaterialElasticRateTally(material, tally_name);
     else if (tally_type == GROUP_TO_GROUP_RATE)
 	return new MaterialGroupRateTally(material, tally_name);
+    else if (tally_type == OUTSCATTER_RATE)
+	return new MaterialOutScatterRateTally(material, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new MaterialAbsorptionRateTally(material, tally_name);
     else if (tally_type == CAPTURE_RATE)
@@ -110,6 +114,8 @@ Tally* TallyFactory::createTally(Region* region, tallyType tally_type,
         return new RegionElasticRateTally(region, tally_name);
     else if (tally_type == GROUP_TO_GROUP_RATE)
 	return new RegionGroupRateTally(region, tally_name);
+    else if (tally_type == OUTSCATTER_RATE)
+	return new RegionOutScatterRateTally(region, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new RegionAbsorptionRateTally(region, tally_name);
     else if (tally_type == CAPTURE_RATE)
@@ -149,6 +155,8 @@ Tally* TallyFactory::createTally(Geometry* geometry, tallyType tally_type,
         return new GeometryElasticRateTally(geometry, tally_name);
     else if (tally_type == GROUP_TO_GROUP_RATE)
 	return new GeometryGroupRateTally(geometry, tally_name);
+    else if (tally_type == OUTSCATTER_RATE)
+	return new GeometryOutScatterRateTally(geometry, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new GeometryAbsorptionRateTally(geometry, tally_name);
     else if (tally_type == CAPTURE_RATE)

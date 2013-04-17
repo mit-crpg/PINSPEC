@@ -2983,11 +2983,11 @@ Tally* createTally(Geometry* geometry, tallyType tally_type,
                                                         " TallyFactory.");
     if (tally_type == FLUX)
     	return new GeometryFluxTally(geometry, tally_name);
-	else if (tally_type == LEAKAGE_RATE)
-		return new GeometryLeakageRateTally(geometry, tally_name);
+    else if (tally_type == LEAKAGE_RATE)
+	return new GeometryLeakageRateTally(geometry, tally_name);
     else if (tally_type == INTERCOLLISION_TIME)
-		return new GeometryInterCollisionTimeTally(geometry, 
-							   tally_name);
+	return new GeometryInterCollisionTimeTally(geometry, 
+						   tally_name);
     else if (tally_type == COLLISION_RATE)
         return new GeometryCollisionRateTally(geometry, tally_name);
     else if (tally_type == ELASTIC_RATE)
