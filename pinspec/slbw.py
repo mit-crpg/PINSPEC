@@ -7,7 +7,7 @@
 #        dependent and require doppler broadening effects to be treated for
 #        resonant absorbers.
 # @author Jessica Hunter
-# @date February 25, 2013
+# @date April 17, 2013
 
 from pinspec import *
 from log import *
@@ -20,33 +20,40 @@ import subprocess
 import math
 import scipy.special as spec
 
-
 ##
 # @brief Function to create resonant capture and scatter cross-sections.
 # @details Generates the cross-section at some temperature using resonance
-#          data and the Single-Level Breit-Wigner formalism.
+#          data and the Single-Level Breit-Wigner formalism. Function broadens
+#          a specific number of resonances from the ENDFB-VII library, then 
+#          creates identical resonances with even spacing to a specified
+#          energy limit, and then a specific flat cross section for the 
+#          remaining energy. When generating elastic cross sections, the
+#          flat cross section is set to the potential scattering value.
+# @code
+# temp=1200
+# slbw.SLBWXS(u238, temp, 'capture')
+# @endcode
 # @param isotope the isotope of interest
-# @param T the temperature in degrees Kelvin
-# @param typeXS an optional argument string for the cross-section type
-# @param numberofpositiveresonances the number of resonance to use with
+# @param temp the temperature in degrees Kelvin
+# @param xs_type an optional argument string for the cross-section type
+# @param number_of_pos_res the number of positive resonance to use with
 #        \f$ E_0 > 0 \f$
-# @param Emin the minimum energy at which to generate the cross-section (eV)
-# @param Ecut
-# @param Ebnwdth 
-# @param resspacing
-# @param idntclfakereslb
-# @param gamg
-# @param flatxs
-# @param finalEcut
-def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances=14, \
-           Emin=1e-5, Ecut=1000.0, Ebnwdth = 0.075, resspacing = 25, \
-           idntclfakereslb = 300, gamg = 0.023, flatxs = 0.1, finalEcut=20E6):
+# @param energy_min the minimum energy at which to generate the cross-section (eV)
+# @param energy_max the maximum energy of the cross section (eV)
+# @param upper_energy_limit_identical_res the upper energy limit of the equally spaced, identical resonances section
+# @param energy_bin_width the width of the energy bin for the cross section
+# @param resonance_spacing_identical_res the spacing between resonance peaks for the identical resonances section
+# @param lower_bound_identical_res the lower energy bound for the identical resonances section
+# @param gamma_gamma_identical_res the \f$\Gamma_{\gamma}\f$ value for the identical resonances section
+# @param flat_xs a flat cross section used for the capture cross section above the identical resonances region
+def buildSLBWXS(isotope,temp,xs_type='capture',number_of_pos_res=14, \
+           energy_min=1e-5, energy_max=20E6, upper_energy_limit_identical_res=1000.0, energy_bin_width = 0.075, resonance_spacing_identical_res = 25, \
+           lower_bound_identical_res = 300, gamma_gamma_identical_res = 0.023, flat_xs = 0.1):
 
     #-------------------------------------------------
     #---Construct resonance parameter arrays from given file
     #--------------------------------------------------
     # Get file path 
-    #cur_dir = os.getcwd()
     filepath = str(pinspec.getXSLibDirectory()) + isotope +'-RP.txt'
     if os.path.exists(filepath) == True:
  	py_printf('INFO', 'Loading resonance paramater file '\
@@ -86,7 +93,7 @@ def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances=14, \
 	# parse each of the rest of the desired resonances and append to 
         # the arrays
 	for i, line in enumerate(restxt):
-            if i < (numberofpositiveresonances - 1):
+            if i < (number_of_pos_res - 1):
                 out = parse(line)
 		E0 = numpy.append(E0, out[0])
 		GN = numpy.append(GN, out[1])
@@ -101,17 +108,17 @@ def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances=14, \
     #--------------------------------------------------
     #resonances up to 1keV------------
     # Make up an E_0 vector with resonance spacing from 300 to 1 keV
-    numbns = round((Ecut - idntclfakereslb) / resspacing)
-    Enot = numpy.linspace(idntclfakereslb, Ecut, numbns)
+    numbns = round((upper_energy_limit_identical_res - lower_bound_identical_res) / resonance_spacing_identical_res)
+    Enot = numpy.linspace(lower_bound_identical_res, upper_energy_limit_identical_res, numbns)
 
     # Make up Gamma_gamma (0.023 for U-238)
     Gamma_g = numpy.empty_like(Enot)
-    Gamma_g[:] = gamg
+    Gamma_g[:] = gamma_gamma_identical_res
 
     # Make up gamma_n for each
     # Last known resonance E_0 (291.0206 for U-238)
-    E_last = E0[numberofpositiveresonances - 1]  
-    Gamma_nlast = GN[numberofpositiveresonances - 1]  # Last known Gn value
+    E_last = E0[number_of_pos_res - 1]  
+    Gamma_nlast = GN[number_of_pos_res - 1]  # Last known Gn value
     Gamma_n = numpy.empty_like(Enot)
     for k in range(len(Enot)):
 	Gamma_n[k] = Gamma_nlast * ((Enot[k] / E_last) ** 0.5)
@@ -130,8 +137,8 @@ def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances=14, \
     A = float(A)
 
     # Construct Energy grid for fictitious XS
-    nbins = round((Ecut - Emin) / Ebnwdth)
-    E = numpy.logspace(numpy.log10(Emin), numpy.log10(Ecut), nbins)
+    nbins = round((upper_energy_limit_identical_res - energy_min) / energy_bin_width)
+    E = numpy.logspace(numpy.log10(energy_min), numpy.log10(upper_energy_limit_identical_res), nbins)
 
     # Set k value
     k = 8.617e-5
@@ -145,7 +152,7 @@ def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances=14, \
 
     # arrays for each resonance (CHECK IF NUMPY MATH IS RIGHT)
     Gamma = GN + GG  # total gamma
-    squig = Gamma * ((A / (4 * k * T * E0)) ** 0.5)  # squiggle
+    squig = Gamma * ((A / (4 * k * temp * E0)) ** 0.5)  # squiggle
     r = (2603911 / E0) * ((A + 1) / A)  # r
     q = (r * SigP) ** 0.5  # q
 
@@ -160,29 +167,20 @@ def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances=14, \
 	y = (((x + 1j) / 2) * squig[i])
 	psichi = (math.pi * squig[i] / (2 * (math.pi ** 0.5))) * spec.wofz(y)
 	psi = psichi.real
-	#plt.plot(psi)
-	#plt.show()
 	chi = 2.0*psichi.imag
-	#plt.plot(chi)
-	#plt.show()
 
 	# generate cross sections for this resonance, and sum
 	sigma_g = sigma_g + (GN[i] / Gamma[i]) * (GG[i] / Gamma[i]) * \
 	    ((E0[i] / E) ** 0.5) * (r[i] * psi)
-	sigma_n = sigma_n + ((GN[i] / Gamma[i])**2) * (r[i] * psi + q[i] * chi)
-	#plt.loglog(E, sigma_n)
-	#plt.show()		
+	sigma_n = sigma_n + ((GN[i] / Gamma[i])**2) * (r[i] * psi + q[i] * chi)		
 	
-    #plot fictitious XS
-    #plt.loglog(E, sigma_n)
-    #plt.savefig('U238SXS.png')
     #-----------------------------------------------------------------
     # Now that we have cross sections, we can frankenstein after 1 keV
     #----------------------------------------------------------------
     # From 1keV to 20E6 eV, use 0.1 barns for capture (automated to use inputs)
-    E2 = numpy.linspace(Ecut + Ebnwdth, finalEcut, 10)
+    E2 = numpy.linspace(upper_energy_limit_identical_res + energy_bin_width, energy_max, 10)
     sigma_g2 = numpy.empty_like(E2)
-    sigma_g2[:] = flatxs
+    sigma_g2[:] = flat_xs
     sigma_n2 = numpy.empty_like(E2)
     sigma_n2[:] = SigP
 
@@ -198,7 +196,7 @@ def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances=14, \
     #----------------------------------
     #---So if capture is specified
     #---------------------------------
-    if typeXS=='capture':
+    if xs_type=='capture':
    	# write output file for capture XS
 	out_name = getXSLibDirectory()+El+'-'+str(int(A))+'-capture.txt'
 	numpy.savetxt(out_name, EAXS, newline='\n', delimiter=',')
@@ -208,15 +206,15 @@ def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances=14, \
 	f.close()
 	# open the file again for writing
 	f = open(out_name, 'w')
-	f.write('Doppler Broadened SLBW fictitious capture XS at T=' + \
-			str(T)+'K\n')
+	f.write('Doppler Broadened SLBW fictitious capture XS at temp=' + \
+			str(temp)+'K\n')
 	# write the original contents
 	f.write(text)
 	f.close()
     #----------------------------------
     #---So if capture is specified
     #---------------------------------
-    if typeXS=='scatter':
+    if xs_type=='scatter':
    	# write output file for scatter XS
 	out_names = getXSLibDirectory()+El+'-'+str(int(A))+'-elastic.txt'
 	numpy.savetxt(out_names, ESXS, newline='\n', delimiter=',')
@@ -227,7 +225,7 @@ def SLBWXS(isotope,T,typeXS='capture',numberofpositiveresonances=14, \
 	# open the file again for writing
 	g = open(out_names, 'w')
 	g.write('Doppler Broadened SLBW fictitious resonant scattering XS ' + \
-			'at T='+str(T)+'K\n')
+			'at temp='+str(temp)+'K\n')
 	# write the original contents
 	g.write(texts)
 	g.close()
@@ -245,9 +243,6 @@ def convert(string):
     value = num * (10 ** exp)
     return value
 
-
-# function to parse a given res param string line into the individual float
-#  values of E0, GN, and GG for future appending
 ##
 # @brief Function to parse a string and convert into resonance parameters.
 # @details Function to parse a resonance parameter string into \f$E_0\f$,
@@ -269,9 +264,9 @@ def parse(string):
 # @brief Function to generate a potential scattering cross-section
 #        for an isotope based on data in a resonance parameters file.
 # @param isotope the isotope of interest
-# @param Emin
-# @param finalEcut
-def generatePotentialScattering(isotope, Emin=1e-5, finalEcut=20E6):
+# @param energy_min the upper limit of the energy range
+# @param energy_max the lower limit of the energy range
+def generatePotentialScattering(isotope, energy_min=1e-5, energy_max=20E6):
 
     #isotope = 'U-238-ResonanceParameters.txt'
     filepath = str(pinspec.getXSLibDirectory()) + isotope + '-RP.txt'
@@ -284,7 +279,7 @@ def generatePotentialScattering(isotope, Emin=1e-5, finalEcut=20E6):
 	# Parse first line for SigP
 	junk, SigP, barns = restxt.readline().split(' ', 2)
 	SigP = float(SigP)
-    E = numpy.logspace(numpy.log10(Emin), numpy.log10(finalEcut), 2)
+    E = numpy.logspace(numpy.log10(energy_min), numpy.log10(energy_max), 2)
     SXS=numpy.zeros_like(E)
     SXS[:]=SigP
     ESXS = (E, SXS)
@@ -310,28 +305,23 @@ def generatePotentialScattering(isotope, Emin=1e-5, finalEcut=20E6):
 # @brief Function to generate a plot of the SLBW generated cross-section
 #        along with the ENDF-VII version of the cross-section for comparison.
 # @param isotope the isotope of interest
-# @param XStype
-# @param RI
-# @param dir
-def compareXS(isotope, XStype='capture', RI='no', dir='.'):
-    #Resonance Integral Boundaries
-    RIb=numpy.array([[0.01,0.1],[0.1,1.0],[6,10],[1,6],[10,25],[25,50],\
-                                    [50,100],[0.5,10000]], dtype=float)
+# @param type_xs type of cross section, 'capture' or 'elastic' ('scatter' also accepted)
+# @param dir the directory in which the plot will be saved
+def compareXS(isotope, type_xs='capture', dir='.'):
 	
     #Get fake XS from info given
     El, A = isotope.split('-', 1)
     #Find proper filename for fake XS
-    if XStype=='scatter':
-		XStype='elastic'
-    path=str(getXSLibDirectory())+'/'+El+'-'+A+'-'+XStype+'.txt'
+    if type_xs=='scatter':
+		type_xs='elastic'
+    path=str(getXSLibDirectory())+'/'+El+'-'+A+'-'+type_xs+'.txt'
     #Read in array for fictitious XS at 300
-    #resT=open(path, 'r').readlines()
     EnT=numpy.array([])
     barnsT=numpy.array([])
     invEnT=numpy.array([])
     with open(path) as resT:
    	#Parse out String containing Temperature
-	Junk, T = resT.readline().split('=', 1)
+	Junk, temp = resT.readline().split('=', 1)
 	for line in resT:
  	    EnTt, barnsTt=line.split(',', 1)
 	    EnTt=float(EnTt)
@@ -345,8 +335,7 @@ def compareXS(isotope, XStype='capture', RI='no', dir='.'):
 
     #Read in array for ENDF7 XS at 300
     npath=str(getXSLibDirectory())+'/BackupXS/'+El+'-'+A+'-' + \
-                                                            XStype+'.txt'
-    #Endf300=open(npath, 'r').readlines()
+                                                            type_xs+'.txt'
     EndfE300=numpy.array([])
     barnsEndF300=numpy.array([])
     invEndfE300=numpy.array([])
@@ -355,13 +344,13 @@ def compareXS(isotope, XStype='capture', RI='no', dir='.'):
 	Junk, xssource = Endf300.readline().split(' ', 1)
 	xssource=xssource.strip()
 	for line in Endf300:
- 	    EndfE300t, barnsEndF300t=line.split(',', 1)
-	    EndfE300t=float(EndfE300t)
-	    barnsEndF300t=float(barnsEndF300t)
-	    invEndfE300t=1/EndfE300t
-	    EndfE300=numpy.append(EndfE300,EndfE300t)
-	    barnsEndF300=numpy.append(barnsEndF300,barnsEndF300t)
-	    invEndfE300=numpy.append(invEndfE300,invEndfE300t)
+ 	    EndfE300temp, barnsEndF300temp=line.split(',', 1)
+	    EndfE300temp=float(EndfE300temp)
+	    barnsEndF300temp=float(barnsEndF300temp)
+	    invEndfE300temp=1/EndfE300temp
+	    EndfE300=numpy.append(EndfE300,EndfE300temp)
+	    barnsEndF300=numpy.append(barnsEndF300,barnsEndF300temp)
+	    invEndfE300=numpy.append(invEndfE300,invEndfE300temp)
 	
     log_printf(INFO,'Read in ENDF/B-VII XS correctly')
 
@@ -369,9 +358,9 @@ def compareXS(isotope, XStype='capture', RI='no', dir='.'):
     fig=plt.figure()
     plt.loglog(EnT,barnsT)
     plt.loglog(EndfE300,barnsEndF300)
-    CXStype=XStype.title()
-    plt.legend(['Doppler broadened '+El+'-'+A+' '+CXStype+' XS at T=' + \
-			T,xssource+' '+El+'-'+A+' '+CXStype+' XS at T=300K'], \
+    CXStype=type_xs.title()
+    plt.legend(['Doppler broadened '+El+'-'+A+' '+CXStype+' XS at temp=' + \
+			temp,xssource+' '+El+'-'+A+' '+CXStype+' XS at temp=300K'], \
                                         loc='lower left',prop={'size':10})
     plt.grid()
     plt.title(CXStype+' Cross Section Comparison')
