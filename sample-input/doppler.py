@@ -139,7 +139,7 @@ for temp in range(len(temps)):
     Eff_RIs.append([])
     abs_rate_ratios.append([])
 
-    slbw.SLBWXS('U-238', temps[temp], 'capture')
+    slbw.buildSLBWXS('U-238', temps[temp], 'capture')
     u238.loadXS('capture')
     RI = process.RITrue(u238, abs_rate_bin_edges, reaction='capture')
     RI.setName('True RI (Temp=%dK)' % temps[temp])
