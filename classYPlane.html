@@ -133,9 +133,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#a3acd886aef57f239f49abdf5004c0df0">setY</a> (float y)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the x-coordinate of the plane's intersection point with the y-axis.  <a href="#a3acd886aef57f239f49abdf5004c0df0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#a86c9563c4ed5ac95a7e9e6f860a247e1">evaluate</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y) $" src="form_53.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y) = qy + d = y - y_0 $" src="form_55.png"/>.  <a href="#a86c9563c4ed5ac95a7e9e6f860a247e1"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y) $" src="form_31.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y) = qy + d = y - y_0 $" src="form_32.png"/>.  <a href="#a86c9563c4ed5ac95a7e9e6f860a247e1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#a82075cb5fd14a23739af4a44a9a21769">evaluate</a> (float x, float y, float z)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_65.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y,z) = qy + d = y - y_0 $" src="form_72.png"/>.  <a href="#a82075cb5fd14a23739af4a44a9a21769"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_24.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y,z) = qy + d = y - y_0 $" src="form_33.png"/>.  <a href="#a82075cb5fd14a23739af4a44a9a21769"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#aecf609e3a160e847da3a69b7cd1e81f3">computeParametrizedDistance</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the parametrized distance to the <a class="el" href="classYPlane.html" title="The YPlane is a a plane perpendicular to the y-axis.">YPlane</a> along a neutron's trajectory.  <a href="#aecf609e3a160e847da3a69b7cd1e81f3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#aa8899ff929b56f242316ca684f671772">onSurface</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
@@ -193,7 +193,7 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Computes the parametrized distance to the <a class="el" href="classYPlane.html" title="The YPlane is a a plane perpendicular to the y-axis.">YPlane</a> along a neutron's trajectory. </p>
-<p>The distance returned is a parametrized distance along the unit vectory defining the neutron's trajectory, not a Cartesian distance. If the neutron is traveling away from the surface then the distance returned will be infinity. The equation used to compute the parametrized distance <img class="formulaInl" alt="$ d $" src="form_67.png"/> from a neutron at <img class="formulaInl" alt="$ y $" src="form_73.png"/> traveling with component an y-component of its unit trajectory vector <img class="formulaInl" alt="$ u $" src="form_69.png"/> to this xplane at <img class="formulaInl" alt="$ y_0 $" src="form_74.png"/> is: <img class="formulaInl" alt="$ d = \frac{y_0 - y}{u} $" src="form_75.png"/></p>
+<p>The distance returned is a parametrized distance along the unit vectory defining the neutron's trajectory, not a Cartesian distance. If the neutron is traveling away from the surface then the distance returned will be infinity. The equation used to compute the parametrized distance <img class="formulaInl" alt="$ d $" src="form_26.png"/> from a neutron at <img class="formulaInl" alt="$ y $" src="form_34.png"/> traveling with component an y-component of its unit trajectory vector <img class="formulaInl" alt="$ u $" src="form_28.png"/> to this xplane at <img class="formulaInl" alt="$ y_0 $" src="form_35.png"/> is: <img class="formulaInl" alt="$ d = \frac{y_0 - y}{u} $" src="form_36.png"/></p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">neutron</td><td>a pointer to a neutron struct </td></tr>
@@ -221,7 +221,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y) $" src="form_53.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y) = qy + d = y - y_0 $" src="form_55.png"/>. </p>
+<p>Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y) $" src="form_31.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y) = qy + d = y - y_0 $" src="form_32.png"/>. </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">neutron</td><td>the neutron of interest </td></tr>
@@ -264,7 +264,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_65.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y,z) = qy + d = y - y_0 $" src="form_72.png"/>. </p>
+<p>Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_24.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y,z) = qy + d = y - y_0 $" src="form_33.png"/>. </p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td>the x-coordinate of interest </td></tr>
@@ -417,7 +417,7 @@ Private Attributes</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="classYPlane.html">YPlane</a>      </li>
 
-    <li class="footer">Generated on Wed Apr 17 2013 15:37:47 by
+    <li class="footer">Generated on Wed Apr 17 2013 16:01:15 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>
