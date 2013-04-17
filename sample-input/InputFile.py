@@ -44,22 +44,25 @@ py_printf('NORMAL', 'Initializing the geometry...')
 
 geometry = Geometry(INFINITE_HOMOGENEOUS)
 geometry.addRegion(region_mix)
-num_batches = 10
+num_batches = 100
 geometry.setNumBatches(num_batches)
 num_neutrons_per_batch = 10000
 geometry.setNeutronsPerBatch(num_neutrons_per_batch)
-num_threads = 12
+num_threads = 1
 geometry.setNumThreads(num_threads)
-geometry.setSourceSamplingRadius(0.5)
 setOutputDirectory('infinite_homogeneous_output')
 
 #Define the tallies
 py_printf('NORMAL', 'Initializing flux tally...')
 
 flux = TallyFactory.createTally(region_mix, FLUX, 'Flux in Infinite Region')
+flux.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC)
 elastic_rate = TallyFactory.createTally(geometry, ELASTIC_RATE)
+elastic_rate.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC)
 capture_rate = TallyFactory.createTally(geometry, CAPTURE_RATE)
+capture_rate.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC)
 fission_rate = TallyFactory.createTally(geometry, FISSION_RATE)
+fission_rate.generateBinEdges(1E-2, 1E7, 10000, LOGARITHMIC)
 TallyBank.registerTally(flux)
 TallyBank.registerTally(elastic_rate)
 TallyBank.registerTally(capture_rate)
@@ -73,3 +76,4 @@ TallyBank.outputBatchStatistics()
 plotter.plotFlux(flux, loglog=True, uselegend=False, filename='flux', title='Infinite Homogeneous Medium flux')
 plotter.plotMicroXS(u238, ['capture', 'elastic', 'fission'])
 plotter.plotThermalScattering(h1)
+
