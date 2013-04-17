@@ -206,6 +206,8 @@ protected:
     double* _batch_rel_err;
     /** Whether or not batch statistics have been computed */
     bool _computed_statistics;
+    /** Whether or not bin size has be squared for group-to-group xs */
+    bool _group_expand_bins;
 
 public:
     Tally(const char* tally_name=(char*)"");
@@ -790,8 +792,8 @@ public:
 };
 
 /**
- * @class MaterialOutRateTally Tally.h "pinspec/src/Tally.h"
- * @brief A class for tallying the outter scattering rate within a material.
+ * @class MaterialOutScatterRateTally Tally.h "pinspec/src/Tally.h"
+ * @brief A class for tallying the out scattering rate within a material.
  */
 class MaterialOutScatterRateTally: public MaterialTally {
 
