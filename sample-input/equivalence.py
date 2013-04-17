@@ -31,7 +31,7 @@ pitch = 1.26
 pitch_squared = pitch**2.0
 dancoff = 0.277
 
-py_setlevel('NORMAL')
+py_setlevel('INFO')
 
 py_printf('TITLE', 'Starting a heterogeneous-homogeneous equivalence ' + \
               'calculation')

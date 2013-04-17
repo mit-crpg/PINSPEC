@@ -698,7 +698,7 @@ void Geometry::initializeSourceNeutron(neutron* neutron) {
     neutron->_energy = _fissioner->emitNeutroneV();
     neutron->_old_energy = neutron->_energy;
     neutron->_collided = false;
-    neutron->_total_xs = 0.0;
+    //    neutron->_total_xs = 0.0;
     neutron->_path_length = 0.0;
     neutron->_alive = true;
     neutron->_material = NULL;

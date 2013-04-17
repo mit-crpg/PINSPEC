@@ -43,7 +43,7 @@ public:
 
     /** The total macroscopic cross-section in \f$cm^{-1}\f$ of the material 
      * in which the neutron collided at its collision energy */
-    float _total_xs;
+  //    float _total_xs;
 
     /** The distance traveled to most recent collision (cm) */
     float _path_length;

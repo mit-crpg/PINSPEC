@@ -646,8 +646,8 @@ void TallyBank::tally(neutron* neutron) {
      * in a heterogeneous geometry */
     //FIXME: Tracklength tallies should still account for neutrons which
     //       have not collided
-    if (neutron->_collided == false)
-        return;
+  //    if (neutron->_collided == false)
+  //      return;
 
     std::set<Tally*> tallies;
     std::set<Tally*>::iterator tally_iter;

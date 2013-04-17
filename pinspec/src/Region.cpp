@@ -419,7 +419,7 @@ void InfiniteMediumRegion::collideNeutron(neutron* neutron) {
 
     /* Collide the neutron in the Region's Material */
     _material->collideNeutron(neutron);
-    neutron->_path_length = 1.0 / neutron->_total_xs;
+    //    neutron->_path_length = 1.0 / neutron->_total_xs;
 
     return;
 }
@@ -691,7 +691,7 @@ void EquivalenceRegion::collideNeutron(neutron* neutron) {
         else
             _material->collideNeutron(neutron);
 
-        neutron->_path_length = 1.0 / neutron->_total_xs;
+	//        neutron->_path_length = 1.0 / neutron->_total_xs;
     }
 
     /* If the neutron is in the moderator */
@@ -708,7 +708,7 @@ void EquivalenceRegion::collideNeutron(neutron* neutron) {
         else
 	    _material->collideNeutron(neutron);
 
-        neutron->_path_length = 1.0 / neutron->_total_xs;
+	//        neutron->_path_length = 1.0 / neutron->_total_xs;
     }
 
     return;

@@ -901,7 +901,8 @@ void Material::sampleIsotope(neutron* neutron) {
 
     float energy = neutron->_energy;
     float sigma_t = getTotalMacroXS(energy);
-    neutron->_total_xs = sigma_t;
+    //    neutron->_total_xs = sigma_t;
+    neutron->_path_length = 1.0 / sigma_t;
 
     float sigma_t_ratio = 0.0;
     float new_sigma_t_ratio = 0.0;
