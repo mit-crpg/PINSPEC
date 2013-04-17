@@ -8,12 +8,29 @@
 \maketitle
 
 \section{Introduction}
-\subsection{Python vs. SWIG vs. C++}
-Fig.~\ref{high-level} illustrates the three major components of PINSPEC: the python codes, the SWIG interface, and the C++ source codes. More specifically, here is the flow of a typical simulation:
+\subsection{Intro to Developer's Guide}
+This document is meant to provide information in addition to the user guide hosted on \href{https://github.com/mit-crpg/PINSPEC/wiki}{GitHub's wiki pages}. A number of instructions on how to install the required packages and PINSPEC, how to set up the python input files, and how to run the code can be found on the above link. Some of these info may be repeated in this document, but as a general rule of thumb users should refer to the wiki page for instructions related to using PINSPEC, and this document is reserved for info on developing PINSPEC. 
+
+While the rest of this section would provide a high-level introduction of how PINSPEC source codes are constructed, the next couple of sections in this document would be devoted to:
+\begin{itemize}
+\item Review some essential instructions for installing PINSPEC and running PINSPEC, see Section~\ref{install}. 
+\item Discuss how to manipulate the python codes, see Section~\ref{python}.
+\item Discuss how to manipulate the C++ codes, see Section~\ref{C++}. 
+\end{itemize}
+Keep in mind that the above info is in addition to the commenting in the source codes and Doxygen-generated files as hosted here: \href{http://mit-crpg.github.io/PINSPEC/index.html}{Doxygen generated documents}. 
+
+
+\clearpage
+\subsection{Python to SWIG to C++}
+Fig.~\ref{high-level} illustrates the three major components of PINSPEC: the python codes, the SWIG interface, and the C++ source codes. 
+
+Simplified Wrapper and Interface Generator (SWIG) is open source software used in PINSPEC to wrap C++ functions for use with python. More generally, SWIG can be used to connect C/C++ with scripting languages such as Lua, Perl, PHP, Python, R, Ruby, Tcl and even non-scripting languages like C\#, Java, JavaScript, Go, Modula-3, Ocaml, Octave, and Scheme\footnote{Reference: \href{http://en.wikipedia.org/wiki/SWIG}{SWIG's wiki page}, \href{http://www.swig.org/exec.html}{SWIG's homepage}.}. 
+
+More specifically, here is the flow of a typical simulation:
 \begin{itemize}
 \item Users inputs data in a python file;
-\item PINSPEC python source codes processes input data, perform Doppler Broadening of the cross sections if requested;
-\item SWIG passes the info from python to C++;
+\item PINSPEC python source codes process input data, perform Doppler Broadening of the cross sections if requested;
+\item SWIG registers the data in C++ classes;
 \item C++ contains the actualy Monte Carlo kernel, and neutrons are simulated here;
 \item If any plotting is requested, generated results would be passed from C++ back to python using SWIG again and python would generate plots. 
 \end{itemize}
@@ -56,8 +73,11 @@ C++ using the following major classes:
 \subsection{Hierarchy Diagram}
 In this section we go more in depths into some of the above classes to illustrate their hierarchy. 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INSTALL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\section{Installation and How To Run} 
+\section{Installation and How To Run} \label{install}
 An overview of the installation procedures can be found on the users' guide. 
 
 
@@ -66,15 +86,31 @@ An overview of the installation procedures can be found on the users' guide.
 \subsection{Python 2.7 Is The Way to Go!}
 
 
-
 \clearpage
-\section{Additional Source Code Explanation}
-On top of comments in the source code and Doxygen generated files, this section provides some additional information about the source code. 
+\subsection{Additional Tools}
+SSHFS: 
+\begin{itemize}
+
+\item To see what sftp subsystems are mounted: 
+\begin{verbatim}
+    ps aux | grep -i sftp | grep -v grep
+\end{verbatim}
 
 
+\end{itemize}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PYTHON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\subsection{Tally Arithmetic and Operator Overload}
-There are three tally arithmetics: 
+\section{Manipulating Python Inputs}\label{python}
+\subsection{Utilizing Tally Arithmetic}
+There are three tally arithmetics supported in PINSPEC: 
 \begin{enumerate}
 \item tally1 + tally2: creates a new tally with the correct statistics. 
 \item tally1 + 3.5:
@@ -82,11 +118,7 @@ There are three tally arithmetics:
 \end{enumerate}
 
 
-
-
-
 \clearpage
-\section{Manipulating Python Inputs}
 \subsection{Example: Add A New Isotope}
 
 \clearpage
@@ -97,9 +129,9 @@ There are three tally arithmetics:
 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% C++ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\section{Manipulating C++ Codes}
+\section{Manipulating C++ Codes}\label{C++}
 \subsection{Create A New Source File}
 If you create a new source file, make sure you add it to \textit{setup.py}
 
