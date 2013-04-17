@@ -126,15 +126,13 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ae09eb9ff92ce5578e2e683bc27e61e3b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRegion.html">Region</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structneutron.html#ae09eb9ff92ce5578e2e683bc27e61e3b">_region</a></td></tr>
 <tr class="memitem:a7af200a58de9f8c535c1247053f70872"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMaterial.html">Material</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structneutron.html#a7af200a58de9f8c535c1247053f70872">_material</a></td></tr>
 <tr class="memitem:a71574f549781c314902596d3ac4da58a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIsotope.html">Isotope</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structneutron.html#a71574f549781c314902596d3ac4da58a">_isotope</a></td></tr>
+<tr class="memitem:a7e855f039a2f7b52182ecf82efcb001c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSurface.html">Surface</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structneutron.html#a7e855f039a2f7b52182ecf82efcb001c">_surface</a></td></tr>
 <tr class="memitem:a14743394ac7bf443a57bccf9ab8beba5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structneutron.html#a14743394ac7bf443a57bccf9ab8beba5">_x</a></td></tr>
 <tr class="memitem:a9bc73caa5e8ea77020e7112299deec2e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structneutron.html#a9bc73caa5e8ea77020e7112299deec2e">_y</a></td></tr>
 <tr class="memitem:a8ee10b15ab1dc8294c84a0d742e15154"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structneutron.html#a8ee10b15ab1dc8294c84a0d742e15154">_z</a></td></tr>
 <tr class="memitem:a4ac5f314a0547708378d6b00a8863af0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structneutron.html#a4ac5f314a0547708378d6b00a8863af0">_u</a></td></tr>
 <tr class="memitem:a382ebb7a5a3c7b971b283f0eb2e14ea6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structneutron.html#a382ebb7a5a3c7b971b283f0eb2e14ea6">_v</a></td></tr>
 <tr class="memitem:a2556e63540e62a318ca919cbe24f9794"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structneutron.html#a2556e63540e62a318ca919cbe24f9794">_w</a></td></tr>
-<tr class="memitem:ad0addd2c6b874a54d838455358e7f6e8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structneutron.html#ad0addd2c6b874a54d838455358e7f6e8">_mu</a></td></tr>
-<tr class="memitem:ac17d30fc4c24666fcab05fe3d787b32d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structneutron.html#ac17d30fc4c24666fcab05fe3d787b32d">_phi</a></td></tr>
-<tr class="memitem:a7e855f039a2f7b52182ecf82efcb001c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSurface.html">Surface</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structneutron.html#a7e855f039a2f7b52182ecf82efcb001c">_surface</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Represents a neutron in a PINSPEC simulation. </p>
@@ -218,19 +216,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad0addd2c6b874a54d838455358e7f6e8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float neutron::_mu</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The cosine of the polar angle <img class="formulaInl" alt="$\theta$" src="form_20.png"/> of this neutron's direction vector: <img class="formulaInl" alt="$\mu = cos(\theta)$" src="form_21.png"/> </p>
-
-</div>
-</div>
 <a class="anchor" id="a7f4a5f782cd613aed5b7832a198ffce2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -254,19 +239,6 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>The distance traveled to most recent collision (cm) </p>
-
-</div>
-</div>
-<a class="anchor" id="ac17d30fc4c24666fcab05fe3d787b32d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float neutron::_phi</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>The azimuthal angle <img class="formulaInl" alt="$\phi$" src="form_22.png"/> of this neutron's direction vector in the xy-plane </p>
 
 </div>
 </div>
@@ -396,7 +368,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structneutron.html">neutron</a></li>
-    <li class="footer">Generated on Tue Apr 16 2013 03:42:53 by
+    <li class="footer">Generated on Tue Apr 16 2013 23:35:08 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

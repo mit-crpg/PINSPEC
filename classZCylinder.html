@@ -147,8 +147,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:a10ec7a606821c7e7bfca6d475c033fba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y) $" src="form_26.png"/> with respect to the quadratic surface representing this cylinder: <img class="formulaInl" alt="$ f(x,y) = (x - x_0)^2 + (y - y_0)^2 - R^2 $" src="form_29.png"/>.  <a href="#a10ec7a606821c7e7bfca6d475c033fba"></a><br/></td></tr>
 <tr class="memitem:a319456cee394f75f98f7d44120cbad9d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZCylinder.html#a319456cee394f75f98f7d44120cbad9d">evaluate</a> (float x, float y, float z)</td></tr>
 <tr class="memdesc:a319456cee394f75f98f7d44120cbad9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_24.png"/> with respect to the quadratic surface representing this cylinder: <img class="formulaInl" alt="$ f(x,y,z) = (x - x_0)^2 + (y - y_0)^2 - R^2 $" src="form_30.png"/>.  <a href="#a319456cee394f75f98f7d44120cbad9d"></a><br/></td></tr>
-<tr class="memitem:adc1b9099d792149d2b9d4c856552b91a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZCylinder.html#adc1b9099d792149d2b9d4c856552b91a">computeNearestDistance</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
-<tr class="memdesc:adc1b9099d792149d2b9d4c856552b91a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the nearest distance to the <a class="el" href="classZCylinder.html" title="The ZCylinder is the locus of a point equidistant from a fixed point.">ZCylinder</a> along a neutron's trajectory.  <a href="#adc1b9099d792149d2b9d4c856552b91a"></a><br/></td></tr>
+<tr class="memitem:a85ccc91ddb18286e6d9746cd9f51e2b8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZCylinder.html#a85ccc91ddb18286e6d9746cd9f51e2b8">computeParametrizedDistance</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
+<tr class="memdesc:a85ccc91ddb18286e6d9746cd9f51e2b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the parametrized distance to the <a class="el" href="classZCylinder.html" title="The ZCylinder is the locus of a point equidistant from a fixed point.">ZCylinder</a> along a neutron's trajectory.  <a href="#a85ccc91ddb18286e6d9746cd9f51e2b8"></a><br/></td></tr>
 <tr class="memitem:a49d60a39a41bd555bd2b8d1ff93cfd55"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZCylinder.html#a49d60a39a41bd555bd2b8d1ff93cfd55">onSurface</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
 <tr class="memdesc:a49d60a39a41bd555bd2b8d1ff93cfd55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether a neutron is on the <a class="el" href="classZCylinder.html" title="The ZCylinder is the locus of a point equidistant from a fixed point.">ZCylinder</a>.  <a href="#a49d60a39a41bd555bd2b8d1ff93cfd55"></a><br/></td></tr>
 <tr class="memitem:a750e61124a01162b3897f5e04a7b5c84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZCylinder.html#a750e61124a01162b3897f5e04a7b5c84">reflectNeutron</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
@@ -217,7 +217,7 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
-<a class="anchor" id="adc1b9099d792149d2b9d4c856552b91a"></a>
+<a class="anchor" id="a85ccc91ddb18286e6d9746cd9f51e2b8"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -225,7 +225,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float ZCylinder::computeNearestDistance </td>
+          <td class="memname">float ZCylinder::computeParametrizedDistance </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structneutron.html">neutron</a> *&#160;</td>
           <td class="paramname"><em>neutron</em></td><td>)</td>
@@ -239,15 +239,17 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Computes the nearest distance to the <a class="el" href="classZCylinder.html" title="The ZCylinder is the locus of a point equidistant from a fixed point.">ZCylinder</a> along a neutron's trajectory. </p>
+<p>Computes the parametrized distance to the <a class="el" href="classZCylinder.html" title="The ZCylinder is the locus of a point equidistant from a fixed point.">ZCylinder</a> along a neutron's trajectory. </p>
+<p>The distance returned is a parametrized distance along the unit vectory defining the neutron's trajectory, not a Cartesian distance. If the neutron is traveling away from the surface then the distance returned will be infinity. This method solves a quadratic equation for 0, 1, or 2 surface intersection points and selects the one nearest to the neutron.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">neutron</td><td>a pointer to a Neutron struct </td></tr>
+    <tr><td class="paramname">neutron</td><td>a pointer to a neutron struct </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>the parametrized distance to the surface along the neutron's trajectory </dd></dl>
 
-<p>Implements <a class="el" href="classSurface.html#a3d33dd138200489112a2369eab0b2083">Surface</a>.</p>
+<p>Implements <a class="el" href="classSurface.html#a13368235fddcfa66e0f3cac11ec9a8d1">Surface</a>.</p>
 
 </div>
 </div>
@@ -628,7 +630,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classZCylinder.html">ZCylinder</a></li>
-    <li class="footer">Generated on Tue Apr 16 2013 03:42:53 by
+    <li class="footer">Generated on Tue Apr 16 2013 23:35:08 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

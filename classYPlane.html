@@ -139,8 +139,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:a86c9563c4ed5ac95a7e9e6f860a247e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y) $" src="form_26.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y) = qy + d = y - y_0 $" src="form_27.png"/>.  <a href="#a86c9563c4ed5ac95a7e9e6f860a247e1"></a><br/></td></tr>
 <tr class="memitem:a82075cb5fd14a23739af4a44a9a21769"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#a82075cb5fd14a23739af4a44a9a21769">evaluate</a> (float x, float y, float z)</td></tr>
 <tr class="memdesc:a82075cb5fd14a23739af4a44a9a21769"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_24.png"/> with respect to the quadratic surface representing this y-plane: <img class="formulaInl" alt="$ f(x,y,z) = qy + d = y - y_0 $" src="form_28.png"/>.  <a href="#a82075cb5fd14a23739af4a44a9a21769"></a><br/></td></tr>
-<tr class="memitem:a7f474b38634753235438ca5eff23c2d5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#a7f474b38634753235438ca5eff23c2d5">computeNearestDistance</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
-<tr class="memdesc:a7f474b38634753235438ca5eff23c2d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the nearest distance to the <a class="el" href="classYPlane.html" title="The YPlane is a a plane perpendicular to the y-axis.">YPlane</a> along a neutron's trajectory.  <a href="#a7f474b38634753235438ca5eff23c2d5"></a><br/></td></tr>
+<tr class="memitem:aecf609e3a160e847da3a69b7cd1e81f3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#aecf609e3a160e847da3a69b7cd1e81f3">computeParametrizedDistance</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
+<tr class="memdesc:aecf609e3a160e847da3a69b7cd1e81f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the parametrized distance to the <a class="el" href="classYPlane.html" title="The YPlane is a a plane perpendicular to the y-axis.">YPlane</a> along a neutron's trajectory.  <a href="#aecf609e3a160e847da3a69b7cd1e81f3"></a><br/></td></tr>
 <tr class="memitem:aa8899ff929b56f242316ca684f671772"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#aa8899ff929b56f242316ca684f671772">onSurface</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
 <tr class="memdesc:aa8899ff929b56f242316ca684f671772"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether a neutron is on the <a class="el" href="classYPlane.html" title="The YPlane is a a plane perpendicular to the y-axis.">YPlane</a>.  <a href="#aa8899ff929b56f242316ca684f671772"></a><br/></td></tr>
 <tr class="memitem:a0a1b7117b12f7f0b4384a78a7ae5da58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYPlane.html#a0a1b7117b12f7f0b4384a78a7ae5da58">reflectNeutron</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)</td></tr>
@@ -206,7 +206,7 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
-<a class="anchor" id="a7f474b38634753235438ca5eff23c2d5"></a>
+<a class="anchor" id="aecf609e3a160e847da3a69b7cd1e81f3"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -214,7 +214,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float YPlane::computeNearestDistance </td>
+          <td class="memname">float YPlane::computeParametrizedDistance </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structneutron.html">neutron</a> *&#160;</td>
           <td class="paramname"><em>neutron</em></td><td>)</td>
@@ -228,15 +228,17 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Computes the nearest distance to the <a class="el" href="classYPlane.html" title="The YPlane is a a plane perpendicular to the y-axis.">YPlane</a> along a neutron's trajectory. </p>
+<p>Computes the parametrized distance to the <a class="el" href="classYPlane.html" title="The YPlane is a a plane perpendicular to the y-axis.">YPlane</a> along a neutron's trajectory. </p>
+<p>The distance returned is a parametrized distance along the unit vectory defining the neutron's trajectory, not a Cartesian distance. If the neutron is traveling away from the surface then the distance returned will be infinity. The equation used to compute the parametrized distance <img class="formulaInl" alt="$ d $" src="form_65.png"/> from a neutron at <img class="formulaInl" alt="$ y $" src="form_70.png"/> traveling with component an y-component of its unit trajectory vector <img class="formulaInl" alt="$ u $" src="form_67.png"/> to this xplane at <img class="formulaInl" alt="$ y_0 $" src="form_71.png"/> is: <img class="formulaInl" alt="$ d = \frac{y_0 - y}{u} $" src="form_72.png"/></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">neutron</td><td>a pointer to a Neutron struct </td></tr>
+    <tr><td class="paramname">neutron</td><td>a pointer to a neutron struct </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>the parametrized distance to the surface along the neutron's trajectory </dd></dl>
 
-<p>Implements <a class="el" href="classSurface.html#a3d33dd138200489112a2369eab0b2083">Surface</a>.</p>
+<p>Implements <a class="el" href="classSurface.html#a13368235fddcfa66e0f3cac11ec9a8d1">Surface</a>.</p>
 
 </div>
 </div>
@@ -470,7 +472,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classYPlane.html">YPlane</a></li>
-    <li class="footer">Generated on Tue Apr 16 2013 03:42:53 by
+    <li class="footer">Generated on Tue Apr 16 2013 23:35:08 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

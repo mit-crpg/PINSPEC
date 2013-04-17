@@ -63,3 +63,11 @@
 \form#62:$E_0$
 \form#63:$\Gamma_n$
 \form#64:$\Gamma_{\gamma}$
+\form#65:$ d $
+\form#66:$ x $
+\form#67:$ u $
+\form#68:$ x_0 $
+\form#69:$ d = \frac{x_0 - x}{u} $
+\form#70:$ y $
+\form#71:$ y_0 $
+\form#72:$ d = \frac{y_0 - y}{u} $

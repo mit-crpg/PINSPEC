@@ -148,8 +148,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:acacc8ac56302a9b8ceab23d8b5b5cc93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_24.png"/> with respect to a quadratic surface <img class="formulaInl" alt="$ f(x,y,z) $" src="form_34.png"/>.  <a href="#acacc8ac56302a9b8ceab23d8b5b5cc93"></a><br/></td></tr>
 <tr class="memitem:ae8a7b9ab365ef35622c14bd576d134ca"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#ae8a7b9ab365ef35622c14bd576d134ca">evaluate</a> (float x, float y, float z)=0</td></tr>
 <tr class="memdesc:ae8a7b9ab365ef35622c14bd576d134ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the evaluation of a neutron's coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_24.png"/> with respect to a quadratic surface <img class="formulaInl" alt="$ f(x,y,z) $" src="form_34.png"/>.  <a href="#ae8a7b9ab365ef35622c14bd576d134ca"></a><br/></td></tr>
-<tr class="memitem:a3d33dd138200489112a2369eab0b2083"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a3d33dd138200489112a2369eab0b2083">computeNearestDistance</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)=0</td></tr>
-<tr class="memdesc:a3d33dd138200489112a2369eab0b2083"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the nearest distance between a neutron at some location and this surface.  <a href="#a3d33dd138200489112a2369eab0b2083"></a><br/></td></tr>
+<tr class="memitem:a13368235fddcfa66e0f3cac11ec9a8d1"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a13368235fddcfa66e0f3cac11ec9a8d1">computeParametrizedDistance</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)=0</td></tr>
+<tr class="memdesc:a13368235fddcfa66e0f3cac11ec9a8d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the parametrized distance between a neutron at some location with some trajectory and this surface.  <a href="#a13368235fddcfa66e0f3cac11ec9a8d1"></a><br/></td></tr>
 <tr class="memitem:acdf69fa01f522393ab504b331d88821a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#acdf69fa01f522393ab504b331d88821a">onSurface</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)=0</td></tr>
 <tr class="memdesc:acdf69fa01f522393ab504b331d88821a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether or not a neutron at some location is on the surface.  <a href="#acdf69fa01f522393ab504b331d88821a"></a><br/></td></tr>
 <tr class="memitem:a9c447e16cce8344f0eaec043cc5401e6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSurface.html#a9c447e16cce8344f0eaec043cc5401e6">reflectNeutron</a> (<a class="el" href="structneutron.html">neutron</a> *<a class="el" href="structneutron.html">neutron</a>)=0</td></tr>
@@ -196,7 +196,7 @@ Static Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
-<a class="anchor" id="a3d33dd138200489112a2369eab0b2083"></a>
+<a class="anchor" id="a13368235fddcfa66e0f3cac11ec9a8d1"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -204,7 +204,7 @@ Static Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual float Surface::computeNearestDistance </td>
+          <td class="memname">virtual float Surface::computeParametrizedDistance </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structneutron.html">neutron</a> *&#160;</td>
           <td class="paramname"><em>neutron</em></td><td>)</td>
@@ -218,7 +218,7 @@ Static Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Computes the nearest distance between a neutron at some location and this surface. </p>
+<p>Computes the parametrized distance between a neutron at some location with some trajectory and this surface. </p>
 <p>This virtual class method must be implemented for each surface type to be used in a PINSPEC simulation. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -227,7 +227,7 @@ Static Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classZCylinder.html#adc1b9099d792149d2b9d4c856552b91a">ZCylinder</a>, <a class="el" href="classYPlane.html#a7f474b38634753235438ca5eff23c2d5">YPlane</a>, and <a class="el" href="classXPlane.html#a4370395de84303e337c12457b862753a">XPlane</a>.</p>
+<p>Implemented in <a class="el" href="classZCylinder.html#a85ccc91ddb18286e6d9746cd9f51e2b8">ZCylinder</a>, <a class="el" href="classYPlane.html#aecf609e3a160e847da3a69b7cd1e81f3">YPlane</a>, and <a class="el" href="classXPlane.html#adcf0addaa1f01950e3c538762fc0a8b0">XPlane</a>.</p>
 
 </div>
 </div>
@@ -601,7 +601,7 @@ Static Protected Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classSurface.html">Surface</a></li>
-    <li class="footer">Generated on Tue Apr 16 2013 03:42:53 by
+    <li class="footer">Generated on Tue Apr 16 2013 23:35:08 by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

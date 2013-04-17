@@ -2,7 +2,7 @@ var classZCylinder =
 [
     [ "ZCylinder", "classZCylinder.html#a76039317fdac8ca76be174a52e84d1d1", null ],
     [ "~ZCylinder", "classZCylinder.html#a4eca334d18d1d708e21cc65dc74db13c", null ],
-    [ "computeNearestDistance", "classZCylinder.html#adc1b9099d792149d2b9d4c856552b91a", null ],
+    [ "computeParametrizedDistance", "classZCylinder.html#a85ccc91ddb18286e6d9746cd9f51e2b8", null ],
     [ "evaluate", "classZCylinder.html#a10ec7a606821c7e7bfca6d475c033fba", null ],
     [ "evaluate", "classZCylinder.html#a319456cee394f75f98f7d44120cbad9d", null ],
     [ "getRadius", "classZCylinder.html#a7fdf33a21ecc5a5105299df4033abd98", null ],

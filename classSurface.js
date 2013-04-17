@@ -2,7 +2,7 @@ var classSurface =
 [
     [ "Surface", "classSurface.html#a77e14a37164709fd65d051b09bdd0089", null ],
     [ "~Surface", "classSurface.html#a89de75c95cb550d432f3ea4ed1429db0", null ],
-    [ "computeNearestDistance", "classSurface.html#a3d33dd138200489112a2369eab0b2083", null ],
+    [ "computeParametrizedDistance", "classSurface.html#a13368235fddcfa66e0f3cac11ec9a8d1", null ],
     [ "evaluate", "classSurface.html#acacc8ac56302a9b8ceab23d8b5b5cc93", null ],
     [ "evaluate", "classSurface.html#ae8a7b9ab365ef35622c14bd576d134ca", null ],
     [ "getBoundaryType", "classSurface.html#a33b25b8e797853cf582cf5085262e028", null ],
