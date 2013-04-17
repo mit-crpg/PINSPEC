@@ -733,10 +733,9 @@ void Tally::setNumBatches(int num_batches) {
 
     _num_batches = num_batches;
 
-    /* Throw a special case for group-to-group scattering and out scattering */
+    /* Throw a special case for group-to-group scattering. */
     /* Basically we want the array to be long enough to hold a matrix */
-    if ((_tally_type == GROUP_TO_GROUP_RATE) || 
-	(_tally_type == OUTSCATTER_RATE))
+    if (_tally_type == GROUP_TO_GROUP_RATE)
 	_num_bins = _num_bins * _num_bins;
 
     /* Set all tallies to zero by default */
@@ -875,6 +874,18 @@ void Tally::tally(neutron* neutron, double weight) {
     if (weight < 0.0)
         log_printf(NORMAL, "weight = %f", weight);
 
+    /* For outscattering reaction rates, we do nothing if the neutrons 
+     * did not leave this energy group, and only tally when the neutron
+     * leaves the old energy group */
+    if (_tally_type == OUTSCATTER_RATE) {
+	int old_index = getBinIndex(neutron->_old_energy);
+	int new_index = getBinIndex(neutron->_energy);
+	if (old_index == new_index)
+	    return;
+	else
+	    bin_index = old_index;
+    }
+
     if (bin_index >= 0 && bin_index < _num_bins) 
         _tallies[neutron->_batch_num][bin_index] += weight;
 
@@ -909,15 +920,9 @@ void Tally::tallyGroup(neutron* neutron, double weight) {
 
     if (_tally_type == GROUP_TO_GROUP_RATE)
 	bin_index = old_index * nb  + new_index;
-    else if (_tally_type == OUTSCATTER_RATE) {
-	if (old_index == new_index)
-	    return;
-	else
-	    bin_index = old_index;
-    }
     else
-	log_printf(WARNING, "A tally that is neither group-to-group nor"
-		   " out scattering is trying to access the group structure"
+	log_printf(WARNING, "A tally that is not group-to-group scattering"
+		   " is trying to access the group structure"
 		   " functions.");
 
 
@@ -1121,15 +1126,14 @@ void Tally::outputBatchStatistics(const char* filename) {
         fprintf(output_file, "User-defined bins\n");
 
     /* Loop over each bin and print mu, var, std dev and rel err */
-    if ((_tally_type == GROUP_TO_GROUP_RATE) || 
-	(_tally_type == OUTSCATTER_RATE)) {
-
+    if (_tally_type == GROUP_TO_GROUP_RATE)
+    {
 	/* FIXME: For some reason _num_bins here is squared of what we expect */
 	int nb = floor(sqrt(sqrt(_num_bins)));
 	fprintf(output_file, "# batches: %d\t, # bins: %d %d\n", _num_batches,
 		_num_bins, nb);
-	fprintf(output_file, "Avg reaction rate, with entry (i,j)"
-		" represents going from energy i to energy j\n");
+	fprintf(output_file, "Avg group-to-group reaction rate, "
+		" with entry (i,j) = from energy i to energy j\n");
 
 	for (int i = 0; i < nb; i++) {
 	    fprintf(output_file, "%1.1f ", _centers[i]);
@@ -3178,7 +3182,7 @@ void GeometryGroupRateTally::tally(neutron* neutron) {
 void IsotopeOutScatterRateTally::tally(neutron* neutron) {
     double weight = _isotope->getElasticXS(neutron->_old_energy) 
 			* neutron->_path_length;
-    Tally::tallyGroup(neutron, weight);
+    Tally::tally(neutron, weight);
     return;
 }
 
@@ -3191,7 +3195,7 @@ void IsotopeOutScatterRateTally::tally(neutron* neutron) {
 void MaterialOutScatterRateTally::tally(neutron* neutron) {
     double weight = _material->getElasticMacroXS(neutron->_old_energy) 
 			* neutron->_path_length;
-    Tally::tallyGroup(neutron, weight);
+    Tally::tally(neutron, weight);
     return;
 }
 
@@ -3204,7 +3208,7 @@ void MaterialOutScatterRateTally::tally(neutron* neutron) {
 void RegionOutScatterRateTally::tally(neutron* neutron) {
     double weight = _region->getElasticMacroXS(neutron->_old_energy) 
                    * neutron->_path_length;
-    Tally::tallyGroup(neutron, weight);
+    Tally::tally(neutron, weight);
     return;
 }
 
@@ -3217,7 +3221,7 @@ void RegionOutScatterRateTally::tally(neutron* neutron) {
 void GeometryOutScatterRateTally::tally(neutron* neutron) {
     double weight = neutron->_region->getElasticMacroXS(neutron->_old_energy)
 			* neutron->_path_length;
-    Tally::tallyGroup(neutron, weight);
+    Tally::tally(neutron, weight);
     return;
 }
 
