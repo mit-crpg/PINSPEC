@@ -542,10 +542,10 @@ def plotSlice(space, plane='XY', loc=0.0, lim1=[-2., 2.], lim2=[-2., 2.],
         py_printf('Error', 'Unable to plot a %s slice for space %s ' + \
                       'with a negative gridsize (%d)', plane,
                       space.getName(), gridsize)
-
-    # TODO: pass in either a region, geometry
-    # TODO: For space color 0 or 1
-    # TODO: For geometry color by material uid
+    if not isinstance(loc, float):
+        py_printf('Error', 'Unable to plot a %s slice for space %s ' + \
+                      'since the input location of the slice is not a number',
+                  plane, space.getName())
 
     # Initialize a numpy array for the surface colors
     surface = numpy.zeros((gridsize, gridsize), dtype=np.int32)
@@ -623,7 +623,7 @@ def plotSlice(space, plane='XY', loc=0.0, lim1=[-2., 2.], lim2=[-2., 2.],
                 for j in range(len(dim2)):
             
                     # Color space for points within the space
-                    if space.contains(dim1[i], loc, dim2[j]):
+                    if space.contains(loc, dim1[i], dim2[j]):
                         region = space.findContainingRegion(loc, dim1[i],
                                                             dim2[j])
                         surface[j][i] = region.getUid()
@@ -666,17 +666,17 @@ def plotFissionSourceDist(geometry, num_samples=1000, filename=''):
 
     # Error checking
     if not isinstance(geometry, Geometry):
-        py_printf('ERROR', 'Unable to plot the fission source distribution since ' + \
-                      'the parameters did not include a geometry class object')
+        py_printf('ERROR', 'Unable to plot the fission source distribution ' + \
+                  'since the parameters did not include a geometry class object')
     if geometry.getSpatialType() != HETEROGENEOUS:
-        py_printf('ERROR', 'Unable to plot the fission source distribution since ' + \
-                      'for a non HETEROGENEOUS type geometry')
+        py_printf('ERROR', 'Unable to plot the fission source distribution ' + \
+                      'since for a non HETEROGENEOUS type geometry')
     if not isinstance(num_samples, int):
-        py_printf('ERROR', 'Unable to plot the fission source distribution since the ' + \
-                      ' a non-integer number of samples was input')
+        py_printf('ERROR', 'Unable to plot the fission source distribution ' + \
+                      'since a non-integer number of samples was input')
     if num_samples < 0:
-        py_printf('ERROR', 'Unable to plot the fission source distribution for %d ' + \
-                      ' number of particle since it is negative', num_samples)
+        py_printf('ERROR', 'Unable to plot the fission source distribution ' + \
+                   'for %d number of particle since it is negative', num_samples)
 
     neutron = createNewNeutron()
 
@@ -705,5 +705,183 @@ def plotFissionSourceDist(geometry, num_samples=1000, filename=''):
         filename = directory + '/' + 'fission-site-dist.png'
     else:
         filename = directory + filename.replace(' ', '-').lower() + '-.png'
+
+    plt.savefig(filename)
+
+
+##
+# @brief This method takes in a geometry class object and tracks a neutron
+#        as it travels across the geomgetry.
+# @details A color-coded 2D surface plot representing a planar slice through 
+#         the space is produced as the backdrop to a series of line segments
+#         representing a neutron's path across the pin cell.
+# @param geometry a heterogeneous geometry object
+# @param plane the optional 'xy', 'xz' or 'yz' plane the user wishes to plot
+# @param num_moves the number of neutron moves across the geometry to plot
+# @param loc the optional x, y, or z position of the planar plot
+# @param lim1 the optional bounding limits for the first planar dimension
+# @param lim2 the optional bounding limits for the second planar dimension
+# @param gridsize an optional number of grid cells for the plot
+# @param filename an optional filename
+def trackANeutron(geometry, plane='XY', num_moves=100, loc=0.0, \
+                      lim1=[-2., 2.], lim2=[-2., 2.], gridsize=100, filename=''):
+
+    global subdirectory
+
+    directory = getOutputDirectory() + subdirectory
+
+    # Make directory if it does not exist
+    if not os.path.exists(directory):
+            os.makedirs(directory)
+
+    # Error checking
+    if not isinstance(geometry, Geometry):
+        py_printf('ERROR', 'Unable to track a neutron since input ' + \
+                      'did not contain a geometry class object')
+    if geometry.getSpatialType() != HETEROGENEOUS:
+        py_printf('ERROR', 'Unable to track a neutron since geometry is ' + \
+                      'not a HETEROGENEOUS type geometry')
+    if not isinstance(num_moves, int):
+        py_printf('ERROR', 'Unable to track a neutrons since the number ' + \
+                      'of moves input is %s which is not an integer', \
+                      str(num_moves))
+    if (num_moves < 0):
+        py_printf('ERROR', 'Unable to track a neutron since the number ' + \
+                      'of moves input is %d which is negative', num_moves)
+    if not isinstance(plane, str):
+        py_printf('ERROR', 'Unable to track a neutron since for slice %s ' + \
+                      'PINSPEC only supports plots of XY, XZ and YZ slices.',
+                      str(plane))
+    if plane.lower() != 'xy' and plane.lower() != 'xz' \
+            and plane.lower() != 'yz':
+        print 'plane.lower = ' + str(plane.lower())
+        py_printf('ERROR', 'Unable to track a neutron since for slice %s ' + \
+                      'PINSPEC only supports plots of XY, XZ and YZ slices.',
+                      plane) 
+    if len(lim1) is not 2:
+        py_printf('ERROR', 'Unable to track a neutron since for slice %s ' + \
+                      'since the lim1 parameter is of length %d rather than 2', 
+                      plane, len(lim1))
+    if len(lim2) is not 2:
+        py_printf('ERROR', 'Unable to  track a neutron since for slice %s ' + \
+                      'since the lim2 parameter is of length %d rather than 2', 
+                      plane,  len(lim2))
+    if not isinstance(lim1[0], float) or not isinstance(lim1[1], float):
+        py_printf('ERROR', 'Unable to  track a neutron since for slice %s ' + \
+                      'since lim1 does not contain floating point values', plane)
+    if not isinstance(lim2[0], float) or not isinstance(lim2[1], float):
+        py_printf('ERROR', 'Unable to track a neutron since for slice %s ' + \
+                      'since lim2 does not contain floating point values', plane)
+    if lim1[0] >= lim1[1]:
+        py_printf('ERROR', 'Unable to track a neutron since for slice %s ' + \
+                      'since the minimum lim1 value (%f) is greater than the ' + \
+                      'maximum lim1 value (%f)', plane, lim1[0], lim1[1])
+    if lim2[0] >= lim2[1]:
+        py_printf('ERROR', 'Unable to track a neutron since for slice %s ' + \
+                      'since the minimum lim2 value (%f) is greater than the ' + \
+                      'maximum lim2 value (%f)', plane, lim2[0], lim2[1])
+    if not isinstance(gridsize, int):
+        py_printf('ERROR', 'Unable to  track a neutron since for slice %s ' + \
+                      'since the gridsize %s is not an integer', plane,
+                      str(gridsize))
+    if gridsize <= 0:
+        py_printf('Error', 'Unable to  track a neutron since for slice %s ' + \
+                      'for a negative gridsize (%d)', plane, gridsize)
+    if not isinstance(loc, float):
+        py_printf('Error', 'Unable to track a neutron for slice %s ' + \
+                  'since the input location of the slice is not a number', plane)
+
+
+    # First plot the regions in the geometry as a backdrop for the
+    # neutron's path
+
+    # Initialize a numpy array for the surface colors
+    surface = numpy.zeros((gridsize, gridsize), dtype=np.int32)
+
+    # Initialize 
+    dim1 = np.linspace(lim1[0], lim1[1], gridsize)
+    dim2 = np.linspace(lim2[0], lim2[1], gridsize)
+
+    if plane.lower() == 'xy':
+
+        for i in range(len(dim1)):
+            for j in range(len(dim2)):
+            
+                # Color space for points within the space
+                if geometry.contains(dim1[i], dim2[j], loc):
+                    region = geometry.findContainingRegion(dim1[i], \
+                                                        dim2[j], loc)
+                    surface[j][i] = region.getUid()
+
+    if plane.lower() == 'xz':
+
+        for i in range(len(dim1)):
+            for j in range(len(dim2)):
+            
+                # Color space for points within the space
+                if geometry.contains(dim1[i], loc, dim2[j]):
+                    region = geometry.findContainingRegion(dim1[i], loc,
+                                                        dim2[j])
+                    surface[j][i] = region.getUid()
+
+
+    if plane.lower() == 'yz':
+
+        for i in range(len(dim1)):
+            for j in range(len(dim2)):
+         
+                # Color space for points within the space
+                if geometry.contains(loc, dim1[i], dim2[j]):
+                    region = geometry.findContainingRegion(loc, dim1[i],
+                                                        dim2[j])
+                    surface[j][i] = region.getUid()
+
+    
+    # Plot the regions in the geometry
+    fig = plt.figure()
+    plt.pcolor(dim1, dim2, surface)
+    plt.axis([lim1[0], lim1[1], lim2[0], lim2[1]])
+
+    # Create a neutron to track
+    neutron = createNewNeutron()
+    geometry.initializeSourceNeutron(neutron)
+
+    # Initialize empty lists to track the neutron's location
+    x = []
+    y = []
+    z = []
+
+    # Track the neutron
+    for i in range(num_moves):
+
+        # If the neutron was killed on the last collision, then break loop
+        if not neutron._alive:
+            break
+
+        geometry.findContainingRegion(neutron)
+        region = neutron._region
+        region.collideNeutron(neutron)
+        x.append(neutron._x)
+        y.append(neutron._y)
+        z.append(neutron._z)
+
+    # Plot the neutron path throughout the geometry
+    if plane.lower() == 'xy':
+        plt.plot(x,y,'b-')
+        plt.plot(x,y,'bo', markersize=7, markeredgecolor='w')
+    elif plane.lower() == 'yz':
+        plt.plot(y,z,'b-') 
+        plt.plot(y,z,'bo', markersize=7, markeredgecolor='w')
+    else:
+        plt.plot(x,z,'b-') 
+        plt.plot(x,z,'bo', markersize=7, markeredgecolor='w')
+
+    plt.title('Tracking a Neutron in ' + plane.upper())
+
+    if filename is '':
+        filename = directory + '/' + 'track-a-neutron-' + plane.lower() + '.png'
+    else:
+        filename = directory + filename.replace(' ', '-').lower() + \
+                         '-' + plane.lower() + '-.png'
 
     plt.savefig(filename)

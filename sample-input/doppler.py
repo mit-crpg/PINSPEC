@@ -22,7 +22,7 @@ num_batches = 10
 num_neutrons_per_batch = 10000
 num_threads = 4
 setOutputDirectory('doppler');
-py_setlevel('NORMAL')
+py_setlevel('INFO')
 
 py_printf('TITLE', 'Starting simulation of U-238 Doppler Broadening RI Effects')
 
@@ -173,7 +173,8 @@ for temp in range(len(temps)):
 
     # Plot fluxes
     plotter.plotFlux(fluxes,title='Flux for Temp = ' + str(temps[temp]) \
-                        + 'K', filename='flux-temp-'+str(temps[temp])+'K')
+                        + 'K', filename='flux-temp-'+str(temps[temp])+'K', \
+                         uselegend=True)
 
     # print the reaction rate ratios and resonance integrals to the shell
     process.printTallies(abs_rate_ratios[temp], 

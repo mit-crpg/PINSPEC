@@ -112,13 +112,13 @@ public:
     virtual float evaluate(float x, float y, float z) =0;
 
     /**
-     * @brief Computes the nearest distance between a neutron at some
-     *        location and this surface.
+     * @brief Computes the parametrized distance between a neutron at some
+     *        location with some trajectory and this surface.
      * @details This virtual class method must be implemented for each 
      *          surface type to be used in a PINSPEC simulation.
      * @param neutron the neutron of interest
      */ 
-    virtual float computeNearestDistance(neutron* neutron) =0;
+    virtual float computeParametrizedDistance(neutron* neutron) =0;
 
     /**
      * @brief Determines whether or not a neutron at some location is
@@ -157,7 +157,7 @@ public:
     void setX(float x);
     float evaluate(neutron* neutron);
     float evaluate(float x, float y, float z);
-    float computeNearestDistance(neutron* neutron);
+    float computeParametrizedDistance(neutron* neutron);
     bool onSurface(neutron* neutron);
     void reflectNeutron(neutron* neutron);
 };
@@ -180,7 +180,7 @@ public:
     void setY(float y);
     float evaluate(neutron* neutron);
     float evaluate(float x, float y, float z);
-    float computeNearestDistance(neutron* neutron);
+    float computeParametrizedDistance(neutron* neutron);
     bool onSurface(neutron* neutron);
     void reflectNeutron(neutron* neutron);
 };
@@ -213,7 +213,7 @@ public:
     void setRadius(float r);
     float evaluate(neutron* neutron);
     float evaluate(float x, float y, float z);
-    float computeNearestDistance(neutron* neutron);
+    float computeParametrizedDistance(neutron* neutron);
     bool onSurface(neutron* neutron);
     void reflectNeutron(neutron* neutron);
 };

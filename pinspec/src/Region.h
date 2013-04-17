@@ -293,7 +293,7 @@ public:
     bool contains(neutron* neutron);
     bool contains(float x, float y, float z);
     bool onBoundary(neutron* neutron);
-    float computeDistanceToSurface(neutron* neutron);
+    float computeParametrizedDistance(neutron* neutron);
 
     void collideNeutron(neutron* neutron);
 };

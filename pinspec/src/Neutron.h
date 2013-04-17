@@ -43,7 +43,7 @@ public:
 
     /** The total macroscopic cross-section in \f$cm^{-1}\f$ of the material 
      * in which the neutron collided at its collision energy */
-    float _total_xs;
+  //    float _total_xs;
 
     /** The distance traveled to most recent collision (cm) */
     float _path_length;
@@ -67,6 +67,9 @@ public:
     /***************************************************************************
      *****************  ATTRIBUTES FOR HETEROGENEOUS GEOMETRIES  ***************
      **************************************************************************/
+    /** A pointer to the nearest surface in a heterogeneous case */
+    Surface* _surface;
+
     /** The x-coordinate of this neutron's location */
     float _x;
 
@@ -88,14 +91,11 @@ public:
     /** The cosine of the polar angle \f$\theta\f$ of this neutron's direction 
      * vector: \f$\mu = cos(\theta)\f$
      */
-    float _mu;
+  //    float _mu;
 
     /** The azimuthal angle \f$\phi\f$ of this neutron's direction vector in 
      * the xy-plane */
-    float _phi;
-
-    /** A pointer to the nearest surface in a heterogeneous case */
-    Surface* _surface;
+  // float _phi;
 };
 
 

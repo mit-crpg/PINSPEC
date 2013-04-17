@@ -419,7 +419,7 @@ void InfiniteMediumRegion::collideNeutron(neutron* neutron) {
 
     /* Collide the neutron in the Region's Material */
     _material->collideNeutron(neutron);
-    neutron->_path_length = 1.0 / neutron->_total_xs;
+    //    neutron->_path_length = 1.0 / neutron->_total_xs;
 
     return;
 }
@@ -691,7 +691,7 @@ void EquivalenceRegion::collideNeutron(neutron* neutron) {
         else
             _material->collideNeutron(neutron);
 
-        neutron->_path_length = 1.0 / neutron->_total_xs;
+	//        neutron->_path_length = 1.0 / neutron->_total_xs;
     }
 
     /* If the neutron is in the moderator */
@@ -708,7 +708,7 @@ void EquivalenceRegion::collideNeutron(neutron* neutron) {
         else
 	    _material->collideNeutron(neutron);
 
-        neutron->_path_length = 1.0 / neutron->_total_xs;
+	//        neutron->_path_length = 1.0 / neutron->_total_xs;
     }
 
     return;
@@ -805,7 +805,7 @@ bool BoundedRegion::contains(float x, float y, float z) {
         halfspace = (*iter).first;
         surface = (*iter).second;
 
-        if (halfspace * surface->evaluate(x, y, z) < 0)
+        if (halfspace * surface->evaluate(x, y, z) < 1E-6)
             return false;
     }
 
@@ -823,6 +823,8 @@ bool BoundedRegion::contains(neutron* neutron) {
     int halfspace;
     Surface* surface;
 
+    log_printf(NORMAL, "Checking if region %s contains neutron", _region_name);
+
     /* Loop over and query all bounding surfaces */
     std::vector< std::pair<int, Surface*> >::iterator iter;
     for (iter = _surfaces.begin(); iter != _surfaces.end(); ++iter) {
@@ -830,7 +832,7 @@ bool BoundedRegion::contains(neutron* neutron) {
         halfspace = (*iter).first;
         surface = (*iter).second;
 
-        if (halfspace * surface->evaluate(neutron) < 0)
+        if (halfspace * surface->evaluate(neutron) < -1E-6)
 	    return false;
     }
 
@@ -858,11 +860,11 @@ bool BoundedRegion::onBoundary(neutron* neutron) {
 
 
 /**
- * @brief This method computes the distance along a neutron's trajectory
- *        to the nearest bounding surface for this REgion.
+ * @brief This method computes the parametrized distance along a neutron's 
+ *        unit trajectory vector to the nearest bounding surface for this Region.
  * @param neutron the neutron of interest
  */
-float BoundedRegion::computeDistanceToSurface(neutron* neutron) {
+float BoundedRegion::computeParametrizedDistance(neutron* neutron) {
 
     float min_dist = std::numeric_limits<float>::infinity();
     float curr_dist;
@@ -871,7 +873,7 @@ float BoundedRegion::computeDistanceToSurface(neutron* neutron) {
     std::vector< std::pair<int, Surface*> >::iterator iter;
     for (iter = _surfaces.begin(); iter != _surfaces.end(); ++iter) {
 
-        curr_dist = (*iter).second->computeNearestDistance(neutron);
+        curr_dist = (*iter).second->computeParametrizedDistance(neutron);
 
 	/* If the distance to this surface is the least found thus far,
 	 * update minimum distance found */
@@ -898,23 +900,20 @@ void BoundedRegion::collideNeutron(neutron* neutron) {
 			" collide neutron", _region_name);
 
     float path_length = _material->sampleDistanceTraveled(neutron);
-    float surface_dist = computeDistanceToSurface(neutron);
-    float theta = acos(neutron->_mu);
-
-    log_printf(NORMAL, "path length = %f, surface dist = %f", path_length, surface_dist);
+    float param_coll_dist = path_length / 
+                           norm3D<float>(neutron->_u, neutron->_v, neutron->_w);
+    float param_surf_dist = computeParametrizedDistance(neutron);
 
     /* The neutron collided within this region */
-    if (path_length < surface_dist) {
-     
-        log_printf(NORMAL, "The neutron collided within region %s", _region_name);
+    if (param_coll_dist < param_surf_dist) {
 
         neutron->_path_length = path_length;
 
         /* Update the neutron's location */
-        neutron->_x += path_length * cos(neutron->_phi) * sin(theta);
-        neutron->_y += path_length * sin(neutron->_phi) * sin(theta);
-        neutron->_z += path_length * neutron->_mu;
-
+        neutron->_x += param_coll_dist * neutron->_u;
+	neutron->_y += param_coll_dist * neutron->_v;
+	neutron->_z += param_coll_dist * neutron->_w;
+ 
 	/* Sample a collision type and update the neutron's energy 
 	 *  and direction vector */
         _material->collideNeutron(neutron);
@@ -923,36 +922,35 @@ void BoundedRegion::collideNeutron(neutron* neutron) {
     /* The neutron crossed a bounding surface for this region */
     else {
 
-        path_length = surface_dist;
+        /* Compute the path length to the surface */
+        float delta_x = neutron->_u * param_surf_dist;
+        float delta_y = neutron->_v * param_surf_dist;
+	float delta_z = neutron->_w * param_surf_dist;
+        path_length = norm3D<float>(delta_x, delta_y, delta_z);
         neutron->_path_length = path_length;
 
         /* The neutron crossed an INTERFACE type surface, so we "bump" 
 	 * it across the surface with a tiny "nudge" */
         if (neutron->_surface->getBoundaryType() == INTERFACE) {
+	    
+            param_surf_dist += TINY_MOVE;
 
-	    log_printf(NORMAL, "The neutron crossed an INTERFACE surface %s", 
-		     neutron->_surface->getSurfaceName());
-
-            path_length += TINY_MOVE;
-            
-            /* Update the neutron's location */
-            neutron->_x += path_length * cos(neutron->_phi) * sin(theta);
-            neutron->_y += path_length * sin(neutron->_phi) * sin(theta);
-            neutron->_z += path_length * neutron->_mu;
+            /* Update the neutron's location to just beyond the surface 
+	     * intersection point */
+            neutron->_x += param_surf_dist * neutron->_u;
+            neutron->_y += param_surf_dist * neutron->_v;
+	    neutron->_z += param_surf_dist * neutron->_w;
 	}
 
         /* The neutron crossed a REFLECTIVE boundary, so we move it the 
 	 * boundary and reflect its direction of travel */
         else if (neutron->_surface->getBoundaryType() == REFLECTIVE) {
 
-	    log_printf(NORMAL, "The neutron crossed an REFLECTIVE surface %s", 
-		     neutron->_surface->getSurfaceName());
-
             /* Update the neutron's location to the intersection point
 	     * on the surface */
-            neutron->_x += path_length * cos(neutron->_phi) * sin(theta);
-            neutron->_y += path_length * sin(neutron->_phi) * sin(theta);
-            neutron->_z += path_length * neutron->_mu;
+            neutron->_x += param_surf_dist * neutron->_u;
+            neutron->_y += param_surf_dist * neutron->_v;
+	    neutron->_z += param_surf_dist * neutron->_w;
 
 	    /* Update the neutron's trajectory vectory */
 	    neutron->_surface->reflectNeutron(neutron);

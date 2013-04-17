@@ -138,20 +138,32 @@ float XPlane::evaluate(float x, float y, float z) {
 
 
 /**
- * @brief Computes the nearest distance to the XPlane along a neutron's 
+ * @brief Computes the parametrized distance to the XPlane along a neutron's 
  *        trajectory.
- * @param neutron a pointer to a Neutron struct
+ * @details The distance returned is a parametrized distance along the unit
+ *          vectory defining the neutron's trajectory, not a Cartesian
+ *          distance. If the neutron is traveling away from the surface then
+ *          the distance returned will be infinity. The equation used to 
+ *          compute the parametrized distance \f$ d \f$ from a neutron at 
+ *          \f$ x \f$ traveling with component an x-component of its unit 
+ *          trajectory vector \f$ u \f$ to this xplane at \f$ x_0 \f$ is:
+ *          \f$ d = \frac{x_0 - x}{u} \f$
+ *          
+ * @param neutron a pointer to a neutron struct
+ * @return the parametrized distance to the surface along the neutron's trajectory
  */
-float XPlane::computeNearestDistance(neutron* neutron) {
+float XPlane::computeParametrizedDistance(neutron* neutron) {
 
     /* Set dist to infinity to begin with */
     float dist = std::numeric_limits<float>::infinity();
     float x = neutron->_x;
     float u = neutron->_u;
 
-    if ((x < _x && u > 0.0) || (x > _x && u < 0.0))
+    /* If the neutron is traveling towards the surface, return the distance */
+    if ((x - _x < -1E-6 && u > 0.0) || (x - _x > 1E-6 && u < 0.0))
         dist = (_x - x) / u;
 
+    /* If the neutron is not traveling towards the surface, return infinity */
     return dist;
 }
 
@@ -177,15 +189,6 @@ bool XPlane::onSurface(neutron* neutron) {
  * @param neutron the neutron of interest
  */
 void XPlane::reflectNeutron(neutron* neutron) {
-    log_printf(NORMAL, "Reflecting a neutron from XPlane %s with x = %f, phi = %f",
-	     _surface_name, neutron->_x, neutron->_phi);
-
-    /* If the neutron's azimuthal angle is less than pi */
-    if (neutron->_phi < M_PI)
-        neutron->_phi = M_PI - neutron->_phi;
-    else
-        neutron->_phi = 3.0*M_PI - neutron->_phi;
-
     /* Reverse the x-component of the velocity vector */
     neutron->_u *= -1.0;
 }
@@ -259,20 +262,32 @@ float YPlane::evaluate(float x, float y, float z) {
 
 
 /**
- * @brief Computes the nearest distance to the YPlane along a neutron's 
+ * @brief Computes the parametrized distance to the YPlane along a neutron's 
  *        trajectory.
- * @param neutron a pointer to a Neutron struct
+ * @details The distance returned is a parametrized distance along the unit
+ *          vectory defining the neutron's trajectory, not a Cartesian
+ *          distance. If the neutron is traveling away from the surface then
+ *          the distance returned will be infinity. The equation used to 
+ *          compute the parametrized distance \f$ d \f$ from a neutron at 
+ *          \f$ y \f$ traveling with component an y-component of its unit 
+ *          trajectory vector \f$ u \f$ to this xplane at \f$ y_0 \f$ is:
+ *          \f$ d = \frac{y_0 - y}{u} \f$
+ *          
+ * @param neutron a pointer to a neutron struct
+ * @return the parametrized distance to the surface along the neutron's trajectory
  */
-float YPlane::computeNearestDistance(neutron* neutron) {
+float YPlane::computeParametrizedDistance(neutron* neutron) {
 
     /* Set dist to infinity to begin with */
     float dist = std::numeric_limits<float>::infinity();
     float y = neutron->_y;
     float v = neutron->_v;
 
-    if ((y < _y && v > 0.0) || (y > _y && v < 0.0))
+    /* If the neutron is traveling towards the surface, return the distance */
+    if ((y - _y < -1E-6 && v > 0.0) || (y - _y > 1E-6 && v < 0.0))
         dist = (_y - y) / v;
 
+    /* If the neutron is not traveling towards the surface, return infinity */
     return dist;
 }
 
@@ -299,14 +314,6 @@ bool YPlane::onSurface(neutron* neutron) {
  * @param neutron the neutron of interest
  */
 void YPlane::reflectNeutron(neutron* neutron) {
-
-    /* If the neutron's azimuthal angle is less than pi */
-    if (neutron->_phi < M_PI)
-        neutron->_phi = 2.0* M_PI - neutron->_phi;
-    else
-        neutron->_phi = 2.0*M_PI - neutron->_phi;
-
-    /* Reverse the x-component of the velocity vector */
     neutron->_v *= -1.0;
 }
 
@@ -417,21 +424,31 @@ float ZCylinder::evaluate(float x, float y, float z) {
 
 
 /**
- * @brief Computes the nearest distance to the ZCylinder along a neutron's 
+ * @brief Computes the parametrized distance to the ZCylinder along a neutron's 
  *        trajectory.
- * @param neutron a pointer to a Neutron struct
+ * @details The distance returned is a parametrized distance along the unit
+ *          vectory defining the neutron's trajectory, not a Cartesian
+ *          distance. If the neutron is traveling away from the surface then
+ *          the distance returned will be infinity. This method solves a
+ *          quadratic equation for 0, 1, or 2 surface intersection points
+ *          and selects the one nearest to the neutron.
+ *          
+ * @param neutron a pointer to a neutron struct
+ * @return the parametrized distance to the surface along the neutron's trajectory
  */
-float ZCylinder::computeNearestDistance(neutron* neutron) {
+float ZCylinder::computeParametrizedDistance(neutron* neutron) {
 
     float x = neutron->_x;
     float y = neutron->_y;
     float u = neutron->_u;
     float v = neutron->_v;
 
+    float r_squared = x*x + y*y;
+
     /* Compute temporary variables for each term in the quadratic equation */
     float a = u*u + v*v;
     float b = 2.0*x*u - 2.0*_x0*u + 2.0*y*v - 2.0*_y0*v;
-    float c = x*x + _x0*_x0 - 2.0*_x0*x + y*y + _y0*_y0 - 2.0*_y0*y 
+    float c = r_squared + _x0*_x0 - 2.0*_x0*x + _y0*_y0 - 2.0*_y0*y 
                   - _r_squared;
 
     /* Compute the discriminant in the quadratic formula */
@@ -446,24 +463,30 @@ float ZCylinder::computeNearestDistance(neutron* neutron) {
 
         float dist = -b / (2.0*a);
 
-    if (dist >= 0.0)
-        return dist;
-    else
-        return std::numeric_limits<float>::infinity();
+        if (dist > 0.0)
+            return dist;
+        else
+            return std::numeric_limits<float>::infinity();
     }
 
     /* There are two intersection points */
     else {
-    discr = sqrt(discr);
-    float dist1 = (-b + discr) / (2.0*a);
-    float dist2 = (-b - discr) / (2.0*a);
+        discr = sqrt(discr);
+        float dist1 = (-b + discr) / (2.0*a);
+        float dist2 = (-b - discr) / (2.0*a);
 
-    if (dist1 <= dist1 && dist1 > 0.0)
-        return dist1;
-    else if (dist2 <= dist1 && dist2 > 0.0)
-        return dist2;
-    else
-        return std::numeric_limits<float>::infinity();
+        if (dist1 < 0.0 && dist2 < 0.0)
+            return std::numeric_limits<float>::infinity();
+
+        /* Determine which distance is shorter */
+        if (dist1 > 0.0 && dist2 < 0.0)
+	    return dist1;
+	else if (dist2 > 0.0 && dist1 < 0.0)
+	    return dist2;
+        else if (dist1 < dist2 && dist1 > 0.0)
+	    return dist1;
+	else
+	    return dist2;
     }
 }
 
@@ -511,13 +534,6 @@ void ZCylinder::reflectNeutron(neutron* neutron) {
 
     /* Reflect the particle around the vector normal to the cylinder surface */
     float rotation_angle = M_PI - 2.0 * theta;
-    neutron->_phi += rotation_angle;
-
-    /* Correct for reflected angles outside of the intervale [0, 2pi] */
-    if (neutron->_phi > 2.0 * M_PI)
-        neutron->_phi -= 2.0 * M_PI;
-    else if (neutron->_phi < 0.0)
-        neutron->_phi += 2.0 * M_PI;
 
     /* Update the neutron's trajectory vector using the 2D rotation matrix */
     neutron->_u = neutron->_u * cos(rotation_angle) -
