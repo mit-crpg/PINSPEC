@@ -427,8 +427,9 @@ void Geometry::findContainingRegion(neutron* neutron) {
     }
 
     /* If no containing region was found, throw exception */
-    log_printf(ERROR, "Unable to find the region containing neutron at "
+    log_printf(WARNING, "Unable to find the region containing neutron at "
 	       "(x,y,z) = (%f,%f,%f)", neutron->_x, neutron->_y, neutron->_z);
+    neutron->_alive = false;
 }
 
 /**

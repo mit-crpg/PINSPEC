@@ -19,9 +19,9 @@ from pinspec.log import *
 ###############################################################################
 
 # Simulation parameters
-num_batches = 10
-num_neutrons_per_batch = 1000
-num_threads = 1
+num_batches = 25
+num_neutrons_per_batch = 10000
+num_threads = 4
 nu = 2.45
 setOutputDirectory('heterogeneous')
 
@@ -170,11 +170,12 @@ region_mod.addBoundingSurface(-1, right)
 region_mod.addBoundingSurface(+1, bottom)
 region_mod.addBoundingSurface(-1, top)
 region_mod.addBoundingSurface(+1, pin)
+region_mod.setVolume(vol_moderator)
 
 region_fuel = BoundedFuelRegion('fuel')
 region_fuel.setMaterial(fuel)
 region_fuel.addBoundingSurface(-1, pin)
-
+region_fuel.setVolume(vol_fuel)
 
 ###############################################################################
 ###############################  Create Geometry ##############################
@@ -183,10 +184,39 @@ region_fuel.addBoundingSurface(-1, pin)
 py_printf('INFO', 'Initializing the geometry...')
 geometry = Geometry(HETEROGENEOUS)
 geometry.addRegion(region_mod)
-geometry.addRegion(region_fuel)geometry.setNumBatches(num_batches)
+geometry.addRegion(region_fuel)
+geometry.setNumBatches(num_batches)
 geometry.setNeutronsPerBatch(num_neutrons_per_batch)
 geometry.setNumThreads(num_threads)
 geometry.setSourceSamplingRadius(0.5)
+
+
+###############################################################################
+################################  Create Tallies ##############################
+###############################################################################
+
+py_printf('INFO', 'Initializing tallies...')
+
+# Create Tallies for the energy high-resolution fluxes for plotting
+total_flux = TallyFactory.createTally(geometry, FLUX, 'total')
+moderator_flux = TallyFactory.createTally(region_mod, FLUX, 'moderator')
+fuel_flux = TallyFactory.createTally(region_fuel, FLUX, 'fuel')
+total_flux.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
+moderator_flux.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
+fuel_flux.generateBinEdges(1E-2, 1E7, 5000, LOGARITHMIC)
+
+# Create tallies for computing k-inf
+tot_fiss_rate = TallyFactory.createTally(geometry, FISSION_RATE)
+tot_abs_rate = TallyFactory.createTally(geometry, ABSORPTION_RATE)
+tot_fiss_rate.generateBinEdges(0.0, 1E7, 1, EQUAL)
+tot_abs_rate.generateBinEdges(0.0, 1E7, 1, EQUAL)
+
+# Register tallies
+TallyBank.registerTally(total_flux)
+TallyBank.registerTally(moderator_flux)
+TallyBank.registerTally(fuel_flux)
+TallyBank.registerTally(tot_fiss_rate)
+TallyBank.registerTally(tot_abs_rate)
 
 
 ###############################################################################
@@ -196,17 +226,6 @@ geometry.setSourceSamplingRadius(0.5)
 # Run Monte Carlo simulation
 geometry.runMonteCarloSimulation()
 
-<<<<<<< HEAD
-
-=======
-#x = [0, 1, 2, 3, 4, 5]
-#y = [1, 3, 2, 5, 3, 1]
-#plt.figure()
-#plt.plot(x,y,'b-')
-#plt.plot(x,y,'wo', markersize=25, markeredgecolor = 'w')
-#plt.plot(x,y,'bo', markersize=7, markeredgecolor = 'w')
-#plt.show()
->>>>>>> 8f57443d390e1e62a106ef2bfe59a7d858905867
 
 ###############################################################################
 ##################################  Plotting  #################################
@@ -244,3 +263,14 @@ plotter.trackANeutron(geometry, num_moves=100, plane='yz', \
                           lim1=[-0.75, 0.75], lim2=[-3., 3.])
 plotter.trackANeutron(geometry, num_moves=100, plane='xz', \
                           lim1=[-0.75, 0.75], lim2=[-3.,3.])
+
+# Plot the fluxes
+plotter.plotFlux([total_flux, moderator_flux, fuel_flux], uselegend=True)
+
+
+# Compute k-infinity using tally arithmetic operators and print to screen
+k_inf = tot_fiss_rate * nu  / tot_abs_rate
+k_inf.setTallyName('k-infinity')
+k_inf.printTallies(uncertainties=True)
+
+py_printf('TITLE', 'Finished')
