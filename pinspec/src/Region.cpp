@@ -755,9 +755,6 @@ void BoundedRegion::addBoundingSurface(int halfspace, Surface* surface) {
 		   "halfspace must be -1 or +1.", 
 		   surface->getSurfaceName(), halfspace);
 
-    log_printf(NORMAL, "Adding bounding surface %s with halfspace %d", 
-	       surface->getSurfaceName(), halfspace);
-
     /* Create a halfspace/surface pair and add it to the bounding surfaces
      * container for this region */
     std::pair<int, Surface*> pair=std::pair<int, Surface*>(halfspace, surface);
@@ -822,8 +819,6 @@ bool BoundedRegion::contains(neutron* neutron) {
 
     int halfspace;
     Surface* surface;
-
-    log_printf(NORMAL, "Checking if region %s contains neutron", _region_name);
 
     /* Loop over and query all bounding surfaces */
     std::vector< std::pair<int, Surface*> >::iterator iter;
@@ -907,6 +902,7 @@ void BoundedRegion::collideNeutron(neutron* neutron) {
     /* The neutron collided within this region */
     if (param_coll_dist < param_surf_dist) {
 
+        neutron->_region = this;
         neutron->_path_length = path_length;
 
         /* Update the neutron's location */
