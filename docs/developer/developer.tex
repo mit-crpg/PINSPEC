@@ -330,19 +330,34 @@ In the above examples, Surface is the super-class, and XPlane and YPlane are sub
 
 \clearpage
 \subsection{Example: Implement A Monte Carlo Variance Reduction Technique}
-The main kernel that performs the Monte Carlo simulation is contained in Geometry.cpp as runMonteCarloSimulation(). 
+The main kernel that performs the Monte Carlo simulation is contained in Geometry.cpp as runMonteCarloSimulation(). First this function does error checking to make sure that the geometry and region types are compatible. Then it initializes tallies using tally bank.
 
 \begin{algorithm}
 
 \caption{High Level Monte Carlo Kernel}
 \begin{algorithmic}
+\WHILE{not hit precision}
 \FOR{each batch}
 \FOR{each neutron inside the batch}
-\STATE Initialize neutrons:
-
+\STATE Initialize neutrons: sampling energy from fission spectrum, place it in fuel. 
+\WHILE{neutron is alive}
+\STATE Find neutron's region. 
+\STATE Call collideNeutron method in that region. 
+\STATE Call tallyBank to tally that collision. 
+\ENDWHILE
 \ENDFOR
 \ENDFOR
+\ENDWHILE
 \end{algorithmic}
 \end{algorithm}
+How collideNeutron(..) method works:
+\begin{itemize}
+\item When it is called for a region, depends on the region subclass type, collideNeutron(..) may perform slightly different things. For instance, a Infinite Medium Region would just call collideNeutron(..) for the material inside; an Equivalence Region would figure out whether the neutron is in fuel or moderator right now, calculate PFF or PMF, and sample next location, and call collideNeutron in that material; whereas in Bounded Regions, collideNeutron(..) perform a true random walk, update neutron's location, and sample a collision type in the new material. 
+
+\item When it is called in a material, it samples an isotope, and call collideNeutron(..) for that isotope. 
+
+\item When it is called in an isotope, the method samples a collision type and generate the neutron's outgoing energy based on the geometry type. For instance, in infinite homogeneous and heterogeneous equivalence model, we perform asymptotic elastic downscattering above 4eV and perform thermal scattering below 4eV, and consider the direction of traveling to be uniformly. Whereas in Heterogeneous geometry, we sample real $\phi$ and update neutron's velocity directions $u,v,w$
+
+\end{itemize}
 
 \end{document}
