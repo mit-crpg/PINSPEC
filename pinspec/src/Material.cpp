@@ -824,15 +824,6 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
    	std::pair<Isotope*, float> (isotope, atomic_ratio);
     _isotopes_AO.insert(new_isotope_AO);
 
-    /* Checks to make sure material density is set already */
-    if (_material_density <= 0)
-    	log_printf(ERROR, "Unable to add Isotope %s since the number density "
-                       "for Material %s has not yet been set", 
-                        isotope->getIsotopeName(), _material_name);
-
-    /* Increments the material's total atomic mass and number density */
-    N_av = 6.023E-1;
-
     /* Compute the total atomic ratio */
     float total_AO = 0.0;
     for (iter_AO =_isotopes_AO.begin(); iter_AO != _isotopes_AO.end(); 
@@ -847,8 +838,38 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     	_material_atomic_mass += iter_AO->second * iter_AO->first->getA();
     }
 
+
+    N_av = 6.023E-1;
+    if (_density_unit == GRAM_CM3)
+    {
+    /* Checks to make sure material density is set already */
+    if (_material_density <= 0)
+    {
+    	log_printf(ERROR, "Unable to add Isotope %s since the number density "
+                       "for Material %s has not yet been set", 
+                        isotope->getIsotopeName(), _material_name);
+
+    }
+
     /* Calculates the material's number density */
     _material_number_density = _material_density * N_av / _material_atomic_mass;
+    }
+    else if (_density_unit == NUM_CM3)
+    {
+	if (_material_number_density <= 0)
+	{
+	    log_printf(ERROR, "Unable to add Isotope %s since the number"
+		       " density for Material %s hsa not yet been set", 
+		       isotope->getIsotopeName(), _material_name);
+	}
+
+	_material_density = _material_number_density * _material_atomic_mass 
+	    / N_av;
+    }
+    else
+	log_printf(ERROR, "Unable to support density unit that is not g/cc or"
+		   " at/cc");
+
 
     /* Calculates the isotope's number density */
     isotope_number_density = atomic_ratio / total_AO * _material_number_density;
