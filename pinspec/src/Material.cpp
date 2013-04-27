@@ -730,13 +730,17 @@ void Material::setDensity(float density, char* unit) {
 	_density_unit = GRAM_CM3;
     }
     else if (strcmp(unit, "at/cc") == 0) {
-        _material_number_density = density;
+        _material_number_density = density / 1e24;
 	_density_unit = NUM_CM3;
     }
+    else if (strcmp(unit, "at/barncm") == 0) {
+        _material_number_density = density;
+	_density_unit = NUM_BARNCM;
+    }  
     else {
         log_printf(ERROR, "Cannot set Material %s number density in"
 		   "units %s since PINSPEC only support units in"
-		   "g/cc and at/cc", _material_name, unit);
+		   "g/cc, at/cc, and at/barn-cm", _material_name, unit);
     }    
 }
 
@@ -854,7 +858,7 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     /* Calculates the material's number density */
     _material_number_density = _material_density * N_av / _material_atomic_mass;
     }
-    else if (_density_unit == NUM_CM3)
+    else if ((_density_unit == NUM_CM3) || (_density_unit == NUM_BARNCM))
     {
 	if (_material_number_density <= 0)
 	{
@@ -865,10 +869,10 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 
 	_material_density = _material_number_density * _material_atomic_mass 
 	    / N_av;
-    }
+    }    
     else
 	log_printf(ERROR, "Unable to support density unit that is not g/cc or"
-		   " at/cc");
+		   " at/cc or at/barn-cm");
 
 
     /* Calculates the isotope's number density */
@@ -1007,7 +1011,8 @@ Material* Material::clone() {
         new_clone->setDensity(_material_number_density, (char*)"at/cc");
 	new_clone->setDensity(_material_density, (char*)"g/cc");
     }
-    else if (_density_unit == NUM_CM3){
+    else if ((_density_unit == NUM_CM3) || (_density_unit == NUM_BARNCM))
+    {
         new_clone->setDensity(_material_density, (char*)"g/cc");
         new_clone->setDensity(_material_number_density, (char*)"at/cc");
     }

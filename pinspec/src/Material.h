@@ -22,7 +22,8 @@
  */
 typedef enum densityUnits {
     GRAM_CM3,
-    NUM_CM3
+    NUM_CM3,
+    NUM_BARNCM
 } densityUnit;
 
 
