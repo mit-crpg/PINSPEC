@@ -739,8 +739,9 @@ void Material::setDensity(float density, char* unit) {
     }  
     else {
         log_printf(ERROR, "Cannot set Material %s number density in"
-		   "units %s since PINSPEC only support units in"
-		   "g/cc, at/cc, and at/barncm", _material_name, unit);
+		   " units of %s since PINSPEC only support units in"
+		   " g/cc, at/cc, and at/barncm", _material_name, 
+		   unit);
     }    
 }
 
@@ -769,8 +770,8 @@ void Material::setNumberDensity(float density, const char* unit)
     }  
     else {
         log_printf(ERROR, "Cannot set Material %s number density in"
-		   "units %s since PINSPEC only support units in"
-		   "g/cc, at/cc, and at/barncm", _material_name, unit);
+		   " units %s since PINSPEC only support units in"
+		   " g/cc, at/cc, and at/barncm", _material_name, unit);
     }    
 
 }
