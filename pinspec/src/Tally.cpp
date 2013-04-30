@@ -895,7 +895,7 @@ void Tally::tally(neutron* neutron, double weight) {
     int bin_index = getBinIndex(neutron->_old_energy);
 
     if (weight < 0.0)
-        log_printf(NORMAL, "weight = %f", weight);
+        log_printf(ERROR, "weight = %f", weight);
 
     /* For outscattering reaction rates, we do nothing if the neutrons 
      * did not leave this energy group, and only tally when the neutron
@@ -933,7 +933,7 @@ void Tally::tallyGroup(neutron* neutron, double weight) {
         log_printf(ERROR, "Cannot tally samples in Tally %s since "
 		   "batches have not yet been created", _tally_name);
     if (weight < 0.0)
-        log_printf(NORMAL, "weight = %f", weight);
+        log_printf(ERROR, "weight = %f", weight);
 
     /* Obtains the index corresponding to neutron's incoming energy (old_index)
      * and outgoing energy (new_index) */
