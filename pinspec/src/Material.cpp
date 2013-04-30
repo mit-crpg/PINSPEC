@@ -867,10 +867,11 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 	/* Checks to make sure material density is set already */
 	if (_material_density <= 0)
 	{
-	    log_printf(ERROR, "Unable to add Isotope %s since the number density "
-                       "for Material %s has not yet been set", 
+	    log_printf(ERROR, "Unable to add Isotope %s because the number"
+		       " density for Material %s <= 0. Possible reasons: "
+		       " it may not be set, or you are setting it to a"
+		       " negative value", 
 		       isotope->getIsotopeName(), _material_name);
-
 	}
 
 	/* Calculates the material's number density */
@@ -881,8 +882,10 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
     {
 	if (_material_number_density <= 0)
 	{
-	    log_printf(ERROR, "Unable to add Isotope %s since the number"
-		       " density for Material %s hsa not yet been set", 
+	    log_printf(ERROR, "Unable to add Isotope %s because the number"
+		       " density for Material %s <= 0. Possible reasons: "
+		       " it may not be set, or you are setting it to a"
+		       " negative value", 
 		       isotope->getIsotopeName(), _material_name);
 	}
 
