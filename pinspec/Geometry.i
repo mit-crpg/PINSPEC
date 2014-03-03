@@ -17,6 +17,8 @@
     #include "src/xsreader.h"
     #include "src/Timer.h"
 
+    #define printf PySys_WriteStdout
+
     /* Exception helpers */
     static int swig_c_error_num = 0;
     static char swig_c_err_msg[512];
@@ -79,7 +81,7 @@
 %apply (float* IN_ARRAY1, int DIM1) {(const float* amt, const int length)}
 %apply (double* IN_ARRAY1, int DIM1) {(const double* amt, const int length)}
 
-%include <exception.i> 
+%include <exception.i>
 %include src/Geometry.h
 %include src/Region.h
 %include src/Surface.h
@@ -94,3 +96,6 @@
 %include src/vector.h
 %include src/xsreader.h
 %include src/Timer.h
+
+
+#define printf PySys_WriteStdout

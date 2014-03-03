@@ -479,12 +479,12 @@ void log_printf(logLevel level, const char *format, ...) {
 
         /* Write the log message to the logfile */
         std::ofstream logfile;
-        logfile.open (logfile_name.c_str(), std::ios::app); 
+        logfile.open (logfile_name.c_str(), std::ios::app);
         logfile << msg_string;
         logfile.close();
 
         /* Write the log message to the shell */
-        std::cout << msg_string;
+        printf(msg_string.c_str());
     }
 }
 
