@@ -43,13 +43,13 @@ public:
     }
 
     Tally* createTally(Geometry* geometry, tallyType tally_type, 
-		       const char* tally_name=(char*)""); 
+		       char* tally_name=(char*)""); 
     Tally* createTally(Region* region, tallyType tally_type, 
-		       const char* tally_name=(char*)"");
+		       char* tally_name=(char*)"");
     Tally* createTally(Material* material, tallyType tally_type, 
-		       const char* tally_name=(char*)"");
+		       char* tally_name=(char*)"");
     Tally* createTally(Isotope* isotope, tallyType tally_type, 
-		       const char* tally_name=(char*)"");
+		       char* tally_name=(char*)"");
 };
 
 #endif /* TALLYFACTORY_H_ */

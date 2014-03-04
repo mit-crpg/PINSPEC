@@ -23,9 +23,14 @@ unsigned int isqrt(int number) {
  * @brief Tally constructor.
  * @details Assigns a default number of batches (0) and tally bins (0).
  */
-Tally::Tally(const char* tally_name) {
+Tally::Tally(char* tally_name) {
 
-    _tally_name = (char*)tally_name;
+	  int length = strlen(tally_name);
+		_tally_name = new char[length];
+
+    for (int i=0; i <= length; i++)
+			_tally_name[i] = tally_name[i];
+
     _trigger_type = NONE;
     _trigger_precision = std::numeric_limits<float>::max();
 
@@ -45,6 +50,8 @@ Tally::Tally(const char* tally_name) {
  *        bin centers and bin edges (if they have been created).
  */
 Tally::~Tally() {
+
+	 delete [] _tally_name;
 
     if (_num_bins != 0)
         delete [] _edges;
@@ -1396,9 +1403,12 @@ DerivedTally* Tally::operator+(Tally* tally) {
         }
     }
 
-    /* Create a new derived type tally and initialize it */        
-    const char* tally_name = (std::string(_tally_name) + 
-                                    " + " + tally->getTallyName()).c_str(); 
+    /* Create a new derived type tally and initialize it */
+    std::string string_tally_name = std::string(_tally_name) + " + " + \
+                                    tally->getTallyName();
+    char* tally_name = new char[string_tally_name.size() + 1];
+    std::copy(string_tally_name.begin(), string_tally_name.end(), tally_name);
+
     DerivedTally* new_tally = new DerivedTally(tally_name);
 
     new_tally->setBinSpacingType(_bin_spacing);
@@ -1517,9 +1527,12 @@ DerivedTally* Tally::operator-(Tally* tally) {
         }
     }
 
-    /* Create a new derived type tally and initialize it */        
-    const char* tally_name = (std::string(_tally_name) + 
-                                      " - " + tally->getTallyName()).c_str(); 
+    /* Create a new derived type tally and initialize it */
+    std::string string_tally_name = std::string(_tally_name) + " + " + \
+                                    tally->getTallyName();
+    char* tally_name = new char[string_tally_name.size() + 1];
+    std::copy(string_tally_name.begin(), string_tally_name.end(), tally_name);
+
     DerivedTally* new_tally = new DerivedTally(tally_name);
 
     new_tally->setBinSpacingType(_bin_spacing);
@@ -1637,9 +1650,12 @@ DerivedTally* Tally::operator*(Tally* tally) {
         }
     }
 
-    /* Create a new derived type tally and initialize it */        
-    const char* tally_name = (std::string(_tally_name) + 
-                                      " * " + tally->getTallyName()).c_str(); 
+    /* Create a new derived type tally and initialize it */
+    std::string string_tally_name = std::string(_tally_name) + " + " + \
+                                    tally->getTallyName();
+    char* tally_name = new char[string_tally_name.size() + 1];
+    std::copy(string_tally_name.begin(), string_tally_name.end(), tally_name);
+
     DerivedTally* new_tally = new DerivedTally(tally_name);
 
     new_tally->setBinSpacingType(_bin_spacing);
@@ -1760,9 +1776,12 @@ DerivedTally* Tally::operator/(Tally* tally) {
         }
     }
 
-    /* Create a new derived type tally and initialize it */        
-    const char* tally_name = (std::string(_tally_name) + 
-                                       " / " + tally->getTallyName()).c_str(); 
+    /* Create a new derived type tally and initialize it */
+    std::string string_tally_name = std::string(_tally_name) + " + " + \
+                                    tally->getTallyName();
+    char* tally_name = new char[string_tally_name.size() + 1];
+    std::copy(string_tally_name.begin(), string_tally_name.end(), tally_name);
+
     DerivedTally* new_tally = new DerivedTally(tally_name);
 
     new_tally->setBinSpacingType(_bin_spacing);
@@ -2880,8 +2899,7 @@ DerivedTally* Tally::divideDoubles(const double* amt, const int length) {
  * @param tally_name a character array for the name of the tally
  * @return a pointer to the newly created tally
  */
-Tally* createTally(Isotope* isotope, tallyType tally_type,
-                                                  const char* tally_name) {
+Tally* createTally(Isotope* isotope, tallyType tally_type, char* tally_name) {
     if (tally_type == FLUX)
 	log_printf(ERROR, "Unable to create a FLUX type Tally for an "
 			"Isotope. FLUX tallies are only supported for "
@@ -2926,8 +2944,7 @@ Tally* createTally(Isotope* isotope, tallyType tally_type,
  * @param tally_name a character array for the name of the tally
  * @return a pointer to the newly created tally
  */
-Tally* createTally(Material* material, tallyType tally_type,
-                                                  const char* tally_name) {
+Tally* createTally(Material* material, tallyType tally_type, char* tally_name) {
 
     if (tally_type == DERIVED)
         log_printf(ERROR, "DERIVED type tallies cannot be created by the "
@@ -2967,8 +2984,7 @@ Tally* createTally(Material* material, tallyType tally_type,
  * @param tally_name a character array for the name of the tally
  * @return a pointer to the newly created tally
  */
-Tally* createTally(Region* region, tallyType tally_type,
-                                                  const char* tally_name) {
+Tally* createTally(Region* region, tallyType tally_type, char* tally_name) {
 
     if (tally_type == DERIVED)
         log_printf(ERROR, "DERIVED type tallies cannot be created by the "
@@ -3008,8 +3024,7 @@ Tally* createTally(Region* region, tallyType tally_type,
  * @param tally_name a character array for the name of the tally
  * @return a pointer to the newly created tally
  */
-Tally* createTally(Geometry* geometry, tallyType tally_type,
-                                                  const char* tally_name) {
+Tally* createTally(Geometry* geometry, tallyType tally_type, char* tally_name) {
 
     if (tally_type == DERIVED)
         log_printf(ERROR, "DERIVED type tallies cannot be created by the "

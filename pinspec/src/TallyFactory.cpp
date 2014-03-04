@@ -9,7 +9,7 @@
  * @return a pointer to the newly created tally
  */
 Tally* TallyFactory::createTally(Isotope* isotope, tallyType tally_type, 
-                                                  const char* tally_name) {
+                                                  char* tally_name) {
     if (tally_type == FLUX)
         log_printf(ERROR, "Unable to create a FLUX type Tally for an "
 		   "Isotope. FLUX tallies are only supported for "
@@ -55,7 +55,7 @@ Tally* TallyFactory::createTally(Isotope* isotope, tallyType tally_type,
  * @return a pointer to the newly created tally
  */
 Tally* TallyFactory::createTally(Material* material, tallyType tally_type,
-                                                  const char* tally_name) {
+                                                  char* tally_name) {
 
     if (tally_type == DERIVED)
         log_printf(ERROR, "DERIVED type tallies cannot be created by the "
@@ -96,7 +96,7 @@ Tally* TallyFactory::createTally(Material* material, tallyType tally_type,
  * @return a pointer to the newly created tally
  */
 Tally* TallyFactory::createTally(Region* region, tallyType tally_type,
-                                                  const char* tally_name) {
+                                                  char* tally_name) {
 
     if (tally_type == DERIVED)
         log_printf(ERROR, "DERIVED type tallies cannot be created by the "
@@ -137,7 +137,7 @@ Tally* TallyFactory::createTally(Region* region, tallyType tally_type,
  * @return a pointer to the newly created tally
  */
 Tally* TallyFactory::createTally(Geometry* geometry, tallyType tally_type,
-                                                  const char* tally_name) {
+                                                  char* tally_name) {
 
     if (tally_type == DERIVED)
         log_printf(ERROR, "DERIVED type tallies cannot be created by the "

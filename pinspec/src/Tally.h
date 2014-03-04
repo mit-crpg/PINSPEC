@@ -210,7 +210,7 @@ protected:
     bool _group_expand_bins;
 
 public:
-    Tally(const char* tally_name=(char*)"");
+    Tally(char* tally_name=(char*)"");
     virtual ~Tally();
     char* getTallyName();
     int getNumBins();
@@ -344,7 +344,7 @@ public:
      * @param isotope a pointer to the isotope to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    IsotopeTally(Isotope* isotope, const char* tally_name=(char*)"")
+    IsotopeTally(Isotope* isotope, char* tally_name=(char*)"")
       : Tally(tally_name){ 
           _tally_domain = ISOTOPE;
 	  _isotope = isotope; 
@@ -381,7 +381,7 @@ public:
      * @param material a pointer to the material within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    MaterialTally(Material* material, const char* tally_name=(char*)"")
+    MaterialTally(Material* material, char* tally_name=(char*)"")
       : Tally(tally_name) { 
           _tally_domain = MATERIAL;
 	  _material = material; 
@@ -417,7 +417,7 @@ public:
      * @param region a pointer to the region within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    RegionTally(Region* region, const char* tally_name=(char*)"")
+    RegionTally(Region* region, char* tally_name=(char*)"")
       : Tally(tally_name) { 
           _tally_domain = REGION;
 	  _region = region; 
@@ -453,7 +453,7 @@ public:
      * @param geometry a pointer to the geometry within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    GeometryTally(Geometry* geometry, const char* tally_name=(char*)"")
+    GeometryTally(Geometry* geometry, char* tally_name=(char*)"")
       : Tally(tally_name) {
           _tally_domain = GEOMETRY;
 	  _geometry = geometry;
@@ -488,7 +488,7 @@ public:
      * @param isotope a pointer to the isotope within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    IsotopeCollisionRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+    IsotopeCollisionRateTally(Isotope* isotope, char* tally_name=(char*)"")
         : IsotopeTally(isotope, tally_name){
             _tally_type = COLLISION_RATE; 
     }
@@ -512,7 +512,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     MaterialCollisionRateTally(Material* material, 
-			       const char* tally_name=(char*)"")
+			       char* tally_name=(char*)"")
         : MaterialTally(material, tally_name){
             _tally_type = COLLISION_RATE; 
     }
@@ -536,7 +536,7 @@ public:
      * @param region a pointer to the region within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    RegionCollisionRateTally(Region* region, const char* tally_name=(char*)"")
+    RegionCollisionRateTally(Region* region, char* tally_name=(char*)"")
         : RegionTally(region, tally_name){
             _tally_type = COLLISION_RATE; 
     }
@@ -561,7 +561,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     GeometryCollisionRateTally(Geometry* geometry, 
-			       const char* tally_name=(char*)"")
+			       char* tally_name=(char*)"")
         : GeometryTally(geometry, tally_name){
              _tally_type = COLLISION_RATE; 
     }
@@ -590,7 +590,7 @@ public:
      * @param isotope a pointer to the isotope for which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    IsotopeElasticRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+    IsotopeElasticRateTally(Isotope* isotope, char* tally_name=(char*)"")
         : IsotopeTally(isotope, tally_name){
             _tally_type = ELASTIC_RATE;
     }
@@ -614,7 +614,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     MaterialElasticRateTally(Material* material, 
-			     const char* tally_name=(char*)"")
+			     char* tally_name=(char*)"")
         : MaterialTally(material, tally_name){
             _tally_type = ELASTIC_RATE;
     }
@@ -637,7 +637,7 @@ public:
      * @param region a pointer to the region within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    RegionElasticRateTally(Region* region, const char* tally_name=(char*)"")
+    RegionElasticRateTally(Region* region, char* tally_name=(char*)"")
         : RegionTally(region, tally_name){
             _tally_type = ELASTIC_RATE;
     }
@@ -661,7 +661,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     GeometryElasticRateTally(Geometry* geometry, 
-			     const char* tally_name=(char*)"")
+			     char* tally_name=(char*)"")
         : GeometryTally(geometry, tally_name){
             _tally_type = ELASTIC_RATE;
     }
@@ -688,7 +688,7 @@ public:
      * @param isotope a pointer to the isotope for which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    IsotopeGroupRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+    IsotopeGroupRateTally(Isotope* isotope, char* tally_name=(char*)"")
         : IsotopeTally(isotope, tally_name){
             _tally_type = GROUP_TO_GROUP_RATE;
     }
@@ -711,7 +711,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     MaterialGroupRateTally(Material* material, 
-			   const char* tally_name=(char*)"")
+			   char* tally_name=(char*)"")
         : MaterialTally(material, tally_name){
             _tally_type = GROUP_TO_GROUP_RATE;
     }
@@ -734,7 +734,7 @@ public:
      * @param region a pointer to the region within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    RegionGroupRateTally(Region* region, const char* tally_name=(char*)"")
+    RegionGroupRateTally(Region* region, char* tally_name=(char*)"")
         : RegionTally(region, tally_name){
 	_tally_type = GROUP_TO_GROUP_RATE;
     }
@@ -758,7 +758,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     GeometryGroupRateTally(Geometry* geometry, 
-			   const char* tally_name=(char*)"")
+			   char* tally_name=(char*)"")
         : GeometryTally(geometry, tally_name){
 	_tally_type = GROUP_TO_GROUP_RATE;
     }
@@ -783,7 +783,7 @@ public:
      * @param isotope a pointer to the isotope for which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    IsotopeOutScatterRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+    IsotopeOutScatterRateTally(Isotope* isotope, char* tally_name=(char*)"")
         : IsotopeTally(isotope, tally_name){
             _tally_type = OUTSCATTER_RATE;
     }
@@ -806,7 +806,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     MaterialOutScatterRateTally(Material* material, 
-			   const char* tally_name=(char*)"")
+			   char* tally_name=(char*)"")
         : MaterialTally(material, tally_name){
             _tally_type = OUTSCATTER_RATE;
     }
@@ -829,7 +829,7 @@ public:
      * @param region a pointer to the region within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    RegionOutScatterRateTally(Region* region, const char* tally_name=(char*)"")
+    RegionOutScatterRateTally(Region* region, char* tally_name=(char*)"")
         : RegionTally(region, tally_name){
 	_tally_type = OUTSCATTER_RATE;
     }
@@ -853,7 +853,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     GeometryOutScatterRateTally(Geometry* geometry, 
-			   const char* tally_name=(char*)"")
+			   char* tally_name=(char*)"")
         : GeometryTally(geometry, tally_name){
 	_tally_type = OUTSCATTER_RATE;
     }
@@ -880,7 +880,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     IsotopeAbsorptionRateTally(Isotope* isotope, 
-			       const char* tally_name=(char*)"")
+			       char* tally_name=(char*)"")
         : IsotopeTally(isotope, tally_name) {
             _tally_type = ABSORPTION_RATE;
     }
@@ -904,7 +904,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     MaterialAbsorptionRateTally(Material* material, 
-				const char* tally_name=(char*)"")
+				char* tally_name=(char*)"")
         : MaterialTally(material, tally_name) {
             _tally_type = ABSORPTION_RATE;
     }
@@ -927,7 +927,7 @@ public:
      * @param region a pointer to the region within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    RegionAbsorptionRateTally(Region* region, const char* tally_name=(char*)"")
+    RegionAbsorptionRateTally(Region* region, char* tally_name=(char*)"")
         : RegionTally(region, tally_name) {
             _tally_type = ABSORPTION_RATE;
     }
@@ -951,7 +951,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     GeometryAbsorptionRateTally(Geometry* geometry, 
-				const char* tally_name=(char*)"")
+				char* tally_name=(char*)"")
         : GeometryTally(geometry, tally_name) {
             _tally_type = ABSORPTION_RATE;
     }
@@ -979,7 +979,7 @@ public:
      * @param isotope a pointer to the isotope within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    IsotopeCaptureRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+    IsotopeCaptureRateTally(Isotope* isotope, char* tally_name=(char*)"")
 	: IsotopeTally(isotope, tally_name) {
             _tally_type = CAPTURE_RATE;
     }
@@ -1003,7 +1003,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     MaterialCaptureRateTally(Material* material, 
-			     const char* tally_name=(char*)"")
+			     char* tally_name=(char*)"")
         : MaterialTally(material, tally_name) {
             _tally_type = CAPTURE_RATE;
     }
@@ -1026,7 +1026,7 @@ public:
      * @param region a pointer to the region within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    RegionCaptureRateTally(Region* region, const char* tally_name=(char*)"")
+    RegionCaptureRateTally(Region* region, char* tally_name=(char*)"")
         : RegionTally(region, tally_name) {
             _tally_type = CAPTURE_RATE;
     }
@@ -1050,7 +1050,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     GeometryCaptureRateTally(Geometry* geometry, 
-			     const char* tally_name=(char*)"")
+			     char* tally_name=(char*)"")
         : GeometryTally(geometry, tally_name) {
             _tally_type = CAPTURE_RATE;
     }
@@ -1078,7 +1078,7 @@ public:
      * @param isotope a pointer to the isotope within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    IsotopeFissionRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+    IsotopeFissionRateTally(Isotope* isotope, char* tally_name=(char*)"")
 	: IsotopeTally(isotope, tally_name) {
             _tally_type = FISSION_RATE;
     }
@@ -1102,7 +1102,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     MaterialFissionRateTally(Material* material, 
-			     const char* tally_name=(char*)"")
+			     char* tally_name=(char*)"")
         : MaterialTally(material, tally_name) {
             _tally_type = FISSION_RATE;
     }
@@ -1125,7 +1125,7 @@ public:
      * @param region a pointer to the region within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    RegionFissionRateTally(Region* region, const char* tally_name=(char*)"")
+    RegionFissionRateTally(Region* region, char* tally_name=(char*)"")
         : RegionTally(region, tally_name) {
             _tally_type = FISSION_RATE;
     }
@@ -1149,7 +1149,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     GeometryFissionRateTally(Geometry* geometry, 
-			     const char* tally_name=(char*)"")
+			     char* tally_name=(char*)"")
         : GeometryTally(geometry, tally_name) {
 	    _tally_type = FISSION_RATE;
     }
@@ -1176,7 +1176,7 @@ public:
      * @param isotope a pointer to the isotope within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    IsotopeTransportRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+    IsotopeTransportRateTally(Isotope* isotope, char* tally_name=(char*)"")
         : IsotopeTally(isotope, tally_name) {
             _tally_type = TRANSPORT_RATE;
     }
@@ -1200,7 +1200,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     MaterialTransportRateTally(Material* material, 
-			       const char* tally_name=(char*)"")
+			       char* tally_name=(char*)"")
         : MaterialTally(material, tally_name) {
             _tally_type = TRANSPORT_RATE;
     }
@@ -1223,7 +1223,7 @@ public:
      * @param region a pointer to the region within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    RegionTransportRateTally(Region* region, const char* tally_name=(char*)"")
+    RegionTransportRateTally(Region* region, char* tally_name=(char*)"")
         : RegionTally(region, tally_name) {
 	    _tally_type = TRANSPORT_RATE;
     }
@@ -1247,7 +1247,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     GeometryTransportRateTally(Geometry* geometry, 
-			       const char* tally_name=(char*)"") 
+			       char* tally_name=(char*)"") 
         : GeometryTally(geometry, tally_name) {
             _tally_type = TRANSPORT_RATE;
     }
@@ -1274,7 +1274,7 @@ public:
      * @param isotope a pointer to the isotope within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    IsotopeDiffusionRateTally(Isotope* isotope, const char* tally_name=(char*)"")
+    IsotopeDiffusionRateTally(Isotope* isotope, char* tally_name=(char*)"")
 	: IsotopeTally(isotope, tally_name) {
             _tally_type = DIFFUSION_RATE;
     }
@@ -1298,7 +1298,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     MaterialDiffusionRateTally(Material* material, 
-			       const char* tally_name=(char*)"")
+			       char* tally_name=(char*)"")
         : MaterialTally(material, tally_name) {
             _tally_type = DIFFUSION_RATE;
     }
@@ -1321,7 +1321,7 @@ public:
      * @param region a pointer to the region within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    RegionDiffusionRateTally(Region* region, const char* tally_name=(char*)"")
+    RegionDiffusionRateTally(Region* region, char* tally_name=(char*)"")
         : RegionTally(region, tally_name) {
             _tally_type = DIFFUSION_RATE;
     }
@@ -1345,7 +1345,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     GeometryDiffusionRateTally(Geometry* geometry, 
-			       const char* tally_name=(char*)"")
+			       char* tally_name=(char*)"")
         : GeometryTally(geometry, tally_name) {
             _tally_type = DIFFUSION_RATE;
 			}
@@ -1374,7 +1374,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     MaterialLeakageRateTally(Material* material, 
-			     const char* tally_name=(char*)"")
+			     char* tally_name=(char*)"")
         : MaterialTally(material, tally_name) {
             _tally_type = LEAKAGE_RATE;
     }
@@ -1397,7 +1397,7 @@ public:
      * @param region a pointer to the region within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    RegionLeakageRateTally(Region* region, const char* tally_name=(char*)"")
+    RegionLeakageRateTally(Region* region, char* tally_name=(char*)"")
         : RegionTally(region, tally_name) {
              _tally_type = LEAKAGE_RATE;
     }
@@ -1421,7 +1421,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
      GeometryLeakageRateTally(Geometry* geometry, 
-			      const char* tally_name=(char*)"")
+			      char* tally_name=(char*)"")
          : GeometryTally(geometry, tally_name) {
 	     _tally_type = LEAKAGE_RATE;
     }
@@ -1448,7 +1448,7 @@ public:
      * @param material a pointer to the material within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    MaterialFluxTally(Material* material, const char* tally_name=(char*)"")
+    MaterialFluxTally(Material* material, char* tally_name=(char*)"")
         : MaterialTally(material, tally_name) {
 	    _tally_type = FLUX;
     }
@@ -1471,7 +1471,7 @@ public:
      * @param region a pointer to the region within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    RegionFluxTally(Region* region, const char* tally_name=(char*)"")
+    RegionFluxTally(Region* region, char* tally_name=(char*)"")
         : RegionTally(region, tally_name) {
             _tally_type = FLUX;
       }
@@ -1494,7 +1494,7 @@ public:
      * @param geometry a pointer to the geometry within which to tally
      * @param tally_name a character array for the tally name (optional)
      */
-    GeometryFluxTally(Geometry* geometry, const char* tally_name=(char*)"")
+    GeometryFluxTally(Geometry* geometry, char* tally_name=(char*)"")
         : GeometryTally(geometry, tally_name) {
             _tally_type = FLUX;
     }
@@ -1523,7 +1523,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     MaterialInterCollisionTimeTally(Material* material, 
-				    const char* tally_name=(char*)"")
+				    char* tally_name=(char*)"")
         : MaterialTally(material, tally_name){
             _tally_type = INTERCOLLISION_TIME; 
     }
@@ -1547,7 +1547,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     RegionInterCollisionTimeTally(Region* region, 
-				  const char* tally_name=(char*)"")
+				  char* tally_name=(char*)"")
         : RegionTally(region, tally_name){
             _tally_type = INTERCOLLISION_TIME; 
     }
@@ -1571,7 +1571,7 @@ public:
      * @param tally_name a character array for the tally name (optional)
      */
     GeometryInterCollisionTimeTally(Geometry* geometry, 
-				    const char* tally_name=(char*)"")
+				    char* tally_name=(char*)"")
         : GeometryTally(geometry, tally_name){
             _tally_type = INTERCOLLISION_TIME; 
     }
@@ -1597,7 +1597,7 @@ public:
      *        DERIVED.
      * @param tally_name a character array for the tally name (optional)
      */
-    DerivedTally(const char* tally_name=(char*)"")
+    DerivedTally(char* tally_name=(char*)"")
         : Tally(tally_name){ 
             _tally_domain = UNDEFINED;
 	    _tally_type = DERIVED;
