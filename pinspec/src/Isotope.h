@@ -164,7 +164,7 @@ public:
     Isotope(char *_isotope_name);
     virtual ~Isotope();
 
-    void parseName();
+    void parseName(char* isotope_name);
     void makeFissionable();
 
     char* getIsotopeName() const;

@@ -16,9 +16,8 @@ int Isotope::_n = 1;
  */
 Isotope::Isotope(char* isotope_name){
 
-    /* Assigns the isotope's name and uses it to find the cross-section files */
-    _isotope_name = isotope_name;
-    parseName();
+    /* Copies the isotope's name and uses it to find the cross-section files */
+    parseName(isotope_name);
 
     _uid = _n;
     _n++;
@@ -69,6 +68,9 @@ Isotope::Isotope(char* isotope_name){
  *        have been assigned to this isotope.
  */
 Isotope::~Isotope() {
+
+    delete [] _isotope_name;
+
     if (_num_elastic_xs != 0) {
         delete [] _elastic_xs;
 	delete [] _elastic_xs_energies;
@@ -103,25 +105,35 @@ Isotope::~Isotope() {
 /**
  * @brief Parse input name and set atomic number for isotope.
  */
-void Isotope::parseName(){
+void Isotope::parseName(char* isotope_name){
 
     int A = 0;
     int i = 0;
-    while (_isotope_name[i] != '\0'){
+    int length = strlen(isotope_name);
+
+    /* Determine the length of the Isotope's name */
+    while (isotope_name[i] != '\0'){
 
         /* if - encountered, get the A value */
-        if (_isotope_name[i] == '-') {
+        if (isotope_name[i] == '-') {
             i++;
-            A = atoi(&_isotope_name[i]);
+            A = atoi(&isotope_name[i]);
 	    break;
         }
 
         i++;
     }
 
+    /* Initialize a character array for the Isotope's name */
+    _isotope_name = new char[length+1];
+
+    /* Copy the input character array isotope name to the class attribute name */
+    for (int k=0; k <= length; k++)
+        _isotope_name[k] = isotope_name[k];
+
     if (A < 1 || A > 300)
 	log_printf(ERROR, "Isotope identifier %s is not formatted correctly", 
-		   _isotope_name);
+		   isotope_name);
 
     /* Set the atomic number of isotope */
     setA(A);
