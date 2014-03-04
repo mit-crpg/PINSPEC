@@ -11,7 +11,13 @@ int Material::_n = 1;
  *          atomic mass (1), buckling (0) and volume (0).
  */
 Material::Material(char* material_name) {
-    _material_name = material_name;
+
+    int length = strlen(material_name);
+    _material_name = new char[length];
+   
+    for (int i=0; i <= length; i++)
+      _material_name[i] = material_name[i];
+
     _uid = _n;
     _n++;
     _material_density = 0.0;
@@ -27,7 +33,9 @@ Material::Material(char* material_name) {
  * @details Material does not need to delete its isotopes since SWIG
  *          handles garbage collection.
  */
-Material::~Material() { }
+Material::~Material() { 
+    delete [] _material_name;
+}
 
 
 /**
