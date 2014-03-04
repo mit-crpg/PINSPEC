@@ -10,7 +10,13 @@ int Region::_n = 1;
  * @param region_name the (optional) name of the region 
  */
 Region::Region(const char* region_name) {
-    _region_name = (char*)region_name;
+
+    int length = strlen(region_name);
+    _region_name = new char[length];
+   
+    for (int i=0; i <= length; i++)
+      _region_name[i] = region_name[i];
+
     _uid = _n;
     _n++;
     _material = NULL;
@@ -23,7 +29,9 @@ Region::Region(const char* region_name) {
  * @brief Destructor lets SWIG delete the materials and isotopes during 
  *        garbage collection.
  */
-Region::~Region() { }
+Region::~Region() { 
+    delete [] _region_name;
+}
 
 
 /**
