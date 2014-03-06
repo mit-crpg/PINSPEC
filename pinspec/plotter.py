@@ -14,9 +14,9 @@ import sys
 # Import matplotlib and configure to use on a head
 # node if matplotlib or pylab haven't been imported
 # by IPython Magic
-if not 'pylab' in sys.modules or \
-       'matplotlib.pyplot' in sys.modules or \
-       'matplotlib.backend' in sys.modules:
+if not 'matplotlib.pylab' in sys.modules and \
+   not 'matplotlib.pyplot' in sys.modules and \
+   not 'matplotlib.backend' in sys.modules:
 
     import matplotlib
 
