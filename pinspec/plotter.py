@@ -9,8 +9,18 @@
 # @author William Boyd (wboyd@mit.edu
 # @date March 10, 2013
 
+import matplotlib
+
+# force headless backend, or set 'backend' to 'Agg'
+# in your ~/.matplotlib/matplotlibrc
+matplotlib.use('Agg')
 
 import matplotlib.pyplot as plt
+
+# Force non-interactive mode, or set 'interactive' to False
+# in your ~/.matplotlib/matplotlibrc
+plt.ioff()
+
 import numpy as np
 from pinspec import *
 from process import *
