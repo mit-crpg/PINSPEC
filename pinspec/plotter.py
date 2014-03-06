@@ -9,17 +9,27 @@
 # @author William Boyd (wboyd@mit.edu
 # @date March 10, 2013
 
-import matplotlib
+import sys
 
-# force headless backend, or set 'backend' to 'Agg'
-# in your ~/.matplotlib/matplotlibrc
-matplotlib.use('Agg')
+# Import matplotlib and configure to use on a head
+# node if matplotlib or pylab haven't been imported
+# by IPython Magic
+if not 'pylab' in sys.modules or \
+       'matplotlib.pyplot' in sys.modules or \
+       'matplotlib.backend' in sys.modules:
+
+    import matplotlib
+
+    # force headless backend, or set 'backend' to 'Agg'
+    # in your ~/.matplotlib/matplotlibrc
+    matplotlib.use('Agg')
+
 
 import matplotlib.pyplot as plt
 
 # Force non-interactive mode, or set 'interactive' to False
 # in your ~/.matplotlib/matplotlibrc
-plt.ioff()
+#plt.ioff()
 
 import numpy as np
 from pinspec import *
