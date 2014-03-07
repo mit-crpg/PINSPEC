@@ -1404,12 +1404,7 @@ DerivedTally* Tally::operator+(Tally* tally) {
     }
 
     /* Create a new derived type tally and initialize it */
-    std::string string_tally_name = std::string(_tally_name) + " + " + \
-                                    tally->getTallyName();
-    char* tally_name = new char[string_tally_name.size() + 1];
-    std::copy(string_tally_name.begin(), string_tally_name.end(), tally_name);
-
-    DerivedTally* new_tally = new DerivedTally(tally_name);
+    DerivedTally* new_tally = new DerivedTally((char*)"");
 
     new_tally->setBinSpacingType(_bin_spacing);
     new_tally->setBinEdges(_edges, _num_bins+1);
@@ -1528,12 +1523,7 @@ DerivedTally* Tally::operator-(Tally* tally) {
     }
 
     /* Create a new derived type tally and initialize it */
-    std::string string_tally_name = std::string(_tally_name) + " + " + \
-                                    tally->getTallyName();
-    char* tally_name = new char[string_tally_name.size() + 1];
-    std::copy(string_tally_name.begin(), string_tally_name.end(), tally_name);
-
-    DerivedTally* new_tally = new DerivedTally(tally_name);
+    DerivedTally* new_tally = new DerivedTally((char*)"");
 
     new_tally->setBinSpacingType(_bin_spacing);
     new_tally->setBinEdges(_edges, _num_bins+1);
@@ -1651,12 +1641,7 @@ DerivedTally* Tally::operator*(Tally* tally) {
     }
 
     /* Create a new derived type tally and initialize it */
-    std::string string_tally_name = std::string(_tally_name) + " + " + \
-                                    tally->getTallyName();
-    char* tally_name = new char[string_tally_name.size() + 1];
-    std::copy(string_tally_name.begin(), string_tally_name.end(), tally_name);
-
-    DerivedTally* new_tally = new DerivedTally(tally_name);
+    DerivedTally* new_tally = new DerivedTally((char*)"");
 
     new_tally->setBinSpacingType(_bin_spacing);
     new_tally->setBinEdges(_edges, _num_bins+1);
@@ -1777,12 +1762,7 @@ DerivedTally* Tally::operator/(Tally* tally) {
     }
 
     /* Create a new derived type tally and initialize it */
-    std::string string_tally_name = std::string(_tally_name) + " + " + \
-                                    tally->getTallyName();
-    char* tally_name = new char[string_tally_name.size() + 1];
-    std::copy(string_tally_name.begin(), string_tally_name.end(), tally_name);
-
-    DerivedTally* new_tally = new DerivedTally(tally_name);
+    DerivedTally* new_tally = new DerivedTally((char*)"");
 
     new_tally->setBinSpacingType(_bin_spacing);
     new_tally->setBinEdges(_edges, _num_bins+1);
