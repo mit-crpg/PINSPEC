@@ -64,6 +64,9 @@ private:
     /** The units for the material's density (ie, 'g/cc' or 'at/cc') */
     densityUnit _density_unit;
 
+    /** The random number seed */
+    unsigned int _seed;
+
 public:
     Material(char* material_name);
     virtual ~Material();
@@ -124,6 +127,8 @@ public:
     void setNumberDensity(float number_density, const char* unit);
     void setAtomicMass(float atomic_mass);
     void setBucklingSquared(float buckling_squared);
+    void setRandomNumberSeed(unsigned int seed);
+    void initializeRandomNumberGenerator();
     void incrementVolume(float volume);
     void addIsotope(Isotope *isotope, float atomic_ratio);
     

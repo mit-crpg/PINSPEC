@@ -10,10 +10,12 @@ Geometry::Geometry(spatialType spatial_type, const char* name) {
 
     _geometry_name = name;
 
-    /* Set defaults for the number of neutrons, batches, and threads */
+    /* Set defaults for the number of neutrons, batches, threads and 
+     * random number seed */
     _num_neutrons_per_batch = 10000;
     _num_batches = 10;
     _num_threads = 1;
+    _seed = SEED;
 
     _spatial_type = spatial_type;
 
@@ -195,6 +197,72 @@ void Geometry::setNumBatches(int num_batches) {
  */
 void Geometry::setNumThreads(int num_threads) {
     _num_threads = num_threads;
+}
+
+
+/**
+ * @brief Sets the random number seed for simulation reproducibility.
+ * @param seed the random number seed
+ */
+void Geometry::setRandomNumberSeed(unsigned int seed) { 
+    _seed = seed;
+
+    /** For an infinite medium simulation */
+    if (_spatial_type == INFINITE_HOMOGENEOUS)
+        _infinite_medium->setRandomNumberSeed(_seed);
+
+    /** For a heterogneous-homogeneous equivalence model */
+    else if (_spatial_type == HOMOGENEOUS_EQUIVALENCE) {
+        _fuel->setRandomNumberSeed(_seed);
+        _moderator->setRandomNumberSeed(_seed);
+    }
+
+    /** For a fully heterogneous model */
+    else {
+        std::vector<BoundedRegion*>::iterator iter;
+        for (iter = _regions.begin(); iter != _regions.end(); ++iter)
+	    (*iter)->setRandomNumberSeed(_seed);
+    }
+}
+
+
+/**
+ * @brief Initializes the random number generators for any class sampling rand
+ *        numbers from rand().  This needed for simulation reproducibility.
+ * @details This method is private and is called at the start of the
+ *          Geometry::runMonteCarloSimulation() routine. It sets the 
+ *          random number seeds for the Fissioner, Region(s), Material(s),
+ *          and Isotope(s).
+ * @note This routine should probably be modified to use different random
+ *       number seeds for each class object type in the future.
+ */
+void Geometry::initializeRandomNumberGenerators() {
+
+    log_printf(NORMAL, "wtf");
+
+    srand(_seed);
+
+    log_printf(NORMAL, "Initializing geometry's random number seed to %d", _seed);
+
+    /* Set the Fissioner's random number seed */
+    _fissioner->initializeRandomNumberGenerator();
+
+    /** For an infinite medium simulation */
+    if (_spatial_type == INFINITE_HOMOGENEOUS)
+        _infinite_medium->initializeRandomNumberGenerator();
+
+    /** For a heterogneous-homogeneous equivalence model */
+    else if (_spatial_type == HOMOGENEOUS_EQUIVALENCE) {
+        _fuel->initializeRandomNumberGenerator();
+        _moderator->initializeRandomNumberGenerator();
+    }
+
+    /** For a fully heterogneous model */
+    else {
+        std::vector<BoundedRegion*>::iterator iter;
+        for (iter = _regions.begin(); iter != _regions.end(); ++iter)
+	    (*iter)->initializeRandomNumberGenerator();
+    }
 }
 
 
@@ -547,7 +615,13 @@ void Geometry::runMonteCarloSimulation() {
 
     tally_bank->initializeBatchTallies(_num_batches);
 
+    log_printf(NORMAL, "setting the random numbrer seed\n");
+
     omp_set_num_threads(_num_threads);
+
+    /** Seed the random number generator */
+    setRandomNumberSeed(_seed);
+    initializeRandomNumberGenerators();
 
     /* Print report to the screen */
     log_printf(TITLE, "Beginning PINSPEC Monte Carlo Simulation...");

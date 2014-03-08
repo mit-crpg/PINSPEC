@@ -25,6 +25,9 @@ Material::Material(char* material_name) {
     _material_atomic_mass = 1.0;
     _buckling_squared = 0.0;
     _volume = 0.0;
+
+    /** Set the default random number seed */
+    setRandomNumberSeed(SEED);
 }
 
 
@@ -810,10 +813,50 @@ void Material::setBucklingSquared(float buckling_squared) {
 
 
 /**
+ * @brief Sets the random number seed for Isotope collision probability sampling.
+ * @details This method is called by the Region::setRandomNumberSeed(...) method
+ *          and should not be called directly by the user. This method likewise
+ *          calls the Isotope::setRandomNumberSeed(...) method for each of its
+ *          Isotopes.
+ * @param seed the random number seed
+ */
+void Material::setRandomNumberSeed(unsigned int seed) {
+
+    _seed = seed;
+
+    /* Loop over all isotopes: update all the number densities */
+    std::map<char*, std::pair<float, Isotope*> >::iterator iter;
+    for (iter =_isotopes.begin(); iter != _isotopes.end(); ++iter)
+        iter->second.second->setRandomNumberSeed(_seed);
+}
+
+
+/**
+ * @brief Initializes the random number seed for random number sampling.
+ * @details This method is called by the 
+ *          Region::initializeRandomNumberGenerator()
+ *          method and should not be called directly by the user. This
+ *          method likewise calls the 
+ *          Isotope::initializeRandomNumberGenerator()
+ *          method for its material.
+ */
+void Material::initializeRandomNumberGenerator() {
+    srand(_seed);
+
+    /* Loop over all isotopes: update all the number densities */
+    std::map<char*, std::pair<float, Isotope*> >::iterator iter;
+    for (iter =_isotopes.begin(); iter != _isotopes.end(); ++iter)
+      iter->second.second->initializeRandomNumberGenerator();
+
+    log_printf(NORMAL, "Initializing material %s random number seed to %d", _material_name, _seed);
+}
+
+
+/**
  * @brief Increments the volume occupied by this material in the geometry.
  * @details This is used when a material is added to more than one region, as
  *          is the case for a heterogeneous pin cell with multiple radial 
- *          regions of the same material.
+*          regions of the same material.
  * @param volume the volume to add to the total material volume
  */
 void Material::incrementVolume(float volume) {

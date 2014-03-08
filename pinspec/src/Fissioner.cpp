@@ -52,6 +52,41 @@ void Fissioner::setEMax(float E_max) {
 
 
 /**
+ * @brief Sets the random number seed for collision probability sampling.
+ * @details This method is called by the Geometry::setRandomNumberSeed(...)
+ *          method and should not be called directly by the user.
+ * @param seed the random number seed
+ */
+void Fissioner::setRandomNumberSeed(unsigned int seed) {
+    _seed = seed;
+}
+
+
+/**
+ * @brief Initializes the random number seed for random number sampling.
+ * @details This method is called by the 
+ *          Geometry::initializeRandomNumberGenerator()
+ *          method and should not be called directly by the user. This
+ *          method likewise calls the 
+ *          Material::initializeRandomNumberGenerator()
+ *          method for its material.
+ */
+void Fissioner::initializeRandomNumberGenerator() {
+    srand(_seed);
+
+    log_printf(NORMAL, "Initializing fissioner's random number seed to %d", _seed);
+
+    log_printf(NORMAL, "First random #: %f\n", float(rand()) / RAND_MAX);
+
+
+    default_random_engine generator(_seed);
+    uniform_real_distribution<double> distribution(0.0,100., generator());
+
+    log_printf(NORMAL, "my first random number %f\n", distribution(generator));
+}
+
+
+/**
  * @brief Builds the CDF of the Watt Spectrum.
  */
 void Fissioner::buildCDF() {

@@ -13,6 +13,8 @@
 #include "integrate.h"
 #include "interpolate.h"
 #include "arraycreator.h"
+#include <random>
+using namespace std;
 #endif
 
 
@@ -40,6 +42,8 @@ private:
     float* _cdf_energies;
     /** The maximum fission emission energy in MeV for the CDF */
     float _E_max;
+    /** The random number seed */
+    unsigned int _seed;
 
 public:
     Fissioner();
@@ -47,6 +51,9 @@ public:
     int getNumBins();
     void setNumBins(int num_bins);
     void setEMax(float E_max);
+    void setRandomNumberSeed(unsigned int seed);
+    void initializeRandomNumberGenerator();
+
     void buildCDF();
     float wattSpectrum(float energy);
     float emitNeutronMeV();

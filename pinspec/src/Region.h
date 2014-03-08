@@ -72,6 +72,8 @@ protected:
     float _buckling_squared;
     /** The volume occupied by the region in 2D space */
     float _volume;
+    /** The random number seed */
+    unsigned int _seed;
 
 public:
     Region(const char* region_name=(char*)"");
@@ -120,6 +122,8 @@ public:
     void setMaterial(Material* material);
     void setVolume(float volume);
     void setBucklingSquared(float buckling_squared);
+    void setRandomNumberSeed(unsigned int seed);
+    void initializeRandomNumberGenerator();
 
     /**
      * @brief This method collides a neutron within the region.

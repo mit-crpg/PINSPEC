@@ -32,6 +32,10 @@
 #include "Neutron.h"
 #endif
 
+/** The default random number seed */
+#define SEED 10000
+
+
 /**
  * @class Isotope Isotope.h "pinspec/src/Isotope.h"
  * @brief The Isotope represents a nuclide at some temperature.
@@ -70,6 +74,8 @@ private:
     bool _fissionable;
     /** Whether cross-sections are rescaled on uniform lethargy grid */
     bool _rescaled;
+    /** The random number seed */
+    unsigned int _seed;
 
     /** The number of elastic scattering cross-section data points */
     int _num_elastic_xs;
@@ -215,10 +221,11 @@ public:
     void setMultigroupFissionXS(double* energies, int num_energies, 
                                 double* fission_xs, int num_xs);
 
-
     void loadXS(char* xs_type);
     void setA(int A);
     void setTemperature(float T);
+    void setRandomNumberSeed(unsigned int seed);
+    void initializeRandomNumberGenerator();
     void neglectThermalScattering();
     void setThermalScatteringCutoff(float cutoff_energy);
     void useThermalScattering();

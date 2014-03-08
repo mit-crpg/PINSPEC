@@ -29,6 +29,9 @@ Isotope::Isotope(char* isotope_name){
     _kB = 8.617332E-5;             /* boltzmann's constant (ev / K) */
     _fissionable = false;
 
+    /** Set the default random number seed */
+    setRandomNumberSeed(SEED);
+
     /* By default this isotope has no cross-sections */
     _num_capture_xs = 0;
     _num_elastic_xs = 0;
@@ -1249,6 +1252,31 @@ void Isotope::setA(int A) {
     _eta = (float(_A)+1.0) / (2.0 * sqrt(float(_A)));
     _rho = (float(_A)-1.0) / (2.0 * sqrt(float(_A)));
     _mu_avg = 2.0 / (3.0 * _A);
+}
+
+
+
+/**
+ * @brief Sets the random number seed for reaction rate sampling.
+ * @details This method is called by the Material::setRandomNumberSeed()
+ *          method and should not be called directly by the user.
+ * @param seed the random number seed
+ */
+void Isotope::setRandomNumberSeed(unsigned int seed) {
+    _seed = seed;
+}
+
+
+/**
+ * @brief Initializes the random number seed for random number sampling.
+ * @details This method is called by the 
+ *          Material::initializeRandomNumberGenerator()
+ *          method and should not be called directly by the user.
+ */
+void Isotope::initializeRandomNumberGenerator() {
+    srand(_seed);
+
+    log_printf(NORMAL, "Initializing isotope %s random number seed to %d", _isotope_name, _seed);
 }
 
 

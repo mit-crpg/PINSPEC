@@ -18,6 +18,9 @@
 #include "Timer.h"
 #endif
 
+/** The default random number seed */
+#define SEED 10000
+
 
 /**
  * @enum spatialTypes
@@ -56,6 +59,8 @@ private:
     int _num_batches;
     /** The number of threads */
     int _num_threads;
+    /** The random number seed */
+    unsigned int _seed;
 
     /** The spatial type for the geometry */
     spatialType _spatial_type;
@@ -105,6 +110,8 @@ private:
 
     void initializeProbModFuelRatios();
 
+    void initializeRandomNumberGenerators();
+
 public:
     Geometry(spatialType spatial_type, const char* name=(const char*)"");
     virtual ~Geometry();
@@ -124,6 +131,7 @@ public:
     void setNeutronsPerBatch(int num_neutrons_per_batch);
     void setNumBatches(int num_batches);
     void setNumThreads(int num_threads);
+    void setRandomNumberSeed(unsigned int seed);
     void setSpatialType(spatialType spatial_type);
     void setFuelPinRadius(float radius);
     void setPinCellPitch(float pitch);

@@ -22,6 +22,8 @@ Region::Region(const char* region_name) {
     _material = NULL;
     _volume = 1.0;
     _buckling_squared = 0.0;
+
+    setRandomNumberSeed(SEED);
 }
 
 
@@ -395,6 +397,42 @@ void Region::setBucklingSquared(float buckling_squared) {
     _buckling_squared = buckling_squared;
     _material->setBucklingSquared(_buckling_squared);
 }
+
+
+/**
+ * @brief Sets the random number seed for collision probability sampling.
+ * @details This method is called by the Geometry::setRandomNumberSeed(...)
+ *          method and should not be called directly by the user. This
+ *          method likewise calls the Material::setRandomNumberSeed(...)
+ *          method for its material.
+ * @param seed the random number seed
+ */
+void Region::setRandomNumberSeed(unsigned int seed) {
+    _seed = seed;
+
+    if (_material != NULL)
+        _material->setRandomNumberSeed(seed);
+}
+
+
+/**
+ * @brief Initializes the random number seed for random number sampling.
+ * @details This method is called by the 
+ *          Geometry::initializeRandomNumberGenerator()
+ *          method and should not be called directly by the user. This
+ *          method likewise calls the 
+ *          Material::initializeRandomNumberGenerator()
+ *          method for its material.
+ */
+void Region::initializeRandomNumberGenerator() {
+    srand(_seed);
+
+    if (_material != NULL)
+        _material->initializeRandomNumberGenerator();
+
+    log_printf(NORMAL, "Initializing region %s random number seed to %d", _region_name, _seed);
+}
+
 
 
 
