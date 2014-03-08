@@ -32,7 +32,7 @@ import matplotlib.pyplot as plt
 #plt.ioff()
 
 import numpy as np
-from pinspec import *
+import pinspec
 from process import *
 import os
 
@@ -65,7 +65,7 @@ def plotMicroXS(isotope, rxns, loglog=True, uselegend=True, \
         
     global subdirectory
 
-    directory = getOutputDirectory() + subdirectory
+    directory = pinspec.get_output_directory() + subdirectory
 
     # Make directory if it does not exist
     if not os.path.exists(directory):
@@ -138,7 +138,7 @@ def plotMacroXS(material, rxns, loglog=True, \
 
     global subdirectory
 
-    directory = getOutputDirectory() + subdirectory
+    directory = pinspec.get_output_directory() + subdirectory
         
     # Make directory if it does not exist
     if not os.path.exists(directory):
@@ -204,7 +204,7 @@ def plotFlux(fluxes, loglog=True, uselegend=False, title='', filename=''):
     global flux_plot_num
     global subdirectory
 
-    directory = getOutputDirectory() + subdirectory
+    directory = pinspec.get_output_directory() + subdirectory
 
     # Make directory if it does not exist
     if not os.path.exists(directory):
@@ -274,7 +274,7 @@ def plotThermalScattering(isotope, uselegend=True, title='', filename=''):
    
     global subdirectory
 
-    directory = getOutputDirectory() + subdirectory
+    directory = pinspec.get_output_directory() + subdirectory
 
     # Make directory if it does not exist
     if not os.path.exists(directory):
@@ -360,7 +360,7 @@ def plotFissionSpectrum():
     
     global subdirectory
 
-    directory = getOutputDirectory() + subdirectory
+    directory = pinspec.get_output_directory() + subdirectory
 
     # Make directory if it does not exist
     if not os.path.exists(directory):
@@ -422,7 +422,7 @@ def plotRI(RI, title='', filename=''):
     
     global subdirectory
 
-    directory = getOutputDirectory() + subdirectory
+    directory = pinspec.get_output_directory() + subdirectory
 
     # Make directory if it does not exist
     if not os.path.exists(directory):
@@ -462,7 +462,7 @@ def plotGroupXS(group_xs, title='', filename=''):
     
     global subdirectory
 
-    directory = getOutputDirectory() + subdirectory
+    directory = pinspec.get_output_directory() + subdirectory
 
     # Make directory if it does not exist
     if not os.path.exists(directory):
@@ -507,7 +507,7 @@ def plotSlice(space, plane='XY', loc=0.0, lim1=[-2., 2.], lim2=[-2., 2.],
 
     global subdirectory
 
-    directory = getOutputDirectory() + subdirectory
+    directory = pinspec.get_output_directory() + subdirectory
 
     # Make directory if it does not exist
     if not os.path.exists(directory):
@@ -678,7 +678,7 @@ def plotFissionSourceDist(geometry, num_samples=1000, filename=''):
 
     global subdirectory
 
-    directory = getOutputDirectory() + subdirectory
+    directory = pinspec.get_output_directory() + subdirectory
 
     # Make directory if it does not exist
     if not os.path.exists(directory):
@@ -748,7 +748,7 @@ def trackANeutron(geometry, plane='XY', num_moves=100, loc=0.0, \
 
     global subdirectory
 
-    directory = getOutputDirectory() + subdirectory
+    directory = pinspec.get_output_directory() + subdirectory
 
     # Make directory if it does not exist
     if not os.path.exists(directory):

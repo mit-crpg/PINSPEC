@@ -21,8 +21,8 @@ from pinspec.log import *
 num_batches = 10
 num_neutrons_per_batch = 100000
 num_threads = 4
-setOutputDirectory('doppler');
-py_setlevel('INFO')
+set_output_directory('doppler');
+py_set_log_level('INFO')
 
 py_printf('TITLE', 'Starting simulation of U-238 Doppler Broadening RI Effects')
 

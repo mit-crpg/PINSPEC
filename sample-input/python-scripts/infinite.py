@@ -9,9 +9,9 @@ from pinspec.log import *
 ##    infinite medium, containing the predominant isotopes found in a PWR.
 ###############################################################################
 
-setOutputDirectory('infinite')
+set_output_directory('infinite')
 
-py_setlevel('NORMAL')
+py_set_log_level('NORMAL')
 py_printf('TITLE', 'Simulating an infinite medium homogenized pin-cell')
     
 

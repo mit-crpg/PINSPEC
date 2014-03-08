@@ -9,7 +9,6 @@
 # @author Jessica Hunter
 # @date April 17, 2013
 
-from pinspec import *
 from log import *
 import pinspec
 import matplotlib.pyplot as plt
@@ -198,7 +197,7 @@ def buildSLBWXS(isotope,temp,xs_type='capture',number_of_pos_res=14, \
     #---------------------------------
     if xs_type=='capture':
    	# write output file for capture XS
-	out_name = getXSLibDirectory()+El+'-'+str(int(A))+'-capture.txt'
+	out_name = pinspec.getXSLibDirectory()+El+'-'+str(int(A))+'-capture.txt'
 	numpy.savetxt(out_name, EAXS, newline='\n', delimiter=',')
 	# go back and add header
 	f = open(out_name)
@@ -216,7 +215,7 @@ def buildSLBWXS(isotope,temp,xs_type='capture',number_of_pos_res=14, \
     #---------------------------------
     if xs_type=='scatter':
    	# write output file for scatter XS
-	out_names = getXSLibDirectory()+El+'-'+str(int(A))+'-elastic.txt'
+	out_names = pinspec.getXSLibDirectory()+El+'-'+str(int(A))+'-elastic.txt'
 	numpy.savetxt(out_names, ESXS, newline='\n', delimiter=',')
 	# go back and add header
 	g = open(out_names)
@@ -288,7 +287,7 @@ def generatePotentialScattering(isotope, energy_min=1e-5, energy_max=20E6):
     El, A= isotope.split('-', 1)
     A = float(A)
     # write output file for scatter XS
-    out_names = getXSLibDirectory()+El+'-'+str(int(A))+'-elastic.txt'
+    out_names = pinspec.getXSLibDirectory()+El+'-'+str(int(A))+'-elastic.txt'
     numpy.savetxt(out_names, ESXS, newline='\n', delimiter=',')
     # go back and add header
     g = open(out_names)
@@ -314,7 +313,7 @@ def compareXS(isotope, type_xs='capture', dir='.'):
     #Find proper filename for fake XS
     if type_xs=='scatter':
 		type_xs='elastic'
-    path=str(getXSLibDirectory())+'/'+El+'-'+A+'-'+type_xs+'.txt'
+    path=str(pinspec.getXSLibDirectory())+'/'+El+'-'+A+'-'+type_xs+'.txt'
     #Read in array for fictitious XS at 300
     EnT=numpy.array([])
     barnsT=numpy.array([])
@@ -334,7 +333,7 @@ def compareXS(isotope, type_xs='capture', dir='.'):
     py_printf('INFO', 'Read in Doppler Broadened XS correctly')
 
     #Read in array for ENDF7 XS at 300
-    npath=str(getXSLibDirectory())+'/BackupXS/'+El+'-'+A+'-' + \
+    npath=str(pinspec.getXSLibDirectory())+'/BackupXS/'+El+'-'+A+'-' + \
                                                             type_xs+'.txt'
     EndfE300=numpy.array([])
     barnsEndF300=numpy.array([])

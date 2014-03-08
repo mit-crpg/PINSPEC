@@ -13,10 +13,10 @@
 
 
 import numpy
-from pinspec import *
+import pinspec
 
 
-## 
+##
 # @brief Function to print a log message to the screen
 # @details This method is a wrapper to the log_printf C++ routine. It
 #          allows for formatted messages to be printed to the screen 
@@ -37,27 +37,27 @@ from pinspec import *
 # @param *args a variable length list of values for the message string
 def py_printf(level, my_str, *args):
     if level == 'DEBUG':
-        log_printf(DEBUG, my_str % args)
+        pinspec.log_printf(pinspec.DEBUG, my_str % args)
     elif level == 'INFO':
-        log_printf(INFO, my_str % args)
+        pinspec.log_printf(pinspec.INFO, my_str % args)
     elif level == 'NORMAL':
-        log_printf(NORMAL, my_str % args)
+        pinspec.log_printf(pinspec.NORMAL, my_str % args)
     elif level == 'SEPARATOR':
-        log_printf(SEPARATOR, my_str % args)
+        pinspec.log_printf(pinspec.SEPARATOR, my_str % args)
     elif level == 'HEADER':
-        log_printf(HEADER, my_str % args)
+        pinspec.log_printf(pinspec.HEADER, my_str % args)
     elif level == 'TITLE':
-        log_printf(TITLE, my_str % args)
+        pinspec.log_printf(pinspec.TITLE, my_str % args)
     elif level == 'WARNING':
-        log_printf(WARNING, my_str % args)
+        pinspec.log_printf(pinspec.WARNING, my_str % args)
     elif level == 'CRITICAL':
-        log_printf(CRITICAL, my_str % args)
+        pinspec.log_printf(pinspec.CRITICAL, my_str % args)
     elif level == 'RESULT':
-        log_printf(RESULT, my_str % args)
+        pinspec.log_printf(pinspec.RESULT, my_str % args)
     elif level == 'UNITTEST':
-        log_printf(UNITTEST, my_str % args)
+        pinspec.log_printf(pinspec.UNITTEST, my_str % args)
     elif level == 'ERROR':
-        log_printf(ERROR, my_str % args)
+        pinspec.log_printf(pinspec.ERROR, my_str % args)
 
 
 ##
@@ -73,30 +73,30 @@ def py_printf(level, my_str, *args):
 # @endcode
 #
 # @param level the minimum logging level ('DEBUG', 'INFO', etc)
-def py_setlevel(level):
+def py_set_log_level(level):
 
     if level == 'DEBUG':
-        log_setlevel(DEBUG)
+        pinspec.set_log_level('DEBUG')
     elif level == 'INFO':
-        log_setlevel(INFO)
+        pinspec.set_log_level('INFO')
     elif level == 'NORMAL':
-        log_setlevel(NORMAL)
+        pinspec.set_log_level('NORMAL')
     elif level == 'SEPARATOR':
-        log_setlevel(SEPARATOR)
+        pinspec.set_log_level('SEPARATOR')
     elif level == 'HEADER':
-        log_setlevel(HEADER)
+        pinspec.set_log_level('HEADER')
     elif level == 'TITLE':
-        log_setlevel(TITLE)
+        pinspec.set_log_level('TITLE')
     elif level == 'WARNING':
-        log_setlevel(WARNING)
+        pinspec.set_log_level('WARNING')
     elif level == 'CRITICAL':
-        log_setlevel(CRITICAL)
+        pinspec.set_log_level('CRITICAL')
     elif level == 'RESULT':
-        log_setlevel(RESULT)
+        pinspec.set_log_level('RESULT')
     elif level == 'UNITTEST':
-        log_setlevel(UNITTEST)
+        pinspec.set_log_level('UNITTEST')
     elif level == 'ERROR':
-        log_setlevel(ERROR)
+        pinspec.set_log_level('ERROR')
     else:
         py_printf('Cannot set log level to unsupported log level %s', str(level))
 

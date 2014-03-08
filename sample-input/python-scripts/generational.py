@@ -17,8 +17,8 @@ from pinspec.log import *
 
 # Set main simulation params
 num_neutrons = 100000
-setOutputDirectory('generational');
-py_setlevel('INFO')
+set_output_directory('generational');
+py_set_log_level('INFO')
 
 py_printf('TITLE', 'Starting a simulation to compute generational fluxes')
 

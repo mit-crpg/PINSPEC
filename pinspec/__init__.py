@@ -10,12 +10,12 @@ import signal
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 # Set a default logging level
-log_setlevel(NORMAL)
+set_log_level('NORMAL')
 
 # Set a log file name using a date and time
 now = datetime.datetime.now()
 current_time = str(now.month) + '-' + str(now.day) + '-' + str(now.year) + '--' + str(now.hour) + ':' + str(now.minute) + ':' + str(now.second)
-setLogfileName('log/pinspec-' + current_time + '.log');
+set_log_filename('log/pinspec-' + current_time + '.log');
 
 # Set the path to the xs library to the one that was installed
 pkg_path = os.path.dirname(__file__)
@@ -26,5 +26,5 @@ setXSLibDirectory(xs_lib_path)
 restoreXSLibrary()
 
 # Get instances of TallyBank and TallyFactory singleton classes
-pinspec.TallyBank = TallyBank.Get()
-pinspec.TallyFactory = TallyFactory.Get()
+TallyBank = pinspec.TallyBank.Get()
+TallyFactory = pinspec.TallyFactory.Get()

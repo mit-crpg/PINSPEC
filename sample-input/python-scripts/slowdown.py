@@ -18,8 +18,8 @@ from pinspec.log import *
 
 # Set main simulation params
 num_neutrons = 100000
-setOutputDirectory('slowdown');
-py_setlevel('INFO')
+set_output_directory('slowdown');
+py_set_log_level('INFO')
 
 py_printf('TITLE', 'Starting a simulation of asymptotic slowing down in H-1')
 

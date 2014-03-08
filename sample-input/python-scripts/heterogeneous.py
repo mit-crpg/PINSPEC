@@ -23,7 +23,7 @@ num_batches = 25
 num_neutrons_per_batch = 10000
 num_threads = 4
 nu = 2.45
-setOutputDirectory('heterogeneous')
+set_output_directory('heterogeneous')
 
 # Geometric parameters
 radius_fuel = 0.4096
@@ -34,7 +34,7 @@ pitch_squared = pitch**2.0
 dancoff = 0.277
 source_sampling_radius = 2.0      # sphere within which to do rejection sampling
 
-py_setlevel('INFO')
+py_set_log_level('INFO')
 
 py_printf('TITLE', 'Starting a heterogeneous-homogeneous equivalence ' + \
               'calculation')

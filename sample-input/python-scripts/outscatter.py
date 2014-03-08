@@ -14,9 +14,9 @@ from pinspec.log import *
 ###########################  Main Simulation Paramters  #######################
 ###############################################################################
 
-setOutputDirectory('outscatter')
+set_output_directory('outscatter')
 
-py_setlevel('INFO')
+py_set_log_level('INFO')
 
 py_printf('TITLE', 'Simulation to tally outscattering')
 

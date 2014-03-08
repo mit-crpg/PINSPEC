@@ -13,7 +13,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-from pinspec import *
+import pinspec
 from log import *
 import scipy.integrate as integrate
 
@@ -32,7 +32,7 @@ import scipy.integrate as integrate
 # @return a numpy array with the tally bin centers
 def getTallyCenters(tally):
 
-    if not isinstance(tally, Tally):
+    if not isinstance(tally, pinspec.Tally):
         py_printf('WARNING', 'Unable to get tally centers from input of type' \
                       + str(type(tally)))
     else:
@@ -55,7 +55,7 @@ def getTallyCenters(tally):
 # @return a numpy array with the tally bin edges
 def getTallyEdges(tally):
 
-    if not isinstance(tally, Tally):
+    if not isinstance(tally, pinspec.Tally):
         py_printf('WARNING', 'Unable to get tally edges from input of type' \
                                                             + str(type(tally)))
     else:
@@ -78,7 +78,7 @@ def getTallyEdges(tally):
 # @return a numpy array with the tally batch averages
 def getTallyBatchMu(tally):
 
-    if not isinstance(tally, Tally):
+    if not isinstance(tally, pinspec.Tally):
         py_printf('WARNING', 'Unable to get tally mu from input of type' \
                                                         + str(type(tally)))
     if not tally.hasComputedBatchStatistics():
@@ -105,7 +105,7 @@ def getTallyBatchMu(tally):
 # @return a numpy array with the tally batch variances
 def getTallyBatchVariances(tally):
 
-    if not isinstance(tally, Tally):
+    if not isinstance(tally, pinspec.Tally):
         py_printf('WARNING', 'Unable to get tally variances from input of ' \
                                                   + ' type' + str(type(tally)))
     if not tally.hasComputedBatchStatistics():
@@ -132,7 +132,7 @@ def getTallyBatchVariances(tally):
 # @return a numpy array with the tally batch standard deviations
 def getTallyBatchStdDev(tally):
 
-    if not isinstance(tally, Tally):
+    if not isinstance(tally, pinspec.Tally):
         py_printf('WARNING', 'Unable to get tally std. dev. from input of ' \
                                                   + ' type' + str(type(tally)))
     if not tally.hasComputedBatchStatistics():
@@ -159,7 +159,7 @@ def getTallyBatchStdDev(tally):
 # @return a numpy array with the tally batch relative errors
 def getTallyBatchRelErr(tally):
 
-    if not isinstance(tally, Tally):
+    if not isinstance(tally, pinspec.Tally):
         py_printf('WARNING', 'Unable to get tally rel. err. from input of ' \
                                                  + ' type' + str(type(tally)))
     if not tally.hasComputedBatchStatistics():
@@ -193,7 +193,7 @@ def getTallyBatchRelErr(tally):
 # @return a 2D numpy array with the tally batch statistical data
 def getTallyBatchStatistics(tally):
 
-    if not isinstance(tally, Tally):
+    if not isinstance(tally, pinspec.Tally):
         py_printf('WARNING', 'Unable to get tally statistics from input of ' \
                                                 + ' type' + str(type(tally)))
     if not tally.hasComputedBatchStatistics():
@@ -241,11 +241,11 @@ def printTallies(tallies, header='', types='Tallies'):
                 for i in range(len(tallies)):
                     tallies[i] = tallies[i].getRITally()
 
-            elif not isinstance(tally, Tally) and not isinstance(tally, RITrue):
+            elif not isinstance(tally, pinspec.Tally) and not isinstance(tally, RITrue):
                 py_printf('ERROR', 'Unable to print %s since input contains' + \
                         'contains elements of type %s', types, str(type(tally)))
 
-        if isinstance(tallies[0], Tally):
+        if isinstance(tallies[0], pinspec.Tally):
 
             # Check that all tallies have the same number of bins
             num_bins = tallies[0].getNumBins()
@@ -327,7 +327,7 @@ def printTallies(tallies, header='', types='Tallies'):
 
         py_printf('SEPARATOR', '')
 
-    elif isinstance(tally, Tally):
+    elif isinstance(tally, pinspec.Tally):
 
         num_bins = tallies.getNumBins()
         edges = getTallyEdges(tallies)
@@ -428,7 +428,7 @@ class RIEff(object):
         self._name=''
         ## The DERIVED tally type for the effective resonance integral data
         self._RI=None
-        ## The FLUX tally used to compute the effective resonance integral
+        ## The pinspec.FLUX tally used to compute the effective resonance integral
         self._flux=None
         ## The REACTION_RATE tally used to compute the effective 
         #  resonance integral 
@@ -459,10 +459,10 @@ class RIEff(object):
     def computeRIs(self, tally1, tally2):
 
         # Check that input parameters are correct
-        if not isinstance(tally1, Tally):
+        if not isinstance(tally1, pinspec.Tally):
             py_printf('ERROR', 'Unable to create an effective resonance ' \
                    + 'integral given input of type %s', str(type(tally1)))
-        if not isinstance(tally2, Tally):
+        if not isinstance(tally2, pinspec.Tally):
             py_printf('ERROR', 'Unable to create an effective resonance ' \
                     + 'integral given input of type %s', str(type(tally2)))
         if not tally1.hasComputedBatchStatistics():
@@ -473,12 +473,15 @@ class RIEff(object):
             py_printf('ERROR', 'Unable to create an effective resonance ' \
                     + 'integral from tally %s since it has not yet computed' \
                     + 'batch statistics', tally2.getTallyName())
-        if (tally1.getTallyType() is not FLUX) and \
-                                        (tally2.getTallyType() is not FLUX):
+        if (tally1.getTallyType() is not pinspec.FLUX) and \
+                                        (tally2.getTallyType() is not pinspec.FLUX):
             py_printf('ERROR', 'Unable to create an effective resonance ' \
-                   + 'integral since neither tally input is of FLUX tally type')
+                   + 'integral since neither tally input is of pinspec.FLUX tally type')
 
-        rate_types = [CAPTURE_RATE, ELASTIC_RATE, FISSION_RATE, ABSORPTION_RATE]
+        rate_types = [pinspec.CAPTURE_RATE, \
+                      pinspec.ELASTIC_RATE, \
+                      pinspec.FISSION_RATE, \
+                      pinspec.ABSORPTION_RATE]
 
         if not (tally1.getTallyType() in rate_types) and not \
                                         (tally2.getTallyType() in rate_types):
@@ -503,7 +506,7 @@ class RIEff(object):
         self._flux = None
         self._rate = None
 
-        if (tally1.getTallyType() is FLUX):
+        if (tally1.getTallyType() is pinspec.FLUX):
             self._flux = tally1
             self._rate = tally2
         else:
@@ -663,7 +666,7 @@ class RITrue(object):
     # @param name an optional argument string for the resonance integral name
     def __init__(self, isotope, bands, reaction='capture', name=''):
 
-        if not isinstance(isotope, Isotope):
+        if not isinstance(isotope, pinspec.Isotope):
             py_printf('ERROR', 'Unable to create a true resonance integral' \
                         ' given an isotope of type %s', str(type(isotope)))
 
@@ -867,7 +870,7 @@ class GroupXS(object):
         self._name=''
         ## The DERIVED tally used to store the multi-group cross-sections
         self._xs=None
-        ## The FLUX tally used to compute the multi-group cross-sections
+        ## The pinspec.FLUX tally used to compute the multi-group cross-sections
         self._flux=None
         ## The REACTION_RATE tally used to compute the multi-group 
         #  cross-sections
@@ -898,10 +901,10 @@ class GroupXS(object):
     def computeGroupXS(self, tally1, tally2):
 
         # Check that input parameters are correct
-        if not isinstance(tally1, Tally):
+        if not isinstance(tally1, pinspec.Tally):
             py_printf('ERROR', 'Unable to create a group cross-section ' \
                    + 'given input of type %s', str(type(tally1)))
-        if not isinstance(tally2, Tally):
+        if not isinstance(tally2, pinspec.Tally):
             py_printf('ERROR', 'Unable to create a group cross-section ' \
                     + 'given input of type %s', str(type(tally2)))
         if not tally1.hasComputedBatchStatistics():
@@ -912,14 +915,18 @@ class GroupXS(object):
             py_printf('ERROR', 'Unable to create a group cross-section ' \
                     + 'from tally %s since it has not yet computed' \
                     + 'batch statistics', tally2.getTallyName())
-        if (tally1.getTallyType() is not FLUX) and \
-                                        (tally2.getTallyType() is not FLUX):
+        if (tally1.getTallyType() is not pinspec.FLUX) and \
+           (tally2.getTallyType() is not pinspec.FLUX):
             py_printf('ERROR', 'Unable to create a group cross-section ' \
-                       + 'since neither tally input is of FLUX type')
+                       + 'since neither tally input is of pinspec.FLUX type')
 
-        rate_types = [CAPTURE_RATE, ELASTIC_RATE, \
-                        FISSION_RATE, ABSORPTION_RATE, \
-                        DIFFUSION_RATE, TRANSPORT_RATE, COLLISION_RATE ]
+        rate_types = [pinspec.CAPTURE_RATE, \
+                      pinspec.ELASTIC_RATE, \
+                      pinspec.FISSION_RATE, \
+                      pinspec.ABSORPTION_RATE, \
+                      pinspec.DIFFUSION_RATE, \
+                      pinspec.TRANSPORT_RATE, \
+                      pinspec.COLLISION_RATE]
 
         if not (tally1.getTallyType() in rate_types) and not \
                                         (tally2.getTallyType() in rate_types):
@@ -944,7 +951,7 @@ class GroupXS(object):
         self._flux = None
         self._rate = None
 
-        if (tally1.getTallyType() is FLUX):
+        if (tally1.getTallyType() is pinspec.FLUX):
             self._flux = tally1
             self._rate = tally2
         else:
@@ -970,19 +977,19 @@ class GroupXS(object):
     # @param name the name of the GroupXS object
     def setName(self, name=''):
         if name is '':
-            if self._rate.getTallyType() is ELASTIC_RATE:
+            if self._rate.getTallyType() is pinspec.ELASTIC_RATE:
                 self._name = 'Elastic Group XS'
-            elif self._rate.getTallyType() is CAPTURE_RATE:
+            elif self._rate.getTallyType() is pinspec.CAPTURE_RATE:
                 self._name = 'Capture Group XS'
-            elif self._rate.getTallyType() is FISSION_RATE:
+            elif self._rate.getTallyType() is pinspec.FISSION_RATE:
                 self._name = 'Fission Group XS'
-            elif self._rate.getTallyType() is ABSORPTION_RATE:
+            elif self._rate.getTallyType() is pinspec.ABSORPTION_RATE:
                 self._name = 'Absorption Group XS'
-            elif self._rate.getTallyType() is TRANSPORT_RATE:
+            elif self._rate.getTallyType() is pinspec.TRANSPORT_RATE:
                 self._name = 'Transport Group XS'
-            elif self._rate.getTallyType() is DIFFUSION_RATE:
+            elif self._rate.getTallyType() is pinspec.DIFFUSION_RATE:
                 self._name = 'Diffusion Coeff.'
-            elif self._rate.getTallyType() is COLLISION_RATE:
+            elif self._rate.getTallyType() is pinspec.COLLISION_RATE:
                 self._name = 'Total Group XS'
         else:
             self._name = name

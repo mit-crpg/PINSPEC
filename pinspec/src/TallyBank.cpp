@@ -582,7 +582,7 @@ void TallyBank::computeScaledBatchStatistics(float scale_factor) {
  */
 void TallyBank::outputBatchStatistics() {
 
-    const char* directory = getOutputDirectory();
+    const char* directory = get_output_directory();
     const char* sub_directory = "/tally-statistics";
 
     std::string full_directory = std::string(directory) + sub_directory;

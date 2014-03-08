@@ -13,8 +13,8 @@ from pinspec.log import *
 ###########################  Main Simulation Paramters  #######################
 ###############################################################################
 
-setOutputDirectory('group-to-group')
-py_setlevel('INFO')
+set_output_directory('group-to-group')
+py_set_log_level('INFO')
     
 py_printf('TITLE', 'Simulation to tally group-to-group scattering')
     

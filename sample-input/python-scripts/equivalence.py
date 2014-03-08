@@ -21,7 +21,7 @@ num_batches = 50
 num_neutrons_per_batch = 10000
 num_threads = 4
 nu = 2.45
-setOutputDirectory('equivalence')
+set_output_directory('equivalence')
 
 # Geometric parameters
 radius_fuel = 0.4096
@@ -31,7 +31,7 @@ pitch = 1.26
 pitch_squared = pitch**2.0
 dancoff = 0.277
 
-py_setlevel('INFO')
+py_set_log_level('INFO')
 
 py_printf('TITLE', 'Starting a heterogeneous-homogeneous equivalence ' + \
               'calculation')
