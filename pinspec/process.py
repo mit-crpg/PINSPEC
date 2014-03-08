@@ -589,7 +589,7 @@ class RIEff(object):
     # @param self the RIEff object pointer
     # @return a numpy array of the resonance integral relative errors
     def getRelativeError(self):
-        return getTallyRelErr(self._RI)
+        return getTallyBatchRelErr(self._RI)
 
 
     ##
@@ -1038,7 +1038,7 @@ class GroupXS(object):
     # @param self the GroupXS object pointer
     # @return a numpy array of the multi-group cross-section relative errors
     def getRelativeError(self):
-        return getTallyRelErr(self._xs)
+        return getTallyBatchRelErr(self._xs)
 
 
     ## 
