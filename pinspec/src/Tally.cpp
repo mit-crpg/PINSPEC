@@ -891,18 +891,13 @@ void Tally::generateBinCenters() {
  */
 void Tally::tally(neutron* neutron, double weight) {
 
-    if (_num_bins == 0)
-        log_printf(ERROR, "Cannot tally weighted sample in Tally %s since "
-		   "the bins have not yet been created", _tally_name);
-    
-    if (_num_batches == 0)
-        log_printf(ERROR, "Cannot tally samples in Tally %s since "
-		   "batches have not yet been created", _tally_name);
-
-    int bin_index = getBinIndex(neutron->_old_energy);
+	  if (_num_bins == 0 || _num_batches == 0)
+				return;
 
     if (weight < 0.0)
         log_printf(ERROR, "weight = %f", weight);
+
+    int bin_index = getBinIndex(neutron->_old_energy);
 
     /* For outscattering reaction rates, we do nothing if the neutrons 
      * did not leave this energy group, and only tally when the neutron
@@ -932,13 +927,10 @@ void Tally::tally(neutron* neutron, double weight) {
  */
 void Tally::tallyGroup(neutron* neutron, double weight) {
 
-    if (_num_bins == 0)
-        log_printf(ERROR, "Cannot tally weighted sample in Tally %s since "
-		   "the bins have not yet been created", _tally_name);
-    
-    if (_num_batches == 0)
-        log_printf(ERROR, "Cannot tally samples in Tally %s since "
-		   "batches have not yet been created", _tally_name);
+	  /* If the Tally has not yet been initialized, just return */
+    if (_num_bins == 0 || _num_batches == 0)
+				return;
+
     if (weight < 0.0)
         log_printf(ERROR, "weight = %f", weight);
 
