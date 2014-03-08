@@ -29,7 +29,7 @@ sample-input/python-scripts/slowdown/*
 sample-input/python-scripts/doppler
 sample-input/python-scripts/doppler/*
 sample-input/python-scripts/equivalence
-sample-input/python-scripts/equivalence/*
+bsample-input/python-scripts/equivalence/*
 sample-input/python-scripts/outscatter
 sample-input/python-scripts/outscatter/*
 sample-input/python-scripts/group-to-group
@@ -80,3 +80,8 @@ xs-lib/BackupXS/*
 
 # emacs temp files
 #*#
+
+sample-input/ipython-notebooks/.ipynb_checkpoints/
+sample-input/ipython-notebooks/.ipynb_checkpoints/*
+sample-input/tutorials/.ipynb_checkpoints/
+sample-input/tutorials/.ipynb_checkpoints/*
