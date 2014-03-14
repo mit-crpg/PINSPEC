@@ -582,6 +582,10 @@ void EquivalenceRegion::setOtherRegion(EquivalenceRegion* region) {
  */
 void EquivalenceRegion::setFuelPinRadius(float radius) {
 
+    if (radius <= 0.0)
+      log_printf(ERROR, "Unable to set the fuel pin radius to %f since "
+		 " it must be a positive number.", radius);
+
     _fuel_radius = radius;
 
     if (_pitch != 0.0) {
@@ -601,6 +605,10 @@ void EquivalenceRegion::setFuelPinRadius(float radius) {
  * @param pitch the pin cell pitch (cm)
  */
 void EquivalenceRegion::setPinCellPitch(float pitch) {
+
+    if (pitch <= 0.0)
+      log_printf(ERROR, "Unable to set the pin cell pitch to %f since "
+		 " it must be a positive number.", pitch);
 
     _pitch = pitch;
     _half_width = pitch / 2.0;
