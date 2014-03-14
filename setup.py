@@ -4,6 +4,7 @@
 import os
 from distutils.sysconfig import get_config_vars
 from distutils.core import *
+from distutils.command.build_py import build_py
 from distutils      import sysconfig, dir_util
 
 # Third-party modules - we depend on numpy for everything
@@ -49,7 +50,7 @@ pinspec = Extension('_pinspec',
                    )
 
 # NumyTypemapTests setup
-setup(  name        = 'PINSPEC',
+dist = setup(  name        = 'PINSPEC',
         description = 'A monte carlo code for pin cell spectral calculations in nuclear reactor applications',
         author      = 'Will Boyd',
         author_email = 'wboyd@mit.edu',
@@ -59,3 +60,9 @@ setup(  name        = 'PINSPEC',
         packages = ['pinspec'],
 		package_data = {'pinspec': ['xs-lib/*.txt', 'xs-lib/BackupXS/*.txt']},
         )
+
+# Rerun the build_py to setup links for C++ extension modules created by SWIG  # This prevents us from having to install twice                          
+build_py = build_py(dist)
+build_py.ensure_finalized()
+build_py.run()
+
