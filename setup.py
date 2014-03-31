@@ -61,8 +61,8 @@ dist = setup(  name        = 'PINSPEC',
 		package_data = {'pinspec': ['xs-lib/*.txt', 'xs-lib/BackupXS/*.txt']},
         )
 
-# Rerun the build_py to setup links for C++ extension modules created by SWIG  # This prevents us from having to install twice                          
+# Rerun the build_py to setup links for C++ extension modules created by SWIG
+# This prevents us from having to install twice
 build_py = build_py(dist)
 build_py.ensure_finalized()
 build_py.run()
-

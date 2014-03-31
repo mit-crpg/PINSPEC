@@ -1451,7 +1451,6 @@ DerivedTally* Tally::operator+(Tally* tally) {
         new_mu[i] = mu1[i] + mu2[i];
         new_variance[i] = variance1[i] + variance2[i];
         new_std_dev[i] = sqrt(new_variance[i]);
-        new_mu[i] = new_std_dev[i] / new_mu[i];
     }
 
     new_tally->setNumBatches(1);
@@ -1459,7 +1458,7 @@ DerivedTally* Tally::operator+(Tally* tally) {
     new_tally->setBatchVariance(new_variance);
     new_tally->setBatchStdDev(new_std_dev);
     new_tally->setBatchRelErr(new_rel_err);
-    new_tally->setComputedBatchStatistics(true); 
+    new_tally->setComputedBatchStatistics(true);
 
     return new_tally;
 }
@@ -1570,7 +1569,6 @@ DerivedTally* Tally::operator-(Tally* tally) {
         new_mu[i] = mu1[i] - mu2[i];
         new_variance[i] = variance1[i] + variance2[i];
         new_std_dev[i] = sqrt(new_variance[i]);
-        new_mu[i] = new_std_dev[i] / new_mu[i];
     }
 
     new_tally->setNumBatches(1);
