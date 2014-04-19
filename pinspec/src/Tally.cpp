@@ -87,7 +87,7 @@ int Tally::getNumBins() {
 }
 
 /**
- * @brief Returns the number of tally bins.
+ * @brief Returns the number of tally edges.
  * @return the number of bins
  */
 int Tally::getNumEdges() {
@@ -1223,8 +1223,14 @@ void Tally::printTallies(bool uncertainties) {
 
     /* Create a tally statistics table header */
     std::stringstream title;
-    title << std::string(7, ' ') << "Energy Band" << std::string(9, ' ');
-    title << "   Mu   ";
+    if(_tally_type == GROUP_TO_GROUP_RATE) {
+        title << std::string(4, ' ') << "Start Energy Band" << std::string(6, ' ');
+        title << std::string(5, ' ') << "End Energy Band" << std::string(7, ' ');
+        title << "   Mu   ";
+    } else {
+        title << std::string(7, ' ') << "Energy Band" << std::string(9, ' ');
+        title << "   Mu   ";
+    }
 
     if (uncertainties) {
         title << std::string(2, ' ') << "Variance";
@@ -1236,6 +1242,8 @@ void Tally::printTallies(bool uncertainties) {
     log_printf(RESULT, title.str().c_str());
     log_printf(SEPARATOR, "");
 
+    char start_lower_bound[16];
+    char start_upper_bound[16];
     char lower_bound[16];
     char upper_bound[16];
     char mu[12];
@@ -1248,26 +1256,57 @@ void Tally::printTallies(bool uncertainties) {
     for (int i=0; i < _num_bins; i++) {
 
         std::stringstream entry;
+        
+        int j = i;
+        int start = floor(i / (_num_edges - 1));
+        
+        /* If in a GROUP_TO_GROUP_FLUX tally, num_edges - 1 != num_bins */
+        if(i >= _num_edges - 1) {
+            j = i % (_num_edges - 1);
+        }
+        
+        if(_tally_type == GROUP_TO_GROUP_RATE) {
+          /* Format lower bound of bin energy interval */
+            if (_edges[start] == 0.0)
+                sprintf(start_lower_bound, "%7.2f", _edges[start]);
+            else if (_edges[start] > 0.0 && _edges[start] < 1E-2)
+                sprintf(start_lower_bound, "%7.1E", _edges[start]);
+            else if (_edges[start] >= 1E-2 && _edges[start] < 1E4)
+                sprintf(start_lower_bound, "%7.2f", _edges[start]);
+            else
+                sprintf(start_lower_bound, "%7.1E", _edges[start]);
+
+            /* Format upper bound of bin energy interval */
+            if (_edges[start+1] == 0.0)
+                sprintf(start_upper_bound, "%7.2f", _edges[start+1]);
+            else if (_edges[start+1] > 0.0 && _edges[start+1] < 1E-2)
+                sprintf(start_upper_bound, "%7.1E", _edges[start+1]);
+            else if (_edges[start+1] > 1E-2 && _edges[start+1] < 1E4)
+                sprintf(start_upper_bound, "%7.2f", _edges[start+1]);
+            else
+                sprintf(start_upper_bound, "%7.1E", _edges[start+1]);
+        }
+          
 
         /* Format lower bound of bin energy interval */
-        if (_edges[i] == 0.0)
-            sprintf(lower_bound, "%7.2f", _edges[i]);
-        else if (_edges[i] > 0.0 && _edges[i] < 1E-2)
-            sprintf(lower_bound, "%7.1E", _edges[i]);
-        else if (_edges[i] >= 1E-2 && _edges[i] < 1E4)
-            sprintf(lower_bound, "%7.2f", _edges[i]);
+        if (_edges[j] == 0.0)
+            sprintf(lower_bound, "%7.2f", _edges[j]);
+        else if (_edges[j] > 0.0 && _edges[j] < 1E-2)
+            sprintf(lower_bound, "%7.1E", _edges[j]);
+        else if (_edges[j] >= 1E-2 && _edges[j] < 1E4)
+            sprintf(lower_bound, "%7.2f", _edges[j]);
         else
-            sprintf(lower_bound, "%7.1E", _edges[i]);
+            sprintf(lower_bound, "%7.1E", _edges[j]);
 
         /* Format upper bound of bin energy interval */
-        if (_edges[i+1] == 0.0)
-            sprintf(upper_bound, "%7.2f", _edges[i+1]);
-        else if (_edges[i+1] > 0.0 && _edges[i+1] < 1E-2)
-            sprintf(upper_bound, "%7.1E", _edges[i+1]);
-        else if (_edges[i+1] > 1E-2 && _edges[i+1] < 1E4)
-            sprintf(upper_bound, "%7.2f", _edges[i+1]);
+        if (_edges[j+1] == 0.0)
+            sprintf(upper_bound, "%7.2f", _edges[j+1]);
+        else if (_edges[j+1] > 0.0 && _edges[j+1] < 1E-2)
+            sprintf(upper_bound, "%7.1E", _edges[j+1]);
+        else if (_edges[j+1] > 1E-2 && _edges[j+1] < 1E4)
+            sprintf(upper_bound, "%7.2f", _edges[j+1]);
         else
-            sprintf(upper_bound, "%7.1E", _edges[i+1]);
+            sprintf(upper_bound, "%7.1E", _edges[j+1]);
 
         /* Format batch average */
         if (_batch_mu[i] < 1E-2)
@@ -1287,9 +1326,13 @@ void Tally::printTallies(bool uncertainties) {
         else
             sprintf(mu, "%8.2E", _batch_mu[i]);
 
-
-        entry << "[ " << lower_bound << " - " << upper_bound << " eV ]:  ";
-        entry << mu;
+        if(_tally_type == GROUP_TO_GROUP_RATE) {
+            entry << "[ " << start_lower_bound << " - " << start_upper_bound << " eV ] to " << "[ " << lower_bound << " - " << upper_bound << " eV ]:  ";
+            entry << mu;
+        } else {
+            entry << "[ " << lower_bound << " - " << upper_bound << " eV ]:  ";
+            entry << mu;
+        }
         
         /* No need to format uncertainties since we can assume they are small
          * and use scientific notation */
