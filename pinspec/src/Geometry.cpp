@@ -675,7 +675,7 @@ void Geometry::initializeProbModFuelRatios() {
     _fuel->setFirstFlightCollProb(_prob_ff, _prob_mf, 
 		                       _prob_energies, _num_prob);
 
-    delete prob_mf_ratios;
+    delete[] prob_mf_ratios;
 
     return;
 }

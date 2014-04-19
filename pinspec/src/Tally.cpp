@@ -26,7 +26,7 @@ unsigned int isqrt(int number) {
 Tally::Tally(char* tally_name) {
 
 	  int length = strlen(tally_name);
-		_tally_name = new char[length];
+		_tally_name = new char[length+1];
 
     for (int i=0; i <= length; i++)
 			_tally_name[i] = tally_name[i];
@@ -40,6 +40,7 @@ Tally::Tally(char* tally_name) {
     /* Sets the default for batch statistics */
     _num_batches = 0;
     _num_bins = 0;
+    _num_edges = 0;
     _computed_statistics = false;
     _group_expand_bins = false;
 }
@@ -83,6 +84,14 @@ char* Tally::getTallyName() {
  */
 int Tally::getNumBins() {
     return _num_bins;
+}
+
+/**
+ * @brief Returns the number of tally bins.
+ * @return the number of bins
+ */
+int Tally::getNumEdges() {
+    return _num_edges;
 }
 
 
@@ -706,6 +715,7 @@ void Tally::setTallyType(tallyType type) {
  */
 void Tally::setBinEdges(double* edges, int num_edges) {
 
+    _num_edges = num_edges;
     _num_bins = num_edges-1;
     _bin_spacing = OTHER;
     _edges = (double*)malloc(sizeof(double)*num_edges);
@@ -831,6 +841,7 @@ void Tally::generateBinEdges(double start, double end, int num_bins,
 		   "the same start and end points: %f", _tally_name, start);
 
     _num_bins = num_bins;
+    _num_edges = num_bins + 1;
     _bin_spacing = type;
 
     /* Equal spacing between bins */
@@ -875,10 +886,10 @@ void Tally::generateBinCenters() {
 		   "the bins have not yet been created", _tally_name);
 
     /* Allocate memory for the bin centers array */
-    _centers = new double[_num_bins];
+    _centers = new double[_num_edges - 1];
 
     /* Loop over all bins and find the midpoint between edges */
-    for (int i=0; i < _num_bins; i++)
+    for (int i=0; i < _num_edges - 1; i++)
         _centers[i] = (_edges[i] + _edges[i+1]) / 2.0;
 
     return;
@@ -1314,10 +1325,10 @@ Tally* Tally::clone() {
 
     /* If we have LOGARITHMIC or EQUAL bins, generate them for the new clone */
     if (_bin_spacing == LOGARITHMIC || _bin_spacing == EQUAL)
-        tally->generateBinEdges(_edges[0], _edges[_num_bins], 
-                                                    _num_bins, _bin_spacing);
+        tally->generateBinEdges(_edges[0], _edges[_num_edges-1], 
+                                                    _num_edges-1, _bin_spacing);
     else
-        tally->setBinEdges(_edges, _num_bins+1);
+        tally->setBinEdges(_edges, _num_edges);
 
     tally->setNumBatches(_num_batches);
     tally->setComputedBatchStatistics(_computed_statistics);
@@ -1385,11 +1396,11 @@ DerivedTally* Tally::operator+(Tally* tally) {
                                 tally->getTallyName(), tally->getNumBins());
 
         /* Check that all bin edges match */
-        double* edges = new double[_num_bins+1];
-        tally->retrieveTallyEdges(edges, _num_bins);
+        double* edges = new double[_num_edges];
+        tally->retrieveTallyEdges(edges, _num_edges-1);
 
         /* Loop over all edges */
-        for (int i=0; i < _num_bins+1; i++) {
+        for (int i=0; i < _num_edges; i++) {
             if (_edges[i] != edges[i])
                 log_printf(ERROR, "Unable to add tally %s with bin edge %d to "
                             "tally %s with bin edge %d", 
@@ -1402,7 +1413,7 @@ DerivedTally* Tally::operator+(Tally* tally) {
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
     new_tally->setBinSpacingType(_bin_spacing);
-    new_tally->setBinEdges(_edges, _num_bins+1);
+    new_tally->setBinEdges(_edges, _num_edges);
 
     /* Initialize new arrays for the derived tallies statistics */
     int max_num_bins = std::max(_num_bins, tally->getNumBins());
@@ -1503,11 +1514,11 @@ DerivedTally* Tally::operator-(Tally* tally) {
                             tally->getTallyName(), tally->getNumBins());
 
         /* Check that all bin edges match */
-        double* edges = new double[_num_bins+1];
-        tally->retrieveTallyEdges(edges, _num_bins);
+        double* edges = new double[_num_edges];
+        tally->retrieveTallyEdges(edges, _num_edges-1);
 
         /* Loop over all edges */
-        for (int i=0; i < _num_bins+1; i++) {
+        for (int i=0; i < _num_edges; i++) {
             if (_edges[i] != edges[i])
                 log_printf(ERROR, "Unable to subtract tally %s with bin edge"
                             " %d and tally %s with bin edge %d", 
@@ -1520,7 +1531,7 @@ DerivedTally* Tally::operator-(Tally* tally) {
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
     new_tally->setBinSpacingType(_bin_spacing);
-    new_tally->setBinEdges(_edges, _num_bins+1);
+    new_tally->setBinEdges(_edges, _num_edges);
 
     /* Initialize new arrays for the derived tallies statistics */
     int max_num_bins = std::max(_num_bins, tally->getNumBins());
@@ -1620,11 +1631,11 @@ DerivedTally* Tally::operator*(Tally* tally) {
                             tally->getTallyName(), tally->getNumBins());
 
         /* Check that all bin edges match */
-        double* edges = new double[_num_bins+1];
-        tally->retrieveTallyEdges(edges, _num_bins);
+        double* edges = new double[_num_edges];
+        tally->retrieveTallyEdges(edges, _num_edges-1);
 
         /* Loop over all edges */
-        for (int i=0; i < _num_bins+1; i++) {
+        for (int i=0; i < _num_edges; i++) {
             if (_edges[i] != edges[i])
                 log_printf(ERROR, "Unable to multiply tally %s with bin edge"
                             " %d and tally %s with bin edge %d", 
@@ -1637,7 +1648,7 @@ DerivedTally* Tally::operator*(Tally* tally) {
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
     new_tally->setBinSpacingType(_bin_spacing);
-    new_tally->setBinEdges(_edges, _num_bins+1);
+    new_tally->setBinEdges(_edges, _num_edges);
 
     /* Initialize new arrays for the derived tallies statistics */
     int max_num_bins = std::max(_num_bins, tally->getNumBins());
@@ -1740,11 +1751,11 @@ DerivedTally* Tally::operator/(Tally* tally) {
                             tally->getTallyName(), tally->getNumBins());
 
         /* Check that all bin edges match */
-        double* edges = new double[_num_bins+1];
-        tally->retrieveTallyEdges(edges, _num_bins);
+        double* edges = new double[_num_edges];
+        tally->retrieveTallyEdges(edges, _num_edges-1);
 
         /* Loop over all edges */
-        for (int i=0; i < _num_bins+1; i++) {
+        for (int i=0; i < _num_edges; i++) {
             if (_edges[i] != edges[i])
                 log_printf(ERROR, "Unable to divide tally %s with bin edge"
                             " %d and tally %s with bin edge %d", 
@@ -1757,7 +1768,7 @@ DerivedTally* Tally::operator/(Tally* tally) {
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
     new_tally->setBinSpacingType(_bin_spacing);
-    new_tally->setBinEdges(_edges, _num_bins+1);
+    new_tally->setBinEdges(_edges, _num_edges);
 
     /* Initialize new arrays for the derived tallies statistics */
     int max_num_bins = std::max(_num_bins, tally->getNumBins());

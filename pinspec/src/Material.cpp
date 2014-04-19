@@ -13,9 +13,9 @@ int Material::_n = 1;
 Material::Material(char* material_name) {
 
     int length = strlen(material_name);
-    _material_name = new char[length];
+    _material_name = new char[length+1];
    
-    for (int i=0; i < length; i++)
+    for (int i=0; i <= length; i++)
       _material_name[i] = material_name[i];
 
     _uid = _n;
