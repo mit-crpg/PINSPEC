@@ -14,7 +14,7 @@ Region::Region(const char* region_name) {
     int length = strlen(region_name);
     _region_name = new char[length];
    
-    for (int i=0; i <= length; i++)
+    for (int i=0; i < length; i++)
       _region_name[i] = region_name[i];
 
     _uid = _n;
