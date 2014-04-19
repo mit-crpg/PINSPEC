@@ -715,6 +715,9 @@ void Tally::setBinEdges(double* edges, int num_edges) {
 
     /* Create an array of the center values between bins */
     generateBinCenters();
+    
+    /* Generate arrays for a default of 1 set of batch statistics */
+    setNumBatches(1);
 
     return;
 }
