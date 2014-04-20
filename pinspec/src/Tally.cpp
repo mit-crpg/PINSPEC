@@ -88,7 +88,7 @@ int Tally::getNumBins() {
 
 /**
  * @brief Returns the number of tally edges.
- * @return the number of bins
+ * @return the number of edges
  */
 int Tally::getNumEdges() {
     return _num_edges;
