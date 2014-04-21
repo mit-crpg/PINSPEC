@@ -500,10 +500,10 @@ bool Tally::isPrecisionTriggered() {
  * @param data the data array to fill with bin edge values
  * @param num_bins the number of tally bins
  */
-void Tally::retrieveTallyEdges(double* data, int num_bins) {
+void Tally::retrieveTallyEdges(double* data, int num_edges) {
 
     /* Load all tally bin centers into array */
-    for (int i=0; i < _num_bins+1; i++)
+    for (int i=0; i < _num_edges; i++)
         data[i] = _edges[i];
 }
 
@@ -725,7 +725,7 @@ void Tally::setBinEdges(double* edges, int num_edges) {
 
     /* Create an array of the center values between bins */
     generateBinCenters();
-    
+
     /* Generate arrays for a default of 1 set of batch statistics */
     setNumBatches(1);
 
@@ -772,13 +772,13 @@ void Tally::setNumBatches(int num_batches) {
 
     _num_batches = num_batches;
 
-    /* Specifically for group-to-group scattering, we expand the size of 
+    /* Specifically for group-to-group scattering, we expand the size of
      * the array to hold a group-to-group structure. bool _group_expand_bins
      * is a flag we keep around to make sure this operation is done once. */
     if ((_tally_type == GROUP_TO_GROUP_RATE) && (_group_expand_bins == false))
     {
-	_num_bins = _num_bins * _num_bins;
-	_group_expand_bins = true;
+        _num_bins = _num_bins * _num_bins;
+        _group_expand_bins = true;
     }
 
     /* Set all tallies to zero by default */
@@ -789,7 +789,7 @@ void Tally::setNumBatches(int num_batches) {
     /* Loop over tallies and set to zero */
     for (int i=0; i < _num_batches; i++) {
         for (int j=0; j < _num_bins; j++)
-	    _tallies[i][j] = 0.0;
+      _tallies[i][j] = 0.0;
     }
 
     /* Allocate memory for batch-based statistical counters */
@@ -883,7 +883,7 @@ void Tally::generateBinCenters() {
 
     if (_num_bins == 0)
         log_printf(ERROR, "Cannot generate bin centers for Tally %s since "
-		   "the bins have not yet been created", _tally_name);
+                   "the bins have not yet been created", _tally_name);
 
     /* Allocate memory for the bin centers array */
     _centers = new double[_num_edges - 1];
@@ -941,7 +941,7 @@ void Tally::tally(neutron* neutron, double weight) {
  */
 void Tally::tallyGroup(neutron* neutron, double weight) {
 
-	  /* If the Tally has not yet been initialized, just return */
+    /* If the Tally has not yet been initialized, just return */
     if (_num_bins == 0 || _num_batches == 0)
 				return;
 
@@ -961,9 +961,9 @@ void Tally::tallyGroup(neutron* neutron, double weight) {
 
     bin_index = old_index * nb  + new_index;
 
-    if (bin_index >= 0 && bin_index < _num_bins) 
+    if (bin_index >= 0 && bin_index < _num_bins)
     {
-	log_printf(DEBUG, "bin_index = %d", bin_index);
+        log_printf(DEBUG, "bin_index = %d", bin_index);
         _tallies[neutron->_batch_num][bin_index] += weight;
     }
 
@@ -1395,10 +1395,10 @@ Tally* Tally::clone() {
 
     double** tallies = (double**) malloc(sizeof(double*) * _num_batches);
     for (int i=0; i < _num_batches; i++) {
-	    tallies[i] = new double[_num_bins];
+      tallies[i] = new double[_num_bins];
         memcpy(tallies[i], _tallies[i], _num_bins);
     }
-    
+
     tally->setTallies(tallies);
 
     return tally;
@@ -1794,16 +1794,21 @@ DerivedTally* Tally::operator/(Tally* tally) {
                             tally->getTallyName(), tally->getNumBins());
 
         /* Check that all bin edges match */
-        double* edges = new double[_num_edges];
-        tally->retrieveTallyEdges(edges, _num_edges-1);
+        int num_edges = tally->getNumEdges();
+        double* edges = new double[num_edges];
+        tally->retrieveTallyEdges(edges, num_edges);
 
-        /* Loop over all edges */
-        for (int i=0; i < _num_edges; i++) {
-            if (_edges[i] != edges[i])
-                log_printf(ERROR, "Unable to divide tally %s with bin edge"
-                            " %d and tally %s with bin edge %d", 
-                            _tally_name, _edges[i],
-                           tally->getTallyName(), edges[i]);
+        /* Check the group edges unless this is a GROUP_TO_GROUP_RATE tally */
+        if (_tally_type != GROUP_TO_GROUP_RATE) {
+
+            /* Loop over all edges */
+            for (int i=0; i < _num_edges; i++) {
+                if (_edges[i] != edges[i])
+                    log_printf(ERROR, "Unable to divide tally %s with bin edge"
+                                      " %d and tally %s with bin edge %d",
+                                       _tally_name, _edges[i],
+                                       tally->getTallyName(), edges[i]);
+            }
         }
     }
 
@@ -1812,6 +1817,7 @@ DerivedTally* Tally::operator/(Tally* tally) {
 
     new_tally->setBinSpacingType(_bin_spacing);
     new_tally->setBinEdges(_edges, _num_edges);
+    new_tally->setTallyType(_tally_type);
 
     /* Initialize new arrays for the derived tallies statistics */
     int max_num_bins = std::max(_num_bins, tally->getNumBins());
@@ -1877,6 +1883,8 @@ DerivedTally* Tally::operator/(Tally* tally) {
     new_tally->setBatchRelErr(new_rel_err);
     new_tally->setComputedBatchStatistics(true); 
 
+    new_tally->setTallyType(DERIVED);
+
     return new_tally;
 }
 
@@ -1897,7 +1905,7 @@ DerivedTally* Tally::operator/(Tally* tally) {
  * @param amt the right operand and the constant value to add to the tally
  * @return a DERIVED type tally with the tally sum
  */
-DerivedTally* Tally::operator+(int amt) {
+DerivedTally* Tally::operator+(const int amt) {
     
     Tally* new_tally = this->clone();
     new_tally->_tally_domain = UNDEFINED;
@@ -1910,6 +1918,61 @@ DerivedTally* Tally::operator+(int amt) {
 
     return static_cast<DerivedTally*>(new_tally);
 }
+
+
+
+
+
+DerivedTally* Tally::tile(const int num_tiles) {
+
+    /* If the tallies have not yet computed batch statistics, reject */
+    if (!_computed_statistics)
+        log_printf(ERROR, "Unable to tile tally %s which has not yet computed "
+                                            "batch statistics", _tally_name);
+
+    /* Create a new derived type tally and initialize it */
+    DerivedTally* new_tally = new DerivedTally((char*)"");
+
+    int num_bins = num_tiles * _num_bins;
+    int num_edges = num_bins + 1;
+
+    double* new_edges = new double[num_edges];
+    double* new_mu = new double[num_bins];
+    double* new_variance = new double[num_bins];
+    double* new_std_dev = new double[num_bins];
+    double* new_rel_err = new double[num_bins];
+
+    for (int i=0; i < num_edges; i++)
+        new_edges[i] = 0.0;
+
+    for (int i=0; i < num_bins; i++) {
+        new_mu[i] = _batch_mu[i%_num_bins];
+        new_variance[i] = _batch_variance[i%_num_bins];
+        new_std_dev[i] = _batch_std_dev[i%_num_bins];
+        new_rel_err[i] = _batch_rel_err[i%_num_bins];
+    }
+
+    double** new_tallies = new double*[_num_batches];
+
+    for (int i=0; i < _num_batches; i++) {
+        new_tallies[i] = new double[num_bins];
+
+        for (int j=0; j < num_bins; j++)
+            new_tallies[i][j] = _tallies[i][j%_num_bins];
+    }
+
+    new_tally->setBinEdges(new_edges, num_edges);
+    new_tally->setNumBatches(1);
+    new_tally->setTallies(new_tallies);
+    new_tally->setBatchMu(new_mu);
+    new_tally->setBatchVariance(new_variance);
+    new_tally->setBatchStdDev(new_std_dev);
+    new_tally->setBatchRelErr(new_rel_err);
+    new_tally->setComputedBatchStatistics(true);
+
+    return new_tally;
+}
+
 
 
 /**
@@ -2096,7 +2159,7 @@ DerivedTally* Tally::operator*(const float amt) {
     Tally* new_tally = this->clone();
     new_tally->_tally_domain = UNDEFINED;
     new_tally->_tally_type = DERIVED;   
-    
+
     /* Multiplying this tally by some amount multiplies the batch mu
      * by a constant and updates the perturbed batch statistics */
     for (int i=0; i < _num_bins; i++) {
@@ -2226,8 +2289,8 @@ DerivedTally* Tally::operator*(const double amt) {
 
     Tally* new_tally = this->clone();
     new_tally->_tally_domain = UNDEFINED;
-    new_tally->_tally_type = DERIVED;   
-    
+    new_tally->_tally_type = DERIVED;
+
     /* Multiplying this tally by some amount multiplies the batch mu
      * by a constant and updates the perturbed batch statistics */
     for (int i=0; i < _num_bins; i++) {

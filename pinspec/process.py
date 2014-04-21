@@ -920,32 +920,19 @@ class GroupXS(object):
             py_printf('ERROR', 'Unable to create a group cross-section ' \
                        + 'since neither tally input is of pinspec.FLUX type')
 
-        rate_types = [pinspec.CAPTURE_RATE, \
+        rate_types = [pinspec.COLLISION_RATE,
+                      pinspec.CAPTURE_RATE, \
                       pinspec.ELASTIC_RATE, \
                       pinspec.FISSION_RATE, \
                       pinspec.ABSORPTION_RATE, \
                       pinspec.DIFFUSION_RATE, \
                       pinspec.TRANSPORT_RATE, \
-                      pinspec.COLLISION_RATE]
+                      pinspec.GROUP_TO_GROUP_RATE]
 
         if not (tally1.getTallyType() in rate_types) and not \
                                         (tally2.getTallyType() in rate_types):
             py_printf('ERROR', 'Unable to create a group cross-section ' + \
                        'since neither tally input is of RATE tally type')
-
-        if (tally1.getNumBins() is not tally2.getNumBins()):
-            py_printf('ERROR', 'Unable to create a group cross-section ' \
-                       + 'since tally %s has %d bins while tally %s ' \
-                       + 'has %d bins', tally1.getTallyName(), \
-                        tally1.getNumBins(), tally2.getTallyName(), \
-                        tally2.getNumBins())
-
-        if not (getTallyEdges(tally1)==getTallyEdges(tally2)).all():
-            py_printf('ERROR', 'Unable to create a group cross-section ' \
-                       + 'since tally %s has different bin edges ' \
-                       + 'than tally %s', tally1.getTallyName(), \
-                        tally2.getTallyName())
-
 
         # If we have passed all checks, then create group XS
         self._flux = None
@@ -958,13 +945,18 @@ class GroupXS(object):
             self._flux = tally2
             self._rate = tally1
 
-        self._num_xs = self._flux.getNumBins()
+        self._num_xs = self._rate.getNumBins()
 
         # Compute the group cross-section using tally division and 
         # multiplication operations - this allows us to compute all
         # statistics and uncertainties for the xs's, and to use all
         # of the class methods provided for a Tally class since 
         # self._xs is now a DERIVED type tally object
+
+        if self._rate.getTallyType() == pinspec.GROUP_TO_GROUP_RATE:
+            num_tiles = int(np.sqrt(self._num_xs))
+            self._flux = self._flux.tile(num_tiles)
+
         self._xs = (self._rate / self._flux)
 
 

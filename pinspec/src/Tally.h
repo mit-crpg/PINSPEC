@@ -285,6 +285,8 @@ public:
      */
     virtual void tally(neutron* neutron) =0;
 
+    DerivedTally* tile(const int num_tiles);
+
     DerivedTally* addIntegers(const int* amt, const int length);
     DerivedTally* addFloats(const float* amt, const int length);
     DerivedTally* addDoubles(const double* amt, const int length);
