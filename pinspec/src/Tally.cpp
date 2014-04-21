@@ -26,7 +26,7 @@ unsigned int isqrt(int number) {
 Tally::Tally(char* tally_name) {
 
 	  int length = strlen(tally_name);
-		_tally_name = new char[length];
+		_tally_name = new char[length+1];
 
     for (int i=0; i <= length; i++)
 			_tally_name[i] = tally_name[i];
@@ -40,6 +40,7 @@ Tally::Tally(char* tally_name) {
     /* Sets the default for batch statistics */
     _num_batches = 0;
     _num_bins = 0;
+    _num_edges = 0;
     _computed_statistics = false;
     _group_expand_bins = false;
 }
@@ -83,6 +84,14 @@ char* Tally::getTallyName() {
  */
 int Tally::getNumBins() {
     return _num_bins;
+}
+
+/**
+ * @brief Returns the number of tally edges.
+ * @return the number of edges
+ */
+int Tally::getNumEdges() {
+    return _num_edges;
 }
 
 
@@ -706,6 +715,7 @@ void Tally::setTallyType(tallyType type) {
  */
 void Tally::setBinEdges(double* edges, int num_edges) {
 
+    _num_edges = num_edges;
     _num_bins = num_edges-1;
     _bin_spacing = OTHER;
     _edges = (double*)malloc(sizeof(double)*num_edges);
@@ -715,6 +725,9 @@ void Tally::setBinEdges(double* edges, int num_edges) {
 
     /* Create an array of the center values between bins */
     generateBinCenters();
+    
+    /* Generate arrays for a default of 1 set of batch statistics */
+    setNumBatches(1);
 
     return;
 }
@@ -828,6 +841,7 @@ void Tally::generateBinEdges(double start, double end, int num_bins,
 		   "the same start and end points: %f", _tally_name, start);
 
     _num_bins = num_bins;
+    _num_edges = num_bins + 1;
     _bin_spacing = type;
 
     /* Equal spacing between bins */
@@ -872,10 +886,10 @@ void Tally::generateBinCenters() {
 		   "the bins have not yet been created", _tally_name);
 
     /* Allocate memory for the bin centers array */
-    _centers = new double[_num_bins];
+    _centers = new double[_num_edges - 1];
 
     /* Loop over all bins and find the midpoint between edges */
-    for (int i=0; i < _num_bins; i++)
+    for (int i=0; i < _num_edges - 1; i++)
         _centers[i] = (_edges[i] + _edges[i+1]) / 2.0;
 
     return;
@@ -1209,8 +1223,14 @@ void Tally::printTallies(bool uncertainties) {
 
     /* Create a tally statistics table header */
     std::stringstream title;
-    title << std::string(7, ' ') << "Energy Band" << std::string(9, ' ');
-    title << "   Mu   ";
+    if(_tally_type == GROUP_TO_GROUP_RATE) {
+        title << std::string(4, ' ') << "Start Energy Band" << std::string(6, ' ');
+        title << std::string(5, ' ') << "End Energy Band" << std::string(7, ' ');
+        title << "   Mu   ";
+    } else {
+        title << std::string(7, ' ') << "Energy Band" << std::string(9, ' ');
+        title << "   Mu   ";
+    }
 
     if (uncertainties) {
         title << std::string(2, ' ') << "Variance";
@@ -1222,6 +1242,8 @@ void Tally::printTallies(bool uncertainties) {
     log_printf(RESULT, title.str().c_str());
     log_printf(SEPARATOR, "");
 
+    char start_lower_bound[16];
+    char start_upper_bound[16];
     char lower_bound[16];
     char upper_bound[16];
     char mu[12];
@@ -1234,26 +1256,57 @@ void Tally::printTallies(bool uncertainties) {
     for (int i=0; i < _num_bins; i++) {
 
         std::stringstream entry;
+        
+        int j = i;
+        int start = floor(i / (_num_edges - 1));
+        
+        /* If in a GROUP_TO_GROUP_FLUX tally, num_edges - 1 != num_bins */
+        if(i >= _num_edges - 1) {
+            j = i % (_num_edges - 1);
+        }
+        
+        if(_tally_type == GROUP_TO_GROUP_RATE) {
+          /* Format lower bound of bin energy interval */
+            if (_edges[start] == 0.0)
+                sprintf(start_lower_bound, "%7.2f", _edges[start]);
+            else if (_edges[start] > 0.0 && _edges[start] < 1E-2)
+                sprintf(start_lower_bound, "%7.1E", _edges[start]);
+            else if (_edges[start] >= 1E-2 && _edges[start] < 1E4)
+                sprintf(start_lower_bound, "%7.2f", _edges[start]);
+            else
+                sprintf(start_lower_bound, "%7.1E", _edges[start]);
+
+            /* Format upper bound of bin energy interval */
+            if (_edges[start+1] == 0.0)
+                sprintf(start_upper_bound, "%7.2f", _edges[start+1]);
+            else if (_edges[start+1] > 0.0 && _edges[start+1] < 1E-2)
+                sprintf(start_upper_bound, "%7.1E", _edges[start+1]);
+            else if (_edges[start+1] > 1E-2 && _edges[start+1] < 1E4)
+                sprintf(start_upper_bound, "%7.2f", _edges[start+1]);
+            else
+                sprintf(start_upper_bound, "%7.1E", _edges[start+1]);
+        }
+          
 
         /* Format lower bound of bin energy interval */
-        if (_edges[i] == 0.0)
-            sprintf(lower_bound, "%7.2f", _edges[i]);
-        else if (_edges[i] > 0.0 && _edges[i] < 1E-2)
-            sprintf(lower_bound, "%7.1E", _edges[i]);
-        else if (_edges[i] >= 1E-2 && _edges[i] < 1E4)
-            sprintf(lower_bound, "%7.2f", _edges[i]);
+        if (_edges[j] == 0.0)
+            sprintf(lower_bound, "%7.2f", _edges[j]);
+        else if (_edges[j] > 0.0 && _edges[j] < 1E-2)
+            sprintf(lower_bound, "%7.1E", _edges[j]);
+        else if (_edges[j] >= 1E-2 && _edges[j] < 1E4)
+            sprintf(lower_bound, "%7.2f", _edges[j]);
         else
-            sprintf(lower_bound, "%7.1E", _edges[i]);
+            sprintf(lower_bound, "%7.1E", _edges[j]);
 
         /* Format upper bound of bin energy interval */
-        if (_edges[i+1] == 0.0)
-            sprintf(upper_bound, "%7.2f", _edges[i+1]);
-        else if (_edges[i+1] > 0.0 && _edges[i+1] < 1E-2)
-            sprintf(upper_bound, "%7.1E", _edges[i+1]);
-        else if (_edges[i+1] > 1E-2 && _edges[i+1] < 1E4)
-            sprintf(upper_bound, "%7.2f", _edges[i+1]);
+        if (_edges[j+1] == 0.0)
+            sprintf(upper_bound, "%7.2f", _edges[j+1]);
+        else if (_edges[j+1] > 0.0 && _edges[j+1] < 1E-2)
+            sprintf(upper_bound, "%7.1E", _edges[j+1]);
+        else if (_edges[j+1] > 1E-2 && _edges[j+1] < 1E4)
+            sprintf(upper_bound, "%7.2f", _edges[j+1]);
         else
-            sprintf(upper_bound, "%7.1E", _edges[i+1]);
+            sprintf(upper_bound, "%7.1E", _edges[j+1]);
 
         /* Format batch average */
         if (_batch_mu[i] < 1E-2)
@@ -1273,9 +1326,13 @@ void Tally::printTallies(bool uncertainties) {
         else
             sprintf(mu, "%8.2E", _batch_mu[i]);
 
-
-        entry << "[ " << lower_bound << " - " << upper_bound << " eV ]:  ";
-        entry << mu;
+        if(_tally_type == GROUP_TO_GROUP_RATE) {
+            entry << "[ " << start_lower_bound << " - " << start_upper_bound << " eV ] to " << "[ " << lower_bound << " - " << upper_bound << " eV ]:  ";
+            entry << mu;
+        } else {
+            entry << "[ " << lower_bound << " - " << upper_bound << " eV ]:  ";
+            entry << mu;
+        }
         
         /* No need to format uncertainties since we can assume they are small
          * and use scientific notation */
@@ -1311,10 +1368,10 @@ Tally* Tally::clone() {
 
     /* If we have LOGARITHMIC or EQUAL bins, generate them for the new clone */
     if (_bin_spacing == LOGARITHMIC || _bin_spacing == EQUAL)
-        tally->generateBinEdges(_edges[0], _edges[_num_bins], 
-                                                    _num_bins, _bin_spacing);
+        tally->generateBinEdges(_edges[0], _edges[_num_edges-1], 
+                                                    _num_edges-1, _bin_spacing);
     else
-        tally->setBinEdges(_edges, _num_bins+1);
+        tally->setBinEdges(_edges, _num_edges);
 
     tally->setNumBatches(_num_batches);
     tally->setComputedBatchStatistics(_computed_statistics);
@@ -1382,11 +1439,11 @@ DerivedTally* Tally::operator+(Tally* tally) {
                                 tally->getTallyName(), tally->getNumBins());
 
         /* Check that all bin edges match */
-        double* edges = new double[_num_bins+1];
-        tally->retrieveTallyEdges(edges, _num_bins);
+        double* edges = new double[_num_edges];
+        tally->retrieveTallyEdges(edges, _num_edges-1);
 
         /* Loop over all edges */
-        for (int i=0; i < _num_bins+1; i++) {
+        for (int i=0; i < _num_edges; i++) {
             if (_edges[i] != edges[i])
                 log_printf(ERROR, "Unable to add tally %s with bin edge %d to "
                             "tally %s with bin edge %d", 
@@ -1399,7 +1456,7 @@ DerivedTally* Tally::operator+(Tally* tally) {
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
     new_tally->setBinSpacingType(_bin_spacing);
-    new_tally->setBinEdges(_edges, _num_bins+1);
+    new_tally->setBinEdges(_edges, _num_edges);
 
     /* Initialize new arrays for the derived tallies statistics */
     int max_num_bins = std::max(_num_bins, tally->getNumBins());
@@ -1500,11 +1557,11 @@ DerivedTally* Tally::operator-(Tally* tally) {
                             tally->getTallyName(), tally->getNumBins());
 
         /* Check that all bin edges match */
-        double* edges = new double[_num_bins+1];
-        tally->retrieveTallyEdges(edges, _num_bins);
+        double* edges = new double[_num_edges];
+        tally->retrieveTallyEdges(edges, _num_edges-1);
 
         /* Loop over all edges */
-        for (int i=0; i < _num_bins+1; i++) {
+        for (int i=0; i < _num_edges; i++) {
             if (_edges[i] != edges[i])
                 log_printf(ERROR, "Unable to subtract tally %s with bin edge"
                             " %d and tally %s with bin edge %d", 
@@ -1517,7 +1574,7 @@ DerivedTally* Tally::operator-(Tally* tally) {
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
     new_tally->setBinSpacingType(_bin_spacing);
-    new_tally->setBinEdges(_edges, _num_bins+1);
+    new_tally->setBinEdges(_edges, _num_edges);
 
     /* Initialize new arrays for the derived tallies statistics */
     int max_num_bins = std::max(_num_bins, tally->getNumBins());
@@ -1617,11 +1674,11 @@ DerivedTally* Tally::operator*(Tally* tally) {
                             tally->getTallyName(), tally->getNumBins());
 
         /* Check that all bin edges match */
-        double* edges = new double[_num_bins+1];
-        tally->retrieveTallyEdges(edges, _num_bins);
+        double* edges = new double[_num_edges];
+        tally->retrieveTallyEdges(edges, _num_edges-1);
 
         /* Loop over all edges */
-        for (int i=0; i < _num_bins+1; i++) {
+        for (int i=0; i < _num_edges; i++) {
             if (_edges[i] != edges[i])
                 log_printf(ERROR, "Unable to multiply tally %s with bin edge"
                             " %d and tally %s with bin edge %d", 
@@ -1634,7 +1691,7 @@ DerivedTally* Tally::operator*(Tally* tally) {
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
     new_tally->setBinSpacingType(_bin_spacing);
-    new_tally->setBinEdges(_edges, _num_bins+1);
+    new_tally->setBinEdges(_edges, _num_edges);
 
     /* Initialize new arrays for the derived tallies statistics */
     int max_num_bins = std::max(_num_bins, tally->getNumBins());
@@ -1737,11 +1794,11 @@ DerivedTally* Tally::operator/(Tally* tally) {
                             tally->getTallyName(), tally->getNumBins());
 
         /* Check that all bin edges match */
-        double* edges = new double[_num_bins+1];
-        tally->retrieveTallyEdges(edges, _num_bins);
+        double* edges = new double[_num_edges];
+        tally->retrieveTallyEdges(edges, _num_edges-1);
 
         /* Loop over all edges */
-        for (int i=0; i < _num_bins+1; i++) {
+        for (int i=0; i < _num_edges; i++) {
             if (_edges[i] != edges[i])
                 log_printf(ERROR, "Unable to divide tally %s with bin edge"
                             " %d and tally %s with bin edge %d", 
@@ -1754,7 +1811,7 @@ DerivedTally* Tally::operator/(Tally* tally) {
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
     new_tally->setBinSpacingType(_bin_spacing);
-    new_tally->setBinEdges(_edges, _num_bins+1);
+    new_tally->setBinEdges(_edges, _num_edges);
 
     /* Initialize new arrays for the derived tallies statistics */
     int max_num_bins = std::max(_num_bins, tally->getNumBins());
