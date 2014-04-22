@@ -6,7 +6,7 @@
 #        the process module includes routines to use tallies to compute
 #        resonance integrals and group cross-sections and to print the results
 #        to the screen.
-# 
+#
 # @author William Boyd (wboyd@mit.edu)
 # @author Samuel Shaner (shaner@mit.edu)
 # @date March 25, 2013
@@ -945,20 +945,19 @@ class GroupXS(object):
             self._flux = tally2
             self._rate = tally1
 
-        self._num_xs = self._rate.getNumBins()
-
-        # Compute the group cross-section using tally division and 
+        # Compute the group cross-section using tally division and
         # multiplication operations - this allows us to compute all
         # statistics and uncertainties for the xs's, and to use all
-        # of the class methods provided for a Tally class since 
+        # of the class methods provided for a Tally class since
         # self._xs is now a DERIVED type tally object
 
         if self._rate.getTallyType() == pinspec.GROUP_TO_GROUP_RATE and \
            self._rate.getNumBins() != self._flux.getNumBins():
-            num_tiles = int(np.sqrt(self._num_xs))
+            num_tiles = int(np.sqrt(self._rate.getNumBins()))
             self._flux = self._flux.tile(num_tiles)
 
         self._xs = (self._rate / self._flux)
+        self._num_xs = self._xs.getNumBins()
 
 
     ##
@@ -1103,7 +1102,7 @@ class GroupXS(object):
     def __add__(self, x):
 
         if isinstance(x, GroupXS):
-            tally1 = x._flux * self._rate +  self._flux * x._rate
+            tally1 = self._rate * x._flux + x._rate * self._flux
             tally2 = self._flux * x._flux
 
         else:
@@ -1167,10 +1166,10 @@ class GroupXS(object):
 
         if isinstance(x, GroupXS):
             tally1 = self._rate * x._flux
-            tally2 = self._flux * x._rate
+            tally2 = x._rate * self._flux
 
         else:
-            tally1 = self._rate * x
+            tally1 = self._rate / x
             tally2 = self._flux
 
         tally1.setTallyType(self._rate.getTallyType())

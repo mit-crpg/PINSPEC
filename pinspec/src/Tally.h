@@ -238,6 +238,7 @@ public:
     float getTriggerPrecision();
     triggerType getTriggerType();
     bool hasComputedBatchStatistics();
+    bool hasExpandedGroupBins();
 
     /* IMPORTANT: The following six class method prototypes must not be changed
      * without changing Geometry.i to allow for the data arrays to be 
@@ -259,9 +260,10 @@ public:
     void setTallyType(tallyType type);
     void setBinSpacingType(binSpacingType type);
     void setBinEdges(double* edges, int num_edges);
+    void setGroupExpandBins(bool expand_bins);
     void setPrecisionTrigger(triggerType trigger_type, float precision);
-    void generateBinEdges(double start, double end, int num_bins, 
-			  binSpacingType type);
+    void generateBinEdges(double start, double end, int num_bins,
+                          binSpacingType type);
     void generateBinCenters();
 
     void setNumBatches(int num_batches);
@@ -697,6 +699,7 @@ public:
     IsotopeGroupRateTally(Isotope* isotope, char* tally_name=(char*)"")
         : IsotopeTally(isotope, tally_name){
             _tally_type = GROUP_TO_GROUP_RATE;
+            _group_expand_bins = false;
     }
 
     void tally(neutron* neutron);
@@ -720,6 +723,7 @@ public:
 			   char* tally_name=(char*)"")
         : MaterialTally(material, tally_name){
             _tally_type = GROUP_TO_GROUP_RATE;
+            _group_expand_bins = false;
     }
   
     void tally(neutron* neutron);
@@ -742,7 +746,8 @@ public:
      */
     RegionGroupRateTally(Region* region, char* tally_name=(char*)"")
         : RegionTally(region, tally_name){
-	_tally_type = GROUP_TO_GROUP_RATE;
+            _tally_type = GROUP_TO_GROUP_RATE;
+            _group_expand_bins = false;
     }
 
     void tally(neutron* neutron);
@@ -766,7 +771,8 @@ public:
     GeometryGroupRateTally(Geometry* geometry, 
 			   char* tally_name=(char*)"")
         : GeometryTally(geometry, tally_name){
-	_tally_type = GROUP_TO_GROUP_RATE;
+            _tally_type = GROUP_TO_GROUP_RATE;
+            _group_expand_bins = false;
     }
 
     void tally(neutron* neutron);

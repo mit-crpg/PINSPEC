@@ -31,9 +31,9 @@ Tally* TallyFactory::createTally(Isotope* isotope, tallyType tally_type,
     else if (tally_type == ELASTIC_RATE)
         return new IsotopeElasticRateTally(isotope, tally_name);
     else if (tally_type == GROUP_TO_GROUP_RATE)
-	return new IsotopeGroupRateTally(isotope, tally_name);
+        return new IsotopeGroupRateTally(isotope, tally_name);
     else if (tally_type == OUTSCATTER_RATE)
-	return new IsotopeOutScatterRateTally(isotope, tally_name);
+        return new IsotopeOutScatterRateTally(isotope, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new IsotopeAbsorptionRateTally(isotope, tally_name);
     else if (tally_type == CAPTURE_RATE)
@@ -72,9 +72,9 @@ Tally* TallyFactory::createTally(Material* material, tallyType tally_type,
     else if (tally_type == ELASTIC_RATE)
         return new MaterialElasticRateTally(material, tally_name);
     else if (tally_type == GROUP_TO_GROUP_RATE)
-	return new MaterialGroupRateTally(material, tally_name);
+        return new MaterialGroupRateTally(material, tally_name);
     else if (tally_type == OUTSCATTER_RATE)
-	return new MaterialOutScatterRateTally(material, tally_name);
+        return new MaterialOutScatterRateTally(material, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new MaterialAbsorptionRateTally(material, tally_name);
     else if (tally_type == CAPTURE_RATE)

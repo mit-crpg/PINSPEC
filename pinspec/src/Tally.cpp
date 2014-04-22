@@ -25,11 +25,11 @@ unsigned int isqrt(int number) {
  */
 Tally::Tally(char* tally_name) {
 
-	  int length = strlen(tally_name);
-		_tally_name = new char[length+1];
+    int length = strlen(tally_name);
+        _tally_name = new char[length+1];
 
     for (int i=0; i <= length; i++)
-			_tally_name[i] = tally_name[i];
+        _tally_name[i] = tally_name[i];
 
     _trigger_type = NONE;
     _trigger_precision = std::numeric_limits<float>::max();
@@ -42,7 +42,7 @@ Tally::Tally(char* tally_name) {
     _num_bins = 0;
     _num_edges = 0;
     _computed_statistics = false;
-    _group_expand_bins = false;
+    _group_expand_bins = true;
 }
 
 
@@ -431,6 +431,17 @@ bool Tally::hasComputedBatchStatistics() {
 
 
 /**
+ * @brief Returns whether or not the tally has expanded it's group bins.
+ * @details NOTE: The group bins are only expanded for matrix scattering
+ *          GROUP_TO_GROUP_RATE tallies.
+ * @return true if the tally has expanded group bins; otherwise false
+ */
+bool Tally::hasExpandedGroupBins() {
+    return _group_expand_bins;
+}
+
+
+/**
  * @brief Returns whether or not the tally precision meets the 
  *        precision trigger threshold, if a trigger exists.
  * @return true if the precision meets the threshold; otherwise false
@@ -734,6 +745,17 @@ void Tally::setBinEdges(double* edges, int num_edges) {
 
 
 /**
+ * @brief Informs the tally whether or not to expand its group bins.
+ * @details NOTE: The group bins are only expanded for matrix scattering
+ *          GROUP_TO_GROUP_RATE tallies.
+ * @param true for the tally to expand its group bins; otherwise false
+ */
+void Tally::setGroupExpandBins(bool expand_bins) {
+    _group_expand_bins = expand_bins;
+}
+
+
+/**
  * @brief Sets a precision trigger for this tally.
  * @details By setting a precision trigger, the user instructs a PINSEPC
  *          simulation to continue running until all tallies meet the
@@ -775,8 +797,7 @@ void Tally::setNumBatches(int num_batches) {
     /* Specifically for group-to-group scattering, we expand the size of
      * the array to hold a group-to-group structure. bool _group_expand_bins
      * is a flag we keep around to make sure this operation is done once. */
-    if ((_tally_type == GROUP_TO_GROUP_RATE) && (_group_expand_bins == false))
-    {
+    if (!_group_expand_bins) {
         _num_bins = _num_bins * _num_bins;
         _group_expand_bins = true;
     }
@@ -906,7 +927,7 @@ void Tally::generateBinCenters() {
 void Tally::tally(neutron* neutron, double weight) {
 
 	  if (_num_bins == 0 || _num_batches == 0)
-				return;
+        return;
 
     if (weight < 0.0)
         log_printf(ERROR, "weight = %f", weight);
@@ -917,12 +938,12 @@ void Tally::tally(neutron* neutron, double weight) {
      * did not leave this energy group, and only tally when the neutron
      * leaves the old energy group */
     if (_tally_type == OUTSCATTER_RATE) {
-	int old_index = getBinIndex(neutron->_old_energy);
-	int new_index = getBinIndex(neutron->_energy);
-	if (old_index == new_index)
-	    return;
-	else
-	    bin_index = old_index;
+        int old_index = getBinIndex(neutron->_old_energy);
+        int new_index = getBinIndex(neutron->_energy);
+    if (old_index == new_index)
+        return;
+    else
+        bin_index = old_index;
     }
 
     if (bin_index >= 0 && bin_index < _num_bins) 
@@ -1358,13 +1379,15 @@ void Tally::printTallies(bool uncertainties) {
  *          data and loads it into a new tally class object.
  */
 Tally* Tally::clone() {
-    
+
     /* Deep copy all of the parameters attributes to this Tally */
     DerivedTally* tally = new DerivedTally(_tally_name);
     tally->setTallyDomainType(_tally_domain);
-    tally->setTallyType(_tally_type);
     tally->setBinSpacingType(_bin_spacing);
     tally->setPrecisionTrigger(_trigger_type, _trigger_precision);
+
+    if (_num_edges != _num_bins+1)
+        tally->setGroupExpandBins(false);
 
     /* If we have LOGARITHMIC or EQUAL bins, generate them for the new clone */
     if (_bin_spacing == LOGARITHMIC || _bin_spacing == EQUAL)
@@ -1442,7 +1465,9 @@ DerivedTally* Tally::operator+(Tally* tally) {
     /* Create a new derived type tally and initialize it */
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
-    new_tally->setTallyType(_tally_type);
+    if (_num_edges != _num_bins+1)
+        new_tally->setGroupExpandBins(false);
+
     new_tally->setBinSpacingType(_bin_spacing);
     new_tally->setBinEdges(_edges, _num_edges);
 
@@ -1549,7 +1574,9 @@ DerivedTally* Tally::operator-(Tally* tally) {
     /* Create a new derived type tally and initialize it */
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
-    new_tally->setTallyType(_tally_type);
+    if (_num_edges != _num_bins+1)
+        new_tally->setGroupExpandBins(false);
+
     new_tally->setBinSpacingType(_bin_spacing);
     new_tally->setBinEdges(_edges, _num_edges);
 
@@ -1655,7 +1682,9 @@ DerivedTally* Tally::operator*(Tally* tally) {
     /* Create a new derived type tally and initialize it */
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
-    new_tally->setTallyType(_tally_type);
+    if (_num_edges != _num_bins+1)
+        new_tally->setGroupExpandBins(false);
+
     new_tally->setBinSpacingType(_bin_spacing);
     new_tally->setBinEdges(_edges, _num_edges);
 
@@ -1765,7 +1794,9 @@ DerivedTally* Tally::operator/(Tally* tally) {
     /* Create a new derived type tally and initialize it */
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
-    new_tally->setTallyType(_tally_type);
+    if (_num_edges != _num_bins+1)
+         new_tally->setGroupExpandBins(false);
+
     new_tally->setBinSpacingType(_bin_spacing);
     new_tally->setBinEdges(_edges, _num_edges);
 
@@ -1800,7 +1831,7 @@ DerivedTally* Tally::operator/(Tally* tally) {
         }
     }
 
-    /* Check if the RHS tally only has one bin */        
+    /* Check if the RHS tally only has one bin */
     if (tally->getNumBins() == max_num_bins) {
         mu2 = mu;
         variance2 = variance;
@@ -1883,18 +1914,16 @@ DerivedTally* Tally::tile(const int num_tiles) {
 
     /* Create a new derived type tally and initialize it */
     DerivedTally* new_tally = new DerivedTally((char*)"");
+    new_tally->setTallyType(_tally_type);
+    new_tally->setGroupExpandBins(false);
+    new_tally->setBinEdges(_edges, _num_edges);
 
     int num_bins = num_tiles * _num_bins;
-    int num_edges = num_bins + 1;
 
-    double* new_edges = new double[num_edges];
     double* new_mu = new double[num_bins];
     double* new_variance = new double[num_bins];
     double* new_std_dev = new double[num_bins];
     double* new_rel_err = new double[num_bins];
-
-    for (int i=0; i < num_edges; i++)
-        new_edges[i] = 0.0;
 
     for (int i=0; i < num_bins; i++) {
         new_mu[i] = _batch_mu[i%_num_bins];
@@ -1912,8 +1941,6 @@ DerivedTally* Tally::tile(const int num_tiles) {
             new_tallies[i][j] = _tallies[i][j%_num_bins];
     }
 
-    new_tally->setTallyType(_tally_type);
-    new_tally->setBinEdges(new_edges, num_edges);
     new_tally->setNumBatches(1);
     new_tally->setTallies(new_tallies);
     new_tally->setBatchMu(new_mu);
@@ -2144,9 +2171,10 @@ DerivedTally* Tally::operator*(const float amt) {
 DerivedTally* Tally::operator/(const float amt) {
 
     Tally* new_tally = this->clone();
+
     new_tally->_tally_domain = UNDEFINED;
-    new_tally->_tally_type = DERIVED;   
-    
+    new_tally->_tally_type = DERIVED;
+
     /* Divide the batch mu for this tally and updated the perturbed batch
      * statistics */
     for (int i=0; i < _num_bins; i++) {
@@ -2277,8 +2305,8 @@ DerivedTally* Tally::operator/(const double amt) {
 
     Tally* new_tally = this->clone();
     new_tally->_tally_domain = UNDEFINED;
-    new_tally->_tally_type = DERIVED;   
-    
+    new_tally->_tally_type = DERIVED;
+
     /* Divide the batch mu for this tally and updated the perturbed batch
      * statistics */
     for (int i=0; i < _num_bins; i++) {
@@ -3002,9 +3030,9 @@ Tally* createTally(Material* material, tallyType tally_type, char* tally_name) {
     else if (tally_type == ELASTIC_RATE)
         return new MaterialElasticRateTally(material, tally_name);
     else if (tally_type == GROUP_TO_GROUP_RATE)
-	return new MaterialGroupRateTally(material,tally_name);
+        return new MaterialGroupRateTally(material,tally_name);
     else if (tally_type == OUTSCATTER_RATE)
-	return new MaterialOutScatterRateTally(material, tally_name);
+        return new MaterialOutScatterRateTally(material, tally_name);
     else if (tally_type == ABSORPTION_RATE)
         return new MaterialAbsorptionRateTally(material, tally_name);
     else if (tally_type == CAPTURE_RATE)
