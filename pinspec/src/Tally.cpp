@@ -1437,24 +1437,12 @@ DerivedTally* Tally::operator+(Tally* tally) {
             log_printf(ERROR, "Unable to add tally %s with %d bins to tally %s"
                                 " with %d bins", _tally_name, _num_bins,
                                 tally->getTallyName(), tally->getNumBins());
-
-        /* Check that all bin edges match */
-        double* edges = new double[_num_edges];
-        tally->retrieveTallyEdges(edges, _num_edges-1);
-
-        /* Loop over all edges */
-        for (int i=0; i < _num_edges; i++) {
-            if (_edges[i] != edges[i])
-                log_printf(ERROR, "Unable to add tally %s with bin edge %d to "
-                            "tally %s with bin edge %d", 
-                            _tally_name, _edges[i],
-                           tally->getTallyName(), edges[i]);
-        }
     }
 
     /* Create a new derived type tally and initialize it */
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
+    new_tally->setTallyType(_tally_type);
     new_tally->setBinSpacingType(_bin_spacing);
     new_tally->setBinEdges(_edges, _num_edges);
 
@@ -1516,6 +1504,7 @@ DerivedTally* Tally::operator+(Tally* tally) {
     new_tally->setBatchStdDev(new_std_dev);
     new_tally->setBatchRelErr(new_rel_err);
     new_tally->setComputedBatchStatistics(true);
+    new_tally->setTallyType(DERIVED);
 
     return new_tally;
 }
@@ -1555,24 +1544,12 @@ DerivedTally* Tally::operator-(Tally* tally) {
             log_printf(ERROR, "Unable to subtract tally %s with %d bins and "
                             " tally %s with %d bins", _tally_name, _num_bins,
                             tally->getTallyName(), tally->getNumBins());
-
-        /* Check that all bin edges match */
-        double* edges = new double[_num_edges];
-        tally->retrieveTallyEdges(edges, _num_edges-1);
-
-        /* Loop over all edges */
-        for (int i=0; i < _num_edges; i++) {
-            if (_edges[i] != edges[i])
-                log_printf(ERROR, "Unable to subtract tally %s with bin edge"
-                            " %d and tally %s with bin edge %d", 
-                            _tally_name, _edges[i],
-                           tally->getTallyName(), edges[i]);
-        }
     }
 
     /* Create a new derived type tally and initialize it */
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
+    new_tally->setTallyType(_tally_type);
     new_tally->setBinSpacingType(_bin_spacing);
     new_tally->setBinEdges(_edges, _num_edges);
 
@@ -1634,6 +1611,7 @@ DerivedTally* Tally::operator-(Tally* tally) {
     new_tally->setBatchStdDev(new_std_dev);
     new_tally->setBatchRelErr(new_rel_err);
     new_tally->setComputedBatchStatistics(true); 
+    new_tally->setTallyType(DERIVED);
 
     return new_tally;
 }
@@ -1672,29 +1650,18 @@ DerivedTally* Tally::operator*(Tally* tally) {
             log_printf(ERROR, "Unable to multiply tally %s with %d bins and "
                             " tally %s with %d bins", _tally_name, _num_bins,
                             tally->getTallyName(), tally->getNumBins());
-
-        /* Check that all bin edges match */
-        double* edges = new double[_num_edges];
-        tally->retrieveTallyEdges(edges, _num_edges-1);
-
-        /* Loop over all edges */
-        for (int i=0; i < _num_edges; i++) {
-            if (_edges[i] != edges[i])
-                log_printf(ERROR, "Unable to multiply tally %s with bin edge"
-                            " %d and tally %s with bin edge %d", 
-                            _tally_name, _edges[i],
-                           tally->getTallyName(), edges[i]);
-        }
     }
 
     /* Create a new derived type tally and initialize it */
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
+    new_tally->setTallyType(_tally_type);
     new_tally->setBinSpacingType(_bin_spacing);
     new_tally->setBinEdges(_edges, _num_edges);
 
     /* Initialize new arrays for the derived tallies statistics */
     int max_num_bins = std::max(_num_bins, tally->getNumBins());
+
     double* new_mu = new double[max_num_bins];
     double* new_variance = new double[max_num_bins];
     double* new_std_dev = new double[max_num_bins];
@@ -1753,6 +1720,7 @@ DerivedTally* Tally::operator*(Tally* tally) {
     new_tally->setBatchStdDev(new_std_dev);
     new_tally->setBatchRelErr(new_rel_err);
     new_tally->setComputedBatchStatistics(true);
+    new_tally->setTallyType(DERIVED);
 
     return new_tally;
 }
@@ -1792,32 +1760,14 @@ DerivedTally* Tally::operator/(Tally* tally) {
             log_printf(ERROR, "Unable to divide tally %s with %d bins and "
                             " tally %s with %d bins", _tally_name, _num_bins,
                             tally->getTallyName(), tally->getNumBins());
-
-        /* Check that all bin edges match */
-        int num_edges = tally->getNumEdges();
-        double* edges = new double[num_edges];
-        tally->retrieveTallyEdges(edges, num_edges);
-
-        /* Check the group edges unless this is a GROUP_TO_GROUP_RATE tally */
-        if (_tally_type != GROUP_TO_GROUP_RATE) {
-
-            /* Loop over all edges */
-            for (int i=0; i < _num_edges; i++) {
-                if (_edges[i] != edges[i])
-                    log_printf(ERROR, "Unable to divide tally %s with bin edge"
-                                      " %d and tally %s with bin edge %d",
-                                       _tally_name, _edges[i],
-                                       tally->getTallyName(), edges[i]);
-            }
-        }
     }
 
     /* Create a new derived type tally and initialize it */
     DerivedTally* new_tally = new DerivedTally((char*)"");
 
+    new_tally->setTallyType(_tally_type);
     new_tally->setBinSpacingType(_bin_spacing);
     new_tally->setBinEdges(_edges, _num_edges);
-    new_tally->setTallyType(_tally_type);
 
     /* Initialize new arrays for the derived tallies statistics */
     int max_num_bins = std::max(_num_bins, tally->getNumBins());
@@ -1881,8 +1831,7 @@ DerivedTally* Tally::operator/(Tally* tally) {
     new_tally->setBatchVariance(new_variance);
     new_tally->setBatchStdDev(new_std_dev);
     new_tally->setBatchRelErr(new_rel_err);
-    new_tally->setComputedBatchStatistics(true); 
-
+    new_tally->setComputedBatchStatistics(true);
     new_tally->setTallyType(DERIVED);
 
     return new_tally;
@@ -1920,9 +1869,11 @@ DerivedTally* Tally::operator+(const int amt) {
 }
 
 
-
-
-
+/**
+ * @brief Create a DerivedTally with this tally's data repetively "tiled".
+ * @param num_tiles the number of times to repeat ("tile") the tally's data.
+ * @return a DERIVED type tally with the tiled tally data
+ */
 DerivedTally* Tally::tile(const int num_tiles) {
 
     /* If the tallies have not yet computed batch statistics, reject */
@@ -1961,6 +1912,7 @@ DerivedTally* Tally::tile(const int num_tiles) {
             new_tallies[i][j] = _tallies[i][j%_num_bins];
     }
 
+    new_tally->setTallyType(_tally_type);
     new_tally->setBinEdges(new_edges, num_edges);
     new_tally->setNumBatches(1);
     new_tally->setTallies(new_tallies);

@@ -89,7 +89,7 @@ def getTallyBatchMu(tally):
         num_bins = tally.getNumBins()
         mu = tally.retrieveTallyMu(num_bins)
         return mu
-    
+
 
 ##
 # @brief Returns an array of the batch variances for a tally's bins.
@@ -881,7 +881,7 @@ class GroupXS(object):
         self.computeGroupXS(tally1, tally2)
         self.setName(name)
 
- 
+
     ##
     # @brief Computes the multigroup cross-sections from the two tallies.
     # @details This method checks that one of the tallies input is a reaction
@@ -953,7 +953,8 @@ class GroupXS(object):
         # of the class methods provided for a Tally class since 
         # self._xs is now a DERIVED type tally object
 
-        if self._rate.getTallyType() == pinspec.GROUP_TO_GROUP_RATE:
+        if self._rate.getTallyType() == pinspec.GROUP_TO_GROUP_RATE and \
+           self._rate.getNumBins() != self._flux.getNumBins():
             num_tiles = int(np.sqrt(self._num_xs))
             self._flux = self._flux.tile(num_tiles)
 
@@ -1065,7 +1066,7 @@ class GroupXS(object):
     def getGroupXS(self):
         return self._xs
 
-                
+
     ##
     # @brief Prints a formatted table of the multi-group cross-sections to
     #        the screen.
@@ -1092,3 +1093,87 @@ class GroupXS(object):
     # @param filename An optional filename for the output file
     def outputXStoFile(self, filename=''):
         self._xs.outputBatchStatistics(filename)
+
+
+    ##
+    # @brief Create a new GroupXS from this one and add a scalar value, tally,
+    #        or another GroupXS to it.
+    # @param x the item to add to the GroupXS
+    # @return the GroupXS with the value added to it
+    def __add__(self, x):
+
+        if isinstance(x, GroupXS):
+            tally1 = x._flux * self._rate +  self._flux * x._rate
+            tally2 = self._flux * x._flux
+
+        else:
+            tally1 = self._rate + x
+            tally2 = self._flux
+
+        tally1.setTallyType(self._rate.getTallyType())
+        tally2.setTallyType(self._flux.getTallyType())
+
+        return GroupXS(tally1, tally2)
+
+
+    ##
+    # @brief Create a new GroupXS from this one and subtract a scalar value,
+    #        tally, or another GroupXS from it.
+    # @param x the item to subtract from the GroupXS
+    # @return the GroupXS with the value subtracted from it
+    def __sub__(self, x):
+
+        if isinstance(x, GroupXS):
+            tally1 = self._rate * x._flux - x._rate * self._flux
+            tally2 = self._flux * x._flux
+
+        else:
+            tally1 = self._rate - x
+            tally2 = self._flux
+
+        tally1.setTallyType(self._rate.getTallyType())
+        tally2.setTallyType(self._flux.getTallyType())
+
+        return GroupXS(tally1, tally2)
+
+
+    ##
+    # @brief Create a new GroupXS from this one and multiply a scalar value,
+    #        tally, or another GroupXS to it.
+    # @param x the item to multiply with the GroupXS
+    # @return the GroupXS with the value multiplied to it
+    def __mul__(self, x):
+
+        if isinstance(x, GroupXS):
+            tally1 = self._rate * x._rate
+            tally2 = self._flux * x._flux
+
+        else:
+            tally1 = self._rate * x
+            tally2 = self._flux
+
+        tally1.setTallyType(self._rate.getTallyType())
+        tally2.setTallyType(self._flux.getTallyType())
+
+        return GroupXS(tally1, tally2)
+
+
+    ##
+    # @brief Create a new GroupXS from this one and divide a scalar value,
+    #        tally, or another GroupXS from it.
+    # @param x the item to divide from the GroupXS
+    # @return the GroupXS with the value divided from it
+    def __div__(self, x):
+
+        if isinstance(x, GroupXS):
+            tally1 = self._rate * x._flux
+            tally2 = self._flux * x._rate
+
+        else:
+            tally1 = self._rate * x
+            tally2 = self._flux
+
+        tally1.setTallyType(self._rate.getTallyType())
+        tally2.setTallyType(self._flux.getTallyType())
+
+        return GroupXS(tally1, tally2)
