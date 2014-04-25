@@ -1848,8 +1848,8 @@ DerivedTally* Tally::operator/(Tally* tally) {
     /* Compute the derived tallies batch mu */
     /* http://en.wikipedia.org/wiki/Taylor_expansions_for_the_moments_of_functions_of_random_variables */        
     for (int i=0; i < max_num_bins; i++) {
-        new_mu[i] = (mu1[i] / mu2[i]) 
-                    + (mu1[i] / (mu2[i] * mu2[i] * mu2[i])) * variance2[i];
+    	/* assume random variables are uncorrelated, use zeroth order estimate for derived tally */
+        new_mu[i] = (mu1[i] / mu2[i]);
         new_variance[i] = variance1[i] / (mu2[i] * mu2[i]) +
                             ((mu1[i] * mu1[i] * variance2[i]) /
                             (mu2[i] * mu2[i] * mu2[i] * mu2[i]));
