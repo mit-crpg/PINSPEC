@@ -1918,27 +1918,29 @@ DerivedTally* Tally::tile(const int num_tiles) {
     new_tally->setGroupExpandBins(false);
     new_tally->setBinEdges(_edges, _num_edges);
 
-    int num_bins = num_tiles * _num_bins;
+    double* new_mu = new double[_num_bins*num_tiles];
+    double* new_variance = new double[_num_bins*num_tiles];
+    double* new_std_dev = new double[_num_bins*num_tiles];
+    double* new_rel_err = new double[_num_bins*num_tiles];
 
-    double* new_mu = new double[num_bins];
-    double* new_variance = new double[num_bins];
-    double* new_std_dev = new double[num_bins];
-    double* new_rel_err = new double[num_bins];
-
-    for (int i=0; i < num_bins; i++) {
-        new_mu[i] = _batch_mu[i%_num_bins];
-        new_variance[i] = _batch_variance[i%_num_bins];
-        new_std_dev[i] = _batch_std_dev[i%_num_bins];
-        new_rel_err[i] = _batch_rel_err[i%_num_bins];
+    for (int i=0; i < _num_bins; i++) {
+        for (int j=0; j < num_tiles; j++) {
+            new_mu[i*num_tiles+j] = _batch_mu[i];
+            new_variance[i*num_tiles+j] = _batch_variance[i];
+            new_std_dev[i*num_tiles+j] = _batch_std_dev[i];
+            new_rel_err[i*num_tiles+j] = _batch_rel_err[i];
+        }
     }
 
     double** new_tallies = new double*[_num_batches];
 
     for (int i=0; i < _num_batches; i++) {
-        new_tallies[i] = new double[num_bins];
+        new_tallies[i] = new double[_num_bins*num_tiles];
 
-        for (int j=0; j < num_bins; j++)
-            new_tallies[i][j] = _tallies[i][j%_num_bins];
+        for (int j=0; j < _num_bins; j++) {
+            for (int k=0; k < num_tiles; k++)
+                new_tallies[i][j*num_tiles+k] = _tallies[i][j];
+        }
     }
 
     new_tally->setNumBatches(1);
