@@ -113,6 +113,7 @@ def plotMicroXS(isotope, rxns, loglog=True, uselegend=True, \
         filename = directory + filename.replace(' ', '-').lower() + '.png'
 
     fig.savefig(filename)
+    plt.close(fig)
 
 
 
@@ -181,6 +182,7 @@ def plotMacroXS(material, rxns, loglog=True, \
         filename = directory + filename.replace(' ', '-') + '.png'
 
     fig.savefig(filename)
+    plt.close(fig)
 
 
 ##
@@ -254,6 +256,7 @@ def plotFlux(fluxes, loglog=True, uselegend=False, title='', filename=''):
         filename = directory + '/' + filename.replace(' ', '-') + '.png'
 
     fig.savefig(filename)
+    plt.close(fig)
 
 
 ##
@@ -345,6 +348,7 @@ def plotThermalScattering(isotope, uselegend=True, title='', filename=''):
                                         '-thermal-scattering-cdfs.png'
 
     plt.savefig(cdfsfilename)
+    plt.close(fig)
 
 
 ##
@@ -407,7 +411,8 @@ def plotFissionSpectrum():
     plt.title('Watt Spectrum PDF')
     filename = directory + '/fission_spectrum_pdf.png'
     plt.savefig(filename)
-    
+    plt.close(fig)
+
     
 ##
 # @brief Plots a resonance integral (RIEff or RITrue) as a step function.
@@ -447,6 +452,7 @@ def plotRI(RI, title='', filename=''):
         filename = directory + filename.replace(' ', '-').lower() +'-RI.png'
 
     plt.savefig(filename)
+    plt.close(fig)
 
 
 ##
@@ -488,6 +494,7 @@ def plotGroupXS(group_xs, title='', filename=''):
                                                         '-group-xs.png'
 
     plt.savefig(filename)
+    plt.close(fig)
 
 
 
@@ -667,6 +674,7 @@ def plotSlice(space, plane='XY', loc=0.0, lim1=[-2., 2.], lim2=[-2., 2.],
                       '-' + plane.lower() + '-slice.png'
 
     plt.savefig(filename)
+    plt.close(fig)
 
 
 ##
@@ -727,6 +735,7 @@ def plotFissionSourceDist(geometry, num_samples=1000, filename=''):
         filename = directory + filename.replace(' ', '-').lower() + '-.png'
 
     plt.savefig(filename)
+    plt.close(fig)
 
 
 ##
@@ -905,3 +914,4 @@ def trackANeutron(geometry, plane='XY', num_moves=100, loc=0.0, \
                          '-' + plane.lower() + '-.png'
 
     plt.savefig(filename)
+    plt.close(fig)
