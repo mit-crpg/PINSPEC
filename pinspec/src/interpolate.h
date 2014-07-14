@@ -38,7 +38,7 @@ int findUpperIndex(T* x, int upper_bound, int lower_bound, U pt) {
 
     /* Check that bound are appropriate - if not, return infinity */
     if (bound_delta <= 0)
-        return std::numeric_limits<int>::infinity();
+        return std::numeric_limits<int>::max();
 
     /* If the upper and lower bound only differ by one, we are are finished */
     if (bound_delta == 1)

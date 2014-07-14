@@ -1636,14 +1636,9 @@ inline int Tally::getBinIndex(double sample) {
 
     if (_num_bins == 0)
         log_printf(ERROR, "Cannot return a bin index for Tally %s since "
-		   "the bins have not yet been created", _tally_name);
+                          "the bins have not yet been created", _tally_name);
 
-    /* Set index to infinity to begin with */
-    int index = std::numeric_limits<int>::infinity();
-
-    /* if the sample is equal to the last bin edge, return the last bin */
-    if (sample == _edges[_num_edges - 1])
-        return _num_edges - 2;
+    int index;
 
     /* Logarithmically spaced bins */
     if (_bin_spacing == LOGARITHMIC)
@@ -1658,9 +1653,13 @@ inline int Tally::getBinIndex(double sample) {
     else
         index = findUpperIndex(_edges, _num_edges - 1, 0, sample) - 1;
 
-    /* If this sample was not contained within a bin set index to infinity*/
-    if (index > _num_edges - 1)
-        index = std::numeric_limits<int>::infinity();
+    /* if the sample is outside of the bin edges, set index to infinity */
+    if (sample < _edges[0] || sample > _edges[_num_edges -1])
+        index = std::numeric_limits<int>::max();
+
+    /* if the sample is equal to the last bin edge, return the last bin */
+    else if (sample == _edges[_num_edges - 1])
+        index = _num_edges - 2;
 
     return index;
 }

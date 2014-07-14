@@ -155,7 +155,7 @@ float XPlane::evaluate(float x, float y, float z) {
 float XPlane::computeParametrizedDistance(neutron* neutron) {
 
     /* Set dist to infinity to begin with */
-    float dist = std::numeric_limits<float>::infinity();
+    float dist = std::numeric_limits<int>::max();
     float x = neutron->_x;
     float u = neutron->_u;
 
@@ -279,7 +279,7 @@ float YPlane::evaluate(float x, float y, float z) {
 float YPlane::computeParametrizedDistance(neutron* neutron) {
 
     /* Set dist to infinity to begin with */
-    float dist = std::numeric_limits<float>::infinity();
+    float dist = std::numeric_limits<int>::max();
     float y = neutron->_y;
     float v = neutron->_v;
 
@@ -456,7 +456,7 @@ float ZCylinder::computeParametrizedDistance(neutron* neutron) {
 
     /* There is not an intersection point */
     if (discr < 0.0)
-        return std::numeric_limits<float>::infinity();
+        return std::numeric_limits<int>::max();
 
     /* There is one intersection point */
     else if (discr == 0.0) {
@@ -466,7 +466,7 @@ float ZCylinder::computeParametrizedDistance(neutron* neutron) {
         if (dist > 0.0)
             return dist;
         else
-            return std::numeric_limits<float>::infinity();
+            return std::numeric_limits<int>::max();
     }
 
     /* There are two intersection points */
@@ -476,7 +476,7 @@ float ZCylinder::computeParametrizedDistance(neutron* neutron) {
         float dist2 = (-b - discr) / (2.0*a);
 
         if (dist1 < 0.0 && dist2 < 0.0)
-            return std::numeric_limits<float>::infinity();
+            return std::numeric_limits<int>::max();
 
         /* Determine which distance is shorter */
         if (dist1 > 0.0 && dist2 < 0.0)

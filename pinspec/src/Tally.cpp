@@ -247,7 +247,7 @@ double Tally::getMinTally() {
         log_printf(ERROR, "Cannot return the minimum tally for Tally %s"
 		   " since the bins have not yet been created", _tally_name);
 
-    double min_tally = std::numeric_limits<double>::infinity();
+    double min_tally = std::numeric_limits<int>::max();
 
     /* Loop over all bins */
     for (int i=0; i < _num_batches; i++) {

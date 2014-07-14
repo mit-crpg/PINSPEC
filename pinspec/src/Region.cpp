@@ -877,7 +877,7 @@ bool BoundedRegion::onBoundary(neutron* neutron) {
  */
 float BoundedRegion::computeParametrizedDistance(neutron* neutron) {
 
-    float min_dist = std::numeric_limits<float>::infinity();
+    float min_dist = std::numeric_limits<int>::max();
     float curr_dist;
 
     /* Loop over and query all bounding surfaces */
