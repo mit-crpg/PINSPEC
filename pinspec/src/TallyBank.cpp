@@ -318,72 +318,22 @@ void TallyBank::registerTally(Tally* tally, Isotope* isotope) {
     /* Track tallies with an ISOTOPE domain in this region */
     else if (tally->getTallyDomainType() == ISOTOPE) {
 	
-	/* Type cast this tally as a material tally */
-	IsotopeTally* isotope_tally = static_cast<IsotopeTally*>(tally);
+	    /* Type cast this tally as a material tally */
+  	    IsotopeTally* isotope_tally = static_cast<IsotopeTally*>(tally);
 
-	/* Don't register tally for isotope if tally's isotope doesnt match */
-	if (isotope_tally->getIsotope() != isotope)
-	    log_printf(ERROR, "The TallyBank is unable to register tally %s"
-			" in isotope %s since it is an ISOTOPE type tally for "
-			" isotope %s", isotope_tally->getTallyName(), 
-			isotope->getIsotopeName(), 
-			isotope_tally->getIsotope()->getIsotopeName());
+        /* Don't register tally for isotope if tally's isotope doesnt match */
+	    if (isotope_tally->getIsotope() != isotope)
+	        log_printf(ERROR, "The TallyBank is unable to register tally %s"
+			    " in isotope %s since it is an ISOTOPE type tally for "
+			    " isotope %s", isotope_tally->getTallyName(), 
+			    isotope->getIsotopeName(), 
+			    isotope_tally->getIsotope()->getIsotopeName());
 
-	else if (isotope_tally->getTallyType() == FLUX)
-	    log_printf(ERROR, "The TallyBank is unable to register tally %s"
-			" in an isotope since it is a FLUX type tally",
-			isotope_tally->getTallyName());
-
-	else if (isotope_tally->getTallyType() == INTERCOLLISION_TIME)
-	    log_printf(ERROR, "The TallyBank is unable to register tally %s"
-		       " in an isotope since it is an INTERCOLLISION_TIME"
-                        " type tally", isotope_tally->getTallyName());
-
-	else if (isotope_tally->getTallyType() == LEAKAGE_RATE)
-	    log_printf(ERROR, "The TallyBank is unable to register tally %s"
-			" in an isotope since it is a LEAKAGE_RATE type tally",
-			isotope_tally->getTallyName());
-
-	else if (isotope_tally->getTallyType() == ELASTIC_RATE)
-	    log_printf(ERROR, "The TallyBank is unable to register tally %s"
-			" in an isotope since it is a ELASTIC_RATE type tally",
-		       isotope_tally->getTallyName());
-
-	else if (isotope_tally->getTallyType() == GROUP_TO_GROUP_RATE)
-	    log_printf(ERROR, "The TallyBank is unable to register tally %s"
-		 " in an isotope since it is a GROUP_TO_GROUP_RATE type tally",
-		 isotope_tally->getTallyName());
-
-	else if (isotope_tally->getTallyType() == OUTSCATTER_RATE)
-	    log_printf(ERROR, "The TallyBank is unable to register tally %s"
-		" in an isotope since it is a OUTSCATTER_RATE type tally",
-		       isotope_tally->getTallyName());
-
-	else if (isotope_tally->getTallyType() == CAPTURE_RATE)
-	    log_printf(ERROR, "The TallyBank is unable to register tally %s"
-			" in an isotope since it is a CAPTURE_RATE type tally",
-			isotope_tally->getTallyName());
-
-	else if (isotope_tally->getTallyType() == ABSORPTION_RATE)
-	    log_printf(ERROR, "The TallyBank is unable to register tally %s"
-		" in an isotope since it is a ABSORPTION_RATE type tally",
-		isotope_tally->getTallyName());
-
-	else if (isotope_tally->getTallyType() == FISSION_RATE)
-	    log_printf(ERROR, "The TallyBank is unable to register tally %s"
-		       " in an isotope since it is a FISSION_RATE type tally",
-		       isotope_tally->getTallyName());
-
-	else if (isotope_tally->getTallyType() == TRANSPORT_RATE)
-	    log_printf(ERROR, "The TallyBank is unable to register tally %s"
-		" in an isotope since it is a TRANSPORT_RATE type tally", 
-		isotope_tally->getTallyName());
-
-	else if (isotope_tally->getTallyType() == DIFFUSION_RATE)
-		log_printf(ERROR, "The TallyBank is unable to register tally %s"
-			   " in an isotope since it is a DIFFUSION_RATE type "
-			   "tally", isotope_tally->getTallyName());
-	}
+    	else if (isotope_tally->getTallyType() == FLUX)
+	        log_printf(ERROR, "The TallyBank is unable to register tally %s"
+			    " in an isotope since it is a FLUX type tally",
+			    isotope_tally->getTallyName());
+    }
 
     /* Don't track tallies with UNDEFINED domain (only for DERIVED tallies) */	
     else if (tally->getTallyDomainType() == UNDEFINED)
