@@ -85,25 +85,35 @@ Isotope* Material::getIsotope(char* isotope) {
 
 /**
  * @brief This method takes in a character array specifier for an isotope's
- *        name and returns a float for the Isotope's number density in 
- *        \f$ \frac{at}{cm^3} \f$.
+ *        name and returns a float for the Isotope's density.
  * @param isotope pointer to the isotope of interest
- * @return the isotope's number density
+ * @param units the isotope density units (ie, NUM_CM3 by default)
+ * @return the isotope's density
  */
-float Material::getIsotopeNumDensity(Isotope* isotope) {
-    return _isotopes.at(isotope->getIsotopeName()).first * 1E24;
+float Material::getIsotopeDensity(Isotope* isotope, densityUnit units) {
+    if (units == NUM_CM3)
+        return _isotopes.at(isotope->getIsotopeName()).first * 1E24;
+    else if (units == NUM_BARNCM)
+        return _isotopes.at(isotope->getIsotopeName()).first * 1E4;
+    else
+        return _isotopes.at(isotope->getIsotopeName()).first;
 }
 
 
 /**
  * @brief This method takes in a character array specifier for an isotope's
- *        name and returns a float for the Isotope's number density in 
- *        \f$ \frac{at}{cm^3} \f$.
+ *        name and returns a float for the Isotope's density.
  * @param isotope the name of the isotope
- * @return the isotope's number density
+ * @param units the isotope density units (ie, NUM_CM3 by default)
+ * @return the isotope's density
  */
-float Material::getIsotopeNumDensity(char* isotope) {
-    return _isotopes.at(isotope).first * 1E24;
+float Material::getIsotopeDensity(char* isotope, densityUnit units) {
+    if (units == NUM_CM3)
+        return _isotopes.at(isotope).first * 1E24;
+    else if (units == NUM_BARNCM)
+        return _isotopes.at(isotope).first * 1E4;
+    else
+        return _isotopes.at(isotope).first;
 }
 
 
@@ -750,7 +760,7 @@ void Material::setDensity(float density, char* unit) {
 		   " units of %s since PINSPEC only support units in"
 		   " g/cc, at/cc, and at/barncm", _material_name, 
 		   unit);
-    }    
+    }
 }
 
 
@@ -831,7 +841,7 @@ void Material::incrementVolume(float volume) {
  *          uo2.addIsotope(u235, 1.)
  *          uo2.addIsotope(o16, 2.)
  * @endcode
- *          
+ *
  * @param isotope a pointer to the isotope
  * @param atomic_ratio the atomic ratio of the isotope within the material
  */
@@ -852,57 +862,55 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 
     /* Add isotope and isotope AO to _isotopes_AO map */
     std::pair<Isotope*, float> new_isotope_AO =
-   	std::pair<Isotope*, float> (isotope, atomic_ratio);
+    std::pair<Isotope*, float> (isotope, atomic_ratio);
     _isotopes_AO.insert(new_isotope_AO);
 
     /* Compute the total atomic ratio */
     float total_AO = 0.0;
-    for (iter_AO =_isotopes_AO.begin(); iter_AO != _isotopes_AO.end(); 
-	 ++iter_AO){
-    	total_AO += iter_AO->second;
+    for (iter_AO =_isotopes_AO.begin(); iter_AO != _isotopes_AO.end();
+    ++iter_AO){
+      total_AO += iter_AO->second;
     }
 
     /* Sum the partial contributions to the material atomic mass */
     _material_atomic_mass = 0.0;
     for (iter_AO =_isotopes_AO.begin(); iter_AO != _isotopes_AO.end(); 
-	 ++iter_AO){
-    	_material_atomic_mass += iter_AO->second * iter_AO->first->getA();
+        ++iter_AO){
+        _material_atomic_mass += iter_AO->second * iter_AO->first->getA();
     }
 
     N_av = 6.023E-1;
-    if (_density_unit == GRAM_CM3)
-    {
-	/* Checks to make sure material density is set already */
-	if (_material_density <= 0)
-	{
-	    log_printf(ERROR, "Unable to add Isotope %s because the number"
-		       " density for Material %s <= 0. Possible reasons: "
-		       " it may not be set, or you are setting it to a"
-		       " negative value", 
-		       isotope->getIsotopeName(), _material_name);
-	}
+    if (_density_unit == GRAM_CM3) {
+        /* Checks to make sure material density is set already */
+        if (_material_density <= 0) {
+            log_printf(ERROR, "Unable to add Isotope %s because the number"
+                       " density for Material %s <= 0. Possible reasons: "
+                       " it may not be set, or you are setting it to a"
+                       " negative value",
+            isotope->getIsotopeName(), _material_name);
+        }
 
-	/* Calculates the material's number density */
-	_material_number_density = _material_density * N_av / 
-	    _material_atomic_mass;
+        /* Calculates the material's number density */
+        _material_number_density = _material_density * N_av /
+                                   _material_atomic_mass;
+        printf("material number density = %f\n", _material_number_density);
     }
-    else if ((_density_unit == NUM_CM3) || (_density_unit == NUM_BARNCM))
-    {
-	if (_material_number_density <= 0)
-	{
-	    log_printf(ERROR, "Unable to add Isotope %s because the number"
-		       " density for Material %s <= 0. Possible reasons: "
-		       " it may not be set, or you are setting it to a"
-		       " negative value", 
-		       isotope->getIsotopeName(), _material_name);
-	}
+    else if ((_density_unit == NUM_CM3) || (_density_unit == NUM_BARNCM)) {
 
-	_material_density = _material_number_density * _material_atomic_mass 
-	    / N_av;
-    }    
+        if (_material_number_density <= 0) {
+            log_printf(ERROR, "Unable to add Isotope %s because the number"
+                       " density for Material %s <= 0. Possible reasons: "
+                       " it may not be set, or you are setting it to a"
+                       " negative value",
+            isotope->getIsotopeName(), _material_name);
+        }
+
+        _material_density = _material_number_density * _material_atomic_mass 
+                            / N_av;
+    }
     else
-	log_printf(ERROR, "Unable to support density unit that is not g/cc or"
-		   " at/cc or at/barncm");
+        log_printf(ERROR, "Unable to support density unit that is not g/cc or"
+                   " at/cc or at/barncm");
 
 
     /* Calculates the isotope's number density */
@@ -910,21 +918,21 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
 
     /* Creates a pair between the number density and isotope pointer */
     std::pair<float, Isotope*> new_pair = std::pair<float, Isotope*>
-	(isotope_number_density, isotope);
+                                         (isotope_number_density, isotope);
 
     std::pair<char*, std::pair<float, Isotope*> > new_isotope =
-	std::pair<char*, std::pair<float, Isotope*> >
-	(isotope->getIsotopeName(), new_pair);
+    std::pair<char*, std::pair<float, Isotope*> >
+                        (isotope->getIsotopeName(), new_pair);
 
     /* Inserts the isotope and increments the total number density */
     _isotopes.insert(new_isotope);
 
     /* Loop over all isotopes: update all the number densities */
     for (iter =_isotopes.begin(); iter != _isotopes.end(); ++iter){
-    	/* Update isotope's number density */
-    	iter->second.first = _isotopes_AO.at(iter->second.second) 
-	  * _material_number_density;
-        log_printf(INFO, "Isotope %s has number density %1.3E in material %s", 
+        /* Update isotope's number density */
+        iter->second.first = _isotopes_AO.at(iter->second.second)
+                             * _material_number_density;
+        log_printf(INFO, "Isotope %s has number density %1.3E in material %s",
                         iter->first, iter->second.first*1E24, _material_name);
     }
 

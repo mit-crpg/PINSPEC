@@ -74,8 +74,8 @@ public:
     float getMaterialNumberDensity();
     Isotope* getIsotope(char* isotope);
     float getDensity();
-    float getIsotopeNumDensity(Isotope* isotope);
-    float getIsotopeNumDensity(char* isotope);
+    float getIsotopeDensity(Isotope* isotope, densityUnit units=NUM_CM3);
+    float getIsotopeDensity(char* isotope, densityUnit units=NUM_CM3);
     bool containsIsotope(Isotope* isotope);
     float getBucklingSquared();
     float getVolume();
