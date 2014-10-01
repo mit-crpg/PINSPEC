@@ -188,8 +188,7 @@ int Material::getNumXSEnergies(char* xs_type) {
  *
  * @code
  *          num_energies = material.getNumXSEnergies()
- *          energies = numpy.zeros(num_energies)          
- *          material.retrieveXSEnergies(energies, num_energies, 'capture')
+ *          energies = material.retrieveXSEnergies(num_energies, 'capture')
  * @endcode
  * 
  * @param energies an array to fill with the cross-section energies
@@ -223,8 +222,7 @@ void Material::retrieveXSEnergies(float* energies, int num_xs, char* xs_type) {
  *
  * @code
  *          num_xs = material.getNumXSEnergies()
- *          xs = numpy.zeros(num_xs)          
- *          material.retrieveXS(xs, num_xs, 'capture')
+ *          xs = material.retrieveXS(num_xs, 'capture')
  * @endcode
  * 
  * @param xs an array to fill with the macroscopic cross-section data

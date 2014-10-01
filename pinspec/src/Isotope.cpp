@@ -261,8 +261,7 @@ int Isotope::getNumXSEnergies(char* xs_type) const {
  *
  * @code
  *          num_energies = isotope.getNumXSEnergies()
- *          energies = numpy.zeros(num_energies)          
- *          isotope.retrieveXSEnergies(energies, num_energies, 'capture')
+ *          energies = isotope.retrieveXSEnergies(num_energies, 'capture')
  * @endcode
  * 
  * @param energies an array to fill with the cross-section energies
@@ -313,10 +312,9 @@ void Isotope::retrieveXSEnergies(float* energies, int num_xs,
  *
  * @code
  *          num_xs = isotope.getNumXSEnergies()
- *          xs = numpy.zeros(num_xs)          
- *          isotope.retrieveXS(xs, num_xs, 'capture')
+ *          xs = isotope.retrieveXS(num_energies, 'capture')
  * @endcode
- * 
+ *
  * @param xs an array to fill with the microscopic cross-section data
  * @param num_xs the number of cross-section values
  * @param xs_type the type of cross-section
@@ -2026,8 +2024,7 @@ int Isotope::getNumThermalCDFBins() {
  * @code
  *          num_cdfs = isotope.getNumThermalCDFs()
  *          num_bins = isotope.getNumThermalCDFBins()
- *          cdfs = numpy.zeros(num_cdfs * num_bins)
- *          isotope.retrieveThermalCDFs(cdfs)
+ *          cdfs = isotope.retrieveThermalCDFs(num_cdfs * num_bins)
  * @endcode
  *
  * @param cdfs an input array for to fill with CDF values
@@ -2054,8 +2051,7 @@ void Isotope::retrieveThermalCDFs(float* cdfs, int num_values) {
  * @code
  *          num_cdfs = isotope.getNumThermalCDFs()
  *          num_bins = isotope.getNumThermalCDFBins()
- *          pdfs = numpy.zeros(num_cdfs * num_bins)
- *          isotope.retrieveThermalDistributions(pdfs)
+ *          pdfs = isotope.retrieveThermalDistributions(num_cdfs * num_bins)
  * @endcode
  *
  * @param pdfs an input array for to fill with CDF values
@@ -2081,8 +2077,7 @@ void Isotope::retrieveThermalPDFs(float* pdfs, int num_values) {
  *
  * @code
  *          num_cdfs = isotope.getNumThermalCDFs()
- *          E_to_kT = numpy.zeros(num_cdfs)
- *          isotope.retrieveEtokT(E_to_kT)
+ *          E_to_kT = isotope.retrieveEtokT(num_cdfs)
  * @endcode
  *
  * @param E_to_kT an array of \f$ \frac{E}{kT} \f$ values
@@ -2104,8 +2099,7 @@ void Isotope::retrieveEtokT(float* E_to_kT, int num_cdfs) {
  *          follows:
  * @code
  *          num_bins = isotope.getNumThermalCDFBins()
- *          Eprime_to_E = numpy.zeros(num_bins)
- *          isotope.retrieveEprimeToE(E_prime_toE)
+ *          Eprime_to_E = isotope.retrieveEprimeToE(num_bins)
  * @endcode
  *
  * @param Eprime_to_E an array of \f$ \frac{E'}{E} \f$ values

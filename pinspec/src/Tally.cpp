@@ -504,8 +504,7 @@ bool Tally::isPrecisionTriggered() {
  *
  * @code
  *        num_bins = tally.getNumBins()
- *        bin_edges = numpy.zeros(num_bins)
- *        tally.retrieveTallyEdges(bin_edges)
+ *        edges = tally.retrieveTallyEdges(num_bins+1)
  * @endcode
  *
  * @param data the data array to fill with bin edge values
@@ -528,8 +527,7 @@ void Tally::retrieveTallyEdges(double* data, int num_edges) {
  *
  * @code
  *        num_bins = tally.getNumBins()
- *        bin_centers = numpy.zeros(num_bins)
- *        tally.retrieveTallyCenters(bin_centers)
+ *        centers = tally.retrieveTallyCenters(num_bins)
  * @endcode
  *
  * @param data the data array to fill with bin center values
@@ -556,8 +554,7 @@ void Tally::retrieveTallyCenters(double* data, int num_bins){
  *
  * @code
  *        num_bins = tally.getNumBins()
- *        tally_averages = numpy.zeros(num_bins)
- *        tally.retrieveTallyMu(tally_averages)
+ *        mu = tally.retrieveTallyMu(num_bins)
  * @endcode
  *
  * @param data the data array to fill with tally average values
@@ -587,8 +584,7 @@ void Tally::retrieveTallyMu(double* data, int num_bins) {
  *
  * @code
  *        num_bins = tally.getNumBins()
- *        variances = numpy.zeros(num_bins)
- *        tally.retrieveTallyVariance(variances)
+ *        variances = tally.retrieveTallyVariance(num_bins)
  * @endcode
  *
  * @param data the data array to fill with tally variances
@@ -621,8 +617,7 @@ void Tally::retrieveTallyVariance(double* data, int num_bins) {
  *
  * @code
  *        num_bins = tally.getNumBins()
- *        std_dev = numpy.zeros(num_bins)
- *        tally.retrieveTallyStdDev(std_dev)
+ *        std_dev = tally.retrieveTallyStdDev(num_bins)
  * @endcode
  *
  * @param data the data array to fill with tally standard deviations
@@ -655,8 +650,7 @@ void Tally::retrieveTallyStdDev(double* data, int num_bins) {
  *
  * @code
  *        num_bins = tally.getNumBins()
- *        rel_err = numpy.zeros(num_bins)
- *        tally.retrieveTallyRelErr(rel_err)
+ *        rel_err = tally.retrieveTallyRelErr(num_bins)
  * @endcode
  *
  * @param data the data array to fill with tally relative errors
