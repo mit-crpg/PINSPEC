@@ -1,5 +1,5 @@
 var classIsotopeTransportRateTally =
 [
-    [ "IsotopeTransportRateTally", "classIsotopeTransportRateTally.html#a80842d6877d46b24bc02f88e884c5e1d", null ],
+    [ "IsotopeTransportRateTally", "classIsotopeTransportRateTally.html#a06127f79bbed09a664d10df90fb3c354", null ],
     [ "tally", "classIsotopeTransportRateTally.html#a5a747ab9d3704757ff9ec585fa402e84", null ]
 ];

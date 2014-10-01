@@ -1,5 +1,5 @@
 var classRegionFluxTally =
 [
-    [ "RegionFluxTally", "classRegionFluxTally.html#afeb527c4b8deafc6cff68594ad95a9c8", null ],
+    [ "RegionFluxTally", "classRegionFluxTally.html#aa97ca0ffad471ca69da39d290a577134", null ],
     [ "tally", "classRegionFluxTally.html#a318a32edcb4f2866574194cd74ddd04f", null ]
 ];

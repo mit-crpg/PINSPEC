@@ -1,6 +1,6 @@
 var classDerivedTally =
 [
-    [ "DerivedTally", "classDerivedTally.html#a09be94ac5d5d7c0d55cbbbaf48d3585f", null ],
+    [ "DerivedTally", "classDerivedTally.html#a4a9faaf29f4828347c70c46fd10c9df8", null ],
     [ "setBatchMu", "classDerivedTally.html#a6aabaf89a60ba07a1460518fcbea7990", null ],
     [ "setBatchRelErr", "classDerivedTally.html#a63b65159121fcb62629a12ce1fb45103", null ],
     [ "setBatchStdDev", "classDerivedTally.html#a43b489858c4b850eff1f7efd75f99d21", null ],

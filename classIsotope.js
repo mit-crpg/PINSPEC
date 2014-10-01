@@ -38,7 +38,7 @@ var classIsotope =
     [ "loadXS", "classIsotope.html#a19b56ea1eb66fd0192c56bbefc93bdea", null ],
     [ "makeFissionable", "classIsotope.html#a9adedaf6a1bd4cee536c4684d6adaf65", null ],
     [ "neglectThermalScattering", "classIsotope.html#a8d1e9f7fe97d0a7a7b893b69470860da", null ],
-    [ "parseName", "classIsotope.html#a8f2edf586499fff80ecee7cbdc28bd0e", null ],
+    [ "parseName", "classIsotope.html#a48eb8a1429e98078da55d4b8663c22d1", null ],
     [ "rescaleXS", "classIsotope.html#a4371bd4097b6df0b2ddadc3dd7b01864", null ],
     [ "retrieveEprimeToE", "classIsotope.html#a59bc39b34459d9261fdcf557c1677f70", null ],
     [ "retrieveEtokT", "classIsotope.html#a50f48611e87e42fd727223676a6d6f5a", null ],

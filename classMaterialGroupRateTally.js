@@ -1,5 +1,5 @@
 var classMaterialGroupRateTally =
 [
-    [ "MaterialGroupRateTally", "classMaterialGroupRateTally.html#a1d5ad1420a3a13a0f2da3dd92106d965", null ],
+    [ "MaterialGroupRateTally", "classMaterialGroupRateTally.html#a0bad142698a5305dd03fffa79a523b50", null ],
     [ "tally", "classMaterialGroupRateTally.html#a4e6658b9ce653f19a08a8b1860cc90aa", null ]
 ];

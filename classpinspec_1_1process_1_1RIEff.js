@@ -14,9 +14,9 @@ var classpinspec_1_1process_1_1RIEff =
     [ "outputRItoFile", "classpinspec_1_1process_1_1RIEff.html#a222c27b2e654c5823bbd0293d87a4292", null ],
     [ "printRI", "classpinspec_1_1process_1_1RIEff.html#ac3af925ad0212228c18d2dec7cd6a056", null ],
     [ "setName", "classpinspec_1_1process_1_1RIEff.html#a0a484c374d5285ec12506fc4bbc7f079", null ],
-    [ "_flux", "classpinspec_1_1process_1_1RIEff.html#a10e1aaa0cd9c6128c50a8b861fe70e12", null ],
-    [ "_name", "classpinspec_1_1process_1_1RIEff.html#abc47c3631d399f99dde759508cf24f91", null ],
-    [ "_num_RIs", "classpinspec_1_1process_1_1RIEff.html#a1a26f91938a9362ee0193fe6205f3018", null ],
-    [ "_rate", "classpinspec_1_1process_1_1RIEff.html#abb3c0dc28dd38b9094ae4fac9372cd90", null ],
-    [ "_RI", "classpinspec_1_1process_1_1RIEff.html#a3764873accaf3abc4a7ce37b499c6cf0", null ]
+    [ "_flux", "classpinspec_1_1process_1_1RIEff.html#af0215d52bf5723c78262906e8c7f08c2", null ],
+    [ "_name", "classpinspec_1_1process_1_1RIEff.html#ac301e973346fc58c883b4be4d1dfb16d", null ],
+    [ "_num_RIs", "classpinspec_1_1process_1_1RIEff.html#a3cb90b203ab23c3a8e1d846ab0f722b8", null ],
+    [ "_rate", "classpinspec_1_1process_1_1RIEff.html#a3f4dc5383e688ba931f0e59217537500", null ],
+    [ "_RI", "classpinspec_1_1process_1_1RIEff.html#a05447de3e70c5b7527aed85dbea6391d", null ]
 ];

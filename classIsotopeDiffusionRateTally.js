@@ -1,5 +1,5 @@
 var classIsotopeDiffusionRateTally =
 [
-    [ "IsotopeDiffusionRateTally", "classIsotopeDiffusionRateTally.html#af7261cada71cb0cea0a6f3f4d5b92f4c", null ],
+    [ "IsotopeDiffusionRateTally", "classIsotopeDiffusionRateTally.html#a810c8fc2505e968cc8cb9ab85fe1992c", null ],
     [ "tally", "classIsotopeDiffusionRateTally.html#af9de72dec40388388faba7fdf13ec5a4", null ]
 ];

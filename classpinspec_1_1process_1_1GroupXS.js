@@ -1,6 +1,10 @@
 var classpinspec_1_1process_1_1GroupXS =
 [
     [ "__init__", "classpinspec_1_1process_1_1GroupXS.html#ad81cb8d5201650c809f300a4af11921f", null ],
+    [ "__add__", "classpinspec_1_1process_1_1GroupXS.html#ad660a9e35b413e23d79589bfac8f178c", null ],
+    [ "__div__", "classpinspec_1_1process_1_1GroupXS.html#aea4a278c425ffa587ef4c4ba35e99573", null ],
+    [ "__mul__", "classpinspec_1_1process_1_1GroupXS.html#a583ea7e82bad2d21d8e2cd15586de6d8", null ],
+    [ "__sub__", "classpinspec_1_1process_1_1GroupXS.html#a01dff4e3fe87954f6ed1bafe32ebfd01", null ],
     [ "computeGroupXS", "classpinspec_1_1process_1_1GroupXS.html#a86e9d4738e35a82b241a3c7b79882466", null ],
     [ "getEnergyBands", "classpinspec_1_1process_1_1GroupXS.html#a9a56a3b63e126b65ce191ca7dbdcda32", null ],
     [ "getEnergyBandsCenters", "classpinspec_1_1process_1_1GroupXS.html#a757870124674de6a5ddff4f26df6c0c6", null ],
@@ -14,9 +18,9 @@ var classpinspec_1_1process_1_1GroupXS =
     [ "outputXStoFile", "classpinspec_1_1process_1_1GroupXS.html#a6b64121b4d0efaf6b3e86587ecde0273", null ],
     [ "printXS", "classpinspec_1_1process_1_1GroupXS.html#a2918792badce34f95584a70d89aa71f7", null ],
     [ "setName", "classpinspec_1_1process_1_1GroupXS.html#ae52730b41f0003d4295486cba6ec7438", null ],
-    [ "_flux", "classpinspec_1_1process_1_1GroupXS.html#a394e24bed1500596006ffb7b8d5ce49c", null ],
-    [ "_name", "classpinspec_1_1process_1_1GroupXS.html#a0ec1b5eca7d5160639e56ae3845c9d4d", null ],
-    [ "_num_xs", "classpinspec_1_1process_1_1GroupXS.html#acb37235efc53788db16ad0b41bb06aa1", null ],
-    [ "_rate", "classpinspec_1_1process_1_1GroupXS.html#a517c7c358b0bd107eac2f36d45477413", null ],
-    [ "_xs", "classpinspec_1_1process_1_1GroupXS.html#a126f761e990d2cf5c3cdf966f84146b5", null ]
+    [ "_flux", "classpinspec_1_1process_1_1GroupXS.html#acc9c47ded2fb3c3e8d27b8ca1652962a", null ],
+    [ "_name", "classpinspec_1_1process_1_1GroupXS.html#ae1ec6f536e2a123c5e050313681364ce", null ],
+    [ "_num_xs", "classpinspec_1_1process_1_1GroupXS.html#aec56586bd4e0a90d9d5ce97ad6c40595", null ],
+    [ "_rate", "classpinspec_1_1process_1_1GroupXS.html#a72b491dd81618cc213b4f397d3a73b14", null ],
+    [ "_xs", "classpinspec_1_1process_1_1GroupXS.html#ad6f901eaff624ea2d59280d198bbca09", null ]
 ];

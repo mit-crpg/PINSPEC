@@ -2,10 +2,14 @@ var hierarchy =
 [
     [ "Fissioner", "classFissioner.html", null ],
     [ "Geometry", "classGeometry.html", null ],
-    [ "pinspec.process.GroupXS", "classpinspec_1_1process_1_1GroupXS.html", null ],
     [ "Isotope", "classIsotope.html", null ],
     [ "Material", "classMaterial.html", null ],
     [ "neutron", "structneutron.html", null ],
+    [ "object", null, [
+      [ "pinspec.process.GroupXS", "classpinspec_1_1process_1_1GroupXS.html", null ],
+      [ "pinspec.process.RIEff", "classpinspec_1_1process_1_1RIEff.html", null ],
+      [ "pinspec.process.RITrue", "classpinspec_1_1process_1_1RITrue.html", null ]
+    ] ],
     [ "Region", "classRegion.html", [
       [ "BoundedRegion", "classBoundedRegion.html", [
         [ "BoundedFuelRegion", "classBoundedFuelRegion.html", null ],
@@ -18,8 +22,6 @@ var hierarchy =
       ] ],
       [ "InfiniteMediumRegion", "classInfiniteMediumRegion.html", null ]
     ] ],
-    [ "pinspec.process.RIEff", "classpinspec_1_1process_1_1RIEff.html", null ],
-    [ "pinspec.process.RITrue", "classpinspec_1_1process_1_1RITrue.html", null ],
     [ "Surface", "classSurface.html", [
       [ "XPlane", "classXPlane.html", null ],
       [ "YPlane", "classYPlane.html", null ],
