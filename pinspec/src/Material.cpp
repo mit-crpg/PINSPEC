@@ -891,7 +891,6 @@ void Material::addIsotope(Isotope* isotope, float atomic_ratio) {
         /* Calculates the material's number density */
         _material_number_density = _material_density * N_av /
                                    _material_atomic_mass;
-        printf("material number density = %f\n", _material_number_density);
     }
     else if ((_density_unit == NUM_CM3) || (_density_unit == NUM_BARNCM)) {
 
