@@ -3139,7 +3139,6 @@ Tally* createTally(Geometry* geometry, tallyType tally_type, char* tally_name) {
 void IsotopeCollisionRateTally::tally(neutron* neutron) {
     double weight = _isotope->getTotalXS(neutron->_old_energy)
       * neutron->_path_length;
-    weight *= neutron->_material->getIsotopeDensity(_isotope, NUM_BARNCM);
     Tally::tally(neutron, weight);
     return;
 }
@@ -3190,7 +3189,6 @@ void GeometryCollisionRateTally::tally(neutron* neutron) {
 void IsotopeElasticRateTally::tally(neutron* neutron) {
     double weight = _isotope->getElasticXS(neutron->_old_energy)
       * neutron->_path_length;
-    weight *= neutron->_material->getIsotopeDensity(_isotope, NUM_BARNCM);
     Tally::tally(neutron, weight);
     return;
 }
@@ -3243,9 +3241,8 @@ void GeometryElasticRateTally::tally(neutron* neutron) {
  * @param neutron the neutron of interest
  */
 void IsotopeGroupRateTally::tally(neutron* neutron) {
-    double weight = _isotope->getElasticXS(neutron->_old_energy) 
-			* neutron->_path_length;
-    weight *= neutron->_material->getIsotopeDensity(_isotope, NUM_BARNCM);
+    double weight = _isotope->getElasticXS(neutron->_old_energy)
+      * neutron->_path_length;
     Tally::tallyGroup(neutron, weight);
     return;
 }
@@ -3298,9 +3295,8 @@ void GeometryGroupRateTally::tally(neutron* neutron) {
  * @param neutron the neutron of interest
  */
 void IsotopeOutScatterRateTally::tally(neutron* neutron) {
-    double weight = _isotope->getElasticXS(neutron->_old_energy) 
+    double weight = _isotope->getElasticXS(neutron->_old_energy)
 			* neutron->_path_length;
-    weight *= neutron->_material->getIsotopeDensity(_isotope, NUM_BARNCM);
     Tally::tally(neutron, weight);
     return;
 }
@@ -3356,7 +3352,6 @@ void GeometryOutScatterRateTally::tally(neutron* neutron) {
 void IsotopeAbsorptionRateTally::tally(neutron* neutron) {
     double weight = _isotope->getAbsorptionXS(neutron->_old_energy) 
 			* neutron->_path_length;
-    weight *= neutron->_material->getIsotopeDensity(_isotope, NUM_BARNCM);
     Tally::tally(neutron, weight);
     return;
 }
@@ -3412,7 +3407,6 @@ void GeometryAbsorptionRateTally::tally(neutron* neutron) {
 void IsotopeCaptureRateTally::tally(neutron* neutron) {
     double weight = _isotope->getCaptureXS(neutron->_old_energy) 
 			* neutron->_path_length;
-    weight *= neutron->_material->getIsotopeDensity(_isotope, NUM_BARNCM);
     Tally::tally(neutron, weight);
     return;
 }
@@ -3462,14 +3456,13 @@ void GeometryCaptureRateTally::tally(neutron* neutron) {
 /******************************************************************************/
 
 /**
- * @brief Tally the isotope fission rate by incrementing the 
+ * @brief Tally the isotope fission rate by incrementing the
  *        tally by \f$ \frac{\sigma_f}{\Sigma_t} \f$ at the neutron's energy.
  * @param neutron the neutron of interest
  */
 void IsotopeFissionRateTally::tally(neutron* neutron) {
-    double weight = _isotope->getFissionXS(neutron->_old_energy) 
- 		     * neutron->_path_length;
-    weight *= neutron->_material->getIsotopeDensity(_isotope, NUM_BARNCM);
+    double weight = _isotope->getFissionXS(neutron->_old_energy)
+      * neutron->_path_length;
     Tally::tally(neutron, weight);
     return;
 }
@@ -3525,7 +3518,6 @@ void GeometryFissionRateTally::tally(neutron* neutron) {
 void IsotopeTransportRateTally::tally(neutron* neutron) {
     double weight = _isotope->getTransportXS(neutron->_old_energy) 
 			* neutron->_path_length;
-    weight *= neutron->_material->getIsotopeDensity(_isotope, NUM_BARNCM);
     Tally::tally(neutron, weight);
     return;
 }
@@ -3581,7 +3573,6 @@ void GeometryTransportRateTally::tally(neutron* neutron) {
  */
 void IsotopeDiffusionRateTally::tally(neutron* neutron) {
     double weight = 1.0 / (3.0 * _isotope->getTransportXS(neutron->_old_energy))  		         * neutron->_path_length;
-    weight *= neutron->_material->getIsotopeDensity(_isotope, NUM_BARNCM);
     Tally::tally(neutron, weight);
     return;
 }
