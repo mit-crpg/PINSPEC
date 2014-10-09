@@ -53,7 +53,7 @@ code, as well as images (ie, plots) along with their bugs.
 License
 -------
 
-PINSPEC is undergoing review to be distributed under the MIT/X license_.
+PINSPEC is approved for distribution under the MIT license_.
 
 .. _evernote notebooks:  https://www.evernote.com/pub/wbinventor/main
 .. _installation instructions: https://github.com/mit-crpg/PINSPEC/wiki/Installing-PINSPEC
