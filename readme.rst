@@ -21,13 +21,6 @@ contribute, please contact the development team. In addition,
 If you plan to use PINSPEC frequently and would like to 
 contribute feedback, please `contact`_ the development team.
 
-------------
-Installation
-------------
-
-Detailed `installation instructions`_ can be found in the 
-User's Guide.
-
 -------
 License
 -------
