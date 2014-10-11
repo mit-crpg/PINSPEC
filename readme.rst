@@ -18,11 +18,8 @@ Complete documentation on the usage of PINSPEC is hosted on
 our GitHub wiki at https://github.com/mit-crpg/PINSPEC/wiki. 
 If you are interested in the project or would like to help and 
 contribute, please contact the development team. In addition, 
-PINSPEC hosts a collection of publicly readable `Evernote notebooks`_ 
-to allow for free and open collaboration between users and the 
-development team. If you plan to use PINSPEC frequently and would 
-like to contribute notes and feedback through Evernote, please 
-`contact`_ the development team.
+If you plan to use PINSPEC frequently and would like to 
+contribute feedback, please `contact`_ the development team.
 
 ------------
 Installation
@@ -31,33 +28,13 @@ Installation
 Detailed `installation instructions`_ can be found in the 
 User's Guide.
 
----------------
-Troubleshooting
----------------
-
-If you run into problems installing or running PINSPEC, 
-first review the `FAQ`_ in the Wiki and the 
-`Evernote notebooks`_ for info from other users regarding 
-your issue. If you are not able to find a solution to your 
-problem there, please `contact`_ one of the developers.
-
---------------
-Reporting Bugs
---------------
-
-All bugs are reported through the `Issues`_ Evernote notebook. 
-This allows for users to submit their input files, modified source
-code, as well as images (ie, plots) along with their bugs.
-
 -------
 License
 -------
 
 PINSPEC is approved for distribution under the MIT license_.
 
-.. _evernote notebooks:  https://www.evernote.com/pub/wbinventor/main
 .. _installation instructions: https://github.com/mit-crpg/PINSPEC/wiki/Installing-PINSPEC
-.. _Issues: https://www.evernote.com/pub/wbinventor/issues#st=p
 .. _FAQ: https://github.com/mit-crpg/PINSPEC/wiki/FAQ
 .. _license: https://github.com/mit-crpg/PINSPEC/wiki/License
 .. _contact: https://github.com/mit-crpg/PINSPEC/wiki/Contact-Us
