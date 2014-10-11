@@ -21,13 +21,7 @@ contribute, please contact the development team. In addition,
 If you plan to use PINSPEC frequently and would like to 
 contribute feedback, please `contact`_ the development team.
 
--------
-License
--------
-
 PINSPEC is approved for distribution under the MIT license_.
 
-.. _installation instructions: https://github.com/mit-crpg/PINSPEC/wiki/Installing-PINSPEC
-.. _FAQ: https://github.com/mit-crpg/PINSPEC/wiki/FAQ
 .. _license: https://github.com/mit-crpg/PINSPEC/wiki/License
 .. _contact: https://github.com/mit-crpg/PINSPEC/wiki/Contact-Us
