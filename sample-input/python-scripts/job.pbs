@@ -4,8 +4,8 @@
 # and maximum running time
 #######################################
 
-#PBS -l nodes=1:ppn=12
-#PBS -l walltime=00:10:00
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=01:00:00
 
 ######################################
 # Enter directory and set PATH
@@ -13,6 +13,14 @@
 
 cd $PBS_O_WORKDIR
 PATH=$PBS_O_PATH
+
+######################################                                          
+# Load the PINSPEC directory into the                                           
+# environment on the compute node                                               
+######################################   
+
+export PYTHONPATH=/opt/PINSPEC/lib/python2.7/site-packages:/opt/PINSPEC/lib/pyt\
+hon2.7/site-packages/pinspec:$PYTHONPATH
 
 ######################################
 # Run PINSPEC - MAKE YOUR CHANGES HERE
