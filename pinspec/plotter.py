@@ -371,7 +371,7 @@ def plotFissionSpectrum():
             os.makedirs(directory)
 
     # Generate fission CDF
-    fissioner = Fissioner()
+    fissioner = pinspec.Fissioner()
     fissioner.setNumBins(10000)
     fissioner.setEMax(20)
     fissioner.buildCDF()
