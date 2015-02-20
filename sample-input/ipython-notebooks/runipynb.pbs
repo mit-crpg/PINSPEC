@@ -1,9 +1,0 @@
-#PBS -lnodes=1:ppn=1
-#PBS -l walltime=01:00:00
-#PBS -k eo 
-
-cd $PBS_O_WORKDIR
-PATH=$PBS_O_PATH
-
-ipython notebook --port=8000 --pylab=inline --ip='*' --no-browser --NotebookApp.password='sha1:ebe54b29d275:bb91d337076d4699f51dcd41db77f081610b70b7' --certfile='/home/wboyd/.certificates/ipython-notebook.pem' &
-ssh nsecluster.mit.edu -R 8000:127.0.0.1:8000 sleep 1h

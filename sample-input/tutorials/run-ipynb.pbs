@@ -5,7 +5,7 @@
 # and maximum running time
 #######################################
 
-#PBS -l nodes=1:ppn=1:reserved
+#PBS -l nodes=1:ppn=1
 #PBS -l walltime=01:00:00
 #PBS -k eo 
 
@@ -37,7 +37,7 @@ port=$(($userid + 8000))
 # on a compute node
 ######################################
 
-ipython notebook --port=$port --ip='*' --no-browser --pylab=inline --NotebookApp.password='sha1:ebe54b29d275:bb91d337076d4699f51dcd41db77f081610b70b7' --certfile='~/.certificates/ipython-notebook.pem' &
+ipython notebook --port=$port --ip='*' --no-browser --pylab=inline --certfile='~/.certificates/ipython-notebook.pem' &
 
 ######################################
 # Setup ssh forwarding so the login
