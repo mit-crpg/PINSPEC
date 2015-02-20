@@ -37,7 +37,7 @@ port=$(($userid + 8000))
 # on a compute node
 ######################################
 
-ipython notebook --port=$port --ip='*' --no-browser --pylab=inline --certfile='~/.certificates/ipython-notebook.pem' &
+ipython notebook --port=$port --pylab=inline --ip='*' --no-browser --certfile='~/.certificates/ipython-notebook.pem' &
 
 ######################################
 # Setup ssh forwarding so the login
