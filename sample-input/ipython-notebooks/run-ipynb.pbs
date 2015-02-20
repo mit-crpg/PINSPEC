@@ -1,0 +1,48 @@
+#!/bin/sh
+#######################################
+# DO NOT CHANGE!!!
+# Specify nodes, processors per node
+# and maximum running time
+#######################################
+
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=01:00:00
+#PBS -k eo 
+
+######################################
+# Enter directory and set PATH
+######################################
+
+cd $PBS_O_WORKDIR
+PATH=$PBS_O_PATH
+
+######################################
+# Load the PINSPEC directory into the
+# environment on the compute node
+######################################
+
+export PYTHONPATH=/opt/PINSPEC/lib/python2.7/site-packages:/opt/PINSPEC/lib/python2.7/site-packages/pinspec:$PYTHONPATH
+
+######################################
+# Determine the port number to launch
+# the IPython Notebook server on based 
+# on the user's unique ID
+######################################
+
+userid=$(id -u $USER)
+port=$(($userid + 8000))
+
+######################################
+# Launch the IPython Notebook server
+# on a compute node
+######################################
+
+ipython notebook --port=$port --pylab=inline --ip='*' --no-browser --no-mathjax --certfile='~/.certificates/ipython-notebook.pem' &
+
+######################################
+# Setup ssh forwarding so the login
+# node can intercept and display 
+# output from the Notebook
+######################################
+
+ssh nsecluster.mit.edu -R $port:127.0.0.1:$port sleep 1h
