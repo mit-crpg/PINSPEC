@@ -5,13 +5,11 @@ PINSPEC Monte Carlo Particle Transport Code
 The PINSPEC project project aims to provide a simple-to-use 
 Python package for spectral calculations of nuclear reactor 
 applications. It includes support for infinite homogeneous
-spectral calculations, heterogeneous-homogeneous pin cell
-equivalence calculations, as well as constructive solid
-geometry and 3D ray tracing for fully heterogeneous
-calculations. A basic ENDF-VII continuous energy 
-cross-section is provided with support for the user to
+spectral calculations and heterogeneous-homogeneous pin cell
+equivalence calculations. A basic ENDF-VII continuous energy 
+cross-section data liibrary is provided with support for users to
 make additions to the library for their own applications.
-The project started under the Computational Reactor Physics 
+The PINSPEC project started under the Computational Reactor Physics 
 Group at MIT.
 
 Complete documentation on the usage of PINSPEC is hosted on 
